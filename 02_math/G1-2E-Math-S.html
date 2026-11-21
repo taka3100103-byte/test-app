@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中1数学 2学期末テスト対策：比例と反比例 4択クイズ</title>
+<style>
+  :root {
+    --bg: #f4f7fb;
+    --card: #ffffff;
+    --primary: #2563eb;
+    --primary-light: #eff6ff;
+    --primary-dark: #1d4ed8;
+    --success: #16a34a;
+    --success-bg: #f0fdf4;
+    --danger: #dc2626;
+    --danger-bg: #fef2f2;
+    --text: #1e293b;
+    --muted: #64748b;
+    --border: #e2e8f0;
+    --accent: #f59e0b;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+  }
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 20px 16px 48px;
+  }
+  header {
+    background: linear-gradient(135deg, #1e40af, #3b82f6);
+    color: #fff;
+    border-radius: 16px;
+    padding: 20px 24px;
+    margin-bottom: 18px;
+    box-shadow: 0 6px 18px rgba(37, 99, 235, 0.18);
+  }
+  header h1 {
+    margin: 0 0 6px;
+    font-size: 1.35rem;
+    font-weight: 700;
+  }
+  header p {
+    margin: 0;
+    font-size: 0.9rem;
+    opacity: 0.92;
+  }
+  .mode-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .mode-btn {
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--text);
+    padding: 7px 13px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .mode-btn:hover { border-color: var(--primary); color: var(--primary); }
+  .mode-btn.active {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+  }
+  .progress-wrap {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+  }
+  .progress-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .progress-bar-bg {
+    width: 100%;
+    height: 8px;
+    background: #e2e8f0;
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #2563eb, #38bdf8);
+    width: 0%;
+    transition: width 0.3s ease;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+  }
+  .badge-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+  .badge-cat { background: var(--primary-light); color: var(--primary-dark); }
+  .badge-lvl { background: #fef3c7; color: #b45309; }
+  .q-text {
+    font-size: 1.08rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .q-visual {
+    margin: 14px 0 18px;
+    display: flex;
+    justify-content: center;
+    overflow-x: auto;
+  }
+  table.math-table {
+    border-collapse: collapse;
+    margin: 6px auto;
+    font-size: 0.95rem;
+    background: #fff;
+  }
+  table.math-table th, table.math-table td {
+    border: 1px solid #94a3b8;
+    padding: 6px 14px;
+    text-align: center;
+    min-width: 44px;
+  }
+  table.math-table th {
+    background: #f1f5f9;
+    font-weight: 700;
+  }
+  .choices {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .choice-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    text-align: left;
+    background: #fff;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 13px 16px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    color: var(--text);
+  }
+  .choice-btn:hover:not(:disabled) {
+    border-color: var(--primary);
+    background: var(--primary-light);
+  }
+  .choice-btn:disabled { cursor: default; }
+  .choice-label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #f1f5f9;
+    font-weight: 700;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+  }
+  .choice-btn.correct {
+    border-color: var(--success);
+    background: var(--success-bg);
+  }
+  .choice-btn.correct .choice-label {
+    background: var(--success);
+    color: #fff;
+  }
+  .choice-btn.wrong {
+    border-color: var(--danger);
+    background: var(--danger-bg);
+  }
+  .choice-btn.wrong .choice-label {
+    background: var(--danger);
+    color: #fff;
+  }
+  .feedback {
+    margin-top: 18px;
+    border-radius: 12px;
+    padding: 16px 18px;
+    display: none;
+    animation: fadeIn 0.2s ease;
+  }
+  .feedback.show { display: block; }
+  .feedback.is-correct {
+    background: var(--success-bg);
+    border: 1px solid #86efac;
+  }
+  .feedback.is-wrong {
+    background: var(--danger-bg);
+    border: 1px solid #fca5a5;
+  }
+  .feedback-title {
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+  }
+  .feedback.is-correct .feedback-title { color: var(--success); }
+  .feedback.is-wrong .feedback-title { color: var(--danger); }
+  .explanation {
+    font-size: 0.95rem;
+    color: #1e293b;
+  }
+  .nav-row {
+    margin-top: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+  .btn-primary {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 11px 22px;
+    font-size: 0.98rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .btn-primary:hover { background: var(--primary-dark); }
+  .btn-secondary {
+    background: #fff;
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 18px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .btn-secondary:hover { background: #f8fafc; }
+  .frac {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    vertical-align: middle;
+    margin: 0 2px;
+    font-size: 0.9em;
+    line-height: 1.1;
+  }
+  .frac .num {
+    border-bottom: 1.5px solid currentColor;
+    padding: 0 3px 1px;
+  }
+  .frac .den {
+    padding: 1px 3px 0;
+  }
+  .summary-card {
+    text-align: center;
+  }
+  .score-big {
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin: 8px 0;
+  }
+  .cat-breakdown {
+    text-align: left;
+    margin: 18px 0;
+    border-top: 1px solid var(--border);
+    padding-top: 14px;
+  }
+  .cat-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px dashed var(--border);
+    font-size: 0.95rem;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (min-width: 640px) {
+    .choices { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>中1数学 2学期末テスト対策：比例と反比例</h1>
+    <p>1問1答式 4択テスト（全25問・出題範囲完全網羅）</p>
+  </header>
+
+  <div class="mode-bar" id="modeBar">
+    <button class="mode-btn active" data-cat="all">すべて（全25問）</button>
+    <button class="mode-btn" data-cat="関数と変域">1. 関数と変域</button>
+    <button class="mode-btn" data-cat="比例・反比例の基本">2. 基本と文章題</button>
+    <button class="mode-btn" data-cat="比例の性質と座標">3. 比例の性質・座標</button>
+    <button class="mode-btn" data-cat="比例のグラフ">4. 比例のグラフ</button>
+    <button class="mode-btn" data-cat="反比例の性質・グラフ">5. 反比例と応用</button>
+  </div>
+
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-top">
+      <span id="progressLabel">第 1 問 / 25 問</span>
+      <span id="scoreLabel">現在の正解数：0 問</span>
+    </div>
+    <div class="progress-bar-bg">
+      <div class="progress-bar-fill" id="progressFill"></div>
+    </div>
+  </div>
+
+  <div class="card" id="quizCard"></div>
+</div>
+
+<script>
+const frac = (n, d) => `<span class="frac"><span class="num">${n}</span><span class="den">${d}</span></span>`;
+
+const QUESTIONS = [
+  // 1. 関数と変域 (5問)
+  {
+    id: 1,
+    cat: "関数と変域",
+    lvl: "基本",
+    q: "変数 <i>x</i> の変域が「<b>−4より大きく1以下</b>」であるとき、<i>x</i> の変域を不等号を使って表しなさい。",
+    visual: `<svg width="280" height="62" viewBox="0 0 280 62" aria-label="数直線">
+      <line x1="15" y1="38" x2="265" y2="38" stroke="#334155" stroke-width="2"/>
+      <polygon points="265,38 257,34 257,42" fill="#334155"/>
+      <line x1="65" y1="33" x2="65" y2="43" stroke="#334155" stroke-width="1.5"/>
+      <line x1="175" y1="33" x2="175" y2="43" stroke="#334155" stroke-width="1.5"/>
+      <line x1="200" y1="33" x2="200" y2="43" stroke="#334155" stroke-width="1.5"/>
+      <text x="65" y="57" font-size="12" text-anchor="middle" fill="#334155">-4</text>
+      <text x="175" y="57" font-size="12" text-anchor="middle" fill="#334155">0</text>
+      <text x="200" y="57" font-size="12" text-anchor="middle" fill="#334155">1</text>
+      <polyline points="65,38 65,18 200,18 200,38" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+      <circle cx="65" cy="18" r="5" fill="#ffffff" stroke="#2563eb" stroke-width="2.5"/>
+      <circle cx="200" cy="18" r="5" fill="#2563eb"/>
+    </svg>`,
+    choices: [
+      "−4 ＜ <i>x</i> ≦ 1",
+      "−4 ≦ <i>x</i> ＜ 1",
+      "−4 ＜ <i>x</i> ＜ 1",
+      "−4 ≦ <i>x</i> ≦ 1"
+    ],
+    ans: 0,
+    exp: "「より大きい」「未満」はその数を含まないため <b>＜</b>（数直線では白丸 ○）を使い、「以上」「以下」はその数を含むため <b>≦</b>（数直線では黒丸 ●）を使います。よって <b>−4 ＜ <i>x</i> ≦ 1</b> です。"
+  },
+  {
+    id: 2,
+    cat: "関数と変域",
+    lvl: "基本",
+    q: "次のア〜エのうち、<b><i>y</i> が <i>x</i> の関数である</b>といえるものはどれですか。",
+    visual: "",
+    choices: [
+      "ある都市で、最低気温が <i>x</i> ℃の日の最高気温は <i>y</i> ℃である。",
+      "1000 mL の牛乳のうち、<i>x</i> mL 飲んだあとの残りは <i>y</i> mL である。",
+      "平行四辺形の底辺が <i>x</i> cm のときの面積は <i>y</i> cm² である。",
+      "身長が <i>x</i> cm の人の体重は <i>y</i> kg である。"
+    ],
+    ans: 1,
+    exp: "<i>x</i> の値を決めると <i>y</i> の値が<b>ただ1つ決まる</b>とき、<i>y</i> は <i>x</i> の関数であるといいます。1000 mL から <i>x</i> mL 飲んだ残りは <i>y</i> = 1000 − <i>x</i> となり、<i>x</i> を決めれば <i>y</i> がただ1つ決まります。他の選択肢は、日や人、高さによって値が変わるため関数とはいえません。"
+  },
+  {
+    id: 3,
+    cat: "関数と変域",
+    lvl: "標準",
+    q: "一定の割合で燃える長さ 90 mm の線香がある。火をつけてから 3 分後に長さは 72 mm になった。火をつけてから <i>x</i> 分後の線香の長さを <i>y</i> mm とするとき、線香の長さが <b>30 mm</b> になるのは火をつけてから何分後ですか。",
+    visual: "",
+    choices: ["5 分後", "8 分後", "10 分後", "12 分後"],
+    ans: 2,
+    exp: "3 分間で 90 − 72 = 18 mm 燃えたので、1 分間に 18 ÷ 3 = 6 mm ずつ燃えます。長さが 30 mm になるまでに燃える長さは 90 − 30 = 60 mm なので、60 ÷ 6 = <b>10 分後</b>です。（なお、すべて燃えるまでの <i>y</i> の変域は 0 ≦ <i>y</i> ≦ 90 です）"
+  },
+  {
+    id: 4,
+    cat: "関数と変域",
+    lvl: "標準",
+    q: "同じ種類のくぎが何本かある。このうち <b>25 本</b>の重さをはかったら <b>40 g</b> だった。くぎ全体の重さが <b>960 g</b> だったとき、くぎはおよそ何本ありますか。",
+    visual: "",
+    choices: ["384 本", "500 本", "600 本", "640 本"],
+    ans: 2,
+    exp: "1 本あたりの重さがわかれば本数を求めることができます。40 ÷ 25 = 1.6 g/本 なので、960 ÷ 1.6 = <b>600 本</b>です。（または 960 ÷ 40 = 24 倍より、25 × 24 = 600 本と計算できます）"
+  },
+  {
+    id: 5,
+    cat: "関数と変域",
+    lvl: "発展",
+    q: "下の表はある運送会社の荷物の重量と料金（25 kg まで）を表したものである。この関係について正しい説明はどれですか。",
+    visual: `<table class="math-table">
+      <tr><th>重量</th><td>2kg以内</td><td>5kg以内</td><td>10kg以内</td><td>15kg以内</td><td>20kg以内</td><td>25kg以内</td></tr>
+      <tr><th>料金</th><td>850円</td><td>1000円</td><td>1300円</td><td>1600円</td><td>1800円</td><td>2000円</td></tr>
+    </table>`,
+    choices: [
+      "料金は重量の関数であり、重量も料金の関数である。",
+      "料金は重量の関数といえるが、重量は料金の関数とはいえない。",
+      "料金は重量の関数とはいえないが、重量は料金の関数である。",
+      "どちらも関数とはいえない。"
+    ],
+    ans: 1,
+    exp: "重量（例：18 kg）を決めると料金（1800 円）はただ1つに決まるので、<b>料金は重量の関数</b>といえます。一方、料金（例：1000 円）を決めても、重量は 3 kg や 4 kg などいろいろ考えられるため1つに決まりません。よって<b>重量は料金の関数とはいえない</b>が正解です。"
+  },
+
+  // 2. 比例・反比例の基本と文章題 (5問)
+  {
+    id: 6,
+    cat: "比例・反比例の基本",
+    lvl: "基本",
+    q: "1 L の燃料で 3 時間動く機械がある。この機械が <i>x</i> L の燃料で動く時間を <i>y</i> 時間とするとき、<i>y</i> を <i>x</i> の式で表し、比例定数が表している量を選びなさい。",
+    visual: "",
+    choices: [
+      "<i>y</i> = 3<i>x</i> ／ 1 L の燃料で動く時間",
+      "<i>y</i> = 3<i>x</i> ／ 1 時間あたりに使う燃料",
+      `<i>y</i> = ${frac(3, "<i>x</i>")} ／ 1 L の燃料で動く時間`,
+      `<i>y</i> = ${frac("<i>x</i>", 3)} ／ 燃料の合計`
+    ],
+    ans: 0,
+    exp: "燃料が 2 倍、3 倍になると動く時間も 2 倍、3 倍になる比例の関係です。式は <b><i>y</i> = 3<i>x</i></b> となり、比例定数 3 は「<b>1 L の燃料で動く時間（3時間）</b>」を表しています。"
+  },
+  {
+    id: 7,
+    cat: "比例・反比例の基本",
+    lvl: "基本",
+    q: "20 km の道のりを時速 <i>x</i> km で進むときにかかる時間を <i>y</i> 時間とする。<i>y</i> を <i>x</i> の式で表し、<i>x</i> と <i>y</i> の積 <i>xy</i> の値を求めなさい。",
+    visual: "",
+    choices: [
+      `<i>y</i> = 20<i>x</i> ／ <i>xy</i> = 20`,
+      `<i>y</i> = ${frac(20, "<i>x</i>")} ／ <i>xy</i> = 20`,
+      `<i>y</i> = ${frac("<i>x</i>", 20)} ／ <i>xy</i> = ${frac(1, 20)}`,
+      `<i>y</i> = ${frac(20, "<i>x</i>")} ／ <i>xy</i> = 400`
+    ],
+    ans: 1,
+    exp: "時間 = 道のり ÷ 速さ なので、<b><i>y</i> = " + frac(20, "<i>x</i>") + "</b> となり反比例します。反比例では、対応する <i>x</i> と <i>y</i> の積 <b><i>xy</i> は比例定数 20</b>（＝20 km の道のり）と等しくなります。"
+  },
+  {
+    id: 8,
+    cat: "比例・反比例の基本",
+    lvl: "標準",
+    q: "次の①、②の関係について、<i>y</i> が <i>x</i> に比例するものと反比例するものの正しい組み合わせを選びなさい。<br>① 1辺が 4 cm の正方形と面積が等しい長方形の縦を <i>x</i> cm、横を <i>y</i> cm とする。<br>② <i>x</i> m のリボンを 3 等分するとき、1つ分の長さを <i>y</i> m とする。",
+    visual: "",
+    choices: [
+      "① 比例　② 反比例",
+      "① 反比例　② 比例",
+      "① 比例　② 比例",
+      "① 反比例　② どちらでもない"
+    ],
+    ans: 1,
+    exp: "① 正方形の面積は 4 × 4 = 16 cm² なので <i>xy</i> = 16、つまり <i>y</i> = " + frac(16, "<i>x</i>") + " となり<b>反比例</b>です。<br>② リボンの長さを 3 で割るので <i>y</i> = " + frac(1, 3) + "<i>x</i> となり<b>比例</b>です。"
+  },
+  {
+    id: 9,
+    cat: "比例・反比例の基本",
+    lvl: "標準",
+    q: "家から公園まで、分速 60 m で歩くと 20 分かかる。家から公園まで、分速 <i>x</i> m で歩いたときにかかる時間を <i>y</i> 分とするとき、<i>y</i> を <i>x</i> の式で表しなさい。",
+    visual: "",
+    choices: [
+      "<i>y</i> = 60<i>x</i>",
+      `<i>y</i> = ${frac(60, "<i>x</i>")}`,
+      `<i>y</i> = ${frac(1200, "<i>x</i>")}`,
+      "<i>y</i> = 1200<i>x</i>"
+    ],
+    ans: 2,
+    exp: "家から公園までの道のりは 60 × 20 = 1200 m です。かかる時間 <i>y</i> 分は「道のり ÷ 速さ」なので、<b><i>y</i> = " + frac(1200, "<i>x</i>") + "</b> となります。比例定数 1200 は家から公園までの道のりを表しています。"
+  },
+  {
+    id: 10,
+    cat: "比例・反比例の基本",
+    lvl: "標準",
+    q: "ある紙 10 枚の重さは 40 g で、この紙 100 枚の厚さは 9 mm である。この紙 <i>x</i> 枚の重さを <i>y</i> g とするとき、<i>y</i> を <i>x</i> の式で表しなさい。",
+    visual: "",
+    choices: [
+      "<i>y</i> = 4<i>x</i>",
+      "<i>y</i> = 40<i>x</i>",
+      "<i>y</i> = 0.09<i>x</i>",
+      `<i>y</i> = ${frac(40, "<i>x</i>")}`
+    ],
+    ans: 0,
+    exp: "紙 10 枚で 40 g なので、1 枚あたりの重さは 40 ÷ 10 = 4 g です。したがって <i>x</i> 枚の重さ <i>y</i> g は <b><i>y</i> = 4<i>x</i></b> となります。（厚さに着目する場合は 1 枚 0.09 mm なので <i>y</i> = 0.09<i>x</i> になります）"
+  },
+
+  // 3. 比例の性質と座標 (5問)
+  {
+    id: 11,
+    cat: "比例の性質と座標",
+    lvl: "基本",
+    q: "<i>y</i> = −6<i>x</i> について、<i>x</i> の値が負の数のとき、<i>x</i> の値が 2 倍、3 倍になると、対応する <i>y</i> の値はそれぞれ何倍になりますか。",
+    visual: "",
+    choices: [
+      "2 倍、3 倍になる",
+      `${frac(1, 2)} 倍、${frac(1, 3)} 倍になる`,
+      "−2 倍、−3 倍になる",
+      "変わらない"
+    ],
+    ans: 0,
+    exp: "比例 <i>y</i> = <i>ax</i> では、比例定数 <i>a</i> が負の数（−6）であっても、<i>x</i> の値が負の数であっても、<i>x</i> が 2 倍、3 倍になると対応する <i>y</i> の値も <b>2 倍、3 倍</b>になります。"
+  },
+  {
+    id: 12,
+    cat: "比例の性質と座標",
+    lvl: "標準",
+    q: `<i>y</i> は <i>x</i> に比例し、<i>x</i> = 4 のとき <i>y</i> = ${frac(10, 3)} である。<i>x</i> = −12 のときの <i>y</i> の値を求めなさい。`,
+    visual: "",
+    choices: ["<i>y</i> = −10", "<i>y</i> = 10", "<i>y</i> = −40", `<i>y</i> = −${frac(5, 6)}`],
+    ans: 0,
+    exp: `比例の式 <i>y</i> = <i>ax</i> に <i>x</i> = 4, <i>y</i> = ${frac(10, 3)} を代入すると 4<i>a</i> = ${frac(10, 3)}、よって <i>a</i> = ${frac(5, 6)} となり、式は <i>y</i> = ${frac(5, 6)}<i>x</i> です。<i>x</i> = −12 を代入すると <i>y</i> = ${frac(5, 6)} × (−12) = <b>−10</b> になります。（別解：<i>x</i> が 4 から −12 へ −3 倍なので、<i>y</i> も ${frac(10, 3)} × (−3) = −10）`
+  },
+  {
+    id: 13,
+    cat: "比例の性質と座標",
+    lvl: "標準",
+    q: "<i>y</i> は <i>x</i> に比例し、対応する <i>x</i> と <i>y</i> の値が下の表のようになるとき、<i>a</i> にあてはまる数を求めなさい。",
+    visual: `<table class="math-table">
+      <tr><th><i>x</i></th><td>…</td><td>−4</td><td>0</td><td>4</td><td>…</td><td>12</td><td>…</td></tr>
+      <tr><th><i>y</i></th><td>…</td><td>3</td><td>0</td><td>−3</td><td>…</td><td><b><i>a</i></b></td><td>…</td></tr>
+    </table>`,
+    choices: ["−12", "−9", "−6", "9"],
+    ans: 1,
+    exp: "<i>x</i> = 4 のとき <i>y</i> = −3 です。<i>x</i> = 12 は 4 の 3 倍なので、比例の性質より <i>a</i> も −3 の 3 倍となり、−3 × 3 = <b>−9</b> です。（式は <i>y</i> = −" + frac(3, 4) + "<i>x</i>）"
+  },
+  {
+    id: 14,
+    cat: "比例の性質と座標",
+    lvl: "基本",
+    q: "座標平面上の点 P(−4, 3) について、<b>原点について対称な点</b>の座標を求めなさい。",
+    visual: "",
+    choices: ["(4, 3)", "(−4, −3)", "(4, −3)", "(3, −4)"],
+    ans: 2,
+    exp: "原点について対称な点は、<i>x</i> 座標と <i>y</i> 座標の<b>符号がそれぞれ逆</b>になります。よって (−4, 3) の符号を両方変えた <b>(4, −3)</b> が正解です。"
+  },
+  {
+    id: 15,
+    cat: "比例の性質と座標",
+    lvl: "発展",
+    q: "座標の 1 目もりを 1 cm とし、3 点 A(4, 5)、B(−4, 2)、C(2, −4) を頂点とする △ABC の面積を求めなさい。",
+    visual: `<svg width="230" height="230" viewBox="-6 -6 12 12" style="background:#fff;border:1px solid #cbd5e1;border-radius:8px;">
+      <g stroke="#e2e8f0" stroke-width="0.06">
+        <line x1="-5" y1="-6" x2="-5" y2="6"/><line x1="-4" y1="-6" x2="-4" y2="6"/>
+        <line x1="-3" y1="-6" x2="-3" y2="6"/><line x1="-2" y1="-6" x2="-2" y2="6"/>
+        <line x1="-1" y1="-6" x2="-1" y2="6"/><line x1="1" y1="-6" x2="1" y2="6"/>
+        <line x1="2" y1="-6" x2="2" y2="6"/><line x1="3" y1="-6" x2="3" y2="6"/>
+        <line x1="4" y1="-6" x2="4" y2="6"/><line x1="5" y1="-6" x2="5" y2="6"/>
+        <line x1="-6" y1="-5" x2="6" y2="-5"/><line x1="-6" y1="-4" x2="6" y2="-4"/>
+        <line x1="-6" y1="-3" x2="6" y2="-3"/><line x1="-6" y1="-2" x2="6" y2="-2"/>
+        <line x1="-6" y1="-1" x2="6" y2="-1"/><line x1="-6" y1="1" x2="6" y2="1"/>
+        <line x1="-6" y1="2" x2="6" y2="2"/><line x1="-6" y1="3" x2="6" y2="3"/>
+        <line x1="-6" y1="4" x2="6" y2="4"/><line x1="-6" y1="5" x2="6" y2="5"/>
+      </g>
+      <line x1="-6" y1="0" x2="6" y2="0" stroke="#475569" stroke-width="0.1"/>
+      <line x1="0" y1="-6" x2="0" y2="6" stroke="#475569" stroke-width="0.1"/>
+      <rect x="-4" y="-5" width="8" height="9" fill="none" stroke="#94a3b8" stroke-width="0.08" stroke-dasharray="0.2,0.2"/>
+      <polygon points="4,-5 -4,-2 2,4" fill="rgba(37,99,235,0.14)" stroke="#2563eb" stroke-width="0.14"/>
+      <circle cx="4" cy="-5" r="0.22" fill="#2563eb"/>
+      <circle cx="-4" cy="-2" r="0.22" fill="#2563eb"/>
+      <circle cx="2" cy="4" r="0.22" fill="#2563eb"/>
+      <text x="4.3" y="-5" font-size="0.7" fill="#1e293b" font-weight="bold">A(4,5)</text>
+      <text x="-5.7" y="-2.2" font-size="0.7" fill="#1e293b" font-weight="bold">B(-4,2)</text>
+      <text x="2.3" y="4.5" font-size="0.7" fill="#1e293b" font-weight="bold">C(2,-4)</text>
+      <text x="0.2" y="0.7" font-size="0.6" fill="#475569">O</text>
+    </svg>`,
+    choices: ["27 cm²", "33 cm²", "36 cm²", "39 cm²"],
+    ans: 1,
+    exp: "点線のように横 8 cm（−4〜4）、縦 9 cm（−4〜5）の長方形（面積 72 cm²）で囲み、まわりの 3 つの直角三角形を引きます。<br>① 左上：8 × 3 ÷ 2 = 12 cm²<br>② 左下：6 × 6 ÷ 2 = 18 cm²<br>③ 右下：2 × 9 ÷ 2 = 9 cm²<br>よって 72 − (12 + 18 + 9) = 72 − 39 = <b>33 cm²</b> です。"
+  },
+
+  // 4. 比例のグラフ (5問)
+  {
+    id: 16,
+    cat: "比例のグラフ",
+    lvl: "基本",
+    q: `比例の関係 <i>y</i> = ${frac(4, 5)}<i>x</i> で、<i>x</i> の値が <b>10 増加</b>すると、<i>y</i> の値はどれだけどのように変化しますか。`,
+    visual: "",
+    choices: [
+      "8 増加する",
+      "8 減少する",
+      `${frac(4, 5)} 増加する`,
+      "10 増加する"
+    ],
+    ans: 0,
+    exp: `<i>y</i> = <i>ax</i> では <i>x</i> が 1 増加すると <i>y</i> は <i>a</i> ずつ増加します。<i>x</i> が 10 増加するときは ${frac(4, 5)} × 10 = <b>8 増加</b>します。`
+  },
+  {
+    id: 17,
+    cat: "比例のグラフ",
+    lvl: "標準",
+    q: "右の図の比例のグラフについて、<i>y</i> を <i>x</i> の式で表しなさい。",
+    visual: `<svg width="210" height="210" viewBox="-6 -6 12 12" style="background:#fff;border:1px solid #cbd5e1;border-radius:8px;">
+      <g stroke="#e2e8f0" stroke-width="0.06">
+        <line x1="-5" y1="-6" x2="-5" y2="6"/><line x1="-4" y1="-6" x2="-4" y2="6"/>
+        <line x1="-3" y1="-6" x2="-3" y2="6"/><line x1="-2" y1="-6" x2="-2" y2="6"/>
+        <line x1="-1" y1="-6" x2="-1" y2="6"/><line x1="1" y1="-6" x2="1" y2="6"/>
+        <line x1="2" y1="-6" x2="2" y2="6"/><line x1="3" y1="-6" x2="3" y2="6"/>
+        <line x1="4" y1="-6" x2="4" y2="6"/><line x1="5" y1="-6" x2="5" y2="6"/>
+        <line x1="-6" y1="-5" x2="6" y2="-5"/><line x1="-6" y1="-4" x2="6" y2="-4"/>
+        <line x1="-6" y1="-3" x2="6" y2="-3"/><line x1="-6" y1="-2" x2="6" y2="-2"/>
+        <line x1="-6" y1="-1" x2="6" y2="-1"/><line x1="-6" y1="1" x2="6" y2="1"/>
+        <line x1="-6" y1="2" x2="6" y2="2"/><line x1="-6" y1="3" x2="6" y2="3"/>
+        <line x1="-6" y1="4" x2="6" y2="4"/><line x1="-6" y1="5" x2="6" y2="5"/>
+      </g>
+      <line x1="-6" y1="0" x2="6" y2="0" stroke="#475569" stroke-width="0.1"/>
+      <line x1="0" y1="-6" x2="0" y2="6" stroke="#475569" stroke-width="0.1"/>
+      <line x1="-6" y1="-4" x2="6" y2="4" stroke="#dc2626" stroke-width="0.16"/>
+      <circle cx="3" cy="2" r="0.24" fill="#dc2626"/>
+      <text x="3.3" y="2.6" font-size="0.7" fill="#dc2626" font-weight="bold">A(3,-2)</text>
+      <text x="5.2" y="0.7" font-size="0.65" fill="#475569">x</text>
+      <text x="0.3" y="-5.2" font-size="0.65" fill="#475569">y</text>
+      <text x="0.2" y="0.7" font-size="0.6" fill="#475569">O</text>
+    </svg>`,
+    choices: [
+      `<i>y</i> = −${frac(3, 2)}<i>x</i>`,
+      `<i>y</i> = −${frac(2, 3)}<i>x</i>`,
+      `<i>y</i> = ${frac(2, 3)}<i>x</i>`,
+      `<i>y</i> = −2<i>x</i>`
+    ],
+    ans: 1,
+    exp: `グラフは原点と点 A(3, −2) を通る直線です。比例の式 <i>y</i> = <i>ax</i> に <i>x</i> = 3, <i>y</i> = −2 を代入すると、−2 = 3<i>a</i> より <i>a</i> = −${frac(2, 3)} となります。よって <b><i>y</i> = −${frac(2, 3)}<i>x</i></b> です。`
+  },
+  {
+    id: 18,
+    cat: "比例のグラフ",
+    lvl: "標準",
+    q: "原点を通る直線上に点 P(−4, 3) がある。この直線上に点 (8, <i>m</i>) があるとき、<i>m</i> の値を求めなさい。",
+    visual: "",
+    choices: ["<i>m</i> = −6", "<i>m</i> = 6", `<i>m</i> = −${frac(32, 3)}`, "<i>m</i> = −8"],
+    ans: 0,
+    exp: `点 P(−4, 3) を通る比例の式は 3 = −4<i>a</i> より <i>y</i> = −${frac(3, 4)}<i>x</i> です。この式に <i>x</i> = 8, <i>y</i> = <i>m</i> を代入すると <i>m</i> = −${frac(3, 4)} × 8 = <b>−6</b> になります。`
+  },
+  {
+    id: 19,
+    cat: "比例のグラフ",
+    lvl: "標準",
+    q: "<i>y</i> が <i>x</i> に比例するとき、下の表から「<i>x</i> の値が 1 増えたときの <i>y</i> の変化」を使って比例定数 <i>a</i> を求める考え方として正しいものはどれですか。",
+    visual: `<table class="math-table">
+      <tr><th><i>x</i></th><td>…</td><td>3</td><td>6</td><td>…</td></tr>
+      <tr><th><i>y</i></th><td>…</td><td>−9</td><td>−18</td><td>…</td></tr>
+    </table>`,
+    choices: [
+      "<i>x</i> が 3 増えると <i>y</i> は −9 増えるので、<i>x</i> が 1 増えると <i>y</i> は −9 ÷ 3 = −3 増える。よって <i>a</i> = −3。",
+      "<i>x</i> が 3 増えると <i>y</i> は 9 増えるので、<i>a</i> = 3。",
+      "<i>x</i> が 6 のとき <i>y</i> = −18 なので、<i>a</i> = −18。",
+      "<i>x</i> × <i>y</i> = 3 × (−9) = −27 なので、<i>a</i> = −27。"
+    ],
+    ans: 0,
+    exp: "<i>x</i> の値が 6 − 3 = 3 増えると、<i>y</i> の値は −18 − (−9) = −9 増えます。したがって <i>x</i> が 1 増えると <i>y</i> は −9 ÷ 3 = −3 増える（3 減る）ので、比例定数 <b><i>a</i> = −3</b> と求められます。"
+  },
+  {
+    id: 20,
+    cat: "比例のグラフ",
+    lvl: "基本",
+    q: `比例 <i>y</i> = −${frac(3, 4)}<i>x</i> のグラフの特徴として正しいものはどれですか。`,
+    visual: "",
+    choices: [
+      "原点 (0, 0) と点 (4, −3) を通る、右下がりの直線である。",
+      "原点 (0, 0) と点 (3, −4) を通る、右下がりの直線である。",
+      "原点 (0, 0) と点 (4, 3) を通る、右上がりの直線である。",
+      "原点を通らないなめらかな 2 つの曲線である。"
+    ],
+    ans: 0,
+    exp: `<i>y</i> = −${frac(3, 4)}<i>x</i> に <i>x</i> = 4 を代入すると <i>y</i> = −3 になります。比例定数が負の数なので、原点 (0, 0) と点 (4, −3) を通る<b>右下がりの直線</b>になります。`
+  },
+
+  // 5. 反比例の性質・グラフ・応用 (5問)
+  {
+    id: 21,
+    cat: "反比例の性質・グラフ",
+    lvl: "基本",
+    q: `反比例 <i>y</i> = ${frac(18, "<i>x</i>")} について、<i>x</i> の値が 2 倍、3 倍になると、対応する <i>y</i> の値はそれぞれ何倍になりますか。`,
+    visual: "",
+    choices: [
+      "2 倍、3 倍になる",
+      `${frac(1, 2)} 倍、${frac(1, 3)} 倍になる`,
+      `−${frac(1, 2)} 倍、−${frac(1, 3)} 倍になる`,
+      "6 倍、9 倍になる"
+    ],
+    ans: 1,
+    exp: `反比例 <i>y</i> = ${frac("<i>a</i>", "<i>x</i>")} では、<i>x</i> の値が 2 倍、3 倍になると、対応する <i>y</i> の値は <b>${frac(1, 2)} 倍、${frac(1, 3)} 倍</b>になります。（<i>x</i> が負の数のときも同様です）`
+  },
+  {
+    id: 22,
+    cat: "反比例の性質・グラフ",
+    lvl: "標準",
+    q: `<i>y</i> は <i>x</i> に反比例し、<i>x</i> = −15 のとき <i>y</i> = ${frac(1, 3)} である。<i>x</i> = −10 のときの <i>y</i> の値を求めなさい。`,
+    visual: "",
+    choices: [
+      `<i>y</i> = ${frac(1, 2)}`,
+      `<i>y</i> = −${frac(1, 2)}`,
+      `<i>y</i> = ${frac(2, 9)}`,
+      "<i>y</i> = 2"
+    ],
+    ans: 0,
+    exp: `反比例では <i>a</i> = <i>xy</i> なので、<i>a</i> = (−15) × ${frac(1, 3)} = −5 となり、式は <i>y</i> = −${frac(5, "<i>x</i>")} です。<i>x</i> = −10 を代入すると <i>y</i> = −${frac(5, "−10")} = <b>${frac(1, 2)}</b> となります。`
+  },
+  {
+    id: 23,
+    cat: "反比例の性質・グラフ",
+    lvl: "標準",
+    q: "下の表ア、イのうち、反比例の関係を表しているものとその理由の組み合わせとして正しいものはどれですか。",
+    visual: `<div style="display:flex;gap:18px;flex-wrap:wrap;justify-content:center;">
+      <div>
+        <div style="font-weight:700;text-align:center;margin-bottom:4px;">ア</div>
+        <table class="math-table">
+          <tr><th><i>x</i></th><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+          <tr><th><i>y</i></th><td>24</td><td>18</td><td>12</td><td>6</td></tr>
+        </table>
+      </div>
+      <div>
+        <div style="font-weight:700;text-align:center;margin-bottom:4px;">イ</div>
+        <table class="math-table">
+          <tr><th><i>x</i></th><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+          <tr><th><i>y</i></th><td>24</td><td>12</td><td>8</td><td>6</td></tr>
+        </table>
+      </div>
+    </div>`,
+    choices: [
+      "ア ／ <i>x</i> が 1 増えるごとに <i>y</i> が 6 ずつ減っているから。",
+      `イ ／ <i>x</i> が 2 倍、3 倍…になると <i>y</i> が ${frac(1, 2)} 倍、${frac(1, 3)} 倍…になり、積 <i>xy</i> がつねに 24 で一定だから。`,
+      "ア ／ <i>x</i> = 1 のとき <i>y</i> = 24 だから。",
+      "どちらも反比例の関係ではない。"
+    ],
+    ans: 1,
+    exp: `表イでは 1×24 = 24、2×12 = 24、3×8 = 24、4×6 = 24 となり、<i>x</i> と <i>y</i> の積がつねに 24 で一定（<i>x</i> が 2 倍、3 倍になると <i>y</i> が ${frac(1, 2)} 倍、${frac(1, 3)} 倍）になっています。よって<b>イ</b>が反比例です。`
+  },
+  {
+    id: 24,
+    cat: "反比例の性質・グラフ",
+    lvl: "標準",
+    q: `<i>y</i> = −${frac(20, "<i>x</i>")} で、<i>x</i> の値が <b>−10 から −4 まで増加</b>すると、<i>y</i> の値はいくらかからいくらまでどのように変化しますか。`,
+    visual: "",
+    choices: [
+      "2 から 5 まで増加する",
+      "5 から 2 まで減少する",
+      "−2 から −5 まで減少する",
+      "−5 から −2 まで増加する"
+    ],
+    ans: 0,
+    exp: `<i>x</i> = −10 のとき <i>y</i> = −${frac(20, "−10")} = 2、<i>x</i> = −4 のとき <i>y</i> = −${frac(20, "−4")} = 5 です。したがって、<i>y</i> の値は <b>2 から 5 まで増加</b>します。`
+  },
+  {
+    id: 25,
+    cat: "反比例の性質・グラフ",
+    lvl: "発展",
+    q: `関数 <i>y</i> = ${frac(12, "<i>x</i>")} のグラフについて、次の①・②の答えの組み合わせとして正しいものはどれですか。<br>① グラフ上の点で、<i>x</i> 座標と <i>y</i> 座標がともに整数となる点は何個ありますか。<br>② <i>y</i> 軸上の点 A(0, 6) とグラフ上の点 P をとるとき、△OAP の面積が <b>24</b> になる点 P の <i>y</i> 座標をすべて求めなさい。`,
+    visual: `<svg width="210" height="210" viewBox="-7 -7 14 14" style="background:#fff;border:1px solid #cbd5e1;border-radius:8px;">
+      <line x1="-6.5" y1="0" x2="6.5" y2="0" stroke="#475569" stroke-width="0.1"/>
+      <line x1="0" y1="-6.5" x2="0" y2="6.5" stroke="#475569" stroke-width="0.1"/>
+      <path d="M 1.2,-6 Q 2.4,-2.4 6,-1.2" fill="none" stroke="#2563eb" stroke-width="0.16"/>
+      <path d="M -6,1.2 Q -2.4,2.4 -1.2,6" fill="none" stroke="#2563eb" stroke-width="0.16"/>
+      <polygon points="0,0 0,-4 4.5,-1.6" fill="rgba(245,158,11,0.22)" stroke="#d97706" stroke-width="0.12"/>
+      <circle cx="0" cy="-4" r="0.22" fill="#dc2626"/>
+      <circle cx="4.5" cy="-1.6" r="0.22" fill="#d97706"/>
+      <text x="-1.6" y="-4" font-size="0.65" fill="#dc2626" font-weight="bold">A(0,6)</text>
+      <text x="4.7" y="-1.8" font-size="0.65" fill="#b45309" font-weight="bold">P</text>
+      <text x="0.2" y="0.8" font-size="0.6" fill="#475569">O</text>
+    </svg>`,
+    choices: [
+      `① 6 個　② ${frac(3, 2)}`,
+      `① 12 個　② ${frac(3, 2)} と −${frac(3, 2)}`,
+      `① 12 個　② 8 と −8`,
+      `① 8 個　② ${frac(2, 3)} と −${frac(2, 3)}`
+    ],
+    ans: 1,
+    exp: `① <i>xy</i> = 12 となる整数 <i>x</i> は 12 の約数（正と負の両方）なので ±1, ±2, ±3, ±4, ±6, ±12 の<b>12 個</b>です。<br>② △OAP の底辺を OA = 6 とすると、高さは点 P の <i>x</i> 座標の絶対値 |<i>x</i>| です。面積 6 × |<i>x</i>| ÷ 2 = 24 より |<i>x</i>| = 8、つまり <i>x</i> = 8 または −8 となります。式に代入して <i>y</i> = ${frac(12, 8)} = <b>${frac(3, 2)}</b> と <b>−${frac(3, 2)}</b> です。`
+  }
+];
+
+let activeCat = "all";
+let filtered = [...QUESTIONS];
+let idx = 0;
+let score = 0;
+let answered = false;
+let results = []; // {id, cat, correct}
+
+const labels = ["ア", "イ", "ウ", "エ"];
+
+function filterQuestions(cat) {
+  activeCat = cat;
+  filtered = cat === "all" ? [...QUESTIONS] : QUESTIONS.filter(q => q.cat === cat);
+  idx = 0;
+  score = 0;
+  results = [];
+  renderQuestion();
+}
+
+function renderQuestion() {
+  const card = document.getElementById("quizCard");
+  const progressWrap = document.getElementById("progressWrap");
+
+  if (idx >= filtered.length) {
+    renderSummary();
+    return;
+  }
+
+  progressWrap.style.display = "block";
+  const q = filtered[idx];
+  answered = false;
+
+  document.getElementById("progressLabel").textContent = `第 ${idx + 1} 問 / ${filtered.length} 問`;
+  document.getElementById("scoreLabel").textContent = `現在の正解数：${score} 問`;
+  document.getElementById("progressFill").style.width = `${(idx / filtered.length) * 100}%`;
+
+  const choicesHtml = q.choices.map((c, i) => `
+    <button class="choice-btn" onclick="selectChoice(${i})" id="choice-${i}">
+      <span class="choice-label">${labels[i]}</span>
+      <span>${c}</span>
+    </button>
+  `).join("");
+
+  card.innerHTML = `
+    <div class="badge-row">
+      <span class="badge badge-cat">${q.cat}</span>
+      <span class="badge badge-lvl">レベル：${q.lvl}</span>
+    </div>
+    <div class="q-text">Q${idx + 1}. ${q.q}</div>
+    ${q.visual ? `<div class="q-visual">${q.visual}</div>` : ""}
+    <div class="choices">${choicesHtml}</div>
+    <div class="feedback" id="feedbackBox">
+      <div class="feedback-title" id="feedbackTitle"></div>
+      <div class="explanation" id="feedbackExp"></div>
+    </div>
+    <div class="nav-row">
+      <button class="btn-secondary" onclick="restartQuiz()">最初からやり直す</button>
+      <button class="btn-primary" id="nextBtn" style="display:none;" onclick="nextQuestion()">
+        ${idx + 1 < filtered.length ? "次の問題へ →" : "結果を見る →"}
+      </button>
+    </div>
+  `;
+}
+
+function selectChoice(choiceIdx) {
+  if (answered) return;
+  answered = true;
+  const q = filtered[idx];
+  const isCorrect = choiceIdx === q.ans;
+  if (isCorrect) score++;
+
+  results.push({ id: q.id, cat: q.cat, correct: isCorrect, qObj: q });
+
+  for (let i = 0; i < q.choices.length; i++) {
+    const btn = document.getElementById(`choice-${i}`);
+    btn.disabled = true;
+    if (i === q.ans) btn.classList.add("correct");
+    else if (i === choiceIdx && !isCorrect) btn.classList.add("wrong");
+  }
+
+  const fb = document.getElementById("feedbackBox");
+  const fbTitle = document.getElementById("feedbackTitle");
+  const fbExp = document.getElementById("feedbackExp");
+  fb.classList.add("show", isCorrect ? "is-correct" : "is-wrong");
+  fbTitle.textContent = isCorrect ? "⭕ 正解！" : `❌ 不正解…（正解は ${labels[q.ans]}）`;
+  fbExp.innerHTML = `<b>【解説】</b><br>${q.exp}`;
+
+  document.getElementById("scoreLabel").textContent = `現在の正解数：${score} 問`;
+  document.getElementById("progressFill").style.width = `${((idx + 1) / filtered.length) * 100}%`;
+  document.getElementById("nextBtn").style.display = "inline-block";
+}
+
+function nextQuestion() {
+  idx++;
+  renderQuestion();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function restartQuiz() {
+  filterQuestions(activeCat);
+}
+
+function retryWrong() {
+  const wrongList = results.filter(r => !r.correct).map(r => r.qObj);
+  if (wrongList.length === 0) return;
+  filtered = wrongList;
+  idx = 0;
+  score = 0;
+  results = [];
+  renderQuestion();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function renderSummary() {
+  document.getElementById("progressWrap").style.display = "none";
+  const pct = Math.round((score / filtered.length) * 100);
+  const wrongCount = filtered.length - score;
+
+  const catStats = {};
+  results.forEach(r => {
+    if (!catStats[r.cat]) catStats[r.cat] = { ok: 0, total: 0 };
+    catStats[r.cat].total++;
+    if (r.correct) catStats[r.cat].ok++;
+  });
+
+  const breakdownHtml = Object.entries(catStats).map(([cat, st]) => `
+    <div class="cat-row">
+      <span>${cat}</span>
+      <strong>${st.ok} / ${st.total} 問正解（${Math.round((st.ok / st.total) * 100)}%）</strong>
+    </div>
+  `).join("");
+
+  let msg = "よく頑張りました！間違えた問題を復習して本番に備えましょう。";
+  if (pct === 100) msg = "全問正解です！2学期末テストの準備はバッチリですね！";
+  else if (pct >= 80) msg = "高得点です！あと少しの復習で満点が狙えます。";
+
+  document.getElementById("quizCard").innerHTML = `
+    <div class="summary-card">
+      <div style="font-size:1.1rem;font-weight:700;">テスト結果</div>
+      <div class="score-big">${score} / ${filtered.length} 問（${pct}%）</div>
+      <p style="color:var(--muted);margin-top:4px;">${msg}</p>
+      <div class="cat-breakdown">
+        <div style="font-weight:700;margin-bottom:8px;">分野別の正答率</div>
+        ${breakdownHtml}
+      </div>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+        ${wrongCount > 0 ? `<button class="btn-primary" onclick="retryWrong()">間違えた ${wrongCount} 問だけ復習する</button>` : ""}
+        <button class="btn-secondary" onclick="restartQuiz()">このセットをもう一度解く</button>
+      </div>
+    </div>
+  `;
+}
+
+document.querySelectorAll(".mode-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".mode-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    filterQuestions(btn.dataset.cat);
+  });
+});
+
+renderQuestion();
+</script>
+</body>
+</html>

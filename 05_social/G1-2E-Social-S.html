@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中1 社会（地理）2学期末テスト対策 4択問題集</title>
+<style>
+  :root {
+    --bg: #f4f6fb;
+    --card: #ffffff;
+    --text: #1e293b;
+    --muted: #64748b;
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --primary-light: #eff6ff;
+    --success: #16a34a;
+    --success-light: #dcfce7;
+    --danger: #dc2626;
+    --danger-light: #fee2e2;
+    --warning: #d97706;
+    --warning-light: #fef3c7;
+    --border: #e2e8f0;
+    --shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+    --radius: 14px;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+  }
+
+  header {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+    color: #fff;
+    padding: 24px 20px 20px;
+    box-shadow: 0 2px 10px rgba(30, 58, 138, 0.25);
+  }
+  .header-inner {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  header h1 {
+    margin: 0 0 6px;
+    font-size: 1.5rem;
+    letter-spacing: 0.02em;
+  }
+  header p {
+    margin: 0;
+    font-size: 0.92rem;
+    opacity: 0.9;
+  }
+
+  .container {
+    max-width: 960px;
+    margin: 22px auto 60px;
+    padding: 0 16px;
+  }
+
+  .panel {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    box-shadow: var(--shadow);
+    margin-bottom: 18px;
+  }
+
+  .controls-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .unit-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .tab-btn {
+    border: 1px solid var(--border);
+    background: #fff;
+    color: var(--text);
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .tab-btn:hover { background: var(--primary-light); border-color: var(--primary); }
+  .tab-btn.active {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+  }
+
+  .options-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-items: center;
+    font-size: 0.9rem;
+  }
+  .toggle-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .btn {
+    border: none;
+    border-radius: 10px;
+    padding: 9px 16px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.05s ease;
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn-primary { background: var(--primary); color: #fff; }
+  .btn-primary:hover { background: var(--primary-dark); }
+  .btn-outline {
+    background: #fff;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn-outline:hover { background: #f8fafc; }
+  .btn-warning { background: var(--warning-light); color: #92400e; border: 1px solid #fcd34d; }
+  .btn-warning:hover { background: #fde68a; }
+
+  .progress-wrap {
+    margin-top: 12px;
+  }
+  .progress-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .progress-bar {
+    width: 100%;
+    height: 10px;
+    background: #e2e8f0;
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #2563eb, #10b981);
+    width: 0%;
+    transition: width 0.25s ease;
+  }
+
+  .q-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow);
+    margin-bottom: 16px;
+  }
+  .q-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 8px;
+  }
+  .q-badge {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: var(--primary-light);
+    color: var(--primary-dark);
+  }
+  .q-num {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--muted);
+  }
+  .q-text {
+    font-size: 1.04rem;
+    font-weight: 700;
+    margin: 0 0 14px;
+  }
+
+  .choices {
+    display: grid;
+    gap: 9px;
+  }
+  .choice-btn {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    width: 100%;
+    text-align: left;
+    padding: 12px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    background: #fff;
+    color: var(--text);
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.12s ease;
+    line-height: 1.5;
+  }
+  .choice-btn:hover:not(:disabled) {
+    border-color: var(--primary);
+    background: var(--primary-light);
+  }
+  .choice-btn.selected {
+    border-color: var(--primary);
+    background: var(--primary-light);
+    font-weight: 600;
+  }
+  .choice-btn.correct {
+    border-color: var(--success);
+    background: var(--success-light);
+    color: #14532d;
+    font-weight: 700;
+  }
+  .choice-btn.wrong {
+    border-color: var(--danger);
+    background: var(--danger-light);
+    color: #7f1d1d;
+  }
+  .choice-btn:disabled { cursor: default; }
+  .choice-mark {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 1.5px solid #cbd5e1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    background: #fff;
+    margin-top: 1px;
+  }
+  .choice-btn.selected .choice-mark { border-color: var(--primary); color: var(--primary); }
+  .choice-btn.correct .choice-mark { border-color: var(--success); background: var(--success); color: #fff; }
+  .choice-btn.wrong .choice-mark { border-color: var(--danger); background: var(--danger); color: #fff; }
+
+  .exp-box {
+    margin-top: 12px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    display: none;
+  }
+  .exp-box.show { display: block; }
+  .exp-box.ok { background: #f0fdf4; border-left: 4px solid var(--success); }
+  .exp-box.ng { background: #fef2f2; border-left: 4px solid var(--danger); }
+  .exp-title { font-weight: 700; margin-bottom: 4px; }
+
+  .result-panel {
+    display: none;
+    background: #fff;
+    border: 2px solid var(--primary);
+    border-radius: var(--radius);
+    padding: 22px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+  }
+  .result-panel.show { display: block; }
+  .score-big {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin: 4px 0 12px;
+  }
+  .unit-breakdown {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 10px;
+    margin-top: 12px;
+  }
+  .unit-stat {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 0.86rem;
+  }
+  .unit-stat strong { display: block; margin-bottom: 2px; }
+
+  .footer-actions {
+    position: sticky;
+    bottom: 14px;
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 12px 16px;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+  }
+
+  @media print {
+    header { background: #fff !important; color: #000 !important; border-bottom: 2px solid #000; }
+    .panel, .footer-actions { display: none !important; }
+    .q-card { break-inside: avoid; box-shadow: none; border: 1px solid #94a3b8; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <h1>中1 社会（地理）2学期末テスト対策 4択テスト</h1>
+    <p>出題範囲：アジア州・ヨーロッパ州・アフリカ州・北アメリカ州（全70問網羅）</p>
+  </div>
+</header>
+
+<div class="container">
+  <div class="panel">
+    <div class="unit-tabs" id="unitTabs">
+      <button class="tab-btn active" data-unit="all">全範囲（70問）</button>
+      <button class="tab-btn" data-unit="asia">第1章 アジア州（22問）</button>
+      <button class="tab-btn" data-unit="europe">第2章 ヨーロッパ州（16問）</button>
+      <button class="tab-btn" data-unit="africa">第3章 アフリカ州（15問）</button>
+      <button class="tab-btn" data-unit="namerica">第4章 北アメリカ州（17問）</button>
+    </div>
+
+    <div class="controls-grid">
+      <div class="options-bar">
+        <label class="toggle-label">
+          <input type="checkbox" id="instantMode" checked>
+          <span>1問ずつすぐ答え合わせ（演習モード）</span>
+        </label>
+        <label class="toggle-label">
+          <input type="checkbox" id="shuffleChoices" checked>
+          <span>選択肢をシャッフル</span>
+        </label>
+      </div>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <button class="btn btn-outline" id="shuffleQBtn">問題順をシャッフル</button>
+        <button class="btn btn-warning" id="retryWrongBtn" style="display:none;">間違えた問題だけ復習 (<span id="wrongCount">0</span>)</button>
+        <button class="btn btn-outline" id="resetBtn">リセット</button>
+      </div>
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-meta">
+        <span id="progressText">回答済み: 0 / 70 問</span>
+        <span id="liveScoreText">正解数: 0 問</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    </div>
+  </div>
+
+  <div class="result-panel" id="resultPanel">
+    <div style="font-weight:700; color:var(--muted);">採点結果</div>
+    <div class="score-big" id="finalScore">0 / 0 問（0%）</div>
+    <div id="resultMessage"></div>
+    <div class="unit-breakdown" id="unitBreakdown"></div>
+  </div>
+
+  <div id="quizList"></div>
+
+  <div class="footer-actions">
+    <span id="footerStatus" style="font-size:0.9rem; color:var(--muted);">すべて回答したら採点できます</span>
+    <div style="display:flex; gap:8px; flex-wrap:wrap;">
+      <button class="btn btn-outline" onclick="window.print()">印刷する</button>
+      <button class="btn btn-primary" id="gradeAllBtn">まとめて採点・結果を見る</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const RAW_QUESTIONS = [{"id": 1, "unit": "asia", "unitName": "第1章 アジア州", "q": "アジア州の中央部にあり、8000mをこえる山々が連なることから「世界の屋根」とよばれている山脈はどれですか。", "choices": ["ヒマラヤ山脈", "アルプス山脈", "ロッキー山脈", "ウラル山脈"], "ans": 0, "exp": "ヒマラヤ山脈はアジア州の中央部に位置し、8000mをこえる山々が連なっているため「世界の屋根」とよばれています。"}, {"id": 2, "unit": "asia", "unitName": "第1章 アジア州", "q": "アジアの東部や南部で、夏と冬で吹く向きが逆になり、夏に多くの雨をもたらす風を何といいますか。", "choices": ["偏西風", "季節風（モンスーン）", "貿易風", "やませ"], "ans": 1, "exp": "アジアの東部・南部では夏は海から陸へ、冬は陸から海へと吹く季節風（モンスーン）の影響で、夏は降水量が多い雨季、冬は降水量が少ない乾季となります。"}, {"id": 3, "unit": "asia", "unitName": "第1章 アジア州", "q": "アジア州の河川と特徴の組み合わせとして、正しいものはどれですか。", "choices": ["インダス川：流域で古代文明が栄え、主にパキスタンを流れる", "ガンジス川：中国の北部を流れ、河口付近に広大な平野をつくる", "メコン川：インドの南部に位置するデカン高原を流れる", "長江：東南アジアのインドシナ半島を南へ流れる"], "ans": 0, "exp": "インダス川は流域で古代文明が栄えた河川です。ガンジス川はヒンドゥー教徒が沐浴を行うインドの大河、黄河・長江は中国、メコン川は東南アジアを流れます。"}, {"id": 4, "unit": "asia", "unitName": "第1章 アジア州", "q": "アジア州の人口は、世界の人口の約何割をしめていますか。", "choices": ["約2割", "約4割", "約6割", "約8割"], "ans": 2, "exp": "アジア州には中国やインドなど人口の多い国があり、世界の人口の約6割をしめています。"}, {"id": 5, "unit": "asia", "unitName": "第1章 アジア州", "q": "東南アジアなど世界各地に移住し、現地で商業などの分野で活躍している中国系の人々を何といいますか。", "choices": ["ヒスパニック", "華人", "漢族", "先住民"], "ans": 1, "exp": "東南アジアなど世界各地に移住して活躍している中国系の人々を「華人」といいます。"}, {"id": 6, "unit": "asia", "unitName": "第1章 アジア州", "q": "中国の人口の約90％をしめている民族は何といいますか。", "choices": ["チベット族", "モンゴル族", "漢族", "ウイグル族"], "ans": 2, "exp": "中国の総人口約14億人のうち、約90％（約9割）を漢族がしめています。"}, {"id": 7, "unit": "asia", "unitName": "第1章 アジア州", "q": "中国の農業地域について、華北・東北地方（北東部）、華中・華南地方（南東部）、西部でそれぞれ盛んな農業の組み合わせとして正しいものはどれですか。", "choices": ["北東部：畑作 ／ 南東部：稲作 ／ 西部：牧畜", "北東部：稲作 ／ 南東部：畑作 ／ 西部：牧畜", "北東部：牧畜 ／ 南東部：稲作 ／ 西部：畑作", "北東部：畑作 ／ 南東部：牧畜 ／ 西部：稲作"], "ans": 0, "exp": "中国では降水量が多い華中・華南（南東部）で稲作、華北・東北地方（北東部）で畑作、乾燥した西部で牧畜が盛んです。"}, {"id": 8, "unit": "asia", "unitName": "第1章 アジア州", "q": "中国政府が外国の資本や技術を取り入れるために、シェンチェンなど沿岸部に設けた地域を何といいますか。", "choices": ["ラストベルト", "経済特区", "ニュータウン", "サンベルト"], "ans": 1, "exp": "中国は沿岸部に「経済特区」を設けて外国企業を優遇し、工業化を進めて「世界の工場」とよばれるようになりました。"}, {"id": 9, "unit": "asia", "unitName": "第1章 アジア州", "q": "中国で近年まで人口増加を抑制するために行われてきた政策と、その結果として急速に進んでいる社会現象の組み合わせはどれですか。", "choices": ["一人っ子政策 ／ 少子高齢化", "西部大開発 ／ 人口爆発", "経済特区 ／ 農村人口の増加", "緑の革命 ／ 食料不足"], "ans": 0, "exp": "中国では人口増加を抑えるため「一人っ子政策」が行われてきましたが、近年は「少子高齢化」が急速に進んでいます。"}, {"id": 10, "unit": "asia", "unitName": "第1章 アジア州", "q": "中国で沿岸部と内陸部の経済格差が拡大し、都市人口の割合が増加している主な理由として、資料から考えられるものはどれですか。", "choices": ["沿岸部の都市は一人あたり総生産額が高く、収入が多いところに人が移動しているため", "内陸部で火山活動が活発になり、避難する人が増えたため", "政府が都市への移住を法律で義務づけたため", "沿岸部で大規模な牧畜が始まり、人手が必要になったため"], "ans": 0, "exp": "沿岸部は一人あたり総生産額が高く、より高い収入を求めて農村から都市へ人が移動しているため、都市人口の割合が増加しています。政府は格差をなくすため内陸部の開発も行っています。"}, {"id": 11, "unit": "asia", "unitName": "第1章 アジア州", "q": "韓国・シンガポール・台湾・ホンコンのように、1970年代以降急速に工業化が進み経済発展した国や地域を何といいますか。", "choices": ["ASEAN", "アジアNIES（新興工業経済地域）", "OPEC", "EU"], "ans": 1, "exp": "韓国・シンガポール・台湾・ホンコンは「アジアNIES（新興工業経済地域）」とよばれます。"}, {"id": 12, "unit": "asia", "unitName": "第1章 アジア州", "q": "韓国の輸出品と輸出先の変化について、1960年と2020年を比べた説明として正しいものはどれですか。", "choices": ["輸出品は米やタングステン鉱から機械類・自動車へ、主な輸出先は日本・アメリカから中国へ変化した", "輸出品は自動車から繊維製品へ、主な輸出先は中国から日本へ変化した", "輸出品は石炭・鉄鉱石から農産物へ、主な輸出先はヨーロッパ中心へ変化した", "輸出品は半導体から米へ、主な輸出先はアメリカからイギリスへ変化した"], "ans": 0, "exp": "韓国の輸出品は1960年のタングステン鉱・米中心から2020年には機械類（42.7%）・自動車中心へと変化し、主な輸出先もアメリカ・日本から中国へと変わりました。"}, {"id": 13, "unit": "asia", "unitName": "第1章 アジア州", "q": "韓国の都市問題と人口問題について、正しい説明はどれですか。", "choices": ["ソウル首都圏に人口が一極集中し、郊外にニュータウンが建設される一方、全国的な少子高齢化が進んでいる", "プサンに人口が集中し、ソウルでは人口が急激に減少している", "人口が急増しているため食料不足が深刻化している", "地方への人口流出が止まらず、都市の住宅が余っている"], "ans": 0, "exp": "韓国ではソウル首都圏（総人口の約50.4%）への一極集中が進み、郊外にニュータウンが開発されています。また、全国的な少子高齢化が課題です。"}, {"id": 14, "unit": "asia", "unitName": "第1章 アジア州", "q": "東南アジアの農業で、同じ田で1年に2回米をつくることを何といいますか。", "choices": ["焼畑農業", "二期作", "混合農業", "適地適作"], "ans": 1, "exp": "東南アジアでは雨が多く高温な気候を生かし、同じ田で1年に2回米をつくる「二期作」が行われる地域があります。"}, {"id": 15, "unit": "asia", "unitName": "第1章 アジア州", "q": "東南アジアで植民地時代にヨーロッパ人によって開かれた大農園と、えびの養殖場をつくるために伐採が進んでいる森林の組み合わせはどれですか。", "choices": ["プランテーション ／ マングローブ林", "アグリビジネス ／ 熱帯雨林", "センターピボット ／ 針葉樹林", "ニュータウン ／ 照葉樹林"], "ans": 0, "exp": "東南アジアでは植民地時代に「プランテーション（大農園）」が開かれました。また海岸に広がる「マングローブ林」はえびの養殖場などのために減少が問題視されています。"}, {"id": 16, "unit": "asia", "unitName": "第1章 アジア州", "q": "東南アジアの10か国が地域の安定と発展を目指して結成した経済・政治の協力組織の略称は何ですか。", "choices": ["APEC", "ASEAN", "AU", "USMCA"], "ans": 1, "exp": "東南アジア諸国連合の略称は「ASEAN」です。"}, {"id": 17, "unit": "asia", "unitName": "第1章 アジア州", "q": "東南アジアへ進出する日本企業のうち、近年ベトナムへの進出数が急増している理由として最も適切なものはどれですか。", "choices": ["他の東南アジア諸国と比べて製造業の賃金が安いため", "石油や天然ガスの産出量が世界で最も多いため", "日本との時差が12時間あり、24時間体制がとれるため", "EUに加盟しており、関税がかからないため"], "ans": 0, "exp": "東南アジアの中でタイの日本企業数が最多ですが、ベトナムは他の国と比べて賃金が安いため、日本企業の進出が急増しています。"}, {"id": 18, "unit": "asia", "unitName": "第1章 アジア州", "q": "南アジアの宗教について、インドとパキスタン・バングラデシュでそれぞれ最も信者が多い宗教の組み合わせはどれですか。", "choices": ["インド：ヒンドゥー教 ／ パキスタン・バングラデシュ：イスラム教", "インド：仏教 ／ パキスタン・バングラデシュ：ヒンドゥー教", "インド：イスラム教 ／ パキスタン・バングラデシュ：キリスト教", "インド：ヒンドゥー教 ／ パキスタン・バングラデシュ：仏教"], "ans": 0, "exp": "インドでは国民の約8割がヒンドゥー教徒で、パキスタンやバングラデシュではイスラム教が最も多く信仰されています（スリランカは仏教）。"}, {"id": 19, "unit": "asia", "unitName": "第1章 アジア州", "q": "インドの産業について、南部の都市バンガロールを中心に急速に発達している産業は何ですか。", "choices": ["ICT産業（情報通信技術産業）", "自動車の大量生産", "造船業", "鉄鋼業"], "ans": 0, "exp": "インドのバンガロールなどではICT産業（情報通信技術産業）が急速に発達しています。また自動車生産も近年大きく伸びています。"}, {"id": 20, "unit": "asia", "unitName": "第1章 アジア州", "q": "インドにアメリカ企業のコールセンターが数多く置かれている理由として、時差を利用した説明はどれですか。", "choices": ["アメリカが夜で業務が終わる時間帯にインドが昼となるため、24時間対応ができるから", "インドとアメリカの標準時がまったく同じだから", "インドでは英語がまったく話されておらず、翻訳作業が増えるから", "インドはアメリカより賃金が高いから"], "ans": 0, "exp": "アメリカのシリコンバレー（18:30）が業務を終えるころインド（8:00）は始業時間となるため、昼と夜を分けて24時間対応ができる利点があります。"}, {"id": 21, "unit": "asia", "unitName": "第1章 アジア州", "q": "西アジアのペルシャ湾沿岸で多く産出される資源と、その生産量や価格を統制するために1960年に結成された組織の組み合わせはどれですか。", "choices": ["石油 ／ OPEC（石油輸出国機構）", "石炭 ／ ASEAN", "鉄鉱石 ／ USMCA", "天然ガス ／ AU"], "ans": 0, "exp": "西アジアのペルシャ湾沿岸では「石油」が多く産出され、西アジアの国々が中心となって1960年に「OPEC（石油輸出国機構）」が結成されました。"}, {"id": 22, "unit": "asia", "unitName": "第1章 アジア州", "q": "1991年にソ連が解体して独立した中央アジアの国々（カザフスタンなど）で、豊富に産出されるクロムやマンガンなどの希少金属を何といいますか。", "choices": ["レアメタル", "バイオ燃料", "化石燃料", "プランテーション作物"], "ans": 0, "exp": "中央アジアは乾燥帯に属し、1991年にソ連から独立した国々にはクロムやマンガンなどの「レアメタル（希少金属）」が豊富です。"}, {"id": 23, "unit": "europe", "unitName": "第2章 ヨーロッパ州", "q": "ヨーロッパの北西部にあり、氷河によって形成された奥行きのある湾を何といいますか。", "choices": ["フィヨルド", "サヘル", "デルタ", "ギニア湾"], "ans": 0, "exp": "スカンディナビア半島（ノルウェーなど）の海岸に多く見られる、氷河の浸食によってできた深い湾を「フィヨルド」といいます。"}, {"id": 24, "unit": "europe", "unitName": "第2章 ヨーロッパ州", "q": "ヨーロッパが高緯度に位置しているにもかかわらず、冬でも比較的温暖な気候である理由として正しいものはどれですか。", "choices": ["暖流の北大西洋海流と、その上を吹く偏西風の影響を受けるため", "寒流と季節風（モンスーン）が夏と冬で逆向きに吹くため", "アルプス山脈が北からの冷たい風をすべてさえぎるため", "赤道に近く、一年中太陽の高度が高いため"], "ans": 0, "exp": "ヨーロッパ西部は、暖流である「北大西洋海流」と、西から東へ吹く「偏西風」の影響により、高緯度でも温暖な気候になります。"}, {"id": 25, "unit": "europe", "unitName": "第2章 ヨーロッパ州", "q": "ヨーロッパの地域とそこで盛んな農業の組み合わせとして、正しいものはどれですか。", "choices": ["地中海沿岸：オリーブやぶどうなどの果実と小麦（地中海式農業）", "ドイツやフランス：オリーブやオレンジの栽培", "ヨーロッパ北部・アルプス山脈：稲作と綿花の二期作", "イギリス南部：焼き畑農業と遊牧"], "ans": 0, "exp": "地中海沿岸では夏に乾燥するためオリーブなどの果実や小麦を栽培し、ドイツ・フランスなどでは小麦・ライ麦と家畜の飼育を組み合わせた混合農業、北部やアルプスでは酪農が盛んです。"}, {"id": 26, "unit": "europe", "unitName": "第2章 ヨーロッパ州", "q": "ヨーロッパで最も広く信仰されている宗教と、近年アジアやアフリカからの移民が信仰している宗教の組み合わせはどれですか。", "choices": ["最も広い：キリスト教 ／ 移民：イスラム教", "最も広い：イスラム教 ／ 移民：ヒンドゥー教", "最も広い：仏教 ／ 移民：キリスト教", "最も広い：ヒンドゥー教 ／ 移民：仏教"], "ans": 0, "exp": "ヨーロッパではキリスト教が最も広く信仰されていますが、近年はアジアやアフリカからの移民によりイスラム教の信者が増えています。"}, {"id": 27, "unit": "europe", "unitName": "第2章 ヨーロッパ州", "q": "1967年に発足したEC（ヨーロッパ共同体）を前身とし、1993年に成立した統合組織の日本語での正式名称は何ですか。", "choices": ["ヨーロッパ連合（EU）", "ヨーロッパ自由貿易連合", "東南アジア諸国連合", "アフリカ連合"], "ans": 0, "exp": "1993年に成立したEUの正式名称は「ヨーロッパ連合」です。2002年には共通通貨「ユーロ」が導入されました。"}, {"id": 28, "unit": "europe", "unitName": "第2章 ヨーロッパ州", "q": "ヨーロッパの統合を進めるEU加盟国内で見られる特徴として、正しいものはどれですか。", "choices": ["多くの加盟国間ではパスポートの検査がなく自由に国境を通過でき、エアバス社のように複数国で飛行機を分業生産している", "すべての加盟国が共通通貨ユーロのみを使用し、独自の言語を廃止した", "国境に関税を復活させ、国内産業を厳しく保護している", "EUの総人口や面積は、アメリカ合衆国よりはるかに大きい"], "ans": 0, "exp": "EU加盟国内ではパスポート検査なしで移動でき、ドイツ・フランス・イギリス・スペインなどで飛行機の分業生産が行われています。またバカンスで国境をこえて旅行する人も多いです。"}, {"id": 29, "unit": "europe", "unitName": "第2章 ヨーロッパ州", "q": "2004年にEUへ加盟したハンガリーの輸入相手国が、1990年のソ連中心から2021年にはドイツなどEU加盟国中心へと変化した主な理由は何ですか。", "choices": ["EUに加盟している国どうしでは関税がかからないため", "ハンガリーとソ連の間の鉄道がすべて廃止されたため", "ドイツの賃金がハンガリーより安くなったため", "ハンガリーで石油が大量に発見されたため"], "ans": 0, "exp": "EU加盟国どうしの貿易では「関税」がかからず有利に取引できるため、ハンガリーの輸入相手国はEU加盟国が中心となりました。"}, {"id": 30, "unit": "europe", "unitName": "第2章 ヨーロッパ州", "q": "ヨーロッパ各国（EU）の経済格差について、平均賃金の傾向として正しいものはどれですか。", "choices": ["西ヨーロッパの国々は賃金が高く、東ヨーロッパの国々は賃金が低い傾向にある", "東ヨーロッパの国々は賃金が高く、西ヨーロッパの国々は賃金が低い傾向にある", "EU加盟国の賃金はすべて同じ水準に統一されている", "南ヨーロッパの国々が最も賃金が高い"], "ans": 0, "exp": "オランダやスイスなど西ヨーロッパは賃金が高く、ポーランドやスロバキアなど東ヨーロッパは低い傾向があり、この経済格差が課題となっています。"}, {"id": 31, "unit": "europe", "unitName": "第2章 ヨーロッパ州", "q": "EU加盟国間の経済格差を解消するための補助金負担などをめぐって対立がおこり、2020年1月にEUを離脱した国はどこですか。", "choices": ["イギリス", "スイス", "ノルウェー", "フランス"], "ans": 0, "exp": "経済格差を解消するための補助金負担などをめぐり対立がおこり、2020年1月に「イギリス」がEUを離脱しました。"}, {"id": 32, "unit": "europe", "unitName": "第2章 ヨーロッパ州", "q": "ヨーロッパの工業の変化について、1970年代以降と1980年代以降の動きとして正しいものはどれですか。", "choices": ["1970年代以降は中国などの台頭で鉄鋼業の競争力が低下し、1980年代以降は自動車産業やハイテク産業が大きく成長した", "1970年代以降はハイテク産業が衰退し、1980年代以降は鉄鋼業が急成長した", "1970年代以降も繊維工業のみが中心であり続けている", "1980年代以降はアメリカに代わって石油輸出が主力となった"], "ans": 0, "exp": "1970年代以降は中国などの台頭で鉄鋼業や日本に対する競争力が低下しましたが、1980年代以降は自動車産業やハイテク産業が大きく成長しました。"}, {"id": 33, "unit": "europe", "unitName": "第2章 ヨーロッパ州", "q": "ヨーロッパへ流入する人々のうち、「働くことを目的に外国からやってきた人々」「生まれた国を出てほかの国へ移り住んだ人々」「紛争や災害などによって自国から逃れた人々」を順に表した組み合わせはどれですか。", "choices": ["外国人労働者 ／ 移民 ／ 難民", "移民 ／ 難民 ／ 外国人労働者", "難民 ／ 外国人労働者 ／ 移民", "華人 ／ ヒスパニック ／ 難民"], "ans": 0, "exp": "働く目的で来た人々は「外国人労働者」、他国へ移り住んだ人々は「移民」、紛争や災害から逃れた人々は「難民」といいます。"}, {"id": 34, "unit": "europe", "unitName": "第2章 ヨーロッパ州", "q": "ヨーロッパで働く外国人労働者の多くがおかれている状況として、オーストリア・イタリアなどの賃金資料から読み取れることは何ですか。", "choices": ["自国の労働者と比べて低い賃金で働いている", "自国の労働者より2倍以上高い賃金を得ている", "すべての国で自国労働者と完全に同じ賃金が保障されている", "ドイツには外国人労働者がほとんど流入していない"], "ans": 0, "exp": "ドイツなどに多くの外国人労働者が流入していますが、自国労働者の賃金を100とすると70〜79程度と、他の人に比べて低い賃金で働いている状況があります。"}, {"id": 35, "unit": "europe", "unitName": "第2章 ヨーロッパ州", "q": "ヨーロッパの環境問題のうち、汚染物質が風に乗って広がり、雨にとけて降ることで森林が立ち枯れるなどの被害が国境をこえて発生する現象を何といいますか。", "choices": ["酸性雨", "砂漠化", "地球温暖化", "オゾンホール"], "ans": 0, "exp": "工場の排気などに含まれる汚染物質が雨にとけて降る「酸性雨」は、国境をこえて森林の立ち枯れなどを引き起こします。"}, {"id": 36, "unit": "europe", "unitName": "第2章 ヨーロッパ州", "q": "ライン川のように複数の国が利用する河川を何といい、水質を改善するためにどのような取り組みが行われましたか。", "choices": ["国際河川といい、工場からの排水の規制や汚水処理施設の設置に協力して取り組んだ", "内陸河川といい、飲料水としての利用をすべて禁止した", "国境河川といい、水力発電所の建設のみを進めた", "運河といい、川の通行を全面的に封鎖した"], "ans": 0, "exp": "複数の国が利用する河川を「国際河川」といいます。ライン川では利用国が協力し、工場からの排水の規制や汚水処理施設の設置を行いました。"}, {"id": 37, "unit": "europe", "unitName": "第2章 ヨーロッパ州", "q": "都市の中心部への自動車の乗り入れを制限し、郊外の駅などに車を止めて公共交通機関に乗り換える仕組みを何といいますか。", "choices": ["パークアンドライド", "リサイクル", "エコツーリズム", "脱炭素社会"], "ans": 0, "exp": "大気汚染や交通渋滞を防ぐため、最寄り駅に車を止めて電車などに乗り換える仕組みを「パークアンドライド」といいます。"}, {"id": 38, "unit": "europe", "unitName": "第2章 ヨーロッパ州", "q": "地球温暖化の原因となる温室効果ガスの排出をなくすことを目指す社会や、風力などくり返し利用できるエネルギーを何といいますか。", "choices": ["脱炭素社会 ／ 再生可能エネルギー", "持続可能な社会 ／ 化石燃料", "リサイクル社会 ／ 原子力エネルギー", "産業革命 ／ バイオマス"], "ans": 0, "exp": "温室効果ガスの排出をなくす社会を「脱炭素社会」、太陽光・風力・地熱などくり返し使えるものを「再生可能エネルギー」といいます。また環境に配慮し将来にわたる発展を可能にする社会を「持続可能な社会」といいます。"}, {"id": 39, "unit": "africa", "unitName": "第3章 アフリカ州", "q": "アフリカ大陸の地形について、世界最大の砂漠と世界最長の河川の組み合わせはどれですか。", "choices": ["サハラ砂漠 ／ ナイル川", "ゴビ砂漠 ／ コンゴ川", "ナミブ砂漠 ／ ニジェール川", "サヘル ／ ザンベジ川"], "ans": 0, "exp": "アフリカ北部には世界最大の「サハラ砂漠」が広がり、東部を北へ流れる「ナイル川」は世界最長の河川です。"}, {"id": 40, "unit": "africa", "unitName": "第3章 アフリカ州", "q": "アフリカ大陸を赤道付近から地中海沿岸（北）へ向かって進むとき、気候帯と景観はどのように変化しますか。", "choices": ["熱帯（熱帯雨林・サバナ）→ 乾燥帯（ステップ・砂漠）→ 温帯（地中海）", "乾燥帯 → 熱帯 → 冷帯", "温帯 → 寒帯 → 熱帯", "熱帯 → 温帯 → 乾燥帯"], "ans": 0, "exp": "赤道付近の「熱帯（熱帯雨林・サバナ）」から、北へ向かうにつれて「乾燥帯（ステップ・砂漠）」、地中海沿岸の「温帯」へと変化します。"}, {"id": 41, "unit": "africa", "unitName": "第3章 アフリカ州", "q": "サハラ砂漠の南部に広がり、過放牧や過耕作などによって砂漠化の進んでいる草原地帯を何といいますか。", "choices": ["サヘル", "サバナ", "ステップ", "スラム"], "ans": 0, "exp": "サハラ砂漠の南縁に広がる、砂漠化が深刻な草原地帯を「サヘル」といいます。"}, {"id": 42, "unit": "africa", "unitName": "第3章 アフリカ州", "q": "アフリカの歴史について、19世紀末までにヨーロッパ諸国の植民地となり、1914年時点で独立を保っていた2か国以外の大部分が支配されました。1950年代以降に独立した国々で多く見られる公用語の特徴は何ですか。", "choices": ["植民地として支配した国の言語である英語やフランス語を公用語としている国が多い", "すべての国でアラビア語のみが公用語に定められている", "独立後にすべてのヨーロッパ言語の使用が禁止された", "スペイン語がアフリカ全土の公用語となっている"], "ans": 0, "exp": "エチオピアとリベリア以外はヨーロッパ諸国の植民地となり、1950年代以降の独立後も旧宗主国の「英語」や「フランス語」を公用語とする国が多くあります。"}, {"id": 43, "unit": "africa", "unitName": "第3章 アフリカ州", "q": "アフリカの宗教分布について、サハラ砂漠やその北の地域で主に信仰されている宗教は何ですか。", "choices": ["イスラム教", "ヒンドゥー教", "仏教", "儒教"], "ans": 0, "exp": "アフリカの北部（サハラ砂漠やその北）では「イスラム教」が多く、その他の地域では伝統的な宗教やキリスト教の信者が多くなっています。"}, {"id": 44, "unit": "africa", "unitName": "第3章 アフリカ州", "q": "アフリカで行われてきた伝統的な農業のうち、森林の木々を伐採して燃やしたあとの灰を肥料とする農業と、乾燥帯で移動しながら家畜を飼う方法を順に何といいますか。", "choices": ["焼畑農業 ／ 遊牧", "プランテーション農業 ／ 酪農", "二期作 ／ 混合農業", "企業的な農業 ／ 放牧"], "ans": 0, "exp": "伝統的に行われてきた農業は、木々を燃やした灰を肥料にする「焼畑農業」と、乾燥帯でやぎや羊などを飼う「遊牧」です。"}, {"id": 45, "unit": "africa", "unitName": "第3章 アフリカ州", "q": "アフリカの農産物・鉱産資源と主な産出国の組み合わせとして、正しいものはどれですか。", "choices": ["カカオ：ガーナ・コートジボワール ／ 石油：ナイジェリア ／ ダイヤモンド：ボツワナ", "カカオ：ナイジェリア ／ 石油：ボツワナ ／ ダイヤモンド：ガーナ", "コーヒー：南アフリカ共和国 ／ 銅：エジプト ／ 石油：ケニア", "米：コンゴ民主共和国 ／ 金：コートジボワール ／ 茶：モロッコ"], "ans": 0, "exp": "カカオはガーナ・コートジボワール、石油はナイジェリア、ダイヤモンドはボツワナ（輸出額の86.8%）、プラチナ・クロムなどのレアメタルや金は南アフリカ共和国が代表的です。"}, {"id": 46, "unit": "africa", "unitName": "第3章 アフリカ州", "q": "アフリカ諸国に多く見られる、少数の農作物や鉱産資源の輸出によって成り立っている経済を何といいますか。", "choices": ["モノカルチャー経済", "プランテーション経済", "アグリビジネス", "多角化経済"], "ans": 0, "exp": "少数の農作物（カカオなど）や鉱産資源（石油・ダイヤモンドなど）の輸出に頼って成り立っている経済を「モノカルチャー経済」といいます。"}, {"id": 47, "unit": "africa", "unitName": "第3章 アフリカ州", "q": "コートジボワールのカカオやナイジェリアの石油のように、モノカルチャー経済が抱える最大の問題点は何ですか。", "choices": ["国際価格の変動や天候の影響を受けやすく、国の経済が不安定になりやすいこと", "国民全員が農業しかできなくなり、都市がなくなること", "輸出品が多すぎて国内で消費できなくなること", "価格が毎年必ず上がり続け、他国と貿易できなくなること"], "ans": 0, "exp": "特定の農作物や鉱産資源に頼ると、国際価格が大きく変動したときに輸出総額も大きく変わり、国の経済が不安定になりやすいという課題があります。"}, {"id": 48, "unit": "africa", "unitName": "第3章 アフリカ州", "q": "アフリカの南端に位置し、プラチナやクロムなどのレアメタルや金が豊富で、アフリカの中で経済が発展した国はどこですか。", "choices": ["南アフリカ共和国", "エチオピア", "コンゴ民主共和国", "ナイジェリア"], "ans": 0, "exp": "南アフリカ共和国はアフリカ南端に位置し、プラチナ・クロム・金などの鉱産資源が豊富で、自動車などの工業も発展しています。"}, {"id": 49, "unit": "africa", "unitName": "第3章 アフリカ州", "q": "世界の1歳未満の乳児死亡率の分布を見ると、アフリカの傾向として正しいものはどれですか。", "choices": ["アジアや他の地域と比べても乳児死亡率が高い国が多く、北部は比較的低い", "ヨーロッパと同じ水準で非常に低い", "南部が最も高く、中部が最も低い", "世界中でアフリカが最も乳児死亡率が低い"], "ans": 0, "exp": "世界の乳児死亡率ではアフリカ（特に中部・西部など）が高く、北部は比較的低い傾向があります。"}, {"id": 50, "unit": "africa", "unitName": "第3章 アフリカ州", "q": "アフリカや東南アジアなどの大都市で、生活環境の悪い場所に所得の低い人々が密集して住んでいる地区を何といいますか。", "choices": ["スラム", "ニュータウン", "サヘル", "サンベルト"], "ans": 0, "exp": "急激な都市化にともない形成される、生活環境の悪い低所得者の密集地区を「スラム」といいます。"}, {"id": 51, "unit": "africa", "unitName": "第3章 アフリカ州", "q": "アフリカなどの発展途上国の開発や、難民・環境問題などの解決に取り組んでいる「非政府組織」のアルファベット略称は何ですか。", "choices": ["NGO", "ODA", "EU", "OPEC"], "ans": 0, "exp": "非政府組織（Non-Governmental Organization）の略称は「NGO」です。"}, {"id": 52, "unit": "africa", "unitName": "第3章 アフリカ州", "q": "EUを参考に、アフリカの国々が地域統合を目指して2002年に結成した組織は何ですか。", "choices": ["アフリカ連合（AU）", "アフリカ貿易機構", "ASEAN", "USMCA"], "ans": 0, "exp": "2002年にEUをモデルとしてアフリカの国々が結成した組織は「アフリカ連合（AU）」です。"}, {"id": 53, "unit": "africa", "unitName": "第3章 アフリカ州", "q": "16世紀以降、アフリカから多くの人々が労働力としてアメリカ大陸へ連れ去られた歴史的できごとを何といいますか。", "choices": ["奴隷貿易", "植民地独立", "産業革命", "宗教改革"], "ans": 0, "exp": "16世紀以降、ヨーロッパ人が多くのアフリカの人々を奴隷としてアメリカ大陸へ連れ去った「奴隷貿易」が行われました。"}, {"id": 54, "unit": "namerica", "unitName": "第4章 北アメリカ州", "q": "北アメリカ大陸の西部に連なる高く険しい山脈と、アメリカ中央部を南へ流れメキシコ湾に注ぐ大河の組み合わせはどれですか。", "choices": ["ロッキー山脈 ／ ミシシッピ川", "アパラチア山脈 ／ ライン川", "アンデス山脈 ／ アマゾン川", "ヒマラヤ山脈 ／ インダス川"], "ans": 0, "exp": "北アメリカ大陸の西部には「ロッキー山脈」、東部には「アパラチア山脈」、中央部には「中央平原」と「ミシシッピ川」があります。"}, {"id": 55, "unit": "namerica", "unitName": "第4章 北アメリカ州", "q": "北アメリカ大陸の南東部や西インド諸島を夏におそい、大きな被害をもたらすことがある熱帯低気圧を何といいますか。", "choices": ["ハリケーン", "モンスーン", "偏西風", "トルネード"], "ans": 0, "exp": "北アメリカ大陸南東部や西インド諸島（カリブ海周辺）で夏に発生する強い熱帯低気圧を「ハリケーン」といいます。"}, {"id": 56, "unit": "namerica", "unitName": "第4章 北アメリカ州", "q": "北アメリカの言語と宗教について、正しい組み合わせはどれですか。", "choices": ["アメリカ・カナダでは英語（カナダの一部はフランス語）、メキシコではスペイン語が主に使われ、キリスト教徒が多い", "アメリカ・カナダではスペイン語、メキシコではフランス語が主に使われ、イスラム教徒が多い", "北アメリカ全域で先住民の言語のみが使われている", "アメリカは仏教徒、カナダはヒンドゥー教徒が多数をしめている"], "ans": 0, "exp": "17世紀以降ヨーロッパからの移民が開拓を進めたため、アメリカ・カナダでは英語（カナダの一部はフランス語）、メキシコではスペイン語が主に使われ、キリスト教が広く信仰されています。"}, {"id": 57, "unit": "namerica", "unitName": "第4章 北アメリカ州", "q": "アメリカ合衆国・メキシコ・カナダの3か国が結び、1994〜2020年の間に結ばれていた「NAFTA」が発展して、2020年に発効した新しい協定の略称は何ですか。", "choices": ["USMCA", "ASEAN", "OPEC", "TPP"], "ans": 0, "exp": "北米自由貿易協定（NAFTA）が発展し、2020年に「USMCA（米国・メキシコ・カナダ協定）」が発効しました。"}, {"id": 58, "unit": "namerica", "unitName": "第4章 北アメリカ州", "q": "アメリカ合衆国で行われている、各地の自然環境に適した農作物を栽培する方式を漢字4字で何といいますか。", "choices": ["適地適作", "二毛作", "混合農業", "企業農業"], "ans": 0, "exp": "アメリカ合衆国では、各地の自然環境（気候・土壌など）に適した農作物を栽培する「適地適作」が行われています。"}, {"id": 59, "unit": "namerica", "unitName": "第4章 北アメリカ州", "q": "アメリカ合衆国の農業で見られる、地下水をくみ上げてスプリンクラーを回転させながらまく円形の農場（灌漑方法）を何といいますか。", "choices": ["センターピボット", "プランテーション", "バイオテクノロジー", "アグリビジネス"], "ans": 0, "exp": "乾燥した地域などで地下水を利用し、大型のスプリンクラーを回転させて円形の農地をつくるかんがい方法を「センターピボット」といいます。"}, {"id": 60, "unit": "namerica", "unitName": "第4章 北アメリカ州", "q": "アメリカ合衆国の農業の特徴について、日本と比較した資料から読み取れることとして正しいものはどれですか。", "choices": ["広い耕地面積をもち、少ない農業従事者で多くの大型農業用トラクターを使って効率的な企業的農業を行っている", "耕地面積は日本より狭く、人手に頼った小規模な農業が中心である", "農業従事者数は日本の10倍以上だが、機械化はほとんど進んでいない", "小麦の生産量は世界一だが、すべて国内で消費し輸出はしていない"], "ans": 0, "exp": "アメリカは日本の約35倍以上の広大な耕地面積をもち、少ない農業従事者で多くの大型トラクターを使う「企業的な農業」を行っています。また小麦は生産量では中国・インドより少ないものの、輸出量の世界シェアが上位で輸出割合が非常に高いのが特徴です。"}, {"id": 61, "unit": "namerica", "unitName": "第4章 北アメリカ州", "q": "アメリカ合衆国で農業関連企業が発達し、穀物を扱う巨大な商社が世界的な影響力をもっています。これらを何といいますか。", "choices": ["アグリビジネス ／ 穀物メジャー", "ハイテク産業 ／ シリコンバレー", "モノカルチャー ／ NGO", "大量生産 ／ ラストベルト"], "ans": 0, "exp": "農業関連の大企業を「アグリビジネス」、穀物の流通を扱う巨大商社を「穀物メジャー」といいます。また品種改良には「バイオテクノロジー」が活用されています。"}, {"id": 62, "unit": "namerica", "unitName": "第4章 北アメリカ州", "q": "アメリカ合衆国の北東部で19世紀から工業が発展した地域と、鉄鋼業の中心都市・自動車工業の中心都市の組み合わせとして正しいものはどれですか。", "choices": ["五大湖周辺 ／ 鉄鋼業：ピッツバーグ ／ 自動車工業：デトロイト", "太平洋岸 ／ 鉄鋼業：サンフランシスコ ／ 自動車工業：シアトル", "メキシコ湾岸 ／ 鉄鋼業：ヒューストン ／ 自動車工業：ニューヨーク", "ロッキー山脈 ／ 鉄鋼業：アトランタ ／ 自動車工業：シカゴ"], "ans": 0, "exp": "五大湖周辺（鉄鉱石）とアパラチア山脈（石炭）の資源を背景に、ピッツバーグで鉄鋼業、デトロイトで流れ作業による大量生産方式の自動車工業が発展しました。"}, {"id": 63, "unit": "namerica", "unitName": "第4章 北アメリカ州", "q": "20世紀後半以降に日本やドイツの安価で良質な工業製品が輸入され、衰退したアメリカ北部の工業地帯は何とよばれていますか。", "choices": ["ラストベルト", "サンベルト", "シリコンバレー", "コーンベルト"], "ans": 0, "exp": "かつて重工業で栄えたものの20世紀後半に衰退した五大湖周辺の工業地帯は「ラストベルト（さびついた工業地帯）」とよばれます。"}, {"id": 64, "unit": "namerica", "unitName": "第4章 北アメリカ州", "q": "北緯37度付近から南に広がる新しい工業地域と、サンフランシスコの南に位置しICT（情報通信技術）関連企業が集まる地域の組み合わせはどれですか。", "choices": ["サンベルト ／ シリコンバレー", "ラストベルト ／ ピッツバーグ", "センターピボット ／ デトロイト", "アパラチア ／ ニューヨーク"], "ans": 0, "exp": "北緯37度付近以南に広がる新興工業地域を「サンベルト」、サンフランシスコ南部に位置するICT関連企業の集積地を「シリコンバレー」といいます。"}, {"id": 65, "unit": "namerica", "unitName": "第4章 北アメリカ州", "q": "アメリカの工業地域別生産額割合の変化（1960年と2021年）から読み取れる、工業の中心地の移動として正しいものはどれですか。", "choices": ["1960年は五大湖周辺の中西部や北東部が中心だったが、2021年には南部（サンベルト）が最大となった", "1960年は南部が中心だったが、2021年には中西部へ移動した", "1960年から2021年まで一貫して山岳地域が最大の割合をしめている", "2021年は北東部が全体の50％以上をしめている"], "ans": 0, "exp": "1960年は中西部（35.5%）・北東部（31.6%）が中心でしたが、2021年には南部（38.0%・サンベルト）の割合が最も大きくなっています。"}, {"id": 66, "unit": "namerica", "unitName": "第4章 北アメリカ州", "q": "アメリカの工業を支える人々について、19世紀末〜20世紀初めの製鉄所・自動車工場と、近年のICT産業でそれぞれ活躍している移民の組み合わせはどれですか。", "choices": ["かつて：ヨーロッパからの移民 ／ 近年のICT産業：アジア系の移民", "かつて：アジアからの移民 ／ 近年のICT産業：アフリカ系の移民", "かつて：南アメリカからの移民 ／ 近年のICT産業：先住民", "かつて・現在ともにヨーロッパ系のみが働いている"], "ans": 0, "exp": "かつての製鉄所や自動車工場では主にヨーロッパからの移民が働き、近年のICT産業ではアメリカの大学などで学んだアジア系の移民が活躍しています。"}, {"id": 67, "unit": "namerica", "unitName": "第4章 北アメリカ州", "q": "アメリカ合衆国の人口構成（2023年）で最も多い割合をしめているのはどの系統の人々ですか。", "choices": ["ヨーロッパ系（約75.3%）", "アフリカ系（約13.7%）", "アジア系（約6.4%）", "先住民（約1.3%）"], "ans": 0, "exp": "アメリカの人口構成ではヨーロッパ系が約75.3%と最も多く、アフリカ系約13.7%、アジア系約6.4%、先住民約1.3%となっています（ヒスパニックは主にヨーロッパ系などに含まれ全体の約19.5%）。"}, {"id": 68, "unit": "namerica", "unitName": "第4章 北アメリカ州", "q": "メキシコや中央アメリカなどの国々からアメリカ合衆国に来た、スペイン語を話す移民やその子孫を何といいますか。", "choices": ["ヒスパニック", "華人", "アングロサクソン", "ネイティブ"], "ans": 0, "exp": "メキシコや中南米などから移住しスペイン語を話す人々を「ヒスパニック」といいます。"}, {"id": 69, "unit": "namerica", "unitName": "第4章 北アメリカ州", "q": "アメリカ合衆国でヒスパニックの人々の割合が高い地域と、メキシコなどから移住してくる主な理由の組み合わせとして正しいものはどれですか。", "choices": ["南部・南西部 ／ 国境に近く、賃金が高く高い収入を得られるため", "北部・北東部 ／ 気候が寒冷で農業がしやすいため", "アラスカ・ハワイ ／ 石油産業のみで働けるため", "五大湖周辺 ／ スペイン語が公用語に定められているため"], "ans": 0, "exp": "ヒスパニックはメキシコとの国境に近い南部・南西部に多く、サンフランシスコとメキシコシティの賃金差のように、より高い収入を得るために移住しています。"}, {"id": 70, "unit": "namerica", "unitName": "第4章 北アメリカ州", "q": "アメリカ合衆国の新しい産業と生活文化について、まちがっている記述はどれですか。", "choices": ["最先端の研究機関で働けるのはヨーロッパ系の人々のみである", "大型ショッピングセンターやファストフード、テーマパークなどが世界中に広がった", "飲食店などのサービス業や農業は、主にヒスパニックなどの移民の労働力に支えられている", "アメリカ合衆国の都市は航空便で世界中の都市と結ばれている"], "ans": 0, "exp": "アメリカの最先端の研究機関やICT産業では、アジア系をはじめ多様な移民や世界中の人々が活躍しています。"}];
+const LABELS = ["ア", "イ", "ウ", "エ"];
+
+let state = {
+  unit: "all",
+  onlyWrong: false,
+  questions: [],
+  userAnswers: {}, // qId -> chosen original index
+  graded: false,
+  wrongIds: new Set(JSON.parse(localStorage.getItem("g1_2e_social_wrong") || "[]"))
+};
+
+function shuffleArray(arr) {
+  const copy = [...arr];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
+function buildQuestionList(shuffleOrder = false) {
+  const doShuffleChoices = document.getElementById("shuffleChoices").checked;
+  let list = RAW_QUESTIONS.filter(q => {
+    if (state.onlyWrong) return state.wrongIds.has(q.id);
+    if (state.unit === "all") return true;
+    return q.unit === state.unit;
+  });
+
+  if (shuffleOrder) list = shuffleArray(list);
+
+  state.questions = list.map(q => {
+    const indexedChoices = q.choices.map((text, idx) => ({ text, origIdx: idx }));
+    const displayChoices = doShuffleChoices ? shuffleArray(indexedChoices) : indexedChoices;
+    return { ...q, displayChoices };
+  });
+  state.userAnswers = {};
+  state.graded = false;
+  document.getElementById("resultPanel").classList.remove("show");
+  renderQuiz();
+  updateProgress();
+}
+
+function renderQuiz() {
+  const container = document.getElementById("quizList");
+  container.innerHTML = "";
+  const instant = document.getElementById("instantMode").checked;
+
+  if (state.questions.length === 0) {
+    container.innerHTML = '<div class="panel">表示する問題がありません。</div>';
+    return;
+  }
+
+  state.questions.forEach((q, idx) => {
+    const card = document.createElement("div");
+    card.className = "q-card";
+    card.id = `q-card-${q.id}`;
+
+    const chosenOrig = state.userAnswers[q.id];
+    const showResult = state.graded || (instant && chosenOrig !== undefined);
+
+    let choicesHtml = "";
+    q.displayChoices.forEach((c, cIdx) => {
+      let cls = "choice-btn";
+      if (showResult) {
+        if (c.origIdx === q.ans) cls += " correct";
+        else if (chosenOrig === c.origIdx) cls += " wrong";
+      } else if (chosenOrig === c.origIdx) {
+        cls += " selected";
+      }
+      const disabled = showResult ? "disabled" : "";
+      choicesHtml += `
+        <button class="${cls}" data-qid="${q.id}" data-orig="${c.origIdx}" ${disabled}>
+          <span class="choice-mark">${LABELS[cIdx]}</span>
+          <span>${c.text}</span>
+        </button>
+      `;
+    });
+
+    let expHtml = "";
+    if (showResult) {
+      const isCorrect = chosenOrig === q.ans;
+      const statusText = chosenOrig === undefined ? "未回答" : (isCorrect ? "⭕ 正解！" : "❌ 不正解");
+      expHtml = `
+        <div class="exp-box show ${isCorrect ? "ok" : "ng"}">
+          <div class="exp-title">${statusText}</div>
+          <div>${q.exp}</div>
+        </div>
+      `;
+    }
+
+    card.innerHTML = `
+      <div class="q-header">
+        <span class="q-badge">${q.unitName}</span>
+        <span class="q-num">問 ${idx + 1} / ${state.questions.length}（No.${q.id}）</span>
+      </div>
+      <p class="q-text">${q.q}</p>
+      <div class="choices">${choicesHtml}</div>
+      ${expHtml}
+    `;
+    container.appendChild(card);
+  });
+
+  container.querySelectorAll(".choice-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const qid = Number(btn.dataset.qid);
+      const origIdx = Number(btn.dataset.orig);
+      handleSelect(qid, origIdx);
+    });
+  });
+}
+
+function handleSelect(qid, origIdx) {
+  state.userAnswers[qid] = origIdx;
+  const q = state.questions.find(item => item.id === qid);
+  const instant = document.getElementById("instantMode").checked;
+
+  if (instant && q) {
+    if (origIdx === q.ans) state.wrongIds.delete(qid);
+    else state.wrongIds.add(qid);
+    saveWrongIds();
+  }
+  renderQuiz();
+  updateProgress();
+}
+
+function saveWrongIds() {
+  localStorage.setItem("g1_2e_social_wrong", JSON.stringify([...state.wrongIds]));
+  updateWrongBtn();
+}
+
+function updateWrongBtn() {
+  const btn = document.getElementById("retryWrongBtn");
+  const cnt = document.getElementById("wrongCount");
+  cnt.textContent = state.wrongIds.size;
+  btn.style.display = state.wrongIds.size > 0 ? "inline-block" : "none";
+}
+
+function updateProgress() {
+  const total = state.questions.length;
+  const answered = Object.keys(state.userAnswers).length;
+  const instant = document.getElementById("instantMode").checked;
+  let correct = 0;
+  state.questions.forEach(q => {
+    if (state.userAnswers[q.id] === q.ans) correct++;
+  });
+
+  document.getElementById("progressText").textContent = `回答済み: ${answered} / ${total} 問`;
+  document.getElementById("liveScoreText").textContent = (instant || state.graded) ? `正解数: ${correct} 問` : "採点後に正解数を表示";
+  document.getElementById("progressFill").style.width = total ? `${(answered / total) * 100}%` : "0%";
+  document.getElementById("footerStatus").textContent = `回答済み: ${answered} / ${total} 問`;
+}
+
+function gradeAll() {
+  state.graded = true;
+  let total = state.questions.length;
+  let correct = 0;
+  const unitStats = {};
+
+  state.questions.forEach(q => {
+    if (!unitStats[q.unitName]) unitStats[q.unitName] = { total: 0, ok: 0 };
+    unitStats[q.unitName].total++;
+    if (state.userAnswers[q.id] === q.ans) {
+      correct++;
+      unitStats[q.unitName].ok++;
+      state.wrongIds.delete(q.id);
+    } else {
+      state.wrongIds.add(q.id);
+    }
+  });
+  saveWrongIds();
+  renderQuiz();
+  updateProgress();
+
+  const pct = total ? Math.round((correct / total) * 100) : 0;
+  document.getElementById("finalScore").textContent = `${correct} / ${total} 問（${pct}%）`;
+  let msg = "よくがんばりました！間違えた問題を解説で確認してもう一度解いてみよう。";
+  if (pct >= 90) msg = "素晴らしい！テスト範囲をしっかり理解できています。";
+  else if (pct >= 75) msg = "合格圏内です！間違えた単元を復習するとさらに安定します。";
+  document.getElementById("resultMessage").textContent = msg;
+
+  const bd = document.getElementById("unitBreakdown");
+  bd.innerHTML = "";
+  Object.entries(unitStats).forEach(([name, st]) => {
+    const upct = Math.round((st.ok / st.total) * 100);
+    const div = document.createElement("div");
+    div.className = "unit-stat";
+    div.innerHTML = `<strong>${name}</strong>${st.ok} / ${st.total} 問（${upct}%）`;
+    bd.appendChild(div);
+  });
+
+  const panel = document.getElementById("resultPanel");
+  panel.classList.add("show");
+  panel.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+document.querySelectorAll(".tab-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    state.unit = btn.dataset.unit;
+    state.onlyWrong = false;
+    buildQuestionList(false);
+  });
+});
+
+document.getElementById("shuffleQBtn").addEventListener("click", () => buildQuestionList(true));
+document.getElementById("shuffleChoices").addEventListener("change", () => buildQuestionList(false));
+document.getElementById("instantMode").addEventListener("change", () => renderQuiz());
+document.getElementById("resetBtn").addEventListener("click", () => buildQuestionList(false));
+document.getElementById("gradeAllBtn").addEventListener("click", gradeAll);
+document.getElementById("retryWrongBtn").addEventListener("click", () => {
+  state.onlyWrong = true;
+  document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+  buildQuestionList(true);
+});
+
+updateWrongBtn();
+buildQuestionList(false);
+</script>
+</body>
+</html>

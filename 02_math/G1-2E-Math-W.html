@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中1数学 2学期末テスト対策：比例と反比例 記述・穴埋めテスト</title>
+<style>
+  :root {
+    --bg: #f4f7fb;
+    --card: #ffffff;
+    --primary: #0f766e;
+    --primary-light: #f0fdfa;
+    --primary-dark: #115e59;
+    --success: #16a34a;
+    --success-bg: #f0fdf4;
+    --danger: #dc2626;
+    --danger-bg: #fef2f2;
+    --text: #1e293b;
+    --muted: #64748b;
+    --border: #e2e8f0;
+    --accent: #f59e0b;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+  }
+  .container {
+    max-width: 840px;
+    margin: 0 auto;
+    padding: 20px 16px 48px;
+  }
+  header {
+    background: linear-gradient(135deg, #115e59, #0d9488);
+    color: #fff;
+    border-radius: 16px;
+    padding: 20px 24px;
+    margin-bottom: 18px;
+    box-shadow: 0 6px 18px rgba(15, 118, 110, 0.18);
+  }
+  header h1 {
+    margin: 0 0 6px;
+    font-size: 1.35rem;
+    font-weight: 700;
+  }
+  header p {
+    margin: 0;
+    font-size: 0.9rem;
+    opacity: 0.94;
+  }
+  .mode-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .mode-btn {
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--text);
+    padding: 7px 13px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .mode-btn:hover { border-color: var(--primary); color: var(--primary); }
+  .mode-btn.active {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+  }
+  .progress-wrap {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+  }
+  .progress-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .progress-bar-bg {
+    width: 100%;
+    height: 8px;
+    background: #e2e8f0;
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #0f766e, #2dd4bf);
+    width: 0%;
+    transition: width 0.3s ease;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+  }
+  .badge-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+  .badge-cat { background: var(--primary-light); color: var(--primary-dark); }
+  .badge-lvl { background: #fef3c7; color: #b45309; }
+  .badge-type { background: #ede9fe; color: #5b21b6; }
+  .q-text {
+    font-size: 1.06rem;
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .q-visual {
+    margin: 14px 0 18px;
+    display: flex;
+    justify-content: center;
+    overflow-x: auto;
+  }
+  table.math-table {
+    border-collapse: collapse;
+    margin: 6px auto;
+    font-size: 0.95rem;
+    background: #fff;
+  }
+  table.math-table th, table.math-table td {
+    border: 1px solid #94a3b8;
+    padding: 7px 14px;
+    text-align: center;
+    min-width: 50px;
+  }
+  table.math-table th {
+    background: #f1f5f9;
+    font-weight: 700;
+  }
+  .answer-area {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 18px;
+    margin-top: 12px;
+  }
+  .answer-prompt {
+    font-size: 0.98rem;
+    line-height: 2.2;
+  }
+  .blank-input {
+    display: inline-block;
+    min-width: 72px;
+    padding: 4px 10px;
+    margin: 2px 4px;
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--text);
+    background: #fff;
+    border: 2px solid #94a3b8;
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.15s ease;
+    font-family: inherit;
+  }
+  .blank-input.sm { width: 64px; min-width: 64px; }
+  .blank-input.md { width: 110px; }
+  .blank-input.lg { width: 170px; }
+  .blank-input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.14);
+  }
+  .blank-input.correct {
+    border-color: var(--success);
+    background: var(--success-bg);
+    color: #166534;
+  }
+  .blank-input.wrong {
+    border-color: var(--danger);
+    background: var(--danger-bg);
+    color: #991b1b;
+  }
+  .ans-tag {
+    display: inline-block;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--success);
+    background: var(--success-bg);
+    border: 1px solid #86efac;
+    border-radius: 6px;
+    padding: 1px 7px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .helper-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px dashed #cbd5e1;
+  }
+  .helper-label {
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-weight: 600;
+    margin-right: 4px;
+  }
+  .sym-btn {
+    background: #fff;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.12s;
+  }
+  .sym-btn:hover {
+    border-color: var(--primary);
+    background: var(--primary-light);
+    color: var(--primary-dark);
+  }
+  .hint-note {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+  .action-row {
+    margin-top: 14px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .feedback {
+    margin-top: 18px;
+    border-radius: 12px;
+    padding: 16px 18px;
+    display: none;
+    animation: fadeIn 0.2s ease;
+  }
+  .feedback.show { display: block; }
+  .feedback.is-correct {
+    background: var(--success-bg);
+    border: 1px solid #86efac;
+  }
+  .feedback.is-wrong {
+    background: var(--danger-bg);
+    border: 1px solid #fca5a5;
+  }
+  .feedback-title {
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+  }
+  .feedback.is-correct .feedback-title { color: var(--success); }
+  .feedback.is-wrong .feedback-title { color: var(--danger); }
+  .model-ans {
+    background: #fff;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin: 8px 0 10px;
+    font-size: 0.95rem;
+  }
+  .explanation {
+    font-size: 0.95rem;
+    color: #1e293b;
+  }
+  .nav-row {
+    margin-top: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+  .btn-primary {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 11px 22px;
+    font-size: 0.96rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .btn-primary:hover { background: var(--primary-dark); }
+  .btn-primary:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+  .btn-secondary {
+    background: #fff;
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 18px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .btn-secondary:hover { background: #f8fafc; }
+  .frac {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    vertical-align: middle;
+    margin: 0 2px;
+    font-size: 0.9em;
+    line-height: 1.1;
+  }
+  .frac .num {
+    border-bottom: 1.5px solid currentColor;
+    padding: 0 3px 1px;
+  }
+  .frac .den {
+    padding: 1px 3px 0;
+  }
+  .summary-card { text-align: center; }
+  .score-big {
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin: 8px 0;
+  }
+  .cat-breakdown {
+    text-align: left;
+    margin: 18px 0;
+    border-top: 1px solid var(--border);
+    padding-top: 14px;
+  }
+  .cat-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px dashed var(--border);
+    font-size: 0.95rem;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>中1数学 2学期末テスト対策：比例と反比例</h1>
+    <p>1問1答式 記述・穴埋めテスト（全25問・出題範囲完全網羅）</p>
+  </header>
+
+  <div class="mode-bar" id="modeBar">
+    <button class="mode-btn active" data-cat="all">すべて（全25問）</button>
+    <button class="mode-btn" data-cat="関数と変域">1. 関数と変域</button>
+    <button class="mode-btn" data-cat="比例・反比例の基本">2. 基本と文章題</button>
+    <button class="mode-btn" data-cat="比例の性質と座標">3. 比例の性質・座標</button>
+    <button class="mode-btn" data-cat="比例のグラフ">4. 比例のグラフ</button>
+    <button class="mode-btn" data-cat="反比例の性質・グラフ">5. 反比例と応用</button>
+  </div>
+
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-top">
+      <span id="progressLabel">第 1 問 / 25 問</span>
+      <span id="scoreLabel">現在の正解数：0 問</span>
+    </div>
+    <div class="progress-bar-bg">
+      <div class="progress-bar-fill" id="progressFill"></div>
+    </div>
+  </div>
+
+  <div class="card" id="quizCard"></div>
+</div>
+
+<script>
+const frac = (n, d) => `<span class="frac"><span class="num">${n}</span><span class="den">${d}</span></span>`;
+
+// 入力欄生成ヘルパー
+const inp = (idx, size = "md", ph = "") =>
+  `<input type="text" class="blank-input ${size}" id="blank-${idx}" data-bidx="${idx}" placeholder="${ph}" autocomplete="off" autocapitalize="off" spellcheck="false">`;
+
+const QUESTIONS = [
+  // ===== 1. 関数と変域 (5問) =====
+  {
+    id: 1,
+    cat: "関数と変域",
+    lvl: "基本",
+    type: "穴埋め",
+    q: "変数 <i>x</i> の変域が「<b>−4より大きく1以下</b>」であるとき、下の空欄に適切な数や不等号（＜、≦ など）を入れて <i>x</i> の変域を表しなさい。",
+    visual: `<svg width="280" height="62" viewBox="0 0 280 62" aria-label="数直線">
+      <line x1="15" y1="38" x2="265" y2="38" stroke="#334155" stroke-width="2"/>
+      <polygon points="265,38 257,34 257,42" fill="#334155"/>
+      <line x1="65" y1="33" x2="65" y2="43" stroke="#334155" stroke-width="1.5"/>
+      <line x1="175" y1="33" x2="175" y2="43" stroke="#334155" stroke-width="1.5"/>
+      <line x1="200" y1="33" x2="200" y2="43" stroke="#334155" stroke-width="1.5"/>
+      <text x="65" y="57" font-size="12" text-anchor="middle" fill="#334155">-4</text>
+      <text x="175" y="57" font-size="12" text-anchor="middle" fill="#334155">0</text>
+      <text x="200" y="57" font-size="12" text-anchor="middle" fill="#334155">1</text>
+      <polyline points="65,38 65,18 200,18 200,38" fill="none" stroke="#0f766e" stroke-width="2.5"/>
+      <circle cx="65" cy="18" r="5" fill="#ffffff" stroke="#0f766e" stroke-width="2.5"/>
+      <circle cx="200" cy="18" r="5" fill="#0f766e"/>
+    </svg>`,
+    prompt: `${inp(0, "sm")} ${inp(1, "sm", "不等号")} <i>x</i> ${inp(2, "sm", "不等号")} 1`,
+    blanks: [
+      { ans: ["-4"], label: "-4" },
+      { ans: ["<"], label: "＜" },
+      { ans: ["<=", "≦"], label: "≦" }
+    ],
+    syms: ["-", "<", "≦"],
+    hint: "不等号は下のボタンからも入力できます。",
+    model: "<b>−4 ＜ <i>x</i> ≦ 1</b>",
+    exp: "「より大きい」「未満」はその数を含まないため <b>＜</b>（白丸 ○）を使い、「以上」「以下」はその数を含むため <b>≦</b>（黒丸 ●）を使います。"
+  },
+  {
+    id: 2,
+    cat: "関数と変域",
+    lvl: "基本",
+    type: "穴埋め・記述",
+    q: "次の文の空欄にあてはまる語句と式を答えなさい。<br>「2つの変数 <i>x</i> と <i>y</i> があり、<i>x</i> の値を決めると <i>y</i> の値が [ ① ] 決まるとき、<i>y</i> は <i>x</i> の関数であるという。たとえば、1000 mL の牛乳から <i>x</i> mL 飲んだあとの残り <i>y</i> mL は、<i>y</i> = [ ② ] と表せるので関数である。」",
+    visual: "",
+    prompt: `① ${inp(0, "lg", "漢字・数字")}　　② <i>y</i> = ${inp(1, "md", "式")}`,
+    blanks: [
+      { ans: ["ただ1つ", "ただひとつ", "1つ", "ひとつ"], label: "ただ1つ" },
+      { ans: ["1000-x", "-x+1000"], label: "1000 - x" }
+    ],
+    syms: ["x", "-", "+"],
+    hint: "①は「ただ◯つ」の形、②は「y = 」の右辺だけを入力してください。",
+    model: "① <b>ただ1つ</b>（1つ）　② <b>1000 − <i>x</i></b>",
+    exp: "関数の定義「<i>x</i> の値を決めると <i>y</i> の値が<b>ただ1つ</b>決まる」は穴埋め問題の定番です。残りの量は全体の 1000 mL から飲んだ量 <i>x</i> mL を引いて <b><i>y</i> = 1000 − <i>x</i></b> となります。"
+  },
+  {
+    id: 3,
+    cat: "関数と変域",
+    lvl: "標準",
+    type: "記述・穴埋め",
+    q: "一定の割合で燃える長さ 90 mm の線香がある。火をつけてから 3 分後に長さは 72 mm になった。火をつけてから <i>x</i> 分後の線香の長さを <i>y</i> mm とするとき、次の空欄を埋めなさい。",
+    visual: "",
+    prompt: `線香は 1 分間に ${inp(0, "sm")} mm ずつ燃えるので、長さが <b>30 mm</b> になるのは火をつけてから ${inp(1, "sm")} 分後である。<br>また、すべて燃えきるまでの <i>y</i> の変域は ${inp(2, "sm")} ≦ <i>y</i> ≦ ${inp(3, "sm")} である。`,
+    blanks: [
+      { ans: ["6"], label: "6" },
+      { ans: ["10"], label: "10" },
+      { ans: ["0"], label: "0" },
+      { ans: ["90"], label: "90" }
+    ],
+    syms: [],
+    hint: "半角数字で入力してください。",
+    model: "1分間に <b>6</b> mm ／ <b>10</b> 分後 ／ <b>0</b> ≦ <i>y</i> ≦ <b>90</b>",
+    exp: "3 分間で 90 − 72 = 18 mm 燃えたので、1 分間に 18 ÷ 3 = <b>6 mm</b> 燃えます。長さ 30 mm になるまでに燃える長さは 90 − 30 = 60 mm なので、60 ÷ 6 = <b>10 分後</b>です。線香の長さ <i>y</i> は 0 mm から 90 mm までなので <b>0 ≦ <i>y</i> ≦ 90</b> となります。"
+  },
+  {
+    id: 4,
+    cat: "関数と変域",
+    lvl: "標準",
+    type: "記述",
+    q: "同じ種類のくぎが何本かある。このうち <b>25 本</b>の重さをはかったら <b>40 g</b> だった。くぎ全体の重さが <b>960 g</b> だったとき、くぎはおよそ何本ありますか。",
+    visual: "",
+    prompt: `およそ ${inp(0, "md", "整数")} 本`,
+    blanks: [
+      { ans: ["600"], label: "600" }
+    ],
+    syms: [],
+    hint: "くぎ1本あたりの重さ、または全体の重さが何倍かを考えましょう。",
+    model: "<b>600</b> 本",
+    exp: "1 本あたりの重さは 40 ÷ 25 = 1.6 g です。よって全体の本数は 960 ÷ 1.6 = <b>600 本</b>となります。（別解：960 ÷ 40 = 24 倍より、25 × 24 = 600 本）"
+  },
+  {
+    id: 5,
+    cat: "関数と変域",
+    lvl: "発展",
+    type: "穴埋め",
+    q: "下の表はある運送会社の荷物の重量と料金（25 kg まで）を表したものである。空欄を埋めて正しい説明を完成させなさい。",
+    visual: `<table class="math-table">
+      <tr><th>重量</th><td>2kg以内</td><td>5kg以内</td><td>10kg以内</td><td>15kg以内</td><td>20kg以内</td><td>25kg以内</td></tr>
+      <tr><th>料金</th><td>850円</td><td>1000円</td><td>1300円</td><td>1600円</td><td>1800円</td><td>2000円</td></tr>
+    </table>`,
+    prompt: `料金は重量の関数と ${inp(0, "md", "いえる/いえない")} が、重量は料金の関数とは ${inp(1, "md", "いえる/いえない")}。<br>なぜなら、料金を 1000 円と決めても、重量が ${inp(2, "lg", "例：ただ1つ")} に決まらないからである。`,
+    blanks: [
+      { ans: ["いえる", "言える"], label: "いえる" },
+      { ans: ["いえない", "言えない"], label: "いえない" },
+      { ans: ["ただ1つ", "ただひとつ", "1つ", "ひとつ"], label: "ただ1つ" }
+    ],
+    syms: [],
+    hint: "「いえる」「いえない」「ただ1つ」のようにひらがなで入力できます。",
+    model: "<b>いえる</b> ／ <b>いえない</b> ／ <b>ただ1つ</b>",
+    exp: "重量を決めれば料金は必ず1つに決まるので、料金は重量の関数と<b>いえる</b>。一方、料金（例：1000 円）を決めても、重量は 3 kg や 4 kg など複数考えられるため<b>ただ1つ</b>に決まらず、重量は料金の関数とは<b>いえない</b>。"
+  },
+
+  // ===== 2. 比例・反比例の基本と文章題 (5問) =====
+  {
+    id: 6,
+    cat: "比例・反比例の基本",
+    lvl: "基本",
+    type: "記述・穴埋め",
+    q: "1 L の燃料で 3 時間動く機械がある。この機械が <i>x</i> L の燃料で動く時間を <i>y</i> 時間とするとき、<i>y</i> を <i>x</i> の式で表し、比例定数が何を表しているか答えなさい。",
+    visual: "",
+    prompt: `式：<i>y</i> = ${inp(0, "md", "式")}<br>比例定数 ${inp(1, "sm")} は、「${inp(2, "sm")} L の燃料で動く時間」を表している。`,
+    blanks: [
+      { ans: ["3x"], label: "3x" },
+      { ans: ["3"], label: "3" },
+      { ans: ["1"], label: "1" }
+    ],
+    syms: ["x"],
+    hint: "「y = 」の右辺だけを入力してください。",
+    model: "<i>y</i> = <b>3<i>x</i></b> ／ 比例定数 <b>3</b> は <b>1</b> L の燃料で動く時間",
+    exp: "燃料が <i>x</i> L なら動く時間は 3 × <i>x</i> 時間なので、<b><i>y</i> = 3<i>x</i></b> です。比例定数の 3 は「1 L の燃料で動く時間（3時間）」を表します。"
+  },
+  {
+    id: 7,
+    cat: "比例・反比例の基本",
+    lvl: "基本",
+    type: "記述・穴埋め",
+    q: "20 km の道のりを時速 <i>x</i> km で進むときにかかる時間を <i>y</i> 時間とする。<i>y</i> を <i>x</i> の式で表し、空欄を埋めなさい。",
+    visual: "",
+    prompt: `式：<i>y</i> = ${inp(0, "md", "例：20/x")}<br><i>x</i> と <i>y</i> の積 <i>xy</i> の値はつねに ${inp(1, "sm")} であり、<i>y</i> は <i>x</i> に ${inp(2, "md", "比例/反比例")} する。`,
+    blanks: [
+      { ans: ["20/x"], label: "20/x" },
+      { ans: ["20"], label: "20" },
+      { ans: ["反比例"], label: "反比例" }
+    ],
+    syms: ["/", "x"],
+    hint: "分数は「分子/分母」（例：20/x）の形で入力してください。",
+    model: `<i>y</i> = <b>${frac(20, "<i>x</i>")}</b> ／ <i>xy</i> = <b>20</b> ／ <b>反比例</b>`,
+    exp: `時間 = 道のり ÷ 速さ なので、<b><i>y</i> = ${frac(20, "<i>x</i>")}</b> となり<b>反比例</b>します。反比例では、<i>x</i> と <i>y</i> の積 <i>xy</i> がつねに比例定数（<b>20</b>）と等しくなります。`
+  },
+  {
+    id: 8,
+    cat: "比例・反比例の基本",
+    lvl: "標準",
+    type: "記述",
+    q: "次の①、②の関係について、それぞれ <i>y</i> を <i>x</i> の式で表し、比例・反比例のどちらであるか答えなさい。<br>① 1辺が 4 cm の正方形と面積が等しい長方形の縦を <i>x</i> cm、横を <i>y</i> cm とする。<br>② <i>x</i> m のリボンを 3 等分するとき、1つ分の長さを <i>y</i> m とする。",
+    visual: "",
+    prompt: `① <i>y</i> = ${inp(0, "md", "式")} （${inp(1, "md", "比例/反比例")}）<br>② <i>y</i> = ${inp(2, "md", "式")} （${inp(3, "md", "比例/反比例")}）`,
+    blanks: [
+      { ans: ["16/x"], label: "16/x" },
+      { ans: ["反比例"], label: "反比例" },
+      { ans: ["1/3x", "x/3", "(1/3)x"], label: "1/3 x" },
+      { ans: ["比例"], label: "比例" }
+    ],
+    syms: ["/", "x"],
+    hint: "分数の式は「16/x」「1/3x」や「x/3」のように入力してください。",
+    model: `① <i>y</i> = <b>${frac(16, "<i>x</i>")}</b>（<b>反比例</b>）　② <i>y</i> = <b>${frac(1, 3)}<i>x</i></b>（<b>比例</b>）`,
+    exp: `① 正方形の面積は 4 × 4 = 16 cm² なので <i>xy</i> = 16、つまり <b><i>y</i> = ${frac(16, "<i>x</i>")}</b>（<b>反比例</b>）。<br>② <i>x</i> m を 3 等分するので <b><i>y</i> = ${frac(1, 3)}<i>x</i></b>（<b>比例</b>）。`
+  },
+  {
+    id: 9,
+    cat: "比例・反比例の基本",
+    lvl: "標準",
+    type: "記述",
+    q: "家から公園まで、分速 60 m で歩くと 20 分かかる。家から公園まで、分速 <i>x</i> m で歩いたときにかかる時間を <i>y</i> 分とするとき、<i>y</i> を <i>x</i> の式で表しなさい。",
+    visual: "",
+    prompt: `<i>y</i> = ${inp(0, "md", "例：1200/x")}`,
+    blanks: [
+      { ans: ["1200/x"], label: "1200/x" }
+    ],
+    syms: ["/", "x"],
+    hint: "まず家から公園までの道のり（m）を求めましょう。",
+    model: `<i>y</i> = <b>${frac(1200, "<i>x</i>")}</b>`,
+    exp: `家から公園までの道のりは 60 × 20 = 1200 m です。時間 = 道のり ÷ 速さ なので、<b><i>y</i> = ${frac(1200, "<i>x</i>")}</b> となります。`
+  },
+  {
+    id: 10,
+    cat: "比例・反比例の基本",
+    lvl: "標準",
+    type: "記述",
+    q: "ある紙 10 枚の重さは 40 g で、この紙 100 枚の厚さは 9 mm である。この紙 <i>x</i> 枚の重さを <i>y</i> g、厚さを <i>z</i> mm とするとき、それぞれ式で表しなさい。",
+    visual: "",
+    prompt: `重さ：<i>y</i> = ${inp(0, "md", "式")}<br>厚さ：<i>z</i> = ${inp(1, "md", "式")}`,
+    blanks: [
+      { ans: ["4x"], label: "4x" },
+      { ans: ["0.09x", "9/100x", "9x/100"], label: "0.09x" }
+    ],
+    syms: ["x", ".", "/"],
+    hint: "1枚あたりの重さ・厚さをそれぞれ求めます（厚さは小数または分数どちらでもOK）。",
+    model: "重さ：<i>y</i> = <b>4<i>x</i></b> ／ 厚さ：<i>z</i> = <b>0.09<i>x</i></b>（または 9/100 <i>x</i>）",
+    exp: "1 枚あたりの重さは 40 ÷ 10 = 4 g なので <b><i>y</i> = 4<i>x</i></b>。1 枚あたりの厚さは 9 ÷ 100 = 0.09 mm なので <b><i>z</i> = 0.09<i>x</i></b> となります。"
+  },
+
+  // ===== 3. 比例の性質と座標 (5問) =====
+  {
+    id: 11,
+    cat: "比例の性質と座標",
+    lvl: "基本",
+    type: "穴埋め",
+    q: "比例 <i>y</i> = −6<i>x</i> について、<i>x</i> の値が負の数のとき、<i>x</i> の値が 2 倍、3 倍になると、対応する <i>y</i> の値はそれぞれ何倍になりますか。",
+    visual: "",
+    prompt: `対応する <i>y</i> の値はそれぞれ ${inp(0, "sm")} 倍、${inp(1, "sm")} 倍になる。`,
+    blanks: [
+      { ans: ["2"], label: "2" },
+      { ans: ["3"], label: "3" }
+    ],
+    syms: [],
+    hint: "比例定数 −6 や負の数に惑わされないように注意！",
+    model: "<b>2</b> 倍、<b>3</b> 倍",
+    exp: "比例 <i>y</i> = <i>ax</i> では、比例定数 <i>a</i> が負の数でも、<i>x</i> の値が負の数でも、<i>x</i> が 2 倍、3 倍になると <i>y</i> も必ず <b>2 倍、3 倍</b>になります。"
+  },
+  {
+    id: 12,
+    cat: "比例の性質と座標",
+    lvl: "標準",
+    type: "記述",
+    q: `<i>y</i> は <i>x</i> に比例し、<i>x</i> = 4 のとき <i>y</i> = ${frac(10, 3)} である。<i>y</i> を <i>x</i> の式で表し、<i>x</i> = −12 のときの <i>y</i> の値を求めなさい。`,
+    visual: "",
+    prompt: `式：<i>y</i> = ${inp(0, "md", "例：5/6x")}<br><i>x</i> = −12 のとき <i>y</i> = ${inp(1, "sm")}`,
+    blanks: [
+      { ans: ["5/6x", "5x/6", "(5/6)x"], label: "5/6 x" },
+      { ans: ["-10"], label: "-10" }
+    ],
+    syms: ["/", "x", "-"],
+    hint: "比例の式 y = ax に代入して a を求めます。",
+    model: `<i>y</i> = <b>${frac(5, 6)}<i>x</i></b> ／ <i>y</i> = <b>−10</b>`,
+    exp: `<i>y</i> = <i>ax</i> に代入すると ${frac(10, 3)} = 4<i>a</i> より <i>a</i> = ${frac(5, 6)}、よって <b><i>y</i> = ${frac(5, 6)}<i>x</i></b> です。<i>x</i> = −12 を代入すると <i>y</i> = ${frac(5, 6)} × (−12) = <b>−10</b> になります。`
+  },
+  {
+    id: 13,
+    cat: "比例の性質と座標",
+    lvl: "標準",
+    type: "表の穴埋め",
+    q: "<i>y</i> は <i>x</i> に比例し、対応する <i>x</i> と <i>y</i> の値が下の表のようになるとき、表の空欄（①〜③）にあてはまる数を求めなさい。",
+    visual: "",
+    prompt: `<table class="math-table">
+      <tr><th><i>x</i></th><td>−4</td><td>0</td><td>4</td><td>8</td><td>12</td></tr>
+      <tr><th><i>y</i></th><td>3</td><td>${inp(0, "sm", "①")}</td><td>−3</td><td>${inp(1, "sm", "②")}</td><td>${inp(2, "sm", "③")}</td></tr>
+    </table>`,
+    blanks: [
+      { ans: ["0"], label: "0" },
+      { ans: ["-6"], label: "-6" },
+      { ans: ["-9"], label: "-9" }
+    ],
+    syms: ["-"],
+    hint: "x が 4 のとき y = -3 に注目して、2倍・3倍するとどうなるか考えましょう。",
+    model: "① <b>0</b>　② <b>−6</b>　③ <b>−9</b>",
+    exp: "比例では <i>x</i> = 0 のとき必ず <i>y</i> = <b>0</b> です。<i>x</i> = 4 で <i>y</i> = −3 なので、<i>x</i> が 2 倍の 8 なら <i>y</i> = −3 × 2 = <b>−6</b>、3 倍の 12 なら <i>y</i> = −3 × 3 = <b>−9</b> となります。"
+  },
+  {
+    id: 14,
+    cat: "比例の性質と座標",
+    lvl: "基本",
+    type: "座標入力",
+    q: "座標平面上の点 P(−4, 3) について、次の①・②の点の座標を求めなさい。",
+    visual: "",
+    prompt: `① <b>原点</b>について対称な点：( ${inp(0, "sm")} , ${inp(1, "sm")} )<br>② <b><i>x</i> 軸</b>について対称な点：( ${inp(2, "sm")} , ${inp(3, "sm")} )`,
+    blanks: [
+      { ans: ["4"], label: "4" },
+      { ans: ["-3"], label: "-3" },
+      { ans: ["-4"], label: "-4" },
+      { ans: ["-3"], label: "-3" }
+    ],
+    syms: ["-"],
+    hint: "原点対称は「x, y 両方の符号」、x軸対称は「y座標の符号」が変わります。",
+    model: "① <b>(4, −3)</b>　② <b>(−4, −3)</b>",
+    exp: "① 原点について対称な点は <i>x</i> 座標と <i>y</i> 座標の符号が両方逆になるので <b>(4, −3)</b> です。<br>② <i>x</i> 軸について対称な点は <i>y</i> 座標の符号だけが逆になるので <b>(−4, −3)</b> です。"
+  },
+  {
+    id: 15,
+    cat: "比例の性質と座標",
+    lvl: "発展",
+    type: "記述・穴埋め",
+    q: "座標の 1 目もりを 1 cm とし、3 点 A(4, 5)、B(−4, 2)、C(2, −4) を頂点とする △ABC の面積を求めなさい。",
+    visual: `<svg width="230" height="230" viewBox="-6 -6 12 12" style="background:#fff;border:1px solid #cbd5e1;border-radius:8px;">
+      <g stroke="#e2e8f0" stroke-width="0.06">
+        <line x1="-5" y1="-6" x2="-5" y2="6"/><line x1="-4" y1="-6" x2="-4" y2="6"/>
+        <line x1="-3" y1="-6" x2="-3" y2="6"/><line x1="-2" y1="-6" x2="-2" y2="6"/>
+        <line x1="-1" y1="-6" x2="-1" y2="6"/><line x1="1" y1="-6" x2="1" y2="6"/>
+        <line x1="2" y1="-6" x2="2" y2="6"/><line x1="3" y1="-6" x2="3" y2="6"/>
+        <line x1="4" y1="-6" x2="4" y2="6"/><line x1="5" y1="-6" x2="5" y2="6"/>
+        <line x1="-6" y1="-5" x2="6" y2="-5"/><line x1="-6" y1="-4" x2="6" y2="-4"/>
+        <line x1="-6" y1="-3" x2="6" y2="-3"/><line x1="-6" y1="-2" x2="6" y2="-2"/>
+        <line x1="-6" y1="-1" x2="6" y2="-1"/><line x1="-6" y1="1" x2="6" y2="1"/>
+        <line x1="-6" y1="2" x2="6" y2="2"/><line x1="-6" y1="3" x2="6" y2="3"/>
+        <line x1="-6" y1="4" x2="6" y2="4"/><line x1="-6" y1="5" x2="6" y2="5"/>
+      </g>
+      <line x1="-6" y1="0" x2="6" y2="0" stroke="#475569" stroke-width="0.1"/>
+      <line x1="0" y1="-6" x2="0" y2="6" stroke="#475569" stroke-width="0.1"/>
+      <rect x="-4" y="-5" width="8" height="9" fill="none" stroke="#94a3b8" stroke-width="0.08" stroke-dasharray="0.2,0.2"/>
+      <polygon points="4,-5 -4,-2 2,4" fill="rgba(15,118,110,0.14)" stroke="#0f766e" stroke-width="0.14"/>
+      <circle cx="4" cy="-5" r="0.22" fill="#0f766e"/>
+      <circle cx="-4" cy="-2" r="0.22" fill="#0f766e"/>
+      <circle cx="2" cy="4" r="0.22" fill="#0f766e"/>
+      <text x="4.3" y="-5" font-size="0.7" fill="#1e293b" font-weight="bold">A(4,5)</text>
+      <text x="-5.7" y="-2.2" font-size="0.7" fill="#1e293b" font-weight="bold">B(-4,2)</text>
+      <text x="2.3" y="4.5" font-size="0.7" fill="#1e293b" font-weight="bold">C(2,-4)</text>
+      <text x="0.2" y="0.7" font-size="0.6" fill="#475569">O</text>
+    </svg>`,
+    prompt: `点線で囲んだ長方形の面積は ${inp(0, "sm")} cm²、まわりの3つの直角三角形の面積の合計は ${inp(1, "sm")} cm² なので、<br>△ABC の面積は ${inp(2, "sm")} cm² である。`,
+    blanks: [
+      { ans: ["72"], label: "72" },
+      { ans: ["39"], label: "39" },
+      { ans: ["33"], label: "33" }
+    ],
+    syms: [],
+    hint: "長方形の横と縦の長さを座標から読み取り、まわりの3つの直角三角形を引きます。",
+    model: "長方形 <b>72</b> cm² ／ 3つの三角形の合計 <b>39</b> cm² ／ △ABC <b>33</b> cm²",
+    exp: "横 8 cm（−4〜4）、縦 9 cm（−4〜5）の長方形の面積は 8 × 9 = <b>72 cm²</b>。まわりの 3 つの直角三角形は、左上 8×3÷2 = 12、左下 6×6÷2 = 18、右下 2×9÷2 = 9 なので合計 <b>39 cm²</b>。よって 72 − 39 = <b>33 cm²</b> です。"
+  },
+
+  // ===== 4. 比例のグラフ (5問) =====
+  {
+    id: 16,
+    cat: "比例のグラフ",
+    lvl: "基本",
+    type: "穴埋め",
+    q: `比例の関係 <i>y</i> = ${frac(4, 5)}<i>x</i> で、<i>x</i> の値が <b>10 増加</b>すると、<i>y</i> の値はどれだけどのように変化しますか。`,
+    visual: "",
+    prompt: `<i>y</i> の値は ${inp(0, "sm")} ${inp(1, "md", "増加/減少")} する。`,
+    blanks: [
+      { ans: ["8"], label: "8" },
+      { ans: ["増加"], label: "増加" }
+    ],
+    syms: [],
+    hint: "比例定数 4/5 が正の数なので、x が増えると y も…？",
+    model: "<b>8 増加</b>する",
+    exp: `<i>y</i> = <i>ax</i> では <i>x</i> が 1 増加すると <i>y</i> は <i>a</i> ずつ増加します。<i>x</i> が 10 増加するときは ${frac(4, 5)} × 10 = <b>8 増加</b>します。`
+  },
+  {
+    id: 17,
+    cat: "比例のグラフ",
+    lvl: "標準",
+    type: "記述",
+    q: "下の図の比例のグラフについて、<i>y</i> を <i>x</i> の式で表しなさい。",
+    visual: `<svg width="210" height="210" viewBox="-6 -6 12 12" style="background:#fff;border:1px solid #cbd5e1;border-radius:8px;">
+      <g stroke="#e2e8f0" stroke-width="0.06">
+        <line x1="-5" y1="-6" x2="-5" y2="6"/><line x1="-4" y1="-6" x2="-4" y2="6"/>
+        <line x1="-3" y1="-6" x2="-3" y2="6"/><line x1="-2" y1="-6" x2="-2" y2="6"/>
+        <line x1="-1" y1="-6" x2="-1" y2="6"/><line x1="1" y1="-6" x2="1" y2="6"/>
+        <line x1="2" y1="-6" x2="2" y2="6"/><line x1="3" y1="-6" x2="3" y2="6"/>
+        <line x1="4" y1="-6" x2="4" y2="6"/><line x1="5" y1="-6" x2="5" y2="6"/>
+        <line x1="-6" y1="-5" x2="6" y2="-5"/><line x1="-6" y1="-4" x2="6" y2="-4"/>
+        <line x1="-6" y1="-3" x2="6" y2="-3"/><line x1="-6" y1="-2" x2="6" y2="-2"/>
+        <line x1="-6" y1="-1" x2="6" y2="-1"/><line x1="-6" y1="1" x2="6" y2="1"/>
+        <line x1="-6" y1="2" x2="6" y2="2"/><line x1="-6" y1="3" x2="6" y2="3"/>
+        <line x1="-6" y1="4" x2="6" y2="4"/><line x1="-6" y1="5" x2="6" y2="5"/>
+      </g>
+      <line x1="-6" y1="0" x2="6" y2="0" stroke="#475569" stroke-width="0.1"/>
+      <line x1="0" y1="-6" x2="0" y2="6" stroke="#475569" stroke-width="0.1"/>
+      <line x1="-6" y1="-4" x2="6" y2="4" stroke="#dc2626" stroke-width="0.16"/>
+      <circle cx="3" cy="2" r="0.24" fill="#dc2626"/>
+      <text x="3.3" y="2.6" font-size="0.7" fill="#dc2626" font-weight="bold">A(3,-2)</text>
+      <text x="5.2" y="0.7" font-size="0.65" fill="#475569">x</text>
+      <text x="0.3" y="-5.2" font-size="0.65" fill="#475569">y</text>
+      <text x="0.2" y="0.7" font-size="0.6" fill="#475569">O</text>
+    </svg>`,
+    prompt: `<i>y</i> = ${inp(0, "md", "例：-2/3x")}`,
+    blanks: [
+      { ans: ["-2/3x", "-2x/3", "-(2/3)x"], label: "-2/3 x" }
+    ],
+    syms: ["-", "/", "x"],
+    hint: "点 A(3, -2) を通る比例の式 y = ax を求めましょう。",
+    model: `<i>y</i> = <b>−${frac(2, 3)}<i>x</i></b>`,
+    exp: `原点と点 A(3, −2) を通るので、<i>y</i> = <i>ax</i> に <i>x</i> = 3, <i>y</i> = −2 を代入して −2 = 3<i>a</i>、よって <i>a</i> = −${frac(2, 3)} となり、<b><i>y</i> = −${frac(2, 3)}<i>x</i></b> です。`
+  },
+  {
+    id: 18,
+    cat: "比例のグラフ",
+    lvl: "標準",
+    type: "記述",
+    q: "原点を通る直線上に点 P(−4, 3) がある。この直線上に点 (8, <i>m</i>) があるとき、<i>m</i> の値を求めなさい。",
+    visual: "",
+    prompt: `<i>m</i> = ${inp(0, "sm")}`,
+    blanks: [
+      { ans: ["-6"], label: "-6" }
+    ],
+    syms: ["-"],
+    hint: "まず直線の式を求め、x = 8 を代入します。",
+    model: "<i>m</i> = <b>−6</b>",
+    exp: `点 P(−4, 3) を通る比例の式は 3 = −4<i>a</i> より <i>y</i> = −${frac(3, 4)}<i>x</i> です。<i>x</i> = 8 を代入すると <i>m</i> = −${frac(3, 4)} × 8 = <b>−6</b> になります。`
+  },
+  {
+    id: 19,
+    cat: "比例のグラフ",
+    lvl: "標準",
+    type: "穴埋め",
+    q: "<i>y</i> が <i>x</i> に比例するとき、下の表から「<i>x</i> が 1 増えたときの <i>y</i> の変化」を使って比例定数 <i>a</i> を求める文の空欄を埋めなさい。",
+    visual: `<table class="math-table">
+      <tr><th><i>x</i></th><td>…</td><td>3</td><td>6</td><td>…</td></tr>
+      <tr><th><i>y</i></th><td>…</td><td>−9</td><td>−18</td><td>…</td></tr>
+    </table>`,
+    prompt: `<i>x</i> の値が ${inp(0, "sm")} 増えると、<i>y</i> の値は ${inp(1, "sm")} 増えるので、<br><i>x</i> が 1 増えると <i>y</i> は ${inp(2, "sm")} 増える。よって、比例定数 <i>a</i> = ${inp(3, "sm")} である。`,
+    blanks: [
+      { ans: ["3"], label: "3" },
+      { ans: ["-9"], label: "-9" },
+      { ans: ["-3"], label: "-3" },
+      { ans: ["-3"], label: "-3" }
+    ],
+    syms: ["-"],
+    hint: "3 から 6 へはいくつ増えたか、−9 から −18 へはいくつ増えたか（負の数）を入れます。",
+    model: "<b>3</b> 増えると <b>−9</b> 増える → 1増えると <b>−3</b> → <i>a</i> = <b>−3</b>",
+    exp: "<i>x</i> が 6 − 3 = <b>3</b> 増えると、<i>y</i> は −18 − (−9) = <b>−9</b> 増えます。よって <i>x</i> が 1 増えると <i>y</i> は −9 ÷ 3 = <b>−3</b> 増えるので、比例定数 <b><i>a</i> = −3</b> です。"
+  },
+  {
+    id: 20,
+    cat: "比例のグラフ",
+    lvl: "基本",
+    type: "穴埋め",
+    q: `比例 <i>y</i> = −${frac(3, 4)}<i>x</i> のグラフの特徴について、空欄を埋めなさい。`,
+    visual: "",
+    prompt: `このグラフは、原点 (0, 0) と <i>x</i> 座標が 4 の点 ( 4 , ${inp(0, "sm")} ) を通る、${inp(1, "lg", "右上がり/右下がり")} の直線である。`,
+    blanks: [
+      { ans: ["-3"], label: "-3" },
+      { ans: ["右下がり", "みぎさがり"], label: "右下がり" }
+    ],
+    syms: ["-"],
+    hint: "x = 4 を代入して y を求め、グラフの傾きを「右上がり」「右下がり」で答えます。",
+    model: "( 4 , <b>−3</b> ) を通る <b>右下がり</b> の直線",
+    exp: `<i>x</i> = 4 を代入すると <i>y</i> = −${frac(3, 4)} × 4 = <b>−3</b> になります。比例定数が負の数なので、グラフは<b>右下がり</b>の直線になります。`
+  },
+
+  // ===== 5. 反比例の性質・グラフ・応用 (5問) =====
+  {
+    id: 21,
+    cat: "反比例の性質・グラフ",
+    lvl: "基本",
+    type: "穴埋め",
+    q: `反比例 <i>y</i> = ${frac(18, "<i>x</i>")} について、<i>x</i> の値が 2 倍、3 倍になると、対応する <i>y</i> の値はそれぞれ何倍になりますか。`,
+    visual: "",
+    prompt: `対応する <i>y</i> の値はそれぞれ ${inp(0, "sm", "分数")} 倍、${inp(1, "sm", "分数")} 倍になる。`,
+    blanks: [
+      { ans: ["1/2", "0.5"], label: "1/2" },
+      { ans: ["1/3"], label: "1/3" }
+    ],
+    syms: ["/"],
+    hint: "分数は「1/2」「1/3」のように入力してください。",
+    model: `<b>${frac(1, 2)}</b> 倍、<b>${frac(1, 3)}</b> 倍`,
+    exp: `反比例 <i>y</i> = ${frac("<i>a</i>", "<i>x</i>")} では、<i>x</i> の値が 2 倍、3 倍になると、対応する <i>y</i> の値は <b>${frac(1, 2)} 倍、${frac(1, 3)} 倍</b>になります。`
+  },
+  {
+    id: 22,
+    cat: "反比例の性質・グラフ",
+    lvl: "標準",
+    type: "記述",
+    q: `<i>y</i> は <i>x</i> に反比例し、<i>x</i> = −15 のとき <i>y</i> = ${frac(1, 3)} である。<i>y</i> を <i>x</i> の式で表し、<i>x</i> = −10 のときの <i>y</i> の値を求めなさい。`,
+    visual: "",
+    prompt: `式：<i>y</i> = ${inp(0, "md", "例：-5/x")}<br><i>x</i> = −10 のとき <i>y</i> = ${inp(1, "sm", "分数")}`,
+    blanks: [
+      { ans: ["-5/x"], label: "-5/x" },
+      { ans: ["1/2", "0.5"], label: "1/2" }
+    ],
+    syms: ["-", "/"],
+    hint: "まず a = xy を使って比例定数 a を求めましょう。",
+    model: `<i>y</i> = <b>−${frac(5, "<i>x</i>")}</b> ／ <i>y</i> = <b>${frac(1, 2)}</b>`,
+    exp: `反比例では <i>a</i> = <i>xy</i> なので <i>a</i> = (−15) × ${frac(1, 3)} = −5、式は <b><i>y</i> = −${frac(5, "<i>x</i>")}</b> です。<i>x</i> = −10 を代入すると <i>y</i> = −${frac(5, "−10")} = <b>${frac(1, 2)}</b> になります。`
+  },
+  {
+    id: 23,
+    cat: "反比例の性質・グラフ",
+    lvl: "標準",
+    type: "表の穴埋め",
+    q: "<i>y</i> が <i>x</i> に反比例するとき、下の表の空欄（①〜③）を埋め、<i>y</i> を <i>x</i> の式で表しなさい。",
+    visual: "",
+    prompt: `<table class="math-table">
+      <tr><th><i>x</i></th><td>−3</td><td>1</td><td>2</td><td>4</td><td>6</td></tr>
+      <tr><th><i>y</i></th><td>${inp(0, "sm", "①")}</td><td>24</td><td>${inp(1, "sm", "②")}</td><td>6</td><td>${inp(2, "sm", "③")}</td></tr>
+    </table>
+    <div style="margin-top:10px;">式：<i>y</i> = ${inp(3, "md", "式")}</div>`,
+    blanks: [
+      { ans: ["-8"], label: "-8" },
+      { ans: ["12"], label: "12" },
+      { ans: ["4"], label: "4" },
+      { ans: ["24/x"], label: "24/x" }
+    ],
+    syms: ["-", "/", "x"],
+    hint: "x と y の積 xy がつねに一定（1 × 24 = 24）になることを使います。",
+    model: `① <b>−8</b>　② <b>12</b>　③ <b>4</b> ／ 式：<i>y</i> = <b>${frac(24, "<i>x</i>")}</b>`,
+    exp: `<i>xy</i> = 1 × 24 = 24 なので、式は <b><i>y</i> = ${frac(24, "<i>x</i>")}</b> です。それぞれ代入して、① 24 ÷ (−3) = <b>−8</b>、② 24 ÷ 2 = <b>12</b>、③ 24 ÷ 6 = <b>4</b> となります。`
+  },
+  {
+    id: 24,
+    cat: "反比例の性質・グラフ",
+    lvl: "標準",
+    type: "穴埋め",
+    q: `反比例 <i>y</i> = −${frac(20, "<i>x</i>")} で、<i>x</i> の値が <b>−10 から −4 まで増加</b>するとき、<i>y</i> の値はいくらかからいくらまでどのように変化しますか。`,
+    visual: "",
+    prompt: `<i>y</i> の値は ${inp(0, "sm")} から ${inp(1, "sm")} まで ${inp(2, "md", "増加/減少")} する。`,
+    blanks: [
+      { ans: ["2"], label: "2" },
+      { ans: ["5"], label: "5" },
+      { ans: ["増加"], label: "増加" }
+    ],
+    syms: [],
+    hint: "x = -10 と x = -4 をそれぞれ式に代入して y の値を求めます。",
+    model: "<b>2</b> から <b>5</b> まで <b>増加</b>する",
+    exp: `<i>x</i> = −10 のとき <i>y</i> = −${frac(20, "−10")} = <b>2</b>、<i>x</i> = −4 のとき <i>y</i> = −${frac(20, "−4")} = <b>5</b> です。したがって <b>2</b> から <b>5</b> まで<b>増加</b>します。`
+  },
+  {
+    id: 25,
+    cat: "反比例の性質・グラフ",
+    lvl: "発展",
+    type: "記述・穴埋め",
+    q: `関数 <i>y</i> = ${frac(12, "<i>x</i>")} のグラフについて、次の①・②に答えなさい。<br>① グラフ上の点で、<i>x</i> 座標と <i>y</i> 座標がともに整数となる点は何個ありますか。<br>② <i>y</i> 軸上の点 A(0, 6) とグラフ上の点 P をとるとき、△OAP の面積が <b>24</b> になる点 P の <i>y</i> 座標をすべて求めなさい。`,
+    visual: `<svg width="210" height="210" viewBox="-7 -7 14 14" style="background:#fff;border:1px solid #cbd5e1;border-radius:8px;">
+      <line x1="-6.5" y1="0" x2="6.5" y2="0" stroke="#475569" stroke-width="0.1"/>
+      <line x1="0" y1="-6.5" x2="0" y2="6.5" stroke="#475569" stroke-width="0.1"/>
+      <path d="M 1.2,-6 Q 2.4,-2.4 6,-1.2" fill="none" stroke="#0f766e" stroke-width="0.16"/>
+      <path d="M -6,1.2 Q -2.4,2.4 -1.2,6" fill="none" stroke="#0f766e" stroke-width="0.16"/>
+      <polygon points="0,0 0,-4 4.5,-1.6" fill="rgba(245,158,11,0.22)" stroke="#d97706" stroke-width="0.12"/>
+      <circle cx="0" cy="-4" r="0.22" fill="#dc2626"/>
+      <circle cx="4.5" cy="-1.6" r="0.22" fill="#d97706"/>
+      <text x="-1.6" y="-4" font-size="0.65" fill="#dc2626" font-weight="bold">A(0,6)</text>
+      <text x="4.7" y="-1.8" font-size="0.65" fill="#b45309" font-weight="bold">P</text>
+      <text x="0.2" y="0.8" font-size="0.6" fill="#475569">O</text>
+    </svg>`,
+    prompt: `① ${inp(0, "sm")} 個<br>② <i>y</i> 座標は ${inp(1, "sm", "正の数")} と ${inp(2, "sm", "負の数")}（順不同）`,
+    blanks: [
+      { ans: ["12"], label: "12" },
+      { ans: ["3/2", "1.5", "-3/2", "-1.5"], label: "3/2" },
+      { ans: ["-3/2", "-1.5", "3/2", "1.5"], label: "-3/2" }
+    ],
+    syms: ["-", "/"],
+    hint: "①は負の整数も含めて数えます。②は2つの答えをそれぞれの欄に入力してください。",
+    model: `① <b>12</b> 個　② <b>${frac(3, 2)}</b> と <b>−${frac(3, 2)}</b>`,
+    exp: `① <i>xy</i> = 12 となる整数 <i>x</i> は 12 の約数（正と負）なので ±1, ±2, ±3, ±4, ±6, ±12 の <b>12 個</b>です。<br>② 底辺 OA = 6 とすると高さは |<i>x</i>| なので、6 × |<i>x</i>| ÷ 2 = 24 より |<i>x</i>| = 8、つまり <i>x</i> = 8 または −8 です。式に代入すると <i>y</i> = <b>${frac(3, 2)}</b> と <b>−${frac(3, 2)}</b> になります。`
+  }
+];
+
+let activeCat = "all";
+let filtered = [...QUESTIONS];
+let idx = 0;
+let score = 0;
+let answered = false;
+let results = [];
+let lastFocusedInput = null;
+
+// 文字の正規化（全角→半角、空白除去、マイナス記号統一）
+function normalize(str) {
+  if (!str) return "";
+  let s = str.trim();
+  // 全角英数字・記号を半角に
+  s = s.replace(/[！-～]/g, ch => String.fromCharCode(ch.charCodeAt(0) - 0xFEE0));
+  // 各種マイナス・ハイフン統一
+  s = s.replace(/[−ー―‐–—]/g, "-");
+  // 不等号の全角対応
+  s = s.replace(/＜/g, "<").replace(/＞/g, ">").replace(/≦/g, "<=").replace(/≧/g, ">=");
+  // 空白除去
+  s = s.replace(/\s+/g, "");
+  // y= や m= が誤って入力された場合の簡易除去（元の正解が y= を含まない場合）
+  return s.toLowerCase();
+}
+
+function checkBlank(userRaw, acceptedList) {
+  const u = normalize(userRaw);
+  if (!u) return false;
+  // y= や z= が付いていた場合も許容するバージョンもチェック
+  const uNoEq = u.replace(/^[yzm]=/, "");
+  return acceptedList.some(acc => {
+    const a = normalize(acc);
+    return u === a || uNoEq === a;
+  });
+}
+
+function filterQuestions(cat) {
+  activeCat = cat;
+  filtered = cat === "all" ? [...QUESTIONS] : QUESTIONS.filter(q => q.cat === cat);
+  idx = 0;
+  score = 0;
+  results = [];
+  renderQuestion();
+}
+
+function renderQuestion() {
+  const card = document.getElementById("quizCard");
+  const progressWrap = document.getElementById("progressWrap");
+
+  if (idx >= filtered.length) {
+    renderSummary();
+    return;
+  }
+
+  progressWrap.style.display = "block";
+  const q = filtered[idx];
+  answered = false;
+  lastFocusedInput = null;
+
+  document.getElementById("progressLabel").textContent = `第 ${idx + 1} 問 / ${filtered.length} 問`;
+  document.getElementById("scoreLabel").textContent = `現在の正解数：${score} 問`;
+  document.getElementById("progressFill").style.width = `${(idx / filtered.length) * 100}%`;
+
+  const symButtonsHtml = (q.syms && q.syms.length > 0)
+    ? `<div class="helper-bar">
+        <span class="helper-label">入力補助：</span>
+        ${q.syms.map(s => `<button type="button" class="sym-btn" onclick="insertSym('${s}')">${s}</button>`).join("")}
+      </div>`
+    : "";
+
+  card.innerHTML = `
+    <div class="badge-row">
+      <span class="badge badge-cat">${q.cat}</span>
+      <span class="badge badge-lvl">レベル：${q.lvl}</span>
+      <span class="badge badge-type">${q.type}</span>
+    </div>
+    <div class="q-text">Q${idx + 1}. ${q.q}</div>
+    ${q.visual ? `<div class="q-visual">${q.visual}</div>` : ""}
+    <div class="answer-area">
+      <div class="answer-prompt">${q.prompt}</div>
+      ${symButtonsHtml}
+      ${q.hint ? `<div class="hint-note">💡 ${q.hint}</div>` : ""}
+    </div>
+    <div class="action-row">
+      <button class="btn-primary" id="checkBtn" onclick="checkAnswer()">答え合わせをする</button>
+      <button class="btn-secondary" id="giveUpBtn" onclick="giveUp()">答えと解説を見る</button>
+    </div>
+    <div class="feedback" id="feedbackBox">
+      <div class="feedback-title" id="feedbackTitle"></div>
+      <div class="model-ans" id="modelAnsBox"></div>
+      <div class="explanation" id="feedbackExp"></div>
+    </div>
+    <div class="nav-row">
+      <button class="btn-secondary" onclick="restartQuiz()">最初からやり直す</button>
+      <button class="btn-primary" id="nextBtn" style="display:none;" onclick="nextQuestion()">
+        ${idx + 1 < filtered.length ? "次の問題へ →" : "結果を見る →"}
+      </button>
+    </div>
+  `;
+
+  // 入力欄のイベント設定
+  const inputs = card.querySelectorAll(".blank-input");
+  if (inputs.length > 0) {
+    lastFocusedInput = inputs[0];
+    inputs[0].focus();
+    inputs.forEach(el => {
+      el.addEventListener("focus", () => { lastFocusedInput = el; });
+      el.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" && !answered) {
+          e.preventDefault();
+          checkAnswer();
+        }
+      });
+    });
+  }
+}
+
+function insertSym(sym) {
+  if (answered) return;
+  const target = lastFocusedInput || document.querySelector(".blank-input");
+  if (!target || target.disabled) return;
+  const start = target.selectionStart || target.value.length;
+  const end = target.selectionEnd || target.value.length;
+  const val = target.value;
+  target.value = val.slice(0, start) + sym + val.slice(end);
+  target.focus();
+  target.setSelectionRange(start + sym.length, start + sym.length);
+}
+
+function checkAnswer(isGiveUp = false) {
+  if (answered) return;
+  const q = filtered[idx];
+  const inputs = Array.from(document.querySelectorAll(".blank-input"));
+
+  // 未入力チェック（ギブアップ時はスキップ）
+  if (!isGiveUp && inputs.some(el => el.value.trim() === "")) {
+    const emptyEl = inputs.find(el => el.value.trim() === "");
+    emptyEl.focus();
+    emptyEl.style.borderColor = "#f59e0b";
+    return;
+  }
+
+  answered = true;
+  let allCorrect = !isGiveUp;
+
+  // Q25の②（順不同2つ）の特別処理：同じ答えを2回書いたら片方不正解にする
+  const specialUniquePair = (q.id === 25);
+  let usedPairVal = null;
+
+  inputs.forEach((el, i) => {
+    const b = q.blanks[i];
+    let ok = false;
+    if (!isGiveUp) {
+      ok = checkBlank(el.value, b.ans);
+      if (specialUniquePair && i >= 1 && ok) {
+        const valNorm = normalize(el.value).replace(/^-/, "-");
+        const absSame = (v) => (v === "1.5" ? "3/2" : v === "-1.5" ? "-3/2" : v);
+        const cur = absSame(valNorm);
+        if (i === 1) usedPairVal = cur;
+        else if (i === 2 && cur === usedPairVal) ok = false;
+      }
+    }
+    el.disabled = true;
+    el.classList.add(ok ? "correct" : "wrong");
+    if (!ok) {
+      allCorrect = false;
+      const tag = document.createElement("span");
+      tag.className = "ans-tag";
+      tag.textContent = `正: ${b.label}`;
+      el.insertAdjacentElement("afterend", tag);
+    }
+  });
+
+  if (allCorrect) score++;
+  results.push({ id: q.id, cat: q.cat, correct: allCorrect, qObj: q });
+
+  document.getElementById("checkBtn").disabled = true;
+  document.getElementById("giveUpBtn").style.display = "none";
+
+  const fb = document.getElementById("feedbackBox");
+  const fbTitle = document.getElementById("feedbackTitle");
+  const modelBox = document.getElementById("modelAnsBox");
+  const fbExp = document.getElementById("feedbackExp");
+
+  fb.classList.add("show", allCorrect ? "is-correct" : "is-wrong");
+  fbTitle.textContent = allCorrect ? "⭕ 正解！" : (isGiveUp ? "💡 解答と解説" : "❌ 惜しい！もう一度確認しよう");
+  modelBox.innerHTML = `<b>【模範解答】</b> ${q.model}`;
+  fbExp.innerHTML = `<b>【解説】</b><br>${q.exp}`;
+
+  document.getElementById("scoreLabel").textContent = `現在の正解数：${score} 問`;
+  document.getElementById("progressFill").style.width = `${((idx + 1) / filtered.length) * 100}%`;
+  document.getElementById("nextBtn").style.display = "inline-block";
+}
+
+function giveUp() {
+  checkAnswer(true);
+}
+
+function nextQuestion() {
+  idx++;
+  renderQuestion();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function restartQuiz() {
+  filterQuestions(activeCat);
+}
+
+function retryWrong() {
+  const wrongList = results.filter(r => !r.correct).map(r => r.qObj);
+  if (wrongList.length === 0) return;
+  filtered = wrongList;
+  idx = 0;
+  score = 0;
+  results = [];
+  renderQuestion();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function renderSummary() {
+  document.getElementById("progressWrap").style.display = "none";
+  const pct = Math.round((score / filtered.length) * 100);
+  const wrongCount = filtered.length - score;
+
+  const catStats = {};
+  results.forEach(r => {
+    if (!catStats[r.cat]) catStats[r.cat] = { ok: 0, total: 0 };
+    catStats[r.cat].total++;
+    if (r.correct) catStats[r.cat].ok++;
+  });
+
+  const breakdownHtml = Object.entries(catStats).map(([cat, st]) => `
+    <div class="cat-row">
+      <span>${cat}</span>
+      <strong>${st.ok} / ${st.total} 問正解（${Math.round((st.ok / st.total) * 100)}%）</strong>
+    </div>
+  `).join("");
+
+  let msg = "よく頑張りました！間違えた問題を復習して本番に備えましょう。";
+  if (pct === 100) msg = "全問正解です！自力で書ける力がついているので本番もバッチリですね！";
+  else if (pct >= 80) msg = "高得点です！あと少しの復習で満点が狙えます。";
+
+  document.getElementById("quizCard").innerHTML = `
+    <div class="summary-card">
+      <div style="font-size:1.1rem;font-weight:700;">テスト結果</div>
+      <div class="score-big">${score} / ${filtered.length} 問（${pct}%）</div>
+      <p style="color:var(--muted);margin-top:4px;">${msg}</p>
+      <div class="cat-breakdown">
+        <div style="font-weight:700;margin-bottom:8px;">分野別の正答率</div>
+        ${breakdownHtml}
+      </div>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+        ${wrongCount > 0 ? `<button class="btn-primary" onclick="retryWrong()">間違えた ${wrongCount} 問だけ復習する</button>` : ""}
+        <button class="btn-secondary" onclick="restartQuiz()">このセットをもう一度解く</button>
+      </div>
+    </div>
+  `;
+}
+
+document.querySelectorAll(".mode-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".mode-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    filterQuestions(btn.dataset.cat);
+  });
+});
+
+renderQuestion();
+</script>
+</body>
+</html>

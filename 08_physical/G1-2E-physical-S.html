@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>中1 保健体育 2学期末テスト対策 4択問題（全40問）</title>
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --card: #ffffff;
+      --primary: #1d6fa5;
+      --primary-dark: #14527c;
+      --primary-light: #e8f3fb;
+      --accent: #0f9d8a;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #dbe4ef;
+      --correct-bg: #e8f8ef;
+      --correct-border: #1e9e5a;
+      --correct-text: #136f3e;
+      --wrong-bg: #fdecec;
+      --wrong-border: #dc3545;
+      --wrong-text: #9f1f2c;
+      --shadow: 0 8px 24px rgba(15, 35, 60, 0.08);
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: linear-gradient(135deg, #165b8a, #0f8b8d);
+      color: #fff;
+      padding: 20px 16px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.35rem;
+      letter-spacing: 0.02em;
+    }
+
+    header p {
+      margin: 6px 0 0;
+      font-size: 0.9rem;
+      opacity: 0.92;
+    }
+
+    main {
+      width: 100%;
+      max-width: 820px;
+      margin: 24px auto 40px;
+      padding: 0 16px;
+      flex: 1;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      border: 1px solid var(--border);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* Start Screen */
+    .start-intro {
+      margin-bottom: 20px;
+    }
+
+    .start-intro h2 {
+      margin: 0 0 8px;
+      font-size: 1.2rem;
+      color: var(--primary-dark);
+    }
+
+    .start-intro p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .mode-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 18px 0;
+      padding: 14px 16px;
+      background: var(--primary-light);
+      border-radius: 12px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .toggle-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--primary-dark);
+    }
+
+    .toggle-label input {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+
+    .unit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .unit-btn {
+      text-align: left;
+      background: #fff;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      font-family: inherit;
+    }
+
+    .unit-btn:hover {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      transform: translateY(-2px);
+    }
+
+    .unit-btn .unit-title {
+      display: block;
+      font-weight: 700;
+      font-size: 0.98rem;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .unit-btn .unit-meta {
+      display: block;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 14px 22px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.18s ease, transform 0.12s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn-primary:active {
+      transform: scale(0.99);
+    }
+
+    .btn-secondary {
+      background: #fff;
+      color: var(--primary-dark);
+      border: 2px solid var(--primary);
+      border-radius: 12px;
+      padding: 12px 18px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.18s ease;
+    }
+
+    .btn-secondary:hover {
+      background: var(--primary-light);
+    }
+
+    .btn-full {
+      width: 100%;
+    }
+
+    /* Quiz Screen */
+    .quiz-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .unit-badge {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      font-weight: 700;
+      font-size: 0.82rem;
+      padding: 5px 12px;
+      border-radius: 999px;
+      border: 1px solid #c3ddf2;
+    }
+
+    .quiz-stats {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .progress-wrap {
+      width: 100%;
+      height: 10px;
+      background: #e5edf5;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 22px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .question-text {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin: 0 0 20px;
+      color: var(--text);
+    }
+
+    .choices {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .choice-btn {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      width: 100%;
+      text-align: left;
+      background: #fff;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      font-size: 1rem;
+      font-family: inherit;
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .choice-btn:hover:not(:disabled) {
+      border-color: var(--primary);
+      background: #f7fbff;
+    }
+
+    .choice-btn:disabled {
+      cursor: default;
+    }
+
+    .choice-label {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: #eef3f8;
+      color: var(--primary-dark);
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      margin-top: 1px;
+    }
+
+    .choice-btn.correct {
+      background: var(--correct-bg);
+      border-color: var(--correct-border);
+      color: var(--correct-text);
+      font-weight: 700;
+    }
+
+    .choice-btn.correct .choice-label {
+      background: var(--correct-border);
+      color: #fff;
+    }
+
+    .choice-btn.wrong {
+      background: var(--wrong-bg);
+      border-color: var(--wrong-border);
+      color: var(--wrong-text);
+    }
+
+    .choice-btn.wrong .choice-label {
+      background: var(--wrong-border);
+      color: #fff;
+    }
+
+    .choice-btn.dimmed {
+      opacity: 0.6;
+    }
+
+    /* Feedback & Explanation */
+    .feedback-box {
+      margin-top: 20px;
+      border-radius: 14px;
+      padding: 18px 20px;
+      border: 2px solid var(--border);
+      animation: fadeIn 0.2s ease;
+    }
+
+    .feedback-box.is-correct {
+      background: var(--correct-bg);
+      border-color: var(--correct-border);
+    }
+
+    .feedback-box.is-wrong {
+      background: var(--wrong-bg);
+      border-color: var(--wrong-border);
+    }
+
+    .feedback-header {
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .feedback-box.is-correct .feedback-header {
+      color: var(--correct-text);
+    }
+
+    .feedback-box.is-wrong .feedback-header {
+      color: var(--wrong-text);
+    }
+
+    .explanation-body {
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 0.96rem;
+      color: var(--text);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .explanation-body strong {
+      color: var(--primary-dark);
+    }
+
+    .quiz-actions {
+      margin-top: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .quit-link {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 0.88rem;
+      cursor: pointer;
+      text-decoration: underline;
+      font-family: inherit;
+      padding: 4px 0;
+    }
+
+    .quit-link:hover {
+      color: var(--text);
+    }
+
+    /* Result Screen */
+    .result-hero {
+      text-align: center;
+      padding: 12px 0 20px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 20px;
+    }
+
+    .score-circle {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: var(--primary-light);
+      border: 6px solid var(--primary);
+      margin-bottom: 12px;
+    }
+
+    .score-num {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      line-height: 1.1;
+    }
+
+    .score-sub {
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .result-msg {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin: 6px 0 0;
+      color: var(--text);
+    }
+
+    .unit-breakdown {
+      margin: 18px 0 24px;
+    }
+
+    .unit-breakdown h3 {
+      margin: 0 0 12px;
+      font-size: 1rem;
+      color: var(--primary-dark);
+    }
+
+    .breakdown-row {
+      margin-bottom: 10px;
+    }
+
+    .breakdown-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .breakdown-bar-bg {
+      height: 10px;
+      background: #e9eff6;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .breakdown-bar-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 999px;
+    }
+
+    .result-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .review-list {
+      margin-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .review-item {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      background: #fafcff;
+    }
+
+    .review-item.item-wrong {
+      border-left: 5px solid var(--wrong-border);
+    }
+
+    .review-item.item-correct {
+      border-left: 5px solid var(--correct-border);
+    }
+
+    .review-q {
+      font-weight: 700;
+      margin-bottom: 6px;
+      font-size: 0.96rem;
+    }
+
+    .review-ans {
+      font-size: 0.88rem;
+      margin-bottom: 6px;
+      color: var(--muted);
+    }
+
+    .review-exp {
+      font-size: 0.88rem;
+      background: #fff;
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        padding: 18px 14px;
+      }
+      .question-text {
+        font-size: 1.05rem;
+      }
+      .choice-btn {
+        padding: 12px;
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>中1 保健体育 2学期末テスト対策 4択テスト</h1>
+    <p>1問1答式・即時採点＆解説つき ／ 出題範囲全網羅（全40問）</p>
+  </header>
+
+  <main>
+    <!-- スタート画面 -->
+    <section id="start-screen" class="card">
+      <div class="start-intro">
+        <h2>テスト範囲を総復習しよう！</h2>
+        <p>選択肢を選ぶとすぐに答え合わせと詳しい解説が表示されます。全40問で2学期末テストの範囲をまるごと確認できます。</p>
+      </div>
+
+      <div class="mode-options">
+        <label class="toggle-label">
+          <input type="checkbox" id="shuffle-toggle" />
+          問題の順番をシャッフルして出題する
+        </label>
+        <label class="toggle-label">
+          <input type="checkbox" id="shuffle-choices-toggle" checked />
+          選択肢の順番もシャッフルする
+        </label>
+      </div>
+
+      <button id="start-all-btn" class="btn-primary btn-full">
+        全範囲（40問）をスタートする
+      </button>
+
+      <h3 style="margin: 22px 0 6px; font-size: 1rem; color: var(--primary-dark);">単元別に集中して解く</h3>
+      <div id="unit-grid" class="unit-grid"></div>
+    </section>
+
+    <!-- クイズ画面 -->
+    <section id="quiz-screen" class="card hidden">
+      <div class="quiz-top">
+        <span id="unit-badge" class="unit-badge">単元名</span>
+        <span id="quiz-stats" class="quiz-stats">第 1 問 / 40 問（正解: 0）</span>
+      </div>
+
+      <div class="progress-wrap">
+        <div id="progress-bar" class="progress-bar"></div>
+      </div>
+
+      <p id="question-text" class="question-text"></p>
+
+      <div id="choices" class="choices"></div>
+
+      <div id="feedback-box" class="feedback-box hidden">
+        <div id="feedback-header" class="feedback-header"></div>
+        <div id="explanation-body" class="explanation-body"></div>
+      </div>
+
+      <div class="quiz-actions">
+        <button id="quit-btn" class="quit-link">← 単元選択に戻る</button>
+        <button id="next-btn" class="btn-primary hidden">次の問題へ →</button>
+      </div>
+    </section>
+
+    <!-- 結果画面 -->
+    <section id="result-screen" class="card hidden">
+      <div class="result-hero">
+        <div class="score-circle">
+          <span id="score-num" class="score-num">0 / 40</span>
+          <span id="score-percent" class="score-sub">0%</span>
+        </div>
+        <p id="result-msg" class="result-msg"></p>
+      </div>
+
+      <div id="unit-breakdown" class="unit-breakdown"></div>
+
+      <div class="result-buttons">
+        <button id="retry-wrong-btn" class="btn-primary hidden">間違えた問題だけ復習する</button>
+        <button id="retry-same-btn" class="btn-secondary">もう一度同じ範囲を解く</button>
+        <button id="back-home-btn" class="btn-secondary">単元選択に戻る</button>
+      </div>
+
+      <div>
+        <button id="toggle-review-btn" class="btn-secondary btn-full">解答・解説の一覧を表示する</button>
+        <div id="review-list" class="review-list hidden"></div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const QUESTIONS = [
+      // 単元1：健康の成り立ち（6問）
+      {
+        unit: "1. 健康の成り立ち",
+        q: "かつての日本（1950年ごろまで）において、死因の上位を占めていた病気はどれか。",
+        choices: ["結核や肺炎などの感染症", "がんや心臓病などの生活習慣病", "老衰や認知症", "花粉症などのアレルギー疾患"],
+        answer: 0,
+        exp: "かつての日本では、結核や肺炎などの<strong>感染症</strong>が死因の上位にありました。その後、衛生環境の改善や栄養状態の向上、医療技術の進歩などによって感染症による死亡は減少しました。"
+      },
+      {
+        unit: "1. 健康の成り立ち",
+        q: "1950年代に結核などの感染症が減った主な理由として、適切でないものはどれか。",
+        choices: ["衛生環境の改善", "栄養状態の向上", "医療技術の進歩", "食生活の欧米化と運動不足"],
+        answer: 3,
+        exp: "結核が減ったのは<strong>衛生環境の改善・栄養状態の向上・医療技術の進歩</strong>などによるものです。「食生活の変化や運動不足」は、近年<strong>生活習慣病</strong>が増えた原因です。"
+      },
+      {
+        unit: "1. 健康の成り立ち",
+        q: "近年の日本で、食生活の変化や運動不足などによって死因の上位を占めている病気は何か。",
+        choices: ["生活習慣病（がん・心臓病・脳卒中など）", "結核や赤痢などの感染症", "精神的ストレスによる不調", "骨や関節のスポーツ障害"],
+        answer: 0,
+        exp: "近年では、食生活の変化や運動不足などによって、<strong>がん・心臓病・脳卒中</strong>といった<strong>生活習慣病</strong>が死因の上位を占めています。"
+      },
+      {
+        unit: "1. 健康の成り立ち",
+        q: "2018年に日本の死因の第3位となったのはどれか。",
+        choices: ["老衰", "感染症", "脳卒中", "自殺"],
+        answer: 0,
+        exp: "2018年には<strong>老衰</strong>が死因の第3位になりました。高齢化とともに、自然な死を受け入れる考え方が増えたためと推測されています。"
+      },
+      {
+        unit: "1. 健康の成り立ち",
+        q: "病気や健康に関わる要因のうち、「体質・性・年齢などの素因」や「運動・食事・休養などの行動」はどちらに分類されるか。",
+        choices: ["主体の要因", "環境の要因", "社会的要因", "生物学的環境の要因"],
+        answer: 0,
+        exp: "その人個人に関わる「素因（体質・性・年齢など）」と「行動（運動・食事・休養・睡眠など）」は<strong>主体の要因</strong>です。一方、個人を取り巻く状態（物理的・化学的環境、生物学的環境、社会的環境）は<strong>環境の要因</strong>といいます。"
+      },
+      {
+        unit: "1. 健康の成り立ち",
+        q: "健康を保持増進するための考え方として、最も適切なものはどれか。",
+        choices: [
+          "個人の努力と、環境整備などの社会的な取り組みの両方が必要である",
+          "個人の生活習慣を見直すだけでよく、社会的な取り組みは不要である",
+          "医療制度や行政の取り組みさえあれば、個人の努力は不要である",
+          "主体の要因だけを整えれば、環境の要因が悪くても健康は保たれる"
+        ],
+        answer: 0,
+        exp: "健康は<strong>「主体の要因」と「環境の要因」を良好に保つこと</strong>によって成り立ちます。そのため、一人ひとりが生活を見直す<strong>個人の努力</strong>と、行政による環境整備などの<strong>社会的な取り組みの両方</strong>が必要です。"
+      },
+
+      // 単元2：運動と健康・運動指針（6問）
+      {
+        unit: "2. 運動と健康・運動指針",
+        q: "適度な運動が心身にもたらす効果として、誤っているものはどれか。",
+        choices: [
+          "基礎代謝を下げてエネルギーを節約する",
+          "心臓・骨・筋肉・毛細血管などの各器官を発達させる",
+          "肥満の防止や生活習慣病の予防・治療に役立つ",
+          "緊張やストレスを和らげ、気分転換ができる"
+        ],
+        answer: 0,
+        exp: "適度な運動は体の各器官を発達させ、健康を保持増進（肥満防止、生活習慣病の予防・治療、体力の維持・向上）するとともに、緊張・ストレスを和らげる<strong>精神的効果</strong>もあります。運動不足こそが体力低下や生活習慣病の原因になります。"
+      },
+      {
+        unit: "2. 運動と健康・運動指針",
+        q: "健康づくりのための運動が満たすべき「3つの条件」の正しい組み合わせはどれか。",
+        choices: [
+          "安全であること・効果があること・楽しいこと",
+          "速いこと・強いこと・毎日行うこと",
+          "お金がかからないこと・1人でできること・屋内であること",
+          "きついこと・長時間行うこと・記録が伸びること"
+        ],
+        answer: 0,
+        exp: "健康づくりのための運動の3つの条件は、①<strong>安全</strong>であること、②<strong>効果</strong>があること、③<strong>楽しい</strong>ことです。この3つに加え、運動以外の生活との関連を考慮して種類・強さ・時間・頻度を決めます。"
+      },
+      {
+        unit: "2. 運動と健康・運動指針",
+        q: "中学生の時期に特に注意すべき、骨や関節の著しい発育に関わるケガや障害の例として適切なものはどれか。",
+        choices: ["野球肘やオスグッド病などのスポーツ障害", "動脈硬化や糖尿病などの生活習慣病", "肺胞の減少による呼吸障害", "胸腺や扁桃の異常な縮小"],
+        answer: 0,
+        exp: "中学生の時期は骨や関節が著しく発育するため、骨や関節に負担のかかる運動を繰り返すと<strong>スポーツ障害（例：野球肘、オスグッド病）</strong>を起こしやすいので注意が必要です。"
+      },
+      {
+        unit: "2. 運動と健康・運動指針",
+        q: "運動指針において、「持久力」を高める運動（ウオーキング、ジョギング、水泳など）の望ましい時間と頻度はどれか。",
+        choices: ["1日10〜30分、週3日以上", "1日5〜10分、週1日程度", "1日60分以上、毎日", "1日10〜30分、週2日程度"],
+        answer: 0,
+        exp: "運動指針では、<strong>持久力</strong>を高める運動は強さ「ややきつい〜かなりきつい」、時間・頻度は<strong>1日10〜30分、週3日以上</strong>とされています。なお、筋力トレーニングは1日10〜30分・週2日程度、ストレッチングは1日5〜30分です。"
+      },
+      {
+        unit: "2. 運動と健康・運動指針",
+        q: "「柔軟性」を高める運動として、運動指針に挙げられているものはどれか。",
+        choices: ["ストレッチング", "筋力トレーニング", "ウオーキング", "水泳"],
+        answer: 0,
+        exp: "<strong>柔軟性</strong>を高める運動は<strong>ストレッチング</strong>（1日5〜30分）です。ウオーキング・ジョギング・水泳などは持久力、トレーニングは筋力を高める運動です。"
+      },
+      {
+        unit: "2. 運動と健康・運動指針",
+        q: "歩くより少し速いくらいのペースで、景色を楽しんだり会話したりしながらゆっくり長い距離を走るトレーニング方法を何というか。",
+        choices: ["ロング・スロー・ディスタンス（LSD）", "インターバルトレーニング", "スキャモンのトレーニング", "無酸素サーキット"],
+        answer: 0,
+        exp: "「きつくない」「ゆっくり」でも心肺機能の向上に高い効果がある走り方を<strong>ロング・スロー・ディスタンス</strong>といいます。トップレベルの選手も取り入れている方法です。"
+      },
+
+      // 単元3：食生活と健康（5問）
+      {
+        unit: "3. 食生活と健康",
+        q: "私たちがじっとしているときにも消費している、生命を維持するために最小限必要なエネルギーの消費量を何というか。",
+        choices: ["基礎代謝量", "摂取エネルギー量", "総消費エネルギー量", "肺活量"],
+        answer: 0,
+        exp: "生命を維持するために最小限必要なエネルギーの消費量を<strong>基礎代謝量</strong>といいます。1日に消費するエネルギー量は「基礎代謝量 ＋ 活動や運動によって消費するエネルギー量」で決まります。"
+      },
+      {
+        unit: "3. 食生活と健康",
+        q: "1日に消費するエネルギー量の計算式として正しいものはどれか。",
+        choices: [
+          "基礎代謝量 ＋ 活動や運動によって消費するエネルギー量",
+          "摂取エネルギー量 － 基礎代謝量",
+          "基礎代謝量 × 睡眠時間",
+          "活動による消費エネルギー量 － 基礎代謝量"
+        ],
+        answer: 0,
+        exp: "1日に消費するエネルギー量 ＝ <strong>基礎代謝量 ＋ 活動や運動によって消費するエネルギー量</strong> です。"
+      },
+      {
+        unit: "3. 食生活と健康",
+        q: "活動量が少ない人が普通の食事をとり続けた場合、どのような状態になりやすいか。",
+        choices: [
+          "エネルギー過多（とりすぎ）になりやすい",
+          "基礎代謝量が急激に増える",
+          "自動的に脂肪が燃焼しやすくなる",
+          "エネルギー不足になって発育が早まる"
+        ],
+        answer: 0,
+        exp: "活動量が少ない場合は、普通の食事をしていても<strong>エネルギー過多（とりすぎ）</strong>になりやすいため、生活の中に積極的に<strong>運動</strong>を取り入れることが大切です。"
+      },
+      {
+        unit: "3. 食生活と健康",
+        q: "体重50kgの人が、ごはん1杯分（約220kcal）のエネルギーを普通の歩行（約3kcal/分）だけで消費しようとすると、およそ何分間歩く必要があるか。",
+        choices: ["約73分", "約20分", "約45分", "約120分"],
+        answer: 0,
+        exp: "220kcal ÷ 3kcal/分 ＝ <strong>約73分</strong>（73.3分）となります。食べ過ぎたエネルギーを運動だけで消費するのは意外と時間がかかるため、食事と運動のバランスが大切です。"
+      },
+      {
+        unit: "3. 食生活と健康",
+        q: "食物に含まれる栄養素について、正しい説明はどれか。",
+        choices: [
+          "不足したりとりすぎたりすると、さまざまな障害の原因になる",
+          "エネルギー源になる栄養素さえとれば、他は不足してもよい",
+          "体が大きく発育する時期でも、食べる量は少なくてよい",
+          "食生活が乱れても、睡眠さえとれば発育への悪影響はない"
+        ],
+        answer: 0,
+        exp: "食物にはさまざまな栄養素が含まれており、<strong>不足やとりすぎはさまざまな障害の原因</strong>になります。食生活が乱れると健全な発育・発達が望めないばかりか、健康に悪影響を及ぼします。"
+      },
+
+      // 単元4：休養・睡眠と健康（5問）
+      {
+        unit: "4. 休養・睡眠と健康",
+        q: "長時間の学習、運動、作業などがもたらす、眠気やだるさ、頭痛などの心身の状態の変化を何というか。",
+        choices: ["疲労", "発育急進期", "基礎代謝", "ガス交換"],
+        answer: 0,
+        exp: "長時間の学習や運動、作業などは<strong>疲労</strong>をもたらし、眠気やだるさ、頭痛などの心身の状態の変化として現れます。"
+      },
+      {
+        unit: "4. 休養・睡眠と健康",
+        q: "疲労やストレスが蓄積すると、体の何が低下して感染症にかかりやすくなるか。",
+        choices: ["抵抗力", "肺活量", "拍出量", "基礎代謝量"],
+        answer: 0,
+        exp: "疲労やストレスが蓄積すると、体の<strong>抵抗力</strong>が低下して感染症にかかりやすくなります。また、胃潰瘍や高血圧、心臓病、脳卒中などの健康障害につながることもあります。"
+      },
+      {
+        unit: "4. 休養・睡眠と健康",
+        q: "休養の役割として、最も適切な説明はどれか。",
+        choices: [
+          "心身の疲労を回復したり緊張を解消したりするとともに、英気（活力）を養う",
+          "体を動かさないことで筋肉や心臓の働きを弱める",
+          "基礎代謝量を下げて睡眠時間を短くする",
+          "栄養補給をせずにエネルギー消費だけを減らす"
+        ],
+        answer: 0,
+        exp: "休養は、心身の疲労を<strong>回復</strong>したり、緊張状態を解消したりするとともに、<strong>英気（活力）を養う</strong>ために必要です。休養には睡眠・休息・入浴・栄養補給・軽い運動などがあります。"
+      },
+      {
+        unit: "4. 休養・睡眠と健康",
+        q: "総務省の調査（2021年）による日本人の平均睡眠時間と、世界の平均睡眠時間（8時間28分）を比べた記述として正しいものはどれか。",
+        choices: [
+          "2016年より増加したが、世界の平均（8時間28分）と比べるとかなり短い",
+          "2016年より減少しており、世界の平均とほぼ同じである",
+          "男性・女性ともに9時間を超えており、世界で最も長い",
+          "女性は世界平均より長いが、男性だけ短い"
+        ],
+        answer: 0,
+        exp: "2021年の調査では、男性が7時間58分、女性が7時間49分と2016年までより増加していますが、世界の平均睡眠時間（<strong>8時間28分</strong>）と比べるとかなり短い状態です。"
+      },
+      {
+        unit: "4. 休養・睡眠と健康",
+        q: "日本人の睡眠時間が短い理由として、教科書・プリントで挙げられているものはどれか。",
+        choices: [
+          "労働時間が長いこと、睡眠への関心が薄いこと、寝る前のスマホ使用など",
+          "昼寝の時間が世界より極端に長いこと",
+          "気温が高くて眠れない日が多いこと",
+          "中学生の部活動が深夜まで行われていること"
+        ],
+        answer: 0,
+        exp: "日本人の睡眠時間が短い理由としては、<strong>労働時間が長いこと、睡眠に対する関心が薄いこと、寝る前のスマートフォンの使用</strong>などが挙げられています。"
+      },
+
+      // 単元5：調和のとれた生活・朝食（5問）
+      {
+        unit: "5. 調和のとれた生活",
+        q: "健康を保持増進するためには、個人の年齢や生活環境などに応じて、運動・食事・休養・睡眠のどのような生活を送る必要があるか。",
+        choices: ["調和のとれた生活", "競争的な生活", "夜型の生活", "食事を控えた生活"],
+        answer: 0,
+        exp: "心身の健康には<strong>生活習慣</strong>が深く関わっており、運動・食事・休養・睡眠の<strong>調和のとれた生活</strong>を送ることが大切です。"
+      },
+      {
+        unit: "5. 調和のとれた生活",
+        q: "望ましい睡眠の取り方として、正しいものはどれか。",
+        choices: [
+          "体内リズム（生体リズム）に合わせて決まった時間帯に眠る",
+          "休日にまとめて長時間眠り、平日は睡眠時間を削る",
+          "寝る直前までスマートフォンを見てから眠る",
+          "毎日違う時間に寝起きして体に刺激を与える"
+        ],
+        answer: 0,
+        exp: "生活リズムを整えて規則正しい生活を送ることが大切であり、睡眠は<strong>体内リズム（生体リズム）に合わせて決まった時間帯に眠る</strong>ことが望ましいです。"
+      },
+      {
+        unit: "5. 調和のとれた生活",
+        q: "朝食を食べないと起こりやすい問題として、プリント・教科書で説明されていることはどれか。",
+        choices: [
+          "1回の食事量が増えて食べ過ぎてしまい、肥満や生活習慣病につながることがある",
+          "寝ている間に上がった体温を下げることができなくなる",
+          "基礎代謝が上がりすぎて痩せすぎてしまう",
+          "心臓の拍出量が急に増えすぎる"
+        ],
+        answer: 0,
+        exp: "朝食を食べないと、1回の食事の量が増えて食べ過ぎてしまい、<strong>肥満や生活習慣病の発症</strong>につながることがあります。また、体や脳も十分に働きません。"
+      },
+      {
+        unit: "5. 調和のとれた生活",
+        q: "朝食を食べることの生理的な働きのひとつとして、正しいものはどれか。",
+        choices: [
+          "寝ている間に低下した体温を上昇させる",
+          "胃や腸を休ませて消化を止める",
+          "夜の睡眠時間を自動的に延ばす",
+          "リンパ器官の働きを抑える"
+        ],
+        answer: 0,
+        exp: "朝食を食べることで、<strong>寝ている間に低下した体温を上昇</strong>させ、体や脳がしっかり働くようになります。"
+      },
+      {
+        unit: "5. 調和のとれた生活",
+        q: "近年の中学生の朝食の欠食率について、わかっていることはどれか。",
+        choices: [
+          "起床時刻や就寝時刻が定まっていない人ほど、欠食率が高い",
+          "早寝早起きの人ほど、欠食率が高い",
+          "中学生では朝食を食べない人はほとんどいなくなった",
+          "夜食をとる人ほど、翌朝の食欲が増して朝食を食べる"
+        ],
+        answer: 0,
+        exp: "近年、中学生でも朝食を食べない・あまり食べないという欠食率が上昇しており、<strong>起床時刻や就寝時刻が定まっていない人ほど欠食率が高い</strong>ことがわかっています（夜食→胃腸に負担→翌朝朝食を抜く、という悪循環も起こります）。"
+      },
+
+      // 単元6：体の発育・発達とスキャモンの発育曲線（7問）
+      {
+        unit: "6. 体の発育・発達",
+        q: "「発育」と「発達」の違いの説明として、正しいものはどれか。",
+        choices: [
+          "発育は体の「大きさ」が増すこと、発達は体の「働き」が高まること",
+          "発育は体の「働き」が高まること、発達は体の「大きさ」が増すこと",
+          "発育は思春期だけに起こり、発達は赤ちゃんだけに起こる",
+          "発育は心の成長のことで、発達は身長が伸びること"
+        ],
+        answer: 0,
+        exp: "<strong>発育</strong>とは体の<strong>大きさ</strong>（身長・体重など）が増すこと、<strong>発達</strong>とは体の<strong>働き（機能）</strong>が高まることです。"
+      },
+      {
+        unit: "6. 体の発育・発達",
+        q: "子どもから大人への移行期である「思春期」は、第何発育急進期にあたるか。また男女どちらが早く来ることが多いか。",
+        choices: [
+          "第2発育急進期にあたり、一般に女子の方が男子より早く来る",
+          "第1発育急進期にあたり、一般に男子の方が女子より早く来る",
+          "第2発育急進期にあたり、一般に男子の方が女子より早く来る",
+          "第1発育急進期にあたり、男女とも同じ時期に来る"
+        ],
+        answer: 0,
+        exp: "思春期は<strong>第2発育急進期</strong>にあたり、一般に<strong>女子の方が男子よりも早く来ます</strong>（ただし個人差があります）。なお、乳幼児期が第1発育急進期です。"
+      },
+      {
+        unit: "6. 体の発育・発達",
+        q: "スキャモンの発育曲線で、20歳を100としたとき、12歳ごろに大人以上（180〜200近く）まで発育し、その後減少する型はどれか。",
+        choices: ["リンパ型（扁桃・胸腺など）", "神経型（脳・脊髄など）", "一般型（骨・筋肉・肺・心臓など）", "生殖型（卵巣・精巣など）"],
+        answer: 0,
+        exp: "扁桃（へんとう）や胸腺（きょうせん）などの<strong>リンパ型</strong>は、早くから発育し、<strong>思春期に大人以上に発育</strong>するのが特徴です。"
+      },
+      {
+        unit: "6. 体の発育・発達",
+        q: "スキャモンの発育曲線で、「脳や脊髄など」が含まれ、早くから発育して思春期には大人と同じくらいまで発達している型はどれか。",
+        choices: ["神経型", "一般型", "生殖型", "リンパ型"],
+        answer: 0,
+        exp: "脳や脊髄などの<strong>神経型</strong>は早くから発育し、思春期には大人と同じくらいまで発育しています。なお、思考力・判断力・社会性などの心の働きは中学生の頃から盛んに発達します。"
+      },
+      {
+        unit: "6. 体の発育・発達",
+        q: "スキャモンの発育曲線で、「骨・筋肉・肺・心臓・胃腸など」大部分の器官が当てはまり、赤ちゃんの頃と思春期に急に発育する型はどれか。",
+        choices: ["一般型", "神経型", "生殖型", "リンパ型"],
+        answer: 0,
+        exp: "骨、筋肉、肺、心臓、腎臓、胃・腸などの大部分の器官は<strong>一般型</strong>で、赤ちゃんの頃（第1発育急進期）と思春期（第2発育急進期）に急に発育します。"
+      },
+      {
+        unit: "6. 体の発育・発達",
+        q: "スキャモンの発育曲線で、「卵巣（女子）や精巣（男子）」が含まれ、思春期に急速に発達して二次性徴が現れる型はどれか。",
+        choices: ["生殖型", "一般型", "神経型", "リンパ型"],
+        answer: 0,
+        exp: "卵巣や精巣などの生殖器は<strong>生殖型</strong>で、思春期に急速に発達し、男女の体にそれぞれの特徴（二次性徴）が現れたり、排卵・射精などの生殖機能が発達したりします。"
+      },
+      {
+        unit: "6. 体の発育・発達",
+        q: "無理なダイエットをすると太りやすく痩せにくい体になってしまう理由として、正しいものはどれか。",
+        choices: [
+          "たんぱく質が不足して筋肉量が減り、基礎代謝が下がって脂肪が燃えにくくなるから",
+          "カルシウムが不足して脳の発達が止まるから",
+          "肺胞が増えすぎて酸素を取り込みすぎるから",
+          "心臓の収縮力が強くなりすぎてエネルギーを使わなくなるから"
+        ],
+        answer: 0,
+        exp: "肉・魚・卵などに多い<strong>たんぱく質</strong>が不足すると筋肉量が減り、<strong>基礎代謝</strong>が下がってしまいます。すると運動しても脂肪が燃えにくく、太りやすく痩せにくい体になります。思春期はたんぱく質・カルシウム・鉄分などを十分にとることが大切です。"
+      },
+
+      // 単元7：呼吸器・循環器の発達と運動（6問）
+      {
+        unit: "7. 呼吸器・循環器",
+        q: "肺の中にある無数の小さな袋を何というか。また、それをおおう毛細血管との間で酸素と二酸化炭素を交換することを何というか。",
+        choices: [
+          "肺胞 ／ ガス交換",
+          "気管支 ／ 基礎代謝",
+          "胸腺 ／ 呼吸数",
+          "肺動脈 ／ 拍出"
+        ],
+        answer: 0,
+        exp: "肺の中には小さな<strong>肺胞</strong>が無数にあり、毛細血管におおわれています。肺胞と毛細血管の間で、酸素（O₂）と二酸化炭素（CO₂）が交換されることを<strong>ガス交換</strong>といいます。"
+      },
+      {
+        unit: "7. 呼吸器・循環器",
+        q: "呼吸の仕組みについて、正しい説明はどれか。",
+        choices: [
+          "肺そのものは動けず、周りの骨と筋肉でできた胸郭や横隔膜が動くことで呼吸している",
+          "肺の筋肉が自分で伸び縮みすることで空気を出し入れしている",
+          "息を吸うときは胸郭が狭まり、肺がしぼむ",
+          "息を吐くときは胸郭が広がり、肺が膨らむ"
+        ],
+        answer: 0,
+        exp: "<strong>肺そのものが膨らんだりしぼんだりすることはできません。</strong>肺の周りにある骨と筋肉でできた<strong>胸郭（きょうかく）</strong>や横隔膜が動くことで、息を吸うときは胸郭が広がって肺も膨らみ、吐くときは胸郭が狭まって肺もしぼみます。"
+      },
+      {
+        unit: "7. 呼吸器・循環器",
+        q: "5歳の頃と中学生の現在を比べたとき、呼吸器の発達によってどのように変化するか。",
+        choices: [
+          "安静時の呼吸数が減少し、肺活量が増大する",
+          "安静時の呼吸数が増加し、肺活量も増大する",
+          "安静時の呼吸数が減少し、肺活量も減少する",
+          "呼吸数も肺活量も5歳の頃と変わらない"
+        ],
+        answer: 0,
+        exp: "呼吸器が発達すると肺胞数が増えて肺全体が大きくなり、1回の呼吸量が増えます。そのため、安静時の1分間あたりの<strong>呼吸数は減少</strong>（5歳の頃の方が呼吸数は多い）し、<strong>肺活量は増大</strong>します。"
+      },
+      {
+        unit: "7. 呼吸器・循環器",
+        q: "循環器が発達すると、心臓や脈拍はどのように変化するか。",
+        choices: [
+          "心臓が大きくなり収縮力が強くなるため、1回の拍出量が増大し、安静時の脈拍数は減少する",
+          "心臓が小さくなるため、1回の拍出量が減少し、安静時の脈拍数が増加する",
+          "心臓の収縮力が弱くなり、拍出量も脈拍数も減少する",
+          "心臓の大きさは変わらず、安静時の脈拍数だけが増加する"
+        ],
+        answer: 0,
+        exp: "循環器が発達すると心臓が大きくなり、心臓の収縮力が強くなります。その結果、1回の<strong>拍出量が増大</strong>し、少ない回数で全身に血液を送れるようになるため、安静時の<strong>脈拍数は減少</strong>します。"
+      },
+      {
+        unit: "7. 呼吸器・循環器",
+        q: "思春期は呼吸器・循環器の機能とかかわりの深い「何」を高めるのに最も適した時期か。",
+        choices: ["持久力", "瞬発力", "跳躍力", "反射神経"],
+        answer: 0,
+        exp: "思春期は、呼吸器・循環器の機能とかかわりの深い<strong>持久力</strong>を高めるのに最も適した時期です。"
+      },
+      {
+        unit: "7. 呼吸器・循環器",
+        q: "思春期に持久力を高め、呼吸器・循環器の機能を発達させるための適切な運動の「強さ」の目安はどれか。",
+        choices: [
+          "少しきつい（脈拍数120〜140拍/分）程度の運動を継続的に行う",
+          "限界まで苦しい（脈拍数200拍/分以上）運動を月に1回行う",
+          "全く息が上がらない程度の運動を1分だけ行う",
+          "週に1回、短距離ダッシュを1本だけ行う"
+        ],
+        answer: 0,
+        exp: "持久力を高めるには、強さ<strong>「少しきつい（脈拍数120〜140拍/分）」</strong>程度の運動を<strong>継続的</strong>に続けることが効果的です。これにより1回の呼吸量や拍出量が増加し、呼吸器・循環器の機能が発達します。"
+      }
+    ];
+
+    const CHOICE_LETTERS = ["A", "B", "C", "D"];
+
+    const startScreen = document.getElementById("start-screen");
+    const quizScreen = document.getElementById("quiz-screen");
+    const resultScreen = document.getElementById("result-screen");
+
+    const shuffleToggle = document.getElementById("shuffle-toggle");
+    const shuffleChoicesToggle = document.getElementById("shuffle-choices-toggle");
+    const unitGrid = document.getElementById("unit-grid");
+
+    const unitBadge = document.getElementById("unit-badge");
+    const quizStats = document.getElementById("quiz-stats");
+    const progressBar = document.getElementById("progress-bar");
+    const questionText = document.getElementById("question-text");
+    const choicesContainer = document.getElementById("choices");
+    const feedbackBox = document.getElementById("feedback-box");
+    const feedbackHeader = document.getElementById("feedback-header");
+    const explanationBody = document.getElementById("explanation-body");
+    const nextBtn = document.getElementById("next-btn");
+
+    const scoreNum = document.getElementById("score-num");
+    const scorePercent = document.getElementById("score-percent");
+    const resultMsg = document.getElementById("result-msg");
+    const unitBreakdown = document.getElementById("unit-breakdown");
+    const retryWrongBtn = document.getElementById("retry-wrong-btn");
+    const retrySameBtn = document.getElementById("retry-same-btn");
+    const backHomeBtn = document.getElementById("back-home-btn");
+    const toggleReviewBtn = document.getElementById("toggle-review-btn");
+    const reviewList = document.getElementById("review-list");
+
+    let activePool = [];
+    let lastSourcePool = [];
+    let currentIndex = 0;
+    let correctCount = 0;
+    let history = [];
+    let answeredCurrent = false;
+
+    function shuffleArray(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function buildUnitButtons() {
+      const units = [];
+      const countMap = {};
+      QUESTIONS.forEach((item) => {
+        if (!countMap[item.unit]) {
+          units.push(item.unit);
+          countMap[item.unit] = 0;
+        }
+        countMap[item.unit]++;
+      });
+
+      unitGrid.innerHTML = "";
+      units.forEach((u) => {
+        const btn = document.createElement("button");
+        btn.className = "unit-btn";
+        btn.innerHTML = `
+          <span class="unit-title">${u}</span>
+          <span class="unit-meta">全 ${countMap[u]} 問</span>
+        `;
+        btn.addEventListener("click", () => {
+          const subset = QUESTIONS.filter((q) => q.unit === u);
+          startQuiz(subset);
+        });
+        unitGrid.appendChild(btn);
+      });
+    }
+
+    function startQuiz(pool) {
+      lastSourcePool = pool;
+      let prepared = pool.map((q) => {
+        const indexedChoices = q.choices.map((text, idx) => ({
+          text,
+          isCorrect: idx === q.answer
+        }));
+        const finalChoices = shuffleChoicesToggle.checked
+          ? shuffleArray(indexedChoices)
+          : indexedChoices;
+        return {
+          ...q,
+          renderedChoices: finalChoices
+        };
+      });
+
+      if (shuffleToggle.checked) {
+        prepared = shuffleArray(prepared);
+      }
+
+      activePool = prepared;
+      currentIndex = 0;
+      correctCount = 0;
+      history = [];
+
+      startScreen.classList.add("hidden");
+      resultScreen.classList.add("hidden");
+      quizScreen.classList.remove("hidden");
+
+      renderQuestion();
+    }
+
+    function renderQuestion() {
+      answeredCurrent = false;
+      const item = activePool[currentIndex];
+      const total = activePool.length;
+
+      unitBadge.textContent = item.unit;
+      quizStats.textContent = `第 ${currentIndex + 1} 問 / ${total} 問（正解: ${correctCount}）`;
+      progressBar.style.width = `${(currentIndex / total) * 100}%`;
+      questionText.textContent = item.q;
+
+      feedbackBox.classList.add("hidden");
+      feedbackBox.classList.remove("is-correct", "is-wrong");
+      nextBtn.classList.add("hidden");
+      nextBtn.textContent = currentIndex === total - 1 ? "結果を見る →" : "次の問題へ →";
+
+      choicesContainer.innerHTML = "";
+      item.renderedChoices.forEach((choice, idx) => {
+        const btn = document.createElement("button");
+        btn.className = "choice-btn";
+        btn.innerHTML = `
+          <span class="choice-label">${CHOICE_LETTERS[idx]}</span>
+          <span>${choice.text}</span>
+        `;
+        btn.addEventListener("click", () => handleSelect(idx));
+        choicesContainer.appendChild(btn);
+      });
+    }
+
+    function handleSelect(selectedIdx) {
+      if (answeredCurrent) return;
+      answeredCurrent = true;
+
+      const item = activePool[currentIndex];
+      const buttons = choicesContainer.querySelectorAll(".choice-btn");
+      const selectedChoice = item.renderedChoices[selectedIdx];
+      const isCorrect = selectedChoice.isCorrect;
+
+      let correctText = "";
+      let correctLetter = "";
+
+      buttons.forEach((btn, idx) => {
+        btn.disabled = true;
+        const c = item.renderedChoices[idx];
+        if (c.isCorrect) {
+          btn.classList.add("correct");
+          correctText = c.text;
+          correctLetter = CHOICE_LETTERS[idx];
+        } else if (idx === selectedIdx) {
+          btn.classList.add("wrong");
+        } else {
+          btn.classList.add("dimmed");
+        }
+      });
+
+      if (isCorrect) {
+        correctCount++;
+        feedbackBox.classList.add("is-correct");
+        feedbackHeader.textContent = "⭕ 正解！";
+      } else {
+        feedbackBox.classList.add("is-wrong");
+        feedbackHeader.textContent = `❌ 不正解…（正解は ${correctLetter}：${correctText}）`;
+      }
+
+      explanationBody.innerHTML = `<strong>【解説】</strong>${item.exp}`;
+      feedbackBox.classList.remove("hidden");
+
+      const total = activePool.length;
+      quizStats.textContent = `第 ${currentIndex + 1} 問 / ${total} 問（正解: ${correctCount}）`;
+      progressBar.style.width = `${((currentIndex + 1) / total) * 100}%`;
+
+      history.push({
+        item,
+        selectedText: selectedChoice.text,
+        correctText,
+        isCorrect
+      });
+
+      nextBtn.classList.remove("hidden");
+    }
+
+    function showResults() {
+      quizScreen.classList.add("hidden");
+      resultScreen.classList.remove("hidden");
+
+      const total = activePool.length;
+      const pct = Math.round((correctCount / total) * 100);
+      scoreNum.textContent = `${correctCount} / ${total}`;
+      scorePercent.textContent = `${pct}%`;
+
+      if (pct === 100) {
+        resultMsg.textContent = "満点です！2学期末テストの準備はバッチリですね！";
+      } else if (pct >= 80) {
+        resultMsg.textContent = "高得点です！間違えた問題を確認して完璧にしましょう。";
+      } else if (pct >= 60) {
+        resultMsg.textContent = "いい調子です！正答率の低い単元をもう一度復習しよう。";
+      } else {
+        resultMsg.textContent = "まずは解説を読みながら、間違えた問題を復習してみましょう！";
+      }
+
+      // Unit breakdown
+      const unitStats = {};
+      history.forEach((h) => {
+        const u = h.item.unit;
+        if (!unitStats[u]) unitStats[u] = { correct: 0, total: 0 };
+        unitStats[u].total++;
+        if (h.isCorrect) unitStats[u].correct++;
+      });
+
+      unitBreakdown.innerHTML = "<h3>単元別の正答率</h3>";
+      Object.entries(unitStats).forEach(([u, st]) => {
+        const uPct = Math.round((st.correct / st.total) * 100);
+        const row = document.createElement("div");
+        row.className = "breakdown-row";
+        row.innerHTML = `
+          <div class="breakdown-label">
+            <span>${u}</span>
+            <span>${st.correct} / ${st.total} 問（${uPct}%）</span>
+          </div>
+          <div class="breakdown-bar-bg">
+            <div class="breakdown-bar-fill" style="width: ${uPct}%"></div>
+          </div>
+        `;
+        unitBreakdown.appendChild(row);
+      });
+
+      const wrongItems = history.filter((h) => !h.isCorrect).map((h) => h.item);
+      if (wrongItems.length > 0) {
+        retryWrongBtn.classList.remove("hidden");
+        retryWrongBtn.textContent = `間違えた問題だけ復習する（${wrongItems.length}問）`;
+        retryWrongBtn.onclick = () => startQuiz(wrongItems);
+      } else {
+        retryWrongBtn.classList.add("hidden");
+      }
+
+      // Build review list
+      reviewList.innerHTML = "";
+      reviewList.classList.add("hidden");
+      toggleReviewBtn.textContent = "解答・解説の一覧を表示する";
+
+      history.forEach((h, idx) => {
+        const div = document.createElement("div");
+        div.className = `review-item ${h.isCorrect ? "item-correct" : "item-wrong"}`;
+        div.innerHTML = `
+          <div class="review-q">Q${idx + 1}. [${h.item.unit}] ${h.item.q}</div>
+          <div class="review-ans">
+            あなたの解答：<strong>${h.selectedText}</strong> ${h.isCorrect ? "⭕" : `❌ ／ 正解：<strong>${h.correctText}</strong>`}
+          </div>
+          <div class="review-exp">${h.item.exp}</div>
+        `;
+        reviewList.appendChild(div);
+      });
+    }
+
+    document.getElementById("start-all-btn").addEventListener("click", () => startQuiz(QUESTIONS));
+
+    nextBtn.addEventListener("click", () => {
+      if (currentIndex < activePool.length - 1) {
+        currentIndex++;
+        renderQuestion();
+      } else {
+        showResults();
+      }
+    });
+
+    document.getElementById("quit-btn").addEventListener("click", () => {
+      quizScreen.classList.add("hidden");
+      startScreen.classList.remove("hidden");
+    });
+
+    retrySameBtn.addEventListener("click", () => startQuiz(lastSourcePool));
+
+    backHomeBtn.addEventListener("click", () => {
+      resultScreen.classList.add("hidden");
+      startScreen.classList.remove("hidden");
+    });
+
+    toggleReviewBtn.addEventListener("click", () => {
+      const isHidden = reviewList.classList.toggle("hidden");
+      toggleReviewBtn.textContent = isHidden ? "解答・解説の一覧を表示する" : "解答・解説の一覧を隠す";
+    });
+
+    // Keyboard shortcuts (1-4 to select, Enter for next)
+    document.addEventListener("keydown", (e) => {
+      if (quizScreen.classList.contains("hidden")) return;
+      if (!answeredCurrent && ["1", "2", "3", "4"].includes(e.key)) {
+        const idx = Number(e.key) - 1;
+        if (idx < activePool[currentIndex].renderedChoices.length) {
+          handleSelect(idx);
+        }
+      } else if (answeredCurrent && e.key === "Enter") {
+        nextBtn.click();
+      }
+    });
+
+    buildUnitButtons();
+  </script>
+</body>
+</html>

@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>中1・2学期末テスト対策 英語4択マスター (40問)</title>
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --card: #ffffff;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --primary-light: #eff6ff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --correct: #16a34a;
+      --correct-bg: #f0fdf4;
+      --correct-border: #86efac;
+      --wrong: #dc2626;
+      --wrong-bg: #fef2f2;
+      --wrong-border: #fca5a5;
+      --accent: #f59e0b;
+      --accent-bg: #fffbeb;
+      --shadow: 0 4px 20px rgba(15, 23, 42, 0.07);
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      min-height: 100vh;
+      padding: 20px 14px 48px;
+    }
+
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    .header-badge {
+      display: inline-block;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.78rem;
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 8px;
+      letter-spacing: 0.03em;
+    }
+
+    .header h1 {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 4px;
+    }
+
+    .header p {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    /* Filter Pills */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .filter-btn {
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .filter-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+    }
+
+    /* Status & Progress */
+    .status-card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+      border: 1px solid var(--border);
+    }
+
+    .status-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.86rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .score-pill {
+      background: var(--primary-light);
+      color: var(--primary);
+      padding: 2px 10px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #3b82f6, #2563eb);
+      width: 0%;
+      transition: width 0.3s ease;
+      border-radius: 999px;
+    }
+
+    /* Question Card */
+    .quiz-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 24px 22px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+
+    .q-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .q-category {
+      display: inline-block;
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: #0369a1;
+      background: #e0f2fe;
+      padding: 3px 10px;
+      border-radius: 6px;
+    }
+
+    .q-num {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .q-prompt-jp {
+      font-size: 0.95rem;
+      color: #334155;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .q-sentence {
+      font-size: 1.22rem;
+      font-weight: 700;
+      color: #0f172a;
+      background: #f8fafc;
+      border-left: 4px solid var(--primary);
+      padding: 14px 16px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      letter-spacing: 0.01em;
+    }
+
+    /* Choices */
+    .choices {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .choice-btn {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      text-align: left;
+      background: #fff;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 13px 16px;
+      font-size: 1.02rem;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .choice-btn:hover:not(:disabled) {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      transform: translateY(-1px);
+    }
+
+    .choice-btn:disabled {
+      cursor: default;
+    }
+
+    .choice-label {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: #f1f5f9;
+      color: #475569;
+      font-size: 0.85rem;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .choice-btn.correct {
+      border-color: var(--correct);
+      background: var(--correct-bg);
+      color: #14532d;
+    }
+
+    .choice-btn.correct .choice-label {
+      background: var(--correct);
+      color: #fff;
+    }
+
+    .choice-btn.wrong {
+      border-color: var(--wrong);
+      background: var(--wrong-bg);
+      color: #7f1d1d;
+    }
+
+    .choice-btn.wrong .choice-label {
+      background: var(--wrong);
+      color: #fff;
+    }
+
+    .choice-btn.dimmed {
+      opacity: 0.55;
+    }
+
+    /* Explanation Box */
+    .explanation-box {
+      margin-top: 20px;
+      border-radius: 12px;
+      padding: 16px 18px;
+      display: none;
+      animation: fadeIn 0.22s ease;
+    }
+
+    .explanation-box.show {
+      display: block;
+    }
+
+    .explanation-box.is-correct {
+      background: var(--correct-bg);
+      border: 1.5px solid var(--correct-border);
+    }
+
+    .explanation-box.is-wrong {
+      background: var(--wrong-bg);
+      border: 1.5px solid var(--wrong-border);
+    }
+
+    .exp-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.08rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .is-correct .exp-header {
+      color: var(--correct);
+    }
+
+    .is-wrong .exp-header {
+      color: var(--wrong);
+    }
+
+    .exp-answer {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #0f172a;
+      background: rgba(255, 255, 255, 0.75);
+      padding: 8px 12px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .exp-body {
+      font-size: 0.93rem;
+      color: #1e293b;
+      margin-bottom: 10px;
+    }
+
+    .exp-tip {
+      font-size: 0.86rem;
+      background: var(--accent-bg);
+      border-left: 3px solid var(--accent);
+      padding: 8px 12px;
+      border-radius: 6px;
+      color: #78350f;
+      font-weight: 600;
+    }
+
+    .next-wrap {
+      margin-top: 18px;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 12px 24px;
+      font-size: 0.98rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn-secondary {
+      background: #fff;
+      color: var(--text);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 11px 20px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    /* Result Screen */
+    .result-card {
+      display: none;
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 28px 22px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .result-card.show {
+      display: block;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .result-score-big {
+      font-size: 2.6rem;
+      font-weight: 900;
+      color: var(--primary);
+      margin: 8px 0 4px;
+    }
+
+    .result-rank {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 18px;
+    }
+
+    .breakdown {
+      text-align: left;
+      background: #f8fafc;
+      border-radius: 12px;
+      padding: 16px;
+      margin: 18px 0 22px;
+      border: 1px solid var(--border);
+    }
+
+    .breakdown h3 {
+      font-size: 0.92rem;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .bd-row {
+      margin-bottom: 10px;
+    }
+
+    .bd-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .bd-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .bd-bar {
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .bd-fill {
+      height: 100%;
+      background: var(--primary);
+      border-radius: 999px;
+    }
+
+    .result-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 22px;
+    }
+
+    .review-list {
+      text-align: left;
+      margin-top: 16px;
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+    }
+
+    .review-list h3 {
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+    }
+
+    .review-item {
+      padding: 12px;
+      border-radius: 10px;
+      margin-bottom: 8px;
+      border: 1px solid var(--border);
+      font-size: 0.88rem;
+    }
+
+    .review-item.r-ok {
+      background: #f0fdf4;
+      border-color: #bbf7d0;
+    }
+
+    .review-item.r-ng {
+      background: #fef2f2;
+      border-color: #fecaca;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 520px) {
+      .quiz-card { padding: 18px 15px; }
+      .q-sentence { font-size: 1.08rem; padding: 12px; }
+      .choice-btn { font-size: 0.95rem; padding: 11px 12px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="header-badge">中学1年生・2学期末テスト対策</div>
+      <h1>英語 4択マスターテスト</h1>
+      <p>1問1答で即座に答え合わせ＆解説！出題範囲（Program 6〜7・代名詞・Step 3）を完全網羅</p>
+    </header>
+
+    <div class="filter-bar" id="filterBar">
+      <button class="filter-btn active" data-cat="ALL">すべて (40問)</button>
+      <button class="filter-btn" data-cat="Which・Whose・所有代名詞">① Which・Whose</button>
+      <button class="filter-btn" data-cat="代名詞（目的格・4格変化）">② 代名詞</button>
+      <button class="filter-btn" data-cat="Why・Because">③ Why・Because</button>
+      <button class="filter-btn" data-cat="重要語句・連語・表現">④ 語句・表現</button>
+      <button class="filter-btn" data-cat="There is / are">⑤ There is/are</button>
+      <button class="filter-btn" data-cat="How・by + 乗り物">⑥ How・乗り物</button>
+    </div>
+
+    <div class="status-card" id="statusCard">
+      <div class="status-top">
+        <span id="progressText">第 1 問 / 全 40 問</span>
+        <span class="score-pill" id="scorePill">正解: 0 問</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+    </div>
+
+    <main class="quiz-card" id="quizCard">
+      <div class="q-meta">
+        <span class="q-category" id="qCategory"></span>
+        <span class="q-num" id="qNum"></span>
+      </div>
+      <div class="q-prompt-jp" id="qPrompt"></div>
+      <div class="q-sentence" id="qSentence"></div>
+      <div class="choices" id="choices"></div>
+
+      <div class="explanation-box" id="explanationBox">
+        <div class="exp-header" id="expHeader"></div>
+        <div class="exp-answer" id="expAnswer"></div>
+        <div class="exp-body" id="expBody"></div>
+        <div class="exp-tip" id="expTip"></div>
+        <div class="next-wrap">
+          <button class="btn-primary" id="nextBtn">次の問題へ →</button>
+        </div>
+      </div>
+    </main>
+
+    <section class="result-card" id="resultCard">
+      <div class="header-badge">テスト結果</div>
+      <div class="result-score-big" id="resultScore"></div>
+      <div class="result-rank" id="resultRank"></div>
+      <div class="breakdown" id="breakdown"></div>
+      <div class="result-actions">
+        <button class="btn-primary" id="retryWrongBtn" style="display:none;">間違えた問題だけ復習する</button>
+        <button class="btn-secondary" id="restartBtn">最初からやり直す</button>
+      </div>
+      <div class="review-list" id="reviewList"></div>
+    </section>
+  </div>
+
+  <script>
+    const QUESTIONS = [
+      // ① Which・Whose・所有代名詞 (7問)
+      {
+        cat: "Which・Whose・所有代名詞",
+        jp: "「どちらの机があなたのものですか。」となるように適する語を選びましょう。",
+        en: "(　　) desk is yours?",
+        choices: ["Who", "Which", "Whose", "What"],
+        ans: 1,
+        full: "Which desk is yours?",
+        exp: "「どちらの〜」と2つ以上の中から選ぶときは〈Which ＋ 名詞〉を使います。",
+        tip: "テスト注意：「だれの〜」は Whose、「どちらの〜」は Which としっかり区別しよう！"
+      },
+      {
+        cat: "Which・Whose・所有代名詞",
+        jp: "「これはだれの部屋ですか。」となるように適する語を選びましょう。",
+        en: "(　　) room is this?",
+        choices: ["Who", "Which", "Whose", "How"],
+        ans: 2,
+        full: "Whose room is this?",
+        exp: "持ち主をたずねる「だれの〜」は〈Whose ＋ 名詞〉で表します。",
+        tip: "「Whose ＋ 名詞」のうしろは疑問文の語順（is this / is that）になります。"
+      },
+      {
+        cat: "Which・Whose・所有代名詞",
+        jp: "「あれはだれの帽子ですか。」となるように適する語を選びましょう。",
+        en: "Whose hat (　　) that?",
+        choices: ["is", "are", "do", "does"],
+        ans: 0,
+        full: "Whose hat is that?",
+        exp: "that（あれ）は単数なので、be動詞は is を使います。",
+        tip: "一般動詞がない文なので do / does は使いません。"
+      },
+      {
+        cat: "Which・Whose・所有代名詞",
+        jp: "「どちらのかさがあなたのものですか。青いの、それとも黄色いの？」となるように適する語を選びましょう。",
+        en: "Which umbrella is yours, the blue one or the yellow (　　)?",
+        choices: ["it", "that", "one", "them"],
+        ans: 2,
+        full: "Which umbrella is yours, the blue one or the yellow one?",
+        exp: "前に出た単数名詞（umbrella）のくり返しを避けるときは代名詞 one を使います。",
+        tip: "the ＋ 形容詞 ＋ one（青いもの、黄色いもの）の形は頻出です！"
+      },
+      {
+        cat: "Which・Whose・所有代名詞",
+        jp: "「あの緑色のが彼女のものです。」となるように適する語を選びましょう。",
+        en: "That green one is (　　).",
+        choices: ["she", "her", "hers", "his"],
+        ans: 2,
+        full: "That green one is hers.",
+        exp: "「彼女のもの」を表す所有代名詞は hers です。her は「彼女の（〜）」なので、うしろに名詞がないときは hers にします。",
+        tip: "she（彼女は）－ her（彼女の）－ her（彼女を）－ hers（彼女のもの）"
+      },
+      {
+        cat: "Which・Whose・所有代名詞",
+        jp: "「あの学校は私たちのものです。」となるように適する語を選びましょう。",
+        en: "That school is (　　).",
+        choices: ["we", "our", "us", "ours"],
+        ans: 3,
+        full: "That school is ours.",
+        exp: "「私たちのもの」を表す所有代名詞は ours です。",
+        tip: "we（私たちは）－ our（私たちの）－ us（私たちを）－ ours（私たちのもの）"
+      },
+      {
+        cat: "Which・Whose・所有代名詞",
+        jp: "「これはだれのノートですか。」―「ゆみのものです。」として正しい答え方を選びましょう。",
+        en: "Whose notebook is this? — (　　)",
+        choices: ["It's Yumi.", "It's Yumi's.", "It's hers one.", "Yes, it is."],
+        ans: 1,
+        full: "Whose notebook is this? — It's Yumi's.",
+        exp: "人名を使って「〜のもの」と答えるときは、名前のあとに 's をつけて Yumi's にします。また、Whose の質問に Yes/No では答えません。",
+        tip: "It's Yumi. だと「それはゆみです」という意味になってしまうので 's を忘れずに！"
+      },
+
+      // ② 代名詞（目的格・4格変化） (8問)
+      {
+        cat: "代名詞（目的格・4格変化）",
+        jp: "「こちらはおじさんです。私たちは彼が好きです。」となるように適する語を選びましょう。",
+        en: "This is our uncle. We like (　　).",
+        choices: ["he", "his", "him", "her"],
+        ans: 2,
+        full: "This is our uncle. We like him.",
+        exp: "動詞 like のうしろ（「〜を」にあたる位置）には目的格を置きます。uncle（おじさん＝男性）をさすので him です。",
+        tip: "動詞や前置詞のうしろ＝3番目（目的格：me, you, him, her, it, us, them）！"
+      },
+      {
+        cat: "代名詞（目的格・4格変化）",
+        jp: "「あの男の子たちを見て。あなたは彼らを知っていますか。」となるように適する語を選びましょう。",
+        en: "Look at the boys. Do you know (　　)?",
+        choices: ["they", "their", "them", "theirs"],
+        ans: 2,
+        full: "Look at the boys. Do you know them?",
+        exp: "the boys（複数）を受けて、動詞 know のうしろに置くので目的格の them を使います。",
+        tip: "they（彼らは）－ their（彼らの）－ them（彼らを）－ theirs（彼らのもの）"
+      },
+      {
+        cat: "代名詞（目的格・4格変化）",
+        jp: "「私は彼といっしょに昼食を食べます。」となるように適する語を選びましょう。",
+        en: "I have lunch with (　　).",
+        choices: ["he", "his", "him", "her"],
+        ans: 2,
+        full: "I have lunch with him.",
+        exp: "前置詞 with（〜といっしょに）のうしろにも目的格を置きます。「彼と」なので him です。",
+        tip: "with, to, about, for などの前置詞のあとも必ず目的格！"
+      },
+      {
+        cat: "代名詞（目的格・4格変化）",
+        jp: "次の文の下線部（Yumi's）を1語の代名詞にかえるとき、正しいものを選びましょう。",
+        en: "I like [Yumi's] mother. → I like (　　) mother.",
+        choices: ["she", "her", "hers", "him"],
+        ans: 1,
+        full: "I like her mother.",
+        exp: "Yumi's（ゆみの）は「〜の」を表す所有格なので、女性1人の所有格 her にかえます。",
+        tip: "うしろに mother という名詞があるので、hers ではなく her を使います。"
+      },
+      {
+        cat: "代名詞（目的格・4格変化）",
+        jp: "下線部（Tomomi and me）を1語の代名詞にかえるとき、正しいものを選びましょう。",
+        en: "Does Ichiro know [Tomomi and me]? → Does Ichiro know (　　)?",
+        choices: ["we", "our", "us", "ours"],
+        ans: 2,
+        full: "Does Ichiro know us?",
+        exp: "Tomomi and me（知美と私＝私たち）が動詞 know のうしろにあるので、目的格の us にかえます。",
+        tip: "「〜と私」は「私たち（we / us）」。動詞のうしろだから us！"
+      },
+      {
+        cat: "代名詞（目的格・4格変化）",
+        jp: "「私は2匹のイヌを飼っています。彼らは私が好きです。」となるように適する語を選びましょう。",
+        en: "I have two dogs. (　　) like me.",
+        choices: ["It", "They", "Them", "Their"],
+        ans: 1,
+        full: "I have two dogs. They like me.",
+        exp: "動物やモノでも、2つ以上（two dogs）の複数を受けるときは it ではなく they を使います。主語の位置なので They です。",
+        tip: "テスト超頻出！two dogs をうっかり It にしないように注意！"
+      },
+      {
+        cat: "代名詞（目的格・4格変化）",
+        jp: "「ユキと私はテニスが好きです。私たちはいっしょにそれをします。」となるように適する語を選びましょう。",
+        en: "Yuki and I like tennis. (　　) play it together.",
+        choices: ["They", "We", "Us", "You"],
+        ans: 1,
+        full: "Yuki and I like tennis. We play it together.",
+        exp: "Yuki and I（ユキと私）は「私たち」なので、主語の位置では We を使います。",
+        tip: "I がふくまれていたら「私たち（We）」、you がふくまれていたら「あなたたち（You）」！"
+      },
+      {
+        cat: "代名詞（目的格・4格変化）",
+        jp: "「これらのカップは彼らのものだ。」となるように適する語を選びましょう。",
+        en: "These cups are (　　).",
+        choices: ["they", "their", "them", "theirs"],
+        ans: 3,
+        full: "These cups are theirs.",
+        exp: "「彼らのもの」を表す所有代名詞は theirs です。",
+        tip: "them（彼らを）と theirs（彼らのもの）を混同しないようにしよう！"
+      },
+
+      // ③ Why・Because (7問)
+      {
+        cat: "Why・Because",
+        jp: "「あなたはなぜ毎日走るのですか。」となるように適する語を選びましょう。",
+        en: "(　　) do you run every day?",
+        choices: ["How", "What", "Why", "Whose"],
+        ans: 2,
+        full: "Why do you run every day?",
+        exp: "理由を「なぜ〜ですか」とたずねる疑問詞は Why です。",
+        tip: "Why のうしろは必ず疑問文の語順（do you ~ / does he ~）にします。"
+      },
+      {
+        cat: "Why・Because",
+        jp: "「なぜ冬が好きなのですか。― なぜなら私はスキーができるからです。」となるように適する語を選びましょう。",
+        en: "Why do you like winter? — (　　) I can ski.",
+        choices: ["So", "Because", "From", "Why"],
+        ans: 1,
+        full: "Why do you like winter? — Because I can ski.",
+        exp: "Why ~? に対して「なぜなら〜だからです」と理由を答えるときは〈Because ＋ 主語 ＋ 動詞〜〉で表します。",
+        tip: "Because のうしろは「主語＋動詞」のふつうの文の語順！"
+      },
+      {
+        cat: "Why・Because",
+        jp: "「健はなぜ花を育てるのですか。」の正しい英文を選びましょう。",
+        en: "（健はなぜ花を育てるのですか。）",
+        choices: [
+          "Why Ken grows flowers?",
+          "Why does Ken grow flowers?",
+          "Why do Ken grow flowers?",
+          "Why grows Ken flowers?"
+        ],
+        ans: 1,
+        full: "Why does Ken grow flowers?",
+        exp: "主語が Ken（三人称単数）で一般動詞 grow を使う疑問文なので、Why のあとに does を置き、動詞は原形 grow にします。",
+        tip: "does を使ったら、動詞の s はとって原形にするのを忘れずに！"
+      },
+      {
+        cat: "Why・Because",
+        jp: "「どうして理科はわくわくするのですか。」の正しい英文を選びましょう。",
+        en: "（どうして理科はわくわくするのですか。）",
+        choices: [
+          "Why science is exciting?",
+          "Why does science exciting?",
+          "Why is science exciting?",
+          "Why do science exciting?"
+        ],
+        ans: 2,
+        full: "Why is science exciting?",
+        exp: "be動詞（is）を使った文の疑問文なので、Why のあとに〈is ＋ 主語（science）＋ exciting〉の語順にします。",
+        tip: "テスト超頻出ミス！Why science is ... としないように、必ず is を主語の前に出そう！"
+      },
+      {
+        cat: "Why・Because",
+        jp: "「なぜこの公園が好きなのですか。― なぜなら犬の散歩ができるからです。」の正しい答えを選びましょう。",
+        en: "You like this park. Why? — (　　)",
+        choices: [
+          "Because I walk can my dog.",
+          "Because can I walk my dog.",
+          "Because I can walk my dog.",
+          "So I can walk my dog."
+        ],
+        ans: 2,
+        full: "Because I can walk my dog.",
+        exp: "Because のうしろは「主語（I）＋ 助動詞（can）＋ 動詞の原形（walk）〜」の語順になります。",
+        tip: "walk my dog で「犬の散歩をする」という表現もあわせて覚えよう！"
+      },
+      {
+        cat: "Why・Because",
+        jp: "「彼女は東京へ行きますか。」（Does she go to Tokyo?）を「なぜ〜」と理由をたずねる文にすると？",
+        en: "Does she go to Tokyo? → (　　)",
+        choices: [
+          "Why she goes to Tokyo?",
+          "Why does she goes to Tokyo?",
+          "Why does she go to Tokyo?",
+          "Why do she go to Tokyo?"
+        ],
+        ans: 2,
+        full: "Why does she go to Tokyo?",
+        exp: "もともとの疑問文 Does she go to Tokyo? の先頭に Why をつけるだけで完成します（Does の d は小文字に）。",
+        tip: "疑問文の頭に Why を置くだけ、と覚えるとミスが減ります！"
+      },
+      {
+        cat: "Why・Because",
+        jp: "「私は彼をとてもよく知っています。」の正しい語順を選びましょう。",
+        en: "（私は彼をとてもよく知っています。）",
+        choices: [
+          "I very know him well.",
+          "I know very well him.",
+          "I know him very well.",
+          "I very well know him."
+        ],
+        ans: 2,
+        full: "I know him very well.",
+        exp: "英語は「主語（I）＋ 動詞（know）＋ 目的語（him）」のあとにかざりのことば（very well）を置きます。",
+        tip: "動詞と目的語（know him）の間に very well を割り込ませないのが鉄則！"
+      },
+
+      // ④ 重要語句・連語・表現（Program 6 & Step 3） (7問)
+      {
+        cat: "重要語句・連語・表現",
+        jp: "「1時間かかります。」となるように適する語を選びましょう。",
+        en: "It (　　) an hour.",
+        choices: ["take", "takes", "has", "goes"],
+        ans: 1,
+        full: "It takes an hour.",
+        exp: "「（時間が）かかる」は take を使います。主語が It（三人称単数）なので、s をつけて takes にします。",
+        tip: "an hour（1時間）の hour は h を発音しないので a ではなく an を使います。"
+      },
+      {
+        cat: "重要語句・連語・表現",
+        jp: "「お茶はどうですか。」とすすめるときの表現を選びましょう。",
+        en: "(　　) about some tea?",
+        choices: ["What's", "Why", "How", "Which"],
+        ans: 2,
+        full: "How about some tea?",
+        exp: "「〜はどうですか」と相手におすすめするときは〈How about ~?〉を使います。",
+        tip: "What about ~? も同じ意味ですが、ワーク（p.57）で覚える基本表現は How about ~? です。"
+      },
+      {
+        cat: "重要語句・連語・表現",
+        jp: "驚いたときの「まさか！」を英語で表すとどれになりますか。",
+        en: "（まさか！）",
+        choices: ["No good!", "No way!", "Not at all!", "You know!"],
+        ans: 1,
+        full: "No way!",
+        exp: "「まさか！／ありえない！」は連語 No way! で表します。",
+        tip: "Program 6 まとめテスト（p.60）の重要連語です。"
+      },
+      {
+        cat: "重要語句・連語・表現",
+        jp: "「彼はとても親切なんだよね。」となるように適する表現を選びましょう。",
+        en: "He's very kind, (　　).",
+        choices: ["I think", "for example", "you know", "in many ways"],
+        ans: 2,
+        full: "He's very kind, you know.",
+        exp: "文末などに添えて「〜なんだよね／知っているよね」と伝える連語は you know です。",
+        tip: "相手も知っていることや念押しをするときに使う会話表現です。"
+      },
+      {
+        cat: "重要語句・連語・表現",
+        jp: "「安全な場所」を英語で表すとどれになりますか。",
+        en: "（安全な場所）",
+        choices: ["a strong place", "a safe place", "a large park", "a big dream"],
+        ans: 1,
+        full: "a safe place",
+        exp: "safe は「安全な」、place は「場所」という意味です。ちなみに strong は「強い」、large は「広い」、dream は「夢」です。",
+        tip: "p.59 の「必ず覚えたい語句」はスペルまで書けるようにしておこう！"
+      },
+      {
+        cat: "重要語句・連語・表現",
+        jp: "「私はうどんについてお話ししたいと思います。」となるように適する語を選びましょう。",
+        en: "I'd like (　　) talk about udon.",
+        choices: ["for", "with", "to", "in"],
+        ans: 2,
+        full: "I'd like to talk about udon.",
+        exp: "「〜したいと思う」は〈I'd like to ＋ 動詞の原形〉（= I would like to ~）で表します。",
+        tip: "Step 3（p.62）の発表・紹介文の決まり文句です！"
+      },
+      {
+        cat: "重要語句・連語・表現",
+        jp: "「たとえば、ざるうどんはとてもおいしいです。」となるように適する表現を選びましょう。",
+        en: "(　　), zaru-udon is delicious.",
+        choices: ["In many ways", "For example", "No way", "How about"],
+        ans: 1,
+        full: "For example, zaru-udon is delicious.",
+        exp: "「たとえば」は〈For example,〉で表します。ちなみに in many ways は「いろいろな方法で」です。",
+        tip: "Step 3（p.62）では crispy（サクサクした）、juicy（汁の多い）、Please try it!（ぜひためしてください）もセットで押さえよう。"
+      },
+
+      // ⑤ There is / are (6問)
+      {
+        cat: "There is / are",
+        jp: "「私の家の近くに図書館があります。」となるように適する語を選びましょう。",
+        en: "There (　　) a library near my house.",
+        choices: ["is", "are", "have", "has"],
+        ans: 0,
+        full: "There is a library near my house.",
+        exp: "「〜があります」は〈There is [are] ＋ 名詞 ＋ 場所〉で表します。後ろの名詞 a library が単数なので is を使います。",
+        tip: "be動詞が is か are かは、直後の名詞が「単数か複数か」で決まります！"
+      },
+      {
+        cat: "There is / are",
+        jp: "「その家には15室の部屋があります。」となるように適する語を選びましょう。",
+        en: "There (　　) fifteen rooms in the house.",
+        choices: ["is", "are", "am", "has"],
+        ans: 1,
+        full: "There are fifteen rooms in the house.",
+        exp: "直後の名詞が fifteen rooms（複数）なので、be動詞は are を使います。",
+        tip: "two desks, some horses, many schools などの複数形が来たら必ず are！"
+      },
+      {
+        cat: "There is / are",
+        jp: "「この動物園には5頭のゴリラがいます。」となるように適する語を選びましょう。",
+        en: "(　　) are five gorillas in this zoo.",
+        choices: ["These", "They", "There", "Those"],
+        ans: 2,
+        full: "There are five gorillas in this zoo.",
+        exp: "存在を表す「〜がいます」は There are ~ を使います。ここでの There に「そこに」という意味はありません。",
+        tip: "These（これらは）や They（彼らは）と引っ掛け問題が出やすいので注意！"
+      },
+      {
+        cat: "There is / are",
+        jp: "「箱の中にはボールはいくつかありますか。」となるように適する語を選びましょう。",
+        en: "(　　) there any balls in the box?",
+        choices: ["Is", "Are", "Do", "Does"],
+        ans: 1,
+        full: "Are there any balls in the box?",
+        exp: "There are ~ の疑問文は Are を前に出して〈Are there ~?〉にします。any balls が複数なので Are です。",
+        tip: "答え方は Yes, there are. / No, there are not. です。"
+      },
+      {
+        cat: "There is / are",
+        jp: "「申し訳ない、そこにはパンダは1頭もいないんだ。」となるように適する語を選びましょう。",
+        en: "Sorry, there (　　) any pandas there.",
+        choices: ["is not", "are not", "do not", "does not"],
+        ans: 1,
+        full: "Sorry, there are not any pandas there.",
+        exp: "any pandas（複数）の否定文なので〈there are not any ~〉を使います。",
+        tip: "文末の there は「そこに」という意味の副詞で、文頭の There とは別ものです！"
+      },
+      {
+        cat: "There is / are",
+        jp: "「彩は部屋にいます。」を英語で正しく表したものを選びましょう。",
+        en: "（彩は部屋にいます。）",
+        choices: [
+          "There is Aya in the room.",
+          "There are Aya in the room.",
+          "Aya is in the room.",
+          "Is there Aya in the room?"
+        ],
+        ans: 2,
+        full: "Aya is in the room.",
+        exp: "Aya（彩）、my cat（私のネコ）、the pen（そのペン）など「特定の人やもの」の居場所を言うときは There is ~ は使わず、〈主語 ＋ is [are] ＋ 場所〉で表します。",
+        tip: "p.64 のポイント注意書き！There is Aya ... は×なので絶対ひっかからないように！"
+      },
+
+      // ⑥ How・by + 乗り物 (5問)
+      {
+        cat: "How・by + 乗り物",
+        jp: "「あなたはどうやってこの図書館へ来ますか。」となるように適する語を選びましょう。",
+        en: "(　　) do you come to this library?",
+        choices: ["What", "How", "When", "Why"],
+        ans: 1,
+        full: "How do you come to this library?",
+        exp: "手段や方法「どのようにして／どうやって」をたずねる疑問詞は How です。",
+        tip: "How の疑問文に対して Yes / No では答えず、手段や方法を具体的に答えます。"
+      },
+      {
+        cat: "How・by + 乗り物",
+        jp: "「どうやって学校へ来ますか。― 自転車で。」となるように適する語を選びましょう。",
+        en: "How do you come to school? — (　　) bike.",
+        choices: ["On", "In", "By", "With"],
+        ans: 2,
+        full: "How do you come to school? — By bike.",
+        exp: "「（乗り物）で」という手段を表すときは〈by ＋ 乗り物〉を使います。",
+        tip: "By bike. のように「By ＋ 乗り物.」だけで答えることもできます。"
+      },
+      {
+        cat: "How・by + 乗り物",
+        jp: "「どうやってそこへ行きますか。― 飛行機で。」の正しい答え方を選びましょう。",
+        en: "How can you go there? — (　　)",
+        choices: ["By a plane.", "By the plane.", "By plane.", "On plane."],
+        ans: 2,
+        full: "How can you go there? — By plane.",
+        exp: "〈by ＋ 乗り物〉のときは、乗り物の名詞の前に a / an / the をつけません！したがって By plane. が正解です。",
+        tip: "テスト超頻出トラップ！by a bus ❌ → by bus ✅、by a plane ❌ → by plane ✅"
+      },
+      {
+        cat: "How・by + 乗り物",
+        jp: "「私たちはどのようにしてこの市をジョンに案内できるでしょうか。」となるように適する語を選びましょう。",
+        en: "How can we (　　) John around this city?",
+        choices: ["look", "show", "see", "come"],
+        ans: 1,
+        full: "How can we show John around this city?",
+        exp: "〈show ＋ 人 ＋ around ＋ 場所〉で「（人）に（場所）を案内する」という重要表現です。",
+        tip: "p.67 の並べかえ問題に出ている重要表現です！"
+      },
+      {
+        cat: "How・by + 乗り物",
+        jp: "「私は病院へ歩いていきます。」となるように適する語を選びましょう。",
+        en: "I (　　) to the hospital.",
+        choices: ["by walk", "walk", "on walk", "am walk"],
+        ans: 1,
+        full: "I walk to the hospital.",
+        exp: "「〜へ歩いていく」は動詞 walk を使って〈walk to ＋ 場所〉で表します。walk は乗り物ではないので by walk とは言いません。",
+        tip: "「歩いていく＝walk to ~」は p.66 の頻出問題です！"
+      }
+    ];
+
+    const LABELS = ["A", "B", "C", "D"];
+    let activeCategory = "ALL";
+    let deck = [];
+    let currentIndex = 0;
+    let score = 0;
+    let results = []; // { q, selected, isCorrect }
+    let answered = false;
+
+    const filterBar = document.getElementById("filterBar");
+    const statusCard = document.getElementById("statusCard");
+    const quizCard = document.getElementById("quizCard");
+    const resultCard = document.getElementById("resultCard");
+    const progressText = document.getElementById("progressText");
+    const scorePill = document.getElementById("scorePill");
+    const progressFill = document.getElementById("progressFill");
+    const qCategory = document.getElementById("qCategory");
+    const qNum = document.getElementById("qNum");
+    const qPrompt = document.getElementById("qPrompt");
+    const qSentence = document.getElementById("qSentence");
+    const choicesEl = document.getElementById("choices");
+    const explanationBox = document.getElementById("explanationBox");
+    const expHeader = document.getElementById("expHeader");
+    const expAnswer = document.getElementById("expAnswer");
+    const expBody = document.getElementById("expBody");
+    const expTip = document.getElementById("expTip");
+    const nextBtn = document.getElementById("nextBtn");
+
+    function startQuiz(customList = null) {
+      if (customList) {
+        deck = customList;
+      } else if (activeCategory === "ALL") {
+        deck = [...QUESTIONS];
+      } else {
+        deck = QUESTIONS.filter(q => q.cat === activeCategory);
+      }
+      currentIndex = 0;
+      score = 0;
+      results = [];
+      statusCard.style.display = "block";
+      quizCard.style.display = "block";
+      resultCard.classList.remove("show");
+      renderQuestion();
+    }
+
+    function renderQuestion() {
+      answered = false;
+      const q = deck[currentIndex];
+      const total = deck.length;
+
+      progressText.textContent = `第 ${currentIndex + 1} 問 / 全 ${total} 問`;
+      scorePill.textContent = `正解: ${score} 問`;
+      progressFill.style.width = `${(currentIndex / total) * 100}%`;
+
+      qCategory.textContent = q.cat;
+      qNum.textContent = `Q${currentIndex + 1}`;
+      qPrompt.textContent = q.jp;
+      qSentence.textContent = q.en;
+
+      explanationBox.className = "explanation-box";
+      choicesEl.innerHTML = "";
+
+      q.choices.forEach((choiceText, idx) => {
+        const btn = document.createElement("button");
+        btn.className = "choice-btn";
+        btn.innerHTML = `<span class="choice-label">${LABELS[idx]}</span><span>${choiceText}</span>`;
+        btn.addEventListener("click", () => handleAnswer(idx));
+        choicesEl.appendChild(btn);
+      });
+
+      nextBtn.textContent = currentIndex === total - 1 ? "結果を見る →" : "次の問題へ →";
+    }
+
+    function handleAnswer(selectedIdx) {
+      if (answered) return;
+      answered = true;
+
+      const q = deck[currentIndex];
+      const isCorrect = selectedIdx === q.ans;
+      if (isCorrect) score++;
+
+      results.push({ q, selected: selectedIdx, isCorrect });
+      scorePill.textContent = `正解: ${score} 問`;
+      progressFill.style.width = `${((currentIndex + 1) / deck.length) * 100}%`;
+
+      const buttons = choicesEl.querySelectorAll(".choice-btn");
+      buttons.forEach((btn, idx) => {
+        btn.disabled = true;
+        if (idx === q.ans) {
+          btn.classList.add("correct");
+        } else if (idx === selectedIdx && !isCorrect) {
+          btn.classList.add("wrong");
+        } else {
+          btn.classList.add("dimmed");
+        }
+      });
+
+      explanationBox.classList.add("show", isCorrect ? "is-correct" : "is-wrong");
+      expHeader.textContent = isCorrect ? "⭕ 正解！" : `❌ おしい！ 正解は ${LABELS[q.ans]}「${q.choices[q.ans]}」`;
+      expAnswer.textContent = `完成文： ${q.full}`;
+      expBody.textContent = q.exp;
+      expTip.textContent = `💡 ${q.tip}`;
+    }
+
+    nextBtn.addEventListener("click", () => {
+      if (currentIndex < deck.length - 1) {
+        currentIndex++;
+        renderQuestion();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        showResults();
+      }
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (answered && (e.key === "Enter" || e.key === " ")) {
+        if (quizCard.style.display !== "none") {
+          e.preventDefault();
+          nextBtn.click();
+        }
+      }
+    });
+
+    function showResults() {
+      statusCard.style.display = "none";
+      quizCard.style.display = "none";
+      resultCard.classList.add("show");
+
+      const total = deck.length;
+      const pct = Math.round((score / total) * 100);
+      document.getElementById("resultScore").textContent = `${score} / ${total} 問 (${pct}%)`;
+
+      let rank = "";
+      if (pct === 100) rank = "🏆 パーフェクト！2学期末テストはバッチリ！";
+      else if (pct >= 80) rank = "✨ すばらしい！あと少しで満点！";
+      else if (pct >= 60) rank = "👍 いい調子！間違えた問題を復習して得点アップ！";
+      else rank = "📘 まずは解説を読み直して、苦手な単元をくり返し解こう！";
+      document.getElementById("resultRank").textContent = rank;
+
+      // Category breakdown
+      const catStats = {};
+      results.forEach(r => {
+        if (!catStats[r.q.cat]) catStats[r.q.cat] = { ok: 0, total: 0 };
+        catStats[r.q.cat].total++;
+        if (r.isCorrect) catStats[r.q.cat].ok++;
+      });
+
+      const breakdownEl = document.getElementById("breakdown");
+      breakdownEl.innerHTML = "<h3>単元別の正答率</h3>";
+      Object.entries(catStats).forEach(([cat, st]) => {
+        const cPct = Math.round((st.ok / st.total) * 100);
+        breakdownEl.innerHTML += `
+          <div class="bd-row">
+            <div class="bd-label"><span>${cat}</span><span>${st.ok} / ${st.total} (${cPct}%)</span></div>
+            <div class="bd-bar"><div class="bd-fill" style="width:${cPct}%"></div></div>
+          </div>
+        `;
+      });
+
+      const wrongList = results.filter(r => !r.isCorrect).map(r => r.q);
+      const retryWrongBtn = document.getElementById("retryWrongBtn");
+      if (wrongList.length > 0) {
+        retryWrongBtn.style.display = "inline-block";
+        retryWrongBtn.textContent = `間違えた問題だけ復習する (${wrongList.length}問)`;
+        retryWrongBtn.onclick = () => startQuiz(wrongList);
+      } else {
+        retryWrongBtn.style.display = "none";
+      }
+
+      const reviewList = document.getElementById("reviewList");
+      reviewList.innerHTML = "<h3>解答一覧</h3>";
+      results.forEach((r, i) => {
+        reviewList.innerHTML += `
+          <div class="review-item ${r.isCorrect ? "r-ok" : "r-ng"}">
+            <div><strong>Q${i + 1} [${r.q.cat}]</strong> ${r.isCorrect ? "⭕" : "❌"}</div>
+            <div><strong>${r.q.full}</strong></div>
+            <div style="color:#475569; margin-top:3px;">${r.q.exp}</div>
+          </div>
+        `;
+      });
+    }
+
+    document.getElementById("restartBtn").addEventListener("click", () => startQuiz());
+
+    filterBar.querySelectorAll(".filter-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        filterBar.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        activeCategory = btn.dataset.cat;
+        startQuiz();
+      });
+    });
+
+    startQuiz();
+  </script>
+</body>
+</html>

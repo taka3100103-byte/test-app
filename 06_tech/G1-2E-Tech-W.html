@@ -1,0 +1,1407 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>中1 技術科 2学期末テスト対策 穴埋め・記述問題（製図・木工）</title>
+  <style>
+    :root {
+      --bg: #f3f7f6;
+      --surface: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #dbe4e2;
+      --primary: #0f766e;
+      --primary-hover: #0d5e58;
+      --primary-soft: #f0fdfa;
+      --correct: #16a34a;
+      --correct-bg: #f0fdf4;
+      --correct-border: #86efac;
+      --wrong: #dc2626;
+      --wrong-bg: #fef2f2;
+      --wrong-border: #fca5a5;
+      --warn: #d97706;
+      --warn-bg: #fffbeb;
+      --warn-border: #fde68a;
+      --shadow: 0 8px 24px rgba(15, 23, 42, 0.07);
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic UI", "Meiryo", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      padding: 20px 16px 56px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: linear-gradient(135deg, #115e59, #0f766e);
+      color: #ffffff;
+      padding: 22px 24px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 20px;
+    }
+
+    header .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    header .tag {
+      background: rgba(255, 255, 255, 0.18);
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+
+    header h1 {
+      margin: 0 0 6px;
+      font-size: 22px;
+      line-height: 1.35;
+    }
+
+    header p {
+      margin: 0;
+      font-size: 13.5px;
+      opacity: 0.92;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      margin-bottom: 18px;
+    }
+
+    /* Setup Screen */
+    .mode-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin: 16px 0 20px;
+    }
+
+    .mode-btn {
+      text-align: left;
+      background: #f8fafc;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      font-family: inherit;
+    }
+
+    .mode-btn:hover {
+      border-color: var(--primary);
+      background: var(--primary-soft);
+    }
+
+    .mode-btn.active {
+      border-color: var(--primary);
+      background: var(--primary-soft);
+      box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.14);
+    }
+
+    .mode-btn .mode-title {
+      display: block;
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+
+    .mode-btn .mode-desc {
+      display: block;
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+
+    .options-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    .toggle-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .toggle-label input {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      border: none;
+      border-radius: 10px;
+      padding: 12px 22px;
+      font-size: 15px;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background 0.15s ease, transform 0.1s ease, border-color 0.15s ease;
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background: var(--primary-hover);
+    }
+
+    .btn-secondary {
+      background: #e2e8f0;
+      color: var(--text);
+    }
+
+    .btn-secondary:hover:not(:disabled) {
+      background: #cbd5e1;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid var(--border);
+      color: var(--text);
+    }
+
+    .btn-outline:hover:not(:disabled) {
+      background: #f8fafc;
+      border-color: #94a3b8;
+    }
+
+    /* Quiz Screen */
+    .progress-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .progress-bar-wrap {
+      width: 100%;
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #0f766e, #14b8a6);
+      width: 0%;
+      transition: width 0.25s ease;
+    }
+
+    .q-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .q-category {
+      display: inline-block;
+      background: var(--primary-soft);
+      color: var(--primary);
+      border: 1px solid #99f6e4;
+      padding: 3px 12px;
+      border-radius: 999px;
+      font-size: 12.5px;
+      font-weight: 700;
+    }
+
+    .q-type-badge {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .q-text {
+      font-size: 17.5px;
+      font-weight: 700;
+      margin: 0 0 16px;
+      line-height: 1.75;
+    }
+
+    .blank-slot {
+      display: inline-block;
+      min-width: 90px;
+      padding: 0 10px;
+      margin: 0 4px;
+      border-bottom: 2.5px solid var(--primary);
+      background: var(--primary-soft);
+      color: var(--primary);
+      border-radius: 6px 6px 0 0;
+      text-align: center;
+      font-weight: 800;
+    }
+
+    .blank-slot.revealed-correct {
+      border-bottom-color: var(--correct);
+      background: var(--correct-bg);
+      color: var(--correct);
+    }
+
+    .blank-slot.revealed-wrong {
+      border-bottom-color: var(--wrong);
+      background: var(--wrong-bg);
+      color: var(--wrong);
+    }
+
+    .diagram-box {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+      margin: 0 0 18px;
+      text-align: center;
+    }
+
+    .diagram-box svg {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .diagram-caption {
+      font-size: 12.5px;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    /* Input Area */
+    .answer-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .answer-input {
+      flex: 1 1 240px;
+      padding: 13px 16px;
+      font-size: 16px;
+      font-family: inherit;
+      font-weight: 600;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .answer-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.15);
+    }
+
+    .answer-input:disabled {
+      background: #f8fafc;
+      color: var(--text);
+    }
+
+    .unit-hint {
+      display: inline-flex;
+      align-items: center;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--muted);
+      padding: 0 4px;
+    }
+
+    .action-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .hint-box {
+      margin-top: 10px;
+      padding: 10px 14px;
+      background: var(--warn-bg);
+      border: 1px solid var(--warn-border);
+      border-radius: 10px;
+      font-size: 13.5px;
+      color: #92400e;
+      display: none;
+    }
+
+    .hint-box.show {
+      display: block;
+    }
+
+    /* Explanation Box */
+    .explanation {
+      margin-top: 18px;
+      padding: 16px 18px;
+      border-radius: 12px;
+      border: 1.5px solid var(--border);
+      display: none;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .explanation.show {
+      display: block;
+    }
+
+    .explanation.is-correct {
+      background: var(--correct-bg);
+      border-color: var(--correct-border);
+    }
+
+    .explanation.is-wrong {
+      background: var(--wrong-bg);
+      border-color: var(--wrong-border);
+    }
+
+    .explanation.is-check {
+      background: #f8fafc;
+      border-color: #cbd5e1;
+    }
+
+    .exp-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .exp-title {
+      font-weight: 800;
+      font-size: 16px;
+    }
+
+    .explanation.is-correct .exp-title {
+      color: var(--correct);
+    }
+
+    .explanation.is-wrong .exp-title {
+      color: var(--wrong);
+    }
+
+    .explanation.is-check .exp-title {
+      color: var(--primary);
+    }
+
+    .correct-answer-banner {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 14px;
+      margin-bottom: 10px;
+      font-size: 15px;
+    }
+
+    .correct-answer-banner strong {
+      color: var(--primary);
+      font-size: 17px;
+    }
+
+    .kanji-note {
+      margin-top: 6px;
+      font-size: 13px;
+      color: #92400e;
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 8px;
+      padding: 6px 10px;
+    }
+
+    .exp-body {
+      font-size: 14.5px;
+      margin: 0;
+    }
+
+    .exp-point {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed rgba(0, 0, 0, 0.12);
+      font-size: 13.5px;
+      color: #334155;
+    }
+
+    .self-judge-row {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .self-judge-row span {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .nav-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 18px;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* Result Screen */
+    .score-hero {
+      text-align: center;
+      padding: 12px 0 18px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 18px;
+    }
+
+    .score-circle {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 132px;
+      height: 132px;
+      border-radius: 50%;
+      background: var(--primary-soft);
+      border: 6px solid var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .score-num {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1.1;
+    }
+
+    .score-sub {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .cat-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .cat-stat-item {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 13.5px;
+    }
+
+    .cat-stat-item strong {
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .review-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .review-item {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 13.5px;
+      background: #ffffff;
+    }
+
+    .review-item.ok {
+      border-left: 5px solid var(--correct);
+    }
+
+    .review-item.ng {
+      border-left: 5px solid var(--wrong);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 520px) {
+      header h1 { font-size: 19px; }
+      .card { padding: 18px 16px; }
+      .q-text { font-size: 16px; }
+      .btn { width: 100%; }
+      .nav-footer .btn { width: auto; flex: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="badge-row">
+        <span class="tag">中学1年 技術科</span>
+        <span class="tag">2学期末テスト対策</span>
+        <span class="tag">穴埋め・記述式（全28問）</span>
+      </div>
+      <h1>製図・木工 1問1答 穴埋めマスター</h1>
+      <p>選択肢に頼らず「自分で答えを思い出す・書く」テスト本番向けのトレーニングです。</p>
+    </header>
+
+    <!-- START SCREEN -->
+    <section id="start-screen" class="card">
+      <h2 style="margin:0 0 6px; font-size:18px;">出題範囲を選んでスタート</h2>
+      <p style="margin:0; font-size:13.5px; color:var(--muted);">
+        漢字・カタカナ・数字を正確に入力する練習ができます。迷ったときは「ヒント」や「答えを見る」も使えます。
+      </p>
+
+      <div class="mode-grid" id="category-grid">
+        <button type="button" class="mode-btn active" data-cat="all">
+          <span class="mode-title">すべての範囲（全28問）</span>
+          <span class="mode-desc">製図・等角図・正投影図・けがき・切断を完全網羅</span>
+        </button>
+        <button type="button" class="mode-btn" data-cat="製図のルール">
+          <span class="mode-title">1. 製図のルール・構想図と製作図</span>
+          <span class="mode-desc">JIS・構想図・製作図・拡大図（4問）</span>
+        </button>
+        <button type="button" class="mode-btn" data-cat="等角図と正投影図">
+          <span class="mode-title">2. 等角図・第三角法（正投影図）</span>
+          <span class="mode-desc">30°・実物・平面図・正面図・右側面図（9問）</span>
+        </button>
+        <button type="button" class="mode-btn" data-cat="材料取り（けがき）">
+          <span class="mode-title">3. 材料取り（けがき）</span>
+          <span class="mode-desc">さしがね・けびき・切りしろ・4mm・節（9問）</span>
+        </button>
+        <button type="button" class="mode-btn" data-cat="切断の技能">
+          <span class="mode-title">4. 切断の技能</span>
+          <span class="mode-desc">クランプ・あて木・刃わたり8割・水平（6問）</span>
+        </button>
+      </div>
+
+      <div class="options-row">
+        <label class="toggle-label">
+          <input type="checkbox" id="shuffle-toggle" />
+          問題の順番をシャッフルする
+        </label>
+        <button type="button" class="btn btn-primary" id="start-btn">テストを始める</button>
+      </div>
+    </section>
+
+    <!-- QUIZ SCREEN -->
+    <section id="quiz-screen" class="card hidden">
+      <div class="progress-header">
+        <span id="progress-text">第 1 問 / 28 問</span>
+        <span id="score-live">正解数: 0</span>
+      </div>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" id="progress-fill"></div>
+      </div>
+
+      <div class="q-meta">
+        <span class="q-category" id="q-category"></span>
+        <span class="q-type-badge">記述・穴埋め</span>
+      </div>
+
+      <p class="q-text" id="q-text"></p>
+
+      <div class="diagram-box hidden" id="diagram-box"></div>
+
+      <form class="answer-form" id="answer-form" autocomplete="off">
+        <div class="input-row">
+          <input
+            type="text"
+            id="answer-input"
+            class="answer-input"
+            placeholder="ここに答えを入力してください"
+            enterkeyhint="done"
+          />
+          <span class="unit-hint hidden" id="unit-hint"></span>
+        </div>
+
+        <div class="action-buttons" id="pre-answer-actions">
+          <button type="submit" class="btn btn-primary" id="check-btn">答え合わせ</button>
+          <button type="button" class="btn btn-outline" id="hint-btn">ヒントを見る</button>
+          <button type="button" class="btn btn-secondary" id="reveal-btn">わからない（答えを見る）</button>
+        </div>
+      </form>
+
+      <div class="hint-box" id="hint-box"></div>
+
+      <div class="explanation" id="explanation-box">
+        <div class="exp-header">
+          <span class="exp-title" id="exp-title"></span>
+        </div>
+        <div class="correct-answer-banner" id="correct-answer-banner"></div>
+        <div class="kanji-note hidden" id="kanji-note"></div>
+        <p class="exp-body" id="exp-body"></p>
+        <div class="exp-point" id="exp-point"></div>
+      </div>
+
+      <div class="nav-footer">
+        <button type="button" class="btn btn-outline" id="quit-btn">最初に戻る</button>
+        <button type="button" class="btn btn-primary hidden" id="next-btn">次の問題へ →</button>
+      </div>
+    </section>
+
+    <!-- RESULT SCREEN -->
+    <section id="result-screen" class="card hidden">
+      <div class="score-hero">
+        <div class="score-circle">
+          <span class="score-num" id="final-score">0/0</span>
+          <span class="score-sub" id="final-rate">0%</span>
+        </div>
+        <h2 style="margin:6px 0 4px; font-size:20px;" id="result-title">おつかれさまでした！</h2>
+        <p style="margin:0; font-size:14px; color:var(--muted);" id="result-msg"></p>
+      </div>
+
+      <h3 style="margin:0 0 10px; font-size:16px;">単元別の結果</h3>
+      <div class="cat-stats" id="cat-stats"></div>
+
+      <div style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:20px;">
+        <button type="button" class="btn btn-primary" id="retry-wrong-btn">間違えた問題だけ解き直す</button>
+        <button type="button" class="btn btn-secondary" id="retry-all-btn">同じ範囲をもう一度</button>
+        <button type="button" class="btn btn-outline" id="back-home-btn">範囲選択に戻る</button>
+      </div>
+
+      <h3 style="margin:0 0 6px; font-size:16px;">解答一覧（ふりかえり）</h3>
+      <div class="review-list" id="review-list"></div>
+    </section>
+  </div>
+
+  <script>
+    const QUESTIONS = [
+      // 1. 製図のルール・構想図と製作図
+      {
+        id: 1,
+        cat: "製図のルール",
+        q: "設計者の考えが他の人に正しく伝わるように、日本では [　　]（日本産業規格）によって製図のルールが細かく決められている。",
+        answers: ["JIS", "ジス", "じす"],
+        displayAnswer: "JIS（日本産業規格）",
+        preferredKanji: "JIS",
+        hint: "アルファベット3文字の規格名です。",
+        exp: "日本では、製図のルールは「JIS（日本産業規格）」によって統一されており、誰が見ても同じように形や寸法を読み取れるようになっています。",
+        point: "アルファベット大文字で「JIS」と書けるようにしておこう（読み：ジス）。"
+      },
+      {
+        id: 2,
+        cat: "製図のルール",
+        q: "アイデアスケッチをもとに、できあがりのイメージをかき表し、全体の形・部品同士の位置関係・寸法などを記入する図を [　　] という。",
+        answers: ["構想図", "こうそうず"],
+        displayAnswer: "構想図",
+        preferredKanji: "構想図",
+        hint: "漢字3文字。「アイデアを『構想』してかく図」です。",
+        exp: "アイデアスケッチから製図に進む際、最初にかくのが「構想図」です。完成イメージや部品同士の位置関係、説明事項などをまとめます。",
+        point: "順番：アイデアスケッチ → 構想図 → 製作図"
+      },
+      {
+        id: 3,
+        cat: "製図のルール",
+        q: "構想図をもとに、製作品の形状や寸法を正確に記入する図を [　　] という。",
+        answers: ["製作図", "せいさくず"],
+        displayAnswer: "製作図",
+        preferredKanji: "製作図",
+        hint: "漢字3文字。「実際に『製作』するために正確にかく図」です。",
+        exp: "「製作図」は、ものをつくる（製作する）ために必要な正確な形状と寸法をすべて記入した図面です。",
+        point: "「制作図」ではなく「製作図」（ものをつくる「製」）の漢字に注意！"
+      },
+      {
+        id: 4,
+        cat: "製図のルール",
+        q: "製作図では、必要に応じて部品図や、細かい部分を大きく表した [　　] 図もかく。",
+        answers: ["拡大", "かくだい", "拡大図", "かくだいず"],
+        displayAnswer: "拡大（拡大図）",
+        preferredKanji: "拡大",
+        hint: "漢字2文字。実物より大きくかいて見やすくする図です。",
+        exp: "くぎの打ち方や接合部など、小さいままでわかりにくい部分は「拡大図」をかいて正確に伝えます。",
+        point: "問題文の後ろに「図」がついているときは「拡大」とだけ答えるのが穴埋めの鉄則！"
+      },
+
+      // 2. 等角図と正投影図
+      {
+        id: 5,
+        cat: "等角図と正投影図",
+        q: "立体を斜め上から見たように表し、幅・奥行き・高さの割合を変えずに表すのに適した図を [　　] 図という。",
+        answers: ["等角", "とうかく", "等角図", "とうかくず"],
+        displayAnswer: "等角（等角図）",
+        preferredKanji: "等角",
+        hint: "漢字2文字。3つの軸の角度がすべて等しい（120°）ことから名付けられました。",
+        exp: "「等角図」は、立体を1つの図で立体的にわかりやすく表す製図法です。幅・奥行き・高さの割合が実物と同じになります。",
+        point: "問題文に「[　　] 図」とある場合は「等角」と答える。"
+      },
+      {
+        id: 6,
+        cat: "等角図と正投影図",
+        q: "等角図では、立体の底面の直角に交わる2辺を、水平線に対して [　　] °傾けてかく。",
+        answers: ["30", "３０", "30度", "３０度", "さんじゅう"],
+        displayAnswer: "30（°）",
+        unit: "°",
+        hint: "2桁の数字です。三角定規の細い方の角と同じ角度！",
+        exp: "等角図では、水平線に対して左右それぞれ30°ずつ傾けて線をかきます。",
+        point: "3つの軸が交わる角はそれぞれ120°、水平線との傾きは30°！"
+      },
+      {
+        id: 7,
+        cat: "等角図と正投影図",
+        q: "等角図では、幅・奥行き・高さの割合は [　　] と同じ（1：1：1）にする。",
+        answers: ["実物", "じつぶつ"],
+        displayAnswer: "実物",
+        preferredKanji: "実物",
+        hint: "漢字2文字。「実際のもの」という意味のことばです。",
+        exp: "等角図は、幅(a)・奥行き(b)・高さ(c)の比率を「a：b：c ＝ 1：1：1」、つまり「実物」と同じ割合でかきます。",
+        point: "「実物と同じ」＝ 割合を変えずに表すのに適している！"
+      },
+      {
+        id: 8,
+        cat: "等角図と正投影図",
+        q: "等角図の性質をまとめると、幅・奥行き・高さの [　　] を変えずに表すのに適している。",
+        answers: ["割合", "わりあい"],
+        displayAnswer: "割合",
+        preferredKanji: "割合",
+        hint: "漢字2文字。「比」や「比率」に近いことばです。",
+        exp: "等角図は、幅・奥行き・高さの「割合」を変えずに1つの図で立体感を表すことができます。",
+        point: "キャビネット図（奥行きを半分にする）との違いを区別しよう。"
+      },
+      {
+        id: 9,
+        cat: "等角図と正投影図",
+        q: "立体の手前に透明な3つの図面を置き、各方向から見た形をかいて正確な部品の形や寸法を表す方法を [　　] による正投影図という。",
+        answers: ["第三角法", "第3角法", "だいさんかくほう"],
+        displayAnswer: "第三角法",
+        preferredKanji: "第三角法",
+        hint: "漢字4文字（または数字交じり）。「第○角法」です。",
+        exp: "日本のJIS規格で標準として使われている正投影図の表し方が「第三角法」です。",
+        point: "漢字で「第三角法」と正確に書けるようにしよう。"
+      },
+      {
+        id: 10,
+        cat: "等角図と正投影図",
+        q: "第三角法では、各図面をそれぞれの面の [　　] から見た形をかく。",
+        answers: ["正面", "しょうめん"],
+        displayAnswer: "正面",
+        preferredKanji: "正面",
+        hint: "漢字2文字。斜めではなく「まっすぐ向き合った方向」のことです。",
+        exp: "平面図なら真上の正面から、立画面なら前の正面から、側画面なら右横の正面からというように、各図面を「正面」から見た形をかきます。",
+        point: "正面から見るからこそ、角度や長さがゆがまず正確な寸法を表せます。"
+      },
+      {
+        id: 11,
+        cat: "等角図と正投影図",
+        q: "下の第三角法の配置図で、①（上の図面）の名称は [　　] 図という。",
+        answers: ["平面", "へいめん", "平面図", "へいめんず"],
+        displayAnswer: "平面（平面図）",
+        preferredKanji: "平面",
+        hint: "立体を真上から見た図です。",
+        exp: "立体を上から見た図を「平面図」といい、第三角法では正面図の真上に配置します。",
+        point: "配置を丸暗記：上＝平面図、左下＝正面図、右下＝右側面図。",
+        svg: `<svg viewBox="0 0 260 190" width="260" height="190" xmlns="http://www.w3.org/2000/svg">
+          <rect x="20" y="15" width="95" height="65" fill="#ccfbf1" stroke="#0f766e" stroke-width="2.5"/>
+          <text x="67" y="53" font-size="16" font-weight="bold" fill="#0f766e" text-anchor="middle">① [ ？ ]図</text>
+          <rect x="20" y="100" width="95" height="70" fill="#f8fafc" stroke="#475569" stroke-width="2"/>
+          <text x="67" y="140" font-size="14" font-weight="bold" fill="#475569" text-anchor="middle">②</text>
+          <rect x="140" y="100" width="95" height="70" fill="#f8fafc" stroke="#475569" stroke-width="2"/>
+          <text x="187" y="140" font-size="14" font-weight="bold" fill="#475569" text-anchor="middle">③</text>
+          <line x1="128" y1="10" x2="128" y2="180" stroke="#94a3b8" stroke-dasharray="4 3"/>
+          <line x1="10" y1="90" x2="245" y2="90" stroke="#94a3b8" stroke-dasharray="4 3"/>
+        </svg>`,
+        svgCaption: "第三角法による正投影図の配置"
+      },
+      {
+        id: 12,
+        cat: "等角図と正投影図",
+        q: "上の配置図で、②（左下の図面）の名称は [　　] 図という。",
+        answers: ["正面", "しょうめん", "正面図", "しょうめんず"],
+        displayAnswer: "正面（正面図）",
+        preferredKanji: "正面",
+        hint: "立体の最も特徴がよくわかる向き（前）から見た図です。",
+        exp: "立体を前から見た基準となる図を「正面図」といい、第三角法では左下に配置します。",
+        point: "正面図をかいてから、その上と右に補助線を伸ばして平面図・右側面図をかきます。"
+      },
+      {
+        id: 13,
+        cat: "等角図と正投影図",
+        q: "上の配置図で、③（右下の図面）の名称は [　　] 図という。",
+        answers: ["右側面", "みぎそくめん", "右側面図", "みぎそくめんず"],
+        displayAnswer: "右側面（右側面図）",
+        preferredKanji: "右側面",
+        hint: "ただの「側面図」ではなく、左右どちら側かを明確にして漢字3文字で答えます。",
+        exp: "正面図の右隣に配置するのは、立体を右側から見た「右側面図」です。",
+        point: "テストでは「側面図」だけだと減点されることが多いので、必ず「右側面図」と書こう！"
+      },
+
+      // 3. 材料取り（けがき）
+      {
+        id: 14,
+        cat: "材料取り（けがき）",
+        q: "直角を測ったり長い直線をひいたりするL字形のけがき工具を [　　] という。",
+        answers: ["さしがね", "指矩", "差し金"],
+        displayAnswer: "さしがね",
+        hint: "ひらがな4文字の定番工具です。",
+        exp: "「さしがね」は直角の確認や寸法取り、けがきに使うL字形の定規です。",
+        point: "長い方を「長手」、短い方を「妻手」という名前もセットで覚えよう。"
+      },
+      {
+        id: 15,
+        cat: "材料取り（けがき）",
+        q: "さしがねの長い方の部分を [　　]、短い方の部分を [　　] という。（※ここでは『長い方』を答えてください）",
+        answers: ["長手", "ながて"],
+        displayAnswer: "長手",
+        preferredKanji: "長手",
+        hint: "漢字2文字。「長い」＋「手」です。",
+        exp: "さしがねの長い方を「長手（ながて）」、短い方を「妻手（つまて）」といいます。線をかくときは、長手の内側を材料の基準面に密着させ、妻手の外側を使って線をひきます。",
+        point: "短い方は「妻手（つまて）」。あわせて覚えよう！"
+      },
+      {
+        id: 16,
+        cat: "材料取り（けがき）",
+        q: "さしがねを使って線をかくときは、長手の内側を材料の [　　] に密着させ、妻手の外側を使う。",
+        answers: ["基準面", "きじゅんめん"],
+        displayAnswer: "基準面",
+        preferredKanji: "基準面",
+        hint: "漢字3文字。寸法を測るもとになる面のことです。",
+        exp: "「基準面」に長手の内側をぴったり密着させることで、正確な直角の線をけがくことができます。",
+        point: "けがくときは「長さ・幅・厚み」のそれぞれの基準面を決めるのが鉄則。"
+      },
+      {
+        id: 17,
+        cat: "材料取り（けがき）",
+        q: "こばや角材に斜めの線や直角の線をけがくときに使う、角度を自在に変えられる工具を [　　] という。",
+        answers: ["自由角定規", "じゆうかくじょうぎ", "自由定規"],
+        displayAnswer: "自由角定規",
+        preferredKanji: "自由角定規",
+        hint: "漢字5文字。「自由に角度を変えられる定規」です。",
+        exp: "「自由角定規」は、こばや角材などに同じ角度の線を連続してけがくときに便利です。",
+        point: "「こばや角材にけがくときに使う」というキーワードが出たら自由角定規！"
+      },
+      {
+        id: 18,
+        cat: "材料取り（けがき）",
+        q: "基準面からの幅を同じ寸法で平行にとるとき（平行線をけがくとき）に使う工具を [　　] という。",
+        answers: ["けびき", "毛引き", "罫引き"],
+        displayAnswer: "けびき",
+        hint: "ひらがな3文字。刃（針）で材料の表面に筋をつける工具です。",
+        exp: "「けびき」は、基準面に当て板を密着させて滑らせることで、基準面から一定の幅の平行線を正確にけがくことができる工具です。",
+        point: "「基準面からの幅を同じ寸法でとる」＝ けびき！"
+      },
+      {
+        id: 19,
+        cat: "材料取り（けがき）",
+        q: "のこぎりびきの溝の幅のことを [　　] しろ、かんななどでけずり取る幅のことを「けずりしろ」という。",
+        answers: ["切り", "きり", "切りしろ", "きりしろ"],
+        displayAnswer: "切り（切りしろ）",
+        preferredKanji: "切り",
+        hint: "問題文の後ろに「しろ」がついているので、漢字1文字＋ひらがな1文字で答えます。",
+        exp: "のこぎりで切ると刃の厚みの分だけ木くずになって減るため、あらかじめ「切りしろ」をとっておきます。仕上げにかんなで削る分が「けずりしろ」です。",
+        point: "切りしろ（のこぎり）＋ けずりしろ（かんな）の合計を約4mmとる。"
+      },
+      {
+        id: 20,
+        cat: "材料取り（けがき）",
+        q: "木材をけがくとき、[　　] の部分は切断後に欠け落ちやすく、かたくてくぎが打ちにくいこともあるため、できるだけさけてけがく。",
+        answers: ["節", "ふし"],
+        displayAnswer: "節（ふし）",
+        preferredKanji: "節",
+        hint: "漢字1文字。木の枝があった跡が板の表面に丸く残った部分です。",
+        exp: "木材の「節（ふし）」は周囲よりかたく、くぎが曲がったり割れたりしやすく、切断後に欠け落ちることもあるため、部品に重ならないようさけてけがきます。",
+        point: "「節をさける」理由も記述問題でよく問われます！"
+      },
+      {
+        id: 21,
+        cat: "材料取り（けがき）",
+        q: "けがき寸法線をかく順序：線A（部品①の仕上がり寸法線）をかいたあと、線Aより切りしろとけずりしろの幅 [　　] mm程度をとって線Bをけがく。",
+        answers: ["4", "４", "4mm", "４mm", "よん"],
+        displayAnswer: "4（mm）",
+        unit: "mm",
+        hint: "1桁の数字です（図では2mm＋2mmとなっています）。",
+        exp: "切りしろとけずりしろの幅は合わせて約4mm程度とります。線Aと線Bの間を4mmにしておくと、その真ん中の線Cで切ったとき、両側に約2mmずつ余裕が残ります。",
+        point: "数字の「4（mm）」と、その真ん中（2mmずつ）の仕組みをしっかり理解しよう。",
+        svg: `<svg viewBox="0 0 320 140" width="320" height="140" xmlns="http://www.w3.org/2000/svg">
+          <rect x="20" y="35" width="280" height="75" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
+          <text x="65" y="78" font-size="14" font-weight="bold" fill="#78350f" text-anchor="middle">部品②</text>
+          <text x="250" y="78" font-size="14" font-weight="bold" fill="#78350f" text-anchor="middle">部品①</text>
+          <!-- B, C, A lines -->
+          <line x1="135" y1="35" x2="135" y2="110" stroke="#0f766e" stroke-width="2"/>
+          <line x1="155" y1="35" x2="155" y2="110" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="4 3"/>
+          <line x1="175" y1="35" x2="175" y2="110" stroke="#0f766e" stroke-width="2"/>
+          <text x="135" y="25" font-size="13" font-weight="bold" fill="#0f766e" text-anchor="middle">線B</text>
+          <text x="155" y="20" font-size="13" font-weight="bold" fill="#dc2626" text-anchor="middle">線C(切断線)</text>
+          <text x="175" y="25" font-size="13" font-weight="bold" fill="#0f766e" text-anchor="middle">線A</text>
+          <!-- Dimension 4mm -->
+          <line x1="135" y1="122" x2="175" y2="122" stroke="#1e293b" stroke-width="1.5"/>
+          <text x="155" y="136" font-size="13" font-weight="bold" fill="#1e293b" text-anchor="middle">[ ？ ] mm</text>
+        </svg>`,
+        svgCaption: "切りしろ・けずりしろの幅"
+      },
+      {
+        id: 22,
+        cat: "材料取り（けがき）",
+        q: "上の図で、線Aと線Bの [　　] に切断線（のこぎりびきで切る線）となる線Cをけがく。",
+        answers: ["中間", "ちゅうかん", "真ん中", "まんなか"],
+        displayAnswer: "中間",
+        preferredKanji: "中間",
+        hint: "漢字2文字。「真ん中」を教科書のことばでいうと？",
+        exp: "線Aと線Bの「中間」に線C（切断線）をけがきます。線Aと線Bはそれぞれの部品の「仕上がり寸法線（仕上がり線）」になります。",
+        point: "線A・B＝仕上がり線、線C＝切断線（線Aと線Bの中間）！"
+      },
+
+      // 4. 切断の技能
+      {
+        id: 23,
+        cat: "切断の技能",
+        q: "材料を切断するときは、材料に傷がつかないようあて木をはさみ、[　　] などで作業台にしっかり固定する。",
+        answers: ["クランプ", "くらんぷ", "C型クランプ", "F型クランプ"],
+        displayAnswer: "クランプ",
+        hint: "カタカナ4文字の固定用工具です。",
+        exp: "安全かつ正確に切断するため、材料は「クランプ」などを使って動かないようにしっかり固定します。その際、材料がへこまないよう「あて木」をはさみます。",
+        point: "クランプ＋あて木のセットを覚えよう。"
+      },
+      {
+        id: 24,
+        cat: "切断の技能",
+        q: "切りはじめは、切断線に [　　] や親指の関節・つめをあて、のこ身の「もと」のほうを使ってひき溝をつくる。",
+        answers: ["あて木", "当て木", "あてぎ"],
+        displayAnswer: "あて木",
+        hint: "ひらがな2文字＋漢字1文字。ガイドとして添える木片のことです。",
+        exp: "切りはじめは刃がずれやすいため、切断線に「あて木」や親指の関節・つめをあてて、のこ身の「もと（手元側）」でゆっくりひき溝をつくります。",
+        point: "切りはじめの2ポイント：①「あて木」などをあてる ②のこ身の「もと」を使う！"
+      },
+      {
+        id: 25,
+        cat: "切断の技能",
+        q: "切断するときは、のこ身と顔の中心がそろうように [　　] から見て、まっすぐ切る。",
+        answers: ["真上", "まうえ"],
+        displayAnswer: "真上",
+        preferredKanji: "真上",
+        hint: "漢字2文字。斜めから見ると線がゆがんで見えます。",
+        exp: "のこ身と顔の中心が一直線にそろうように「真上」から見ることで、のこぎりが左右に傾くのを防ぎ、切断線通りにまっすぐ切ることができます。",
+        point: "「真上から見る」は姿勢の問題で頻出！"
+      },
+      {
+        id: 26,
+        cat: "切断の技能",
+        q: "日本ののこぎりは、[　　] ときに力を入れ、刃わたりの [　　] 割程度を使って切る。（※『力を入れるとき』を答えてください）",
+        answers: ["ひく", "引く"],
+        displayAnswer: "ひく",
+        hint: "「ひく」か「押す」のどちらかです。",
+        exp: "日本ののこぎりは「ひく」ときに木を削る刃の向きになっているため、ひくときに力を入れ、押すときは力を抜いて軽く戻します。",
+        point: "「ひく」ときに力を入れ、刃わたりの「8割」程度を使う！"
+      },
+      {
+        id: 27,
+        cat: "切断の技能",
+        q: "のこぎりで切断するときは、刃わたりの [　　] 割程度を大きく使って切る。",
+        answers: ["8", "８", "8割", "８割", "はち"],
+        displayAnswer: "8（割）",
+        unit: "割",
+        hint: "1桁の数字です。刃全体のうち大部分を使います。",
+        exp: "刃の一部だけを使うと疲れやすく曲がりやすいので、刃わたりの「8割」程度を長く大きく使って切ります。",
+        point: "数字の「8（割）」は穴埋めの大定番！"
+      },
+      {
+        id: 28,
+        cat: "切断の技能",
+        q: "切り終わりは材料が欠けやすいので、残りの材料を [　　] てもらい、ひく角度を [　　] にして切る。（※『ひく角度』を漢字2文字で答えてください）",
+        answers: ["水平", "すいへい"],
+        displayAnswer: "水平",
+        preferredKanji: "水平",
+        hint: "漢字2文字。材料の表面に対して「平ら」にする向きです。また、欠けた部分を修正するときも同じ向きに整えます。",
+        exp: "切り終わりは材料の重みでバリッと欠けやすいため、材料を「支え」てもらい、のこぎりをひく角度を「水平」にしてやさしく切り終えます。万一欠けた部分も、切り取って「水平」に修正します。",
+        point: "「支えてもらう」「水平にして切る」「修正も水平にする」の3つをセットで覚えよう！"
+      }
+    ];
+
+    // State
+    let selectedCategory = "all";
+    let currentQuestions = [];
+    let currentIndex = 0;
+    let results = []; // { qObj, userRaw, isCorrect, isSelfCheck }
+    let answeredCurrent = false;
+
+    // Elements
+    const startScreen = document.getElementById("start-screen");
+    const quizScreen = document.getElementById("quiz-screen");
+    const resultScreen = document.getElementById("result-screen");
+
+    const categoryGrid = document.getElementById("category-grid");
+    const shuffleToggle = document.getElementById("shuffle-toggle");
+    const startBtn = document.getElementById("start-btn");
+
+    const progressText = document.getElementById("progress-text");
+    const scoreLive = document.getElementById("score-live");
+    const progressFill = document.getElementById("progress-fill");
+    const qCategory = document.getElementById("q-category");
+    const qText = document.getElementById("q-text");
+    const diagramBox = document.getElementById("diagram-box");
+
+    const answerForm = document.getElementById("answer-form");
+    const answerInput = document.getElementById("answer-input");
+    const unitHint = document.getElementById("unit-hint");
+    const checkBtn = document.getElementById("check-btn");
+    const hintBtn = document.getElementById("hint-btn");
+    const revealBtn = document.getElementById("reveal-btn");
+    const hintBox = document.getElementById("hint-box");
+
+    const explanationBox = document.getElementById("explanation-box");
+    const expTitle = document.getElementById("exp-title");
+    const correctAnswerBanner = document.getElementById("correct-answer-banner");
+    const kanjiNote = document.getElementById("kanji-note");
+    const expBody = document.getElementById("exp-body");
+    const expPoint = document.getElementById("exp-point");
+
+    const quitBtn = document.getElementById("quit-btn");
+    const nextBtn = document.getElementById("next-btn");
+
+    const finalScore = document.getElementById("final-score");
+    const finalRate = document.getElementById("final-rate");
+    const resultTitle = document.getElementById("result-title");
+    const resultMsg = document.getElementById("result-msg");
+    const catStats = document.getElementById("cat-stats");
+    const retryWrongBtn = document.getElementById("retry-wrong-btn");
+    const retryAllBtn = document.getElementById("retry-all-btn");
+    const backHomeBtn = document.getElementById("back-home-btn");
+    const reviewList = document.getElementById("review-list");
+
+    // Category Selection
+    categoryGrid.addEventListener("click", (e) => {
+      const btn = e.target.closest(".mode-btn");
+      if (!btn) return;
+      categoryGrid.querySelectorAll(".mode-btn").forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      selectedCategory = btn.dataset.cat;
+    });
+
+    function shuffleArray(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function normalizeText(str) {
+      if (!str) return "";
+      return str
+        .trim()
+        .replace(/[Ａ-Ｚａ-ｚ０-９]/g, (s) => String.fromCharCode(s.charCodeAt(0) - 0xFEE0))
+        .replace(/\s+/g, "")
+        .toLowerCase();
+    }
+
+    function startQuiz(questionPool) {
+      let pool = questionPool;
+      if (!pool) {
+        pool = selectedCategory === "all"
+          ? [...QUESTIONS]
+          : QUESTIONS.filter((q) => q.cat === selectedCategory);
+      }
+      if (shuffleToggle.checked) {
+        pool = shuffleArray(pool);
+      }
+      currentQuestions = pool;
+      currentIndex = 0;
+      results = [];
+
+      startScreen.classList.add("hidden");
+      resultScreen.classList.add("hidden");
+      quizScreen.classList.remove("hidden");
+
+      renderQuestion();
+    }
+
+    startBtn.addEventListener("click", () => startQuiz());
+
+    function renderQuestion() {
+      answeredCurrent = false;
+      const q = currentQuestions[currentIndex];
+      const total = currentQuestions.length;
+      const correctCount = results.filter((r) => r.isCorrect).length;
+
+      progressText.textContent = `第 ${currentIndex + 1} 問 / ${total} 問`;
+      scoreLive.textContent = `正解数: ${correctCount}`;
+      progressFill.style.width = `${(currentIndex / total) * 100}%`;
+
+      qCategory.textContent = q.cat;
+
+      // Format blanks as visual slots
+      const formattedQ = q.q.replace(/\[　　\]/g, '<span class="blank-slot" data-slot="true">　　</span>');
+      qText.innerHTML = formattedQ;
+
+      if (q.svg) {
+        diagramBox.innerHTML = q.svg + (q.svgCaption ? `<div class="diagram-caption">${q.svgCaption}</div>` : "");
+        diagramBox.classList.remove("hidden");
+      } else {
+        diagramBox.innerHTML = "";
+        diagramBox.classList.add("hidden");
+      }
+
+      if (q.unit) {
+        unitHint.textContent = q.unit;
+        unitHint.classList.remove("hidden");
+      } else {
+        unitHint.textContent = "";
+        unitHint.classList.add("hidden");
+      }
+
+      answerInput.value = "";
+      answerInput.disabled = false;
+      checkBtn.disabled = false;
+      hintBtn.disabled = false;
+      revealBtn.disabled = false;
+
+      hintBox.classList.remove("show");
+      hintBox.textContent = "";
+
+      explanationBox.className = "explanation";
+      kanjiNote.classList.add("hidden");
+      kanjiNote.textContent = "";
+      nextBtn.classList.add("hidden");
+
+      setTimeout(() => answerInput.focus(), 50);
+    }
+
+    hintBtn.addEventListener("click", () => {
+      const q = currentQuestions[currentIndex];
+      hintBox.textContent = `💡 ヒント：${q.hint}`;
+      hintBox.classList.add("show");
+      answerInput.focus();
+    });
+
+    function finishQuestion(userRaw, isCorrect, isRevealedOnly) {
+      if (answeredCurrent) return;
+      answeredCurrent = true;
+
+      const q = currentQuestions[currentIndex];
+      answerInput.disabled = true;
+      checkBtn.disabled = true;
+      hintBtn.disabled = true;
+      revealBtn.disabled = true;
+
+      // Update blank slots in question text
+      const slots = qText.querySelectorAll('[data-slot="true"]');
+      slots.forEach((slot, idx) => {
+        if (idx === 0) {
+          slot.textContent = q.displayAnswer;
+          slot.classList.add(isCorrect ? "revealed-correct" : "revealed-wrong");
+        }
+      });
+
+      results.push({
+        qObj: q,
+        userRaw: userRaw,
+        isCorrect: isCorrect,
+        isRevealedOnly: isRevealedOnly
+      });
+
+      const correctCount = results.filter((r) => r.isCorrect).length;
+      scoreLive.textContent = `正解数: ${correctCount}`;
+      progressFill.style.width = `${((currentIndex + 1) / currentQuestions.length) * 100}%`;
+
+      explanationBox.classList.remove("is-correct", "is-wrong", "is-check");
+      if (isCorrect) {
+        explanationBox.classList.add("show", "is-correct");
+        expTitle.textContent = "⭕ 正解！";
+      } else if (isRevealedOnly) {
+        explanationBox.classList.add("show", "is-wrong");
+        expTitle.textContent = "📖 解答と解説";
+      } else {
+        explanationBox.classList.add("show", "is-wrong");
+        expTitle.textContent = `❌ 惜しい！（あなたの解答: ${userRaw || "未入力"}）`;
+      }
+
+      correctAnswerBanner.innerHTML = `正解：<strong>${q.displayAnswer}</strong>`;
+
+      // Check if user answered in hiragana/alternative when kanji is preferred
+      if (isCorrect && q.preferredKanji && normalizeText(userRaw) !== normalizeText(q.preferredKanji)) {
+        kanjiNote.textContent = `✏️ テスト本番では漢字などで「${q.preferredKanji}」と書けるようにしよう！`;
+        kanjiNote.classList.remove("hidden");
+      } else {
+        kanjiNote.classList.add("hidden");
+      }
+
+      expBody.textContent = q.exp;
+      expPoint.innerHTML = `<strong>テストのポイント：</strong>${q.point}`;
+
+      nextBtn.textContent = currentIndex === currentQuestions.length - 1 ? "結果を見る →" : "次の問題へ →";
+      nextBtn.classList.remove("hidden");
+      nextBtn.focus();
+    }
+
+    answerForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      if (answeredCurrent) return;
+
+      const raw = answerInput.value.trim();
+      if (!raw) {
+        answerInput.focus();
+        return;
+      }
+
+      const q = currentQuestions[currentIndex];
+      const normInput = normalizeText(raw);
+      const isCorrect = q.answers.some((ans) => normalizeText(ans) === normInput);
+
+      finishQuestion(raw, isCorrect, false);
+    });
+
+    revealBtn.addEventListener("click", () => {
+      if (answeredCurrent) return;
+      finishQuestion("", false, true);
+    });
+
+    nextBtn.addEventListener("click", () => {
+      currentIndex++;
+      if (currentIndex < currentQuestions.length) {
+        renderQuestion();
+      } else {
+        showResults();
+      }
+    });
+
+    quitBtn.addEventListener("click", () => {
+      quizScreen.classList.add("hidden");
+      resultScreen.classList.add("hidden");
+      startScreen.classList.remove("hidden");
+    });
+
+    function showResults() {
+      quizScreen.classList.add("hidden");
+      resultScreen.classList.remove("hidden");
+
+      const total = results.length;
+      const correct = results.filter((r) => r.isCorrect).length;
+      const rate = total > 0 ? Math.round((correct / total) * 100) : 0;
+
+      finalScore.textContent = `${correct}/${total}`;
+      finalRate.textContent = `${rate}%`;
+
+      if (rate === 100) {
+        resultTitle.textContent = "パーフェクト！全問正解です！";
+        resultMsg.textContent = "用語も漢字もバッチリ書けています。本番でもこの調子で自信を持って挑みましょう！";
+      } else if (rate >= 80) {
+        resultTitle.textContent = "素晴らしい成績です！";
+        resultMsg.textContent = "かなり定着しています。間違えた数問を解き直せば完璧です。";
+      } else if (rate >= 60) {
+        resultTitle.textContent = "あと一歩！基礎はできています";
+        resultMsg.textContent = "惜しい問題やど忘れした用語を「間違えた問題だけ解き直す」で復習しよう。";
+      } else {
+        resultTitle.textContent = "ここから仕上げよう！";
+        resultMsg.textContent = "まずは4択版で流れをつかみ、もう一度この穴埋めテストで用語を書く練習をすると効果的です。";
+      }
+
+      // Category stats
+      const statsMap = {};
+      results.forEach((r) => {
+        const c = r.qObj.cat;
+        if (!statsMap[c]) statsMap[c] = { total: 0, correct: 0 };
+        statsMap[c].total++;
+        if (r.isCorrect) statsMap[c].correct++;
+      });
+
+      catStats.innerHTML = "";
+      Object.entries(statsMap).forEach(([cat, st]) => {
+        const p = Math.round((st.correct / st.total) * 100);
+        const div = document.createElement("div");
+        div.className = "cat-stat-item";
+        div.innerHTML = `<strong>${cat}</strong>${st.correct} / ${st.total} 問正解（${p}%）`;
+        catStats.appendChild(div);
+      });
+
+      const wrongPool = results.filter((r) => !r.isCorrect).map((r) => r.qObj);
+      if (wrongPool.length > 0) {
+        retryWrongBtn.classList.remove("hidden");
+        retryWrongBtn.textContent = `間違えた問題だけ解き直す（${wrongPool.length}問）`;
+        retryWrongBtn.onclick = () => startQuiz(wrongPool);
+      } else {
+        retryWrongBtn.classList.add("hidden");
+      }
+
+      retryAllBtn.onclick = () => startQuiz(currentQuestions);
+      backHomeBtn.onclick = () => {
+        resultScreen.classList.add("hidden");
+        startScreen.classList.remove("hidden");
+      };
+
+      reviewList.innerHTML = "";
+      results.forEach((r, idx) => {
+        const div = document.createElement("div");
+        div.className = `review-item ${r.isCorrect ? "ok" : "ng"}`;
+        const userAnsText = r.isRevealedOnly ? "（答えを見た）" : (r.userRaw || "未入力");
+        div.innerHTML = `
+          <div style="font-weight:700; margin-bottom:4px;">
+            ${r.isCorrect ? "⭕" : "❌"} 第${idx + 1}問 [${r.qObj.cat}]
+          </div>
+          <div style="margin-bottom:4px;">${r.qObj.q.replace(/\[　　\]/g, `<strong>【${r.qObj.displayAnswer}】</strong>`)}</div>
+          <div style="font-size:12.5px; color:var(--muted);">
+            あなたの解答：${userAnsText} ／ 正解：<strong>${r.qObj.displayAnswer}</strong>
+          </div>
+        `;
+        reviewList.appendChild(div);
+      });
+    }
+  </script>
+</body>
+</html>

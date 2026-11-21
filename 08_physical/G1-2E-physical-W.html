@@ -1,0 +1,1573 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>中1 保健体育 2学期末テスト対策 記述・穴埋め一問一答（全44問）</title>
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --card: #ffffff;
+      --primary: #1d6fa5;
+      --primary-dark: #14527c;
+      --primary-light: #e8f3fb;
+      --accent: #0f9d8a;
+      --warn-bg: #fff8e6;
+      --warn-border: #f59e0b;
+      --warn-text: #92400e;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #dbe4ef;
+      --correct-bg: #e8f8ef;
+      --correct-border: #1e9e5a;
+      --correct-text: #136f3e;
+      --wrong-bg: #fdecec;
+      --wrong-border: #dc3545;
+      --wrong-text: #9f1f2c;
+      --shadow: 0 8px 24px rgba(15, 35, 60, 0.08);
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: linear-gradient(135deg, #165b8a, #0f8b8d);
+      color: #fff;
+      padding: 20px 16px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.32rem;
+      letter-spacing: 0.02em;
+    }
+
+    header p {
+      margin: 6px 0 0;
+      font-size: 0.9rem;
+      opacity: 0.92;
+    }
+
+    main {
+      width: 100%;
+      max-width: 820px;
+      margin: 24px auto 40px;
+      padding: 0 16px;
+      flex: 1;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      border: 1px solid var(--border);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* Start Screen */
+    .start-intro {
+      margin-bottom: 18px;
+    }
+
+    .start-intro h2 {
+      margin: 0 0 8px;
+      font-size: 1.2rem;
+      color: var(--primary-dark);
+    }
+
+    .start-intro p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .tip-banner {
+      background: #f0f9ff;
+      border: 1px solid #bae6fd;
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: 0.88rem;
+      color: #0c4a6e;
+      margin-bottom: 16px;
+    }
+
+    .mode-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 16px 0;
+      padding: 14px 16px;
+      background: var(--primary-light);
+      border-radius: 12px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .toggle-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--primary-dark);
+    }
+
+    .toggle-label input {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+
+    .unit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .unit-btn {
+      text-align: left;
+      background: #fff;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      font-family: inherit;
+    }
+
+    .unit-btn:hover {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      transform: translateY(-2px);
+    }
+
+    .unit-btn .unit-title {
+      display: block;
+      font-weight: 700;
+      font-size: 0.98rem;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .unit-btn .unit-meta {
+      display: block;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 13px 22px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.18s ease, transform 0.12s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn-primary:active {
+      transform: scale(0.99);
+    }
+
+    .btn-secondary {
+      background: #fff;
+      color: var(--primary-dark);
+      border: 2px solid var(--primary);
+      border-radius: 12px;
+      padding: 11px 18px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.18s ease;
+    }
+
+    .btn-secondary:hover {
+      background: var(--primary-light);
+    }
+
+    .btn-ghost {
+      background: #f1f5f9;
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 15px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.15s ease;
+    }
+
+    .btn-ghost:hover {
+      background: #e2e8f0;
+    }
+
+    .btn-full {
+      width: 100%;
+    }
+
+    /* Quiz Screen */
+    .quiz-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .unit-badge {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      font-weight: 700;
+      font-size: 0.82rem;
+      padding: 5px 12px;
+      border-radius: 999px;
+      border: 1px solid #c3ddf2;
+    }
+
+    .format-badge {
+      background: #eef2ff;
+      color: #3730a3;
+      font-weight: 700;
+      font-size: 0.78rem;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid #c7d2fe;
+      margin-left: 6px;
+    }
+
+    .quiz-stats {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .progress-wrap {
+      width: 100%;
+      height: 10px;
+      background: #e5edf5;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 22px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .question-text {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin: 0 0 18px;
+      color: var(--text);
+    }
+
+    .blank-pill {
+      display: inline-block;
+      background: #fffbeb;
+      border: 2px dashed #d97706;
+      color: #92400e;
+      padding: 0 10px;
+      margin: 0 3px;
+      border-radius: 8px;
+      font-weight: 800;
+    }
+
+    /* Answer Input Area */
+    .input-area {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .input-label {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+
+    .answer-input {
+      width: 100%;
+      padding: 13px 16px;
+      font-size: 1.05rem;
+      font-family: inherit;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+      background: #fff;
+      color: var(--text);
+    }
+
+    .answer-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(29, 111, 165, 0.15);
+    }
+
+    .answer-input.input-correct {
+      background: var(--correct-bg);
+      border-color: var(--correct-border);
+      color: var(--correct-text);
+      font-weight: 700;
+    }
+
+    .answer-input.input-wrong {
+      background: var(--wrong-bg);
+      border-color: var(--wrong-border);
+      color: var(--wrong-text);
+    }
+
+    .input-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 4px;
+      align-items: center;
+    }
+
+    .hint-box {
+      margin-top: 12px;
+      background: var(--warn-bg);
+      border: 1px solid #fcd34d;
+      color: var(--warn-text);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      animation: fadeIn 0.2s ease;
+    }
+
+    /* Feedback & Explanation */
+    .feedback-box {
+      margin-top: 20px;
+      border-radius: 14px;
+      padding: 18px 20px;
+      border: 2px solid var(--border);
+      animation: fadeIn 0.2s ease;
+    }
+
+    .feedback-box.is-correct {
+      background: var(--correct-bg);
+      border-color: var(--correct-border);
+    }
+
+    .feedback-box.is-wrong {
+      background: var(--wrong-bg);
+      border-color: var(--wrong-border);
+    }
+
+    .feedback-header {
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .feedback-box.is-correct .feedback-header {
+      color: var(--correct-text);
+    }
+
+    .feedback-box.is-wrong .feedback-header {
+      color: var(--wrong-text);
+    }
+
+    .model-answer-box {
+      background: #fff;
+      border-radius: 10px;
+      padding: 10px 14px;
+      margin-bottom: 10px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      font-size: 0.96rem;
+    }
+
+    .model-answer-box .ans-tag {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 800;
+      background: var(--primary);
+      color: #fff;
+      padding: 2px 8px;
+      border-radius: 6px;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+
+    .explanation-body {
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 0.96rem;
+      color: var(--text);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .explanation-body strong {
+      color: var(--primary-dark);
+    }
+
+    .self-grade-btn {
+      background: #fff;
+      color: var(--correct-text);
+      border: 1.5px solid var(--correct-border);
+      border-radius: 8px;
+      padding: 5px 12px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .self-grade-btn:hover {
+      background: var(--correct-bg);
+    }
+
+    .quiz-actions {
+      margin-top: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .quit-link {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 0.88rem;
+      cursor: pointer;
+      text-decoration: underline;
+      font-family: inherit;
+      padding: 4px 0;
+    }
+
+    .quit-link:hover {
+      color: var(--text);
+    }
+
+    /* Result Screen */
+    .result-hero {
+      text-align: center;
+      padding: 12px 0 20px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 20px;
+    }
+
+    .score-circle {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: var(--primary-light);
+      border: 6px solid var(--primary);
+      margin-bottom: 12px;
+    }
+
+    .score-num {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      line-height: 1.1;
+    }
+
+    .score-sub {
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .result-msg {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin: 6px 0 0;
+      color: var(--text);
+    }
+
+    .unit-breakdown {
+      margin: 18px 0 24px;
+    }
+
+    .unit-breakdown h3 {
+      margin: 0 0 12px;
+      font-size: 1rem;
+      color: var(--primary-dark);
+    }
+
+    .breakdown-row {
+      margin-bottom: 10px;
+    }
+
+    .breakdown-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .breakdown-bar-bg {
+      height: 10px;
+      background: #e9eff6;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .breakdown-bar-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 999px;
+    }
+
+    .result-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .review-list {
+      margin-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .review-item {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      background: #fafcff;
+    }
+
+    .review-item.item-wrong {
+      border-left: 5px solid var(--wrong-border);
+    }
+
+    .review-item.item-correct {
+      border-left: 5px solid var(--correct-border);
+    }
+
+    .review-q {
+      font-weight: 700;
+      margin-bottom: 6px;
+      font-size: 0.96rem;
+    }
+
+    .review-ans {
+      font-size: 0.88rem;
+      margin-bottom: 6px;
+      color: var(--muted);
+    }
+
+    .review-exp {
+      font-size: 0.88rem;
+      background: #fff;
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        padding: 18px 14px;
+      }
+      .question-text {
+        font-size: 1.05rem;
+      }
+      .answer-input {
+        font-size: 1rem;
+        padding: 11px 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>中1 保健体育 2学期末テスト対策（記述・穴埋め）</h1>
+    <p>選択肢なしで答えよう！全7単元・44問 1問1答＆即時解説</p>
+  </header>
+
+  <main>
+    <!-- Start Screen -->
+    <section id="start-screen" class="card">
+      <div class="start-intro">
+        <h2>出題範囲を選んでスタート</h2>
+        <p>穴埋め問題や一問一答に自分の力で答えて、テスト本番の記述力・語句の正確な暗記を仕上げましょう。</p>
+      </div>
+
+      <div class="tip-banner">
+        <strong>採点のコツ：</strong>漢字・ひらがな・全角/半角の違いはある程度自動で正解と判定します。また、意味は合っているのに表現が少し違って不正解になった場合は、解説画面で<strong>「自分の答えを正解にする」</strong>こともできます。Enterキーで「答え合わせ → 次の問題」とテンポよく進められます。
+      </div>
+
+      <div class="mode-options">
+        <label class="toggle-label">
+          <input type="checkbox" id="shuffle-toggle" />
+          問題をランダムな順番で出題する
+        </label>
+      </div>
+
+      <button class="btn-primary btn-full" id="start-all-btn">
+        全範囲（44問）まとめて挑戦する
+      </button>
+
+      <div class="unit-grid" id="unit-grid"></div>
+    </section>
+
+    <!-- Quiz Screen -->
+    <section id="quiz-screen" class="card hidden">
+      <div class="quiz-top">
+        <div>
+          <span class="unit-badge" id="unit-badge">単元名</span>
+          <span class="format-badge" id="format-badge">穴埋め</span>
+        </div>
+        <span class="quiz-stats" id="quiz-stats">1 / 44（正解: 0）</span>
+      </div>
+
+      <div class="progress-wrap">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+
+      <p class="question-text" id="question-text"></p>
+
+      <div class="input-area" id="input-area"></div>
+
+      <div class="input-controls" id="input-controls">
+        <button class="btn-primary" id="check-btn">答え合わせ</button>
+        <button class="btn-ghost" id="hint-btn">ヒントを見る</button>
+        <button class="btn-ghost" id="giveup-btn">わからない（答えを見る）</button>
+      </div>
+
+      <div id="hint-box" class="hint-box hidden"></div>
+
+      <div id="feedback-box" class="feedback-box hidden">
+        <div class="feedback-header" id="feedback-header"></div>
+        <div class="model-answer-box" id="model-answer-box"></div>
+        <div class="explanation-body" id="explanation-body"></div>
+      </div>
+
+      <div class="quiz-actions">
+        <button class="quit-link" id="quit-btn">最初に戻る</button>
+        <button class="btn-primary hidden" id="next-btn">次の問題へ →</button>
+      </div>
+    </section>
+
+    <!-- Result Screen -->
+    <section id="result-screen" class="card hidden">
+      <div class="result-hero">
+        <div class="score-circle">
+          <span class="score-num" id="score-num">0 / 0</span>
+          <span class="score-sub" id="score-pct">0%</span>
+        </div>
+        <p class="result-msg" id="result-msg"></p>
+      </div>
+
+      <div class="unit-breakdown" id="unit-breakdown">
+        <h3>単元別の正答率</h3>
+        <div id="breakdown-list"></div>
+      </div>
+
+      <div class="result-buttons">
+        <button class="btn-primary hidden" id="retry-wrong-btn">間違えた問題だけ復習する</button>
+        <button class="btn-secondary" id="retry-same-btn">同じ範囲をもう一度</button>
+        <button class="btn-secondary" id="back-home-btn">単元選択に戻る</button>
+      </div>
+
+      <details id="review-details" open>
+        <summary style="font-weight:700; cursor:pointer; color:var(--primary-dark);">解答・解説の一覧を見る</summary>
+        <div class="review-list" id="review-list"></div>
+      </details>
+    </section>
+  </main>
+
+  <script>
+    // blanks: 各空欄の正解リスト（先頭が模範解答として表示される）
+    // labels: 複数空欄がある場合のラベル
+    const QUESTIONS = [
+      // 単元1：健康の成り立ち（7問）
+      {
+        unit: "1. 健康の成り立ち",
+        type: "穴埋め",
+        q: "かつての日本では、結核や赤痢などの【　　】が主な死因であったが、衛生環境の改善などにより大きく減少した。",
+        blanks: [
+          ["感染症", "かんせんしょう", "伝染病"]
+        ],
+        hint: "漢字3文字。「〇〇しょう」（人から人へうつる病気）",
+        exp: "かつての日本では、結核や赤痢、肺炎などの<strong>感染症</strong>が死因の上位を占めていましたが、<strong>衛生環境の改善・栄養状態の向上・医療技術の進歩</strong>などにより大きく減少しました。"
+      },
+      {
+        unit: "1. 健康の成り立ち",
+        type: "一問一答",
+        q: "衛生環境の改善や栄養状態の向上、医療技術の進歩などによって死亡率が大幅に減少し、1950年ごろまで死因の多くを占めていた代表的な感染症を1つ答えよ。",
+        blanks: [
+          ["結核", "けっかく", "赤痢", "せきり", "肺炎", "はいえん"]
+        ],
+        hint: "「け〇〇く」または「せ〇〇」（漢字2文字）",
+        exp: "<strong>結核</strong>や<strong>赤痢</strong>などの感染症が代表的な例です。これらが減少したことで日本人の平均寿命は大きく延びました。"
+      },
+      {
+        unit: "1. 健康の成り立ち",
+        type: "穴埋め",
+        q: "近年の日本では、食生活の変化や運動不足などによって、がん・心臓病・脳卒中などの【　　】が死因の上位を占めている。",
+        blanks: [
+          ["生活習慣病", "せいかつしゅうかんびょう"]
+        ],
+        hint: "漢字5文字。「〇〇しゅうかんびょう」",
+        exp: "食生活の変化や運動不足、喫煙・飲酒などの生活習慣が原因となる<strong>生活習慣病</strong>（がん・心臓病・脳卒中など）が、近年の死因の上位を占めています。"
+      },
+      {
+        unit: "1. 健康の成り立ち",
+        type: "穴埋め",
+        q: "2018年に日本の死因の第3位となったのは【　　】である。",
+        blanks: [
+          ["老衰", "ろうすい"]
+        ],
+        hint: "漢字2文字。高齢になり体の働きが自然に衰えて亡くなること。",
+        exp: "高齢化が進み、自然な死を受け入れる考え方が増えたことなどから、2018年には<strong>老衰</strong>が死因の第3位となりました。"
+      },
+      {
+        unit: "1. 健康の成り立ち",
+        type: "穴埋め",
+        q: "健康は、体質・年齢などの素因や運動・食事などの行動からなる【　①　】と、個人を取り巻く状態である【　②　】の2つの要因を良好に保つことで成り立つ。",
+        labels: ["①の要因", "②の要因"],
+        blanks: [
+          ["主体の要因", "主体", "しゅたいのよういん", "しゅたい"],
+          ["環境の要因", "環境", "かんきょうのよういん", "かんきょう"]
+        ],
+        hint: "①「〇〇の要因」（自分自身のこと）、②「〇〇の要因」（周りの状態）",
+        exp: "健康に関わる2つの大きな要因は、個人自身の素因と行動を指す<strong>主体の要因</strong>と、物理的・化学的環境、生物学的環境、社会的環境などの<strong>環境の要因</strong>です。"
+      },
+      {
+        unit: "1. 健康の成り立ち",
+        type: "穴埋め",
+        q: "環境の要因のうち、医療制度や衛生行政、地域の福祉などは【　　】環境に分類される。",
+        blanks: [
+          ["社会的", "しゃかいてき", "社会的環境", "しゃかいてきかんきょう"]
+        ],
+        hint: "「〇〇的」環境（漢字3文字＋的）",
+        exp: "環境の要因には、気温・空気などの「物理的・化学的環境」、ウイルスや細菌などの「生物学的環境」、医療制度や生活環境整備などの<strong>社会的環境</strong>があります。"
+      },
+      {
+        unit: "1. 健康の成り立ち",
+        type: "穴埋め",
+        q: "健康を保持増進するためには、一人ひとりが生活を見直す【　①　】と、環境整備などの【　②　】の両方が必要である。",
+        labels: ["①", "②"],
+        blanks: [
+          ["個人の努力", "個人", "こじんのどりょく", "個人の取り組み"],
+          ["社会的な取り組み", "社会的取り組み", "社会の取り組み", "しゃかいてきなとりくみ", "社会的な努力"]
+        ],
+        hint: "①「〇〇の努力」、②「〇〇的な取り組み」",
+        exp: "主体の要因を整える<strong>個人の努力</strong>と、環境の要因を整える行政や地域による<strong>社会的な取り組み</strong>の両輪がそろって初めて、健康の保持増進が実現します。"
+      },
+
+      // 単元2：運動と健康・運動指針（7問）
+      {
+        unit: "2. 運動と健康・運動指針",
+        type: "穴埋め",
+        q: "適度な運動には、各器官を発達させ体力を高める身体的効果だけでなく、緊張やストレスを和らげ気分転換ができる【　　】効果もある。",
+        blanks: [
+          ["精神的", "せいしんてき", "精神的効果", "せいしんてきこうか", "心理的"]
+        ],
+        hint: "「〇〇的」効果（心に関する漢字2文字＋的）",
+        exp: "運動には体の各器官（心臓・骨・筋肉・毛細血管など）を発達させる効果とともに、緊張やストレスを和らげる<strong>精神的効果</strong>もあります。"
+      },
+      {
+        unit: "2. 運動と健康・運動指針",
+        type: "穴埋め",
+        q: "健康づくりのための運動が満たすべき「3つの条件」とは、【　①　】であること、【　②　】があること、【　③　】ことである。",
+        labels: ["①", "②", "③"],
+        blanks: [
+          ["安全", "あんぜん", "安全であること"],
+          ["効果", "こうか", "効果があること"],
+          ["楽しい", "たのしい", "楽しいこと"]
+        ],
+        hint: "①ケガをしないこと、②体によく効くこと、③続けたくなる気持ち",
+        exp: "健康づくりのための運動の3つの条件は、<strong>安全</strong>であること・<strong>効果</strong>があること・<strong>楽しい</strong>ことです。無理なく続けられることが大切です。"
+      },
+      {
+        unit: "2. 運動と健康・運動指針",
+        type: "穴埋め",
+        q: "中学生の時期は骨や関節が著しく発育するため、負担のかかる運動を繰り返すと、野球肘やオスグッド病などの【　　】を起こしやすい。",
+        blanks: [
+          ["スポーツ障害", "すぽーつしょうがい"]
+        ],
+        hint: "「スポーツ〇〇」（漢字2文字）",
+        exp: "発育途中の骨や関節に同じ負担を繰り返しかけることで起きるケガを<strong>スポーツ障害</strong>（野球肘、オスグッド病など）といいます。"
+      },
+      {
+        unit: "2. 運動と健康・運動指針",
+        type: "一問一答",
+        q: "運動指針において、ウオーキング・ジョギング・水泳などによって高められる体力要素は何か。",
+        blanks: [
+          ["持久力", "じきゅうりょく", "全身持久力"]
+        ],
+        hint: "漢字3文字。長く運動を続けられる力。",
+        exp: "ウオーキング、ジョギング、水泳、サイクリングなどの有酸素運動は<strong>持久力</strong>を高めます。"
+      },
+      {
+        unit: "2. 運動と健康・運動指針",
+        type: "穴埋め",
+        q: "運動指針によると、持久力を高める運動は「ややきつい〜かなりきつい」強さで、1日10〜30分、週【　　】日以上行うのが望ましい。",
+        blanks: [
+          ["3", "３", "3日", "３日", "さん", "三"]
+        ],
+        hint: "数字1文字（週〇日以上）",
+        exp: "持久力を高める運動は、1日10〜30分を<strong>週3日以上</strong>行うのが目安です（筋力トレーニングは週2日程度）。"
+      },
+      {
+        unit: "2. 運動と健康・運動指針",
+        type: "穴埋め",
+        q: "運動指針において、柔軟性を高める運動として挙げられているのは【　　】である。",
+        blanks: [
+          ["ストレッチング", "ストレッチ", "すとれっちんぐ", "すとれっち"]
+        ],
+        hint: "カタカナ7文字（または5文字）。体を伸ばす運動。",
+        exp: "柔軟性を高める運動は<strong>ストレッチング</strong>（1日5〜30分）です。ケガの予防や疲労回復にも役立ちます。"
+      },
+      {
+        unit: "2. 運動と健康・運動指針",
+        type: "穴埋め",
+        q: "歩くより少し速いくらいのペースで、景色を楽しんだり会話したりしながらゆっくり長い距離を走るトレーニング方法を【　　】という。",
+        blanks: [
+          ["ロング・スロー・ディスタンス", "ロングスローディスタンス", "LSD", "lsd"]
+        ],
+        hint: "カタカナまたはアルファベット3文字（L〇〇）",
+        exp: "「きつくない」「ゆっくり」でも心肺機能を高める効果が高い走り方を<strong>ロング・スロー・ディスタンス（LSD）</strong>といいます。"
+      },
+
+      // 単元3：食生活と健康（5問）
+      {
+        unit: "3. 食生活と健康",
+        type: "穴埋め",
+        q: "私たちがじっとしているときにも消費している、生命を維持するために最小限必要なエネルギーの消費量を【　　】という。",
+        blanks: [
+          ["基礎代謝量", "きそたいしゃりょう", "基礎代謝", "きそたいしゃ"]
+        ],
+        hint: "漢字5文字。「きそ〇〇しゃりょう」",
+        exp: "心臓を動かしたり体温を保ったりするために、安静時でも消費される最小限のエネルギー量を<strong>基礎代謝量</strong>といいます。"
+      },
+      {
+        unit: "3. 食生活と健康",
+        type: "穴埋め",
+        q: "1日に消費するエネルギー量は、「【　①　】 ＋ 活動や運動によって消費するエネルギー量」で求めることができる。",
+        blanks: [
+          ["基礎代謝量", "きそたいしゃりょう", "基礎代謝"]
+        ],
+        hint: "前の問題と同じ、生命維持に最小限必要なエネルギー量。",
+        exp: "1日の総消費エネルギー ＝ <strong>基礎代謝量</strong> ＋ 活動や運動によって消費するエネルギー量 です。"
+      },
+      {
+        unit: "3. 食生活と健康",
+        type: "穴埋め",
+        q: "活動量が少ない人が普通の食事をとり続けると、【　　】（とりすぎ）になりやすいため、生活の中に積極的に運動を取り入れることが大切である。",
+        blanks: [
+          ["エネルギー過多", "えねるぎーかた", "過多", "エネルギー過剰", "カロリー過多"]
+        ],
+        hint: "「エネルギー〇〇」（漢字2文字）",
+        exp: "消費する量より摂取する量が上回る状態を<strong>エネルギー過多</strong>といいます。肥満や生活習慣病の原因になります。"
+      },
+      {
+        unit: "3. 食生活と健康",
+        type: "計算・記述",
+        q: "体重50kgの人が、ごはん1杯分（約220kcal）のエネルギーを普通の歩行（約3kcal/分）だけで消費しようとすると、およそ何分間歩く必要があるか。（数字で答えよ）",
+        blanks: [
+          ["73", "７３", "73分", "約73分", "74", "73.3"]
+        ],
+        hint: "220 ÷ 3 を計算してみよう！",
+        exp: "220kcal ÷ 3kcal/分 ＝ 73.33… なので、およそ<strong>73分</strong>（約1時間13分）歩く必要があります。"
+      },
+      {
+        unit: "3. 食生活と健康",
+        type: "穴埋め",
+        q: "食物に含まれるさまざまな栄養素は、【　①　】したり【　②　】したりすると、さまざまな障害の原因になる。",
+        labels: ["①", "②"],
+        blanks: [
+          ["不足", "ふそく"],
+          ["とりすぎ", "取りすぎ", "摂りすぎ", "過剰", "食べすぎ", "食べ過ぎ"]
+        ],
+        hint: "①足りないこと（漢字2文字）、②多すぎること（ひらがな4文字）",
+        exp: "栄養素は<strong>不足</strong>しても<strong>とりすぎ</strong>ても健康障害の原因になります。バランスよくとることが重要です。"
+      },
+
+      // 単元4：休養・睡眠と健康（5問）
+      {
+        unit: "4. 休養・睡眠と健康",
+        type: "穴埋め",
+        q: "長時間の学習、運動、作業などがもたらす、眠気やだるさ、頭痛などの心身の状態の変化を【　　】という。",
+        blanks: [
+          ["疲労", "ひろう"]
+        ],
+        hint: "漢字2文字。「つかれ」を表す保健の用語。",
+        exp: "体や心を長く使い続けることで生じる眠気・だるさ・集中力低下などの変化を<strong>疲労</strong>といいます。"
+      },
+      {
+        unit: "4. 休養・睡眠と健康",
+        type: "穴埋め",
+        q: "疲労やストレスが蓄積すると、体の【　　】が低下して感染症にかかりやすくなったり、胃潰瘍・高血圧などの健康障害につながったりする。",
+        blanks: [
+          ["抵抗力", "ていこうりょく", "免疫力", "めんえきりょく"]
+        ],
+        hint: "漢字3文字。「〇〇〇力」（病気やウイルスに負けない力）",
+        exp: "疲労やストレスがたまると体の<strong>抵抗力</strong>が低下し、風邪などの感染症にかかりやすくなります。"
+      },
+      {
+        unit: "4. 休養・睡眠と健康",
+        type: "穴埋め",
+        q: "休養は、心身の疲労を【　①　】したり緊張状態を解消したりするとともに、【　②　】（活力）を養うために必要である。",
+        labels: ["①", "②"],
+        blanks: [
+          ["回復", "かいふく"],
+          ["英気", "えいき", "元気"]
+        ],
+        hint: "①元に戻すこと（漢字2文字）、②「〇気」（漢字2文字）",
+        exp: "休養には、疲労を<strong>回復</strong>させ緊張をほぐす働きと、次の活動に向けた<strong>英気</strong>（活力）を養う働きがあります。"
+      },
+      {
+        unit: "4. 休養・睡眠と健康",
+        type: "穴埋め",
+        q: "世界の平均睡眠時間は【　①　】時間【　②　】分であり、日本人の平均睡眠時間はこれと比べてかなり短い。",
+        labels: ["①時間", "②分"],
+        blanks: [
+          ["8", "８"],
+          ["28", "２８"]
+        ],
+        hint: "①は1桁（8時間台）、②は2桁（20分台後半）",
+        exp: "世界の平均睡眠時間は<strong>8時間28分</strong>です。2021年の日本の平均（男性7時間58分・女性7時間49分）はこれよりかなり短い状況です。"
+      },
+      {
+        unit: "4. 休養・睡眠と健康",
+        type: "一問一答",
+        q: "日本人の睡眠時間が短い理由として挙げられている3つのうち、「労働時間が長いこと」「睡眠に対する関心が薄いこと」以外の、特に若者にも多い原因は何か。",
+        blanks: [
+          ["寝る前のスマートフォンの使用", "寝る前のスマホ使用", "寝る前のスマホ", "スマートフォンの使用", "スマホの使用", "スマホ", "スマートフォン", "携帯電話の使用"]
+        ],
+        hint: "布団に入ってからも画面を見てしまいがちな機器の使用。",
+        exp: "日本人の睡眠時間が短い理由として、労働時間の長さや睡眠への関心の薄さに加え、<strong>寝る前のスマートフォンの使用</strong>が挙げられています。"
+      },
+
+      // 単元5：調和のとれた生活・朝食（5問）
+      {
+        unit: "5. 調和のとれた生活",
+        type: "穴埋め",
+        q: "心身の健康を保持増進するためには、年齢や生活環境に応じて、運動・食事・休養・睡眠の【　　】を送る必要がある。",
+        blanks: [
+          ["調和のとれた生活", "ちょうわのとれたせいかつ", "調和の取れた生活"]
+        ],
+        hint: "「〇〇のとれた生活」",
+        exp: "運動・食事・休養・睡眠のどれか1つに偏らず、バランスのよい<strong>調和のとれた生活</strong>を送ることが大切です。"
+      },
+      {
+        unit: "5. 調和のとれた生活",
+        type: "穴埋め",
+        q: "生活リズムを整えるため、睡眠は【　　】（生体リズム）に合わせて決まった時間帯に眠ることが望ましい。",
+        blanks: [
+          ["体内リズム", "たいないりずむ", "生体リズム"]
+        ],
+        hint: "「〇〇リズム」（体の中にあるリズム）",
+        exp: "人間の体には約1日周期の<strong>体内リズム（生体リズム）</strong>があり、これに合わせて毎日決まった時間帯に寝起きすることが望ましいです。"
+      },
+      {
+        unit: "5. 調和のとれた生活",
+        type: "穴埋め",
+        q: "朝食を食べることで、寝ている間に低下した【　　】を上昇させ、体や脳がしっかり働くようになる。",
+        blanks: [
+          ["体温", "たいおん"]
+        ],
+        hint: "漢字2文字。体のあたたかさ。",
+        exp: "朝食をとると、睡眠中に下がった<strong>体温</strong>が上昇し、午前中から体と脳を活発に働かせることができます。"
+      },
+      {
+        unit: "5. 調和のとれた生活",
+        type: "穴埋め",
+        q: "朝食を食べないと、1回の食事量が増えて食べ過ぎてしまい、【　①　】や【　②　】の発症につながることがある。",
+        labels: ["①", "②"],
+        blanks: [
+          ["肥満", "ひまん"],
+          ["生活習慣病", "せいかつしゅうかんびょう"]
+        ],
+        hint: "①太りすぎ（漢字2文字）、②単元1でも出てきた現代の主な病気（漢字5文字）",
+        exp: "欠食すると空腹から次の食事で食べ過ぎてしまい、<strong>肥満</strong>や<strong>生活習慣病</strong>につながりやすくなります。"
+      },
+      {
+        unit: "5. 調和のとれた生活",
+        type: "穴埋め",
+        q: "近年の中学生の朝食の欠食率は、【　　】時刻や就寝時刻が定まっていない人ほど高いことがわかっている。",
+        blanks: [
+          ["起床", "きしょう", "起きる"]
+        ],
+        hint: "漢字2文字。「就寝（寝ること）」の反対で、朝起きること。",
+        exp: "<strong>起床</strong>時刻や就寝時刻が不規則な人ほど、朝食を抜く（欠食する）割合が高くなります。夜食による胃腸への負担も原因になります。"
+      },
+
+      // 単元6：体の発育・発達とスキャモンの発育曲線（9問）
+      {
+        unit: "6. 体の発育・発達",
+        type: "穴埋め",
+        q: "身長や体重など体の「大きさ」が増すことを【　①　】といい、体の「働き（機能）」が高まることを【　②　】という。",
+        labels: ["①", "②"],
+        blanks: [
+          ["発育", "はついく"],
+          ["発達", "はったつ"]
+        ],
+        hint: "①大きさ＝「発〇」、②働き＝「発〇」",
+        exp: "<strong>発育</strong>は体の大きさが増すこと、<strong>発達</strong>は体の働きが高まることです。テストでよく区別を問われる基本用語です。"
+      },
+      {
+        unit: "6. 体の発育・発達",
+        type: "穴埋め",
+        q: "子どもから大人への移行期である思春期は、人生で2回目の急激な発育が起こる【　　】にあたり、一般に男子より女子の方が早く来ることが多い。",
+        blanks: [
+          ["第2発育急進期", "第２発育急進期", "第二発育急進期", "だいに発育急進期", "だいにはついくきゅうしんき"]
+        ],
+        hint: "「第〇発育〇〇期」（乳幼児期が第1、思春期が第2）",
+        exp: "乳幼児期が「第1発育急進期」、思春期が<strong>第2発育急進期</strong>です。一般に女子の方が男子より早く始まります（個人差があります）。"
+      },
+      {
+        unit: "6. 体の発育・発達",
+        type: "穴埋め",
+        q: "スキャモンの発育曲線において、20歳を100としたとき、12歳ごろに大人以上（180〜200近く）まで発育し、その後減少する型を【　　】という。",
+        blanks: [
+          ["リンパ型", "りんぱ型", "リンパ", "りんぱがた"]
+        ],
+        hint: "「〇〇〇型」（扁桃や胸腺などの型）",
+        exp: "扁桃や胸腺などが含まれる<strong>リンパ型</strong>は、思春期前に大人の約2倍近くまで発育し、その後大人に向けて減少するのが特徴です。"
+      },
+      {
+        unit: "6. 体の発育・発達",
+        type: "一問一答",
+        q: "スキャモンの発育曲線の「リンパ型」に含まれる代表的な器官を1つ答えよ。",
+        blanks: [
+          ["扁桃", "へんとう", "胸腺", "きょうせん", "扁桃腺", "リンパ節"]
+        ],
+        hint: "「へんとう」または「きょうせん」",
+        exp: "リンパ型の代表的な器官は<strong>扁桃（へんとう）</strong>や<strong>胸腺（きょうせん）</strong>などです。"
+      },
+      {
+        unit: "6. 体の発育・発達",
+        type: "穴埋め",
+        q: "スキャモンの発育曲線で、脳や脊髄などが含まれ、早くから発育して思春期には大人と同じくらいまで発達している型を【　　】という。",
+        blanks: [
+          ["神経型", "しんけい型", "神経", "しんけいがた"]
+        ],
+        hint: "「〇〇型」（脳や脊髄の働きを表す漢字2文字＋型）",
+        exp: "脳や脊髄などは<strong>神経型</strong>に分類され、幼少期に急速に発育して思春期にはほぼ大人と同じ大きさになります。"
+      },
+      {
+        unit: "6. 体の発育・発達",
+        type: "穴埋め",
+        q: "スキャモンの発育曲線で、骨・筋肉・肺・心臓・胃腸など大部分の器官が当てはまり、赤ちゃんの頃と思春期に急に発育する型を【　　】という。",
+        blanks: [
+          ["一般型", "いっぱん型", "一般", "いっぱんがた"]
+        ],
+        hint: "「〇〇型」（S字型のカーブを描く標準的な型）",
+        exp: "骨や筋肉、多くの内臓器官は<strong>一般型</strong>で、第1発育急進期（乳幼児期）と第2発育急進期（思春期）の2回大きく伸びます。"
+      },
+      {
+        unit: "6. 体の発育・発達",
+        type: "穴埋め",
+        q: "スキャモンの発育曲線で、卵巣や精巣などが含まれ、思春期に急速に発達して【　①　】が現れる型を【　②　】という。",
+        labels: ["①特徴", "②型"],
+        blanks: [
+          ["二次性徴", "にじせいちょう", "第二次性徴"],
+          ["生殖型", "せいしょく型", "生殖", "せいしょくがた"]
+        ],
+        hint: "①思春期に現れる男女の体の特徴、②「〇〇型」",
+        exp: "卵巣・精巣などは<strong>生殖型</strong>で、思春期に急速に発達し、声変わりや月経などの<strong>二次性徴</strong>が現れます。"
+      },
+      {
+        unit: "6. 体の発育・発達",
+        type: "穴埋め",
+        q: "無理なダイエットをすると、肉・魚・卵などに多い【　①　】が不足して筋肉量が減り、【　②　】が下がって脂肪が燃えにくい体になってしまう。",
+        labels: ["①栄養素", "②"],
+        blanks: [
+          ["たんぱく質", "タンパク質", "たんぱくしつ"],
+          ["基礎代謝", "きそたいしゃ", "基礎代謝量", "きそたいしゃりょう"]
+        ],
+        hint: "①筋肉をつくる栄養素、②じっとしていても消費される代謝",
+        exp: "無理な食事制限で<strong>たんぱく質</strong>が不足すると筋肉が減り、<strong>基礎代謝</strong>が下がってかえって太りやすく痩せにくい体になります。"
+      },
+      {
+        unit: "6. 体の発育・発達",
+        type: "一問一答",
+        q: "思春期は体が大きく発育するため、たんぱく質のほかに特に十分にとるべき無機質（ミネラル）を2つ（骨を作る成分・血液を作る成分）答えよ。",
+        labels: ["骨を作る成分", "血液を作る成分"],
+        blanks: [
+          ["カルシウム", "かるしうむ"],
+          ["鉄分", "鉄", "てつぶん", "てつ"]
+        ],
+        hint: "牛乳などに多い「カ〇〇〇〇」、レバーやほうれん草に多い「〇分」",
+        exp: "思春期は骨の発育に必要な<strong>カルシウム</strong>と、血液の増加や月経などに関わる<strong>鉄分（鉄）</strong>を十分にとることが大切です。"
+      },
+
+      // 単元7：呼吸器・循環器の発達と運動（6問）
+      {
+        unit: "7. 呼吸器・循環器",
+        type: "穴埋め",
+        q: "肺の中には無数の小さな袋である【　①　】があり、それをおおう毛細血管との間で酸素と二酸化炭素を交換する【　②　】が行われている。",
+        labels: ["①", "②"],
+        blanks: [
+          ["肺胞", "はいほう"],
+          ["ガス交換", "がすこうかん"]
+        ],
+        hint: "①漢字2文字「肺〇」、②「〇〇交換」",
+        exp: "肺の中の小さな袋を<strong>肺胞</strong>といい、肺胞と毛細血管の間で酸素（O₂）と二酸化炭素（CO₂）を入れ替える働きを<strong>ガス交換</strong>といいます。"
+      },
+      {
+        unit: "7. 呼吸器・循環器",
+        type: "穴埋め",
+        q: "肺そのものは自分で膨らんだりしぼんだりできないため、肺の周りにある骨と筋肉でできた【　①　】や【　②　】が動くことで呼吸を行っている。",
+        labels: ["①", "②"],
+        blanks: [
+          ["胸郭", "きょうかく"],
+          ["横隔膜", "おうかくまく"]
+        ],
+        hint: "①胸を囲む骨と筋肉の枠「〇〇かく」、②胸とお腹の間にある膜「〇〇かくまく」",
+        exp: "呼吸は、肺の周りの<strong>胸郭</strong>や<strong>横隔膜</strong>が広がったり狭まったりすることで、肺に空気を出し入れしています。"
+      },
+      {
+        unit: "7. 呼吸器・循環器",
+        type: "穴埋め",
+        q: "5歳の頃と中学生の現在を比べると、呼吸器の発達によって1回の呼吸量が増えるため、安静時の呼吸数は【　①　】し、肺活量は【　②　】する。",
+        labels: ["①（増加／減少）", "②（増大／減少）"],
+        blanks: [
+          ["減少", "げんしょう", "減る"],
+          ["増大", "ぞうだい", "増加", "ぞうか", "増える"]
+        ],
+        hint: "1回にたくさん吸えるようになるので、回数は…？ 肺活量は…？",
+        exp: "呼吸器が発達すると肺胞の数が増えて1回の呼吸量が増えるため、安静時の呼吸数は<strong>減少</strong>し、肺活量は<strong>増大</strong>します。"
+      },
+      {
+        unit: "7. 呼吸器・循環器",
+        type: "穴埋め",
+        q: "循環器が発達すると、心臓が大きくなり収縮力が強くなるため、1回の【　①　】が増大し、安静時の【　②　】は減少する。",
+        labels: ["①心臓が1回に送り出す血液の量", "②1分間の脈拍の回数"],
+        blanks: [
+          ["拍出量", "はくしゅつりょう", "1回の拍出量"],
+          ["脈拍数", "みゃくはくすう", "心拍数", "脈拍"]
+        ],
+        hint: "①「〇〇出量」（漢字3文字）、②「〇〇拍数」（漢字3文字）",
+        exp: "心臓が強くなると1回の<strong>拍出量</strong>が増大するため、少ない回数で全身に血液を送れるようになり、安静時の<strong>脈拍数</strong>は減少します。"
+      },
+      {
+        unit: "7. 呼吸器・循環器",
+        type: "穴埋め",
+        q: "思春期は、呼吸器・循環器の機能とかかわりの深い【　　】を高めるのに最も適した時期である。",
+        blanks: [
+          ["持久力", "じきゅうりょく", "全身持久力"]
+        ],
+        hint: "漢字3文字。長く運動し続ける力。",
+        exp: "呼吸器・循環器が盛んに発達する思春期は、<strong>持久力</strong>を高めるのに最も適した時期とされています。"
+      },
+      {
+        unit: "7. 呼吸器・循環器",
+        type: "穴埋め",
+        q: "思春期に持久力を高めるには、「【　①　】」（脈拍数【　②　】〜【　③　】拍/分）程度の運動を継続的に行うことが効果的である。",
+        labels: ["①運動の強さ", "②下限", "③上限"],
+        blanks: [
+          ["少しきつい", "ややきつい", "すこしきつい"],
+          ["120", "１２０"],
+          ["140", "１４０"]
+        ],
+        hint: "①「〇〇きつい」、②〜③ 1分間の脈拍数「1〇0〜1〇0拍/分」",
+        exp: "持久力を効果的に高める運動の強さの目安は、<strong>「少しきつい」（脈拍数120〜140拍/分）</strong>程度を継続的に行うことです。"
+      }
+    ];
+
+    const startScreen = document.getElementById("start-screen");
+    const quizScreen = document.getElementById("quiz-screen");
+    const resultScreen = document.getElementById("result-screen");
+
+    const shuffleToggle = document.getElementById("shuffle-toggle");
+    const unitGrid = document.getElementById("unit-grid");
+
+    const unitBadge = document.getElementById("unit-badge");
+    const formatBadge = document.getElementById("format-badge");
+    const quizStats = document.getElementById("quiz-stats");
+    const progressBar = document.getElementById("progress-bar");
+    const questionText = document.getElementById("question-text");
+    const inputArea = document.getElementById("input-area");
+    const inputControls = document.getElementById("input-controls");
+    const checkBtn = document.getElementById("check-btn");
+    const hintBtn = document.getElementById("hint-btn");
+    const giveupBtn = document.getElementById("giveup-btn");
+    const hintBox = document.getElementById("hint-box");
+    const feedbackBox = document.getElementById("feedback-box");
+    const feedbackHeader = document.getElementById("feedback-header");
+    const modelAnswerBox = document.getElementById("model-answer-box");
+    const explanationBody = document.getElementById("explanation-body");
+    const nextBtn = document.getElementById("next-btn");
+
+    let activeQuestions = [];
+    let currentIndex = 0;
+    let score = 0;
+    let answered = false;
+    let history = [];
+    let lastFilterUnit = null;
+
+    function shuffleArray(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    // 文字列正規化（全角英数→半角、空白・中黒除去、小文字化）
+    function normalizeText(str) {
+      if (!str) return "";
+      let s = str.trim();
+      s = s.replace(/[Ａ-Ｚａ-ｚ０-９]/g, (ch) =>
+        String.fromCharCode(ch.charCodeAt(0) - 0xFEE0)
+      );
+      s = s.replace(/[\s　・･、,。．\.]/g, "");
+      s = s.toLowerCase();
+      return s;
+    }
+
+    function checkSingleBlank(userInput, acceptedList) {
+      const normUser = normalizeText(userInput);
+      if (!normUser) return false;
+      return acceptedList.some((ans) => normalizeText(ans) === normUser);
+    }
+
+    function formatQuestionHTML(text) {
+      return text.replace(/【([^】]+)】/g, '<span class="blank-pill">$1</span>');
+    }
+
+    function buildUnitButtons() {
+      const unitCounts = {};
+      QUESTIONS.forEach((q) => {
+        unitCounts[q.unit] = (unitCounts[q.unit] || 0) + 1;
+      });
+      unitGrid.innerHTML = "";
+      Object.entries(unitCounts).forEach(([unit, count]) => {
+        const btn = document.createElement("button");
+        btn.className = "unit-btn";
+        btn.innerHTML = `
+          <span class="unit-title">${unit}</span>
+          <span class="unit-meta">全 ${count} 問</span>
+        `;
+        btn.addEventListener("click", () => startQuiz(unit));
+        unitGrid.appendChild(btn);
+      });
+    }
+
+    function startQuiz(filterUnit = null, customList = null) {
+      lastFilterUnit = filterUnit;
+      let pool = customList ? [...customList] : (filterUnit ? QUESTIONS.filter((q) => q.unit === filterUnit) : [...QUESTIONS]);
+      if (shuffleToggle.checked) {
+        pool = shuffleArray(pool);
+      }
+      activeQuestions = pool;
+      currentIndex = 0;
+      score = 0;
+      history = [];
+
+      startScreen.classList.add("hidden");
+      resultScreen.classList.add("hidden");
+      quizScreen.classList.remove("hidden");
+
+      renderQuestion();
+    }
+
+    function renderQuestion() {
+      answered = false;
+      const item = activeQuestions[currentIndex];
+
+      unitBadge.textContent = item.unit;
+      formatBadge.textContent = item.type || "記述";
+      quizStats.textContent = `${currentIndex + 1} / ${activeQuestions.length}（正解: ${score}）`;
+      progressBar.style.width = `${(currentIndex / activeQuestions.length) * 100}%`;
+
+      questionText.innerHTML = `Q${currentIndex + 1}. ${formatQuestionHTML(item.q)}`;
+
+      inputArea.innerHTML = "";
+      item.blanks.forEach((_, idx) => {
+        const group = document.createElement("div");
+        group.className = "input-group";
+
+        if (item.blanks.length > 1 || (item.labels && item.labels[idx])) {
+          const label = document.createElement("label");
+          label.className = "input-label";
+          label.htmlFor = `blank-input-${idx}`;
+          label.textContent = item.labels && item.labels[idx] ? item.labels[idx] : `空欄 ${idx + 1}`;
+          group.appendChild(label);
+        }
+
+        const input = document.createElement("input");
+        input.type = "text";
+        input.id = `blank-input-${idx}`;
+        input.className = "answer-input";
+        input.placeholder = "ここに答えを入力してください";
+        input.autocomplete = "off";
+        group.appendChild(input);
+        inputArea.appendChild(group);
+      });
+
+      inputControls.classList.remove("hidden");
+      hintBox.classList.add("hidden");
+      hintBox.textContent = "";
+      feedbackBox.classList.add("hidden");
+      feedbackBox.className = "feedback-box hidden";
+      nextBtn.classList.add("hidden");
+
+      const firstInput = document.getElementById("blank-input-0");
+      if (firstInput) firstInput.focus();
+    }
+
+    function showHint() {
+      const item = activeQuestions[currentIndex];
+      hintBox.textContent = `💡 ヒント：${item.hint}`;
+      hintBox.classList.remove("hidden");
+    }
+
+    function evaluateAnswer(isGiveUp = false) {
+      if (answered) return;
+      answered = true;
+
+      const item = activeQuestions[currentIndex];
+      const inputs = Array.from(inputArea.querySelectorAll(".answer-input"));
+      const userAnswers = inputs.map((inp) => inp.value.trim());
+
+      let allCorrect = !isGiveUp;
+      inputs.forEach((inp, idx) => {
+        inp.disabled = true;
+        const ok = !isGiveUp && checkSingleBlank(inp.value, item.blanks[idx]);
+        if (ok) {
+          inp.classList.add("input-correct");
+        } else {
+          inp.classList.add("input-wrong");
+          allCorrect = false;
+        }
+      });
+
+      if (allCorrect) score++;
+
+      const modelText = item.blanks
+        .map((b, idx) => {
+          const lbl = item.labels && item.labels[idx] ? `${item.labels[idx]}：` : (item.blanks.length > 1 ? `(${idx + 1}) ` : "");
+          return `${lbl}<strong>${b[0]}</strong>`;
+        })
+        .join("　／　");
+
+      const historyEntry = {
+        question: item,
+        userAnswers,
+        isCorrect: allCorrect
+      };
+      history.push(historyEntry);
+
+      inputControls.classList.add("hidden");
+      hintBox.classList.add("hidden");
+
+      renderFeedback(allCorrect, isGiveUp, modelText, item.exp, history.length - 1);
+
+      quizStats.textContent = `${currentIndex + 1} / ${activeQuestions.length}（正解: ${score}）`;
+      progressBar.style.width = `${((currentIndex + 1) / activeQuestions.length) * 100}%`;
+
+      nextBtn.textContent = currentIndex + 1 < activeQuestions.length ? "次の問題へ →" : "結果を見る →";
+      nextBtn.classList.remove("hidden");
+    }
+
+    function renderFeedback(isCorrect, isGiveUp, modelText, expHTML, historyIdx) {
+      feedbackBox.classList.remove("hidden", "is-correct", "is-wrong");
+
+      if (isCorrect) {
+        feedbackBox.classList.add("is-correct");
+        feedbackHeader.innerHTML = `<span>⭕ 正解！</span>`;
+      } else {
+        feedbackBox.classList.add("is-wrong");
+        const title = isGiveUp ? "📖 解答と解説" : "❌ 不正解…";
+        feedbackHeader.innerHTML = `
+          <span>${title}</span>
+          <button type="button" class="self-grade-btn" id="self-grade-btn">表現違いのため正解にする</button>
+        `;
+        const selfBtn = document.getElementById("self-grade-btn");
+        if (selfBtn) {
+          selfBtn.addEventListener("click", () => {
+            if (!history[historyIdx].isCorrect) {
+              history[historyIdx].isCorrect = true;
+              score++;
+              quizStats.textContent = `${currentIndex + 1} / ${activeQuestions.length}（正解: ${score}）`;
+              feedbackBox.classList.remove("is-wrong");
+              feedbackBox.classList.add("is-correct");
+              feedbackHeader.innerHTML = `<span>⭕ 正解に変更しました！</span>`;
+            }
+          });
+        }
+      }
+
+      modelAnswerBox.innerHTML = `<span class="ans-tag">模範解答</span>${modelText}`;
+      explanationBody.innerHTML = `<strong>【解説】</strong><br>${expHTML}`;
+    }
+
+    function nextQuestion() {
+      if (currentIndex + 1 < activeQuestions.length) {
+        currentIndex++;
+        renderQuestion();
+      } else {
+        showResults();
+      }
+    }
+
+    function showResults() {
+      quizScreen.classList.add("hidden");
+      resultScreen.classList.remove("hidden");
+
+      const total = activeQuestions.length;
+      const pct = Math.round((score / total) * 100);
+      document.getElementById("score-num").textContent = `${score} / ${total}`;
+      document.getElementById("score-pct").textContent = `${pct}%`;
+
+      let msg = "";
+      if (pct === 100) msg = "パーフェクト！テスト本番も自信を持って臨めます！";
+      else if (pct >= 80) msg = "素晴らしい得点です！間違えた語句を少し見直せば完璧です。";
+      else if (pct >= 60) msg = "よく頑張りました！漢字や重要キーワードをもう一回確認しよう。";
+      else msg = "まずは解説を読みながら、太字のキーワードを覚え直してみよう！";
+      document.getElementById("result-msg").textContent = msg;
+
+      const unitMap = {};
+      history.forEach((h) => {
+        const u = h.question.unit;
+        if (!unitMap[u]) unitMap[u] = { correct: 0, total: 0 };
+        unitMap[u].total++;
+        if (h.isCorrect) unitMap[u].correct++;
+      });
+
+      const breakdownList = document.getElementById("breakdown-list");
+      breakdownList.innerHTML = "";
+      Object.entries(unitMap).forEach(([u, stat]) => {
+        const uPct = Math.round((stat.correct / stat.total) * 100);
+        const row = document.createElement("div");
+        row.className = "breakdown-row";
+        row.innerHTML = `
+          <div class="breakdown-label">
+            <span>${u}</span>
+            <span>${stat.correct} / ${stat.total}（${uPct}%）</span>
+          </div>
+          <div class="breakdown-bar-bg">
+            <div class="breakdown-bar-fill" style="width:${uPct}%"></div>
+          </div>
+        `;
+        breakdownList.appendChild(row);
+      });
+
+      const wrongItems = history.filter((h) => !h.isCorrect).map((h) => h.question);
+      const retryWrongBtn = document.getElementById("retry-wrong-btn");
+      if (wrongItems.length > 0) {
+        retryWrongBtn.classList.remove("hidden");
+        retryWrongBtn.textContent = `間違えた問題だけ復習する（${wrongItems.length}問）`;
+        retryWrongBtn.onclick = () => startQuiz(lastFilterUnit, wrongItems);
+      } else {
+        retryWrongBtn.classList.add("hidden");
+      }
+
+      const reviewList = document.getElementById("review-list");
+      reviewList.innerHTML = "";
+      history.forEach((h, idx) => {
+        const div = document.createElement("div");
+        div.className = `review-item ${h.isCorrect ? "item-correct" : "item-wrong"}`;
+        const userStr = h.userAnswers.map((a) => a || "（未入力）").join(" ／ ");
+        const modelStr = h.question.blanks.map((b) => b[0]).join(" ／ ");
+        div.innerHTML = `
+          <div class="review-q">${h.isCorrect ? "⭕" : "❌"} Q${idx + 1}. ${formatQuestionHTML(h.question.q)}</div>
+          <div class="review-ans">あなたの解答：<strong>${userStr}</strong> ／ 模範解答：<strong>${modelStr}</strong></div>
+          <div class="review-exp">${h.question.exp}</div>
+        `;
+        reviewList.appendChild(div);
+      });
+    }
+
+    // Event Listeners
+    document.getElementById("start-all-btn").addEventListener("click", () => startQuiz(null));
+    checkBtn.addEventListener("click", () => evaluateAnswer(false));
+    hintBtn.addEventListener("click", showHint);
+    giveupBtn.addEventListener("click", () => evaluateAnswer(true));
+    nextBtn.addEventListener("click", nextQuestion);
+
+    document.getElementById("quit-btn").addEventListener("click", () => {
+      quizScreen.classList.add("hidden");
+      startScreen.classList.remove("hidden");
+    });
+
+    document.getElementById("retry-same-btn").addEventListener("click", () => startQuiz(lastFilterUnit));
+    document.getElementById("back-home-btn").addEventListener("click", () => {
+      resultScreen.classList.add("hidden");
+      startScreen.classList.remove("hidden");
+    });
+
+    // Keyboard shortcut: Enter to check or go next
+    document.addEventListener("keydown", (e) => {
+      if (quizScreen.classList.contains("hidden")) return;
+      if (e.key === "Enter") {
+        // IME変換中のEnterは無視する
+        if (e.isComposing || e.keyCode === 229) return;
+        e.preventDefault();
+        if (!answered) {
+          evaluateAnswer(false);
+        } else {
+          nextQuestion();
+        }
+      }
+    });
+
+    buildUnitButtons();
+  </script>
+</body>
+</html>
