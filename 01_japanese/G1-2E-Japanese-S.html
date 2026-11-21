@@ -3,171 +3,325 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>中1 国語 2学期末テスト対策 4択一問一答</title>
+<title>中1 国語 2学期末テスト対策 総合4択クイズ（全294問）</title>
 <style>
   :root {
-    --bg: #f4f6f9;
+    --bg: #f4f6fa;
     --card: #ffffff;
-    --primary: #2563eb;
-    --primary-hover: #1d4ed8;
-    --primary-light: #eff6ff;
-    --text: #1e293b;
+    --ink: #1e293b;
     --muted: #64748b;
+    --primary: #1e4d6b;
+    --primary-hover: #163a52;
+    --primary-light: #e8f1f7;
+    --accent: #2563eb;
+    --accent-light: #eff6ff;
+    --ok: #16a34a;
+    --ok-bg: #f0fdf4;
+    --ok-border: #86efac;
+    --ng: #dc2626;
+    --ng-bg: #fef2f2;
+    --ng-border: #fca5a5;
+    --warn: #b45309;
+    --warn-bg: #fffbeb;
     --border: #e2e8f0;
-    --correct: #16a34a;
-    --correct-bg: #f0fdf4;
-    --wrong: #dc2626;
-    --wrong-bg: #fef2f2;
-    --accent: #f59e0b;
+    --shadow: 0 6px 22px rgba(15, 23, 42, 0.07);
     --radius: 14px;
-    --shadow: 0 4px 20px rgba(15, 23, 42, 0.06);
   }
+
   * { box-sizing: border-box; }
+
   body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic UI", "Meiryo", sans-serif;
     background: var(--bg);
-    color: var(--text);
+    color: var(--ink);
     line-height: 1.65;
-    padding: 20px 14px 60px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
   }
-  .container {
-    max-width: 780px;
-    margin: 0 auto;
-  }
+
   header {
-    text-align: center;
-    margin-bottom: 20px;
+    background: linear-gradient(135deg, #163a52 0%, #1e4d6b 60%, #2563eb 100%);
+    color: #fff;
+    padding: 18px 20px;
+    box-shadow: 0 2px 12px rgba(15, 23, 42, 0.14);
   }
-  header h1 {
-    font-size: 1.45rem;
-    margin: 0 0 6px;
-    color: #0f172a;
+
+  .header-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
   }
-  header p {
+
+  .header-title {
     margin: 0;
-    font-size: 0.9rem;
-    color: var(--muted);
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: 0.02em;
   }
+
+  .header-sub {
+    font-size: 0.85rem;
+    opacity: 0.9;
+    margin-top: 2px;
+  }
+
+  .btn-home-top {
+    background: rgba(255, 255, 255, 0.16);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    padding: 7px 14px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.18s;
+  }
+  .btn-home-top:hover { background: rgba(255, 255, 255, 0.28); }
+
+  main {
+    flex: 1;
+    width: 100%;
+    max-width: 860px;
+    margin: 22px auto 52px;
+    padding: 0 16px;
+  }
+
   .card {
     background: var(--card);
+    border: 1px solid var(--border);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
     padding: 24px;
     margin-bottom: 18px;
-    border: 1px solid var(--border);
   }
-  /* Start / Filter Screen */
-  .unit-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-    gap: 10px;
-    margin: 16px 0 20px;
+
+  /* Start Screen */
+  .intro-box {
+    background: var(--primary-light);
+    border-left: 5px solid var(--primary);
+    padding: 14px 18px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 0.94rem;
   }
-  .unit-btn {
-    text-align: left;
-    padding: 12px 14px;
+
+  .cat-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+
+  .cat-tab {
+    padding: 9px 15px;
+    border-radius: 999px;
     border: 1.5px solid var(--border);
-    border-radius: 10px;
     background: #fff;
+    color: var(--ink);
+    font-size: 0.88rem;
+    font-weight: 700;
     cursor: pointer;
     transition: all 0.15s ease;
     font-family: inherit;
   }
-  .unit-btn:hover {
+  .cat-tab:hover {
     border-color: var(--primary);
     background: var(--primary-light);
   }
-  .unit-btn.active {
+  .cat-tab.active {
+    background: var(--primary);
+    color: #fff;
     border-color: var(--primary);
-    background: var(--primary-light);
-    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
   }
-  .unit-btn .u-title {
-    display: block;
-    font-weight: 700;
-    font-size: 0.92rem;
-    color: var(--text);
+
+  .section-block {
+    margin-bottom: 20px;
   }
-  .unit-btn .u-count {
-    display: block;
-    font-size: 0.8rem;
-    color: var(--muted);
-    margin-top: 2px;
-  }
-  .controls-row {
+  .section-heading {
+    font-size: 0.96rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin: 0 0 10px;
     display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
     align-items: center;
     justify-content: space-between;
-    padding-top: 10px;
-    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 6px;
   }
-  .toggle-label {
+
+  .mode-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 10px;
+  }
+
+  .mode-btn {
+    text-align: left;
+    background: #fff;
+    border: 1.5px solid var(--border);
+    border-radius: 11px;
+    padding: 12px 14px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-family: inherit;
+  }
+  .mode-btn:hover {
+    border-color: var(--primary);
+    background: var(--primary-light);
+    transform: translateY(-1px);
+  }
+  .mode-btn.featured {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, #1e4d6b 0%, #2563eb 100%);
+    color: #fff;
+    border-color: transparent;
+    padding: 15px 18px;
+  }
+  .mode-btn.featured:hover {
+    opacity: 0.95;
+  }
+  .mode-btn.featured .mode-desc {
+    color: rgba(255, 255, 255, 0.9);
+  }
+  .mode-btn.cat-all-btn {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+  }
+
+  .mode-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .mode-badge {
+    flex-shrink: 0;
+    font-size: 0.76rem;
+    font-weight: 700;
+    padding: 2px 9px;
+    border-radius: 999px;
+    background: var(--primary-light);
+    color: var(--primary);
+  }
+  .featured .mode-badge {
+    background: rgba(255, 255, 255, 0.22);
+    color: #fff;
+  }
+  .mode-desc {
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  .kanji-subfilter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+    align-items: center;
+    background: #f8fafc;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+  }
+  .kanji-subfilter span {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--muted);
+  }
+  .sub-pill {
+    padding: 4px 11px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: #fff;
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    color: var(--ink);
+    font-family: inherit;
+  }
+  .sub-pill.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+
+  .options-row {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    font-size: 0.9rem;
+    color: var(--ink);
+  }
+  .options-row label {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    font-size: 0.9rem;
+    gap: 7px;
     cursor: pointer;
     user-select: none;
   }
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    padding: 11px 22px;
-    border: none;
-    border-radius: 10px;
-    font-size: 0.95rem;
-    font-weight: 700;
-    font-family: inherit;
+  .options-row input {
+    width: 17px;
+    height: 17px;
+    accent-color: var(--primary);
     cursor: pointer;
-    transition: background 0.15s ease, transform 0.08s ease;
   }
-  .btn:active { transform: scale(0.98); }
-  .btn-primary {
-    background: var(--primary);
-    color: #fff;
-  }
-  .btn-primary:hover { background: var(--primary-hover); }
-  .btn-secondary {
-    background: #e2e8f0;
-    color: #334155;
-  }
-  .btn-secondary:hover { background: #cbd5e1; }
-  .btn-outline {
-    background: #fff;
-    color: var(--primary);
-    border: 1.5px solid var(--primary);
-  }
-  .btn-outline:hover { background: var(--primary-light); }
 
   /* Quiz Screen */
-  .top-bar {
+  .quiz-meta {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 12px;
+    gap: 8px;
+    margin-bottom: 10px;
   }
-  .badge {
+
+  .badges-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .unit-tag {
     display: inline-block;
-    padding: 4px 10px;
-    border-radius: 999px;
-    font-size: 0.78rem;
-    font-weight: 700;
     background: var(--primary-light);
     color: var(--primary);
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 4px 11px;
+    border-radius: 999px;
   }
-  .progress-info {
-    font-size: 0.88rem;
+  .unit-tag.cat-tag {
+    background: #eef2ff;
+    color: #4338ca;
+  }
+  .unit-tag.tricky-tag {
+    background: #fee2e2;
+    color: #b91c1c;
+  }
+
+  .q-counter {
+    font-size: 0.9rem;
+    font-weight: 700;
     color: var(--muted);
-    font-weight: 600;
   }
-  .progress-track {
+
+  .progress-wrap {
     width: 100%;
     height: 8px;
     background: #e2e8f0;
@@ -175,112 +329,176 @@
     overflow: hidden;
     margin-bottom: 20px;
   }
-  .progress-fill {
+  .progress-bar {
     height: 100%;
-    background: var(--primary);
+    background: linear-gradient(90deg, var(--primary), var(--accent));
     width: 0%;
     transition: width 0.25s ease;
   }
-  .q-text {
-    font-size: 1.1rem;
+
+  .question-prompt {
+    font-size: 1.12rem;
     font-weight: 700;
-    margin: 0 0 18px;
+    margin: 0 0 14px;
     color: #0f172a;
     white-space: pre-line;
+    line-height: 1.75;
   }
-  .choices {
+
+  .highlight-target {
+    color: #1d4ed8;
+    background: #dbeafe;
+    padding: 2px 7px;
+    border-radius: 6px;
+    border-bottom: 2.5px solid #2563eb;
+    margin: 0 2px;
+  }
+
+  .sentence-box {
+    background: #faf9f5;
+    border: 1px solid #dedbd0;
+    border-radius: 10px;
+    padding: 15px 18px;
+    font-size: 1.15rem;
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "MS PMincho", serif;
+    letter-spacing: 0.04em;
+    margin-bottom: 18px;
+    line-height: 1.9;
+  }
+
+  .u-line {
+    border-bottom: 2.5px solid #1e4d6b;
+    padding-bottom: 2px;
+    font-weight: 700;
+    background: rgba(30, 77, 107, 0.07);
+    border-radius: 3px 3px 0 0;
+  }
+  .u-wave {
+    text-decoration: underline wavy #b45309;
+    text-underline-offset: 5px;
+    font-weight: 700;
+    background: rgba(180, 83, 9, 0.08);
+    padding: 0 2px;
+    border-radius: 3px;
+  }
+
+  .choices-list {
     display: flex;
     flex-direction: column;
     gap: 10px;
   }
+  .choices-list.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
   .choice-btn {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 12px;
     width: 100%;
     text-align: left;
-    padding: 13px 16px;
-    border: 1.5px solid var(--border);
-    border-radius: 10px;
     background: #fff;
-    font-size: 0.98rem;
-    font-family: inherit;
-    color: var(--text);
+    border: 2px solid var(--border);
+    border-radius: 11px;
+    padding: 13px 16px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ink);
     cursor: pointer;
-    transition: all 0.12s ease;
+    transition: all 0.14s ease;
+    font-family: inherit;
   }
   .choice-btn:hover:not(:disabled) {
     border-color: var(--primary);
     background: var(--primary-light);
+    transform: translateY(-1px);
   }
   .choice-btn:disabled { cursor: default; }
+
   .choice-label {
     flex-shrink: 0;
-    width: 26px;
-    height: 26px;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
     background: #f1f5f9;
-    color: #475569;
-    font-weight: 700;
-    font-size: 0.85rem;
+    color: var(--primary);
+    font-weight: 800;
+    font-size: 0.88rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    margin-top: 1px;
   }
+
   .choice-btn.correct {
-    border-color: var(--correct);
-    background: var(--correct-bg);
+    border-color: var(--ok);
+    background: var(--ok-bg);
+    color: #14532d;
+    font-weight: 700;
   }
   .choice-btn.correct .choice-label {
-    background: var(--correct);
+    background: var(--ok);
     color: #fff;
   }
+
   .choice-btn.wrong {
-    border-color: var(--wrong);
-    background: var(--wrong-bg);
+    border-color: var(--ng);
+    background: var(--ng-bg);
+    color: #7f1d1d;
   }
   .choice-btn.wrong .choice-label {
-    background: var(--wrong);
+    background: var(--ng);
     color: #fff;
   }
-  .choice-btn.dimmed { opacity: 0.6; }
+  .choice-btn.dimmed { opacity: 0.65; }
 
-  /* Explanation Box */
+  /* Feedback */
   .feedback-box {
     margin-top: 20px;
-    padding: 16px 18px;
-    border-radius: 10px;
-    border-left: 5px solid var(--primary);
-    background: #f8fafc;
-    display: none;
+    border-radius: 12px;
+    padding: 18px 20px;
+    animation: fadeIn 0.2s ease;
   }
-  .feedback-box.show { display: block; animation: fadeIn 0.18s ease; }
   .feedback-box.is-correct {
-    border-left-color: var(--correct);
-    background: var(--correct-bg);
+    background: var(--ok-bg);
+    border: 1.5px solid var(--ok-border);
   }
   .feedback-box.is-wrong {
-    border-left-color: var(--wrong);
-    background: var(--wrong-bg);
+    background: var(--ng-bg);
+    border: 1.5px solid var(--ng-border);
   }
-  .feedback-title {
+
+  .feedback-header {
+    font-size: 1.08rem;
     font-weight: 800;
-    font-size: 1.05rem;
-    margin: 0 0 6px;
+    margin-bottom: 8px;
   }
-  .feedback-box.is-correct .feedback-title { color: var(--correct); }
-  .feedback-box.is-wrong .feedback-title { color: var(--wrong); }
-  .feedback-exp {
-    margin: 0;
+  .is-correct .feedback-header { color: var(--ok); }
+  .is-wrong .feedback-header { color: var(--ng); }
+
+  .explanation-body {
+    background: #fff;
+    border-radius: 8px;
+    padding: 13px 16px;
     font-size: 0.94rem;
-    color: #1e293b;
+    line-height: 1.75;
+    color: var(--ink);
+    border: 1px solid rgba(0, 0, 0, 0.06);
   }
+  .explanation-title {
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 4px;
+    font-size: 0.88rem;
+  }
+
   .next-row {
-    margin-top: 16px;
+    margin-top: 14px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
     gap: 10px;
   }
   .kbd-hint {
@@ -288,886 +506,288 @@
     color: var(--muted);
   }
 
+  .btn-primary {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 11px 22px;
+    font-size: 0.96rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.16s;
+    font-family: inherit;
+  }
+  .btn-primary:hover { background: var(--primary-hover); }
+
+  .btn-secondary {
+    background: #fff;
+    color: var(--primary);
+    border: 1.5px solid var(--primary);
+    border-radius: 10px;
+    padding: 10px 18px;
+    font-size: 0.92rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.16s;
+    font-family: inherit;
+  }
+  .btn-secondary:hover { background: var(--primary-light); }
+
   /* Result Screen */
   .score-hero {
     text-align: center;
-    padding: 16px 0 20px;
+    padding: 14px 10px 22px;
     border-bottom: 1px solid var(--border);
-    margin-bottom: 18px;
+    margin-bottom: 20px;
   }
   .score-num {
     font-size: 2.5rem;
-    font-weight: 800;
+    font-weight: 900;
     color: var(--primary);
     line-height: 1.2;
   }
-  .score-sub {
+  .score-rate {
+    font-size: 1.05rem;
     color: var(--muted);
-    font-size: 0.95rem;
     margin-top: 4px;
   }
-  .breakdown-list {
-    display: flex;
-    flex-direction: column;
+  .score-msg {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 6px 16px;
+    border-radius: 999px;
+    background: var(--primary-light);
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 0.92rem;
+  }
+
+  .unit-breakdown {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
     gap: 10px;
     margin-bottom: 22px;
   }
-  .breakdown-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 14px;
+  .unit-stat {
     background: #f8fafc;
-    border-radius: 8px;
-    font-size: 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 11px 14px;
   }
-  .breakdown-bar-wrap {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  .unit-stat-name {
+    font-size: 0.83rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 5px;
   }
-  .mini-bar {
-    width: 90px;
+  .unit-stat-bar-bg {
     height: 7px;
     background: #e2e8f0;
     border-radius: 999px;
     overflow: hidden;
+    margin-bottom: 4px;
   }
-  .mini-fill {
+  .unit-stat-bar-fill {
     height: 100%;
-    background: var(--correct);
+    background: var(--ok);
   }
+  .unit-stat-val {
+    font-size: 0.82rem;
+    color: var(--muted);
+    text-align: right;
+  }
+
+  .review-section h3 {
+    margin: 0 0 12px;
+    font-size: 1.02rem;
+    color: var(--ng);
+  }
+  .review-item {
+    background: #fffafa;
+    border: 1px solid #fecaca;
+    border-radius: 10px;
+    padding: 13px 15px;
+    margin-bottom: 10px;
+    font-size: 0.92rem;
+  }
+  .review-q { font-weight: 700; margin-bottom: 5px; }
+  .review-ans { margin-bottom: 5px; }
+  .review-exp {
+    color: #334155;
+    font-size: 0.87rem;
+    background: #fff;
+    padding: 8px 11px;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+  }
+
+  .result-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 22px;
+  }
+
   .hidden { display: none !important; }
+
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(4px); }
     to { opacity: 1; transform: translateY(0); }
   }
-  @media (max-width: 540px) {
-    .card { padding: 18px 15px; }
-    .q-text { font-size: 1.02rem; }
+
+  @media (max-width: 580px) {
+    .card { padding: 18px 14px; }
+    .choices-list.grid-2 { grid-template-columns: 1fr; }
+    .question-prompt { font-size: 1.03rem; }
     .kbd-hint { display: none; }
   }
 </style>
 </head>
 <body>
-<div class="container">
-  <header>
-    <h1>中1 国語 2学期末テスト対策 4択一問一答</h1>
-    <p>全60問で出題範囲を完全網羅｜1問ごとに答え合わせ＆解説</p>
-  </header>
 
+<header>
+  <div class="header-inner">
+    <div>
+      <h1 class="header-title">中1 国語 2学期末テスト対策 総合4択クイズ</h1>
+      <div class="header-sub">文章読解・古典（61問）＋ 文法（32問）＋ 漢字・語句（201問）＝ 全294問</div>
+    </div>
+    <button id="btnTopHome" class="btn-home-top hidden" onclick="goHome()">メニューへ戻る</button>
+  </div>
+</header>
+
+<main>
   <!-- Start Screen -->
-  <section id="start-screen" class="card">
-    <h2 style="margin:0 0 6px; font-size:1.1rem;">出題単元を選ぶ</h2>
-    <p style="margin:0; font-size:0.86rem; color:var(--muted);">「全範囲」でテスト本番の総仕上げ、または苦手な単元だけ集中演習ができます。</p>
-    <div id="unit-grid" class="unit-grid"></div>
-    <div class="controls-row">
-      <label class="toggle-label">
-        <input type="checkbox" id="shuffle-toggle">
-        <span>出題順をシャッフルする</span>
+  <section id="startScreen" class="card">
+    <div class="intro-box">
+      <strong>3つの対策教材を1つに統合した全294問</strong>の完全版アプリです。<br>
+      「全範囲」で総合演習するほか、<strong>読解・古典 / 文法 / 漢字</strong>の分野別・単元別にも学習できます。
+    </div>
+
+    <!-- Category Filter Tabs -->
+    <div class="cat-tabs" id="catTabs">
+      <button class="cat-tab active" data-cat="all" onclick="selectCatTab('all')">すべて表示（全294問）</button>
+      <button class="cat-tab" data-cat="文章読解・古典・総合" onclick="selectCatTab('文章読解・古典・総合')">📖 文章読解・古典・総合（61問）</button>
+      <button class="cat-tab" data-cat="文法（文の成分）" onclick="selectCatTab('文法（文の成分）')">✏️ 文法・文の成分（32問）</button>
+      <button class="cat-tab" data-cat="漢字・語句（P.34〜45）" onclick="selectCatTab('漢字・語句（P.34〜45）')">🈷️ 漢字・語句 P.34〜45（201問）</button>
+    </div>
+
+    <!-- Grand All Button -->
+    <div id="blockAll" class="section-block">
+      <div class="mode-grid">
+        <button class="mode-btn featured" onclick="startQuiz({ type: 'all' })">
+          <div class="mode-title">
+            <span>🔥 全範囲チャレンジ（全294問）</span>
+            <span class="mode-badge">294問</span>
+          </div>
+          <div class="mode-desc">読解・古典・文法・漢字まで出題範囲すべてから出題します（シャッフル推奨）。</div>
+        </button>
+      </div>
+    </div>
+
+    <!-- Section 1: Reading & Classics -->
+    <div id="blockReading" class="section-block">
+      <h2 class="section-heading">
+        <span>📖 文章読解・古典・総合</span>
+        <span style="font-size:0.8rem; color:var(--muted);">全61問</span>
+      </h2>
+      <div class="mode-grid" id="gridReading"></div>
+    </div>
+
+    <!-- Section 2: Grammar -->
+    <div id="blockGrammar" class="section-block">
+      <h2 class="section-heading">
+        <span>✏️ 文法（文節の働き・文の成分）</span>
+        <span style="font-size:0.8rem; color:var(--muted);">全32問</span>
+      </h2>
+      <div class="mode-grid" id="gridGrammar"></div>
+    </div>
+
+    <!-- Section 3: Kanji -->
+    <div id="blockKanji" class="section-block">
+      <h2 class="section-heading">
+        <span>🈷️ 漢字・語句（光村図書 P.34〜45）</span>
+        <span style="font-size:0.8rem; color:var(--muted);">全201問</span>
+      </h2>
+      <div class="kanji-subfilter" id="kanjiSubfilter">
+        <span>絞り込み：</span>
+        <button class="sub-pill active" data-sub="all" onclick="selectKanjiSub('all')">すべて</button>
+        <button class="sub-pill" data-sub="yomi" onclick="selectKanjiSub('yomi')">読みのみ</button>
+        <button class="sub-pill" data-sub="kaki" onclick="selectKanjiSub('kaki')">書きのみ</button>
+        <button class="sub-pill" data-sub="special" onclick="selectKanjiSub('special')">書き分け・音訓・部首</button>
+        <button class="sub-pill" data-sub="tricky" onclick="selectKanjiSub('tricky')">要注意・頻出ミス</button>
+      </div>
+      <div class="mode-grid" id="gridKanji"></div>
+    </div>
+
+    <div class="options-row">
+      <label>
+        <input type="checkbox" id="chkShuffleChoices" checked>
+        選択肢の順番をシャッフルする
       </label>
-      <button id="start-btn" class="btn btn-primary">テストを開始する</button>
+      <label>
+        <input type="checkbox" id="chkShuffleQuestions">
+        問題の順番をランダムにする
+      </label>
     </div>
   </section>
 
   <!-- Quiz Screen -->
-  <section id="quiz-screen" class="card hidden">
-    <div class="top-bar">
-      <span id="q-unit-badge" class="badge"></span>
-      <span id="q-progress-text" class="progress-info"></span>
+  <section id="quizScreen" class="card hidden">
+    <div class="quiz-meta">
+      <div class="badges-wrap" id="badgesWrap"></div>
+      <span id="qCounter" class="q-counter">問 1 / 294（正解: 0）</span>
     </div>
-    <div class="progress-track">
-      <div id="progress-fill" class="progress-fill"></div>
+    <div class="progress-wrap">
+      <div id="progressBar" class="progress-bar"></div>
     </div>
 
-    <p id="q-text" class="q-text"></p>
-    <div id="choices-container" class="choices"></div>
+    <div id="qPrompt" class="question-prompt"></div>
+    <div id="qSentence" class="sentence-box hidden"></div>
 
-    <div id="feedback-box" class="feedback-box">
-      <div id="feedback-title" class="feedback-title"></div>
-      <p id="feedback-exp" class="feedback-exp"></p>
-      <div class="next-row">
-        <span class="kbd-hint">Enterキーでも次へ進めます</span>
-        <button id="next-btn" class="btn btn-primary">次の問題へ</button>
+    <div id="choicesList" class="choices-list"></div>
+
+    <div id="feedbackBox" class="feedback-box hidden">
+      <div id="feedbackHeader" class="feedback-header"></div>
+      <div class="explanation-body">
+        <div class="explanation-title">💡 解説</div>
+        <div id="explanationText"></div>
       </div>
-    </div>
-
-    <div style="margin-top:16px; display:flex; justify-content:space-between; align-items:center;">
-      <button id="quit-btn" class="btn btn-secondary" style="padding:7px 14px; font-size:0.82rem;">単元選択に戻る</button>
-      <span id="live-score" class="progress-info"></span>
+      <div class="next-row">
+        <span class="kbd-hint">キーボード：[1]〜[4]で選択 / [Enter]で次の問題へ</span>
+        <button id="btnNext" class="btn-primary" onclick="nextQuestion()">次の問題へ →</button>
+      </div>
     </div>
   </section>
 
   <!-- Result Screen -->
-  <section id="result-screen" class="card hidden">
+  <section id="resultScreen" class="card hidden">
     <div class="score-hero">
-      <div id="final-score" class="score-num"></div>
-      <div id="final-sub" class="score-sub"></div>
+      <div id="scoreNum" class="score-num">0 / 0</div>
+      <div id="scoreRate" class="score-rate">正答率 0%</div>
+      <div id="scoreMsg" class="score-msg"></div>
     </div>
-    <h3 style="margin:0 0 10px; font-size:1rem;">単元別の正答率</h3>
-    <div id="breakdown-list" class="breakdown-list"></div>
-    <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:center;">
-      <button id="retry-wrong-btn" class="btn btn-primary hidden">間違えた問題だけ復習する</button>
-      <button id="retry-all-btn" class="btn btn-outline">同じ範囲をもう一度</button>
-      <button id="back-home-btn" class="btn btn-secondary">単元選択に戻る</button>
+
+    <div id="unitBreakdown" class="unit-breakdown"></div>
+
+    <div id="reviewSection" class="review-section hidden">
+      <h3>📝 間違えた問題の復習</h3>
+      <div id="reviewList"></div>
+    </div>
+
+    <div class="result-actions">
+      <button id="btnRetryWrong" class="btn-primary hidden" onclick="retryWrong()">間違えた問題だけやり直す</button>
+      <button class="btn-secondary" onclick="retrySame()">同じ範囲をもう一度</button>
+      <button class="btn-secondary" onclick="goHome()">メニューへ戻る</button>
     </div>
   </section>
-</div>
+</main>
 
 <script>
-const QUESTIONS = [
-  // === 1. 「言葉」をもつ鳥、シジュウカラ（鈴木俊貴） ===
-  {
-    unit: "シジュウカラ",
-    q: "『「言葉」をもつ鳥、シジュウカラ』について、シジュウカラの特徴として正しいものはどれか。",
-    choices: [
-      "カラスほどの大きさで、主に北海道にのみ生息する。",
-      "スズメほどの大きさで、胸から腹にかけてネクタイのような黒い模様がある。",
-      "ハトほどの大きさで、白い頭に黒い頬をしている。",
-      "スズメより小さく、本州の山地のみに分布している。"
-    ],
-    answer: 1,
-    exp: "シジュウカラはスズメほどの大きさ（体長約15cm）で、黒い頭に白い頬、胸から腹にかけてネクタイのような模様があります。北海道から沖縄まで日本列島に広く分布しています。"
-  },
-  {
-    unit: "シジュウカラ",
-    q: "筆者がシジュウカラの鳴き声について本格的に研究する「転機」となった出来事は何か。",
-    choices: [
-      "シジュウカラがタカを見て「ヒーヒー」と鳴いたのを目撃したこと。",
-      "2008年6月、アオダイショウ（ヘビ）が巣箱に迫ったとき、親鳥が「ジャージャー」と鳴いたこと。",
-      "シジュウカラがコガラとエサを奪い合っていたのを観察したこと。",
-      "巣箱の中でヒナが「ピーツピ」と鳴いているのを録音したこと。"
-    ],
-    answer: 1,
-    exp: "2008年6月のある日、アオダイショウ（ヘビ）が巣箱に迫った際、親鳥がヘビを威嚇しながら「ジャージャー」と鳴いていたことが研究の転機となりました。"
-  },
-  {
-    unit: "シジュウカラ",
-    q: "筆者が立てた仮説では、シジュウカラの「ジャージャー」という鳴き声は何だと考えられたか。",
-    choices: [
-      "「エサを見つけた」という喜びの合図",
-      "「ヒナにエサを与えろ」という命令",
-      "「ヘビ」を意味する「単語」",
-      "「早く逃げろ」という一般的な警告"
-    ],
-    answer: 2,
-    exp: "ヘビに対してだけ他の天敵と違う鳴き声を発していることに着目し、筆者は「ジャージャー」という鳴き声が「ヘビ」を意味する「単語」なのではないかという仮説を立てました。"
-  },
-  {
-    unit: "シジュウカラ",
-    q: "【仮説に対する検証1】ヘビがいない状況で、あえて録音した音声だけを聞かせたのはなぜか。",
-    choices: [
-      "生きたヘビを捕まえるのが難しかったから。",
-      "「ジャージャー」という鳴き声はヘビを見た恐怖心から発したものかもしれず、姿を見せずに鳴き声だけ聞かせる必要があったから。",
-      "親鳥が巣箱に戻る時間を正確に測るため。",
-      "シジュウカラの聴力がどれほど優れているかを調べるため。"
-    ],
-    answer: 1,
-    exp: "ヘビがいる状態では、ヘビを見た恐怖心で鳴いたのか、本当に鳴き声が意味をもっているのか区別できないため、姿を見せずに音声だけを聞かせる実験を行いました。"
-  },
-  {
-    unit: "シジュウカラ",
-    q: "【検証1の結果】「ジャージャー」という鳴き声を聞かせたとき、シジュウカラはどのような行動をとったか。",
-    choices: [
-      "首を左右に振り、周囲を警戒するだけだった。",
-      "地面を確認し、巣箱の穴をのぞきこんだ。",
-      "警戒行動をまったく示さなかった。",
-      "一目散にしげみの中へ逃げ込んだ。"
-    ],
-    answer: 1,
-    exp: "「ジャージャー」を聞かせると地面を確認し巣箱の穴をのぞき、「ピーツピ」では首を左右に振って周囲を警戒するだけ、鳴き声なしでは警戒行動を示しませんでした。"
-  },
-  {
-    unit: "シジュウカラ",
-    q: "【検証2】筆者が音声のみの検証1に加えて、小枝を使った検証2を行った理由は何か。",
-    choices: [
-      "「ジャージャー」が「地面や巣箱を確認しろ」という命令である可能性を排除し、ヘビの姿を思い浮かべているか確かめるため。",
-      "シジュウカラが木の枝とヘビの色の違いを識別できるか調べるため。",
-      "検証1の実験回数が少なすぎてデータが足りなかったため。",
-      "ヘビが木を登る速さと小枝の動く速さを比べるため。"
-    ],
-    answer: 0,
-    exp: "「ジャージャー」が「地面や巣箱を確認しろ」という命令かもしれないという別の解釈を検証するため、ヘビに似た動きをする小枝と似ていない動きの小枝を見せる実験を行いました。"
-  },
-  {
-    unit: "シジュウカラ",
-    q: "【検証2の結果】「ジャージャー」を聞かせながら、ヘビに似た動きをする小枝を見せたとき、シジュウカラはどうしたか。",
-    choices: [
-      "小枝にはほとんど接近しなかった。",
-      "「ピーツピ」と鳴きながら飛び去った。",
-      "木の幹に沿ってヘビのように動く小枝に近づいて確認した。",
-      "小枝をくわえて巣箱に運ぼうとした。"
-    ],
-    answer: 2,
-    exp: "「ジャージャー」を聞かせてヘビに似た動きをさせると小枝に近づきましたが、「ジャージャー」以外の鳴き声や、ヘビに似ていない動きの小枝にはほとんど接近しませんでした。"
-  },
-  {
-    unit: "シジュウカラ",
-    q: "筆者が20年以上の野外研究から導き出した、シジュウカラの能力についての結論はどれか。",
-    choices: [
-      "シジュウカラは人間と同じように文字を書いて伝えることができる。",
-      "「ジャージャー」はヘビを意味する単語であり、さらに異なる「単語」を組み合わせてより複雑なメッセージを伝える能力ももつ。",
-      "シジュウカラの鳴き声はすべて本能的な感情の表れにすぎない。",
-      "シジュウカラはヘビ以外の天敵に対しては鳴き声を使い分けられない。"
-    ],
-    answer: 1,
-    exp: "「ジャージャー」がヘビを意味する単語であると同時に、シジュウカラは異なる「単語」を使い分けるだけでなく、複数の「単語」を組み合わせる能力ももつことがわかりました。"
-  },
-  {
-    unit: "シジュウカラ",
-    q: "コラム「生きる知恵としての言葉」によると、カラ類の中で力が強い順として正しいものはどれか。",
-    choices: [
-      "コガラ → シジュウカラ → ゴジュウカラ",
-      "シジュウカラ → ゴジュウカラ → コガラ",
-      "ゴジュウカラ → シジュウカラ → コガラ",
-      "ゴジュウカラ → コガラ → シジュウカラ"
-    ],
-    answer: 2,
-    exp: "カラ類の中で体が大きく力があるのは、強い順に「ゴジュウカラ → シジュウカラ → コガラ」です。体の小さいコガラは「タカが来た！」という言葉を巧みに使ってエサにありつく知恵をもっています。"
-  },
-  {
-    unit: "シジュウカラ",
-    q: "『「言葉」をもつ鳥、シジュウカラ』の文章が説得力をもっている理由として、最も適切なものはどれか。",
-    choices: [
-      "シジュウカラの可愛らしい写真だけをたくさん載せているから。",
-      "複数の解釈が生まれる場合に1つの解釈に絞るためさらに検証を加え、目的と方法を明確にした実験結果を根拠としているから。",
-      "筆者の個人的な感想や予想だけを中心に物語のように書かれているから。",
-      "他の研究者の意見を一切紹介せず、自分の主張だけを繰り返しているから。"
-    ],
-    answer: 1,
-    exp: "仮説を検証し、別の解釈（命令かもしれない）が生まれた際にさらに検証2を行って根拠を示している点や、目的・方法を明確にしている点が説得力につながっています。"
-  },
-  {
-    unit: "シジュウカラ",
-    q: "次の語句の意味として正しいものはどれか。\n【 検証 】",
-    choices: [
-      "仮に立てた考えのこと。",
-      "細かな要素に分け、性質や内容を明らかにすること。",
-      "仮説が正しいかどうか、実際に調べて確かめること。",
-      "物事の意味や内容をはっきりと決めること。"
-    ],
-    answer: 2,
-    exp: "「検証」は実際に調べて確かめること。「仮説」は仮に立てた考え、「分析」は細かな要素に分けて明らかにすること、「定義」は意味や内容をはっきり決めることです。"
-  },
-  {
-    unit: "シジュウカラ",
-    q: "次の語句の意味として正しいものはどれか。\n【 けたたましい 】",
-    choices: [
-      "静かで落ち着いた様子。",
-      "驚くような高い大きな音があがる様子（やかましい）。",
-      "まっ先に・手間をかけずに行う様子。",
-      "別の状態に変わるきっかけのこと。"
-    ],
-    answer: 1,
-    exp: "「けたたましい」は驚くような高い大きな音があがる様子・やかましいという意味です。「まっ先に」は「いち早く」、「変わるきっかけ」は「転機」です。"
-  },
+const ALL_QUESTIONS = [{"id": 1, "category": "文章読解・古典・総合", "unit": "シジュウカラ", "prompt": "『「言葉」をもつ鳥、シジュウカラ』について、シジュウカラの特徴として正しいものはどれか。", "sentence": "", "choices": ["カラスほどの大きさで、主に北海道にのみ生息する。", "スズメほどの大きさで、胸から腹にかけてネクタイのような黒い模様がある。", "ハトほどの大きさで、白い頭に黒い頬をしている。", "スズメより小さく、本州の山地のみに分布している。"], "answer": 1, "exp": "シジュウカラはスズメほどの大きさ（体長約15cm）で、黒い頭に白い頬、胸から腹にかけてネクタイのような模様があります。北海道から沖縄まで日本列島に広く分布しています。", "subType": "", "tricky": false}, {"id": 2, "category": "文章読解・古典・総合", "unit": "シジュウカラ", "prompt": "筆者がシジュウカラの鳴き声について本格的に研究する「転機」となった出来事は何か。", "sentence": "", "choices": ["シジュウカラがタカを見て「ヒーヒー」と鳴いたのを目撃したこと。", "2008年6月、アオダイショウ（ヘビ）が巣箱に迫ったとき、親鳥が「ジャージャー」と鳴いたこと。", "シジュウカラがコガラとエサを奪い合っていたのを観察したこと。", "巣箱の中でヒナが「ピーツピ」と鳴いているのを録音したこと。"], "answer": 1, "exp": "2008年6月のある日、アオダイショウ（ヘビ）が巣箱に迫った際、親鳥がヘビを威嚇しながら「ジャージャー」と鳴いていたことが研究の転機となりました。", "subType": "", "tricky": false}, {"id": 3, "category": "文章読解・古典・総合", "unit": "シジュウカラ", "prompt": "筆者が立てた仮説では、シジュウカラの「ジャージャー」という鳴き声は何だと考えられたか。", "sentence": "", "choices": ["「エサを見つけた」という喜びの合図", "「ヒナにエサを与えろ」という命令", "「ヘビ」を意味する「単語」", "「早く逃げろ」という一般的な警告"], "answer": 2, "exp": "ヘビに対してだけ他の天敵と違う鳴き声を発していることに着目し、筆者は「ジャージャー」という鳴き声が「ヘビ」を意味する「単語」なのではないかという仮説を立てました。", "subType": "", "tricky": false}, {"id": 4, "category": "文章読解・古典・総合", "unit": "シジュウカラ", "prompt": "【仮説に対する検証1】ヘビがいない状況で、あえて録音した音声だけを聞かせたのはなぜか。", "sentence": "", "choices": ["生きたヘビを捕まえるのが難しかったから。", "「ジャージャー」という鳴き声はヘビを見た恐怖心から発したものかもしれず、姿を見せずに鳴き声だけ聞かせる必要があったから。", "親鳥が巣箱に戻る時間を正確に測るため。", "シジュウカラの聴力がどれほど優れているかを調べるため。"], "answer": 1, "exp": "ヘビがいる状態では、ヘビを見た恐怖心で鳴いたのか、本当に鳴き声が意味をもっているのか区別できないため、姿を見せずに音声だけを聞かせる実験を行いました。", "subType": "", "tricky": false}, {"id": 5, "category": "文章読解・古典・総合", "unit": "シジュウカラ", "prompt": "【検証1の結果】「ジャージャー」という鳴き声を聞かせたとき、シジュウカラはどのような行動をとったか。", "sentence": "", "choices": ["首を左右に振り、周囲を警戒するだけだった。", "地面を確認し、巣箱の穴をのぞきこんだ。", "警戒行動をまったく示さなかった。", "一目散にしげみの中へ逃げ込んだ。"], "answer": 1, "exp": "「ジャージャー」を聞かせると地面を確認し巣箱の穴をのぞき、「ピーツピ」では首を左右に振って周囲を警戒するだけ、鳴き声なしでは警戒行動を示しませんでした。", "subType": "", "tricky": false}, {"id": 6, "category": "文章読解・古典・総合", "unit": "シジュウカラ", "prompt": "【検証2】筆者が音声のみの検証1に加えて、小枝を使った検証2を行った理由は何か。", "sentence": "", "choices": ["「ジャージャー」が「地面や巣箱を確認しろ」という命令である可能性を排除し、ヘビの姿を思い浮かべているか確かめるため。", "シジュウカラが木の枝とヘビの色の違いを識別できるか調べるため。", "検証1の実験回数が少なすぎてデータが足りなかったため。", "ヘビが木を登る速さと小枝の動く速さを比べるため。"], "answer": 0, "exp": "「ジャージャー」が「地面や巣箱を確認しろ」という命令かもしれないという別の解釈を検証するため、ヘビに似た動きをする小枝と似ていない動きの小枝を見せる実験を行いました。", "subType": "", "tricky": false}, {"id": 7, "category": "文章読解・古典・総合", "unit": "シジュウカラ", "prompt": "【検証2の結果】「ジャージャー」を聞かせながら、ヘビに似た動きをする小枝を見せたとき、シジュウカラはどうしたか。", "sentence": "", "choices": ["小枝にはほとんど接近しなかった。", "「ピーツピ」と鳴きながら飛び去った。", "木の幹に沿ってヘビのように動く小枝に近づいて確認した。", "小枝をくわえて巣箱に運ぼうとした。"], "answer": 2, "exp": "「ジャージャー」を聞かせてヘビに似た動きをさせると小枝に近づきましたが、「ジャージャー」以外の鳴き声や、ヘビに似ていない動きの小枝にはほとんど接近しませんでした。", "subType": "", "tricky": false}, {"id": 8, "category": "文章読解・古典・総合", "unit": "シジュウカラ", "prompt": "筆者が20年以上の野外研究から導き出した、シジュウカラの能力についての結論はどれか。", "sentence": "", "choices": ["シジュウカラは人間と同じように文字を書いて伝えることができる。", "「ジャージャー」はヘビを意味する単語であり、さらに異なる「単語」を組み合わせてより複雑なメッセージを伝える能力ももつ。", "シジュウカラの鳴き声はすべて本能的な感情の表れにすぎない。", "シジュウカラはヘビ以外の天敵に対しては鳴き声を使い分けられない。"], "answer": 1, "exp": "「ジャージャー」がヘビを意味する単語であると同時に、シジュウカラは異なる「単語」を使い分けるだけでなく、複数の「単語」を組み合わせる能力ももつことがわかりました。", "subType": "", "tricky": false}, {"id": 9, "category": "文章読解・古典・総合", "unit": "シジュウカラ", "prompt": "コラム「生きる知恵としての言葉」によると、カラ類の中で力が強い順として正しいものはどれか。", "sentence": "", "choices": ["コガラ → シジュウカラ → ゴジュウカラ", "シジュウカラ → ゴジュウカラ → コガラ", "ゴジュウカラ → シジュウカラ → コガラ", "ゴジュウカラ → コガラ → シジュウカラ"], "answer": 2, "exp": "カラ類の中で体が大きく力があるのは、強い順に「ゴジュウカラ → シジュウカラ → コガラ」です。体の小さいコガラは「タカが来た！」という言葉を巧みに使ってエサにありつく知恵をもっています。", "subType": "", "tricky": false}, {"id": 10, "category": "文章読解・古典・総合", "unit": "シジュウカラ", "prompt": "『「言葉」をもつ鳥、シジュウカラ』の文章が説得力をもっている理由として、最も適切なものはどれか。", "sentence": "", "choices": ["シジュウカラの可愛らしい写真だけをたくさん載せているから。", "複数の解釈が生まれる場合に1つの解釈に絞るためさらに検証を加え、目的と方法を明確にした実験結果を根拠としているから。", "筆者の個人的な感想や予想だけを中心に物語のように書かれているから。", "他の研究者の意見を一切紹介せず、自分の主張だけを繰り返しているから。"], "answer": 1, "exp": "仮説を検証し、別の解釈（命令かもしれない）が生まれた際にさらに検証2を行って根拠を示している点や、目的・方法を明確にしている点が説得力につながっています。", "subType": "", "tricky": false}, {"id": 11, "category": "文章読解・古典・総合", "unit": "シジュウカラ", "prompt": "次の語句の意味として正しいものはどれか。\n【 検証 】", "sentence": "", "choices": ["仮に立てた考えのこと。", "細かな要素に分け、性質や内容を明らかにすること。", "仮説が正しいかどうか、実際に調べて確かめること。", "物事の意味や内容をはっきりと決めること。"], "answer": 2, "exp": "「検証」は実際に調べて確かめること。「仮説」は仮に立てた考え、「分析」は細かな要素に分けて明らかにすること、「定義」は意味や内容をはっきり決めることです。", "subType": "", "tricky": false}, {"id": 12, "category": "文章読解・古典・総合", "unit": "シジュウカラ", "prompt": "次の語句の意味として正しいものはどれか。\n【 けたたましい 】", "sentence": "", "choices": ["静かで落ち着いた様子。", "驚くような高い大きな音があがる様子（やかましい）。", "まっ先に・手間をかけずに行う様子。", "別の状態に変わるきっかけのこと。"], "answer": 1, "exp": "「けたたましい」は驚くような高い大きな音があがる様子・やかましいという意味です。「まっ先に」は「いち早く」、「変わるきっかけ」は「転機」です。", "subType": "", "tricky": false}, {"id": 13, "category": "文章読解・古典・総合", "unit": "集中力・案内文", "prompt": "英単語テストの実験（グループA：休憩なし60分／グループB：15分×3＋休憩7分半×2）について、正しい説明はどれか。", "sentence": "", "choices": ["学習直後も1週間後も、グループAの方が高得点だった。", "学習直後はグループBが高得点だったが、翌日にはグループAが逆転した。", "学習直後はグループAが高得点だったが、翌日・1週間後のテストではグループBがよい成績を残した。", "学習した時間が同じなので、AとBの点数に差は出なかった。"], "answer": 2, "exp": "学習直後はグループAが高得点でしたが、翌日と1週間後のテストでは、学習の合間に休憩をはさんだグループBの方がよい成績を残しました。学習の長期的な定着には休憩が効果を発揮する可能性があります。", "subType": "", "tricky": false}, {"id": 14, "category": "文章読解・古典・総合", "unit": "集中力・案内文", "prompt": "『モヤモヤそうだんクリニック』の実験で、集中力の目安となる「ガンマ波」が急激に下がり始めるのは何分をさかいにか。", "sentence": "", "choices": ["7分半", "15分", "40分", "60分"], "answer": 2, "exp": "グループAの脳波（脳の「前頭葉」のガンマ波）は時間の経過とともに低下し、とくに40分をさかいに急激に下がりました。集中力がつづくのは40分ほどと考えられます。", "subType": "", "tricky": false}, {"id": 15, "category": "文章読解・古典・総合", "unit": "集中力・案内文", "prompt": "実験結果をふまえて、筆者がおすすめしている「ノマド（遊牧民）のような勉強法」とはどのようなものか。", "sentence": "", "choices": ["毎日同じ時間に、自分の勉強机だけに座って60分間休まず勉強すること。", "家の中に勉強するスペースを複数用意しておいて、いろいろな場所に移動しながら勉強すること。", "外の公園や遊牧地に出かけて、音楽を聴きながら勉強すること。", "15分勉強したら必ず1時間以上の長い睡眠をとること。"], "answer": 1, "exp": "自分の勉強机のほかにミニデスクやダイニングテーブルなど「家の中に勉強するスペースを複数用意しておいて、いろいろな場所に移動しながら勉強すること」をおすすめしています。", "subType": "", "tricky": false}, {"id": 16, "category": "文章読解・古典・総合", "unit": "集中力・案内文", "prompt": "「10月4日」に発行する中学校演劇祭の案内文の冒頭に入れる「季節の挨拶」として最も適切なものはどれか。", "sentence": "", "choices": ["春の訪れを感じるようになりました", "本格的な夏がやってまいりました", "秋風が心地よい季節となりました", "厳寒の候、ますますご健勝のことと存じます"], "answer": 2, "exp": "10月4日（秋）の案内文なので、「秋風が心地よい季節となりました」が季節にふさわしい挨拶です。", "subType": "", "tricky": false}, {"id": 17, "category": "文章読解・古典・総合", "unit": "集中力・案内文", "prompt": "演劇祭の案内文で「当日は、南側の門よりお入りください。」の横に添える資料として最も適切なものはどれか。", "sentence": "", "choices": ["演劇祭の雰囲気が伝わるような昨年の写真", "学校と周辺施設の位置関係がわかる航空写真", "門や体育館の場所がわかる学校全体の地図", "演劇部の練習風景をうつしたイラスト"], "answer": 2, "exp": "保護者が当日迷わずに南側の門から体育館へ行くことができるよう、「門や体育館の場所がわかる学校全体の地図」を添えるのが最もわかりやすい工夫です。", "subType": "", "tricky": false}, {"id": 18, "category": "文章読解・古典・総合", "unit": "集中力・案内文", "prompt": "保護者向けの案内文の「4. その他」で、「車での来校するのはだめです」「スリッパなどを用意してね」を適切な敬語・表現に直したものはどれか。", "sentence": "", "choices": ["車での来校は禁止します。／スリッパなどを持ってこい。", "車での来校はひかえてください。／スリッパなどを用意してください。", "車で来るのはご遠慮申し上げる。／スリッパなどをお持ちくださいまし。", "車での来校はやめてね。／スリッパなどが必要だよ。"], "answer": 1, "exp": "保護者が読む案内文なので、箇条書きにして読みやすくしたうえで、「車での来校はひかえてください。」「スリッパなどを用意してください。」のように丁寧な表現に直します。", "subType": "", "tricky": false}, {"id": 19, "category": "文章読解・古典・総合", "unit": "方言と共通語", "prompt": "「方言」と「共通語」の説明として、正しい組み合わせはどれか。", "sentence": "", "choices": ["方言：日本全国どこでも通用する言葉／共通語：地域の特色が表れた言葉", "方言：家族や地域の人との交流の中で自然に使われる／共通語：全国向けのテレビニュースなど不特定多数の人に伝える場で使われる", "方言：テレビのアナウンサーが必ず使う言葉／共通語：江戸時代にだけ使われていた言葉", "方言：書き言葉にしか使われない／共通語：話し言葉にしか使われない"], "answer": 1, "exp": "方言は地域ごとの特色が表れ、家族や地域の人との交流の中で身につく言葉です。共通語は日本全国どこでも通用し、テレビニュースなど不特定多数の人に伝える場で使われます。", "subType": "", "tricky": false}, {"id": 20, "category": "文章読解・古典・総合", "unit": "方言と共通語", "prompt": "「捨てる」という意味で、「ホーカル」「ホカル」を使う地域が多いのはどの地方か。", "sentence": "", "choices": ["北海道・東北地方", "関東地方", "近畿地方", "九州地方"], "answer": 2, "exp": "方言分布図では、「ホーカル」「ホカル」は近畿地方を中心に広く使われています。", "subType": "", "tricky": false}, {"id": 21, "category": "文章読解・古典・総合", "unit": "方言と共通語", "prompt": "北海道地方と東北地方で、「捨てる」ことを主に何と表現している地域が多いか。", "sentence": "", "choices": ["ウッチャル・ブッチャル", "ナゲル・ブンナゲル", "ホーカル・ホカル", "ステール・ハイル"], "answer": 1, "exp": "北海道地方と東北地方では、「捨てる」ことを主に「ナゲル」「ブンナゲル」と表現する地域が多く見られます。", "subType": "", "tricky": false}, {"id": 22, "category": "文章読解・古典・総合", "unit": "方言と共通語", "prompt": "日本にある八つの消滅危機言語のうち、北海道で使われている言語はどれか。", "sentence": "", "choices": ["琉球語", "アイヌ語", "八丈語", "与那国語"], "answer": 1, "exp": "北海道で使われている消滅危機言語は「アイヌ語」です（コタン＝村、ピリカ＝よい、カムイ＝神 など）。", "subType": "", "tricky": false}, {"id": 23, "category": "文章読解・古典・総合", "unit": "方言と共通語", "prompt": "沖縄語と共通語の組み合わせとして、正しいものはどれか。", "sentence": "", "choices": ["まやー（猫）", "コタン（村）", "ピリカ（よい）", "カムイ（神）"], "answer": 0, "exp": "「まやー（猫）」「とぅめて（早朝）」「てぃーだ（太陽）」などが沖縄語です。コタン・ピリカ・カムイはアイヌ語の言葉です。", "subType": "", "tricky": false}, {"id": 24, "category": "文章読解・古典・総合", "unit": "文法（文の組み立て）", "prompt": "「実験に 必要な 材料を そろえる。」という文の【述語】にあたる文節はどれか。", "sentence": "", "choices": ["実験に", "必要な", "材料を", "そろえる。"], "answer": 3, "exp": "述語は「どうする」「どんなだ」「何だ」「ある・いる・ない」にあたる文節です。この文では「そろえる。」が述語です。", "subType": "", "tricky": false}, {"id": 25, "category": "文章読解・古典・総合", "unit": "文法（文の組み立て）", "prompt": "次の文の「」で囲んだ文節の働きは何か。\n「【あたたかい】 春が 来た。」", "sentence": "", "choices": ["主語", "述語", "修飾語（連体修飾語）", "修飾語（連用修飾語）"], "answer": 2, "exp": "「あたたかい」は体言（名詞）である「春が」を詳しく説明しているので、修飾語（連体修飾語）です。", "subType": "", "tricky": false}, {"id": 26, "category": "文章読解・古典・総合", "unit": "文法（文の組み立て）", "prompt": "次の文の「」で囲んだ文節は、どの文節を修飾しているか。\n「【冷たい】 プリンを 食べる。」", "sentence": "", "choices": ["プリンを", "食べる。", "冷たい", "どれも修飾していない"], "answer": 0, "exp": "「冷たい」は「どんなプリンか」を説明しているので、「プリンを」を修飾しています。", "subType": "", "tricky": false}, {"id": 27, "category": "文章読解・古典・総合", "unit": "文法（文の組み立て）", "prompt": "次の文の「」で囲んだ文節は、どの文節を修飾しているか。\n「姉が ボランティアに 【加わる】。」ではなく、「姉が 【ボランティアに】 加わる。」のとき、修飾される文節はどれか。", "sentence": "", "choices": ["姉が", "ボランティアに", "加わる。", "文全体"], "answer": 2, "exp": "「ボランティアに」は「何に加わるのか」を説明しているので、述語である「加わる。」を修飾しています。", "subType": "", "tricky": false}, {"id": 28, "category": "文章読解・古典・総合", "unit": "文法（文の組み立て）", "prompt": "次の文の【接続語】にあたる文節はどれか。\n「これは 栄養が 豊富だ。しかし、苦い。」", "sentence": "", "choices": ["これは", "豊富だ。", "しかし、", "苦い。"], "answer": 2, "exp": "「しかし、」は前の文と後の文をつなぐ働きをしており、接続語（逆接）です。", "subType": "", "tricky": false}, {"id": 29, "category": "文章読解・古典・総合", "unit": "文法（文の組み立て）", "prompt": "次の文の【独立語】にあたる文節はどれか。\n「おはよう、今日も 元気だね。」", "sentence": "", "choices": ["おはよう、", "今日も", "元気だね。", "独立語はない"], "answer": 0, "exp": "「おはよう、」は他の文節とは直接関係がなく、それだけで独立してあいさつを表す独立語です。", "subType": "", "tricky": false}, {"id": 30, "category": "文章読解・古典・総合", "unit": "文法（文の組み立て）", "prompt": "次の文の【 】で囲んだ文節の働きとして正しいものはどれか。\n「【暗いので】 照明を つける。」", "sentence": "", "choices": ["主語", "述語", "修飾語", "接続語"], "answer": 3, "exp": "「暗いので」は「〜ので」の形で理由を表し、後の文節につなぐ接続語の働きをしています。", "subType": "", "tricky": false}, {"id": 31, "category": "文章読解・古典・総合", "unit": "文法（文の組み立て）", "prompt": "次の文の【 】で囲んだ文節の働きとして正しいものはどれか。\n「【まあ】、虹が 出て いるわ。」", "sentence": "", "choices": ["主語", "修飾語", "接続語", "独立語"], "answer": 3, "exp": "「まあ」は感動を表し、他の文節と直接関係がないので独立語です。", "subType": "", "tricky": false}, {"id": 32, "category": "文章読解・古典・総合", "unit": "いろは歌", "prompt": "『いろは歌』の「形式」について、正しいものはどれか。", "sentence": "", "choices": ["5音・7音・5音・7音・7音の短歌形式", "7音・5音を四回くり返す「今様（いまよう）」形式", "5音・7音・5音の俳句形式", "8音・6音を三回くり返す形式"], "answer": 1, "exp": "『いろは歌』は「いろはにほへと（7）／ちりぬるを（5）」のように、7音・5音を四回くり返す「今様」形式で作られています。", "subType": "", "tricky": false}, {"id": 33, "category": "文章読解・古典・総合", "unit": "いろは歌", "prompt": "『いろは歌』の特徴として正しいものはどれか。", "sentence": "", "choices": ["50音すべてを2回ずつ使って作られている。", "47文字の仮名を1回ずつ使って作られている。", "漢字とカタカナだけで書かれている。", "作者が明確に記録に残っている。"], "answer": 1, "exp": "『いろは歌』は、当時の47文字の仮名を重複なく1回ずつ使って作られた歌です。", "subType": "", "tricky": false}, {"id": 34, "category": "文章読解・古典・総合", "unit": "いろは歌", "prompt": "『いろは歌』の「ちりぬるを」の現代語訳として正しいものはどれか。", "sentence": "", "choices": ["美しく照り映えていても", "やがて散ってしまうものである", "誰がいつまでも変わらないでいられようか", "浅い夢を見て酔いもしない"], "answer": 1, "exp": "「いろはにほへと（美しく照り映えていても）／ちりぬるを（やがて散ってしまうものである）」という意味です。", "subType": "", "tricky": false}, {"id": 35, "category": "文章読解・古典・総合", "unit": "いろは歌", "prompt": "『いろは歌』の「わがよたれそ つねならむ」の現代語訳として正しいものはどれか。", "sentence": "", "choices": ["私の世は誰のものでもない", "誰がいつまでも変わらないでいられようか（いや、誰も変わらないではいられない）", "いつも楽しい世の中である", "誰でもいつか大人になる"], "answer": 1, "exp": "「わがよたれそ つねならむ」は「誰がいつまでも変わらないでいられようか」という無常を表しています。", "subType": "", "tricky": false}, {"id": 36, "category": "文章読解・古典・総合", "unit": "いろは歌", "prompt": "『いろは歌』の「うゐのおくやま けふこえて あさきゆめみし ゑひもせす」は、どのようなことを表しているか。", "sentence": "", "choices": ["厳しい人生を生き抜こうとする覚悟", "人生の困難を避けて楽をしようとする気持ち", "困難の多い世の中に懸念を示す様子", "深い山に登って景色を楽しみたいという願い"], "answer": 0, "exp": "「有為（うゐ）の奥山」を今日越えて、浅い夢を見たり酔ったりしない、という「厳しい人生を生き抜こうとする覚悟」を表しています。", "subType": "", "tricky": false}, {"id": 37, "category": "文章読解・古典・総合", "unit": "いろは歌", "prompt": "平仮名で書かれた『いろは歌』の最古の資料について、正しいものはどれか。", "sentence": "", "choices": ["奈良時代に法隆寺の壁に書かれたもの。", "平安時代後期、伊勢神宮に仕えた女官が文字を覚えるために土器の皿に書いたもの。", "鎌倉時代に武士が刀に刻んだもの。", "江戸時代に寺子屋の先生が木版印刷したもの。"], "answer": 1, "exp": "最古の資料は平安時代後期のもので、伊勢神宮に仕えた女官が文字を覚えるために土器の皿に書いたものとされています。", "subType": "", "tricky": false}, {"id": 38, "category": "文章読解・古典・総合", "unit": "歴史的仮名遣い", "prompt": "「竹取の翁と【いふ】もの」の【 】を現代仮名遣いに直すとどうなるか。", "sentence": "", "choices": ["いふ", "いう", "いゆ", "いわ"], "answer": 1, "exp": "語頭以外のハ行（は・ひ・ふ・へ・ほ）はワ行（わ・い・う・え・お）に直します。「ふ」→「う」なので「いう」となります。", "subType": "", "tricky": false}, {"id": 39, "category": "文章読解・古典・総合", "unit": "歴史的仮名遣い", "prompt": "「天人の【よそほひ】したる女」の【 】を現代仮名遣いに直すとどうなるか。", "sentence": "", "choices": ["よそほい", "よそおい", "よそうい", "よそわい"], "answer": 1, "exp": "語頭以外のハ行をワ行に直すルールにより、「ほ」→「お」、「ひ」→「い」となるので「よそおい」となります。", "subType": "", "tricky": false}, {"id": 40, "category": "文章読解・古典・総合", "unit": "歴史的仮名遣い", "prompt": "「女、【答へていはく】」の【 】を現代仮名遣いに直すとどうなるか。", "sentence": "", "choices": ["こたへていわく", "こたえていはく", "こたえていわく", "こたわていわく"], "answer": 2, "exp": "語頭以外の「へ」→「え」、「は」→「わ」となるため、「こたえていわく」になります。", "subType": "", "tricky": false}, {"id": 41, "category": "文章読解・古典・総合", "unit": "歴史的仮名遣い", "prompt": "「そのよし【うけたまはりて】」を現代仮名遣いに直すとどうなるか。", "sentence": "", "choices": ["うけたまわりて", "うけたまおりて", "うけたまはりて", "うけたまいて"], "answer": 0, "exp": "語頭以外の「は」は「わ」に直すため、「うけたまわりて」になります。", "subType": "", "tricky": false}, {"id": 42, "category": "文章読解・古典・総合", "unit": "歴史的仮名遣い", "prompt": "「【よろづ】のこと」の【 】を現代仮名遣いに直すとどうなるか。", "sentence": "", "choices": ["よろづ", "よろず", "よろじ", "よろっ"], "answer": 1, "exp": "ほとんどの場合、歴史的仮名遣いの「ぢ」は「じ」、「づ」は「ず」に直します。よって「よろず」になります。", "subType": "", "tricky": false}, {"id": 43, "category": "文章読解・古典・総合", "unit": "歴史的仮名遣い", "prompt": "「三寸ばかりなる人、いとうつくしうて【ゐたり】」の【 】を現代仮名遣いに直すとどうなるか。", "sentence": "", "choices": ["ゐたり", "いたり", "えたり", "おたり"], "answer": 1, "exp": "ワ行の「ゐ・ゑ・を」は「い・え・お」に直します（助詞の「を」は除く）。「ゐ」→「い」なので「いたり」となります。", "subType": "", "tricky": false}, {"id": 44, "category": "文章読解・古典・総合", "unit": "歴史的仮名遣い", "prompt": "「竹【なむ】一筋ありける」の【 】を現代仮名遣いに直すとどうなるか。", "sentence": "", "choices": ["なむ", "なん", "なう", "なぬ"], "answer": 1, "exp": "語尾の「む」はほとんどの場合「ん」に直します。「なむ」→「なん」、「ならむ」→「ならん」となります。", "subType": "", "tricky": false}, {"id": 45, "category": "文章読解・古典・総合", "unit": "歴史的仮名遣い", "prompt": "「【けふ】こえて」の【 】を現代仮名遣いに直すとどうなるか。", "sentence": "", "choices": ["けう", "けお", "きょう", "きゅう"], "answer": 2, "exp": "「efu（えふ）」の音は「you（よう）」と読みます。「けふ（kefu）」は「きょう（kyou）」に直します。", "subType": "", "tricky": false}, {"id": 46, "category": "文章読解・古典・総合", "unit": "歴史的仮名遣い", "prompt": "「登るべき【やう】なし」の【 】を現代仮名遣いに直すとどうなるか。", "sentence": "", "choices": ["やう", "よう", "ゆう", "やお"], "answer": 1, "exp": "「au」の音は「ou」に直します。「やう（yau）」→「よう（you）」となります。", "subType": "", "tricky": false}, {"id": 47, "category": "文章読解・古典・総合", "unit": "歴史的仮名遣い", "prompt": "「【くゎし】を食べ」の【 】を現代仮名遣いに直すとどうなるか。", "sentence": "", "choices": ["くわし", "かし", "がし", "くし"], "answer": 1, "exp": "「くゎ（くわ）」は「か」、「ぐゎ（ぐわ）」は「が」に直します。よって「かし（菓子）」となります。", "subType": "", "tricky": false}, {"id": 48, "category": "文章読解・古典・総合", "unit": "竹取物語", "prompt": "『竹取物語』の冒頭「今は昔、竹取の翁といふもの【ありけり】。」の「けり」の意味として、ここで適切なものはどれか。", "sentence": "", "choices": ["〜だろう", "〜ていた", "〜なさい", "〜ではない"], "answer": 1, "exp": "この文脈の「けり」は過去・伝聞を表し、「〜ていた（竹取の翁と呼ばれる人がいた）」と訳します。", "subType": "", "tricky": false}, {"id": 49, "category": "文章読解・古典・総合", "unit": "竹取物語", "prompt": "「名をば、さぬきのみやつこと【なむ】いひ【ける】。」の「なむ……ける」の訳し方はどれか。", "sentence": "", "choices": ["……しない", "……た", "……したい", "……するだろう"], "answer": 1, "exp": "係り結び「なむ……ける」は強調を伴う過去で、現代語訳では「……た（さぬきのみやつこと言った）」となります。", "subType": "", "tricky": false}, {"id": 50, "category": "文章読解・古典・総合", "unit": "竹取物語", "prompt": "「竹の中より見つけたる」について、竹取の翁が不思議な光る竹に近づいて見たところ、筒の中には何があったか。", "sentence": "", "choices": ["光り輝く黄金の玉", "三寸ばかりなる人（約9センチのとてもかわいらしい人）", "蓬莱の山の地図", "美しい羽衣"], "answer": 1, "exp": "光る筒の中には、「三寸ばかりなる人、いとうつくしうてゐたり（約9センチほどの人が、とてもかわいらしい様子で座っていた）」とあります。", "subType": "", "tricky": false}, {"id": 51, "category": "文章読解・古典・総合", "unit": "竹取物語", "prompt": "古文に出てくる「いとうつくしうて」の「うつくし」の意味として正しいものはどれか。", "sentence": "", "choices": ["美しい・きれいだ", "かわいらしい", "恐ろしい", "立派だ"], "answer": 1, "exp": "古文の「うつくし」は現代語の「美しい」ではなく、「かわいらしい（愛らしい）」という意味です。", "subType": "", "tricky": false}, {"id": 52, "category": "文章読解・古典・総合", "unit": "竹取物語", "prompt": "『竹取物語』のあらすじについて、中秋の名月の夜にかぐや姫が昇っていった場所はどこか。", "sentence": "", "choices": ["駿河の国の山", "月の世界", "蓬莱の島", "都の御所"], "answer": 1, "exp": "中秋の名月の夜、かぐや姫は「月の世界」に昇っていきました。その後、帝はかぐや姫が手紙を添えて残していった「不死の薬」を駿河の国の山で燃やさせました。", "subType": "", "tricky": false}, {"id": 53, "category": "文章読解・古典・総合", "unit": "竹取物語", "prompt": "『蓬莱の玉の枝』に出てくる漢字「遣（や）る／遣（つか）わす」の漢字としての意味はどれか。", "sentence": "", "choices": ["受け取る・もらう", "さしむける・はたらかせる", "隠す・しまっておく", "断る・拒む"], "answer": 1, "exp": "「遣」には「さしむける」「はたらかせる」という意味があります。", "subType": "", "tricky": false}, {"id": 54, "category": "文章読解・古典・総合", "unit": "漢字・語句", "prompt": "同じ漢字「生」の読み方について、組み合わせがすべて正しいものはどれか。", "sentence": "", "choices": ["生命（せい）／一生（いっしょう）／生き物（いきもの）／生卵（なまたまご）", "生命（しょう）／一生（いっせい）／生き物（せいきもの）／生卵（うまたまご）", "生命（せい）／一生（いっせい）／生き物（いきもの）／生卵（しょうたまご）", "生命（いき）／一生（いっしょう）／生き物（せいぶつ）／生卵（なまたまご）"], "answer": 0, "exp": "「生」の音訓：生命（せい・音）、一生（しょう・音）、生き物（い・訓）、生卵（なま・訓）です。", "subType": "", "tricky": false}, {"id": 55, "category": "文章読解・古典・総合", "unit": "漢字・語句", "prompt": "同じ漢字「明」の読み方について、「光明」と「夜明け」の正しい読み方の組み合わせはどれか。", "sentence": "", "choices": ["光明（こうめい）／夜明け（よあけ）", "光明（こうみょう）／夜明け（よあけ）", "光明（こうみょう）／夜明け（よめい）", "光明（こうあか）／夜明け（よあけ）"], "answer": 1, "exp": "「発明（めい）」「光明（みょう）」「夜明け（あ）」「明るい（あか）」のように、同じ漢字でも多様な音訓があります。", "subType": "", "tricky": false}, {"id": 56, "category": "文章読解・古典・総合", "unit": "漢字・語句", "prompt": "次の【 】内の漢字の読み方として正しい組み合わせはどれか。\nア：【風車】小屋を見学する。／イ：折り紙で【風車】を折る。", "sentence": "", "choices": ["ア：かざぐるま ／ イ：ふうしゃ", "ア：ふうしゃ ／ イ：かざぐるま", "ア：ふうぐるま ／ イ：かざしゃ", "ア：かぜぐるま ／ イ：ふうしゃ"], "answer": 1, "exp": "風力を使う施設などの「風車小屋」は「ふうしゃ（音読み）」、おもちゃの「風車」は「かざぐるま（訓読み）」と読みます。", "subType": "", "tricky": false}, {"id": 57, "category": "文章読解・古典・総合", "unit": "漢字・語句", "prompt": "次の【 】内の漢字の読み方として正しい組み合わせはどれか。\nア：【梅雨】前線が近づく。／イ：もうすぐ【梅雨】入りだ。", "sentence": "", "choices": ["ア：つゆ ／ イ：ばいう", "ア：ばいう ／ イ：つゆ", "ア：うめ ／ イ：つゆ", "ア：ばいう ／ イ：うめ"], "answer": 1, "exp": "「梅雨前線」は「ばいうぜんせん」、「梅雨入り」は「つゆいり」と読みます。", "subType": "", "tricky": false}, {"id": 58, "category": "文章読解・古典・総合", "unit": "漢字・語句", "prompt": "次の【 】内のカタカナを漢字に直したとき、正しいものはどれか。\n「敵を【ケイカイ】する」「【ショウコ】をつかむ」「【カイシャク】が分かれる」", "sentence": "", "choices": ["警戒 ／ 証拠 ／ 解釈", "警界 ／ 証古 ／ 解訳", "敬戒 ／ 照査 ／ 改釈", "警戒 ／ 証固 ／ 介釈"], "answer": 0, "exp": "「警戒（けいかい）」「証拠（しょうこ）」「解釈（かいしゃく）」がいずれも正しい表記です。", "subType": "", "tricky": false}, {"id": 59, "category": "文章読解・古典・総合", "unit": "漢字・語句", "prompt": "次の【 】内の漢字の読み方として正しい組み合わせはどれか。\n「【濃度】が高い」「【納涼】祭へ行く」「【遮断】機が下りる」", "sentence": "", "choices": ["のうど ／ のうりょう ／ しゃだん", "こいど ／ なつりょう ／ しゃだん", "のうど ／ のうりょう ／ さだん", "じょうど ／ のうりょう ／ しゃだん"], "answer": 0, "exp": "「濃度（のうど）」「納涼（のうりょう）」「遮断（しゃだん）」です。", "subType": "", "tricky": false}, {"id": 60, "category": "文章読解・古典・総合", "unit": "漢字・語句", "prompt": "「食べ方は【多岐】に渡る」「【先入観】を持たない」の意味として正しい組み合わせはどれか。", "sentence": "", "choices": ["多岐：量がたいへん多い ／ 先入観：進歩しようとする意識", "多岐：いろいろな種類がある ／ 先入観：初めにできた思い込み", "多岐：味がとても濃い ／ 先入観：先を見通す力", "多岐：一つに決まっている ／ 先入観：後から考えた意見"], "answer": 1, "exp": "「多岐」はいろいろな種類があること（道がいくつにも分かれていることから）、「先入観」は初めにできた思い込みのことです。", "subType": "", "tricky": false}, {"id": 61, "category": "文章読解・古典・総合", "unit": "漢字・語句", "prompt": "次の【 】内の漢字の読み方として正しいものはどれか。\n「【陪審員】の役割」「【発酵】させる」「音楽を【視聴】する」", "sentence": "", "choices": ["ばいしんいん ／ はっこう ／ しちょう", "はいしんいん ／ はつこう ／ みきき", "ばいしんいん ／ はつこう ／ しちょう", "ばいしんいん ／ はっこう ／ みちょう"], "answer": 0, "exp": "「陪審員（ばいしんいん）」「発酵（はっこう）」「視聴（しちょう）」です。", "subType": "", "tricky": false}, {"id": 62, "category": "文法（文の成分）", "unit": "第1章：主語・述語", "prompt": "文節の役目や働きに名前を付けた「文の成分」の5つの組み合わせとして、正しいものはどれか。", "sentence": "", "choices": ["主語・述語・修飾語・接続語・独立語", "主語・述語・名詞・動詞・形容詞", "主語・目的語・補語・修飾語・接続語", "主語・述語・連体詞・副詞・感動詞"], "answer": 0, "exp": "文節の働きによる「文の成分」には、①主語、②述語、③修飾語、④接続語、⑤独立語の5つがあります。名詞や動詞などは単語の分類（品詞）です。", "subType": "", "tricky": false}, {"id": 63, "category": "文法（文の成分）", "unit": "第1章：主語・述語", "prompt": "次の文の「主語」と「述語」を文節単位で正しく抜き出したものはどれか。", "sentence": "私の 姉は 佐伯に 行った。", "choices": ["主語：姉は ／ 述語：行った", "主語：姉 ／ 述語：行った", "主語：私の 姉は ／ 述語：佐伯に 行った", "主語：私の ／ 述語：行った"], "answer": 0, "exp": "まず文末の述語「行った」を見つけ、「だれが行ったのか」と考えると「姉は」が主語になります。主語や述語は必ず「文節単位」で答えるため、「姉」ではなく「姉は」とします。", "subType": "", "tricky": false}, {"id": 64, "category": "文法（文の成分）", "unit": "第1章：主語・述語", "prompt": "次の文の「述語」として正しいものはどれか。", "sentence": "今日の 空気は さわやかだ。", "choices": ["さわやかだ", "空気は", "今日の", "さわやか"], "answer": 0, "exp": "述語は主語の状態や性質（「どんなだ」）などを表し、ふつう文の終わり（句点「。」の前）にきます。「今日の空気は（何が）」「さわやかだ（どんなだ）」なので、文節「さわやかだ」が述語です。", "subType": "", "tricky": false}, {"id": 65, "category": "文法（文の成分）", "unit": "第1章：主語・述語", "prompt": "次の文の「主語」として正しいものはどれか。", "sentence": "寒い うえに、 雨さえ 降り出した。", "choices": ["雨さえ", "寒い", "うえに、", "降り出した"], "answer": 0, "exp": "主語には「…が」「…は」だけでなく、「の・も・こそ・さえ・だけ・だって・ばかり」などが付くこともあります。述語「降り出した」に対して「何が降り出したか」と考えると、「雨さえ」が主語になります。", "subType": "", "tricky": false}, {"id": 66, "category": "文法（文の成分）", "unit": "第1章：主語・述語", "prompt": "次の文の「主語」として正しいものはどれか。", "sentence": "由布岳こそ 最も 有名な 名山だ。", "choices": ["由布岳こそ", "最も", "有名な", "名山だ"], "answer": 0, "exp": "述語「名山だ」に対して「何が名山だか」に当たる文節は「由布岳こそ」です。「こそ」が付いて主語を強調しています。", "subType": "", "tricky": false}, {"id": 67, "category": "文法（文の成分）", "unit": "第1章：主語・述語", "prompt": "次の文の「主語」として正しいものはどれか。", "sentence": "今度の マラソン大会は 弟も 一緒に 参加する。", "choices": ["弟も", "マラソン大会は", "今度の", "一緒に"], "answer": 0, "exp": "「〜は」に引かれて「マラソン大会は」を選ばないように注意しましょう。まず述語「参加する」を見つけ、「だれが参加するか」を考えると、主語は「弟も」になります。", "subType": "", "tricky": false}, {"id": 68, "category": "文法（文の成分）", "unit": "第1章：主語・述語", "prompt": "次の文全体の述語「止まった」に対する「主語」はどれか。", "sentence": "父が 運転する 車が 大きな 音を たてて 路肩に 止まった。", "choices": ["車が", "父が", "音が", "路肩に"], "answer": 0, "exp": "「父が」は「運転する」の主語です。文全体の述語「止まった」に対して「何が止まったのか」と考えると、主語は「車が」になります。", "subType": "", "tricky": false}, {"id": 69, "category": "文法（文の成分）", "unit": "第1章：主語・述語", "prompt": "次の文の「主語」と「述語」の組み合わせとして正しいものはどれか。", "sentence": "すぐ 泣くんだ、 僕の 妹は。", "choices": ["主語：妹は ／ 述語：泣くんだ", "主語：僕の ／ 述語：妹は", "主語：すぐ ／ 述語：泣くんだ", "主語なし ／ 述語：妹は"], "answer": 0, "exp": "語順が入れ替わる「倒置」が使われています。ふつうの語順に直すと「僕の 妹は すぐ 泣くんだ。」となるため、主語は「妹は」、述語は「泣くんだ」です。", "subType": "", "tricky": false}, {"id": 70, "category": "文法（文の成分）", "unit": "第2章：修飾語", "prompt": "他の文節の意味や内容・様子（「だれの」「どんな」「何を」「いつ」など）をくわしく説明する文節を何というか。", "sentence": "", "choices": ["修飾語", "述語", "接続語", "独立語"], "answer": 0, "exp": "他の文節をくわしく説明する働きをもつ文節を「修飾語」といいます。修飾語には「連体修飾語」と「連用修飾語」の2種類があります。", "subType": "", "tricky": false}, {"id": 71, "category": "文法（文の成分）", "unit": "第2章：修飾語", "prompt": "次の文の波線部「広い」は、連体修飾語・連用修飾語のどちらか。", "sentence": "あの <span class='u-wave'>広い</span> 運動場で、 毎日 練習している。", "choices": ["連体修飾語（「運動場で」という体言を修飾しているから）", "連用修飾語（「運動場で」という用言を修飾しているから）", "連体修飾語（「練習している」という体言を修飾しているから）", "連用修飾語（「練習している」という用言を修飾しているから）"], "answer": 0, "exp": "「広い」はすぐ後の「運動場で」をくわしく説明しています。「運動場」はものの名前（体言＝名詞）なので、体言を修飾する「連体修飾語」になります。", "subType": "", "tricky": false}, {"id": 72, "category": "文法（文の成分）", "unit": "第2章：修飾語", "prompt": "次の文の波線部「元気よく」は、連体修飾語・連用修飾語のどちらか。", "sentence": "犬が <span class='u-wave'>元気よく</span> しっぽを 振っている。", "choices": ["連用修飾語（「振っている」という用言を修飾しているから）", "連体修飾語（「しっぽを」という体言を修飾しているから）", "連用修飾語（「犬が」という用言を修飾しているから）", "連体修飾語（「振っている」という体言を修飾しているから）"], "answer": 0, "exp": "「元気よく」は「振っている（どんなに振るか）」という動作を表すことば（用言）をくわしく説明しているため、「連用修飾語」になります。", "subType": "", "tricky": false}, {"id": 73, "category": "文法（文の成分）", "unit": "第2章：修飾語", "prompt": "次の文の波線部「六月に」は、どの文節に係っているか。", "sentence": "私たちは <span class='u-wave'>六月に</span> 原尻の滝へ 行きました。", "choices": ["行きました", "原尻の滝へ", "私たちは", "原尻の"], "answer": 0, "exp": "修飾語は必ずしもすぐ後ろの文節に係るとは限りません。「六月に（いつ）＋行ったのか」とつながるため、「行きました」に係っています。", "subType": "", "tricky": false}, {"id": 74, "category": "文法（文の成分）", "unit": "第2章：修飾語", "prompt": "次の文の波線部「とても」は、どの文節に係っているか。", "sentence": "彼女は <span class='u-wave'>とても</span> 上手に 歌う。", "choices": ["上手に", "歌う", "彼女は", "とても 上手に"], "answer": 0, "exp": "「とても 歌う」とはつながらず、「とても 上手に（どのくらい上手にか）」とつながります。したがって「とても」は「上手に」に係る連用修飾語です。", "subType": "", "tricky": false}, {"id": 75, "category": "文法（文の成分）", "unit": "第2章：修飾語", "prompt": "次の文の波線部「ゆっくりと」が係っている文節と、修飾語の種類の組み合わせとして正しいものはどれか。", "sentence": "<span class='u-wave'>ゆっくりと</span> 水の 中から 兄が 顔を 出す。", "choices": ["「出す」に係る ／ 連用修飾語", "「水の」に係る ／ 連体修飾語", "「中から」に係る ／ 連体修飾語", "「兄が」に係る ／ 連用修飾語"], "answer": 0, "exp": "「ゆっくりと」は文末の「出す（どのように出すか）」をくわしく説明しています。「出す」は動作を表す用言なので、連用修飾語です。", "subType": "", "tricky": false}, {"id": 76, "category": "文法（文の成分）", "unit": "第2章：修飾語", "prompt": "次の文の波線部「みんなの」が係っている文節と、修飾語の種類の組み合わせとして正しいものはどれか。", "sentence": "私の 友人が <span class='u-wave'>みんなの</span> 前で 話す。", "choices": ["「前で」に係る ／ 連体修飾語", "「話す」に係る ／ 連用修飾語", "「友人が」に係る ／ 連体修飾語", "「前で」に係る ／ 連用修飾語"], "answer": 0, "exp": "「みんなの」は「前で（だれの前にか）」に係っています。「前」は位置や場所を表す体言（名詞）なので、連体修飾語になります。", "subType": "", "tricky": false}, {"id": 77, "category": "文法（文の成分）", "unit": "第2章：修飾語", "prompt": "次の文のうち、「連体修飾語」に当たる文節はどれか。", "sentence": "国東半島には 今も たくさんの 歴史的 建造物が 残っている。", "choices": ["歴史的", "今も", "国東半島には", "残っている"], "answer": 0, "exp": "「歴史的」は「建造物が」という体言（名詞）をくわしく説明しているため、連体修飾語です。（「今も」は「残っている」に係る連用修飾語、「残っている」は述語です。）", "subType": "", "tricky": false}, {"id": 78, "category": "文法（文の成分）", "unit": "第3章：接続語・独立語", "prompt": "文と文、文節と文節などをつなぎ、前後の条件や理由などの関係を示す文節を何というか。", "sentence": "", "choices": ["接続語", "独立語", "修飾語", "主語"], "answer": 0, "exp": "前後の文や文節をつなぎ、その関係を示す文節を「接続語」といいます。接続語と後に続く文節との関係を「接続の関係」といいます。", "subType": "", "tricky": false}, {"id": 79, "category": "文法（文の成分）", "unit": "第3章：接続語・独立語", "prompt": "次の文の「接続語」として正しいものはどれか。", "sentence": "調べたけれど、 見当たらなかったよ。", "choices": ["調べたけれど、", "見当たらなかったよ", "けれど", "調べた"], "answer": 0, "exp": "「しかし」「だから」などの接続詞だけでなく、「転んだので」「雨だから」「調べたけれど」「暖かいが」のように、条件や理由・逆接を表して前後をつなぐ文節も接続語になります。", "subType": "", "tricky": false}, {"id": 80, "category": "文法（文の成分）", "unit": "第3章：接続語・独立語", "prompt": "次の2つの文を1つの文に書き換えるとき、（　）にあてはまる接続語として最も適切なものはどれか。", "sentence": "困った。 だから、 友達に 相談しよう。<br>→ （　　　）、 友達に 相談しよう。", "choices": ["困ったので", "困ったけれど", "困っても", "困ると"], "answer": 0, "exp": "「だから」は前の事柄が理由・原因であることを表します。1つの文にするときは、理由を表す接続語「困ったので」に書き換えるのが適切です。", "subType": "", "tricky": false}, {"id": 81, "category": "文法（文の成分）", "unit": "第3章：接続語・独立語", "prompt": "次の2つの文を1つの文に書き換えるとき、（　）にあてはまる接続語として最も適切なものはどれか。", "sentence": "走る。 すると、 汗が 出てきます。<br>→ （　　　）、 汗が 出てきます。", "choices": ["走ると", "走るのに", "走るけれど", "走ったので"], "answer": 0, "exp": "「すると」は「Aすると、その結果Bになる」という条件・きっかけを表します。1文に書き換えるときは「走ると」が当てはまります。", "subType": "", "tricky": false}, {"id": 82, "category": "文法（文の成分）", "unit": "第3章：接続語・独立語", "prompt": "他の文節と直接関係がなく独立している「独立語」の5つの種類に【含まれない】ものはどれか。", "sentence": "", "choices": ["理由", "感動", "呼びかけ", "提示"], "answer": 0, "exp": "独立語には、①感動、②呼びかけ、③応答、④提示、⑤あいさつ の5種類があります。「理由」を表すのは接続語です。", "subType": "", "tricky": false}, {"id": 83, "category": "文法（文の成分）", "unit": "第3章：接続語・独立語", "prompt": "次の文の線部「友情」は、独立語の5種類のうちどれに当たるか。", "sentence": "<span class='u-line'>友情</span>、 これが クラスの 目標です。", "choices": ["提示", "呼びかけ", "感動", "応答"], "answer": 0, "exp": "強調するために名前や題目などを文の初めに示す働きを「提示」といいます。「福沢諭吉、彼は〜」「生きる、それこそが〜」「八月六日、この日に〜」なども提示の独立語です。", "subType": "", "tricky": false}, {"id": 84, "category": "文法（文の成分）", "unit": "第3章：接続語・独立語", "prompt": "次の文の「独立語」として正しいものはどれか。", "sentence": "どうぞ おくつろぎください、 お客様。", "choices": ["お客様", "どうぞ", "おくつろぎ", "ください"], "answer": 0, "exp": "独立語は文の初めにくることが多いですが、倒置によって文末にくることもあります。「お客様」は呼びかけを表す独立語です。", "subType": "", "tricky": false}, {"id": 85, "category": "文法（文の成分）", "unit": "第3章：接続語・独立語", "prompt": "次の文の「独立語」として正しいものはどれか。", "sentence": "本当だろうか。 いや、 そんな はずはない。", "choices": ["いや", "本当だろうか", "そんな", "はずはない"], "answer": 0, "exp": "2つ目の文の初めにある「いや」が、応答を表す独立語です。同様に「このごろ晴天が続いている。ああ、いい風が吹いてきた。」の「ああ」（感動）も独立語になります。", "subType": "", "tricky": false}, {"id": 86, "category": "文法（文の成分）", "unit": "第4章：総合問題", "prompt": "次の文の線部「もし」は、どの文の成分か。", "sentence": "<span class='u-line'>もし</span>、 明日が 大雪で だれも 学校に 来なくても、 僕だけは なんとしても 行くよ。", "choices": ["独立語", "修飾語", "接続語", "主語"], "answer": 0, "exp": "テストで「修飾語」と間違えやすい重要問題です！文頭で読点「、」で区切られ、仮定の場面を切り出す「もし」は、他の文節と直接関係を持たない「独立語」として扱われます。", "subType": "", "tricky": false}, {"id": 87, "category": "文法（文の成分）", "unit": "第4章：総合問題", "prompt": "次の文の線部「それとも」は、どの文の成分か。", "sentence": "お茶に しますか。 <span class='u-line'>それとも</span>、 コーヒーに しますか。", "choices": ["接続語", "独立語", "修飾語", "述語"], "answer": 0, "exp": "「それとも」は前の文と後の文を「選択」の関係でつないでいるため、「接続語」です。", "subType": "", "tricky": false}, {"id": 88, "category": "文法（文の成分）", "unit": "第4章：総合問題", "prompt": "次の文の線部「ところで」は、どの文の成分か。", "sentence": "やあ、 大きく なったね。 <span class='u-line'>ところで</span>、 いくつに なったの。", "choices": ["接続語", "独立語", "修飾語", "主語"], "answer": 0, "exp": "「やあ」は独立語（あいさつ・呼びかけ）ですが、「ところで」は前の文から話題を転換して後の文へつなぐ働きをしているため、「接続語」です。", "subType": "", "tricky": false}, {"id": 89, "category": "文法（文の成分）", "unit": "第4章：総合問題", "prompt": "次の文の線部「十本ばかり」は、どの文の成分か。", "sentence": "校庭には、 卒業生が 植えた ポプラの 木が <span class='u-line'>十本ばかり</span> ある。", "choices": ["修飾語", "述語", "主語", "接続語"], "answer": 0, "exp": "「十本ばかり」は述語「ある」に対して「どのくらいあるのか」をくわしく説明しているため、「修飾語」（連用修飾語）です。", "subType": "", "tricky": false}, {"id": 90, "category": "文法（文の成分）", "unit": "第4章：総合問題", "prompt": "次の文の線部「連絡した」は、どの文の成分か。", "sentence": "彼が 欠席することを、 担任の 先生に <span class='u-line'>連絡した</span>。", "choices": ["述語", "修飾語", "主語", "独立語"], "answer": 0, "exp": "文の終わりにあって動作（「どうした」）を表しているため、「述語」です。なお、この文では「だれが」に当たる主語が省略されています。", "subType": "", "tricky": false}, {"id": 91, "category": "文法（文の成分）", "unit": "第4章：総合問題", "prompt": "次の文の線部「姿が」は、どの文の成分か。", "sentence": "通学で 利用している 駅の ホームに ある 鏡に、 同じ 学校の 生徒の <span class='u-line'>姿が</span> 映る。", "choices": ["主語", "修飾語", "述語", "独立語"], "answer": 0, "exp": "述語「映る」に対して「何が映るのか」と考えると、「姿が」が主語に当たります。長い修飾語に惑わされず、述語から主語をたどるのがコツです。", "subType": "", "tricky": false}, {"id": 92, "category": "文法（文の成分）", "unit": "第4章：総合問題", "prompt": "次のうち、文中に「主語」が書かれていない（省略されている）文はどれか。", "sentence": "", "choices": ["三時間ほど ゆっくり 過ごした。", "一九四六年に 日本国憲法は 公布された。", "成人した 私の 兄でさえ 常に だれかに 助けられる。", "公園には もう だれも いない。"], "answer": 0, "exp": "「三時間ほど ゆっくり 過ごした。」には「だれが過ごしたか」に当たる主語が書かれていません（省略されています）。他の文にはそれぞれ「日本国憲法は」「兄でさえ」「だれも」という主語があります。", "subType": "", "tricky": false}, {"id": 93, "category": "文法（文の成分）", "unit": "第4章：総合問題", "prompt": "次の文の線部のうち、「独立語」では【ない】ものはどれか。", "sentence": "", "choices": ["<span class='u-line'>雨なので</span>、 体育大会は 延期だ。", "<span class='u-line'>福沢諭吉</span>、 彼は 大分県を 代表する 偉人だ。", "待ちに待った 発表の日だ。 <span class='u-line'>合格</span>、 僕は どんなに それを 待っていたことか。", "<span class='u-line'>もしもし</span>、 そちらは 佐伯さんの お宅ですか。"], "answer": 0, "exp": "「雨なので」は理由を表して後の文節につなぐ「接続語」です。「福沢諭吉」（提示）、「合格」（提示）、「もしもし」（呼びかけ）はすべて独立語です。", "subType": "", "tricky": false}, {"id": 94, "category": "漢字・語句（P.34〜45）", "unit": "P.34-35 方言と共通語・音訓", "prompt": "勝利を【おさ】める。（よい結果や利益を得る）", "sentence": "", "choices": ["収", "納", "修", "治"], "answer": 0, "exp": "「よい結果や利益を得る」ときは「収める」を使います。（例：勝利を収める、成功を収める）", "subType": "special", "tricky": false}, {"id": 95, "category": "漢字・語句（P.34〜45）", "unit": "P.34-35 方言と共通語・音訓", "prompt": "商品を【おさ】める。（受け取るべき人に渡す）", "sentence": "", "choices": ["納", "収", "修", "治"], "answer": 0, "exp": "「受け取るべき人に渡す・しまい入れる」ときは「納める」を使います。（例：商品を納める、税金を納める）", "subType": "special", "tricky": false}, {"id": 96, "category": "漢字・語句（P.34〜45）", "unit": "P.34-35 方言と共通語・音訓", "prompt": "学問を【おさ】める。（学問を身につける）", "sentence": "", "choices": ["修", "収", "納", "治"], "answer": 0, "exp": "「学問や技を身につける」ときは「修める」を使います。（例：学問を修める、単位を修める）", "subType": "special", "tricky": false}, {"id": 97, "category": "漢字・語句（P.34〜45）", "unit": "P.34-35 方言と共通語・音訓", "prompt": "国を【おさ】める。（おだやかにする）", "sentence": "", "choices": ["治", "収", "納", "修"], "answer": 0, "exp": "「おだやかにする・管理する」ときは「治める」を使います。（例：国を治める、乱れを治める）", "subType": "special", "tricky": false}, {"id": 98, "category": "漢字・語句（P.34〜45）", "unit": "P.34-35 方言と共通語・音訓", "prompt": "【ねこ】が鳴く。", "sentence": "", "choices": ["猫", "犬", "狐", "狸"], "answer": 0, "exp": "「猫（ねこ／ビョウ）」は新出漢字です。けものへん（犭）に「苗」を書きます。", "subType": "kaki", "tricky": false}, {"id": 99, "category": "漢字・語句（P.34〜45）", "unit": "P.34-35 方言と共通語・音訓", "prompt": "事実に【即】した考え。", "sentence": "", "choices": ["そく", "ぞく", "しょく", "すく"], "answer": 0, "exp": "「即（そく）」＝ぴったり合うこと。音読みは「ソク」です。", "subType": "yomi", "tricky": false}, {"id": 100, "category": "漢字・語句（P.34〜45）", "unit": "P.34-35 方言と共通語・音訓", "prompt": "【たが】いに思いやる。", "sentence": "", "choices": ["互", "瓦", "牙", "五"], "answer": 0, "exp": "「互い（たがい）」の「互」は4画の漢字です。上と下の横棒の間に折れが2つ入ります。", "subType": "kaki", "tricky": false}, {"id": 101, "category": "漢字・語句（P.34〜45）", "unit": "P.34-35 方言と共通語・音訓", "prompt": "【互角】に戦う。", "sentence": "", "choices": ["ごかく", "たがかく", "こかく", "ごうかく"], "answer": 0, "exp": "「互角（ごかく）」＝双方の力量が同じくらいであること。", "subType": "yomi", "tricky": false}, {"id": 102, "category": "漢字・語句（P.34〜45）", "unit": "P.34-35 方言と共通語・音訓", "prompt": "欠席者の【有無】。", "sentence": "", "choices": ["うむ", "ゆうむ", "ありなし", "うぶ"], "answer": 0, "exp": "「有無（うむ）」＝あるか無いか。「有」は「ウ」と読みます。", "subType": "yomi", "tricky": false}, {"id": 103, "category": "漢字・語句（P.34〜45）", "unit": "P.34-35 方言と共通語・音訓", "prompt": "【どしゃ】が流れる。", "sentence": "", "choices": ["土砂", "土石", "土沙", "土砕"], "answer": 0, "exp": "「土砂（どしゃ）」＝土と砂。雨などで流れ出る土と砂のことです。", "subType": "kaki", "tricky": false}, {"id": 104, "category": "漢字・語句（P.34〜45）", "unit": "P.34-35 方言と共通語・音訓", "prompt": "【せいか】の候。（夏の暑いさかり）", "sentence": "", "choices": ["盛夏", "成夏", "製菓", "成果"], "answer": 0, "exp": "「盛夏（せいか）」＝夏の暑いさかり。同音異義語（成果・製菓）と混同しないように注意しましょう。", "subType": "kaki", "tricky": true}, {"id": 105, "category": "漢字・語句（P.34〜45）", "unit": "P.34-35 方言と共通語・音訓", "prompt": "【夏至】の日。", "sentence": "", "choices": ["げし", "かし", "なつし", "げじ"], "answer": 0, "exp": "「夏至（げし）」＝一年で最も昼が長い日。「夏」を「ゲ」と読む特別な読み方に注意！", "subType": "yomi", "tricky": true}, {"id": 106, "category": "漢字・語句（P.34〜45）", "unit": "P.34-35 方言と共通語・音訓", "prompt": "日本の【しゅしょう】。", "sentence": "", "choices": ["首相", "主相", "首将", "主将"], "answer": 0, "exp": "「首相（しゅしょう）」＝内閣総理大臣のこと。「首」＋「相」です。", "subType": "kaki", "tricky": false}, {"id": 107, "category": "漢字・語句（P.34〜45）", "unit": "P.34-35 方言と共通語・音訓", "prompt": "長年の【知己】。（親しい人）", "sentence": "", "choices": ["ちき", "ちこ", "ともき", "しりき"], "answer": 0, "exp": "「知己（ちき）」＝自分のことをよく知ってくれている親しい人・友人。「己」は「キ」と読みます。", "subType": "yomi", "tricky": true}, {"id": 108, "category": "漢字・語句（P.34〜45）", "unit": "P.34-35 方言と共通語・音訓", "prompt": "【街道】の並木。", "sentence": "", "choices": ["かいどう", "がいどう", "まちみち", "かいとう"], "answer": 0, "exp": "「街道（かいどう）」＝都市と都市などを結ぶ主要な道路。", "subType": "yomi", "tricky": false}, {"id": 109, "category": "漢字・語句（P.34〜45）", "unit": "P.34-35 方言と共通語・音訓", "prompt": "食塩水の【のうど】。", "sentence": "", "choices": ["濃度", "濃渡", "能度", "農度"], "answer": 0, "exp": "「濃度（のうど）」＝濃さの度合い。「濃」はさんずい（氵）に「農」と書きます。", "subType": "kaki", "tricky": true}, {"id": 110, "category": "漢字・語句（P.34〜45）", "unit": "P.34-35 方言と共通語・音訓", "prompt": "妹が【ごうきゅう】する。（大声で泣くこと）", "sentence": "", "choices": ["号泣", "豪泣", "強泣", "合泣"], "answer": 0, "exp": "「号泣（ごうきゅう）」＝大声をあげて泣くこと。「号」は「大声で叫ぶ」という意味があります。", "subType": "kaki", "tricky": false}, {"id": 111, "category": "漢字・語句（P.34〜45）", "unit": "P.34-35 方言と共通語・音訓", "prompt": "所得の【申告】。", "sentence": "", "choices": ["しんこく", "しんこう", "もうしこく", "じんこく"], "answer": 0, "exp": "「申告（しんこく）」＝公の機関などに届け出て知らせること。", "subType": "yomi", "tricky": true}, {"id": 112, "category": "漢字・語句（P.34〜45）", "unit": "P.34-35 方言と共通語・音訓", "prompt": "茶を【所望】する。（ほしいと思うこと）", "sentence": "", "choices": ["しょもう", "しょぼう", "ところのぞ", "しょうもう"], "answer": 0, "exp": "「所望（しょもう）」＝ほしいと思うこと、願望すること。「望」を「モウ」と読む点に注意！", "subType": "yomi", "tricky": true}, {"id": 113, "category": "漢字・語句（P.34〜45）", "unit": "P.34-35 方言と共通語・音訓", "prompt": "【ぎこう】的な作品。", "sentence": "", "choices": ["技巧", "技工", "議巧", "技効"], "answer": 0, "exp": "「技巧（ぎこう）」＝すぐれた技術や工夫。「巧」は新出漢字（音：コウ、訓：たくみ）です。", "subType": "kaki", "tricky": true}, {"id": 114, "category": "漢字・語句（P.34〜45）", "unit": "P.34-35 方言と共通語・音訓", "prompt": "【のうりょう】船に乗る。", "sentence": "", "choices": ["納涼", "濃涼", "能涼", "納良"], "answer": 0, "exp": "「納涼（のうりょう）」＝夏の夜などに涼しさを味わうこと（夕涼み）。「涼」はさんずい（氵）に「京」です。", "subType": "kaki", "tricky": true}, {"id": 115, "category": "漢字・語句（P.34〜45）", "unit": "P.34-35 方言と共通語・音訓", "prompt": "光を【しゃだん】する。（さえぎり止めること）", "sentence": "", "choices": ["遮断", "車断", "射断", "写断"], "answer": 0, "exp": "「遮断（しゃだん）」＝さえぎり止めること。「遮」はしんにょう（辶）に「庶」です。", "subType": "kaki", "tricky": false}, {"id": 116, "category": "漢字・語句（P.34〜45）", "unit": "P.34-35 方言と共通語・音訓", "prompt": "【じゅうどう】の試合。", "sentence": "", "choices": ["柔道", "重道", "従道", "縦道"], "answer": 0, "exp": "「柔道（じゅうどう）」の「柔」は「やわらかい」とも読む新出漢字です。", "subType": "kaki", "tricky": false}, {"id": 117, "category": "漢字・語句（P.34〜45）", "unit": "P.34-35 方言と共通語・音訓", "prompt": "塩味が【濃】い。", "sentence": "", "choices": ["こ", "のう", "あつ", "つよ"], "answer": 0, "exp": "「濃い（こい）」＝味や色などがこまやかではっきりしていること。", "subType": "yomi", "tricky": false}, {"id": 118, "category": "漢字・語句（P.34〜45）", "unit": "P.34-35 方言と共通語・音訓", "prompt": "【柔和】な顔つき。", "sentence": "", "choices": ["にゅうわ", "じゅうわ", "やわわ", "にゅうか"], "answer": 0, "exp": "「柔和（にゅうわ）」＝やさしくおだやかなこと。「柔」を「ニュウ」と読むのに注意！", "subType": "yomi", "tricky": true}, {"id": 119, "category": "漢字・語句（P.34〜45）", "unit": "P.34-35 方言と共通語・音訓", "prompt": "【たく】みに利用する。（手ぎわがよい）", "sentence": "", "choices": ["巧", "工", "功", "高"], "answer": 0, "exp": "「巧み（たくみ）」＝手ぎわがよいこと、じょうずなこと。", "subType": "kaki", "tricky": false}, {"id": 120, "category": "漢字・語句（P.34〜45）", "unit": "P.34-35 方言と共通語・音訓", "prompt": "【涼】しい風。", "sentence": "", "choices": ["すず", "さむ", "りょう", "つめ"], "answer": 0, "exp": "「涼しい（すずしい）」。音読みは「リョウ（納涼）」です。", "subType": "yomi", "tricky": false}, {"id": 121, "category": "漢字・語句（P.34〜45）", "unit": "P.34-35 方言と共通語・音訓", "prompt": "道を【遮】る。", "sentence": "", "choices": ["さえぎ", "しゃぎ", "ふさ", "とど"], "answer": 0, "exp": "「遮る（さえぎる）」＝間に立ちふさがって止める・じゃますること。", "subType": "yomi", "tricky": true}, {"id": 122, "category": "漢字・語句（P.34〜45）", "unit": "P.34-35 方言と共通語・音訓", "prompt": "表情が【やわ】らかい。（おだやかな様子）", "sentence": "", "choices": ["柔", "軟", "優", "和"], "answer": 0, "exp": "「おだやかな様子」を表すときは「柔らかい」と書きます。（物の硬さ・しなやかさは「軟らかい」）", "subType": "kaki", "tricky": false}, {"id": 123, "category": "漢字・語句（P.34〜45）", "unit": "P.34-35 方言と共通語・音訓", "prompt": "【けつろん】を出す。", "sentence": "", "choices": ["結論", "決論", "欠論", "結倫"], "answer": 0, "exp": "「結論（けつろん）」＝考えや話し合いの末に出した最終的な判断。", "subType": "kaki", "tricky": false}, {"id": 124, "category": "漢字・語句（P.34〜45）", "unit": "P.34-35 方言と共通語・音訓", "prompt": "【きちょう】な体験。", "sentence": "", "choices": ["貴重", "機重", "基重", "記重"], "answer": 0, "exp": "「貴重（きちょう）」＝めったになく、価値があって大切なこと。", "subType": "kaki", "tricky": false}, {"id": 125, "category": "漢字・語句（P.34〜45）", "unit": "P.34-35 方言と共通語・音訓", "prompt": "城を【築】く。", "sentence": "", "choices": ["きず", "ちく", "つく", "かま"], "answer": 0, "exp": "「築く（きずく）」＝土や石を積み上げて造る。「ず」なので「きづ」と誤らないよう注意！", "subType": "yomi", "tricky": true}, {"id": 126, "category": "漢字・語句（P.34〜45）", "unit": "P.34-35 方言と共通語・音訓", "prompt": "歴代の【天皇】。", "sentence": "", "choices": ["てんのう", "てんこう", "てんおう", "てんのお"], "answer": 0, "exp": "「天皇（てんのう）」。「皇」は連声（れんじょう）で「のう」と読みます。", "subType": "yomi", "tricky": false}, {"id": 127, "category": "漢字・語句（P.34〜45）", "unit": "P.34-35 方言と共通語・音訓", "prompt": "会社の【そしき】。", "sentence": "", "choices": ["組織", "組職", "素織", "組式"], "answer": 0, "exp": "「組織（そしき）」＝共通の目的のために集まって作られたまとまり。", "subType": "kaki", "tricky": false}, {"id": 128, "category": "漢字・語句（P.34〜45）", "unit": "P.36-37 漢字に親しもう2", "prompt": "【同じ部首（辶）の漢字】意見を【の】べる。", "sentence": "", "choices": ["述べる", "延べる", "伸べる", "宣べる"], "answer": 0, "exp": "「意見や考えを言い表す」は「述べる（しんにょう：辶）」です。", "subType": "special", "tricky": false}, {"id": 129, "category": "漢字・語句（P.34〜45）", "unit": "P.36-37 漢字に親しもう2", "prompt": "【同じ部首（辶）の漢字】流れに【さか】らう。", "sentence": "", "choices": ["逆らう", "反らう", "背らう", "違らう"], "answer": 0, "exp": "「流れにさからう」は「逆らう（しんにょう：辶）」です。", "subType": "special", "tricky": false}, {"id": 130, "category": "漢字・語句（P.34〜45）", "unit": "P.36-37 漢字に親しもう2", "prompt": "【同じ部首（辶）の漢字】道に【まよ】う。", "sentence": "", "choices": ["迷う", "惑う", "紛う", "彷う"], "answer": 0, "exp": "「道にまよう」は「迷う（しんにょう：辶）」です。", "subType": "special", "tricky": false}, {"id": 131, "category": "漢字・語句（P.34〜45）", "unit": "P.36-37 漢字に親しもう2", "prompt": "優勝旗の【へんかん】。", "sentence": "", "choices": ["返還", "返換", "変換", "返環"], "answer": 0, "exp": "「返還（へんかん）」＝借りていたものなどを元の持ち主に返すこと。「還」はしんにょう（辶）です。", "subType": "kaki", "tricky": false}, {"id": 132, "category": "漢字・語句（P.34〜45）", "unit": "P.36-37 漢字に親しもう2", "prompt": "野球の【にるいしゅ】。", "sentence": "", "choices": ["二塁手", "二類手", "二累手", "二涙手"], "answer": 0, "exp": "「二塁手（にるいしゅ）」。「塁」は「田」の下に「乚」ではなく「土」と「厶」ではありません（上の「田」の下に「土」が並ばず、田＋ム＋ム＋土＝塁、または略字ではなく正字に注意）。", "subType": "kaki", "tricky": false}, {"id": 133, "category": "漢字・語句（P.34〜45）", "unit": "P.36-37 漢字に親しもう2", "prompt": "【おおわざ】を決める。", "sentence": "", "choices": ["大技", "大業", "大芸", "大術"], "answer": 0, "exp": "「大技（おおわざ）」＝スポーツなどで大きく見事な技。", "subType": "kaki", "tricky": false}, {"id": 134, "category": "漢字・語句（P.34〜45）", "unit": "P.36-37 漢字に親しもう2", "prompt": "【かっさい】を浴びる。（声を上げたり手をたたいたりしてほめること）", "sentence": "", "choices": ["喝采", "喝彩", "活采", "渇采"], "answer": 0, "exp": "「喝采（かっさい）」＝「喝（大声を出す）」＋「采（ほめる・拍手する）」。「彩」と間違えやすいので注意！", "subType": "kaki", "tricky": false}, {"id": 135, "category": "漢字・語句（P.34〜45）", "unit": "P.36-37 漢字に親しもう2", "prompt": "【ほうがん】投げ。", "sentence": "", "choices": ["砲丸", "抱丸", "放丸", "砲弾"], "answer": 0, "exp": "「砲丸（ほうがん）」＝陸上競技で投げる鉄の玉。「砲」は石へんに「包」です。", "subType": "kaki", "tricky": false}, {"id": 136, "category": "漢字・語句（P.34〜45）", "unit": "P.36-37 漢字に親しもう2", "prompt": "時間を【割】く。（一部分を他のことに使う）", "sentence": "", "choices": ["さ", "わ", "か", "ひ"], "answer": 0, "exp": "「割く（さく）」＝時間や手間などの一部分を他のことのためにあてること。", "subType": "yomi", "tricky": false}, {"id": 137, "category": "漢字・語句（P.34〜45）", "unit": "P.36-37 漢字に親しもう2", "prompt": "【弓道】の的。", "sentence": "", "choices": ["きゅうどう", "ゆみどう", "きゅうとう", "くどう"], "answer": 0, "exp": "「弓道（きゅうどう）」。「弓」の音読みは「キュウ」です。", "subType": "yomi", "tricky": false}, {"id": 138, "category": "漢字・語句（P.34〜45）", "unit": "P.36-37 漢字に親しもう2", "prompt": "公平な【しんぱん】。", "sentence": "", "choices": ["審判", "信判", "新判", "審半"], "answer": 0, "exp": "「審判（しんぱん）」＝試合のルールに従って勝敗や反則を判定すること・人。「審」はうかんむり（宀）に「番」です。", "subType": "kaki", "tricky": false}, {"id": 139, "category": "漢字・語句（P.34〜45）", "unit": "P.36-37 漢字に親しもう2", "prompt": "【さんれんぱ】する。", "sentence": "", "choices": ["三連覇", "三連波", "三連派", "三連破"], "answer": 0, "exp": "「三連覇（さんれんぱ）」＝3回連続で優勝すること。「覇」は「西（要の上）」の下に「革」と「月」です。", "subType": "kaki", "tricky": false}, {"id": 140, "category": "漢字・語句（P.34〜45）", "unit": "P.36-37 漢字に親しもう2", "prompt": "記録の【こうしん】。", "sentence": "", "choices": ["更新", "好新", "交新", "公新"], "answer": 0, "exp": "「更新（こうしん）」＝これまでの記録をぬりかえて新しくすること。「更」は「サラに・フける」とも読みます。", "subType": "kaki", "tricky": false}, {"id": 141, "category": "漢字・語句（P.34〜45）", "unit": "P.36-37 漢字に親しもう2", "prompt": "【かいひん】公園。", "sentence": "", "choices": ["海浜", "海辺", "海品", "海貧"], "answer": 0, "exp": "「海浜（かいひん）」＝海辺、海岸。「浜」の音読みは「ヒン」、訓読みは「はま」です。", "subType": "kaki", "tricky": false}, {"id": 142, "category": "漢字・語句（P.34〜45）", "unit": "P.36-37 漢字に親しもう2", "prompt": "プロに【匹敵】する。（同じくらいのこと）", "sentence": "", "choices": ["ひってき", "ひきてき", "びってき", "ひっせき"], "answer": 0, "exp": "「匹敵（ひってき）」＝能力や価値などが相手と同じくらいであること。「匹」は「ヒツ」と読み、促音化して「ひってき」になります。", "subType": "yomi", "tricky": true}, {"id": 143, "category": "漢字・語句（P.34〜45）", "unit": "P.36-37 漢字に親しもう2", "prompt": "自信の【そうしつ】。（失うこと）", "sentence": "", "choices": ["喪失", "早失", "装失", "双失"], "answer": 0, "exp": "「喪失（そうしつ）」＝大切なものを失うこと。「喪」の書き順・形（上に「十」、中に口が2つ、下に長い横棒と衣の下部）に注意！", "subType": "kaki", "tricky": true}, {"id": 144, "category": "漢字・語句（P.34〜45）", "unit": "P.36-37 漢字に親しもう2", "prompt": "【酢酸】の濃度。", "sentence": "", "choices": ["さくさん", "すさん", "さっさん", "ざくさん"], "answer": 0, "exp": "「酢酸（さくさん）」。「酢」の音読みは「サク」、訓読みは「す」です。", "subType": "yomi", "tricky": false}, {"id": 145, "category": "漢字・語句（P.34〜45）", "unit": "P.36-37 漢字に親しもう2", "prompt": "【光沢】のある葉。（光を受けた面のつや）", "sentence": "", "choices": ["こうたく", "ひかりさわ", "こうざわ", "こうだく"], "answer": 0, "exp": "「光沢（こうたく）」＝物の表面のつや・輝き。「沢」の音読みは「タク」です。", "subType": "yomi", "tricky": false}, {"id": 146, "category": "漢字・語句（P.34〜45）", "unit": "P.36-37 漢字に親しもう2", "prompt": "【どんてん】の空模様。（くもり空）", "sentence": "", "choices": ["曇天", "雲天", "鈍天", "呑天"], "answer": 0, "exp": "「曇天（どんてん）」＝くもり空。「曇」は「日」の下に「雲」を書きます。「雲」と間違えないように注意！", "subType": "kaki", "tricky": true}, {"id": 147, "category": "漢字・語句（P.34〜45）", "unit": "P.36-37 漢字に親しもう2", "prompt": "【神宮】に参る。", "sentence": "", "choices": ["じんぐう", "しんぐう", "かみみや", "じんきゅう"], "answer": 0, "exp": "「神宮（じんぐう）」＝皇室にゆかりの深い神社などのこと。", "subType": "yomi", "tricky": false}, {"id": 148, "category": "漢字・語句（P.34〜45）", "unit": "P.36-37 漢字に親しもう2", "prompt": "【更地】を買う。（空き地）", "sentence": "", "choices": ["さらち", "こうち", "あきち", "さらじ"], "answer": 0, "exp": "「更地（さらち）」＝建物などが建っていない空き地のこと。「更」は「さら（新しい）」と読みます。", "subType": "yomi", "tricky": false}, {"id": 149, "category": "漢字・語句（P.34〜45）", "unit": "P.36-37 漢字に親しもう2", "prompt": "【はまべ】を歩く。", "sentence": "", "choices": ["浜辺", "海辺", "浜部", "羽辺"], "answer": 0, "exp": "「浜辺（はまべ）」＝砂浜のあたり、海辺。「浜」はさんずい（氵）に「兵」です。", "subType": "kaki", "tricky": false}, {"id": 150, "category": "漢字・語句（P.34〜45）", "unit": "P.36-37 漢字に親しもう2", "prompt": "【三匹】の犬。", "sentence": "", "choices": ["さんびき", "さんひき", "さんぴき", "みっぴき"], "answer": 0, "exp": "「三匹（さんびき）」。3のあとに「匹」がつくと濁って「びき」になります。", "subType": "yomi", "tricky": false}, {"id": 151, "category": "漢字・語句（P.34〜45）", "unit": "P.36-37 漢字に親しもう2", "prompt": "【喪中】のはがき。（家族の死後、交際をひかえる期間）", "sentence": "", "choices": ["もちゅう", "そうちゅう", "もなか", "そうじゅう"], "answer": 0, "exp": "「喪中（もちゅう）」。「喪」を「モ」と読む特別な読み方に注意！", "subType": "yomi", "tricky": false}, {"id": 152, "category": "漢字・語句（P.34〜45）", "unit": "P.36-37 漢字に親しもう2", "prompt": "【くろず】を飲む。", "sentence": "", "choices": ["黒酢", "黒酸", "黒素", "黒酒"], "answer": 0, "exp": "「黒酢（くろず）」＝米などを発酵させて作った黒い色の酢。「酢」はとりへん（酉）に「乍」です。", "subType": "kaki", "tricky": false}, {"id": 153, "category": "漢字・語句（P.34〜45）", "unit": "P.36-37 漢字に親しもう2", "prompt": "【さわのぼ】りをする。", "sentence": "", "choices": ["沢登", "川登", "谷登", "沢上"], "answer": 0, "exp": "「沢登り（さわのぼり）」＝山の谷や川（沢）を登っていくこと。", "subType": "kaki", "tricky": false}, {"id": 154, "category": "漢字・語句（P.34〜45）", "unit": "P.36-37 漢字に親しもう2", "prompt": "【花曇】りの候。（桜が咲くころのくもり空）", "sentence": "", "choices": ["はなぐも", "かどん", "はなくも", "かぐも"], "answer": 0, "exp": "「花曇り（はなぐもり）」＝桜の咲くころのうす曇りの空。連濁して「ぐも」になります。", "subType": "yomi", "tricky": false}, {"id": 155, "category": "漢字・語句（P.34〜45）", "unit": "P.36-37 漢字に親しもう2", "prompt": "【さんせい】の意見。", "sentence": "", "choices": ["賛成", "参成", "算成", "賛誠"], "answer": 0, "exp": "「賛成（さんせい）」＝他の人の意見や計画に同意すること。", "subType": "kaki", "tricky": false}, {"id": 156, "category": "漢字・語句（P.34〜45）", "unit": "P.36-37 漢字に親しもう2", "prompt": "【こきゅう】をする。", "sentence": "", "choices": ["呼吸", "呼級", "呼休", "子吸"], "answer": 0, "exp": "「呼吸（こきゅう）」＝息を吐く（呼）ことと、吸う（吸）こと。", "subType": "kaki", "tricky": false}, {"id": 157, "category": "漢字・語句（P.34〜45）", "unit": "P.36-37 漢字に親しもう2", "prompt": "【はい】を検査する。", "sentence": "", "choices": ["肺", "肝", "胃", "腸"], "answer": 0, "exp": "「肺（はい）」＝呼吸をつかさどる器官。月（にくづき）に「市」と書きます。", "subType": "kaki", "tricky": false}, {"id": 158, "category": "漢字・語句（P.34〜45）", "unit": "P.36-37 漢字に親しもう2", "prompt": "【留守番】電話。", "sentence": "", "choices": ["るすばん", "りゅうしゅばん", "るすば", "りゅうすばん"], "answer": 0, "exp": "「留守番（るすばん）」＝家の人がいない間、家を守ること。「留」を「ル」と読みます。", "subType": "yomi", "tricky": true}, {"id": 159, "category": "漢字・語句（P.34〜45）", "unit": "P.36-37 漢字に親しもう2", "prompt": "【ぶし】の力。", "sentence": "", "choices": ["武士", "武志", "無士", "舞士"], "answer": 0, "exp": "「武士（ぶし）」。「武」の中に「止」と「弋」が入ります（点をつけないよう注意）。", "subType": "kaki", "tricky": false}, {"id": 160, "category": "漢字・語句（P.34〜45）", "unit": "P.36-37 漢字に親しもう2", "prompt": "【きけん】な道。", "sentence": "", "choices": ["危険", "気険", "機険", "危検"], "answer": 0, "exp": "「危険（きけん）」。「険」はこざとへん（阝）に「僉（人＋一＋口×2＋人）」です。", "subType": "kaki", "tricky": false}, {"id": 161, "category": "漢字・語句（P.34〜45）", "unit": "P.38-39 シジュウカラ①", "prompt": "敵が【せま】る。（距離などが近くなる）", "sentence": "", "choices": ["迫", "逼", "近", "狭"], "answer": 0, "exp": "「距離や時間が近くなる」は「迫る（せまる）」を使います。", "subType": "special", "tricky": false}, {"id": 162, "category": "漢字・語句（P.34〜45）", "unit": "P.38-39 シジュウカラ①", "prompt": "【きんぱく】した試合。（事情が差しせまること）", "sentence": "", "choices": ["緊迫", "近迫", "金迫", "緊白"], "answer": 0, "exp": "「緊迫（きんぱく）」＝事情が差しせまって緊張が高まること。", "subType": "special", "tricky": false}, {"id": 163, "category": "漢字・語句（P.34〜45）", "unit": "P.38-39 シジュウカラ①", "prompt": "【心地】よい風。", "sentence": "", "choices": ["ここち", "しんち", "こころち", "ここじ"], "answer": 0, "exp": "「心地（ここち）」＝気持ち、気分。熟字訓的な読み方に注意！", "subType": "yomi", "tricky": false}, {"id": 164, "category": "漢字・語句（P.34〜45）", "unit": "P.38-39 シジュウカラ①", "prompt": "大輪の花が【さ】く。", "sentence": "", "choices": ["咲", "笑", "花", "開"], "answer": 0, "exp": "「咲く（さく）」＝くちへん（口）に「关（ソ＋大ではなく、天の上のツ＋大）」。", "subType": "kaki", "tricky": false}, {"id": 165, "category": "漢字・語句（P.34〜45）", "unit": "P.38-39 シジュウカラ①", "prompt": "若い【頃】の写真。", "sentence": "", "choices": ["ころ", "けい", "ごろ", "とき"], "answer": 0, "exp": "「頃（ころ）」＝その時分、時期。音読みは「ケイ」です。", "subType": "yomi", "tricky": false}, {"id": 166, "category": "漢字・語句（P.34〜45）", "unit": "P.38-39 シジュウカラ①", "prompt": "歌声が【ひび】く。", "sentence": "", "choices": ["響", "音", "鳴", "反"], "answer": 0, "exp": "「響く（ひびく）」＝「郷」の下に「音」を書きます。", "subType": "kaki", "tricky": false}, {"id": 167, "category": "漢字・語句（P.34〜45）", "unit": "P.38-39 シジュウカラ①", "prompt": "【頬】を赤らめる。", "sentence": "", "choices": ["ほお", "きょう", "あご", "つら"], "answer": 0, "exp": "「頬（ほお）」＝顔の左右のふくらんだ部分。「ほほ」とも読みますがワークの解答は「ほお」です。", "subType": "yomi", "tricky": false}, {"id": 168, "category": "漢字・語句（P.34〜45）", "unit": "P.38-39 シジュウカラ①", "prompt": "【むね】を張る。", "sentence": "", "choices": ["胸", "腹", "背", "肩"], "answer": 0, "exp": "「胸（むね）」。月（にくづき）に「匈」を書きます。", "subType": "kaki", "tricky": false}, {"id": 169, "category": "漢字・語句（P.34〜45）", "unit": "P.38-39 シジュウカラ①", "prompt": "鳥の【はんしょくき】。（動物や植物が産まれ育ってふえる時期）", "sentence": "", "choices": ["繁殖期", "繁植期", "半殖期", "繁職期"], "answer": 0, "exp": "「繁殖期（はんしょくき）」。「殖」は「ふえる（歹＋直）」。植物の「植（木へん）」と混同しないよう注意！", "subType": "kaki", "tricky": true}, {"id": 170, "category": "漢字・語句（P.34〜45）", "unit": "P.38-39 シジュウカラ①", "prompt": "猫に【餌】を与える。", "sentence": "", "choices": ["えさ", "え", "じ", "めし"], "answer": 0, "exp": "「餌（えさ）」＝動物の食べ物。「餌付け」のときは「え」と読みます。", "subType": "yomi", "tricky": false}, {"id": 171, "category": "漢字・語句（P.34〜45）", "unit": "P.38-39 シジュウカラ①", "prompt": "台風が【迫】る。", "sentence": "", "choices": ["せま", "はく", "ちかづ", "おそ"], "answer": 0, "exp": "「迫る（せまる）」＝近づいてくること。", "subType": "yomi", "tricky": false}, {"id": 172, "category": "漢字・語句（P.34〜45）", "unit": "P.38-39 シジュウカラ①", "prompt": "敵を【いかく】する。（相手がこわがるようにおどすこと）", "sentence": "", "choices": ["威嚇", "威嚇する", "異嚇", "威覚"], "answer": 0, "exp": "「威嚇（いかく）」。「嚇」は口へん（口）に「赫（赤＋赤）」を書きます。画数が多いのでしっかり練習しましょう。", "subType": "kaki", "tricky": true}, {"id": 173, "category": "漢字・語句（P.34〜45）", "unit": "P.38-39 シジュウカラ①", "prompt": "データの【ぶんせき】。", "sentence": "", "choices": ["分析", "分折", "分積", "文析"], "answer": 0, "exp": "「分析（ぶんせき）」＝物事を細かく分けて調べること。「析」は木へんに「斤」です（手へんの「折」と間違えないように！）。", "subType": "kaki", "tricky": false}, {"id": 174, "category": "漢字・語句（P.34〜45）", "unit": "P.38-39 シジュウカラ①", "prompt": "雪を【警戒】する。（用心すること）", "sentence": "", "choices": ["けいかい", "きょうかい", "けいいまし", "せいかい"], "answer": 0, "exp": "「警戒（けいかい）」＝危険や悪いことが起きないように気をつけて用心すること。", "subType": "yomi", "tricky": false}, {"id": 175, "category": "漢字・語句（P.34〜45）", "unit": "P.38-39 シジュウカラ①", "prompt": "有利な【じょうきょう】。", "sentence": "", "choices": ["状況", "常況", "状境", "場況"], "answer": 0, "exp": "「状況（じょうきょう）」＝その時のありさま、様子。「況」はさんずい（氵）に「兄」です。", "subType": "kaki", "tricky": false}, {"id": 176, "category": "漢字・語句（P.34〜45）", "unit": "P.38-39 シジュウカラ①", "prompt": "陽気に振る【舞】う。", "sentence": "", "choices": ["ま", "ぶ", "ふる", "おど"], "answer": 0, "exp": "「振る舞う（ふるまう）」＝行動する、もてなす。", "subType": "yomi", "tricky": false}, {"id": 177, "category": "漢字・語句（P.34〜45）", "unit": "P.38-39 シジュウカラ①", "prompt": "財産が【ふ】える。（財産や生物などが多くなる）", "sentence": "", "choices": ["殖", "増", "植", "殖す"], "answer": 0, "exp": "「財産や生物が多くなる」は「殖える（ふえる）」を使います。（数や量が増えるときは「増える」）", "subType": "kaki", "tricky": false}, {"id": 178, "category": "漢字・語句（P.34〜45）", "unit": "P.38-39 シジュウカラ①", "prompt": "魚に【餌】付けをする。", "sentence": "", "choices": ["え", "えさ", "じ", "にく"], "answer": 0, "exp": "「餌付け（えづけ）」＝野生動物などに餌を与えて慣らすこと。この場合は「え」と読みます。", "subType": "yomi", "tricky": false}, {"id": 179, "category": "漢字・語句（P.34〜45）", "unit": "P.38-39 シジュウカラ①", "prompt": "晴れの【ぶたい】。", "sentence": "", "choices": ["舞台", "武台", "部台", "無台"], "answer": 0, "exp": "「舞台（ぶたい）」＝演劇などを演じる場所、活躍する場。", "subType": "kaki", "tricky": false}, {"id": 180, "category": "漢字・語句（P.34〜45）", "unit": "P.38-39 シジュウカラ①", "prompt": "【迫真】の演技。（本当らしく見えること）", "sentence": "", "choices": ["はくしん", "せましん", "ひゃくしん", "はくじん"], "answer": 0, "exp": "「迫真（はくしん）」＝真実に迫るほど生き生きとして本当らしく見えること。", "subType": "yomi", "tricky": false}, {"id": 181, "category": "漢字・語句（P.34〜45）", "unit": "P.38-39 シジュウカラ①", "prompt": "自らを【いまし】める。（過ちがないように気をつける）", "sentence": "", "choices": ["戒", "誠", "警", "謹"], "answer": 0, "exp": "「戒める（いましめる）」＝過ちや失敗がないように気をつける・注意する。「戒」は「戈」の中に「廾」です。", "subType": "kaki", "tricky": true}, {"id": 182, "category": "漢字・語句（P.34〜45）", "unit": "P.38-39 シジュウカラ①", "prompt": "伝統の【舞】。", "sentence": "", "choices": ["まい", "ぶ", "おどり", "まう"], "answer": 0, "exp": "「舞（まい）」＝音楽などに合わせておどること。「舞う（まう）」の名詞形です。", "subType": "yomi", "tricky": false}, {"id": 183, "category": "漢字・語句（P.34〜45）", "unit": "P.38-39 シジュウカラ①", "prompt": "説明を【おぎな】う。", "sentence": "", "choices": ["補", "輔", "保", "宝"], "answer": 0, "exp": "「補う（おぎなう）」＝足りない部分を足して満たすこと。「補」はころもへん（衤）に「甫」です。", "subType": "kaki", "tricky": false}, {"id": 184, "category": "漢字・語句（P.34〜45）", "unit": "P.38-39 シジュウカラ①", "prompt": "時計の【秒針】。", "sentence": "", "choices": ["びょうしん", "びょうはり", "みょうしん", "びょうじん"], "answer": 0, "exp": "「秒針（びょうしん）」＝時計の秒を示す針。「針」の音読みは「シン」です。", "subType": "yomi", "tricky": false}, {"id": 185, "category": "漢字・語句（P.34〜45）", "unit": "P.38-39 シジュウカラ①", "prompt": "田畑を【たがや】す。", "sentence": "", "choices": ["耕", "耘", "畑", "牧"], "answer": 0, "exp": "「耕す（たがやす）」＝すき（耒）へんに「井」を書きます。左側の「耒」の形に注意！", "subType": "kaki", "tricky": true}, {"id": 186, "category": "漢字・語句（P.34〜45）", "unit": "P.38-39 シジュウカラ①", "prompt": "【きそく】を守る。", "sentence": "", "choices": ["規則", "基則", "記則", "規測"], "answer": 0, "exp": "「規則（きそく）」＝みんなで守るきまり。「則」は「貝」にりっとう（刂）です。", "subType": "kaki", "tricky": false}, {"id": 187, "category": "漢字・語句（P.34〜45）", "unit": "P.38-39 シジュウカラ①", "prompt": "【雑木林】を歩く。", "sentence": "", "choices": ["ぞうきばやし", "ざつぼくばやし", "ざっきばやし", "ぞうきりん"], "answer": 0, "exp": "「雑木林（ぞうきばやし）」＝いろいろな種類の木が生えている林。読み方に注意！", "subType": "yomi", "tricky": false}, {"id": 188, "category": "漢字・語句（P.34〜45）", "unit": "P.38-39 シジュウカラ①", "prompt": "【ぼうえき】をする。", "sentence": "", "choices": ["貿易", "防役", "冒易", "貿役"], "answer": 0, "exp": "「貿易（ぼうえき）」＝国と国との間で品物を売り買いすること。「易」は「日」の下に「勿」です。", "subType": "kaki", "tricky": false}, {"id": 189, "category": "漢字・語句（P.34〜45）", "unit": "P.38-39 シジュウカラ①", "prompt": "鉄骨造の【駅舎】。", "sentence": "", "choices": ["えきしゃ", "えきや", "えきじゃ", "えきさ"], "answer": 0, "exp": "「駅舎（えきしゃ）」＝駅の建物。「舎」の音読みは「シャ」です。", "subType": "yomi", "tricky": false}, {"id": 190, "category": "漢字・語句（P.34〜45）", "unit": "P.38-39 シジュウカラ①", "prompt": "【おさな】い妹。", "sentence": "", "choices": ["幼", "稚", "少", "若"], "answer": 0, "exp": "「幼い（おさない）」＝いとがしら（幺）に「力」を書きます。「刀」と間違えないように！", "subType": "kaki", "tricky": true}, {"id": 191, "category": "漢字・語句（P.34〜45）", "unit": "P.38-39 シジュウカラ①", "prompt": "案を【けんとう】する。", "sentence": "", "choices": ["検討", "検答", "見当", "建討"], "answer": 0, "exp": "「検討（けんとう）」＝よく調べて考えること。「討」はごんべん（言）に「寸」です。", "subType": "kaki", "tricky": false}, {"id": 192, "category": "漢字・語句（P.34〜45）", "unit": "P.38-39 シジュウカラ①", "prompt": "力を【はっき】する。", "sentence": "", "choices": ["発揮", "発輝", "発気", "発起"], "answer": 0, "exp": "「発揮（はっき）」＝持っている力や能力を十分に表し出すこと。「揮」はてへん（扌）に「軍」です。", "subType": "kaki", "tricky": false}, {"id": 193, "category": "漢字・語句（P.34〜45）", "unit": "P.40-41 シジュウカラ②・意見と根拠", "prompt": "試験の【ヨウイ】をする。（事前に準備する。したく）", "sentence": "", "choices": ["用意", "容易", "要意", "容意"], "answer": 0, "exp": "「事前に準備する・したくする」は「用意」を使います。", "subType": "special", "tricky": false}, {"id": 194, "category": "漢字・語句（P.34〜45）", "unit": "P.40-41 シジュウカラ②・意見と根拠", "prompt": "【ヨウイ】に解ける問題だった。（やさしいこと。簡単にできること）", "sentence": "", "choices": ["容易", "用意", "要易", "容意"], "answer": 0, "exp": "「やさしい・簡単にできる」は「容易」を使います。「用意」との書き分けはテスト頻出です！", "subType": "special", "tricky": true}, {"id": 195, "category": "漢字・語句（P.34〜45）", "unit": "P.40-41 シジュウカラ②・意見と根拠", "prompt": "虫を追い【はら】う。", "sentence": "", "choices": ["払", "掃", "除", "張"], "answer": 0, "exp": "「払う（はらう）」＝てへん（扌）に「厶」を書きます。", "subType": "kaki", "tricky": false}, {"id": 196, "category": "漢字・語句（P.34〜45）", "unit": "P.40-41 シジュウカラ②・意見と根拠", "prompt": "【しょうこ】を残す。", "sentence": "", "choices": ["証拠", "証古", "照拠", "賞拠"], "answer": 0, "exp": "「証拠（しょうこ）」。「拠」はてへん（扌）に「処」を書きます。", "subType": "kaki", "tricky": false}, {"id": 197, "category": "漢字・語句（P.34〜45）", "unit": "P.40-41 シジュウカラ②・意見と根拠", "prompt": "【解釈】が難しい。（意味を解き明かすこと）", "sentence": "", "choices": ["かいしゃく", "げしゃく", "かいせき", "かいさく"], "answer": 0, "exp": "「解釈（かいしゃく）」＝言葉や文章の意味を解き明かすこと。「釈」は「シャク」と読みます。", "subType": "yomi", "tricky": false}, {"id": 198, "category": "漢字・語句（P.34〜45）", "unit": "P.40-41 シジュウカラ②・意見と根拠", "prompt": "【いか】りの感情。", "sentence": "", "choices": ["怒", "怨", "恐", "悲"], "answer": 0, "exp": "「怒り（いかり）」。「奴」の下に「心」を書きます。", "subType": "kaki", "tricky": false}, {"id": 199, "category": "漢字・語句（P.34〜45）", "unit": "P.40-41 シジュウカラ②・意見と根拠", "prompt": "戦争の【きょうい】。（おどし、おびやかすこと）", "sentence": "", "choices": ["脅威", "驚異", "強威", "恐威"], "answer": 0, "exp": "「脅威（きょうい）」＝おどし、おびやかすこと。「驚異（おどろくほどすごいこと）」との書き分けに注意！", "subType": "kaki", "tricky": true}, {"id": 200, "category": "漢字・語句（P.34〜45）", "unit": "P.40-41 シジュウカラ②・意見と根拠", "prompt": "賞金の【獲得】。（手に入れること）", "sentence": "", "choices": ["かくとく", "がくとく", "えとく", "かきとく"], "answer": 0, "exp": "「獲得（かくとく）」＝自分のものとして手に入れること。「獲」の音読みは「カク」です。", "subType": "yomi", "tricky": false}, {"id": 201, "category": "漢字・語句（P.34〜45）", "unit": "P.40-41 シジュウカラ②・意見と根拠", "prompt": "客を【みりょう】する。（人の心をひきつけること）", "sentence": "", "choices": ["魅了", "未了", "見了", "魅料"], "answer": 0, "exp": "「魅了（みりょう）」＝人の心をすっかりひきつけること。「了」は「リョウ」と読みます。", "subType": "kaki", "tricky": false}, {"id": 202, "category": "漢字・語句（P.34〜45）", "unit": "P.40-41 シジュウカラ②・意見と根拠", "prompt": "食欲が【盛】んだ。", "sentence": "", "choices": ["さか", "も", "せい", "じょう"], "answer": 0, "exp": "「盛んだ（さかんだ）」＝勢いがよいこと。", "subType": "yomi", "tricky": false}, {"id": 203, "category": "漢字・語句（P.34〜45）", "unit": "P.40-41 シジュウカラ②・意見と根拠", "prompt": "【おどろ】きを隠せない。", "sentence": "", "choices": ["驚", "脅", "恐", "愕"], "answer": 0, "exp": "「驚き（おどろき）」。「敬」の下に「馬」を書きます。", "subType": "kaki", "tricky": false}, {"id": 204, "category": "漢字・語句（P.34〜45）", "unit": "P.40-41 シジュウカラ②・意見と根拠", "prompt": "【根拠】を示す。（もとになる理由）", "sentence": "", "choices": ["こんきょ", "ねきょ", "こんこ", "ごんきょ"], "answer": 0, "exp": "「根拠（こんきょ）」＝意見や判断のもとになる理由。", "subType": "yomi", "tricky": false}, {"id": 205, "category": "漢字・語句（P.34〜45）", "unit": "P.40-41 シジュウカラ②・意見と根拠", "prompt": "【怒号】が飛ぶ。（おこった大きな声）", "sentence": "", "choices": ["どごう", "ぬごう", "いかごう", "どこう"], "answer": 0, "exp": "「怒号（どごう）」＝おこってどなる大きな声。「怒」の音読みは「ド」です。", "subType": "yomi", "tricky": false}, {"id": 206, "category": "漢字・語句（P.34〜45）", "unit": "P.40-41 シジュウカラ②・意見と根拠", "prompt": "大きな音で【おど】す。", "sentence": "", "choices": ["脅", "驚", "威", "怖"], "answer": 0, "exp": "「脅す（おどす）」。「力」を3つ並べて「月」を書きます。「おびやかす」とも読みます。", "subType": "kaki", "tricky": false}, {"id": 207, "category": "漢字・語句（P.34〜45）", "unit": "P.40-41 シジュウカラ②・意見と根拠", "prompt": "【獲物】を求める。", "sentence": "", "choices": ["えもの", "かくぶつ", "えぶつ", "ともの"], "answer": 0, "exp": "「獲物（えもの）」＝狩りや釣りなどでとらえた動物など。「獲」の訓読みは「え（る）」です。", "subType": "yomi", "tricky": false}, {"id": 208, "category": "漢字・語句（P.34〜45）", "unit": "P.40-41 シジュウカラ②・意見と根拠", "prompt": "【きょうい】的な力。（おどろくほどすごいさま）", "sentence": "", "choices": ["驚異", "脅威", "強異", "恐異"], "answer": 0, "exp": "「驚異（きょうい）」＝おどろくほどすごいさま。「脅威（おびやかすこと）」との違いを必ずおさえましょう！", "subType": "kaki", "tricky": true}, {"id": 209, "category": "漢字・語句（P.34〜45）", "unit": "P.40-41 シジュウカラ②・意見と根拠", "prompt": "祖父に【怒】られる。", "sentence": "", "choices": ["おこ", "いか", "ど", "しか"], "answer": 0, "exp": "「怒られる（おこられる）」。「怒り」は「いかり」、「怒られる」は「おこられる」です。", "subType": "yomi", "tricky": false}, {"id": 210, "category": "漢字・語句（P.34〜45）", "unit": "P.40-41 シジュウカラ②・意見と根拠", "prompt": "話の【しんらいせい】。", "sentence": "", "choices": ["信頼性", "新頼性", "信来性", "真頼性"], "answer": 0, "exp": "「信頼性（しんらいせい）」＝信じられる度合い。「頼」は「束」＋「負（頁）」です。", "subType": "kaki", "tricky": false}, {"id": 211, "category": "漢字・語句（P.34〜45）", "unit": "P.40-41 シジュウカラ②・意見と根拠", "prompt": "【探偵】の事務所。", "sentence": "", "choices": ["たんてい", "だんてい", "たんて", "さぐてい"], "answer": 0, "exp": "「探偵（たんてい）」。「偵」の音読みは「テイ」です。", "subType": "yomi", "tricky": false}, {"id": 212, "category": "漢字・語句（P.34〜45）", "unit": "P.40-41 シジュウカラ②・意見と根拠", "prompt": "【きそ】を学ぶ。", "sentence": "", "choices": ["基礎", "期礎", "機礎", "基素"], "answer": 0, "exp": "「基礎（きそ）」＝物事の土台。「礎」は石へんに「楚」を書きます。", "subType": "kaki", "tricky": false}, {"id": 213, "category": "漢字・語句（P.34〜45）", "unit": "P.40-41 シジュウカラ②・意見と根拠", "prompt": "【頼】もしい味方。", "sentence": "", "choices": ["たの", "たよ", "らい", "あて"], "answer": 0, "exp": "「頼もしい（たのもしい）」＝信頼できて心強いこと。", "subType": "yomi", "tricky": false}, {"id": 214, "category": "漢字・語句（P.34〜45）", "unit": "P.40-41 シジュウカラ②・意見と根拠", "prompt": "家族に【たよ】る。", "sentence": "", "choices": ["頼", "信", "委", "依"], "answer": 0, "exp": "「頼る（たよる）」。「頼」には「たのむ」「たのもしい」「たよる」の3つの訓読みがあります。", "subType": "kaki", "tricky": false}, {"id": 215, "category": "漢字・語句（P.34〜45）", "unit": "P.40-41 シジュウカラ②・意見と根拠", "prompt": "【秘密】を守る。", "sentence": "", "choices": ["ひみつ", "ひびつ", "みみつ", "ひみち"], "answer": 0, "exp": "「秘密（ひみつ）」＝人に知られないように隠しておくこと。", "subType": "yomi", "tricky": false}, {"id": 216, "category": "漢字・語句（P.34〜45）", "unit": "P.40-41 シジュウカラ②・意見と根拠", "prompt": "罪を【さば】く。", "sentence": "", "choices": ["裁", "判", "断", "捌"], "answer": 0, "exp": "「裁く（さばく）」＝法律や道理に照らして善悪を判定すること。「栽（植える）」や「載（のせる）」と間違えないように！", "subType": "kaki", "tricky": false}, {"id": 217, "category": "漢字・語句（P.34〜45）", "unit": "P.40-41 シジュウカラ②・意見と根拠", "prompt": "仲間を【導】く。", "sentence": "", "choices": ["みちび", "どう", "あんない", "つれ"], "answer": 0, "exp": "「導く（みちびく）」＝案内して連れていく、よい方向へ進ませる。", "subType": "yomi", "tricky": false}, {"id": 218, "category": "漢字・語句（P.34〜45）", "unit": "P.40-41 シジュウカラ②・意見と根拠", "prompt": "【べんとう】を作る。", "sentence": "", "choices": ["弁当", "便当", "弁答", "返答"], "answer": 0, "exp": "「弁当（べんとう）」。「弁」は5画です。", "subType": "kaki", "tricky": false}, {"id": 219, "category": "漢字・語句（P.34〜45）", "unit": "P.40-41 シジュウカラ②・意見と根拠", "prompt": "【非常】に大きい。", "sentence": "", "choices": ["ひじょう", "ひつね", "びじょう", "ひしょう"], "answer": 0, "exp": "「非常に（ひじょうに）」＝普通でないほど、とても。", "subType": "yomi", "tricky": false}, {"id": 220, "category": "漢字・語句（P.34〜45）", "unit": "P.40-41 シジュウカラ②・意見と根拠", "prompt": "【こうせき】を残す。", "sentence": "", "choices": ["功績", "好績", "工績", "功責"], "answer": 0, "exp": "「功績（こうせき）」＝すぐれた働きや成果。「績」はいとへん（糸）に「責」です。", "subType": "kaki", "tricky": false}, {"id": 221, "category": "漢字・語句（P.34〜45）", "unit": "P.40-41 シジュウカラ②・意見と根拠", "prompt": "馬が【暴】れる。", "sentence": "", "choices": ["あば", "ぼう", "あら", "ばく"], "answer": 0, "exp": "「暴れる（あばれる）」。音読みは「ボウ・バク」です。", "subType": "yomi", "tricky": false}, {"id": 222, "category": "漢字・語句（P.34〜45）", "unit": "P.40-41 シジュウカラ②・意見と根拠", "prompt": "電車を【お】りる。", "sentence": "", "choices": ["降", "下", "落", "折"], "answer": 0, "exp": "乗り物から出るときは「降りる」を使います。（階段などをくだるときは「下りる」）", "subType": "kaki", "tricky": false}, {"id": 223, "category": "漢字・語句（P.34〜45）", "unit": "P.40-41 シジュウカラ②・意見と根拠", "prompt": "【単純】な計算。", "sentence": "", "choices": ["たんじゅん", "だんじゅん", "たんしゅん", "たんじゅう"], "answer": 0, "exp": "「単純（たんじゅん）」＝入り組んでいなくて簡単なこと。", "subType": "yomi", "tricky": false}, {"id": 224, "category": "漢字・語句（P.34〜45）", "unit": "P.40-41 シジュウカラ②・意見と根拠", "prompt": "バスの【ゆうせんせき】。", "sentence": "", "choices": ["優先席", "優専席", "友先席", "有先席"], "answer": 0, "exp": "「優先席（ゆうせんせき）」＝高齢者や体の不自由な人などが先に座れる席。「優」＋「先」＋「席」です。", "subType": "kaki", "tricky": true}, {"id": 225, "category": "漢字・語句（P.34〜45）", "unit": "P.42-43 漢字に親しもう3", "prompt": "【同じ音読み〈セキ〉】実【セキ】がある。", "sentence": "", "choices": ["績", "責", "積", "席"], "answer": 0, "exp": "「実績（じっせき）」＝実際にあげた成果や功績。「いとへん（糸）＋責」です。", "subType": "special", "tricky": false}, {"id": 226, "category": "漢字・語句（P.34〜45）", "unit": "P.42-43 漢字に親しもう3", "prompt": "【同じ音読み〈セキ〉】【セキ】任を負う。", "sentence": "", "choices": ["責", "績", "積", "関"], "answer": 0, "exp": "「責任（せきにん）」＝自分が引き受けて果たさなければならない任務。", "subType": "special", "tricky": false}, {"id": 227, "category": "漢字・語句（P.34〜45）", "unit": "P.42-43 漢字に親しもう3", "prompt": "【同じ音読み〈セキ〉】畑の面【セキ】。", "sentence": "", "choices": ["積", "績", "責", "石"], "answer": 0, "exp": "「面積（めんせき）」＝平面の広さ。「のぎへん（禾）＋責」です。", "subType": "special", "tricky": false}, {"id": 228, "category": "漢字・語句（P.34〜45）", "unit": "P.42-43 漢字に親しもう3", "prompt": "【同じ音読み〈フク〉】【フク】痛が治る。", "sentence": "", "choices": ["腹", "複", "復", "福"], "answer": 0, "exp": "「腹痛（ふくつう）」＝おなかが痛むこと。「にくづき（月）」の「腹」です。", "subType": "special", "tricky": false}, {"id": 229, "category": "漢字・語句（P.34〜45）", "unit": "P.42-43 漢字に親しもう3", "prompt": "【同じ音読み〈フク〉】往【フク】はがき。", "sentence": "", "choices": ["復", "複", "腹", "副"], "answer": 0, "exp": "「往復（おうふく）」＝行きと帰り。「ぎょうにんべん（彳）」の「復」です。", "subType": "special", "tricky": false}, {"id": 230, "category": "漢字・語句（P.34〜45）", "unit": "P.42-43 漢字に親しもう3", "prompt": "【同じ音読み〈フク〉】【フク】雑な仕組み。", "sentence": "", "choices": ["複", "復", "腹", "福"], "answer": 0, "exp": "「複雑（ふくざつ）」＝いろいろ入り組んでいること。「ころもへん（衤）」の「複」です。", "subType": "special", "tricky": false}, {"id": 231, "category": "漢字・語句（P.34〜45）", "unit": "P.42-43 漢字に親しもう3", "prompt": "【度重】なる不運。", "sentence": "", "choices": ["たびかさ", "どかさ", "どじゅう", "たびじゅう"], "answer": 0, "exp": "「度重なる（たびかさなる）」＝同じようなことが何度もくり返し起こること。「度」を「たび」と読みます。", "subType": "yomi", "tricky": true}, {"id": 232, "category": "漢字・語句（P.34〜45）", "unit": "P.42-43 漢字に親しもう3", "prompt": "花の【なえ】を植える。", "sentence": "", "choices": ["苗", "芽", "葉", "種"], "answer": 0, "exp": "「苗（なえ）」。くさかんむり（艹）に「田」を書きます。", "subType": "kaki", "tricky": false}, {"id": 233, "category": "漢字・語句（P.34〜45）", "unit": "P.42-43 漢字に親しもう3", "prompt": "野菜の【出荷】。（荷物を送り出すこと）", "sentence": "", "choices": ["しゅっか", "しゅつか", "でか", "しゅつに"], "answer": 0, "exp": "「出荷（しゅっか）」＝商品や作物を市場などへ送り出すこと。促音「っ」に注意！", "subType": "yomi", "tricky": true}, {"id": 234, "category": "漢字・語句（P.34〜45）", "unit": "P.42-43 漢字に親しもう3", "prompt": "神社の【境内】。", "sentence": "", "choices": ["けいだい", "きょうない", "けいない", "きょうだい"], "answer": 0, "exp": "「境内（けいだい）」＝神社や寺の敷地内。「境（ケイ）」「内（ダイ）」と読む特別な読み方に注意！", "subType": "yomi", "tricky": true}, {"id": 235, "category": "漢字・語句（P.34〜45）", "unit": "P.42-43 漢字に親しもう3", "prompt": "【じゅれい】百年の木。（木の年れい）", "sentence": "", "choices": ["樹齢", "寿齢", "樹令", "樹例"], "answer": 0, "exp": "「樹齢（じゅれい）」＝木の年れい。「齢」は「歯」へんに「令」を書きます。", "subType": "kaki", "tricky": true}, {"id": 236, "category": "漢字・語句（P.34〜45）", "unit": "P.42-43 漢字に親しもう3", "prompt": "入り【江】で泳ぐ。", "sentence": "", "choices": ["え", "こう", "かわ", "うみ"], "answer": 0, "exp": "「入り江（いりえ）」＝海や湖が陸地に入り込んでいる所。「江」の訓読みは「え」です。", "subType": "yomi", "tricky": false}, {"id": 237, "category": "漢字・語句（P.34〜45）", "unit": "P.42-43 漢字に親しもう3", "prompt": "海の【幸】に恵まれる。", "sentence": "", "choices": ["さち", "こう", "しあわ", "さいわ"], "answer": 0, "exp": "「海の幸（うみのさち）」＝海でとれる魚や貝などの食べ物。「さち」と読みます。", "subType": "yomi", "tricky": false}, {"id": 238, "category": "漢字・語句（P.34〜45）", "unit": "P.42-43 漢字に親しもう3", "prompt": "土の中の【さいきん】。", "sentence": "", "choices": ["細菌", "細均", "最菌", "再菌"], "answer": 0, "exp": "「細菌（さいきん）」＝バクテリアなどの小さな微生物。「菌」はくさかんむり（艹）＋「囗」の中に「禾」です（米ではないので注意！）。", "subType": "kaki", "tricky": true}, {"id": 239, "category": "漢字・語句（P.34〜45）", "unit": "P.42-43 漢字に親しもう3", "prompt": "【にじ】が七色に輝く。", "sentence": "", "choices": ["虹", "蚊", "蜂", "雲"], "answer": 0, "exp": "「虹（にじ）」。虫へん（虫）に「工」を書きます。", "subType": "kaki", "tricky": false}, {"id": 240, "category": "漢字・語句（P.34〜45）", "unit": "P.42-43 漢字に親しもう3", "prompt": "【納豆】を食べる。", "sentence": "", "choices": ["なっとう", "のうとう", "なつとう", "のっとう"], "answer": 0, "exp": "「納豆（なっとう）」。「納」を「ナッ」と読みます。", "subType": "yomi", "tricky": false}, {"id": 241, "category": "漢字・語句（P.34〜45）", "unit": "P.42-43 漢字に親しもう3", "prompt": "大豆の【はっこう】。", "sentence": "", "choices": ["発酵", "発効", "発行", "発校"], "answer": 0, "exp": "「発酵（はっこう）」＝菌などの働きで物質が変化すること。「酵」はとりへん（酉）に「孝」です。", "subType": "kaki", "tricky": false}, {"id": 242, "category": "漢字・語句（P.34〜45）", "unit": "P.42-43 漢字に親しもう3", "prompt": "【がけ】を見上げる。", "sentence": "", "choices": ["崖", "岸", "岩", "峠"], "answer": 0, "exp": "「崖（がけ）」。「山」の下に「厂（がんだれ）」＋「圭（土＋土）」を書きます。", "subType": "kaki", "tricky": false}, {"id": 243, "category": "漢字・語句（P.34〜45）", "unit": "P.42-43 漢字に親しもう3", "prompt": "歌を【ひろう】する。（広く人に知らせたり、見せたりすること）", "sentence": "", "choices": ["披露", "被露", "披路", "比露"], "answer": 0, "exp": "「披露（ひろう）」＝人前で公開して見せること。「披」はてへん（扌）に「皮」です（「被」と間違えないように！）。", "subType": "kaki", "tricky": true}, {"id": 244, "category": "漢字・語句（P.34〜45）", "unit": "P.42-43 漢字に親しもう3", "prompt": "【まさつ】が生じる。（擦れ合うこと、もめごと）", "sentence": "", "choices": ["摩擦", "磨擦", "魔擦", "麻擦"], "answer": 0, "exp": "「摩擦（まさつ）」。「摩」は「麻」の下に「手」です（「石」の「磨」と間違えないように！）。", "subType": "kaki", "tricky": true}, {"id": 245, "category": "漢字・語句（P.34〜45）", "unit": "P.42-43 漢字に親しもう3", "prompt": "論説文の【ようし】。（文章の中心的な内容）", "sentence": "", "choices": ["要旨", "要指", "用旨", "要止"], "answer": 0, "exp": "「要旨（ようし）」＝話や文章の大事な中心内容。「旨」は「ヒ」の下に「日」です。", "subType": "kaki", "tricky": false}, {"id": 246, "category": "漢字・語句（P.34〜45）", "unit": "P.42-43 漢字に親しもう3", "prompt": "【黄砂】が飛ぶ。", "sentence": "", "choices": ["こうさ", "きすな", "おうさ", "こうしゃ"], "answer": 0, "exp": "「黄砂（こうさ）」＝春ごろに大陸から飛んでくる黄色い砂。", "subType": "yomi", "tricky": false}, {"id": 247, "category": "漢字・語句（P.34〜45）", "unit": "P.42-43 漢字に親しもう3", "prompt": "案を【こうてい】する。", "sentence": "", "choices": ["肯定", "好定", "公定", "考定"], "answer": 0, "exp": "「肯定（こうてい）」＝その通りだと認めること（反対は「否定」）。「肯」は「止」の下に「月」です。", "subType": "kaki", "tricky": false}, {"id": 248, "category": "漢字・語句（P.34〜45）", "unit": "P.42-43 漢字に親しもう3", "prompt": "【苗代】を作る。（苗を育てるための田）", "sentence": "", "choices": ["なわしろ", "なえしろ", "みょうだい", "なえだい"], "answer": 0, "exp": "「苗代（なわしろ）」＝稲の苗を育てるための田。特別な読み方「なわしろ」に注意！", "subType": "yomi", "tricky": true}, {"id": 249, "category": "漢字・語句（P.34〜45）", "unit": "P.42-43 漢字に親しもう3", "prompt": "中国の【長江】。", "sentence": "", "choices": ["ちょうこう", "ながえ", "ちょうえ", "ながかわ"], "answer": 0, "exp": "「長江（ちょうこう）」＝中国を流れる大河。「江」の音読みは「コウ」です。", "subType": "yomi", "tricky": false}, {"id": 250, "category": "漢字・語句（P.34〜45）", "unit": "P.42-43 漢字に親しもう3", "prompt": "【断崖絶壁】。（険しく切り立ったがけ）", "sentence": "", "choices": ["だんがいぜっぺき", "だんがいぜつへき", "たんがいぜっぺき", "だんきしぜっぺき"], "answer": 0, "exp": "「断崖絶壁（だんがいぜっぺき）」。「絶壁」は「ぜっぺき」と促音・半濁音になります。", "subType": "yomi", "tricky": true}, {"id": 251, "category": "漢字・語句（P.34〜45）", "unit": "P.42-43 漢字に親しもう3", "prompt": "技術の【伝承】。", "sentence": "", "choices": ["でんしょう", "てんしょう", "でんじょう", "つたうけ"], "answer": 0, "exp": "「伝承（でんしょう）」＝古い文化や技術などを後の世代へ伝え受け継ぐこと。", "subType": "yomi", "tricky": false}, {"id": 252, "category": "漢字・語句（P.34〜45）", "unit": "P.42-43 漢字に親しもう3", "prompt": "親を【そんけい】する。", "sentence": "", "choices": ["尊敬", "存敬", "尊警", "損敬"], "answer": 0, "exp": "「尊敬（そんけい）」。「敬」はくさかんむり（艹）＋「苟（勹＋口）」＋「攵」です。", "subType": "kaki", "tricky": false}, {"id": 253, "category": "漢字・語句（P.34〜45）", "unit": "P.42-43 漢字に親しもう3", "prompt": "【至急】の用事。", "sentence": "", "choices": ["しきゅう", "いたきゅう", "じきゅう", "しきゅ"], "answer": 0, "exp": "「至急（しきゅう）」＝とても急ぐこと。「至」の音読みは「シ」です。", "subType": "yomi", "tricky": false}, {"id": 254, "category": "漢字・語句（P.34〜45）", "unit": "P.42-43 漢字に親しもう3", "prompt": "【しゃざい】をする。", "sentence": "", "choices": ["謝罪", "射罪", "社罪", "謝財"], "answer": 0, "exp": "「謝罪（しゃざい）」＝自分の過ちを認めてわびること。", "subType": "kaki", "tricky": false}, {"id": 255, "category": "漢字・語句（P.34〜45）", "unit": "P.42-43 漢字に親しもう3", "prompt": "漁業を【営】む。", "sentence": "", "choices": ["いとな", "えい", "かま", "おこな"], "answer": 0, "exp": "「営む（いとなむ）」＝事業や生活などを行うこと。", "subType": "yomi", "tricky": false}, {"id": 256, "category": "漢字・語句（P.34〜45）", "unit": "P.42-43 漢字に親しもう3", "prompt": "【げんじょう】を保つ。", "sentence": "", "choices": ["現状", "現常", "元状", "言状"], "answer": 0, "exp": "「現状（げんじょう）」＝現在のありさま、状態。", "subType": "kaki", "tricky": true}, {"id": 257, "category": "漢字・語句（P.34〜45）", "unit": "P.42-43 漢字に親しもう3", "prompt": "【舌】づつみを打つ。", "sentence": "", "choices": ["した", "ぜつ", "くち", "べろ"], "answer": 0, "exp": "「舌づつみを打つ（したづつみをうつ）」＝おいしいものを食べて舌を鳴らす・とてもおいしく味わうこと。", "subType": "yomi", "tricky": false}, {"id": 258, "category": "漢字・語句（P.34〜45）", "unit": "P.42-43 漢字に親しもう3", "prompt": "宝物を【さが】す。", "sentence": "", "choices": ["探", "捜", "査", "検"], "answer": 0, "exp": "「探す（さがす）」。「宝物や楽しいものなどを求める」ときは「探す」をよく使います。", "subType": "kaki", "tricky": false}, {"id": 259, "category": "漢字・語句（P.34〜45）", "unit": "P.42-43 漢字に親しもう3", "prompt": "【胃腸】の検査。", "sentence": "", "choices": ["いちょう", "いじょう", "いちょうう", "きちょう"], "answer": 0, "exp": "「胃腸（いちょう）」。「胃（イ）」＋「腸（チョウ）」です。", "subType": "yomi", "tricky": false}, {"id": 260, "category": "漢字・語句（P.34〜45）", "unit": "P.42-43 漢字に親しもう3", "prompt": "ごみを【す】てる。", "sentence": "", "choices": ["捨", "放", "投", "廃"], "answer": 0, "exp": "「捨てる（すてる）」。てへん（扌）に「舎」を書きます。", "subType": "kaki", "tricky": false}, {"id": 261, "category": "漢字・語句（P.34〜45）", "unit": "P.44-45 大阿蘇・漢字に親しもう3", "prompt": "【ことわざ・慣用句】けがの【コウミョウ】（失敗したと思ったことが、思いがけなくよい結果を生み出すこと）", "sentence": "", "choices": ["功名", "好名", "高名", "巧妙"], "answer": 0, "exp": "「けがの功名（こうみょう）」＝失敗したと思ったことが、思いがけなくよい結果を生み出すこと。「功」＋「名」です。", "subType": "special", "tricky": true}, {"id": 262, "category": "漢字・語句（P.34〜45）", "unit": "P.44-45 大阿蘇・漢字に親しもう3", "prompt": "【書きこなそう】鏡に顔を【うつ】す。（水や鏡などに姿や形が現れるようにする）", "sentence": "", "choices": ["映", "移", "写", "射"], "answer": 0, "exp": "「水や鏡・スクリーンなどに姿や光が現れるようにする」は「映す（日へん）」を使います。", "subType": "special", "tricky": false}, {"id": 263, "category": "漢字・語句（P.34〜45）", "unit": "P.44-45 大阿蘇・漢字に親しもう3", "prompt": "【書きこなそう】机を隅に【うつ】す。（場所を変える）", "sentence": "", "choices": ["移", "映", "写", "遷"], "answer": 0, "exp": "「場所や時期などを変える」は「移す（のぎへん）」を使います。", "subType": "special", "tricky": false}, {"id": 264, "category": "漢字・語句（P.34〜45）", "unit": "P.44-45 大阿蘇・漢字に親しもう3", "prompt": "【書きこなそう】詩を書き【うつ】す。（元のとおりに見て書く）", "sentence": "", "choices": ["写", "映", "移", "描"], "answer": 0, "exp": "「元のとおりに見て書く・写真にとる」は「写す」を使います。", "subType": "special", "tricky": false}, {"id": 265, "category": "漢字・語句（P.34〜45）", "unit": "P.44-45 大阿蘇・漢字に親しもう3", "prompt": "図を【挿入】する。", "sentence": "", "choices": ["そうにゅう", "さしにゅう", "そうにう", "しょうにゅう"], "answer": 0, "exp": "「挿入（そうにゅう）」＝間に入れ込むこと。「挿」の音読みは「ソウ」です。", "subType": "yomi", "tricky": false}, {"id": 266, "category": "漢字・語句（P.34〜45）", "unit": "P.44-45 大阿蘇・漢字に親しもう3", "prompt": "裁判の【ばいしんいん】。（一般人から選ばれ、裁判に参与する人）", "sentence": "", "choices": ["陪審員", "倍審員", "賠審員", "培審員"], "answer": 0, "exp": "「陪審員（ばいしんいん）」。「陪」はこざとへん（阝）に「立」＋「口」です（「倍」や「賠」と混同しないように！）。", "subType": "kaki", "tricky": true}, {"id": 267, "category": "漢字・語句（P.34〜45）", "unit": "P.44-45 大阿蘇・漢字に親しもう3", "prompt": "広告の【ばいたい】。（仲立ちとなるもの）", "sentence": "", "choices": ["媒体", "倍体", "買体", "媒態"], "answer": 0, "exp": "「媒体（ばいたい）」＝情報などを伝える仲立ちとなるもの。「媒」はおんなへん（女）に「某」です。", "subType": "kaki", "tricky": false}, {"id": 268, "category": "漢字・語句（P.34〜45）", "unit": "P.44-45 大阿蘇・漢字に親しもう3", "prompt": "取引の【仲介】。（両者の間に入って話を取りつぐこと）", "sentence": "", "choices": ["ちゅうかい", "なかかい", "ちゅうがい", "ちゅうけい"], "answer": 0, "exp": "「仲介（ちゅうかい）」。「中」ではなく「仲」の字を使います。", "subType": "yomi", "tricky": true}, {"id": 269, "category": "漢字・語句（P.34〜45）", "unit": "P.44-45 大阿蘇・漢字に親しもう3", "prompt": "【ちゅうしゃ】禁止の道。", "sentence": "", "choices": ["駐車", "停車", "注車", "住車"], "answer": 0, "exp": "「駐車（ちゅうしゃ）」＝車を止めておくこと。「駐」はうまへん（馬）に「主」です。", "subType": "kaki", "tricky": false}, {"id": 270, "category": "漢字・語句（P.34〜45）", "unit": "P.44-45 大阿蘇・漢字に親しもう3", "prompt": "花びんに花を【さ】す。", "sentence": "", "choices": ["挿", "差", "刺", "指"], "answer": 0, "exp": "「花を挿す（はなをさす）」＝間や穴に入れ込む。「挿」はてへん（扌）に「千」＋「日（または臼の一部）」です。", "subType": "kaki", "tricky": false}, {"id": 271, "category": "漢字・語句（P.34〜45）", "unit": "P.44-45 大阿蘇・漢字に親しもう3", "prompt": "音楽を【聴】く。", "sentence": "", "choices": ["き", "ちょう", "み", "きこ"], "answer": 0, "exp": "「聴く（きく）」＝耳をかたむけて注意深く聞くこと。", "subType": "yomi", "tricky": false}, {"id": 272, "category": "漢字・語句（P.34〜45）", "unit": "P.44-45 大阿蘇・漢字に親しもう3", "prompt": "雪が【ふ】る。", "sentence": "", "choices": ["降", "落", "振", "吹"], "answer": 0, "exp": "「雪が降る（ゆきがふる）」。雨や雪が上から落ちてくるときは「降る」です。", "subType": "kaki", "tricky": false}, {"id": 273, "category": "漢字・語句（P.34〜45）", "unit": "P.44-45 大阿蘇・漢字に親しもう3", "prompt": "【尻尾】を振る。", "sentence": "", "choices": ["しっぽ", "しりお", "けつお", "しりっぽ"], "answer": 0, "exp": "「尻尾（しっぽ）」。特別な読み方（熟字訓）です。", "subType": "yomi", "tricky": false}, {"id": 274, "category": "漢字・語句（P.34〜45）", "unit": "P.44-45 大阿蘇・漢字に親しもう3", "prompt": "【せなか】を押す。", "sentence": "", "choices": ["背中", "背仲", "世中", "背腹"], "answer": 0, "exp": "「背中（せなか）」。「背」は「北」の下に「月（にくづき）」です。", "subType": "kaki", "tricky": false}, {"id": 275, "category": "漢字・語句（P.34〜45）", "unit": "P.44-45 大阿蘇・漢字に親しもう3", "prompt": "雨水が【垂】れる。", "sentence": "", "choices": ["た", "すい", "こぼ", "なが"], "answer": 0, "exp": "「垂れる（たれる）」＝しずくなどが落ちてくる、下にぶら下がる。", "subType": "yomi", "tricky": false}, {"id": 276, "category": "漢字・語句（P.34〜45）", "unit": "P.44-45 大阿蘇・漢字に親しもう3", "prompt": "白い【けむり】。", "sentence": "", "choices": ["煙", "炎", "灰", "霧"], "answer": 0, "exp": "「煙（けむり）」。ひへん（火）に「垔（西＋土）」を書きます。", "subType": "kaki", "tricky": false}, {"id": 277, "category": "漢字・語句（P.34〜45）", "unit": "P.44-45 大阿蘇・漢字に親しもう3", "prompt": "山の【頂】に立つ。", "sentence": "", "choices": ["いただき", "ちょう", "てっぺん", "うえ"], "answer": 0, "exp": "「頂（いただき）」＝山などの一番高い所、てっぺん。", "subType": "yomi", "tricky": false}, {"id": 278, "category": "漢字・語句（P.34〜45）", "unit": "P.44-45 大阿蘇・漢字に親しもう3", "prompt": "【ふんえん】が上がる。（火山からふき出すけむり）", "sentence": "", "choices": ["噴煙", "粉煙", "噴炎", "奮煙"], "answer": 0, "exp": "「噴煙（ふんえん）」。「噴」はくちへん（口）に「賁（十＋艹＋貝）」です。", "subType": "kaki", "tricky": false}, {"id": 279, "category": "漢字・語句（P.34〜45）", "unit": "P.44-45 大阿蘇・漢字に親しもう3", "prompt": "小高い【おか】。", "sentence": "", "choices": ["丘", "岡", "岳", "坂"], "answer": 0, "exp": "「丘（おか）」。5画の新出漢字です（音：キュウ、訓：おか）。", "subType": "kaki", "tricky": false}, {"id": 280, "category": "漢字・語句（P.34〜45）", "unit": "P.44-45 大阿蘇・漢字に親しもう3", "prompt": "服を【洗】う。", "sentence": "", "choices": ["あら", "せん", "すす", "ぬ"], "answer": 0, "exp": "「洗う（あらう）」。音読みは「セン（洗濯）」です。", "subType": "yomi", "tricky": false}, {"id": 281, "category": "漢字・語句（P.34〜45）", "unit": "P.44-45 大阿蘇・漢字に親しもう3", "prompt": "【ちょうかく】の検査。（音や声を聞き分ける耳の感覚）", "sentence": "", "choices": ["聴覚", "聞覚", "庁覚", "調覚"], "answer": 0, "exp": "「聴覚（ちょうかく）」。「聴」は耳へんに「十＋四（横向き）＋一＋心」です。", "subType": "kaki", "tricky": false}, {"id": 282, "category": "漢字・語句（P.34〜45）", "unit": "P.44-45 大阿蘇・漢字に親しもう3", "prompt": "雨に【煙】る街。", "sentence": "", "choices": ["けむ", "えん", "くも", "かす"], "answer": 0, "exp": "「煙る（けむる）」＝煙や雨などでぼんやりとかすんで見えること。", "subType": "yomi", "tricky": false}, {"id": 283, "category": "漢字・語句（P.34〜45）", "unit": "P.44-45 大阿蘇・漢字に親しもう3", "prompt": "火山が火を【ふ】く。", "sentence": "", "choices": ["噴", "吹", "吐", "発"], "answer": 0, "exp": "「火山が火や煙をいきおいよく出す」ときは「噴く（ふく）」を使います。（口から息などを出すときは「吹く」）", "subType": "kaki", "tricky": true}, {"id": 284, "category": "漢字・語句（P.34〜45）", "unit": "P.44-45 大阿蘇・漢字に親しもう3", "prompt": "【砂丘】が広がる。", "sentence": "", "choices": ["さきゅう", "すなおか", "しゃきゅう", "さきょう"], "answer": 0, "exp": "「砂丘（さきゅう）」＝風で運ばれた砂が積もってできた丘（鳥取砂丘など）。", "subType": "yomi", "tricky": false}, {"id": 285, "category": "漢字・語句（P.34〜45）", "unit": "P.44-45 大阿蘇・漢字に親しもう3", "prompt": "【警察署】に行く。", "sentence": "", "choices": ["けいさつしょ", "けいさつじょ", "けいさつしゃ", "けいさつそう"], "answer": 0, "exp": "「警察署（けいさつしょ）」。「署」は「ショ」と読みます。", "subType": "yomi", "tricky": false}, {"id": 286, "category": "漢字・語句（P.34〜45）", "unit": "P.44-45 大阿蘇・漢字に親しもう3", "prompt": "案内に【したが】う。", "sentence": "", "choices": ["従", "追", "沿", "順"], "answer": 0, "exp": "「従う（したがう）」。ぎょうにんべん（彳）に「丷」＋「疋」を書きます。", "subType": "kaki", "tricky": false}, {"id": 287, "category": "漢字・語句（P.34〜45）", "unit": "P.44-45 大阿蘇・漢字に親しもう3", "prompt": "教員の【資格】。", "sentence": "", "choices": ["しかく", "じかく", "しきょく", "しきゃく"], "answer": 0, "exp": "「資格（しかく）」＝あることを行うために必要な条件・身分。", "subType": "yomi", "tricky": false}, {"id": 288, "category": "漢字・語句（P.34〜45）", "unit": "P.44-45 大阿蘇・漢字に親しもう3", "prompt": "【せつぞく】が悪い。", "sentence": "", "choices": ["接続", "節続", "説続", "設続"], "answer": 0, "exp": "「接続（せつぞく）」＝つなぎ合わせること。「接」はてへん（扌）に「妾」です。", "subType": "kaki", "tricky": false}, {"id": 289, "category": "漢字・語句（P.34〜45）", "unit": "P.44-45 大阿蘇・漢字に親しもう3", "prompt": "友人を家に【招】く。", "sentence": "", "choices": ["まね", "しょう", "よ", "むか"], "answer": 0, "exp": "「招く（まねく）」。音読みは「ショウ（招待）」です。", "subType": "yomi", "tricky": false}, {"id": 290, "category": "漢字・語句（P.34〜45）", "unit": "P.44-45 大阿蘇・漢字に親しもう3", "prompt": "【せいみつ】な機械。", "sentence": "", "choices": ["精密", "正密", "晴密", "清密"], "answer": 0, "exp": "「精密（せいみつ）」＝非常に細かく正確なこと。「精」はこめへん（米）に「青」です。", "subType": "kaki", "tricky": false}, {"id": 291, "category": "漢字・語句（P.34〜45）", "unit": "P.44-45 大阿蘇・漢字に親しもう3", "prompt": "魚を【保存】する。", "sentence": "", "choices": ["ほぞん", "ほそん", "ぼうぞん", "ほぜん"], "answer": 0, "exp": "「保存（ほぞん）」＝そのままの状態を保ってしまっておくこと。", "subType": "yomi", "tricky": false}, {"id": 292, "category": "漢字・語句（P.34〜45）", "unit": "P.44-45 大阿蘇・漢字に親しもう3", "prompt": "港町で【く】らす。", "sentence": "", "choices": ["暮", "住", "生", "過"], "answer": 0, "exp": "「暮らす（くらす）」。くさかんむり（艹）＋「日」＋「大」＋「日」です。", "subType": "kaki", "tricky": false}, {"id": 293, "category": "漢字・語句（P.34〜45）", "unit": "P.44-45 大阿蘇・漢字に親しもう3", "prompt": "【しょくどう】へ行く。", "sentence": "", "choices": ["食堂", "食道", "食働", "職堂"], "answer": 0, "exp": "「食堂（しょくどう）」＝食事をする部屋・店。「堂」は「土」が下につきます。", "subType": "kaki", "tricky": false}, {"id": 294, "category": "漢字・語句（P.34〜45）", "unit": "P.44-45 大阿蘇・漢字に親しもう3", "prompt": "船を【操縦】する。", "sentence": "", "choices": ["そうじゅう", "そうしょう", "そうしゅう", "あやつ"], "answer": 0, "exp": "「操縦（そうじゅう）」＝乗り物や機械をあやつり動かすこと。", "subType": "yomi", "tricky": false}];
 
-  // === 2. 読み取り「集中力と休憩」・書く「案内文」 ===
-  {
-    unit: "集中力・案内文",
-    q: "英単語テストの実験（グループA：休憩なし60分／グループB：15分×3＋休憩7分半×2）について、正しい説明はどれか。",
-    choices: [
-      "学習直後も1週間後も、グループAの方が高得点だった。",
-      "学習直後はグループBが高得点だったが、翌日にはグループAが逆転した。",
-      "学習直後はグループAが高得点だったが、翌日・1週間後のテストではグループBがよい成績を残した。",
-      "学習した時間が同じなので、AとBの点数に差は出なかった。"
-    ],
-    answer: 2,
-    exp: "学習直後はグループAが高得点でしたが、翌日と1週間後のテストでは、学習の合間に休憩をはさんだグループBの方がよい成績を残しました。学習の長期的な定着には休憩が効果を発揮する可能性があります。"
-  },
-  {
-    unit: "集中力・案内文",
-    q: "『モヤモヤそうだんクリニック』の実験で、集中力の目安となる「ガンマ波」が急激に下がり始めるのは何分をさかいにか。",
-    choices: [
-      "7分半",
-      "15分",
-      "40分",
-      "60分"
-    ],
-    answer: 2,
-    exp: "グループAの脳波（脳の「前頭葉」のガンマ波）は時間の経過とともに低下し、とくに40分をさかいに急激に下がりました。集中力がつづくのは40分ほどと考えられます。"
-  },
-  {
-    unit: "集中力・案内文",
-    q: "実験結果をふまえて、筆者がおすすめしている「ノマド（遊牧民）のような勉強法」とはどのようなものか。",
-    choices: [
-      "毎日同じ時間に、自分の勉強机だけに座って60分間休まず勉強すること。",
-      "家の中に勉強するスペースを複数用意しておいて、いろいろな場所に移動しながら勉強すること。",
-      "外の公園や遊牧地に出かけて、音楽を聴きながら勉強すること。",
-      "15分勉強したら必ず1時間以上の長い睡眠をとること。"
-    ],
-    answer: 1,
-    exp: "自分の勉強机のほかにミニデスクやダイニングテーブルなど「家の中に勉強するスペースを複数用意しておいて、いろいろな場所に移動しながら勉強すること」をおすすめしています。"
-  },
-  {
-    unit: "集中力・案内文",
-    q: "「10月4日」に発行する中学校演劇祭の案内文の冒頭に入れる「季節の挨拶」として最も適切なものはどれか。",
-    choices: [
-      "春の訪れを感じるようになりました",
-      "本格的な夏がやってまいりました",
-      "秋風が心地よい季節となりました",
-      "厳寒の候、ますますご健勝のことと存じます"
-    ],
-    answer: 2,
-    exp: "10月4日（秋）の案内文なので、「秋風が心地よい季節となりました」が季節にふさわしい挨拶です。"
-  },
-  {
-    unit: "集中力・案内文",
-    q: "演劇祭の案内文で「当日は、南側の門よりお入りください。」の横に添える資料として最も適切なものはどれか。",
-    choices: [
-      "演劇祭の雰囲気が伝わるような昨年の写真",
-      "学校と周辺施設の位置関係がわかる航空写真",
-      "門や体育館の場所がわかる学校全体の地図",
-      "演劇部の練習風景をうつしたイラスト"
-    ],
-    answer: 2,
-    exp: "保護者が当日迷わずに南側の門から体育館へ行くことができるよう、「門や体育館の場所がわかる学校全体の地図」を添えるのが最もわかりやすい工夫です。"
-  },
-  {
-    unit: "集中力・案内文",
-    q: "保護者向けの案内文の「4. その他」で、「車での来校するのはだめです」「スリッパなどを用意してね」を適切な敬語・表現に直したものはどれか。",
-    choices: [
-      "車での来校は禁止します。／スリッパなどを持ってこい。",
-      "車での来校はひかえてください。／スリッパなどを用意してください。",
-      "車で来るのはご遠慮申し上げる。／スリッパなどをお持ちくださいまし。",
-      "車での来校はやめてね。／スリッパなどが必要だよ。"
-    ],
-    answer: 1,
-    exp: "保護者が読む案内文なので、箇条書きにして読みやすくしたうえで、「車での来校はひかえてください。」「スリッパなどを用意してください。」のように丁寧な表現に直します。"
-  },
-
-  // === 3. 方言と共通語 ===
-  {
-    unit: "方言と共通語",
-    q: "「方言」と「共通語」の説明として、正しい組み合わせはどれか。",
-    choices: [
-      "方言：日本全国どこでも通用する言葉／共通語：地域の特色が表れた言葉",
-      "方言：家族や地域の人との交流の中で自然に使われる／共通語：全国向けのテレビニュースなど不特定多数の人に伝える場で使われる",
-      "方言：テレビのアナウンサーが必ず使う言葉／共通語：江戸時代にだけ使われていた言葉",
-      "方言：書き言葉にしか使われない／共通語：話し言葉にしか使われない"
-    ],
-    answer: 1,
-    exp: "方言は地域ごとの特色が表れ、家族や地域の人との交流の中で身につく言葉です。共通語は日本全国どこでも通用し、テレビニュースなど不特定多数の人に伝える場で使われます。"
-  },
-  {
-    unit: "方言と共通語",
-    q: "「捨てる」という意味で、「ホーカル」「ホカル」を使う地域が多いのはどの地方か。",
-    choices: [
-      "北海道・東北地方",
-      "関東地方",
-      "近畿地方",
-      "九州地方"
-    ],
-    answer: 2,
-    exp: "方言分布図では、「ホーカル」「ホカル」は近畿地方を中心に広く使われています。"
-  },
-  {
-    unit: "方言と共通語",
-    q: "北海道地方と東北地方で、「捨てる」ことを主に何と表現している地域が多いか。",
-    choices: [
-      "ウッチャル・ブッチャル",
-      "ナゲル・ブンナゲル",
-      "ホーカル・ホカル",
-      "ステール・ハイル"
-    ],
-    answer: 1,
-    exp: "北海道地方と東北地方では、「捨てる」ことを主に「ナゲル」「ブンナゲル」と表現する地域が多く見られます。"
-  },
-  {
-    unit: "方言と共通語",
-    q: "日本にある八つの消滅危機言語のうち、北海道で使われている言語はどれか。",
-    choices: [
-      "琉球語",
-      "アイヌ語",
-      "八丈語",
-      "与那国語"
-    ],
-    answer: 1,
-    exp: "北海道で使われている消滅危機言語は「アイヌ語」です（コタン＝村、ピリカ＝よい、カムイ＝神 など）。"
-  },
-  {
-    unit: "方言と共通語",
-    q: "沖縄語と共通語の組み合わせとして、正しいものはどれか。",
-    choices: [
-      "まやー（猫）",
-      "コタン（村）",
-      "ピリカ（よい）",
-      "カムイ（神）"
-    ],
-    answer: 0,
-    exp: "「まやー（猫）」「とぅめて（早朝）」「てぃーだ（太陽）」などが沖縄語です。コタン・ピリカ・カムイはアイヌ語の言葉です。"
-  },
-
-  // === 4. 文法「文の組み立て」 ===
-  {
-    unit: "文法（文の組み立て）",
-    q: "「実験に 必要な 材料を そろえる。」という文の【述語】にあたる文節はどれか。",
-    choices: [
-      "実験に",
-      "必要な",
-      "材料を",
-      "そろえる。"
-    ],
-    answer: 3,
-    exp: "述語は「どうする」「どんなだ」「何だ」「ある・いる・ない」にあたる文節です。この文では「そろえる。」が述語です。"
-  },
-  {
-    unit: "文法（文の組み立て）",
-    q: "次の文の「」で囲んだ文節の働きは何か。\n「【あたたかい】 春が 来た。」",
-    choices: [
-      "主語",
-      "述語",
-      "修飾語（連体修飾語）",
-      "修飾語（連用修飾語）"
-    ],
-    answer: 2,
-    exp: "「あたたかい」は体言（名詞）である「春が」を詳しく説明しているので、修飾語（連体修飾語）です。"
-  },
-  {
-    unit: "文法（文の組み立て）",
-    q: "次の文の「」で囲んだ文節は、どの文節を修飾しているか。\n「【冷たい】 プリンを 食べる。」",
-    choices: [
-      "プリンを",
-      "食べる。",
-      "冷たい",
-      "どれも修飾していない"
-    ],
-    answer: 0,
-    exp: "「冷たい」は「どんなプリンか」を説明しているので、「プリンを」を修飾しています。"
-  },
-  {
-    unit: "文法（文の組み立て）",
-    q: "次の文の「」で囲んだ文節は、どの文節を修飾しているか。\n「姉が ボランティアに 【加わる】。」ではなく、「姉が 【ボランティアに】 加わる。」のとき、修飾される文節はどれか。",
-    choices: [
-      "姉が",
-      "ボランティアに",
-      "加わる。",
-      "文全体"
-    ],
-    answer: 2,
-    exp: "「ボランティアに」は「何に加わるのか」を説明しているので、述語である「加わる。」を修飾しています。"
-  },
-  {
-    unit: "文法（文の組み立て）",
-    q: "次の文の【接続語】にあたる文節はどれか。\n「これは 栄養が 豊富だ。しかし、苦い。」",
-    choices: [
-      "これは",
-      "豊富だ。",
-      "しかし、",
-      "苦い。"
-    ],
-    answer: 2,
-    exp: "「しかし、」は前の文と後の文をつなぐ働きをしており、接続語（逆接）です。"
-  },
-  {
-    unit: "文法（文の組み立て）",
-    q: "次の文の【独立語】にあたる文節はどれか。\n「おはよう、今日も 元気だね。」",
-    choices: [
-      "おはよう、",
-      "今日も",
-      "元気だね。",
-      "独立語はない"
-    ],
-    answer: 0,
-    exp: "「おはよう、」は他の文節とは直接関係がなく、それだけで独立してあいさつを表す独立語です。"
-  },
-  {
-    unit: "文法（文の組み立て）",
-    q: "次の文の【 】で囲んだ文節の働きとして正しいものはどれか。\n「【暗いので】 照明を つける。」",
-    choices: [
-      "主語",
-      "述語",
-      "修飾語",
-      "接続語"
-    ],
-    answer: 3,
-    exp: "「暗いので」は「〜ので」の形で理由を表し、後の文節につなぐ接続語の働きをしています。"
-  },
-  {
-    unit: "文法（文の組み立て）",
-    q: "次の文の【 】で囲んだ文節の働きとして正しいものはどれか。\n「【まあ】、虹が 出て いるわ。」",
-    choices: [
-      "主語",
-      "修飾語",
-      "接続語",
-      "独立語"
-    ],
-    answer: 3,
-    exp: "「まあ」は感動を表し、他の文節と直接関係がないので独立語です。"
-  },
-
-  // === 5. 古典「いろは歌」 ===
-  {
-    unit: "いろは歌",
-    q: "『いろは歌』の「形式」について、正しいものはどれか。",
-    choices: [
-      "5音・7音・5音・7音・7音の短歌形式",
-      "7音・5音を四回くり返す「今様（いまよう）」形式",
-      "5音・7音・5音の俳句形式",
-      "8音・6音を三回くり返す形式"
-    ],
-    answer: 1,
-    exp: "『いろは歌』は「いろはにほへと（7）／ちりぬるを（5）」のように、7音・5音を四回くり返す「今様」形式で作られています。"
-  },
-  {
-    unit: "いろは歌",
-    q: "『いろは歌』の特徴として正しいものはどれか。",
-    choices: [
-      "50音すべてを2回ずつ使って作られている。",
-      "47文字の仮名を1回ずつ使って作られている。",
-      "漢字とカタカナだけで書かれている。",
-      "作者が明確に記録に残っている。"
-    ],
-    answer: 1,
-    exp: "『いろは歌』は、当時の47文字の仮名を重複なく1回ずつ使って作られた歌です。"
-  },
-  {
-    unit: "いろは歌",
-    q: "『いろは歌』の「ちりぬるを」の現代語訳として正しいものはどれか。",
-    choices: [
-      "美しく照り映えていても",
-      "やがて散ってしまうものである",
-      "誰がいつまでも変わらないでいられようか",
-      "浅い夢を見て酔いもしない"
-    ],
-    answer: 1,
-    exp: "「いろはにほへと（美しく照り映えていても）／ちりぬるを（やがて散ってしまうものである）」という意味です。"
-  },
-  {
-    unit: "いろは歌",
-    q: "『いろは歌』の「わがよたれそ つねならむ」の現代語訳として正しいものはどれか。",
-    choices: [
-      "私の世は誰のものでもない",
-      "誰がいつまでも変わらないでいられようか（いや、誰も変わらないではいられない）",
-      "いつも楽しい世の中である",
-      "誰でもいつか大人になる"
-    ],
-    answer: 1,
-    exp: "「わがよたれそ つねならむ」は「誰がいつまでも変わらないでいられようか」という無常を表しています。"
-  },
-  {
-    unit: "いろは歌",
-    q: "『いろは歌』の「うゐのおくやま けふこえて あさきゆめみし ゑひもせす」は、どのようなことを表しているか。",
-    choices: [
-      "厳しい人生を生き抜こうとする覚悟",
-      "人生の困難を避けて楽をしようとする気持ち",
-      "困難の多い世の中に懸念を示す様子",
-      "深い山に登って景色を楽しみたいという願い"
-    ],
-    answer: 0,
-    exp: "「有為（うゐ）の奥山」を今日越えて、浅い夢を見たり酔ったりしない、という「厳しい人生を生き抜こうとする覚悟」を表しています。"
-  },
-  {
-    unit: "いろは歌",
-    q: "平仮名で書かれた『いろは歌』の最古の資料について、正しいものはどれか。",
-    choices: [
-      "奈良時代に法隆寺の壁に書かれたもの。",
-      "平安時代後期、伊勢神宮に仕えた女官が文字を覚えるために土器の皿に書いたもの。",
-      "鎌倉時代に武士が刀に刻んだもの。",
-      "江戸時代に寺子屋の先生が木版印刷したもの。"
-    ],
-    answer: 1,
-    exp: "最古の資料は平安時代後期のもので、伊勢神宮に仕えた女官が文字を覚えるために土器の皿に書いたものとされています。"
-  },
-
-  // === 6. 古典「歴史的仮名遣い」 ===
-  {
-    unit: "歴史的仮名遣い",
-    q: "「竹取の翁と【いふ】もの」の【 】を現代仮名遣いに直すとどうなるか。",
-    choices: [
-      "いふ",
-      "いう",
-      "いゆ",
-      "いわ"
-    ],
-    answer: 1,
-    exp: "語頭以外のハ行（は・ひ・ふ・へ・ほ）はワ行（わ・い・う・え・お）に直します。「ふ」→「う」なので「いう」となります。"
-  },
-  {
-    unit: "歴史的仮名遣い",
-    q: "「天人の【よそほひ】したる女」の【 】を現代仮名遣いに直すとどうなるか。",
-    choices: [
-      "よそほい",
-      "よそおい",
-      "よそうい",
-      "よそわい"
-    ],
-    answer: 1,
-    exp: "語頭以外のハ行をワ行に直すルールにより、「ほ」→「お」、「ひ」→「い」となるので「よそおい」となります。"
-  },
-  {
-    unit: "歴史的仮名遣い",
-    q: "「女、【答へていはく】」の【 】を現代仮名遣いに直すとどうなるか。",
-    choices: [
-      "こたへていわく",
-      "こたえていはく",
-      "こたえていわく",
-      "こたわていわく"
-    ],
-    answer: 2,
-    exp: "語頭以外の「へ」→「え」、「は」→「わ」となるため、「こたえていわく」になります。"
-  },
-  {
-    unit: "歴史的仮名遣い",
-    q: "「そのよし【うけたまはりて】」を現代仮名遣いに直すとどうなるか。",
-    choices: [
-      "うけたまわりて",
-      "うけたまおりて",
-      "うけたまはりて",
-      "うけたまいて"
-    ],
-    answer: 0,
-    exp: "語頭以外の「は」は「わ」に直すため、「うけたまわりて」になります。"
-  },
-  {
-    unit: "歴史的仮名遣い",
-    q: "「【よろづ】のこと」の【 】を現代仮名遣いに直すとどうなるか。",
-    choices: [
-      "よろづ",
-      "よろず",
-      "よろじ",
-      "よろっ"
-    ],
-    answer: 1,
-    exp: "ほとんどの場合、歴史的仮名遣いの「ぢ」は「じ」、「づ」は「ず」に直します。よって「よろず」になります。"
-  },
-  {
-    unit: "歴史的仮名遣い",
-    q: "「三寸ばかりなる人、いとうつくしうて【ゐたり】」の【 】を現代仮名遣いに直すとどうなるか。",
-    choices: [
-      "ゐたり",
-      "いたり",
-      "えたり",
-      "おたり"
-    ],
-    answer: 1,
-    exp: "ワ行の「ゐ・ゑ・を」は「い・え・お」に直します（助詞の「を」は除く）。「ゐ」→「い」なので「いたり」となります。"
-  },
-  {
-    unit: "歴史的仮名遣い",
-    q: "「竹【なむ】一筋ありける」の【 】を現代仮名遣いに直すとどうなるか。",
-    choices: [
-      "なむ",
-      "なん",
-      "なう",
-      "なぬ"
-    ],
-    answer: 1,
-    exp: "語尾の「む」はほとんどの場合「ん」に直します。「なむ」→「なん」、「ならむ」→「ならん」となります。"
-  },
-  {
-    unit: "歴史的仮名遣い",
-    q: "「【けふ】こえて」の【 】を現代仮名遣いに直すとどうなるか。",
-    choices: [
-      "けう",
-      "けお",
-      "きょう",
-      "きゅう"
-    ],
-    answer: 2,
-    exp: "「efu（えふ）」の音は「you（よう）」と読みます。「けふ（kefu）」は「きょう（kyou）」に直します。"
-  },
-  {
-    unit: "歴史的仮名遣い",
-    q: "「登るべき【やう】なし」の【 】を現代仮名遣いに直すとどうなるか。",
-    choices: [
-      "やう",
-      "よう",
-      "ゆう",
-      "やお"
-    ],
-    answer: 1,
-    exp: "「au」の音は「ou」に直します。「やう（yau）」→「よう（you）」となります。"
-  },
-  {
-    unit: "歴史的仮名遣い",
-    q: "「【くゎし】を食べ」の【 】を現代仮名遣いに直すとどうなるか。",
-    choices: [
-      "くわし",
-      "かし",
-      "がし",
-      "くし"
-    ],
-    answer: 1,
-    exp: "「くゎ（くわ）」は「か」、「ぐゎ（ぐわ）」は「が」に直します。よって「かし（菓子）」となります。"
-  },
-
-  // === 7. 古典「蓬莱の玉の枝（竹取物語）」 ===
-  {
-    unit: "竹取物語",
-    q: "『竹取物語』の冒頭「今は昔、竹取の翁といふもの【ありけり】。」の「けり」の意味として、ここで適切なものはどれか。",
-    choices: [
-      "〜だろう",
-      "〜ていた",
-      "〜なさい",
-      "〜ではない"
-    ],
-    answer: 1,
-    exp: "この文脈の「けり」は過去・伝聞を表し、「〜ていた（竹取の翁と呼ばれる人がいた）」と訳します。"
-  },
-  {
-    unit: "竹取物語",
-    q: "「名をば、さぬきのみやつこと【なむ】いひ【ける】。」の「なむ……ける」の訳し方はどれか。",
-    choices: [
-      "……しない",
-      "……た",
-      "……したい",
-      "……するだろう"
-    ],
-    answer: 1,
-    exp: "係り結び「なむ……ける」は強調を伴う過去で、現代語訳では「……た（さぬきのみやつこと言った）」となります。"
-  },
-  {
-    unit: "竹取物語",
-    q: "「竹の中より見つけたる」について、竹取の翁が不思議な光る竹に近づいて見たところ、筒の中には何があったか。",
-    choices: [
-      "光り輝く黄金の玉",
-      "三寸ばかりなる人（約9センチのとてもかわいらしい人）",
-      "蓬莱の山の地図",
-      "美しい羽衣"
-    ],
-    answer: 1,
-    exp: "光る筒の中には、「三寸ばかりなる人、いとうつくしうてゐたり（約9センチほどの人が、とてもかわいらしい様子で座っていた）」とあります。"
-  },
-  {
-    unit: "竹取物語",
-    q: "古文に出てくる「いとうつくしうて」の「うつくし」の意味として正しいものはどれか。",
-    choices: [
-      "美しい・きれいだ",
-      "かわいらしい",
-      "恐ろしい",
-      "立派だ"
-    ],
-    answer: 1,
-    exp: "古文の「うつくし」は現代語の「美しい」ではなく、「かわいらしい（愛らしい）」という意味です。"
-  },
-  {
-    unit: "竹取物語",
-    q: "『竹取物語』のあらすじについて、中秋の名月の夜にかぐや姫が昇っていった場所はどこか。",
-    choices: [
-      "駿河の国の山",
-      "月の世界",
-      "蓬莱の島",
-      "都の御所"
-    ],
-    answer: 1,
-    exp: "中秋の名月の夜、かぐや姫は「月の世界」に昇っていきました。その後、帝はかぐや姫が手紙を添えて残していった「不死の薬」を駿河の国の山で燃やさせました。"
-  },
-  {
-    unit: "竹取物語",
-    q: "『蓬莱の玉の枝』に出てくる漢字「遣（や）る／遣（つか）わす」の漢字としての意味はどれか。",
-    choices: [
-      "受け取る・もらう",
-      "さしむける・はたらかせる",
-      "隠す・しまっておく",
-      "断る・拒む"
-    ],
-    answer: 1,
-    exp: "「遣」には「さしむける」「はたらかせる」という意味があります。"
-  },
-
-  // === 8. 漢字の音訓・漢字・語句 ===
-  {
-    unit: "漢字・語句",
-    q: "同じ漢字「生」の読み方について、組み合わせがすべて正しいものはどれか。",
-    choices: [
-      "生命（せい）／一生（いっしょう）／生き物（いきもの）／生卵（なまたまご）",
-      "生命（しょう）／一生（いっせい）／生き物（せいきもの）／生卵（うまたまご）",
-      "生命（せい）／一生（いっせい）／生き物（いきもの）／生卵（しょうたまご）",
-      "生命（いき）／一生（いっしょう）／生き物（せいぶつ）／生卵（なまたまご）"
-    ],
-    answer: 0,
-    exp: "「生」の音訓：生命（せい・音）、一生（しょう・音）、生き物（い・訓）、生卵（なま・訓）です。"
-  },
-  {
-    unit: "漢字・語句",
-    q: "同じ漢字「明」の読み方について、「光明」と「夜明け」の正しい読み方の組み合わせはどれか。",
-    choices: [
-      "光明（こうめい）／夜明け（よあけ）",
-      "光明（こうみょう）／夜明け（よあけ）",
-      "光明（こうみょう）／夜明け（よめい）",
-      "光明（こうあか）／夜明け（よあけ）"
-    ],
-    answer: 1,
-    exp: "「発明（めい）」「光明（みょう）」「夜明け（あ）」「明るい（あか）」のように、同じ漢字でも多様な音訓があります。"
-  },
-  {
-    unit: "漢字・語句",
-    q: "次の【 】内の漢字の読み方として正しい組み合わせはどれか。\nア：【風車】小屋を見学する。／イ：折り紙で【風車】を折る。",
-    choices: [
-      "ア：かざぐるま ／ イ：ふうしゃ",
-      "ア：ふうしゃ ／ イ：かざぐるま",
-      "ア：ふうぐるま ／ イ：かざしゃ",
-      "ア：かぜぐるま ／ イ：ふうしゃ"
-    ],
-    answer: 1,
-    exp: "風力を使う施設などの「風車小屋」は「ふうしゃ（音読み）」、おもちゃの「風車」は「かざぐるま（訓読み）」と読みます。"
-  },
-  {
-    unit: "漢字・語句",
-    q: "次の【 】内の漢字の読み方として正しい組み合わせはどれか。\nア：【梅雨】前線が近づく。／イ：もうすぐ【梅雨】入りだ。",
-    choices: [
-      "ア：つゆ ／ イ：ばいう",
-      "ア：ばいう ／ イ：つゆ",
-      "ア：うめ ／ イ：つゆ",
-      "ア：ばいう ／ イ：うめ"
-    ],
-    answer: 1,
-    exp: "「梅雨前線」は「ばいうぜんせん」、「梅雨入り」は「つゆいり」と読みます。"
-  },
-  {
-    unit: "漢字・語句",
-    q: "次の【 】内のカタカナを漢字に直したとき、正しいものはどれか。\n「敵を【ケイカイ】する」「【ショウコ】をつかむ」「【カイシャク】が分かれる」",
-    choices: [
-      "警戒 ／ 証拠 ／ 解釈",
-      "警界 ／ 証古 ／ 解訳",
-      "敬戒 ／ 照査 ／ 改釈",
-      "警戒 ／ 証固 ／ 介釈"
-    ],
-    answer: 0,
-    exp: "「警戒（けいかい）」「証拠（しょうこ）」「解釈（かいしゃく）」がいずれも正しい表記です。"
-  },
-  {
-    unit: "漢字・語句",
-    q: "次の【 】内の漢字の読み方として正しい組み合わせはどれか。\n「【濃度】が高い」「【納涼】祭へ行く」「【遮断】機が下りる」",
-    choices: [
-      "のうど ／ のうりょう ／ しゃだん",
-      "こいど ／ なつりょう ／ しゃだん",
-      "のうど ／ のうりょう ／ さだん",
-      "じょうど ／ のうりょう ／ しゃだん"
-    ],
-    answer: 0,
-    exp: "「濃度（のうど）」「納涼（のうりょう）」「遮断（しゃだん）」です。"
-  },
-  {
-    unit: "漢字・語句",
-    q: "「食べ方は【多岐】に渡る」「【先入観】を持たない」の意味として正しい組み合わせはどれか。",
-    choices: [
-      "多岐：量がたいへん多い ／ 先入観：進歩しようとする意識",
-      "多岐：いろいろな種類がある ／ 先入観：初めにできた思い込み",
-      "多岐：味がとても濃い ／ 先入観：先を見通す力",
-      "多岐：一つに決まっている ／ 先入観：後から考えた意見"
-    ],
-    answer: 1,
-    exp: "「多岐」はいろいろな種類があること（道がいくつにも分かれていることから）、「先入観」は初めにできた思い込みのことです。"
-  },
-  {
-    unit: "漢字・語句",
-    q: "次の【 】内の漢字の読み方として正しいものはどれか。\n「【陪審員】の役割」「【発酵】させる」「音楽を【視聴】する」",
-    choices: [
-      "ばいしんいん ／ はっこう ／ しちょう",
-      "はいしんいん ／ はつこう ／ みきき",
-      "ばいしんいん ／ はつこう ／ しちょう",
-      "ばいしんいん ／ はっこう ／ みちょう"
-    ],
-    answer: 0,
-    exp: "「陪審員（ばいしんいん）」「発酵（はっこう）」「視聴（しちょう）」です。"
-  }
-];
-
-const LABELS = ["ア", "イ", "ウ", "エ"];
-const UNIT_ORDER = [
-  "すべて（全範囲）",
+const READING_UNITS = [
   "シジュウカラ",
   "集中力・案内文",
   "方言と共通語",
@@ -1178,35 +798,160 @@ const UNIT_ORDER = [
   "漢字・語句"
 ];
 
-let selectedUnit = "すべて（全範囲）";
-let activeList = [];
+const GRAMMAR_UNITS = [
+  { name: "第1章：主語・述語", desc: "文の成分の基本、「は・が」以外の助詞、倒置など" },
+  { name: "第2章：修飾語", desc: "連体修飾語と連用修飾語、離れた係り受けなど" },
+  { name: "第3章：接続語・独立語", desc: "文節型の接続語、独立語の5種類（感動・呼びかけ等）" },
+  { name: "第4章：総合問題", desc: "「もし」「それとも」「ところで」の見分け、長文判別" }
+];
+
+const KANJI_UNITS = [
+  "P.34-35 方言と共通語・音訓",
+  "P.36-37 漢字に親しもう2",
+  "P.38-39 シジュウカラ①",
+  "P.40-41 シジュウカラ②・意見と根拠",
+  "P.42-43 漢字に親しもう3",
+  "P.44-45 大阿蘇・漢字に親しもう3"
+];
+
+let currentCatTab = "all";
+let currentKanjiSub = "all";
+let lastFilterConfig = null;
+let activeQuestions = [];
 let currentIndex = 0;
 let score = 0;
-let answered = false;
-let wrongItems = [];
+let wrongRecords = [];
 let unitStats = {};
+let answered = false;
+let currentChoices = [];
+let currentCorrectIdx = 0;
 
-const startScreen = document.getElementById("start-screen");
-const quizScreen = document.getElementById("quiz-screen");
-const resultScreen = document.getElementById("result-screen");
-const unitGrid = document.getElementById("unit-grid");
-const shuffleToggle = document.getElementById("shuffle-toggle");
+const LABELS = ["ア", "イ", "ウ", "エ"];
 
-function initUnitGrid() {
-  unitGrid.innerHTML = "";
-  UNIT_ORDER.forEach(u => {
-    const count = u === "すべて（全範囲）"
-      ? QUESTIONS.length
-      : QUESTIONS.filter(q => q.unit === u).length;
+function formatPromptHTML(text) {
+  return text.replace(/【([^】]+)】/g, '<span class="highlight-target">$1</span>');
+}
+
+function selectCatTab(cat) {
+  currentCatTab = cat;
+  document.querySelectorAll(".cat-tab").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.cat === cat);
+  });
+  document.getElementById("blockAll").classList.toggle("hidden", cat !== "all");
+  document.getElementById("blockReading").classList.toggle("hidden", cat !== "all" && cat !== "文章読解・古典・総合");
+  document.getElementById("blockGrammar").classList.toggle("hidden", cat !== "all" && cat !== "文法（文の成分）");
+  document.getElementById("blockKanji").classList.toggle("hidden", cat !== "all" && cat !== "漢字・語句（P.34〜45）");
+}
+
+function selectKanjiSub(sub) {
+  currentKanjiSub = sub;
+  document.querySelectorAll(".sub-pill").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.sub === sub);
+  });
+  renderKanjiGrid();
+}
+
+function filterKanjiList(baseList, sub) {
+  if (sub === "all") return baseList;
+  if (sub === "tricky") return baseList.filter(q => q.tricky);
+  return baseList.filter(q => q.subType === sub);
+}
+
+function renderMenuGrids() {
+  // 1. Reading
+  const gridR = document.getElementById("gridReading");
+  const rAllCount = ALL_QUESTIONS.filter(q => q.category === "文章読解・古典・総合").length;
+  gridR.innerHTML = `
+    <button class="mode-btn cat-all-btn" onclick="startQuiz({ type: 'category', category: '文章読解・古典・総合' })">
+      <div class="mode-title">
+        <span>文章読解・古典 全範囲</span>
+        <span class="mode-badge">${rAllCount}問</span>
+      </div>
+      <div class="mode-desc">読解・文法・古典・語句の全8単元まとめて</div>
+    </button>
+  `;
+  READING_UNITS.forEach(u => {
+    const cnt = ALL_QUESTIONS.filter(q => q.category === "文章読解・古典・総合" && q.unit === u).length;
     const btn = document.createElement("button");
-    btn.className = "unit-btn" + (u === selectedUnit ? " active" : "");
-    btn.innerHTML = `<span class="u-title">${u}</span><span class="u-count">${count}問</span>`;
-    btn.addEventListener("click", () => {
-      selectedUnit = u;
-      document.querySelectorAll(".unit-btn").forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-    });
-    unitGrid.appendChild(btn);
+    btn.className = "mode-btn";
+    btn.innerHTML = `
+      <div class="mode-title">
+        <span>${u}</span>
+        <span class="mode-badge">${cnt}問</span>
+      </div>
+    `;
+    btn.onclick = () => startQuiz({ type: "unit", category: "文章読解・古典・総合", unit: u });
+    gridR.appendChild(btn);
+  });
+
+  // 2. Grammar
+  const gridG = document.getElementById("gridGrammar");
+  const gAllCount = ALL_QUESTIONS.filter(q => q.category === "文法（文の成分）").length;
+  gridG.innerHTML = `
+    <button class="mode-btn cat-all-btn" onclick="startQuiz({ type: 'category', category: '文法（文の成分）' })">
+      <div class="mode-title">
+        <span>文法（文の成分）全範囲</span>
+        <span class="mode-badge">${gAllCount}問</span>
+      </div>
+      <div class="mode-desc">主語・述語・修飾語・接続語・独立語すべて</div>
+    </button>
+  `;
+  GRAMMAR_UNITS.forEach(uObj => {
+    const cnt = ALL_QUESTIONS.filter(q => q.category === "文法（文の成分）" && q.unit === uObj.name).length;
+    const btn = document.createElement("button");
+    btn.className = "mode-btn";
+    btn.innerHTML = `
+      <div class="mode-title">
+        <span>${uObj.name}</span>
+        <span class="mode-badge">${cnt}問</span>
+      </div>
+      <div class="mode-desc">${uObj.desc}</div>
+    `;
+    btn.onclick = () => startQuiz({ type: "unit", category: "文法（文の成分）", unit: uObj.name });
+    gridG.appendChild(btn);
+  });
+
+  // 3. Kanji
+  renderKanjiGrid();
+}
+
+function renderKanjiGrid() {
+  const gridK = document.getElementById("gridKanji");
+  const kBase = ALL_QUESTIONS.filter(q => q.category === "漢字・語句（P.34〜45）");
+  const kFilteredAll = filterKanjiList(kBase, currentKanjiSub);
+  const subLabelMap = {
+    all: "全タイプ",
+    yomi: "読みのみ",
+    kaki: "書きのみ",
+    special: "書き分け・音訓・部首",
+    tricky: "要注意・頻出ミス"
+  };
+
+  gridK.innerHTML = `
+    <button class="mode-btn cat-all-btn" onclick="startQuiz({ type: 'kanji_all', sub: '${currentKanjiSub}' })">
+      <div class="mode-title">
+        <span>漢字 P.34〜45 全範囲（${subLabelMap[currentKanjiSub]}）</span>
+        <span class="mode-badge">${kFilteredAll.length}問</span>
+      </div>
+      <div class="mode-desc">選択中の条件で全ページから出題</div>
+    </button>
+  `;
+
+  KANJI_UNITS.forEach(u => {
+    const uBase = kBase.filter(q => q.unit === u);
+    const uFiltered = filterKanjiList(uBase, currentKanjiSub);
+    const btn = document.createElement("button");
+    btn.className = "mode-btn";
+    btn.disabled = uFiltered.length === 0;
+    if (uFiltered.length === 0) btn.style.opacity = "0.45";
+    btn.innerHTML = `
+      <div class="mode-title">
+        <span>${u}</span>
+        <span class="mode-badge">${uFiltered.length}問</span>
+      </div>
+    `;
+    btn.onclick = () => startQuiz({ type: "kanji_unit", unit: u, sub: currentKanjiSub });
+    gridK.appendChild(btn);
   });
 }
 
@@ -1219,164 +964,261 @@ function shuffleArray(arr) {
   return copy;
 }
 
-function startQuiz(customList = null) {
-  let base = customList
-    ? [...customList]
-    : (selectedUnit === "すべて（全範囲）"
-        ? [...QUESTIONS]
-        : QUESTIONS.filter(q => q.unit === selectedUnit));
-
-  if (shuffleToggle.checked && !customList) {
-    base = shuffleArray(base);
+function startQuiz(config, customList = null) {
+  lastFilterConfig = config;
+  let list = [];
+  if (customList) {
+    list = [...customList];
+  } else if (config.type === "all") {
+    list = [...ALL_QUESTIONS];
+  } else if (config.type === "category") {
+    list = ALL_QUESTIONS.filter(q => q.category === config.category);
+  } else if (config.type === "unit") {
+    list = ALL_QUESTIONS.filter(q => q.category === config.category && q.unit === config.unit);
+  } else if (config.type === "kanji_all") {
+    const base = ALL_QUESTIONS.filter(q => q.category === "漢字・語句（P.34〜45）");
+    list = filterKanjiList(base, config.sub);
+  } else if (config.type === "kanji_unit") {
+    const base = ALL_QUESTIONS.filter(q => q.category === "漢字・語句（P.34〜45）" && q.unit === config.unit);
+    list = filterKanjiList(base, config.sub);
   }
-  activeList = base;
+
+  if (list.length === 0) return;
+
+  if (!customList && document.getElementById("chkShuffleQuestions").checked) {
+    list = shuffleArray(list);
+  }
+
+  activeQuestions = list;
   currentIndex = 0;
   score = 0;
-  wrongItems = [];
+  wrongRecords = [];
   unitStats = {};
 
-  startScreen.classList.add("hidden");
-  resultScreen.classList.add("hidden");
-  quizScreen.classList.remove("hidden");
+  document.getElementById("startScreen").classList.add("hidden");
+  document.getElementById("resultScreen").classList.add("hidden");
+  document.getElementById("quizScreen").classList.remove("hidden");
+  document.getElementById("btnTopHome").classList.remove("hidden");
+
   renderQuestion();
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 function renderQuestion() {
   answered = false;
-  const item = activeList[currentIndex];
-  document.getElementById("q-unit-badge").textContent = item.unit;
-  document.getElementById("q-progress-text").textContent = `第 ${currentIndex + 1} 問 / 全 ${activeList.length} 問`;
-  document.getElementById("progress-fill").style.width = `${((currentIndex) / activeList.length) * 100}%`;
-  document.getElementById("live-score").textContent = `現在の正解数：${score}問`;
-  document.getElementById("q-text").textContent = item.q;
+  const q = activeQuestions[currentIndex];
+  const total = activeQuestions.length;
 
-  const feedbackBox = document.getElementById("feedback-box");
-  feedbackBox.className = "feedback-box";
+  const badgesWrap = document.getElementById("badgesWrap");
+  let subBadge = "";
+  if (q.subType === "yomi") subBadge = `<span class="unit-tag">読み問題</span>`;
+  else if (q.subType === "kaki") subBadge = `<span class="unit-tag">書き問題</span>`;
+  else if (q.subType === "special") subBadge = `<span class="unit-tag">書き分け・知識</span>`;
 
-  const container = document.getElementById("choices-container");
-  container.innerHTML = "";
-  item.choices.forEach((choiceText, idx) => {
-    const btn = document.createElement("button");
-    btn.className = "choice-btn";
-    btn.innerHTML = `<span class="choice-label">${LABELS[idx]}</span><span>${choiceText}</span>`;
-    btn.addEventListener("click", () => selectAnswer(idx));
-    container.appendChild(btn);
-  });
+  badgesWrap.innerHTML = `
+    <span class="unit-tag cat-tag">${q.category}</span>
+    <span class="unit-tag">${q.unit}</span>
+    ${subBadge}
+    ${q.tricky ? '<span class="unit-tag tricky-tag">要注意・頻出ミス</span>' : ''}
+  `;
 
-  const nextBtn = document.getElementById("next-btn");
-  nextBtn.textContent = (currentIndex === activeList.length - 1) ? "結果を見る" : "次の問題へ";
-}
+  document.getElementById("qCounter").textContent = `問 ${currentIndex + 1} / ${total}（正解: ${score}）`;
+  document.getElementById("progressBar").style.width = `${(currentIndex / total) * 100}%`;
 
-function selectAnswer(chosenIdx) {
-  if (answered) return;
-  answered = true;
-  const item = activeList[currentIndex];
-  const isCorrect = (chosenIdx === item.answer);
+  document.getElementById("qPrompt").innerHTML = formatPromptHTML(q.prompt);
 
-  if (!unitStats[item.unit]) unitStats[item.unit] = { total: 0, correct: 0 };
-  unitStats[item.unit].total += 1;
-  if (isCorrect) {
-    score += 1;
-    unitStats[item.unit].correct += 1;
+  const sentBox = document.getElementById("qSentence");
+  if (q.sentence && q.sentence.trim() !== "") {
+    sentBox.innerHTML = q.sentence;
+    sentBox.classList.remove("hidden");
   } else {
-    wrongItems.push(item);
+    sentBox.innerHTML = "";
+    sentBox.classList.add("hidden");
   }
 
-  const btns = document.querySelectorAll(".choice-btn");
-  btns.forEach((btn, idx) => {
+  // Shuffle choices if checked
+  const indexed = q.choices.map((text, idx) => ({ text, isCorrect: idx === q.answer }));
+  const shouldShuffle = document.getElementById("chkShuffleChoices").checked;
+  currentChoices = shouldShuffle ? shuffleArray(indexed) : indexed;
+  currentCorrectIdx = currentChoices.findIndex(c => c.isCorrect);
+
+  // Use 2-column grid for short choices (e.g. Kanji)
+  const maxLen = Math.max(...q.choices.map(c => c.replace(/<[^>]*>/g, "").length));
+  const listEl = document.getElementById("choicesList");
+  listEl.className = maxLen <= 10 ? "choices-list grid-2" : "choices-list";
+  listEl.innerHTML = "";
+
+  currentChoices.forEach((choice, idx) => {
+    const btn = document.createElement("button");
+    btn.className = "choice-btn";
+    btn.innerHTML = `<span class="choice-label">${LABELS[idx]}</span><span>${choice.text}</span>`;
+    btn.onclick = () => selectChoice(idx);
+    listEl.appendChild(btn);
+  });
+
+  document.getElementById("feedbackBox").classList.add("hidden");
+  document.getElementById("btnNext").textContent =
+    currentIndex === total - 1 ? "結果を見る →" : "次の問題へ →";
+}
+
+function selectChoice(selectedIdx) {
+  if (answered) return;
+  answered = true;
+
+  const q = activeQuestions[currentIndex];
+  const statKey = `${q.category}｜${q.unit}`;
+  if (!unitStats[statKey]) {
+    unitStats[statKey] = { total: 0, correct: 0 };
+  }
+  unitStats[statKey].total += 1;
+
+  const buttons = document.querySelectorAll("#choicesList .choice-btn");
+  buttons.forEach((btn, idx) => {
     btn.disabled = true;
-    if (idx === item.answer) {
+    if (idx === currentCorrectIdx) {
       btn.classList.add("correct");
-    } else if (idx === chosenIdx && !isCorrect) {
+    } else if (idx === selectedIdx) {
       btn.classList.add("wrong");
     } else {
       btn.classList.add("dimmed");
     }
   });
 
-  document.getElementById("progress-fill").style.width = `${((currentIndex + 1) / activeList.length) * 100}%`;
-  document.getElementById("live-score").textContent = `現在の正解数：${score}問`;
+  const isCorrect = selectedIdx === currentCorrectIdx;
+  const fbBox = document.getElementById("feedbackBox");
+  const fbHeader = document.getElementById("feedbackHeader");
 
-  const feedbackBox = document.getElementById("feedback-box");
-  const feedbackTitle = document.getElementById("feedback-title");
-  const feedbackExp = document.getElementById("feedback-exp");
-  feedbackBox.className = "feedback-box show " + (isCorrect ? "is-correct" : "is-wrong");
-  feedbackTitle.textContent = isCorrect
-    ? `正解！（${LABELS[item.answer]}）`
-    : `不正解… 正解は「${LABELS[item.answer]}」`;
-  feedbackExp.textContent = item.exp;
+  fbBox.classList.remove("hidden", "is-correct", "is-wrong");
+  if (isCorrect) {
+    score += 1;
+    unitStats[statKey].correct += 1;
+    fbBox.classList.add("is-correct");
+    fbHeader.textContent = `⭕ 正解！（${LABELS[currentCorrectIdx]}）`;
+  } else {
+    fbBox.classList.add("is-wrong");
+    fbHeader.innerHTML = `❌ 不正解… 正解は「${LABELS[currentCorrectIdx]}：${currentChoices[currentCorrectIdx].text}」`;
+    wrongRecords.push({
+      question: q,
+      yourChoice: currentChoices[selectedIdx].text,
+      correctChoice: currentChoices[currentCorrectIdx].text
+    });
+  }
+
+  document.getElementById("explanationText").textContent = q.exp;
+  document.getElementById("qCounter").textContent =
+    `問 ${currentIndex + 1} / ${activeQuestions.length}（正解: ${score}）`;
+  document.getElementById("progressBar").style.width =
+    `${((currentIndex + 1) / activeQuestions.length) * 100}%`;
 }
 
 function nextQuestion() {
   if (!answered) return;
-  if (currentIndex < activeList.length - 1) {
+  if (currentIndex < activeQuestions.length - 1) {
     currentIndex += 1;
     renderQuestion();
+    window.scrollTo({ top: 0, behavior: "smooth" });
   } else {
     showResult();
   }
 }
 
 function showResult() {
-  quizScreen.classList.add("hidden");
-  resultScreen.classList.remove("hidden");
-  const total = activeList.length;
-  const pct = Math.round((score / total) * 100);
-  document.getElementById("final-score").textContent = `${score} / ${total} 問正解（${pct}%）`;
-  document.getElementById("final-sub").textContent =
-    pct === 100 ? "全問正解！テスト本番も自信をもって臨めます。"
-    : pct >= 80 ? "よくできました！間違えた問題を復習して完璧にしよう。"
-    : "間違えた問題の解説を確認して、もう一度チャレンジしよう！";
+  document.getElementById("quizScreen").classList.add("hidden");
+  document.getElementById("resultScreen").classList.remove("hidden");
 
-  const list = document.getElementById("breakdown-list");
-  list.innerHTML = "";
-  Object.keys(unitStats).forEach(u => {
-    const st = unitStats[u];
-    const upct = Math.round((st.correct / st.total) * 100);
-    const row = document.createElement("div");
-    row.className = "breakdown-item";
-    row.innerHTML = `
-      <strong>${u}</strong>
-      <div class="breakdown-bar-wrap">
-        <span>${st.correct}/${st.total} (${upct}%)</span>
-        <div class="mini-bar"><div class="mini-fill" style="width:${upct}%"></div></div>
+  const total = activeQuestions.length;
+  const rate = Math.round((score / total) * 100);
+  document.getElementById("scoreNum").textContent = `${score} / ${total}`;
+  document.getElementById("scoreRate").textContent = `正答率 ${rate}%`;
+
+  let msg = "";
+  if (rate === 100) msg = "満点！テスト本番もバッチリです！";
+  else if (rate >= 80) msg = "素晴らしい！あと少し復習すれば完璧です！";
+  else if (rate >= 60) msg = "まずまずの仕上がり！間違えた問題を確認しよう！";
+  else msg = "解説を読み直して、もう一度チャレンジしよう！";
+  document.getElementById("scoreMsg").textContent = msg;
+
+  const breakdownEl = document.getElementById("unitBreakdown");
+  breakdownEl.innerHTML = "";
+  Object.keys(unitStats).forEach(uName => {
+    const st = unitStats[uName];
+    const uRate = Math.round((st.correct / st.total) * 100);
+    const div = document.createElement("div");
+    div.className = "unit-stat";
+    div.innerHTML = `
+      <div class="unit-stat-name">${uName}</div>
+      <div class="unit-stat-bar-bg">
+        <div class="unit-stat-bar-fill" style="width:${uRate}%"></div>
       </div>
+      <div class="unit-stat-val">${st.correct} / ${st.total} 問正解 (${uRate}%)</div>
     `;
-    list.appendChild(row);
+    breakdownEl.appendChild(div);
   });
 
-  const retryWrongBtn = document.getElementById("retry-wrong-btn");
-  if (wrongItems.length > 0) {
-    retryWrongBtn.classList.remove("hidden");
-    retryWrongBtn.textContent = `間違えた問題だけ復習する（${wrongItems.length}問）`;
+  const reviewSec = document.getElementById("reviewSection");
+  const reviewList = document.getElementById("reviewList");
+  const btnRetryWrong = document.getElementById("btnRetryWrong");
+  reviewList.innerHTML = "";
+
+  if (wrongRecords.length > 0) {
+    reviewSec.classList.remove("hidden");
+    btnRetryWrong.classList.remove("hidden");
+    btnRetryWrong.textContent = `間違えた問題だけやり直す（${wrongRecords.length}問）`;
+    wrongRecords.forEach(rec => {
+      const item = document.createElement("div");
+      item.className = "review-item";
+      const sentHtml = rec.question.sentence
+        ? `<div style="margin:6px 0; padding:8px 10px; background:#fff; border-radius:6px; border:1px solid #e2e8f0;">${rec.question.sentence}</div>`
+        : "";
+      item.innerHTML = `
+        <div class="review-q">【${rec.question.category}｜${rec.question.unit}】${formatPromptHTML(rec.question.prompt)}</div>
+        ${sentHtml}
+        <div class="review-ans">
+          <span style="color:#dc2626;">あなたの回答：${rec.yourChoice}</span><br>
+          <span style="color:#16a34a; font-weight:700;">正解：${rec.correctChoice}</span>
+        </div>
+        <div class="review-exp">💡 ${rec.question.exp}</div>
+      `;
+      reviewList.appendChild(item);
+    });
   } else {
-    retryWrongBtn.classList.add("hidden");
+    reviewSec.classList.add("hidden");
+    btnRetryWrong.classList.add("hidden");
   }
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-document.getElementById("start-btn").addEventListener("click", () => startQuiz());
-document.getElementById("next-btn").addEventListener("click", nextQuestion);
-document.getElementById("quit-btn").addEventListener("click", () => {
-  quizScreen.classList.add("hidden");
-  startScreen.classList.remove("hidden");
-});
-document.getElementById("back-home-btn").addEventListener("click", () => {
-  resultScreen.classList.add("hidden");
-  startScreen.classList.remove("hidden");
-});
-document.getElementById("retry-all-btn").addEventListener("click", () => startQuiz());
-document.getElementById("retry-wrong-btn").addEventListener("click", () => startQuiz(wrongItems));
+function retryWrong() {
+  const list = wrongRecords.map(r => r.question);
+  startQuiz(lastFilterConfig, list);
+}
+
+function retrySame() {
+  if (lastFilterConfig) startQuiz(lastFilterConfig);
+  else goHome();
+}
+
+function goHome() {
+  document.getElementById("quizScreen").classList.add("hidden");
+  document.getElementById("resultScreen").classList.add("hidden");
+  document.getElementById("btnTopHome").classList.add("hidden");
+  document.getElementById("startScreen").classList.remove("hidden");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
 
 document.addEventListener("keydown", (e) => {
-  if (quizScreen.classList.contains("hidden")) return;
+  if (document.getElementById("quizScreen").classList.contains("hidden")) return;
   if (!answered && ["1", "2", "3", "4"].includes(e.key)) {
-    selectAnswer(parseInt(e.key, 10) - 1);
+    const idx = parseInt(e.key, 10) - 1;
+    if (idx < currentChoices.length) selectChoice(idx);
   } else if (answered && e.key === "Enter") {
+    e.preventDefault();
     nextQuestion();
   }
 });
 
-initUnitGrid();
+renderMenuGrids();
 </script>
 </body>
 </html>

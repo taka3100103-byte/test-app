@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>中1 国語 2学期末テスト対策 記述・穴埋め一問一答</title>
+<title>中1 国語 2学期末テスト対策 総合演習アプリ（読解・古典・文法・漢字）</title>
 <style>
   :root {
     --bg: #f4f6f9;
@@ -11,15 +11,22 @@
     --primary: #0f766e;
     --primary-hover: #0d5f59;
     --primary-light: #f0fdfa;
+    --blue: #2563eb;
+    --blue-light: #eff6ff;
+    --purple: #7c3aed;
+    --purple-light: #f5f3ff;
     --text: #1e293b;
     --muted: #64748b;
     --border: #e2e8f0;
     --correct: #16a34a;
     --correct-bg: #f0fdf4;
+    --correct-border: #86efac;
     --wrong: #dc2626;
     --wrong-bg: #fef2f2;
+    --wrong-border: #fca5a5;
     --accent: #d97706;
     --accent-bg: #fffbeb;
+    --accent-border: #fde68a;
     --radius: 14px;
     --shadow: 0 4px 20px rgba(15, 23, 42, 0.06);
   }
@@ -30,25 +37,29 @@
     background: var(--bg);
     color: var(--text);
     line-height: 1.7;
-    padding: 20px 14px 60px;
+    padding: 18px 14px 60px;
   }
   .container {
-    max-width: 780px;
+    max-width: 820px;
     margin: 0 auto;
   }
   header {
-    text-align: center;
-    margin-bottom: 20px;
+    background: linear-gradient(135deg, #0f766e, #1e40af);
+    color: #fff;
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin-bottom: 18px;
+    box-shadow: var(--shadow);
   }
   header h1 {
-    font-size: 1.42rem;
+    font-size: 1.35rem;
     margin: 0 0 6px;
-    color: #0f172a;
+    letter-spacing: 0.02em;
   }
   header p {
     margin: 0;
-    font-size: 0.9rem;
-    color: var(--muted);
+    font-size: 0.88rem;
+    opacity: 0.92;
   }
   .card {
     background: var(--card);
@@ -58,12 +69,55 @@
     margin-bottom: 18px;
     border: 1px solid var(--border);
   }
-  /* Start Screen */
+  .hidden { display: none !important; }
+
+  /* Section Tabs on Home */
+  .main-tabs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+  @media (max-width: 600px) {
+    .main-tabs { grid-template-columns: repeat(2, 1fr); }
+  }
+  .tab-btn {
+    padding: 12px 10px;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    background: #fff;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--text);
+    transition: all 0.15s ease;
+    text-align: center;
+  }
+  .tab-btn:hover {
+    border-color: var(--primary);
+    background: var(--primary-light);
+  }
+  .tab-btn.active {
+    border-color: var(--primary);
+    background: var(--primary);
+    color: #fff;
+    box-shadow: 0 3px 10px rgba(15, 118, 110, 0.22);
+  }
+  .tab-sub {
+    display: block;
+    font-size: 0.74rem;
+    font-weight: 500;
+    opacity: 0.85;
+    margin-top: 2px;
+  }
+
+  /* Unit Grid */
   .unit-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 10px;
-    margin: 16px 0 20px;
+    margin: 14px 0 18px;
   }
   .unit-btn {
     text-align: left;
@@ -82,7 +136,12 @@
   .unit-btn.active {
     border-color: var(--primary);
     background: var(--primary-light);
-    box-shadow: 0 0 0 2px rgba(15, 118, 110, 0.15);
+    box-shadow: 0 0 0 2px rgba(15, 118, 110, 0.18);
+  }
+  .unit-btn.all-unit {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, #f0fdfa, #eff6ff);
+    border-color: #99f6e4;
   }
   .unit-btn .u-title {
     display: block;
@@ -96,13 +155,39 @@
     color: var(--muted);
     margin-top: 2px;
   }
+
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 14px;
+    padding: 10px 12px;
+    background: #f8fafc;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+  }
+  .filter-bar label {
+    font-size: 0.84rem;
+    font-weight: 700;
+    color: var(--muted);
+  }
+  .filter-bar select {
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    font-family: inherit;
+    font-size: 0.88rem;
+    background: #fff;
+  }
+
   .controls-row {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
     align-items: center;
     justify-content: space-between;
-    padding-top: 12px;
+    padding-top: 14px;
     border-top: 1px solid var(--border);
   }
   .toggle-label {
@@ -110,6 +195,7 @@
     align-items: center;
     gap: 8px;
     font-size: 0.9rem;
+    font-weight: 600;
     cursor: pointer;
     user-select: none;
   }
@@ -128,32 +214,16 @@
     transition: background 0.15s ease, transform 0.08s ease;
   }
   .btn:active { transform: scale(0.98); }
-  .btn:disabled { opacity: 0.5; cursor: default; }
-  .btn-primary {
-    background: var(--primary);
-    color: #fff;
-  }
+  .btn:disabled { opacity: 0.45; cursor: default; }
+  .btn-primary { background: var(--primary); color: #fff; }
   .btn-primary:hover:not(:disabled) { background: var(--primary-hover); }
-  .btn-secondary {
-    background: #e2e8f0;
-    color: #334155;
-  }
+  .btn-secondary { background: #e2e8f0; color: #334155; }
   .btn-secondary:hover:not(:disabled) { background: #cbd5e1; }
-  .btn-outline {
-    background: #fff;
-    color: var(--primary);
-    border: 1.5px solid var(--primary);
-  }
+  .btn-outline { background: #fff; color: var(--primary); border: 1.5px solid var(--primary); }
   .btn-outline:hover:not(:disabled) { background: var(--primary-light); }
-  .btn-correct {
-    background: var(--correct);
-    color: #fff;
-  }
+  .btn-correct { background: var(--correct); color: #fff; }
   .btn-correct:hover { background: #15803d; }
-  .btn-wrong {
-    background: var(--wrong);
-    color: #fff;
-  }
+  .btn-wrong { background: var(--wrong); color: #fff; }
   .btn-wrong:hover { background: #b91c1c; }
 
   /* Quiz Screen */
@@ -180,14 +250,13 @@
     background: var(--primary-light);
     color: var(--primary);
   }
-  .badge-type {
-    background: #f1f5f9;
-    color: #475569;
-  }
+  .badge-sec { background: var(--blue-light); color: var(--blue); }
+  .badge-type { background: #f1f5f9; color: #475569; }
+  .badge-tricky { background: #fee2e2; color: #b91c1c; }
   .progress-info {
     font-size: 0.88rem;
     color: var(--muted);
-    font-weight: 600;
+    font-weight: 700;
   }
   .progress-track {
     width: 100%;
@@ -195,20 +264,45 @@
     background: #e2e8f0;
     border-radius: 999px;
     overflow: hidden;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
   }
   .progress-fill {
     height: 100%;
-    background: var(--primary);
+    background: linear-gradient(90deg, var(--primary), var(--blue));
     width: 0%;
     transition: width 0.25s ease;
   }
-  .q-text {
-    font-size: 1.08rem;
+
+  .q-instruction {
+    font-size: 0.94rem;
     font-weight: 700;
-    margin: 0 0 18px;
+    color: var(--muted);
+    margin: 0 0 8px;
+  }
+  .q-text {
+    font-size: 1.12rem;
+    font-weight: 700;
+    margin: 0 0 14px;
     color: #0f172a;
+    line-height: 1.85;
     white-space: pre-line;
+  }
+  .q-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 16px 18px;
+    font-size: 1.18rem;
+    line-height: 1.95;
+    margin-bottom: 14px;
+    letter-spacing: 0.02em;
+  }
+  .q-box u.ul {
+    text-decoration: none;
+    border-bottom: 3px solid var(--blue);
+    padding-bottom: 2px;
+    font-weight: 700;
+    color: #1e3a8a;
   }
   .blank-box {
     display: inline-block;
@@ -222,6 +316,59 @@
     font-weight: 800;
     text-align: center;
   }
+  .kanji-blank {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    vertical-align: middle;
+    margin: 0 4px;
+    padding: 2px 12px 3px;
+    border-bottom: 3px solid var(--primary);
+    background: var(--primary-light);
+    border-radius: 6px 6px 0 0;
+    min-width: 68px;
+    text-align: center;
+  }
+  .kanji-blank .kb-space {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--primary);
+    letter-spacing: 0.1em;
+  }
+  .kanji-blank .kb-hint {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #0f766e;
+    line-height: 1.2;
+  }
+  .yomi-target {
+    display: inline-block;
+    background: #fef3c7;
+    color: #92400e;
+    padding: 0 8px;
+    border-radius: 6px;
+    border-bottom: 3px solid #f59e0b;
+    margin: 0 3px;
+  }
+  .q-prefix-tag {
+    display: inline-block;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #6b21a8;
+    background: #f3e8ff;
+    padding: 2px 10px;
+    border-radius: 8px;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  .q-meaning-note {
+    display: block;
+    margin-top: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--muted);
+  }
+
   .input-area {
     display: flex;
     flex-direction: column;
@@ -232,7 +379,7 @@
     padding: 13px 15px;
     border: 2px solid var(--border);
     border-radius: 10px;
-    font-size: 1rem;
+    font-size: 1.05rem;
     font-family: inherit;
     color: var(--text);
     background: #fff;
@@ -257,17 +404,20 @@
     gap: 10px;
     align-items: center;
   }
-  .hint-note {
-    font-size: 0.82rem;
-    color: var(--muted);
-    margin: 0;
+  .hint-box {
+    background: var(--accent-bg);
+    border: 1px solid var(--accent-border);
+    color: #92400e;
+    border-radius: 10px;
+    padding: 9px 14px;
+    font-size: 0.88rem;
   }
 
   /* Feedback Box */
   .feedback-box {
-    margin-top: 20px;
+    margin-top: 18px;
     padding: 16px 18px;
-    border-radius: 10px;
+    border-radius: 12px;
     border-left: 5px solid var(--primary);
     background: #f8fafc;
     display: none;
@@ -294,15 +444,12 @@
   .feedback-box.is-wrong .feedback-title { color: var(--wrong); }
   .feedback-box.is-self .feedback-title { color: var(--accent); }
   .model-answer {
-    background: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.9);
     border: 1px solid rgba(15, 23, 42, 0.1);
     border-radius: 8px;
     padding: 10px 13px;
     margin-bottom: 10px;
-    font-size: 0.96rem;
-  }
-  .model-answer strong {
-    color: #0f172a;
+    font-size: 0.98rem;
   }
   .feedback-exp {
     margin: 0;
@@ -338,7 +485,7 @@
     margin-bottom: 18px;
   }
   .score-num {
-    font-size: 2.4rem;
+    font-size: 2.3rem;
     font-weight: 800;
     color: var(--primary);
     line-height: 1.2;
@@ -351,17 +498,17 @@
   .breakdown-list {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin-bottom: 22px;
+    gap: 8px;
+    margin-bottom: 20px;
   }
   .breakdown-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 14px;
+    padding: 9px 14px;
     background: #f8fafc;
     border-radius: 8px;
-    font-size: 0.9rem;
+    font-size: 0.88rem;
   }
   .breakdown-bar-wrap {
     display: flex;
@@ -369,7 +516,7 @@
     gap: 10px;
   }
   .mini-bar {
-    width: 90px;
+    width: 84px;
     height: 7px;
     background: #e2e8f0;
     border-radius: 999px;
@@ -379,7 +526,20 @@
     height: 100%;
     background: var(--correct);
   }
-  .hidden { display: none !important; }
+  .wrong-review-list {
+    margin-top: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .wrong-review-item {
+    border: 1px solid var(--wrong-border);
+    border-left: 5px solid var(--wrong);
+    background: #fff;
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 0.9rem;
+  }
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(4px); }
     to { opacity: 1; transform: translateY(0); }
@@ -394,15 +554,46 @@
 <body>
 <div class="container">
   <header>
-    <h1>中1 国語 2学期末テスト対策 記述・穴埋め一問一答</h1>
-    <p>自分で考えて答える実戦演習｜1問ごとに答え合わせ＆解説</p>
+    <h1>中1 国語 2学期末テスト対策 総合演習（全291問）</h1>
+    <p>読解・古典・文法・漢字を1つに統合｜自分で考えて答える記述・穴埋め一問一答</p>
   </header>
 
   <!-- Start Screen -->
   <section id="start-screen" class="card">
-    <h2 style="margin:0 0 6px; font-size:1.1rem;">出題単元を選ぶ</h2>
-    <p style="margin:0; font-size:0.86rem; color:var(--muted);">穴埋め・読み書き・仮名遣い変換は自動採点、理由説明や現代語訳などの記述問題は模範解答と照らし合わせて自己採点できます。</p>
+    <h2 style="margin:0 0 10px; font-size:1.08rem;">1. 分野を選ぶ</h2>
+    <div class="main-tabs" id="main-tabs">
+      <button class="tab-btn active" data-sec="all">
+        総合（すべて）
+        <span class="tab-sub" id="count-tab-all">全291問</span>
+      </button>
+      <button class="tab-btn" data-sec="reading">
+        読解・古典・基礎
+        <span class="tab-sub" id="count-tab-reading">60問</span>
+      </button>
+      <button class="tab-btn" data-sec="grammar">
+        国語文法（文の成分）
+        <span class="tab-sub" id="count-tab-grammar">30問</span>
+      </button>
+      <button class="tab-btn" data-sec="kanji">
+        漢字（P.34〜45）
+        <span class="tab-sub" id="count-tab-kanji">201問</span>
+      </button>
+    </div>
+
+    <h2 style="margin:14px 0 6px; font-size:1.08rem;">2. 単元を選ぶ</h2>
     <div id="unit-grid" class="unit-grid"></div>
+
+    <div id="kanji-filter-bar" class="filter-bar hidden">
+      <label for="kanji-type-select">漢字の出題タイプ：</label>
+      <select id="kanji-type-select">
+        <option value="all">すべて（読み・書き穴埋め・知識）</option>
+        <option value="kaki">漢字の書き・穴埋めのみ</option>
+        <option value="yomi">漢字の読みのみ</option>
+        <option value="special">書き分け・部首・ことわざ・音読み</option>
+        <option value="tricky">要注意・間違いやすい問題のみ</option>
+      </select>
+    </div>
+
     <div class="controls-row">
       <label class="toggle-label">
         <input type="checkbox" id="shuffle-toggle">
@@ -416,8 +607,10 @@
   <section id="quiz-screen" class="card hidden">
     <div class="top-bar">
       <div class="badge-group">
+        <span id="q-sec-badge" class="badge badge-sec"></span>
         <span id="q-unit-badge" class="badge"></span>
         <span id="q-type-badge" class="badge badge-type"></span>
+        <span id="q-tricky-badge" class="badge badge-tricky hidden">要注意</span>
       </div>
       <span id="q-progress-text" class="progress-info"></span>
     </div>
@@ -425,36 +618,38 @@
       <div id="progress-fill" class="progress-fill"></div>
     </div>
 
-    <p id="q-text" class="q-text"></p>
+    <div id="q-instruction" class="q-instruction hidden"></div>
+    <div id="q-body"></div>
 
     <div class="input-area">
       <div id="input-wrap"></div>
-      <p id="input-hint" class="hint-note"></p>
-      <div id="check-actions" class="action-row">
+      <div class="action-row" id="check-actions">
         <button id="check-btn" class="btn btn-primary">答え合わせ</button>
-        <button id="giveup-btn" class="btn btn-outline">わからない（答えを見る）</button>
+        <button id="hint-btn" class="btn btn-outline hidden">💡 ヒント</button>
+        <button id="giveup-btn" class="btn btn-outline">答えを見る</button>
       </div>
+      <div id="hint-box" class="hint-box hidden"></div>
     </div>
 
     <div id="feedback-box" class="feedback-box">
       <div id="feedback-title" class="feedback-title"></div>
       <div id="model-answer" class="model-answer"></div>
-      <p id="feedback-exp" class="feedback-exp"></p>
+      <div id="feedback-exp" class="feedback-exp"></div>
 
       <div id="self-judge-row" class="self-judge-row hidden">
         <span style="font-size:0.88rem; font-weight:700;">自己採点して次へ：</span>
         <button id="self-ok-btn" class="btn btn-correct" style="padding:8px 16px; font-size:0.88rem;">○ 合っていた</button>
-        <button id="self-ng-btn" class="btn btn-wrong" style="padding:8px 16px; font-size:0.88rem;">× 間違えた・惜しい</button>
+        <button id="self-ng-btn" class="btn btn-wrong" style="padding:8px 16px; font-size:0.88rem;">× 間違えた・復習する</button>
       </div>
 
       <div id="next-row" class="next-row hidden">
         <span class="kbd-hint">Enterキーでも次へ進めます</span>
-        <button id="next-btn" class="btn btn-primary">次の問題へ</button>
+        <button id="next-btn" class="btn btn-primary">次の問題へ →</button>
       </div>
     </div>
 
     <div style="margin-top:16px; display:flex; justify-content:space-between; align-items:center;">
-      <button id="quit-btn" class="btn btn-secondary" style="padding:7px 14px; font-size:0.82rem;">単元選択に戻る</button>
+      <button id="quit-btn" class="btn btn-secondary" style="padding:7px 14px; font-size:0.82rem;">メニューに戻る</button>
       <span id="live-score" class="progress-info"></span>
     </div>
   </section>
@@ -470,14 +665,17 @@
     <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:center;">
       <button id="retry-wrong-btn" class="btn btn-primary hidden">間違えた問題だけ復習する</button>
       <button id="retry-all-btn" class="btn btn-outline">同じ範囲をもう一度</button>
-      <button id="back-home-btn" class="btn btn-secondary">単元選択に戻る</button>
+      <button id="back-home-btn" class="btn btn-secondary">メニューに戻る</button>
+    </div>
+    <div id="wrong-review-section" class="hidden">
+      <h3 style="margin:22px 0 8px; font-size:1rem;">間違えた問題の一覧</h3>
+      <div id="wrong-review-list" class="wrong-review-list"></div>
     </div>
   </section>
 </div>
 
 <script>
-// mode: "exact" (自動採点：穴埋め・一問一答) | "self" (自己採点：記述・理由説明・複合穴埋め)
-const QUESTIONS = [
+const RAW_W1 = [
   // === 1. 「言葉」をもつ鳥、シジュウカラ（鈴木俊貴） ===
   {
     unit: "シジュウカラ",
@@ -1115,49 +1313,533 @@ const QUESTIONS = [
     exp: "「食べ方は多岐に渡る（いろいろな種類がある）」「先入観を持たない（初めにできた思い込みを持たない）」のように使います。"
   }
 ];
+const RAW_W2 = [
+  // === 1. 用語・知識の穴埋め (term) ===
+  {
+    id: 1,
+    cat: 'term',
+    catLabel: '用語・穴埋め',
+    formatLabel: '知識の穴埋め',
+    instruction: '【　　】にあてはまる漢字3文字のことばを答えなさい。',
+    sentence: '文節の役目や働きに名前を付けたものを、<span class="blank">　　　</span>という。',
+    note: '※「文の成分」ではなく「文の〇〇」と問われたときの基本用語です。',
+    answers: ['文の成分'],
+    displayAnswer: '文の成分',
+    hint: '「主語・述語・修飾語・接続語・独立語」の5つをまとめて何と呼びますか？',
+    exp: '文節の役目や働きに名前を付けたものを<strong>「文の成分」</strong>といいます。文の成分には、①主語 ②述語 ③修飾語 ④接続語 ⑤独立語 の5つがあります。'
+  },
+  {
+    id: 2,
+    cat: 'term',
+    catLabel: '用語・穴埋め',
+    formatLabel: '知識の穴埋め',
+    instruction: '【　　】にあてはまることばを漢字5文字で答えなさい。',
+    sentence: 'もののお名前や事柄を表すことば（体言＝名詞）を修飾する文節を、<span class="blank">　　　</span>という。',
+    note: '例：「お父さんの 机」「美しい 風景だ」',
+    answers: ['連体修飾語'],
+    displayAnswer: '連体修飾語',
+    hint: '「体言」に連なる修飾語なので「〇〇修飾語」です。',
+    exp: '体言（名詞）を詳しく説明する文節を<strong>「連体修飾語」</strong>といいます。「体言に連なる」から連体修飾語と覚えましょう。'
+  },
+  {
+    id: 3,
+    cat: 'term',
+    catLabel: '用語・穴埋め',
+    formatLabel: '知識の穴埋め',
+    instruction: '【　　】にあてはまることばを漢字5文字で答えなさい。',
+    sentence: '主に動作や状態を表すことば（用言＝動詞・形容詞・形容動詞）を修飾する文節を、<span class="blank">　　　</span>という。',
+    note: '例：「本を 読む」「少し 寒い」',
+    answers: ['連用修飾語'],
+    displayAnswer: '連用修飾語',
+    hint: '「用言」に連なる修飾語なので「〇〇修飾語」です。',
+    exp: '主に用言（動詞・形容詞・形容動詞）を詳しく説明する文節を<strong>「連用修飾語」</strong>といいます。「用言に連なる」から連用修飾語です。'
+  },
+  {
+    id: 4,
+    cat: 'term',
+    catLabel: '用語・穴埋め',
+    formatLabel: '知識の穴埋め',
+    instruction: '次の文の【　　】にあてはまる漢字2文字のことばを答えなさい。',
+    sentence: '「友情、これが クラスの 目標です。」のように、強調するために名前などを文の初めに示す独立語の種類を、<span class="blank">　　　</span>という。',
+    note: '独立語の5種類：感動・呼びかけ・応答・あいさつ・（　　）',
+    answers: ['提示'],
+    displayAnswer: '提示',
+    hint: '話題や名前を「示し出す」という意味の漢字2文字です。',
+    exp: '独立語の5種類のうち、強調するために名前や題目などを文の初めに示すものを<strong>「提示」</strong>といいます。例：「八月六日、この日に…」「福沢諭吉、彼は…」なども提示です。'
+  },
+  {
+    id: 5,
+    cat: 'term',
+    catLabel: '用語・穴埋め',
+    formatLabel: '知識の穴埋め',
+    instruction: '【　　】にあてはまることばを答えなさい。',
+    sentence: '接続語がつなぐ文と文の関係や、条件・理由を示す接続語と後に続く文節との関係を、<span class="blank">　　　</span>という。',
+    note: '※「〇〇の関係」の形で答えなさい。',
+    answers: ['接続の関係'],
+    displayAnswer: '接続の関係',
+    hint: '「〇〇の関係」（漢字2文字＋の関係）です。',
+    exp: '接続語と後に続く文節との関係（および接続語がつなぐ文と文の関係）を<strong>「接続の関係」</strong>といいます。同じように、独立語とそれ以外の文節との関係は<strong>「独立の関係」</strong>といいます。'
+  },
+  {
+    id: 6,
+    cat: 'term',
+    catLabel: '用語・穴埋め',
+    formatLabel: '知識の穴埋め',
+    instruction: '【　　】にあてはまることばを答えなさい。',
+    sentence: '独立語はたいてい文の最初にあるけれど、<span class="blank">　　　</span>によって、文末にくることもある。',
+    note: '例：「どうぞ おくつろぎください、 お客様。」',
+    answers: ['倒置', '倒置法'],
+    displayAnswer: '倒置（倒置法）',
+    hint: '言葉の順序をひっくり返す表現技法です（漢字2文字）。',
+    exp: '主語や独立語などは通常文の前の方に置かれますが、強調などのために順番を入れ替える<strong>「倒置（倒置法）」</strong>によって、文末にくることがあります。'
+  },
 
-const UNIT_ORDER = [
-  "すべて（全範囲）",
-  "シジュウカラ",
-  "集中力・案内文",
-  "方言と共通語",
-  "文法（文の組み立て）",
-  "いろは歌",
-  "歴史的仮名遣い",
-  "竹取物語",
-  "漢字・語句"
+  // === 2. 主語・述語の書き抜き (subj_pred) ===
+  {
+    id: 7,
+    cat: 'subj_pred',
+    catLabel: '主語・述語',
+    formatLabel: '書き抜き',
+    instruction: '次の文から「述語」を1文節で書き抜きなさい。',
+    sentence: 'ここは 国宝の 宇佐神宮だ。',
+    note: '※句点「。」は付けずに入力してください。',
+    answers: ['宇佐神宮だ'],
+    displayAnswer: '宇佐神宮だ',
+    hint: '文の終わり（句点の前）で「何だ」に当たる1文節を探しましょう。',
+    exp: '「ここは（主語）」「国宝の（修飾語）」「宇佐神宮だ（述語）」です。名詞＋「だ」で1文節になるので、<strong>「宇佐神宮だ」</strong>までを抜き出します。'
+  },
+  {
+    id: 8,
+    cat: 'subj_pred',
+    catLabel: '主語・述語',
+    formatLabel: '書き抜き',
+    instruction: '次の文から「述語」を1文節で書き抜きなさい。',
+    sentence: '公園には もう だれも いない。',
+    note: '※句点「。」は付けずに入力してください。',
+    answers: ['いない'],
+    displayAnswer: 'いない',
+    hint: '存在を表す文末の文節です。「だれも」は入れません。',
+    exp: '「だれも」は主語、「いない」が述語です。「だれもいない」と2文節をつなげて書かないように注意しましょう。正解は<strong>「いない」</strong>です。'
+  },
+  {
+    id: 9,
+    cat: 'subj_pred',
+    catLabel: '主語・述語',
+    formatLabel: '書き抜き',
+    instruction: '次の文から「主語」を1文節で書き抜きなさい。',
+    sentence: '寒い うえに 雨さえ 降り出した。',
+    note: '※「は・が」以外の助詞が付くパターンです。',
+    answers: ['雨さえ'],
+    displayAnswer: '雨さえ',
+    hint: '述語は「降り出した」。「何が」降り出したのかを考え、助詞ごと1文節で抜き出します。',
+    exp: '主語は「〜は」「〜が」だけでなく、「〜も」「〜こそ」「〜さえ」「〜だって」「〜だけ」などが付くこともあります。「何が降り出した？」→<strong>「雨さえ」</strong>が主語です。'
+  },
+  {
+    id: 10,
+    cat: 'subj_pred',
+    catLabel: '主語・述語',
+    formatLabel: '書き抜き',
+    instruction: '次の文から「主語」を1文節で書き抜きなさい。',
+    sentence: '今度の マラソン大会は 弟も 一緒に 参加する。',
+    note: '※「〜は」に惑わされないように注意！',
+    answers: ['弟も'],
+    displayAnswer: '弟も',
+    hint: '述語は「参加する」。「マラソン大会は」が参加するのでしょうか？「だれが」参加するかを考えましょう。',
+    exp: '超頻出のひっかけ問題です！述語「参加する」に対して「だれが参加する？」と考えると、マラソン大会ではなく<strong>「弟も」</strong>が主語になります。「マラソン大会は」は修飾語（「マラソン大会に参加する」の意味）です。'
+  },
+  {
+    id: 11,
+    cat: 'subj_pred',
+    catLabel: '主語・述語',
+    formatLabel: '書き抜き',
+    instruction: '次の文から「主語」を1文節で書き抜きなさい。',
+    sentence: 'すぐ 泣くんだ、 僕の 妹は。',
+    note: '※文の並び方に注意して1文節で答えなさい。',
+    answers: ['妹は'],
+    displayAnswer: '妹は',
+    hint: '倒置の文です。「僕の妹は すぐ 泣くんだ。」に直して考えてみましょう。',
+    exp: '倒置法が使われた文です。述語は「泣くんだ」、それに対する主語は「何が・だれが泣くのか」にあたる<strong>「妹は」</strong>です。「僕の」は「妹は」を修飾する連体修飾語なので含めません。'
+  },
+  {
+    id: 12,
+    cat: 'subj_pred',
+    catLabel: '主語・述語',
+    formatLabel: '書き抜き（主語なし対応）',
+    instruction: '次の文の、下線部の述語に対する「主語」に当たる文節を書き抜きなさい。主語がない場合は「なし」と答えなさい。',
+    sentence: '三時間ほど ゆっくり <u class="ul">過ごした</u>。',
+    note: '※ない場合は「なし」（または「×」）と入力してください。',
+    answers: ['なし', '×', 'ない', '主語はない', '主語なし'],
+    displayAnswer: 'なし（×）',
+    hint: '「だれが」過ごしたのか、この文の中に書かれていますか？',
+    exp: '日本語の文では主語が省略されることがよくあります。この文には「私は」などの主語が書かれていないため、正解は<strong>「なし（×）」</strong>です。'
+  },
+  {
+    id: 13,
+    cat: 'subj_pred',
+    catLabel: '主語・述語',
+    formatLabel: '書き抜き',
+    instruction: '次の文の、下線部の述語に対する「主語」に当たる文節を1文節で書き抜きなさい。',
+    sentence: '父が 運転する 車が 大きな 音を たてて 路肩に <u class="ul">止まった</u>。',
+    note: '※文全体の述語「止まった」の主語はどれでしょう？',
+    answers: ['車が'],
+    displayAnswer: '車が',
+    hint: '「父が」は「運転する」の主語です。「止まった」のは何ですか？',
+    exp: '「父が」はすぐ後ろの「運転する」の主語（「父が運転する」が「車」を修飾している）です。文全体の述語「止まった」に対する主語は、何が止まったのか＝<strong>「車が」</strong>です。'
+  },
+
+  // === 3. 修飾語・穴埋め対策 (modifier) ===
+  {
+    id: 14,
+    cat: 'modifier',
+    catLabel: '修飾語',
+    formatLabel: '自由穴埋め',
+    type: 'open_blank',
+    instruction: '次の文の【　　】にあてはまる「修飾語」を1つ考え、自分で入力しなさい。',
+    sentence: '雨が <span class="blank">　　　</span> 降る。',
+    note: '※「降る（動詞）」を詳しく説明する言葉（連用修飾語）を入れよう。',
+    answers: ['たくさん', '激しく', 'はげしく', '少し', 'すこし', 'しとしと', 'ざあざあ', '強く', 'つよく', 'よく', '急に', 'きゅうに', '毎日'],
+    displayAnswer: '（例）たくさん ／ 激しく ／ 少し ／ しとしと など',
+    hint: '雨が「どんなふうに」「どのくらい」降るかを考えてみましょう。',
+    exp: '後ろの「降る」は動作を表す動詞（用言）なので、ここには<strong>連用修飾語</strong>が入ります。「たくさん」「少し」「激しく」「しとしと」「よく」など、「どんなに・どのくらい降るか」を説明する言葉なら正解です！'
+  },
+  {
+    id: 15,
+    cat: 'modifier',
+    catLabel: '修飾語',
+    formatLabel: '自由穴埋め',
+    type: 'open_blank',
+    instruction: '次の文の【　　】にあてはまる「修飾語」を1つ考え、自分で入力しなさい。',
+    sentence: '私は <span class="blank">　　　</span> 中学生です。',
+    note: '※「中学生です（体言）」を詳しく説明する言葉（連体修飾語）を入れよう。',
+    answers: ['元気な', 'げんきな', 'おとなしい', '明るい', 'あかるい', '一年生の', '1年生の', 'まじめな', '運動好きな', '普通の', 'ふつうの'],
+    displayAnswer: '（例）元気な ／ おとなしい ／ 明るい ／ 一年生の など',
+    hint: '「どんな」中学生かを考えてみましょう（1文節が基本です）。',
+    exp: '後ろの「中学生（です）」はもの・人を表す名詞（体言）なので、ここには<strong>連体修飾語</strong>が入ります。「元気な」「おとなしい」「明るい」「一年生の」など、「どんな中学生か」を説明する言葉なら正解です！'
+  },
+  {
+    id: 16,
+    cat: 'modifier',
+    catLabel: '修飾語',
+    formatLabel: '係り先の書き抜き',
+    instruction: '次の文の、下線部の修飾語が係っている（詳しく説明している）文節を1文節で書き抜きなさい。',
+    sentence: '彼女は <u class="ul">とても</u> 上手に 歌う。',
+    note: '※「とても」は何を詳しくしていますか？',
+    answers: ['上手に'],
+    displayAnswer: '上手に',
+    hint: '「とても 歌う」ではなく、「とても 〇〇」につながります。',
+    exp: '「とても」は「上手に」の程度を詳しく説明しています（「とても上手に」）。このように、修飾語は必ずしも述語に係るとは限らず、途中の修飾語に係ることもあります。'
+  },
+  {
+    id: 17,
+    cat: 'modifier',
+    catLabel: '修飾語',
+    formatLabel: '係り先の書き抜き',
+    instruction: '次の文の、下線部の修飾語が係っている文節を1文節で書き抜きなさい。',
+    sentence: '<u class="ul">明日から</u> 県内各地で 県総体が 始まる。',
+    note: '※「明日から」はどの文節を説明していますか？',
+    answers: ['始まる'],
+    displayAnswer: '始まる',
+    hint: '「明日から 県内各地で」ではありません。「明日から」どうなるのですか？',
+    exp: '修飾語はすぐ後ろの文節に係るとは限りません。「明日から」→「始まる」（いつ始まるのか）なので、係っている文節は<strong>「始まる」</strong>です。'
+  },
+  {
+    id: 18,
+    cat: 'modifier',
+    catLabel: '修飾語',
+    formatLabel: '種類の判別',
+    instruction: '次の文の下線部は「連体修飾語」「連用修飾語」のどちらですか。',
+    sentence: 'ツバメが <u class="ul">軒下に</u> 巣を 作る。',
+    note: '※「連体修飾語」または「連用修飾語」と入力してください。',
+    answers: ['連用修飾語'],
+    displayAnswer: '連用修飾語',
+    hint: 'まず「軒下に」がどの文節に係るか考え、その文節が体言（名詞）か用言（動詞など）かを確認します。',
+    exp: '「軒下に」は後ろの「作る」に係っています（「どこに作るか」）。「作る」は動作を表す動詞（用言）なので、<strong>「連用修飾語」</strong>です。すぐ後ろの「巣を」と勘違いしないように注意！'
+  },
+  {
+    id: 19,
+    cat: 'modifier',
+    catLabel: '修飾語',
+    formatLabel: '種類の判別',
+    instruction: '次の文の下線部は「連体修飾語」「連用修飾語」のどちらですか。',
+    sentence: '国東半島には 今も <u class="ul">たくさんの</u> 歴史的建造物が 残っている。',
+    note: '※「たくさんの」がどの文節を詳しくしているかに注目しよう。',
+    answers: ['連体修飾語'],
+    displayAnswer: '連体修飾語',
+    hint: '「たくさんの」は後ろの「歴史的建造物が」を詳しくしています。「歴史的建造物」は何詞（体言・用言）ですか？',
+    exp: '「たくさんの」は「歴史的建造物が」に係っています。「歴史的建造物」はものの名前＝名詞（体言）なので、<strong>「連体修飾語」</strong>です。'
+  },
+
+  // === 4. 接続語・独立語 (conn_indep) ===
+  {
+    id: 20,
+    cat: 'conn_indep',
+    catLabel: '接続語・独立語',
+    formatLabel: '穴埋め書き換え',
+    instruction: '上の2つの文を下の1つの文に書き換えるとき、【　　】にあてはまる接続語を1文節で答えなさい。',
+    sentence: '困った。だから、友達に 相談しよう。<br>→ <span class="blank">　　　</span>、 友達に 相談しよう。',
+    note: '※ワーク定番の書き換え穴埋め問題です。',
+    answers: ['困ったので'],
+    displayAnswer: '困ったので',
+    hint: '「困った」＋理由を表す言葉（「〜ので」の形）で1文節にします。',
+    exp: '「困った。だから、〜」を1文につなぐときは、理由を表す<strong>「困ったので」</strong>にします。「困ったけれど」「困っても」では逆接になり意味が合わなくなります。'
+  },
+  {
+    id: 21,
+    cat: 'conn_indep',
+    catLabel: '接続語・独立語',
+    formatLabel: '穴埋め書き換え',
+    instruction: '上の2つの文を下の1つの文に書き換えるとき、【　　】にあてはまる接続語を1文節で答えなさい。',
+    sentence: '悔しい。だけど、また がんばろう。<br>→ <span class="blank">　　　</span>、 また がんばろう。',
+    note: '※「悔しいので／悔しいけれど／悔しくて」の中から合う形を考えよう。',
+    answers: ['悔しいけれど'],
+    displayAnswer: '悔しいけれど',
+    hint: '「だけど」と同じ意味（逆接）になるように変えます。',
+    exp: '「だけど」は逆接（前の内容と反対のことにつなぐ）なので、1文にするときは<strong>「悔しいけれど」</strong>が入ります。'
+  },
+  {
+    id: 22,
+    cat: 'conn_indep',
+    catLabel: '接続語・独立語',
+    formatLabel: '穴埋め書き換え',
+    instruction: '上の2つの文を下の1つの文に書き換えるとき、【　　】にあてはまる接続語を1文節で答えなさい。',
+    sentence: '走る。すると、汗が 出てきます。<br>→ <span class="blank">　　　</span>、 汗が 出てきます。',
+    note: '※「走るのに／走るけれど／走ると」のうち適切な形を入れよう。',
+    answers: ['走ると'],
+    displayAnswer: '走ると',
+    hint: '「〜すると」という条件・結果のつながりにします。',
+    exp: '「走る。すると、〜」を1文にするときは<strong>「走ると」</strong>になります。このように「〜ので」「〜けれど」「〜と」などの文節も接続語として働きます。'
+  },
+  {
+    id: 23,
+    cat: 'conn_indep',
+    catLabel: '接続語・独立語',
+    formatLabel: '書き抜き',
+    instruction: '次の文から「接続語」を1文節で書き抜きなさい。',
+    sentence: '調べたけれど、 見当たらなかったよ。',
+    note: '※読点「、」は付けずに入力してください。',
+    answers: ['調べたけれど'],
+    displayAnswer: '調べたけれど',
+    hint: '「しかし・だから」のような1語だけでなく、「〜けれど」の形の文節も接続語になります。',
+    exp: '前後の関係を表してつなぐ文節が接続語です。「調べたけれど」が後ろの「見当たらなかったよ」と逆接でつながっているので、<strong>「調べたけれど」</strong>が接続語です。'
+  },
+  {
+    id: 24,
+    cat: 'conn_indep',
+    catLabel: '接続語・独立語',
+    formatLabel: '種類の判別',
+    instruction: '次の文の、下線部の独立語の種類を「呼びかけ・感動・応答・提示・あいさつ」から選んで答えなさい。',
+    sentence: '<u class="ul">八月六日</u>、 この 日に 広島に 原爆が 落とされた。',
+    note: '※5種類の用語を正確に書けるようにしよう。',
+    answers: ['提示'],
+    displayAnswer: '提示',
+    hint: '日付や話題を強調するために文の初めに示しています。',
+    exp: '「八月六日」を強調して示すために文の初めに置いているので、種類は<strong>「提示」</strong>です。'
+  },
+  {
+    id: 25,
+    cat: 'conn_indep',
+    catLabel: '接続語・独立語',
+    formatLabel: '書き抜き',
+    instruction: '次の文から「独立語」を1文節で書き抜きなさい。',
+    sentence: 'どうぞ おくつろぎください、 お客様。',
+    note: '※文末に置かれているパターンです。句点「。」は不要です。',
+    answers: ['お客様'],
+    displayAnswer: 'お客様',
+    hint: '倒置によって文の最後に置かれた「呼びかけ」の言葉を探しましょう。',
+    exp: '独立語は文の初めにくることが多いですが、倒置によって文末にくることもあります。この文では呼びかけを表す<strong>「お客様」</strong>が独立語です。'
+  },
+
+  // === 5. 本番レベル総合・ひっかけ (comp) ===
+  {
+    id: 26,
+    cat: 'comp',
+    catLabel: '総合・ひっかけ',
+    formatLabel: '文の成分の判別',
+    instruction: '次の文の下線部は、どの「文の成分」ですか。（主語・述語・修飾語・接続語・独立語 のいずれかで答えなさい）',
+    sentence: '一番の 責任は 彼に あるのだろうか。 <u class="ul">いや</u>、 彼は クラスの 中の だれよりも 真剣だった。',
+    note: '※ひっかけに注意！',
+    answers: ['独立語'],
+    displayAnswer: '独立語',
+    hint: '前の問いに対して「いいえ（応答）」を表し、他の文節と直接関係がありません。',
+    exp: '文の初めにある「いや」は応答を表す<strong>「独立語」</strong>です。前の文と論理をつなぐ接続語（「しかし・だから」など）と混同しないようにしましょう。'
+  },
+  {
+    id: 27,
+    cat: 'comp',
+    catLabel: '総合・ひっかけ',
+    formatLabel: '文の成分の判別',
+    instruction: '次の文の下線部は、どの「文の成分」ですか。（主語・述語・修飾語・接続語・独立語 のいずれかで答えなさい）',
+    sentence: '<u class="ul">もし</u>、 明日が 大雪で だれも 学校に 来なくても、 僕だけは なんとしても 行くよ。',
+    note: '※テストで最も間違いやすい超重要問題！',
+    answers: ['修飾語', '連用修飾語'],
+    displayAnswer: '修飾語（連用修飾語）',
+    hint: '「もし〜来なくても」と後ろの用言（「来なくても」）に意味が続いていませんか？',
+    exp: '読点「、」が付いているので独立語や接続語に見えますが、「もし」は「もし〜（仮定）来なくても」というように後ろの「来なくても」を詳しく説明する<strong>「修飾語（連用修飾語）」</strong>です！絶対に覚えておきましょう。'
+  },
+  {
+    id: 28,
+    cat: 'comp',
+    catLabel: '総合・ひっかけ',
+    formatLabel: '文の成分の判別',
+    instruction: '次の文の下線部は、どの「文の成分」ですか。（主語・述語・修飾語・接続語・独立語 のいずれかで答えなさい）',
+    sentence: 'お茶に しますか。 <u class="ul">それとも</u>、 コーヒーに しますか。',
+    note: '※2つの文をつないでいる役割に注目！',
+    answers: ['接続語'],
+    displayAnswer: '接続語',
+    hint: '「Aか、あるいはBか」と前後の文を選択関係でつないでいます。',
+    exp: '「それとも」は前の文（「お茶にしますか」）と後の文（「コーヒーにしますか」）をつなぐ<strong>「接続語」</strong>です。'
+  },
+  {
+    id: 29,
+    cat: 'comp',
+    catLabel: '総合・ひっかけ',
+    formatLabel: '文の成分の判別',
+    instruction: '次の文の下線部は、どの「文の成分」ですか。（主語・述語・修飾語・接続語・独立語 のいずれかで答えなさい）',
+    sentence: 'やあ、 大きくなったね。 <u class="ul">ところで</u>、 いくつに なったの。',
+    note: '※話題を変えるときの言葉は何の成分？',
+    answers: ['接続語'],
+    displayAnswer: '接続語',
+    hint: '「やあ」は独立語ですが、「ところで」は前の話から話題を転換してつなぐ言葉です。',
+    exp: '「ところで」は話題を切り替えて前後の文をつなぐ（転換の）<strong>「接続語」</strong>です。ちなみに文頭の「やあ」は呼びかけ・あいさつの独立語です。'
+  },
+  {
+    id: 30,
+    cat: 'comp',
+    catLabel: '総合・ひっかけ',
+    formatLabel: '文の成分の判別',
+    instruction: '次の文の下線部は、どの「文の成分」ですか。（主語・述語・修飾語・接続語・独立語 のいずれかで答えなさい）',
+    sentence: '通学で 利用している 駅の ホームに ある 鏡に、 同じ 学校の <u class="ul">生徒の</u> 姿が 映る。',
+    note: '※長い文でも、すぐ後ろの言葉とのつながりを見れば一発です。',
+    answers: ['修飾語', '連体修飾語'],
+    displayAnswer: '修飾語（連体修飾語）',
+    hint: '「だれが」映るのではなく、「だれの」姿が映るのでしょうか？',
+    exp: '「生徒の」は後ろの「姿が」を詳しく説明しています（「だれの姿か」）。したがって<strong>「修飾語（連体修飾語）」</strong>です。この文の主語は「姿が」、述語は「映る」です。'
+  }
 ];
+const RAW_W3 = [{"id": 1, "unit": 1, "unitName": "P.34-35 方言と共通語・音訓", "type": "special", "tricky": false, "q": "勝利を【おさ】める。（よい結果や利益を得る）", "ans": "収", "accepted": ["収"], "exp": "「よい結果や利益を得る」ときは「収める」を使います。（例：勝利を収める、成功を収める）"}, {"id": 2, "unit": 1, "unitName": "P.34-35 方言と共通語・音訓", "type": "special", "tricky": false, "q": "商品を【おさ】める。（受け取るべき人に渡す）", "ans": "納", "accepted": ["納"], "exp": "「受け取るべき人に渡す・しまい入れる」ときは「納める」を使います。（例：商品を納める、税金を納める）"}, {"id": 3, "unit": 1, "unitName": "P.34-35 方言と共通語・音訓", "type": "special", "tricky": false, "q": "学問を【おさ】める。（学問を身につける）", "ans": "修", "accepted": ["修"], "exp": "「学問や技を身につける」ときは「修める」を使います。（例：学問を修める、単位を修める）"}, {"id": 4, "unit": 1, "unitName": "P.34-35 方言と共通語・音訓", "type": "special", "tricky": false, "q": "国を【おさ】める。（おだやかにする）", "ans": "治", "accepted": ["治"], "exp": "「おだやかにする・管理する」ときは「治める」を使います。（例：国を治める、乱れを治める）"}, {"id": 5, "unit": 1, "unitName": "P.34-35 方言と共通語・音訓", "type": "kaki", "tricky": false, "q": "【ねこ】が鳴く。", "ans": "猫", "accepted": ["猫"], "exp": "「猫（ねこ／ビョウ）」は新出漢字です。けものへん（犭）に「苗」を書きます。"}, {"id": 6, "unit": 1, "unitName": "P.34-35 方言と共通語・音訓", "type": "yomi", "tricky": false, "q": "事実に【即】した考え。", "ans": "そく", "accepted": ["そく"], "exp": "「即（そく）」＝ぴったり合うこと。音読みは「ソク」です。"}, {"id": 7, "unit": 1, "unitName": "P.34-35 方言と共通語・音訓", "type": "kaki", "tricky": false, "q": "【たが】いに思いやる。", "ans": "互", "accepted": ["互"], "exp": "「互い（たがい）」の「互」は4画の漢字です。上と下の横棒の間に折れが2つ入ります。"}, {"id": 8, "unit": 1, "unitName": "P.34-35 方言と共通語・音訓", "type": "yomi", "tricky": false, "q": "【互角】に戦う。", "ans": "ごかく", "accepted": ["ごかく"], "exp": "「互角（ごかく）」＝双方の力量が同じくらいであること。"}, {"id": 9, "unit": 1, "unitName": "P.34-35 方言と共通語・音訓", "type": "yomi", "tricky": false, "q": "欠席者の【有無】。", "ans": "うむ", "accepted": ["うむ"], "exp": "「有無（うむ）」＝あるか無いか。「有」は「ウ」と読みます。"}, {"id": 10, "unit": 1, "unitName": "P.34-35 方言と共通語・音訓", "type": "kaki", "tricky": false, "q": "【どしゃ】が流れる。", "ans": "土砂", "accepted": ["土砂"], "exp": "「土砂（どしゃ）」＝土と砂。雨などで流れ出る土と砂のことです。"}, {"id": 11, "unit": 1, "unitName": "P.34-35 方言と共通語・音訓", "type": "kaki", "tricky": true, "q": "【せいか】の候。（夏の暑いさかり）", "ans": "盛夏", "accepted": ["盛夏"], "exp": "「盛夏（せいか）」＝夏の暑いさかり。同音異義語（成果・製菓）と混同しないように注意しましょう。"}, {"id": 12, "unit": 1, "unitName": "P.34-35 方言と共通語・音訓", "type": "yomi", "tricky": true, "q": "【夏至】の日。", "ans": "げし", "accepted": ["げし"], "exp": "「夏至（げし）」＝一年で最も昼が長い日。「夏」を「ゲ」と読む特別な読み方に注意！"}, {"id": 13, "unit": 1, "unitName": "P.34-35 方言と共通語・音訓", "type": "kaki", "tricky": false, "q": "日本の【しゅしょう】。", "ans": "首相", "accepted": ["首相"], "exp": "「首相（しゅしょう）」＝内閣総理大臣のこと。「首」＋「相」です。"}, {"id": 14, "unit": 1, "unitName": "P.34-35 方言と共通語・音訓", "type": "yomi", "tricky": true, "q": "長年の【知己】。（親しい人）", "ans": "ちき", "accepted": ["ちき"], "exp": "「知己（ちき）」＝自分のことをよく知ってくれている親しい人・友人。「己」は「キ」と読みます。"}, {"id": 15, "unit": 1, "unitName": "P.34-35 方言と共通語・音訓", "type": "yomi", "tricky": false, "q": "【街道】の並木。", "ans": "かいどう", "accepted": ["かいどう"], "exp": "「街道（かいどう）」＝都市と都市などを結ぶ主要な道路。"}, {"id": 16, "unit": 1, "unitName": "P.34-35 方言と共通語・音訓", "type": "kaki", "tricky": true, "q": "食塩水の【のうど】。", "ans": "濃度", "accepted": ["濃度"], "exp": "「濃度（のうど）」＝濃さの度合い。「濃」はさんずい（氵）に「農」と書きます。"}, {"id": 17, "unit": 1, "unitName": "P.34-35 方言と共通語・音訓", "type": "kaki", "tricky": false, "q": "妹が【ごうきゅう】する。（大声で泣くこと）", "ans": "号泣", "accepted": ["号泣"], "exp": "「号泣（ごうきゅう）」＝大声をあげて泣くこと。「号」は「大声で叫ぶ」という意味があります。"}, {"id": 18, "unit": 1, "unitName": "P.34-35 方言と共通語・音訓", "type": "yomi", "tricky": true, "q": "所得の【申告】。", "ans": "しんこく", "accepted": ["しんこく"], "exp": "「申告（しんこく）」＝公の機関などに届け出て知らせること。"}, {"id": 19, "unit": 1, "unitName": "P.34-35 方言と共通語・音訓", "type": "yomi", "tricky": true, "q": "茶を【所望】する。（ほしいと思うこと）", "ans": "しょもう", "accepted": ["しょもう"], "exp": "「所望（しょもう）」＝ほしいと思うこと、願望すること。「望」を「モウ」と読む点に注意！"}, {"id": 20, "unit": 1, "unitName": "P.34-35 方言と共通語・音訓", "type": "kaki", "tricky": true, "q": "【ぎこう】的な作品。", "ans": "技巧", "accepted": ["技巧"], "exp": "「技巧（ぎこう）」＝すぐれた技術や工夫。「巧」は新出漢字（音：コウ、訓：たくみ）です。"}, {"id": 21, "unit": 1, "unitName": "P.34-35 方言と共通語・音訓", "type": "kaki", "tricky": true, "q": "【のうりょう】船に乗る。", "ans": "納涼", "accepted": ["納涼"], "exp": "「納涼（のうりょう）」＝夏の夜などに涼しさを味わうこと（夕涼み）。「涼」はさんずい（氵）に「京」です。"}, {"id": 22, "unit": 1, "unitName": "P.34-35 方言と共通語・音訓", "type": "kaki", "tricky": false, "q": "光を【しゃだん】する。（さえぎり止めること）", "ans": "遮断", "accepted": ["遮断"], "exp": "「遮断（しゃだん）」＝さえぎり止めること。「遮」はしんにょう（辶）に「庶」です。"}, {"id": 23, "unit": 1, "unitName": "P.34-35 方言と共通語・音訓", "type": "kaki", "tricky": false, "q": "【じゅうどう】の試合。", "ans": "柔道", "accepted": ["柔道"], "exp": "「柔道（じゅうどう）」の「柔」は「やわらかい」とも読む新出漢字です。"}, {"id": 24, "unit": 1, "unitName": "P.34-35 方言と共通語・音訓", "type": "yomi", "tricky": false, "q": "塩味が【濃】い。", "ans": "こ", "accepted": ["こ"], "exp": "「濃い（こい）」＝味や色などがこまやかではっきりしていること。"}, {"id": 25, "unit": 1, "unitName": "P.34-35 方言と共通語・音訓", "type": "yomi", "tricky": true, "q": "【柔和】な顔つき。", "ans": "にゅうわ", "accepted": ["にゅうわ"], "exp": "「柔和（にゅうわ）」＝やさしくおだやかなこと。「柔」を「ニュウ」と読むのに注意！"}, {"id": 26, "unit": 1, "unitName": "P.34-35 方言と共通語・音訓", "type": "kaki", "tricky": false, "q": "【たく】みに利用する。（手ぎわがよい）", "ans": "巧", "accepted": ["巧"], "exp": "「巧み（たくみ）」＝手ぎわがよいこと、じょうずなこと。"}, {"id": 27, "unit": 1, "unitName": "P.34-35 方言と共通語・音訓", "type": "yomi", "tricky": false, "q": "【涼】しい風。", "ans": "すず", "accepted": ["すず"], "exp": "「涼しい（すずしい）」。音読みは「リョウ（納涼）」です。"}, {"id": 28, "unit": 1, "unitName": "P.34-35 方言と共通語・音訓", "type": "yomi", "tricky": true, "q": "道を【遮】る。", "ans": "さえぎ", "accepted": ["さえぎ"], "exp": "「遮る（さえぎる）」＝間に立ちふさがって止める・じゃますること。"}, {"id": 29, "unit": 1, "unitName": "P.34-35 方言と共通語・音訓", "type": "kaki", "tricky": false, "q": "表情が【やわ】らかい。（おだやかな様子）", "ans": "柔", "accepted": ["柔"], "exp": "「おだやかな様子」を表すときは「柔らかい」と書きます。（物の硬さ・しなやかさは「軟らかい」）"}, {"id": 30, "unit": 1, "unitName": "P.34-35 方言と共通語・音訓", "type": "kaki", "tricky": false, "q": "【けつろん】を出す。", "ans": "結論", "accepted": ["結論"], "exp": "「結論（けつろん）」＝考えや話し合いの末に出した最終的な判断。"}, {"id": 31, "unit": 1, "unitName": "P.34-35 方言と共通語・音訓", "type": "kaki", "tricky": false, "q": "【きちょう】な体験。", "ans": "貴重", "accepted": ["貴重"], "exp": "「貴重（きちょう）」＝めったになく、価値があって大切なこと。"}, {"id": 32, "unit": 1, "unitName": "P.34-35 方言と共通語・音訓", "type": "yomi", "tricky": true, "q": "城を【築】く。", "ans": "きず", "accepted": ["きず"], "exp": "「築く（きずく）」＝土や石を積み上げて造る。「ず」なので「きづ」と誤らないよう注意！"}, {"id": 33, "unit": 1, "unitName": "P.34-35 方言と共通語・音訓", "type": "yomi", "tricky": false, "q": "歴代の【天皇】。", "ans": "てんのう", "accepted": ["てんのう"], "exp": "「天皇（てんのう）」。「皇」は連声（れんじょう）で「のう」と読みます。"}, {"id": 34, "unit": 1, "unitName": "P.34-35 方言と共通語・音訓", "type": "kaki", "tricky": false, "q": "会社の【そしき】。", "ans": "組織", "accepted": ["組織"], "exp": "「組織（そしき）」＝共通の目的のために集まって作られたまとまり。"}, {"id": 35, "unit": 2, "unitName": "P.36-37 漢字に親しもう2", "type": "special", "tricky": false, "q": "【同じ部首（辶）の漢字】意見を【の】べる。", "ans": "述", "accepted": ["述", "述べる"], "exp": "「意見や考えを言い表す」は「述べる（しんにょう：辶）」です。"}, {"id": 36, "unit": 2, "unitName": "P.36-37 漢字に親しもう2", "type": "special", "tricky": false, "q": "【同じ部首（辶）の漢字】流れに【さか】らう。", "ans": "逆", "accepted": ["逆", "逆らう"], "exp": "「流れにさからう」は「逆らう（しんにょう：辶）」です。"}, {"id": 37, "unit": 2, "unitName": "P.36-37 漢字に親しもう2", "type": "special", "tricky": false, "q": "【同じ部首（辶）の漢字】道に【まよ】う。", "ans": "迷", "accepted": ["迷", "迷う"], "exp": "「道にまよう」は「迷う（しんにょう：辶）」です。"}, {"id": 38, "unit": 2, "unitName": "P.36-37 漢字に親しもう2", "type": "kaki", "tricky": false, "q": "優勝旗の【へんかん】。", "ans": "返還", "accepted": ["返還"], "exp": "「返還（へんかん）」＝借りていたものなどを元の持ち主に返すこと。「還」はしんにょう（辶）です。"}, {"id": 39, "unit": 2, "unitName": "P.36-37 漢字に親しもう2", "type": "kaki", "tricky": false, "q": "野球の【にるいしゅ】。", "ans": "二塁手", "accepted": ["二塁手"], "exp": "「二塁手（にるいしゅ）」。「塁」は「田」の下に「乚」ではなく「土」と「厶」ではありません（上の「田」の下に「土」が並ばず、田＋ム＋ム＋土＝塁、または略字ではなく正字に注意）。"}, {"id": 40, "unit": 2, "unitName": "P.36-37 漢字に親しもう2", "type": "kaki", "tricky": false, "q": "【おおわざ】を決める。", "ans": "大技", "accepted": ["大技"], "exp": "「大技（おおわざ）」＝スポーツなどで大きく見事な技。"}, {"id": 41, "unit": 2, "unitName": "P.36-37 漢字に親しもう2", "type": "kaki", "tricky": false, "q": "【かっさい】を浴びる。（声を上げたり手をたたいたりしてほめること）", "ans": "喝采", "accepted": ["喝采"], "exp": "「喝采（かっさい）」＝「喝（大声を出す）」＋「采（ほめる・拍手する）」。「彩」と間違えやすいので注意！"}, {"id": 42, "unit": 2, "unitName": "P.36-37 漢字に親しもう2", "type": "kaki", "tricky": false, "q": "【ほうがん】投げ。", "ans": "砲丸", "accepted": ["砲丸"], "exp": "「砲丸（ほうがん）」＝陸上競技で投げる鉄の玉。「砲」は石へんに「包」です。"}, {"id": 43, "unit": 2, "unitName": "P.36-37 漢字に親しもう2", "type": "yomi", "tricky": false, "q": "時間を【割】く。（一部分を他のことに使う）", "ans": "さ", "accepted": ["さ"], "exp": "「割く（さく）」＝時間や手間などの一部分を他のことのためにあてること。"}, {"id": 44, "unit": 2, "unitName": "P.36-37 漢字に親しもう2", "type": "yomi", "tricky": false, "q": "【弓道】の的。", "ans": "きゅうどう", "accepted": ["きゅうどう"], "exp": "「弓道（きゅうどう）」。「弓」の音読みは「キュウ」です。"}, {"id": 45, "unit": 2, "unitName": "P.36-37 漢字に親しもう2", "type": "kaki", "tricky": false, "q": "公平な【しんぱん】。", "ans": "審判", "accepted": ["審判"], "exp": "「審判（しんぱん）」＝試合のルールに従って勝敗や反則を判定すること・人。「審」はうかんむり（宀）に「番」です。"}, {"id": 46, "unit": 2, "unitName": "P.36-37 漢字に親しもう2", "type": "kaki", "tricky": false, "q": "【さんれんぱ】する。", "ans": "三連覇", "accepted": ["三連覇"], "exp": "「三連覇（さんれんぱ）」＝3回連続で優勝すること。「覇」は「西（要の上）」の下に「革」と「月」です。"}, {"id": 47, "unit": 2, "unitName": "P.36-37 漢字に親しもう2", "type": "kaki", "tricky": false, "q": "記録の【こうしん】。", "ans": "更新", "accepted": ["更新"], "exp": "「更新（こうしん）」＝これまでの記録をぬりかえて新しくすること。「更」は「サラに・フける」とも読みます。"}, {"id": 48, "unit": 2, "unitName": "P.36-37 漢字に親しもう2", "type": "kaki", "tricky": false, "q": "【かいひん】公園。", "ans": "海浜", "accepted": ["海浜"], "exp": "「海浜（かいひん）」＝海辺、海岸。「浜」の音読みは「ヒン」、訓読みは「はま」です。"}, {"id": 49, "unit": 2, "unitName": "P.36-37 漢字に親しもう2", "type": "yomi", "tricky": true, "q": "プロに【匹敵】する。（同じくらいのこと）", "ans": "ひってき", "accepted": ["ひってき"], "exp": "「匹敵（ひってき）」＝能力や価値などが相手と同じくらいであること。「匹」は「ヒツ」と読み、促音化して「ひってき」になります。"}, {"id": 50, "unit": 2, "unitName": "P.36-37 漢字に親しもう2", "type": "kaki", "tricky": true, "q": "自信の【そうしつ】。（失うこと）", "ans": "喪失", "accepted": ["喪失"], "exp": "「喪失（そうしつ）」＝大切なものを失うこと。「喪」の書き順・形（上に「十」、中に口が2つ、下に長い横棒と衣の下部）に注意！"}, {"id": 51, "unit": 2, "unitName": "P.36-37 漢字に親しもう2", "type": "yomi", "tricky": false, "q": "【酢酸】の濃度。", "ans": "さくさん", "accepted": ["さくさん"], "exp": "「酢酸（さくさん）」。「酢」の音読みは「サク」、訓読みは「す」です。"}, {"id": 52, "unit": 2, "unitName": "P.36-37 漢字に親しもう2", "type": "yomi", "tricky": false, "q": "【光沢】のある葉。（光を受けた面のつや）", "ans": "こうたく", "accepted": ["こうたく"], "exp": "「光沢（こうたく）」＝物の表面のつや・輝き。「沢」の音読みは「タク」です。"}, {"id": 53, "unit": 2, "unitName": "P.36-37 漢字に親しもう2", "type": "kaki", "tricky": true, "q": "【どんてん】の空模様。（くもり空）", "ans": "曇天", "accepted": ["曇天"], "exp": "「曇天（どんてん）」＝くもり空。「曇」は「日」の下に「雲」を書きます。「雲」と間違えないように注意！"}, {"id": 54, "unit": 2, "unitName": "P.36-37 漢字に親しもう2", "type": "yomi", "tricky": false, "q": "【神宮】に参る。", "ans": "じんぐう", "accepted": ["じんぐう"], "exp": "「神宮（じんぐう）」＝皇室にゆかりの深い神社などのこと。"}, {"id": 55, "unit": 2, "unitName": "P.36-37 漢字に親しもう2", "type": "yomi", "tricky": false, "q": "【更地】を買う。（空き地）", "ans": "さらち", "accepted": ["さらち"], "exp": "「更地（さらち）」＝建物などが建っていない空き地のこと。「更」は「さら（新しい）」と読みます。"}, {"id": 56, "unit": 2, "unitName": "P.36-37 漢字に親しもう2", "type": "kaki", "tricky": false, "q": "【はまべ】を歩く。", "ans": "浜辺", "accepted": ["浜辺"], "exp": "「浜辺（はまべ）」＝砂浜のあたり、海辺。「浜」はさんずい（氵）に「兵」です。"}, {"id": 57, "unit": 2, "unitName": "P.36-37 漢字に親しもう2", "type": "yomi", "tricky": false, "q": "【三匹】の犬。", "ans": "さんびき", "accepted": ["さんびき"], "exp": "「三匹（さんびき）」。3のあとに「匹」がつくと濁って「びき」になります。"}, {"id": 58, "unit": 2, "unitName": "P.36-37 漢字に親しもう2", "type": "yomi", "tricky": false, "q": "【喪中】のはがき。（家族の死後、交際をひかえる期間）", "ans": "もちゅう", "accepted": ["もちゅう"], "exp": "「喪中（もちゅう）」。「喪」を「モ」と読む特別な読み方に注意！"}, {"id": 59, "unit": 2, "unitName": "P.36-37 漢字に親しもう2", "type": "kaki", "tricky": false, "q": "【くろず】を飲む。", "ans": "黒酢", "accepted": ["黒酢"], "exp": "「黒酢（くろず）」＝米などを発酵させて作った黒い色の酢。「酢」はとりへん（酉）に「乍」です。"}, {"id": 60, "unit": 2, "unitName": "P.36-37 漢字に親しもう2", "type": "kaki", "tricky": false, "q": "【さわのぼ】りをする。", "ans": "沢登", "accepted": ["沢登"], "exp": "「沢登り（さわのぼり）」＝山の谷や川（沢）を登っていくこと。"}, {"id": 61, "unit": 2, "unitName": "P.36-37 漢字に親しもう2", "type": "yomi", "tricky": false, "q": "【花曇】りの候。（桜が咲くころのくもり空）", "ans": "はなぐも", "accepted": ["はなぐも"], "exp": "「花曇り（はなぐもり）」＝桜の咲くころのうす曇りの空。連濁して「ぐも」になります。"}, {"id": 62, "unit": 2, "unitName": "P.36-37 漢字に親しもう2", "type": "kaki", "tricky": false, "q": "【さんせい】の意見。", "ans": "賛成", "accepted": ["賛成"], "exp": "「賛成（さんせい）」＝他の人の意見や計画に同意すること。"}, {"id": 63, "unit": 2, "unitName": "P.36-37 漢字に親しもう2", "type": "kaki", "tricky": false, "q": "【こきゅう】をする。", "ans": "呼吸", "accepted": ["呼吸"], "exp": "「呼吸（こきゅう）」＝息を吐く（呼）ことと、吸う（吸）こと。"}, {"id": 64, "unit": 2, "unitName": "P.36-37 漢字に親しもう2", "type": "kaki", "tricky": false, "q": "【はい】を検査する。", "ans": "肺", "accepted": ["肺"], "exp": "「肺（はい）」＝呼吸をつかさどる器官。月（にくづき）に「市」と書きます。"}, {"id": 65, "unit": 2, "unitName": "P.36-37 漢字に親しもう2", "type": "yomi", "tricky": true, "q": "【留守番】電話。", "ans": "るすばん", "accepted": ["るすばん"], "exp": "「留守番（るすばん）」＝家の人がいない間、家を守ること。「留」を「ル」と読みます。"}, {"id": 66, "unit": 2, "unitName": "P.36-37 漢字に親しもう2", "type": "kaki", "tricky": false, "q": "【ぶし】の力。", "ans": "武士", "accepted": ["武士"], "exp": "「武士（ぶし）」。「武」の中に「止」と「弋」が入ります（点をつけないよう注意）。"}, {"id": 67, "unit": 2, "unitName": "P.36-37 漢字に親しもう2", "type": "kaki", "tricky": false, "q": "【きけん】な道。", "ans": "危険", "accepted": ["危険"], "exp": "「危険（きけん）」。「険」はこざとへん（阝）に「僉（人＋一＋口×2＋人）」です。"}, {"id": 68, "unit": 3, "unitName": "P.38-39 シジュウカラ①", "type": "special", "tricky": false, "q": "敵が【せま】る。（距離などが近くなる）", "ans": "迫", "accepted": ["迫"], "exp": "「距離や時間が近くなる」は「迫る（せまる）」を使います。"}, {"id": 69, "unit": 3, "unitName": "P.38-39 シジュウカラ①", "type": "special", "tricky": false, "q": "【きんぱく】した試合。（事情が差しせまること）", "ans": "緊迫", "accepted": ["緊迫"], "exp": "「緊迫（きんぱく）」＝事情が差しせまって緊張が高まること。"}, {"id": 70, "unit": 3, "unitName": "P.38-39 シジュウカラ①", "type": "yomi", "tricky": false, "q": "【心地】よい風。", "ans": "ここち", "accepted": ["ここち"], "exp": "「心地（ここち）」＝気持ち、気分。熟字訓的な読み方に注意！"}, {"id": 71, "unit": 3, "unitName": "P.38-39 シジュウカラ①", "type": "kaki", "tricky": false, "q": "大輪の花が【さ】く。", "ans": "咲", "accepted": ["咲"], "exp": "「咲く（さく）」＝くちへん（口）に「关（ソ＋大ではなく、天の上のツ＋大）」。"}, {"id": 72, "unit": 3, "unitName": "P.38-39 シジュウカラ①", "type": "yomi", "tricky": false, "q": "若い【頃】の写真。", "ans": "ころ", "accepted": ["ころ"], "exp": "「頃（ころ）」＝その時分、時期。音読みは「ケイ」です。"}, {"id": 73, "unit": 3, "unitName": "P.38-39 シジュウカラ①", "type": "kaki", "tricky": false, "q": "歌声が【ひび】く。", "ans": "響", "accepted": ["響"], "exp": "「響く（ひびく）」＝「郷」の下に「音」を書きます。"}, {"id": 74, "unit": 3, "unitName": "P.38-39 シジュウカラ①", "type": "yomi", "tricky": false, "q": "【頬】を赤らめる。", "ans": "ほお", "accepted": ["ほお"], "exp": "「頬（ほお）」＝顔の左右のふくらんだ部分。「ほほ」とも読みますがワークの解答は「ほお」です。"}, {"id": 75, "unit": 3, "unitName": "P.38-39 シジュウカラ①", "type": "kaki", "tricky": false, "q": "【むね】を張る。", "ans": "胸", "accepted": ["胸"], "exp": "「胸（むね）」。月（にくづき）に「匈」を書きます。"}, {"id": 76, "unit": 3, "unitName": "P.38-39 シジュウカラ①", "type": "kaki", "tricky": true, "q": "鳥の【はんしょくき】。（動物や植物が産まれ育ってふえる時期）", "ans": "繁殖期", "accepted": ["繁殖期"], "exp": "「繁殖期（はんしょくき）」。「殖」は「ふえる（歹＋直）」。植物の「植（木へん）」と混同しないよう注意！"}, {"id": 77, "unit": 3, "unitName": "P.38-39 シジュウカラ①", "type": "yomi", "tricky": false, "q": "猫に【餌】を与える。", "ans": "えさ", "accepted": ["えさ"], "exp": "「餌（えさ）」＝動物の食べ物。「餌付け」のときは「え」と読みます。"}, {"id": 78, "unit": 3, "unitName": "P.38-39 シジュウカラ①", "type": "yomi", "tricky": false, "q": "台風が【迫】る。", "ans": "せま", "accepted": ["せま"], "exp": "「迫る（せまる）」＝近づいてくること。"}, {"id": 79, "unit": 3, "unitName": "P.38-39 シジュウカラ①", "type": "kaki", "tricky": true, "q": "敵を【いかく】する。（相手がこわがるようにおどすこと）", "ans": "威嚇", "accepted": ["威嚇"], "exp": "「威嚇（いかく）」。「嚇」は口へん（口）に「赫（赤＋赤）」を書きます。画数が多いのでしっかり練習しましょう。"}, {"id": 80, "unit": 3, "unitName": "P.38-39 シジュウカラ①", "type": "kaki", "tricky": false, "q": "データの【ぶんせき】。", "ans": "分析", "accepted": ["分析"], "exp": "「分析（ぶんせき）」＝物事を細かく分けて調べること。「析」は木へんに「斤」です（手へんの「折」と間違えないように！）。"}, {"id": 81, "unit": 3, "unitName": "P.38-39 シジュウカラ①", "type": "yomi", "tricky": false, "q": "雪を【警戒】する。（用心すること）", "ans": "けいかい", "accepted": ["けいかい"], "exp": "「警戒（けいかい）」＝危険や悪いことが起きないように気をつけて用心すること。"}, {"id": 82, "unit": 3, "unitName": "P.38-39 シジュウカラ①", "type": "kaki", "tricky": false, "q": "有利な【じょうきょう】。", "ans": "状況", "accepted": ["状況"], "exp": "「状況（じょうきょう）」＝その時のありさま、様子。「況」はさんずい（氵）に「兄」です。"}, {"id": 83, "unit": 3, "unitName": "P.38-39 シジュウカラ①", "type": "yomi", "tricky": false, "q": "陽気に振る【舞】う。", "ans": "ま", "accepted": ["ま"], "exp": "「振る舞う（ふるまう）」＝行動する、もてなす。"}, {"id": 84, "unit": 3, "unitName": "P.38-39 シジュウカラ①", "type": "kaki", "tricky": false, "q": "財産が【ふ】える。（財産や生物などが多くなる）", "ans": "殖", "accepted": ["殖"], "exp": "「財産や生物が多くなる」は「殖える（ふえる）」を使います。（数や量が増えるときは「増える」）"}, {"id": 85, "unit": 3, "unitName": "P.38-39 シジュウカラ①", "type": "yomi", "tricky": false, "q": "魚に【餌】付けをする。", "ans": "え", "accepted": ["え"], "exp": "「餌付け（えづけ）」＝野生動物などに餌を与えて慣らすこと。この場合は「え」と読みます。"}, {"id": 86, "unit": 3, "unitName": "P.38-39 シジュウカラ①", "type": "kaki", "tricky": false, "q": "晴れの【ぶたい】。", "ans": "舞台", "accepted": ["舞台"], "exp": "「舞台（ぶたい）」＝演劇などを演じる場所、活躍する場。"}, {"id": 87, "unit": 3, "unitName": "P.38-39 シジュウカラ①", "type": "yomi", "tricky": false, "q": "【迫真】の演技。（本当らしく見えること）", "ans": "はくしん", "accepted": ["はくしん"], "exp": "「迫真（はくしん）」＝真実に迫るほど生き生きとして本当らしく見えること。"}, {"id": 88, "unit": 3, "unitName": "P.38-39 シジュウカラ①", "type": "kaki", "tricky": true, "q": "自らを【いまし】める。（過ちがないように気をつける）", "ans": "戒", "accepted": ["戒"], "exp": "「戒める（いましめる）」＝過ちや失敗がないように気をつける・注意する。「戒」は「戈」の中に「廾」です。"}, {"id": 89, "unit": 3, "unitName": "P.38-39 シジュウカラ①", "type": "yomi", "tricky": false, "q": "伝統の【舞】。", "ans": "まい", "accepted": ["まい"], "exp": "「舞（まい）」＝音楽などに合わせておどること。「舞う（まう）」の名詞形です。"}, {"id": 90, "unit": 3, "unitName": "P.38-39 シジュウカラ①", "type": "kaki", "tricky": false, "q": "説明を【おぎな】う。", "ans": "補", "accepted": ["補"], "exp": "「補う（おぎなう）」＝足りない部分を足して満たすこと。「補」はころもへん（衤）に「甫」です。"}, {"id": 91, "unit": 3, "unitName": "P.38-39 シジュウカラ①", "type": "yomi", "tricky": false, "q": "時計の【秒針】。", "ans": "びょうしん", "accepted": ["びょうしん"], "exp": "「秒針（びょうしん）」＝時計の秒を示す針。「針」の音読みは「シン」です。"}, {"id": 92, "unit": 3, "unitName": "P.38-39 シジュウカラ①", "type": "kaki", "tricky": true, "q": "田畑を【たがや】す。", "ans": "耕", "accepted": ["耕"], "exp": "「耕す（たがやす）」＝すき（耒）へんに「井」を書きます。左側の「耒」の形に注意！"}, {"id": 93, "unit": 3, "unitName": "P.38-39 シジュウカラ①", "type": "kaki", "tricky": false, "q": "【きそく】を守る。", "ans": "規則", "accepted": ["規則"], "exp": "「規則（きそく）」＝みんなで守るきまり。「則」は「貝」にりっとう（刂）です。"}, {"id": 94, "unit": 3, "unitName": "P.38-39 シジュウカラ①", "type": "yomi", "tricky": false, "q": "【雑木林】を歩く。", "ans": "ぞうきばやし", "accepted": ["ぞうきばやし"], "exp": "「雑木林（ぞうきばやし）」＝いろいろな種類の木が生えている林。読み方に注意！"}, {"id": 95, "unit": 3, "unitName": "P.38-39 シジュウカラ①", "type": "kaki", "tricky": false, "q": "【ぼうえき】をする。", "ans": "貿易", "accepted": ["貿易"], "exp": "「貿易（ぼうえき）」＝国と国との間で品物を売り買いすること。「易」は「日」の下に「勿」です。"}, {"id": 96, "unit": 3, "unitName": "P.38-39 シジュウカラ①", "type": "yomi", "tricky": false, "q": "鉄骨造の【駅舎】。", "ans": "えきしゃ", "accepted": ["えきしゃ"], "exp": "「駅舎（えきしゃ）」＝駅の建物。「舎」の音読みは「シャ」です。"}, {"id": 97, "unit": 3, "unitName": "P.38-39 シジュウカラ①", "type": "kaki", "tricky": true, "q": "【おさな】い妹。", "ans": "幼", "accepted": ["幼"], "exp": "「幼い（おさない）」＝いとがしら（幺）に「力」を書きます。「刀」と間違えないように！"}, {"id": 98, "unit": 3, "unitName": "P.38-39 シジュウカラ①", "type": "kaki", "tricky": false, "q": "案を【けんとう】する。", "ans": "検討", "accepted": ["検討"], "exp": "「検討（けんとう）」＝よく調べて考えること。「討」はごんべん（言）に「寸」です。"}, {"id": 99, "unit": 3, "unitName": "P.38-39 シジュウカラ①", "type": "kaki", "tricky": false, "q": "力を【はっき】する。", "ans": "発揮", "accepted": ["発揮"], "exp": "「発揮（はっき）」＝持っている力や能力を十分に表し出すこと。「揮」はてへん（扌）に「軍」です。"}, {"id": 100, "unit": 4, "unitName": "P.40-41 シジュウカラ②・意見と根拠", "type": "special", "tricky": false, "q": "試験の【ヨウイ】をする。（事前に準備する。したく）", "ans": "用意", "accepted": ["用意"], "exp": "「事前に準備する・したくする」は「用意」を使います。"}, {"id": 101, "unit": 4, "unitName": "P.40-41 シジュウカラ②・意見と根拠", "type": "special", "tricky": true, "q": "【ヨウイ】に解ける問題だった。（やさしいこと。簡単にできること）", "ans": "容易", "accepted": ["容易"], "exp": "「やさしい・簡単にできる」は「容易」を使います。「用意」との書き分けはテスト頻出です！"}, {"id": 102, "unit": 4, "unitName": "P.40-41 シジュウカラ②・意見と根拠", "type": "kaki", "tricky": false, "q": "虫を追い【はら】う。", "ans": "払", "accepted": ["払"], "exp": "「払う（はらう）」＝てへん（扌）に「厶」を書きます。"}, {"id": 103, "unit": 4, "unitName": "P.40-41 シジュウカラ②・意見と根拠", "type": "kaki", "tricky": false, "q": "【しょうこ】を残す。", "ans": "証拠", "accepted": ["証拠"], "exp": "「証拠（しょうこ）」。「拠」はてへん（扌）に「処」を書きます。"}, {"id": 104, "unit": 4, "unitName": "P.40-41 シジュウカラ②・意見と根拠", "type": "yomi", "tricky": false, "q": "【解釈】が難しい。（意味を解き明かすこと）", "ans": "かいしゃく", "accepted": ["かいしゃく"], "exp": "「解釈（かいしゃく）」＝言葉や文章の意味を解き明かすこと。「釈」は「シャク」と読みます。"}, {"id": 105, "unit": 4, "unitName": "P.40-41 シジュウカラ②・意見と根拠", "type": "kaki", "tricky": false, "q": "【いか】りの感情。", "ans": "怒", "accepted": ["怒"], "exp": "「怒り（いかり）」。「奴」の下に「心」を書きます。"}, {"id": 106, "unit": 4, "unitName": "P.40-41 シジュウカラ②・意見と根拠", "type": "kaki", "tricky": true, "q": "戦争の【きょうい】。（おどし、おびやかすこと）", "ans": "脅威", "accepted": ["脅威"], "exp": "「脅威（きょうい）」＝おどし、おびやかすこと。「驚異（おどろくほどすごいこと）」との書き分けに注意！"}, {"id": 107, "unit": 4, "unitName": "P.40-41 シジュウカラ②・意見と根拠", "type": "yomi", "tricky": false, "q": "賞金の【獲得】。（手に入れること）", "ans": "かくとく", "accepted": ["かくとく"], "exp": "「獲得（かくとく）」＝自分のものとして手に入れること。「獲」の音読みは「カク」です。"}, {"id": 108, "unit": 4, "unitName": "P.40-41 シジュウカラ②・意見と根拠", "type": "kaki", "tricky": false, "q": "客を【みりょう】する。（人の心をひきつけること）", "ans": "魅了", "accepted": ["魅了"], "exp": "「魅了（みりょう）」＝人の心をすっかりひきつけること。「了」は「リョウ」と読みます。"}, {"id": 109, "unit": 4, "unitName": "P.40-41 シジュウカラ②・意見と根拠", "type": "yomi", "tricky": false, "q": "食欲が【盛】んだ。", "ans": "さか", "accepted": ["さか"], "exp": "「盛んだ（さかんだ）」＝勢いがよいこと。"}, {"id": 110, "unit": 4, "unitName": "P.40-41 シジュウカラ②・意見と根拠", "type": "kaki", "tricky": false, "q": "【おどろ】きを隠せない。", "ans": "驚", "accepted": ["驚"], "exp": "「驚き（おどろき）」。「敬」の下に「馬」を書きます。"}, {"id": 111, "unit": 4, "unitName": "P.40-41 シジュウカラ②・意見と根拠", "type": "yomi", "tricky": false, "q": "【根拠】を示す。（もとになる理由）", "ans": "こんきょ", "accepted": ["こんきょ"], "exp": "「根拠（こんきょ）」＝意見や判断のもとになる理由。"}, {"id": 112, "unit": 4, "unitName": "P.40-41 シジュウカラ②・意見と根拠", "type": "yomi", "tricky": false, "q": "【怒号】が飛ぶ。（おこった大きな声）", "ans": "どごう", "accepted": ["どごう"], "exp": "「怒号（どごう）」＝おこってどなる大きな声。「怒」の音読みは「ド」です。"}, {"id": 113, "unit": 4, "unitName": "P.40-41 シジュウカラ②・意見と根拠", "type": "kaki", "tricky": false, "q": "大きな音で【おど】す。", "ans": "脅", "accepted": ["脅"], "exp": "「脅す（おどす）」。「力」を3つ並べて「月」を書きます。「おびやかす」とも読みます。"}, {"id": 114, "unit": 4, "unitName": "P.40-41 シジュウカラ②・意見と根拠", "type": "yomi", "tricky": false, "q": "【獲物】を求める。", "ans": "えもの", "accepted": ["えもの"], "exp": "「獲物（えもの）」＝狩りや釣りなどでとらえた動物など。「獲」の訓読みは「え（る）」です。"}, {"id": 115, "unit": 4, "unitName": "P.40-41 シジュウカラ②・意見と根拠", "type": "kaki", "tricky": true, "q": "【きょうい】的な力。（おどろくほどすごいさま）", "ans": "驚異", "accepted": ["驚異"], "exp": "「驚異（きょうい）」＝おどろくほどすごいさま。「脅威（おびやかすこと）」との違いを必ずおさえましょう！"}, {"id": 116, "unit": 4, "unitName": "P.40-41 シジュウカラ②・意見と根拠", "type": "yomi", "tricky": false, "q": "祖父に【怒】られる。", "ans": "おこ", "accepted": ["おこ"], "exp": "「怒られる（おこられる）」。「怒り」は「いかり」、「怒られる」は「おこられる」です。"}, {"id": 117, "unit": 4, "unitName": "P.40-41 シジュウカラ②・意見と根拠", "type": "kaki", "tricky": false, "q": "話の【しんらいせい】。", "ans": "信頼性", "accepted": ["信頼性"], "exp": "「信頼性（しんらいせい）」＝信じられる度合い。「頼」は「束」＋「負（頁）」です。"}, {"id": 118, "unit": 4, "unitName": "P.40-41 シジュウカラ②・意見と根拠", "type": "yomi", "tricky": false, "q": "【探偵】の事務所。", "ans": "たんてい", "accepted": ["たんてい"], "exp": "「探偵（たんてい）」。「偵」の音読みは「テイ」です。"}, {"id": 119, "unit": 4, "unitName": "P.40-41 シジュウカラ②・意見と根拠", "type": "kaki", "tricky": false, "q": "【きそ】を学ぶ。", "ans": "基礎", "accepted": ["基礎"], "exp": "「基礎（きそ）」＝物事の土台。「礎」は石へんに「楚」を書きます。"}, {"id": 120, "unit": 4, "unitName": "P.40-41 シジュウカラ②・意見と根拠", "type": "yomi", "tricky": false, "q": "【頼】もしい味方。", "ans": "たの", "accepted": ["たの"], "exp": "「頼もしい（たのもしい）」＝信頼できて心強いこと。"}, {"id": 121, "unit": 4, "unitName": "P.40-41 シジュウカラ②・意見と根拠", "type": "kaki", "tricky": false, "q": "家族に【たよ】る。", "ans": "頼", "accepted": ["頼"], "exp": "「頼る（たよる）」。「頼」には「たのむ」「たのもしい」「たよる」の3つの訓読みがあります。"}, {"id": 122, "unit": 4, "unitName": "P.40-41 シジュウカラ②・意見と根拠", "type": "yomi", "tricky": false, "q": "【秘密】を守る。", "ans": "ひみつ", "accepted": ["ひみつ"], "exp": "「秘密（ひみつ）」＝人に知られないように隠しておくこと。"}, {"id": 123, "unit": 4, "unitName": "P.40-41 シジュウカラ②・意見と根拠", "type": "kaki", "tricky": false, "q": "罪を【さば】く。", "ans": "裁", "accepted": ["裁"], "exp": "「裁く（さばく）」＝法律や道理に照らして善悪を判定すること。「栽（植える）」や「載（のせる）」と間違えないように！"}, {"id": 124, "unit": 4, "unitName": "P.40-41 シジュウカラ②・意見と根拠", "type": "yomi", "tricky": false, "q": "仲間を【導】く。", "ans": "みちび", "accepted": ["みちび"], "exp": "「導く（みちびく）」＝案内して連れていく、よい方向へ進ませる。"}, {"id": 125, "unit": 4, "unitName": "P.40-41 シジュウカラ②・意見と根拠", "type": "kaki", "tricky": false, "q": "【べんとう】を作る。", "ans": "弁当", "accepted": ["弁当"], "exp": "「弁当（べんとう）」。「弁」は5画です。"}, {"id": 126, "unit": 4, "unitName": "P.40-41 シジュウカラ②・意見と根拠", "type": "yomi", "tricky": false, "q": "【非常】に大きい。", "ans": "ひじょう", "accepted": ["ひじょう"], "exp": "「非常に（ひじょうに）」＝普通でないほど、とても。"}, {"id": 127, "unit": 4, "unitName": "P.40-41 シジュウカラ②・意見と根拠", "type": "kaki", "tricky": false, "q": "【こうせき】を残す。", "ans": "功績", "accepted": ["功績"], "exp": "「功績（こうせき）」＝すぐれた働きや成果。「績」はいとへん（糸）に「責」です。"}, {"id": 128, "unit": 4, "unitName": "P.40-41 シジュウカラ②・意見と根拠", "type": "yomi", "tricky": false, "q": "馬が【暴】れる。", "ans": "あば", "accepted": ["あば"], "exp": "「暴れる（あばれる）」。音読みは「ボウ・バク」です。"}, {"id": 129, "unit": 4, "unitName": "P.40-41 シジュウカラ②・意見と根拠", "type": "kaki", "tricky": false, "q": "電車を【お】りる。", "ans": "降", "accepted": ["降"], "exp": "乗り物から出るときは「降りる」を使います。（階段などをくだるときは「下りる」）"}, {"id": 130, "unit": 4, "unitName": "P.40-41 シジュウカラ②・意見と根拠", "type": "yomi", "tricky": false, "q": "【単純】な計算。", "ans": "たんじゅん", "accepted": ["たんじゅん"], "exp": "「単純（たんじゅん）」＝入り組んでいなくて簡単なこと。"}, {"id": 131, "unit": 4, "unitName": "P.40-41 シジュウカラ②・意見と根拠", "type": "kaki", "tricky": true, "q": "バスの【ゆうせんせき】。", "ans": "優先席", "accepted": ["優先席"], "exp": "「優先席（ゆうせんせき）」＝高齢者や体の不自由な人などが先に座れる席。「優」＋「先」＋「席」です。"}, {"id": 132, "unit": 5, "unitName": "P.42-43 漢字に親しもう3", "type": "special", "tricky": false, "q": "【同じ音読み〈セキ〉】実【セキ】がある。", "ans": "績", "accepted": ["績"], "exp": "「実績（じっせき）」＝実際にあげた成果や功績。「いとへん（糸）＋責」です。"}, {"id": 133, "unit": 5, "unitName": "P.42-43 漢字に親しもう3", "type": "special", "tricky": false, "q": "【同じ音読み〈セキ〉】【セキ】任を負う。", "ans": "責", "accepted": ["責"], "exp": "「責任（せきにん）」＝自分が引き受けて果たさなければならない任務。"}, {"id": 134, "unit": 5, "unitName": "P.42-43 漢字に親しもう3", "type": "special", "tricky": false, "q": "【同じ音読み〈セキ〉】畑の面【セキ】。", "ans": "積", "accepted": ["積"], "exp": "「面積（めんせき）」＝平面の広さ。「のぎへん（禾）＋責」です。"}, {"id": 135, "unit": 5, "unitName": "P.42-43 漢字に親しもう3", "type": "special", "tricky": false, "q": "【同じ音読み〈フク〉】【フク】痛が治る。", "ans": "腹", "accepted": ["腹"], "exp": "「腹痛（ふくつう）」＝おなかが痛むこと。「にくづき（月）」の「腹」です。"}, {"id": 136, "unit": 5, "unitName": "P.42-43 漢字に親しもう3", "type": "special", "tricky": false, "q": "【同じ音読み〈フク〉】往【フク】はがき。", "ans": "復", "accepted": ["復"], "exp": "「往復（おうふく）」＝行きと帰り。「ぎょうにんべん（彳）」の「復」です。"}, {"id": 137, "unit": 5, "unitName": "P.42-43 漢字に親しもう3", "type": "special", "tricky": false, "q": "【同じ音読み〈フク〉】【フク】雑な仕組み。", "ans": "複", "accepted": ["複"], "exp": "「複雑（ふくざつ）」＝いろいろ入り組んでいること。「ころもへん（衤）」の「複」です。"}, {"id": 138, "unit": 5, "unitName": "P.42-43 漢字に親しもう3", "type": "yomi", "tricky": true, "q": "【度重】なる不運。", "ans": "たびかさ", "accepted": ["たびかさ"], "exp": "「度重なる（たびかさなる）」＝同じようなことが何度もくり返し起こること。「度」を「たび」と読みます。"}, {"id": 139, "unit": 5, "unitName": "P.42-43 漢字に親しもう3", "type": "kaki", "tricky": false, "q": "花の【なえ】を植える。", "ans": "苗", "accepted": ["苗"], "exp": "「苗（なえ）」。くさかんむり（艹）に「田」を書きます。"}, {"id": 140, "unit": 5, "unitName": "P.42-43 漢字に親しもう3", "type": "yomi", "tricky": true, "q": "野菜の【出荷】。（荷物を送り出すこと）", "ans": "しゅっか", "accepted": ["しゅっか"], "exp": "「出荷（しゅっか）」＝商品や作物を市場などへ送り出すこと。促音「っ」に注意！"}, {"id": 141, "unit": 5, "unitName": "P.42-43 漢字に親しもう3", "type": "yomi", "tricky": true, "q": "神社の【境内】。", "ans": "けいだい", "accepted": ["けいだい"], "exp": "「境内（けいだい）」＝神社や寺の敷地内。「境（ケイ）」「内（ダイ）」と読む特別な読み方に注意！"}, {"id": 142, "unit": 5, "unitName": "P.42-43 漢字に親しもう3", "type": "kaki", "tricky": true, "q": "【じゅれい】百年の木。（木の年れい）", "ans": "樹齢", "accepted": ["樹齢"], "exp": "「樹齢（じゅれい）」＝木の年れい。「齢」は「歯」へんに「令」を書きます。"}, {"id": 143, "unit": 5, "unitName": "P.42-43 漢字に親しもう3", "type": "yomi", "tricky": false, "q": "入り【江】で泳ぐ。", "ans": "え", "accepted": ["え"], "exp": "「入り江（いりえ）」＝海や湖が陸地に入り込んでいる所。「江」の訓読みは「え」です。"}, {"id": 144, "unit": 5, "unitName": "P.42-43 漢字に親しもう3", "type": "yomi", "tricky": false, "q": "海の【幸】に恵まれる。", "ans": "さち", "accepted": ["さち"], "exp": "「海の幸（うみのさち）」＝海でとれる魚や貝などの食べ物。「さち」と読みます。"}, {"id": 145, "unit": 5, "unitName": "P.42-43 漢字に親しもう3", "type": "kaki", "tricky": true, "q": "土の中の【さいきん】。", "ans": "細菌", "accepted": ["細菌"], "exp": "「細菌（さいきん）」＝バクテリアなどの小さな微生物。「菌」はくさかんむり（艹）＋「囗」の中に「禾」です（米ではないので注意！）。"}, {"id": 146, "unit": 5, "unitName": "P.42-43 漢字に親しもう3", "type": "kaki", "tricky": false, "q": "【にじ】が七色に輝く。", "ans": "虹", "accepted": ["虹"], "exp": "「虹（にじ）」。虫へん（虫）に「工」を書きます。"}, {"id": 147, "unit": 5, "unitName": "P.42-43 漢字に親しもう3", "type": "yomi", "tricky": false, "q": "【納豆】を食べる。", "ans": "なっとう", "accepted": ["なっとう"], "exp": "「納豆（なっとう）」。「納」を「ナッ」と読みます。"}, {"id": 148, "unit": 5, "unitName": "P.42-43 漢字に親しもう3", "type": "kaki", "tricky": false, "q": "大豆の【はっこう】。", "ans": "発酵", "accepted": ["発酵"], "exp": "「発酵（はっこう）」＝菌などの働きで物質が変化すること。「酵」はとりへん（酉）に「孝」です。"}, {"id": 149, "unit": 5, "unitName": "P.42-43 漢字に親しもう3", "type": "kaki", "tricky": false, "q": "【がけ】を見上げる。", "ans": "崖", "accepted": ["崖"], "exp": "「崖（がけ）」。「山」の下に「厂（がんだれ）」＋「圭（土＋土）」を書きます。"}, {"id": 150, "unit": 5, "unitName": "P.42-43 漢字に親しもう3", "type": "kaki", "tricky": true, "q": "歌を【ひろう】する。（広く人に知らせたり、見せたりすること）", "ans": "披露", "accepted": ["披露"], "exp": "「披露（ひろう）」＝人前で公開して見せること。「披」はてへん（扌）に「皮」です（「被」と間違えないように！）。"}, {"id": 151, "unit": 5, "unitName": "P.42-43 漢字に親しもう3", "type": "kaki", "tricky": true, "q": "【まさつ】が生じる。（擦れ合うこと、もめごと）", "ans": "摩擦", "accepted": ["摩擦"], "exp": "「摩擦（まさつ）」。「摩」は「麻」の下に「手」です（「石」の「磨」と間違えないように！）。"}, {"id": 152, "unit": 5, "unitName": "P.42-43 漢字に親しもう3", "type": "kaki", "tricky": false, "q": "論説文の【ようし】。（文章の中心的な内容）", "ans": "要旨", "accepted": ["要旨"], "exp": "「要旨（ようし）」＝話や文章の大事な中心内容。「旨」は「ヒ」の下に「日」です。"}, {"id": 153, "unit": 5, "unitName": "P.42-43 漢字に親しもう3", "type": "yomi", "tricky": false, "q": "【黄砂】が飛ぶ。", "ans": "こうさ", "accepted": ["こうさ"], "exp": "「黄砂（こうさ）」＝春ごろに大陸から飛んでくる黄色い砂。"}, {"id": 154, "unit": 5, "unitName": "P.42-43 漢字に親しもう3", "type": "kaki", "tricky": false, "q": "案を【こうてい】する。", "ans": "肯定", "accepted": ["肯定"], "exp": "「肯定（こうてい）」＝その通りだと認めること（反対は「否定」）。「肯」は「止」の下に「月」です。"}, {"id": 155, "unit": 5, "unitName": "P.42-43 漢字に親しもう3", "type": "yomi", "tricky": true, "q": "【苗代】を作る。（苗を育てるための田）", "ans": "なわしろ", "accepted": ["なわしろ"], "exp": "「苗代（なわしろ）」＝稲の苗を育てるための田。特別な読み方「なわしろ」に注意！"}, {"id": 156, "unit": 5, "unitName": "P.42-43 漢字に親しもう3", "type": "yomi", "tricky": false, "q": "中国の【長江】。", "ans": "ちょうこう", "accepted": ["ちょうこう"], "exp": "「長江（ちょうこう）」＝中国を流れる大河。「江」の音読みは「コウ」です。"}, {"id": 157, "unit": 5, "unitName": "P.42-43 漢字に親しもう3", "type": "yomi", "tricky": true, "q": "【断崖絶壁】。（険しく切り立ったがけ）", "ans": "だんがいぜっぺき", "accepted": ["だんがいぜっぺき"], "exp": "「断崖絶壁（だんがいぜっぺき）」。「絶壁」は「ぜっぺき」と促音・半濁音になります。"}, {"id": 158, "unit": 5, "unitName": "P.42-43 漢字に親しもう3", "type": "yomi", "tricky": false, "q": "技術の【伝承】。", "ans": "でんしょう", "accepted": ["でんしょう"], "exp": "「伝承（でんしょう）」＝古い文化や技術などを後の世代へ伝え受け継ぐこと。"}, {"id": 159, "unit": 5, "unitName": "P.42-43 漢字に親しもう3", "type": "kaki", "tricky": false, "q": "親を【そんけい】する。", "ans": "尊敬", "accepted": ["尊敬"], "exp": "「尊敬（そんけい）」。「敬」はくさかんむり（艹）＋「苟（勹＋口）」＋「攵」です。"}, {"id": 160, "unit": 5, "unitName": "P.42-43 漢字に親しもう3", "type": "yomi", "tricky": false, "q": "【至急】の用事。", "ans": "しきゅう", "accepted": ["しきゅう"], "exp": "「至急（しきゅう）」＝とても急ぐこと。「至」の音読みは「シ」です。"}, {"id": 161, "unit": 5, "unitName": "P.42-43 漢字に親しもう3", "type": "kaki", "tricky": false, "q": "【しゃざい】をする。", "ans": "謝罪", "accepted": ["謝罪"], "exp": "「謝罪（しゃざい）」＝自分の過ちを認めてわびること。"}, {"id": 162, "unit": 5, "unitName": "P.42-43 漢字に親しもう3", "type": "yomi", "tricky": false, "q": "漁業を【営】む。", "ans": "いとな", "accepted": ["いとな"], "exp": "「営む（いとなむ）」＝事業や生活などを行うこと。"}, {"id": 163, "unit": 5, "unitName": "P.42-43 漢字に親しもう3", "type": "kaki", "tricky": true, "q": "【げんじょう】を保つ。", "ans": "現状", "accepted": ["現状"], "exp": "「現状（げんじょう）」＝現在のありさま、状態。"}, {"id": 164, "unit": 5, "unitName": "P.42-43 漢字に親しもう3", "type": "yomi", "tricky": false, "q": "【舌】づつみを打つ。", "ans": "した", "accepted": ["した"], "exp": "「舌づつみを打つ（したづつみをうつ）」＝おいしいものを食べて舌を鳴らす・とてもおいしく味わうこと。"}, {"id": 165, "unit": 5, "unitName": "P.42-43 漢字に親しもう3", "type": "kaki", "tricky": false, "q": "宝物を【さが】す。", "ans": "探", "accepted": ["探"], "exp": "「探す（さがす）」。「宝物や楽しいものなどを求める」ときは「探す」をよく使います。"}, {"id": 166, "unit": 5, "unitName": "P.42-43 漢字に親しもう3", "type": "yomi", "tricky": false, "q": "【胃腸】の検査。", "ans": "いちょう", "accepted": ["いちょう"], "exp": "「胃腸（いちょう）」。「胃（イ）」＋「腸（チョウ）」です。"}, {"id": 167, "unit": 5, "unitName": "P.42-43 漢字に親しもう3", "type": "kaki", "tricky": false, "q": "ごみを【す】てる。", "ans": "捨", "accepted": ["捨"], "exp": "「捨てる（すてる）」。てへん（扌）に「舎」を書きます。"}, {"id": 168, "unit": 6, "unitName": "P.44-45 大阿蘇・漢字に親しもう3", "type": "special", "tricky": true, "q": "【ことわざ・慣用句】けがの【コウミョウ】（失敗したと思ったことが、思いがけなくよい結果を生み出すこと）", "ans": "功名", "accepted": ["功名"], "exp": "「けがの功名（こうみょう）」＝失敗したと思ったことが、思いがけなくよい結果を生み出すこと。「功」＋「名」です。"}, {"id": 169, "unit": 6, "unitName": "P.44-45 大阿蘇・漢字に親しもう3", "type": "special", "tricky": false, "q": "【書きこなそう】鏡に顔を【うつ】す。（水や鏡などに姿や形が現れるようにする）", "ans": "映", "accepted": ["映"], "exp": "「水や鏡・スクリーンなどに姿や光が現れるようにする」は「映す（日へん）」を使います。"}, {"id": 170, "unit": 6, "unitName": "P.44-45 大阿蘇・漢字に親しもう3", "type": "special", "tricky": false, "q": "【書きこなそう】机を隅に【うつ】す。（場所を変える）", "ans": "移", "accepted": ["移"], "exp": "「場所や時期などを変える」は「移す（のぎへん）」を使います。"}, {"id": 171, "unit": 6, "unitName": "P.44-45 大阿蘇・漢字に親しもう3", "type": "special", "tricky": false, "q": "【書きこなそう】詩を書き【うつ】す。（元のとおりに見て書く）", "ans": "写", "accepted": ["写"], "exp": "「元のとおりに見て書く・写真にとる」は「写す」を使います。"}, {"id": 172, "unit": 6, "unitName": "P.44-45 大阿蘇・漢字に親しもう3", "type": "yomi", "tricky": false, "q": "図を【挿入】する。", "ans": "そうにゅう", "accepted": ["そうにゅう"], "exp": "「挿入（そうにゅう）」＝間に入れ込むこと。「挿」の音読みは「ソウ」です。"}, {"id": 173, "unit": 6, "unitName": "P.44-45 大阿蘇・漢字に親しもう3", "type": "kaki", "tricky": true, "q": "裁判の【ばいしんいん】。（一般人から選ばれ、裁判に参与する人）", "ans": "陪審員", "accepted": ["陪審員"], "exp": "「陪審員（ばいしんいん）」。「陪」はこざとへん（阝）に「立」＋「口」です（「倍」や「賠」と混同しないように！）。"}, {"id": 174, "unit": 6, "unitName": "P.44-45 大阿蘇・漢字に親しもう3", "type": "kaki", "tricky": false, "q": "広告の【ばいたい】。（仲立ちとなるもの）", "ans": "媒体", "accepted": ["媒体"], "exp": "「媒体（ばいたい）」＝情報などを伝える仲立ちとなるもの。「媒」はおんなへん（女）に「某」です。"}, {"id": 175, "unit": 6, "unitName": "P.44-45 大阿蘇・漢字に親しもう3", "type": "yomi", "tricky": true, "q": "取引の【仲介】。（両者の間に入って話を取りつぐこと）", "ans": "ちゅうかい", "accepted": ["ちゅうかい"], "exp": "「仲介（ちゅうかい）」。「中」ではなく「仲」の字を使います。"}, {"id": 176, "unit": 6, "unitName": "P.44-45 大阿蘇・漢字に親しもう3", "type": "kaki", "tricky": false, "q": "【ちゅうしゃ】禁止の道。", "ans": "駐車", "accepted": ["駐車"], "exp": "「駐車（ちゅうしゃ）」＝車を止めておくこと。「駐」はうまへん（馬）に「主」です。"}, {"id": 177, "unit": 6, "unitName": "P.44-45 大阿蘇・漢字に親しもう3", "type": "kaki", "tricky": false, "q": "花びんに花を【さ】す。", "ans": "挿", "accepted": ["挿"], "exp": "「花を挿す（はなをさす）」＝間や穴に入れ込む。「挿」はてへん（扌）に「千」＋「日（または臼の一部）」です。"}, {"id": 178, "unit": 6, "unitName": "P.44-45 大阿蘇・漢字に親しもう3", "type": "yomi", "tricky": false, "q": "音楽を【聴】く。", "ans": "き", "accepted": ["き"], "exp": "「聴く（きく）」＝耳をかたむけて注意深く聞くこと。"}, {"id": 179, "unit": 6, "unitName": "P.44-45 大阿蘇・漢字に親しもう3", "type": "kaki", "tricky": false, "q": "雪が【ふ】る。", "ans": "降", "accepted": ["降"], "exp": "「雪が降る（ゆきがふる）」。雨や雪が上から落ちてくるときは「降る」です。"}, {"id": 180, "unit": 6, "unitName": "P.44-45 大阿蘇・漢字に親しもう3", "type": "yomi", "tricky": false, "q": "【尻尾】を振る。", "ans": "しっぽ", "accepted": ["しっぽ"], "exp": "「尻尾（しっぽ）」。特別な読み方（熟字訓）です。"}, {"id": 181, "unit": 6, "unitName": "P.44-45 大阿蘇・漢字に親しもう3", "type": "kaki", "tricky": false, "q": "【せなか】を押す。", "ans": "背中", "accepted": ["背中"], "exp": "「背中（せなか）」。「背」は「北」の下に「月（にくづき）」です。"}, {"id": 182, "unit": 6, "unitName": "P.44-45 大阿蘇・漢字に親しもう3", "type": "yomi", "tricky": false, "q": "雨水が【垂】れる。", "ans": "た", "accepted": ["た"], "exp": "「垂れる（たれる）」＝しずくなどが落ちてくる、下にぶら下がる。"}, {"id": 183, "unit": 6, "unitName": "P.44-45 大阿蘇・漢字に親しもう3", "type": "kaki", "tricky": false, "q": "白い【けむり】。", "ans": "煙", "accepted": ["煙"], "exp": "「煙（けむり）」。ひへん（火）に「垔（西＋土）」を書きます。"}, {"id": 184, "unit": 6, "unitName": "P.44-45 大阿蘇・漢字に親しもう3", "type": "yomi", "tricky": false, "q": "山の【頂】に立つ。", "ans": "いただき", "accepted": ["いただき"], "exp": "「頂（いただき）」＝山などの一番高い所、てっぺん。"}, {"id": 185, "unit": 6, "unitName": "P.44-45 大阿蘇・漢字に親しもう3", "type": "kaki", "tricky": false, "q": "【ふんえん】が上がる。（火山からふき出すけむり）", "ans": "噴煙", "accepted": ["噴煙"], "exp": "「噴煙（ふんえん）」。「噴」はくちへん（口）に「賁（十＋艹＋貝）」です。"}, {"id": 186, "unit": 6, "unitName": "P.44-45 大阿蘇・漢字に親しもう3", "type": "kaki", "tricky": false, "q": "小高い【おか】。", "ans": "丘", "accepted": ["丘"], "exp": "「丘（おか）」。5画の新出漢字です（音：キュウ、訓：おか）。"}, {"id": 187, "unit": 6, "unitName": "P.44-45 大阿蘇・漢字に親しもう3", "type": "yomi", "tricky": false, "q": "服を【洗】う。", "ans": "あら", "accepted": ["あら"], "exp": "「洗う（あらう）」。音読みは「セン（洗濯）」です。"}, {"id": 188, "unit": 6, "unitName": "P.44-45 大阿蘇・漢字に親しもう3", "type": "kaki", "tricky": false, "q": "【ちょうかく】の検査。（音や声を聞き分ける耳の感覚）", "ans": "聴覚", "accepted": ["聴覚"], "exp": "「聴覚（ちょうかく）」。「聴」は耳へんに「十＋四（横向き）＋一＋心」です。"}, {"id": 189, "unit": 6, "unitName": "P.44-45 大阿蘇・漢字に親しもう3", "type": "yomi", "tricky": false, "q": "雨に【煙】る街。", "ans": "けむ", "accepted": ["けむ"], "exp": "「煙る（けむる）」＝煙や雨などでぼんやりとかすんで見えること。"}, {"id": 190, "unit": 6, "unitName": "P.44-45 大阿蘇・漢字に親しもう3", "type": "kaki", "tricky": true, "q": "火山が火を【ふ】く。", "ans": "噴", "accepted": ["噴"], "exp": "「火山が火や煙をいきおいよく出す」ときは「噴く（ふく）」を使います。（口から息などを出すときは「吹く」）"}, {"id": 191, "unit": 6, "unitName": "P.44-45 大阿蘇・漢字に親しもう3", "type": "yomi", "tricky": false, "q": "【砂丘】が広がる。", "ans": "さきゅう", "accepted": ["さきゅう"], "exp": "「砂丘（さきゅう）」＝風で運ばれた砂が積もってできた丘（鳥取砂丘など）。"}, {"id": 192, "unit": 6, "unitName": "P.44-45 大阿蘇・漢字に親しもう3", "type": "yomi", "tricky": false, "q": "【警察署】に行く。", "ans": "けいさつしょ", "accepted": ["けいさつしょ"], "exp": "「警察署（けいさつしょ）」。「署」は「ショ」と読みます。"}, {"id": 193, "unit": 6, "unitName": "P.44-45 大阿蘇・漢字に親しもう3", "type": "kaki", "tricky": false, "q": "案内に【したが】う。", "ans": "従", "accepted": ["従"], "exp": "「従う（したがう）」。ぎょうにんべん（彳）に「丷」＋「疋」を書きます。"}, {"id": 194, "unit": 6, "unitName": "P.44-45 大阿蘇・漢字に親しもう3", "type": "yomi", "tricky": false, "q": "教員の【資格】。", "ans": "しかく", "accepted": ["しかく"], "exp": "「資格（しかく）」＝あることを行うために必要な条件・身分。"}, {"id": 195, "unit": 6, "unitName": "P.44-45 大阿蘇・漢字に親しもう3", "type": "kaki", "tricky": false, "q": "【せつぞく】が悪い。", "ans": "接続", "accepted": ["接続"], "exp": "「接続（せつぞく）」＝つなぎ合わせること。「接」はてへん（扌）に「妾」です。"}, {"id": 196, "unit": 6, "unitName": "P.44-45 大阿蘇・漢字に親しもう3", "type": "yomi", "tricky": false, "q": "友人を家に【招】く。", "ans": "まね", "accepted": ["まね"], "exp": "「招く（まねく）」。音読みは「ショウ（招待）」です。"}, {"id": 197, "unit": 6, "unitName": "P.44-45 大阿蘇・漢字に親しもう3", "type": "kaki", "tricky": false, "q": "【せいみつ】な機械。", "ans": "精密", "accepted": ["精密"], "exp": "「精密（せいみつ）」＝非常に細かく正確なこと。「精」はこめへん（米）に「青」です。"}, {"id": 198, "unit": 6, "unitName": "P.44-45 大阿蘇・漢字に親しもう3", "type": "yomi", "tricky": false, "q": "魚を【保存】する。", "ans": "ほぞん", "accepted": ["ほぞん"], "exp": "「保存（ほぞん）」＝そのままの状態を保ってしまっておくこと。"}, {"id": 199, "unit": 6, "unitName": "P.44-45 大阿蘇・漢字に親しもう3", "type": "kaki", "tricky": false, "q": "港町で【く】らす。", "ans": "暮", "accepted": ["暮"], "exp": "「暮らす（くらす）」。くさかんむり（艹）＋「日」＋「大」＋「日」です。"}, {"id": 200, "unit": 6, "unitName": "P.44-45 大阿蘇・漢字に親しもう3", "type": "kaki", "tricky": false, "q": "【しょくどう】へ行く。", "ans": "食堂", "accepted": ["食堂"], "exp": "「食堂（しょくどう）」＝食事をする部屋・店。「堂」は「土」が下につきます。"}, {"id": 201, "unit": 6, "unitName": "P.44-45 大阿蘇・漢字に親しもう3", "type": "yomi", "tricky": false, "q": "船を【操縦】する。", "ans": "そうじゅう", "accepted": ["そうじゅう"], "exp": "「操縦（そうじゅう）」＝乗り物や機械をあやつり動かすこと。"}];
 
-let selectedUnit = "すべて（全範囲）";
+// 3つのデータセットを統一フォーマットに正規化
+const UNIFIED_QUESTIONS = [];
+
+// 1. 読解・古典・基礎 (W1)
+RAW_W1.forEach((q, idx) => {
+  UNIFIED_QUESTIONS.push({
+    uid: `w1_${idx}`,
+    section: "reading",
+    sectionLabel: "読解・古典・基礎",
+    unit: q.unit,
+    typeLabel: q.typeLabel || (q.mode === "self" ? "記述" : "一問一答"),
+    mode: q.mode, // "exact" | "self"
+    renderStyle: "w1",
+    q: q.q,
+    hint: q.hint || "",
+    answers: q.answers || [],
+    displayAnswer: q.displayAnswer,
+    exp: q.exp,
+    tricky: false
+  });
+});
+
+// 2. 国語文法 (W2)
+RAW_W2.forEach((q, idx) => {
+  UNIFIED_QUESTIONS.push({
+    uid: `w2_${idx}`,
+    section: "grammar",
+    sectionLabel: "国語文法",
+    unit: `文法：${q.catLabel}`,
+    typeLabel: q.formatLabel,
+    mode: q.type === "open_blank" ? "open_blank" : "exact",
+    renderStyle: "w2",
+    instruction: q.instruction,
+    sentence: q.sentence,
+    note: q.note || "",
+    hint: q.hint || "",
+    answers: q.answers || [],
+    displayAnswer: q.displayAnswer,
+    exp: q.exp,
+    tricky: q.cat === "comp"
+  });
+});
+
+// 3. 漢字 (W3)
+RAW_W3.forEach((q, idx) => {
+  const typeLabel = q.type === "yomi" ? "漢字の読み" : (q.type === "kaki" ? "漢字の書き・穴埋め" : "書き分け・知識");
+  UNIFIED_QUESTIONS.push({
+    uid: `w3_${idx}`,
+    section: "kanji",
+    sectionLabel: "漢字（P.34〜45）",
+    unit: q.unitName,
+    typeLabel: typeLabel,
+    kanjiType: q.type,
+    mode: "kanji",
+    renderStyle: "w3",
+    q: q.q,
+    hint: "",
+    answers: q.accepted || [q.ans],
+    displayAnswer: q.accepted && q.accepted.length > 1
+      ? `${q.ans}（※「${q.accepted.slice(1).join("」「")}」も正解）`
+      : q.ans,
+    exp: q.exp,
+    tricky: Boolean(q.tricky)
+  });
+});
+
+const SECTION_UNITS = {
+  all: ["すべて（全291問）"],
+  reading: [
+    "すべて（読解・古典・基礎 全60問）",
+    "シジュウカラ",
+    "集中力・案内文",
+    "方言と共通語",
+    "文法（文の組み立て）",
+    "いろは歌",
+    "歴史的仮名遣い",
+    "竹取物語",
+    "漢字・語句"
+  ],
+  grammar: [
+    "すべて（国語文法 全30問）",
+    "文法：用語・穴埋め",
+    "文法：主語・述語",
+    "文法：修飾語",
+    "文法：接続語・独立語",
+    "文法：総合・ひっかけ"
+  ],
+  kanji: [
+    "すべて（漢字 全201問）",
+    "P.34-35 方言と共通語・音訓",
+    "P.36-37 漢字に親しもう2",
+    "P.38-39 シジュウカラ①",
+    "P.40-41 シジュウカラ②・意見と根拠",
+    "P.42-43 漢字に親しもう3",
+    "P.44-45 大阿蘇・漢字に親しもう3"
+  ]
+};
+
+let currentSection = "all";
+let selectedUnit = "すべて（全291問）";
 let activeList = [];
 let currentIndex = 0;
 let score = 0;
 let answered = false;
-let wrongItems = [];
+let wrongRecords = [];
 let unitStats = {};
 
 const startScreen = document.getElementById("start-screen");
 const quizScreen = document.getElementById("quiz-screen");
 const resultScreen = document.getElementById("result-screen");
 const unitGrid = document.getElementById("unit-grid");
+const kanjiFilterBar = document.getElementById("kanji-filter-bar");
+const kanjiTypeSelect = document.getElementById("kanji-type-select");
 const shuffleToggle = document.getElementById("shuffle-toggle");
 
-function initUnitGrid() {
-  unitGrid.innerHTML = "";
-  UNIT_ORDER.forEach(u => {
-    const count = u === "すべて（全範囲）"
-      ? QUESTIONS.length
-      : QUESTIONS.filter(q => q.unit === u).length;
-    const btn = document.createElement("button");
-    btn.className = "unit-btn" + (u === selectedUnit ? " active" : "");
-    btn.innerHTML = `<span class="u-title">${u}</span><span class="u-count">${count}問</span>`;
-    btn.addEventListener("click", () => {
-      selectedUnit = u;
-      document.querySelectorAll(".unit-btn").forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-    });
-    unitGrid.appendChild(btn);
-  });
+function escapeHtml(str) {
+  return String(str || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
 }
 
 function shuffleArray(arr) {
@@ -1169,35 +1851,127 @@ function shuffleArray(arr) {
   return copy;
 }
 
-function formatQuestionHtml(text) {
-  const escaped = text
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;");
+function normalizeGeneral(str) {
+  return String(str || "")
+    .trim()
+    .replace(/[Ａ-Ｚａ-ｚ０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xFEE0))
+    .replace(/[\s　。「」、，．・（）()「」『』【】\[\]]/g, "")
+    .toLowerCase();
+}
+
+function normalizeKanji(str) {
+  let s = String(str || "").trim().replace(/[\s　]/g, "");
+  s = s.replace(/[ァ-ヶ]/g, ch => String.fromCharCode(ch.charCodeAt(0) - 0x60));
+  return s;
+}
+
+function getFilteredQuestions() {
+  let list = UNIFIED_QUESTIONS;
+  if (currentSection !== "all") {
+    list = list.filter(q => q.section === currentSection);
+  }
+  if (!selectedUnit.startsWith("すべて")) {
+    list = list.filter(q => q.unit === selectedUnit);
+  }
+  if (currentSection === "kanji") {
+    const kt = kanjiTypeSelect.value;
+    if (kt === "kaki") list = list.filter(q => q.kanjiType === "kaki");
+    else if (kt === "yomi") list = list.filter(q => q.kanjiType === "yomi");
+    else if (kt === "special") list = list.filter(q => q.kanjiType === "special");
+    else if (kt === "tricky") list = list.filter(q => q.tricky);
+  }
+  return list;
+}
+
+function renderUnitGrid() {
+  unitGrid.innerHTML = "";
+  const units = SECTION_UNITS[currentSection];
+  if (!units.includes(selectedUnit)) {
+    selectedUnit = units[0];
+  }
+
+  if (currentSection === "kanji") {
+    kanjiFilterBar.classList.remove("hidden");
+  } else {
+    kanjiFilterBar.classList.add("hidden");
+  }
+
+  units.forEach((u, idx) => {
+    let count = 0;
+    if (idx === 0) {
+      if (currentSection === "all") count = UNIFIED_QUESTIONS.length;
+      else count = UNIFIED_QUESTIONS.filter(q => q.section === currentSection).length;
+    } else {
+      count = UNIFIED_QUESTIONS.filter(q => q.section === currentSection && q.unit === u).length;
+    }
+    const btn = document.createElement("button");
+    btn.className = "unit-btn" + (idx === 0 ? " all-unit" : "") + (u === selectedUnit ? " active" : "");
+    btn.innerHTML = `<span class="u-title">${escapeHtml(u)}</span><span class="u-count">${count}問</span>`;
+    btn.addEventListener("click", () => {
+      selectedUnit = u;
+      document.querySelectorAll(".unit-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+    });
+    unitGrid.appendChild(btn);
+  });
+}
+
+document.querySelectorAll(".tab-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    currentSection = btn.dataset.sec;
+    document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    selectedUnit = SECTION_UNITS[currentSection][0];
+    renderUnitGrid();
+  });
+});
+
+function formatW1Question(text) {
+  const escaped = escapeHtml(text);
   return escaped.replace(/［　　］/g, '<span class="blank-box">　　</span>');
 }
 
-function normalizeText(str) {
-  return str
-    .trim()
-    .replace(/[Ａ-Ｚａ-ｚ０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xFEE0))
-    .replace(/[\s　。「」、，．・（）()「」『』【】\[\]]/g, "");
+function formatW3Question(q) {
+  let raw = q.q;
+  let prefixTag = "";
+  let meaningNote = "";
+
+  const prefixMatch = raw.match(/^(【(?:同じ部首|同じ音読み|ことわざ|書きこなそう)[^】]*】)/);
+  if (prefixMatch) {
+    prefixTag = `<span class="q-prefix-tag">${escapeHtml(prefixMatch[1].slice(1, -1))}</span>`;
+    raw = raw.slice(prefixMatch[1].length);
+  }
+
+  const noteMatch = raw.match(/（([^）]+)）$/);
+  if (noteMatch) {
+    meaningNote = `<span class="q-meaning-note">意味ヒント：${escapeHtml(noteMatch[1])}</span>`;
+    raw = raw.slice(0, raw.length - noteMatch[0].length);
+  }
+
+  if (q.kanjiType === "yomi") {
+    const formatted = escapeHtml(raw).replace(/【([^】]+)】/g, '<span class="yomi-target">$1</span>');
+    return prefixTag + formatted + meaningNote;
+  } else {
+    const formatted = escapeHtml(raw).replace(/【([^】]+)】/g, (_, hint) => {
+      return `<span class="kanji-blank"><span class="kb-space">＿＿＿</span><span class="kb-hint">${hint}</span></span>`;
+    });
+    return prefixTag + formatted + meaningNote;
+  }
 }
 
 function startQuiz(customList = null) {
-  let base = customList
-    ? [...customList]
-    : (selectedUnit === "すべて（全範囲）"
-        ? [...QUESTIONS]
-        : QUESTIONS.filter(q => q.unit === selectedUnit));
-
+  let base = customList ? [...customList] : getFilteredQuestions();
+  if (base.length === 0) {
+    alert("該当する問題がありません。条件を変更してください。");
+    return;
+  }
   if (shuffleToggle.checked && !customList) {
     base = shuffleArray(base);
   }
   activeList = base;
   currentIndex = 0;
   score = 0;
-  wrongItems = [];
+  wrongRecords = [];
   unitStats = {};
 
   startScreen.classList.add("hidden");
@@ -1209,51 +1983,89 @@ function startQuiz(customList = null) {
 function renderQuestion() {
   answered = false;
   const item = activeList[currentIndex];
+
+  document.getElementById("q-sec-badge").textContent = item.sectionLabel;
   document.getElementById("q-unit-badge").textContent = item.unit;
-  document.getElementById("q-type-badge").textContent = item.typeLabel || (item.mode === "self" ? "記述" : "一問一答");
+  document.getElementById("q-type-badge").textContent = item.typeLabel;
+  const trickyBadge = document.getElementById("q-tricky-badge");
+  if (item.tricky) trickyBadge.classList.remove("hidden");
+  else trickyBadge.classList.add("hidden");
+
   document.getElementById("q-progress-text").textContent = `第 ${currentIndex + 1} 問 / 全 ${activeList.length} 問`;
   document.getElementById("progress-fill").style.width = `${(currentIndex / activeList.length) * 100}%`;
   document.getElementById("live-score").textContent = `現在の正解数：${score}問`;
-  document.getElementById("q-text").innerHTML = formatQuestionHtml(item.q);
+
+  const instEl = document.getElementById("q-instruction");
+  const bodyEl = document.getElementById("q-body");
+  instEl.classList.add("hidden");
+  bodyEl.innerHTML = "";
+
+  if (item.renderStyle === "w1") {
+    bodyEl.innerHTML = `<p class="q-text">${formatW1Question(item.q)}</p>`;
+  } else if (item.renderStyle === "w2") {
+    instEl.textContent = item.instruction;
+    instEl.classList.remove("hidden");
+    let html = `<div class="q-box">${item.sentence}</div>`;
+    if (item.note) {
+      html += `<p class="q-meaning-note" style="margin:-6px 0 12px;">${escapeHtml(item.note)}</p>`;
+    }
+    bodyEl.innerHTML = html;
+  } else if (item.renderStyle === "w3") {
+    instEl.textContent = item.kanjiType === "yomi"
+      ? "ハイライトされた漢字の「読み」をひらがなで答えよう"
+      : "空欄（＿＿＿）に入る「漢字」を答えよう（空欄のまま「答えを見る」で自己採点も可）";
+    instEl.classList.remove("hidden");
+    bodyEl.innerHTML = `<div class="q-box">${formatW3Question(item)}</div>`;
+  }
 
   const inputWrap = document.getElementById("input-wrap");
   inputWrap.innerHTML = "";
   let inputEl;
   if (item.mode === "self") {
     inputEl = document.createElement("textarea");
-    inputEl.placeholder = "自分の答えを入力してください（頭の中で考えてそのまま「答えを見る」こともできます）";
+    inputEl.placeholder = "自分の答えを入力してください（頭の中で考えて「答えを見る」こともできます）";
   } else {
     inputEl = document.createElement("input");
     inputEl.type = "text";
-    inputEl.placeholder = "答えを入力してください";
+    inputEl.placeholder = item.renderStyle === "w3"
+      ? (item.kanjiType === "yomi" ? "ひらがなで入力..." : "漢字を入力（空欄のまま「答えを見る」もOK）")
+      : "答えを入力してください...";
   }
   inputEl.id = "user-answer-input";
   inputEl.className = "answer-input";
   inputEl.autocomplete = "off";
   inputWrap.appendChild(inputEl);
 
-  document.getElementById("input-hint").textContent = item.hint ? `ヒント：${item.hint}` : "";
-  document.getElementById("check-actions").classList.remove("hidden");
+  const hintBtn = document.getElementById("hint-btn");
+  const hintBox = document.getElementById("hint-box");
+  hintBox.classList.add("hidden");
+  if (item.hint) {
+    hintBtn.classList.remove("hidden");
+    hintBox.textContent = "💡 ヒント：" + item.hint;
+  } else {
+    hintBtn.classList.add("hidden");
+  }
 
+  document.getElementById("check-actions").classList.remove("hidden");
   const feedbackBox = document.getElementById("feedback-box");
   feedbackBox.className = "feedback-box";
   document.getElementById("self-judge-row").classList.add("hidden");
   document.getElementById("next-row").classList.add("hidden");
 
   const nextBtn = document.getElementById("next-btn");
-  nextBtn.textContent = (currentIndex === activeList.length - 1) ? "結果を見る" : "次の問題へ";
+  nextBtn.textContent = (currentIndex === activeList.length - 1) ? "結果を見る →" : "次の問題へ →";
 
-  setTimeout(() => inputEl.focus(), 50);
+  setTimeout(() => inputEl.focus(), 30);
 }
 
-function recordResult(item, isCorrect) {
+function recordResult(item, isCorrect, userAns) {
   if (!unitStats[item.unit]) unitStats[item.unit] = { total: 0, correct: 0 };
   unitStats[item.unit].total += 1;
   if (isCorrect) {
     score += 1;
     unitStats[item.unit].correct += 1;
   } else {
-    wrongItems.push(item);
+    wrongRecords.push({ item, userAns: userAns || "（未入力・パス）" });
   }
   document.getElementById("progress-fill").style.width = `${((currentIndex + 1) / activeList.length) * 100}%`;
   document.getElementById("live-score").textContent = `現在の正解数：${score}問`;
@@ -1265,7 +2077,8 @@ function checkAnswer(giveUp = false) {
   const inputEl = document.getElementById("user-answer-input");
   const rawVal = inputEl ? inputEl.value : "";
 
-  if (!giveUp && item.mode === "exact" && rawVal.trim() === "") {
+  // 漢字モードまたは記述モードでは未入力でも「答えを見る（自己採点）」へ進める
+  if (!giveUp && rawVal.trim() === "" && item.mode !== "kanji" && item.mode !== "self") {
     inputEl.focus();
     return;
   }
@@ -1273,6 +2086,7 @@ function checkAnswer(giveUp = false) {
   answered = true;
   if (inputEl) inputEl.disabled = true;
   document.getElementById("check-actions").classList.add("hidden");
+  document.getElementById("hint-box").classList.add("hidden");
 
   const feedbackBox = document.getElementById("feedback-box");
   const feedbackTitle = document.getElementById("feedback-title");
@@ -1281,23 +2095,12 @@ function checkAnswer(giveUp = false) {
   const selfJudgeRow = document.getElementById("self-judge-row");
   const nextRow = document.getElementById("next-row");
 
-  modelAnswer.innerHTML = `<strong>模範解答：</strong><span style="white-space:pre-line;">${item.displayAnswer}</span>`;
-  feedbackExp.textContent = item.exp;
+  modelAnswer.innerHTML = `<strong>模範解答：</strong><span style="white-space:pre-line;">${escapeHtml(item.displayAnswer)}</span>`;
+  feedbackExp.innerHTML = item.exp;
 
-  if (item.mode === "exact") {
-    const normUser = normalizeText(rawVal);
-    const isCorrect = !giveUp && item.answers.some(ans => normalizeText(ans) === normUser);
-    recordResult(item, isCorrect);
-
-    feedbackBox.className = "feedback-box show " + (isCorrect ? "is-correct" : "is-wrong");
-    feedbackTitle.textContent = isCorrect
-      ? "正解！"
-      : (giveUp ? "答えを確認しよう" : `不正解…（あなたの入力：${rawVal}）`);
-    selfJudgeRow.classList.add("hidden");
-    nextRow.classList.remove("hidden");
-  } else {
-    if (giveUp) {
-      recordResult(item, false);
+  if (item.mode === "self") {
+    if (giveUp || rawVal.trim() === "") {
+      recordResult(item, false, rawVal);
       feedbackBox.className = "feedback-box show is-wrong";
       feedbackTitle.textContent = "模範解答とポイントを確認しよう";
       selfJudgeRow.classList.add("hidden");
@@ -1308,12 +2111,43 @@ function checkAnswer(giveUp = false) {
       selfJudgeRow.classList.remove("hidden");
       nextRow.classList.add("hidden");
     }
+    return;
   }
+
+  if (item.mode === "kanji" && !giveUp && rawVal.trim() === "") {
+    // ノート演習用の自己採点モード
+    feedbackBox.className = "feedback-box show is-self";
+    feedbackTitle.textContent = "答えと解説を確認しよう（自己採点）";
+    selfJudgeRow.classList.remove("hidden");
+    nextRow.classList.add("hidden");
+    return;
+  }
+
+  const normFn = item.mode === "kanji" ? normalizeKanji : normalizeGeneral;
+  const normUser = normFn(rawVal);
+  const isCorrect = !giveUp && item.answers.some(ans => normFn(ans) === normUser);
+
+  if (item.mode === "open_blank" && !giveUp && !isCorrect) {
+    feedbackBox.className = "feedback-box show is-self";
+    feedbackTitle.textContent = `解答例とくらべて自己採点しよう（あなたの入力：${rawVal}）`;
+    selfJudgeRow.classList.remove("hidden");
+    nextRow.classList.add("hidden");
+    return;
+  }
+
+  recordResult(item, isCorrect, giveUp ? "（パス）" : rawVal);
+  feedbackBox.className = "feedback-box show " + (isCorrect ? "is-correct" : "is-wrong");
+  feedbackTitle.textContent = isCorrect
+    ? "⭕ 正解！"
+    : (giveUp ? "📘 解答と解説" : `❌ 不正解…（あなたの入力：${rawVal}）`);
+  selfJudgeRow.classList.add("hidden");
+  nextRow.classList.remove("hidden");
 }
 
 function judgeSelf(isCorrect) {
   const item = activeList[currentIndex];
-  recordResult(item, isCorrect);
+  const rawVal = document.getElementById("user-answer-input")?.value || "";
+  recordResult(item, isCorrect, rawVal);
   nextQuestion();
 }
 
@@ -1334,7 +2168,7 @@ function showResult() {
   const pct = Math.round((score / total) * 100);
   document.getElementById("final-score").textContent = `${score} / ${total} 問正解（${pct}%）`;
   document.getElementById("final-sub").textContent =
-    pct === 100 ? "全問正解！記述・穴埋め対策も万全です。"
+    pct === 100 ? "全問正解！2学期末テスト対策も万全です。"
     : pct >= 80 ? "よくできました！間違えた問題を復習してテスト本番に備えよう。"
     : "間違えた問題の模範解答と解説を確認して、もう一度チャレンジしよう！";
 
@@ -1346,7 +2180,7 @@ function showResult() {
     const row = document.createElement("div");
     row.className = "breakdown-item";
     row.innerHTML = `
-      <strong>${u}</strong>
+      <strong>${escapeHtml(u)}</strong>
       <div class="breakdown-bar-wrap">
         <span>${st.correct}/${st.total} (${upct}%)</span>
         <div class="mini-bar"><div class="mini-fill" style="width:${upct}%"></div></div>
@@ -1356,17 +2190,37 @@ function showResult() {
   });
 
   const retryWrongBtn = document.getElementById("retry-wrong-btn");
-  if (wrongItems.length > 0) {
+  const wrongSec = document.getElementById("wrong-review-section");
+  const wrongListEl = document.getElementById("wrong-review-list");
+  if (wrongRecords.length > 0) {
     retryWrongBtn.classList.remove("hidden");
-    retryWrongBtn.textContent = `間違えた問題だけ復習する（${wrongItems.length}問）`;
+    retryWrongBtn.textContent = `間違えた問題だけ復習する（${wrongRecords.length}問）`;
+    wrongSec.classList.remove("hidden");
+    wrongListEl.innerHTML = wrongRecords.map(r => {
+      const qPreview = r.item.q || r.item.sentence || "";
+      return `
+        <div class="wrong-review-item">
+          <div style="font-size:0.8rem; color:var(--muted); font-weight:700;">[${escapeHtml(r.item.unit)}]</div>
+          <div style="font-weight:700; margin:4px 0;">${qPreview}</div>
+          <div style="font-size:0.86rem;">
+            <span style="color:var(--wrong);">あなたの答え：${escapeHtml(r.userAns)}</span> ／
+            <span style="color:var(--correct); font-weight:700;">正解：${escapeHtml(r.item.displayAnswer)}</span>
+          </div>
+        </div>
+      `;
+    }).join("");
   } else {
     retryWrongBtn.classList.add("hidden");
+    wrongSec.classList.add("hidden");
   }
 }
 
 document.getElementById("start-btn").addEventListener("click", () => startQuiz());
 document.getElementById("check-btn").addEventListener("click", () => checkAnswer(false));
 document.getElementById("giveup-btn").addEventListener("click", () => checkAnswer(true));
+document.getElementById("hint-btn").addEventListener("click", () => {
+  document.getElementById("hint-box").classList.remove("hidden");
+});
 document.getElementById("self-ok-btn").addEventListener("click", () => judgeSelf(true));
 document.getElementById("self-ng-btn").addEventListener("click", () => judgeSelf(false));
 document.getElementById("next-btn").addEventListener("click", nextQuestion);
@@ -1380,7 +2234,9 @@ document.getElementById("back-home-btn").addEventListener("click", () => {
   startScreen.classList.remove("hidden");
 });
 document.getElementById("retry-all-btn").addEventListener("click", () => startQuiz());
-document.getElementById("retry-wrong-btn").addEventListener("click", () => startQuiz(wrongItems));
+document.getElementById("retry-wrong-btn").addEventListener("click", () => {
+  startQuiz(wrongRecords.map(r => r.item));
+});
 
 document.addEventListener("keydown", (e) => {
   if (quizScreen.classList.contains("hidden")) return;
@@ -1398,7 +2254,7 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-initUnitGrid();
+renderUnitGrid();
 </script>
 </body>
 </html>
