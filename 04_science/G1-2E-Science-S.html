@@ -1,0 +1,1504 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中1理科 2学期末テスト対策 4択ステップテスト（全40問）</title>
+<style>
+  :root {
+    --bg: #f4f6fb;
+    --card: #ffffff;
+    --primary: #1e40af;
+    --primary-dark: #1e3a8a;
+    --primary-light: #eff6ff;
+    --accent: #0f766e;
+    --text: #1e293b;
+    --muted: #64748b;
+    --border: #cbd5e1;
+    --ok: #16a34a;
+    --ok-bg: #f0fdf4;
+    --ng: #dc2626;
+    --ng-bg: #fef2f2;
+    --warn: #d97706;
+    --warn-bg: #fffbeb;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  header {
+    background: linear-gradient(135deg, #1e3a8a 0%, #0f766e 100%);
+    color: #fff;
+    padding: 18px 20px 16px;
+    box-shadow: 0 2px 10px rgba(30, 58, 138, 0.2);
+  }
+
+  .header-inner {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  .badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.18);
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    margin-bottom: 6px;
+  }
+
+  h1 {
+    margin: 0 0 4px;
+    font-size: 20px;
+    line-height: 1.35;
+  }
+
+  .subtitle {
+    margin: 0;
+    font-size: 13px;
+    opacity: 0.92;
+  }
+
+  .container {
+    max-width: 820px;
+    width: 100%;
+    margin: 18px auto 40px;
+    padding: 0 16px;
+    flex: 1;
+  }
+
+  .course-bar {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 12px 14px;
+    margin-bottom: 14px;
+    box-shadow: 0 1px 4px rgba(15, 23, 42, 0.06);
+    border: 1px solid #e2e8f0;
+  }
+
+  .filter-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .filter-btn {
+    border: 1px solid var(--border);
+    background: #fff;
+    color: var(--text);
+    padding: 5px 11px;
+    border-radius: 999px;
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .filter-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+  }
+
+  .filter-btn.active {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+  }
+
+  .progress-wrap {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 4px rgba(15, 23, 42, 0.04);
+  }
+
+  .progress-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13.5px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .progress-count {
+    color: var(--primary-dark);
+    font-size: 15px;
+  }
+
+  .progress-score {
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  .progress-track {
+    width: 100%;
+    height: 8px;
+    background: #e2e8f0;
+    border-radius: 999px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #2563eb, #10b981);
+    border-radius: 999px;
+    transition: width 0.25s ease;
+  }
+
+  .q-card {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 24px 24px 22px;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
+    border: 2px solid #e2e8f0;
+    transition: border-color 0.2s, background-color 0.2s;
+  }
+
+  .q-card.is-correct { border-color: #86efac; }
+  .q-card.is-wrong { border-color: #fca5a5; }
+
+  .q-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  .q-num {
+    font-weight: 800;
+    font-size: 14px;
+    color: var(--primary-dark);
+    background: var(--primary-light);
+    padding: 3px 11px;
+    border-radius: 6px;
+  }
+
+  .q-tag {
+    font-size: 12px;
+    font-weight: 600;
+    color: #475569;
+    background: #f1f5f9;
+    padding: 2px 9px;
+    border-radius: 6px;
+  }
+
+  .q-tag.important {
+    background: var(--warn-bg);
+    color: #b45309;
+    border: 1px solid #fde68a;
+  }
+
+  .q-status {
+    margin-left: auto;
+    font-size: 15px;
+    font-weight: 800;
+  }
+
+  .q-status.ok { color: var(--ok); }
+  .q-status.ng { color: var(--ng); }
+
+  .q-text {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.75;
+    margin: 0 0 16px;
+    white-space: pre-line;
+  }
+
+  .q-figure {
+    margin: 0 0 16px;
+    padding: 12px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    text-align: center;
+    overflow-x: auto;
+  }
+
+  .q-figure table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    font-size: 13.5px;
+    background: #ffffff;
+  }
+
+  .q-figure th,
+  .q-figure td {
+    border: 1px solid #cbd5e1;
+    padding: 6px 10px;
+    text-align: center;
+  }
+
+  .q-figure th {
+    background: #eff6ff;
+    color: #1e3a8a;
+  }
+
+  .choices {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .choice-btn {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    text-align: left;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1.5px solid var(--border);
+    background: #ffffff;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.5;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .choice-btn:hover:not(:disabled) {
+    border-color: #60a5fa;
+    background: #f8fafc;
+    transform: translateY(-1px);
+  }
+
+  .choice-btn:disabled {
+    cursor: default;
+  }
+
+  .choice-label {
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #f1f5f9;
+    color: #334155;
+    font-weight: 700;
+    font-size: 13px;
+  }
+
+  .choice-btn.correct {
+    background: var(--ok-bg);
+    border-color: var(--ok);
+    color: #14532d;
+    font-weight: 700;
+  }
+
+  .choice-btn.correct .choice-label {
+    background: var(--ok);
+    color: #ffffff;
+  }
+
+  .choice-btn.wrong {
+    background: var(--ng-bg);
+    border-color: var(--ng);
+    color: #7f1d1d;
+  }
+
+  .choice-btn.wrong .choice-label {
+    background: var(--ng);
+    color: #ffffff;
+  }
+
+  .answer-box {
+    display: none;
+    margin-top: 16px;
+    padding: 16px 18px;
+    background: #f8fafc;
+    border-left: 5px solid var(--primary);
+    border-radius: 10px;
+    animation: fadeIn 0.2s ease;
+  }
+
+  .answer-box.show { display: block; }
+  .answer-box.is-ok { background: var(--ok-bg); border-left-color: var(--ok); }
+  .answer-box.is-ng { background: var(--ng-bg); border-left-color: var(--ng); }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .answer-key {
+    font-weight: 800;
+    font-size: 15.5px;
+    margin-bottom: 6px;
+  }
+
+  .answer-box.is-ok .answer-key { color: #166534; }
+  .answer-box.is-ng .answer-key { color: #991b1b; }
+
+  .explain {
+    color: #334155;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .card-footer {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .left-actions, .right-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .btn {
+    font-family: inherit;
+    font-weight: 700;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    border: none;
+  }
+
+  .btn-next {
+    background: var(--accent);
+    color: #fff;
+    padding: 11px 24px;
+    font-size: 15px;
+    box-shadow: 0 2px 6px rgba(15, 118, 110, 0.25);
+  }
+
+  .btn-next:hover { background: #115e59; }
+
+  .btn-secondary {
+    background: #fff;
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 9px 14px;
+    font-size: 13.5px;
+    font-weight: 600;
+  }
+
+  .btn-secondary:hover { background: #f1f5f9; }
+  .btn-secondary:disabled { opacity: 0.45; cursor: not-allowed; }
+
+  .btn-primary {
+    background: var(--primary);
+    color: #fff;
+    padding: 11px 22px;
+    font-size: 14.5px;
+  }
+
+  .btn-primary:hover { background: var(--primary-dark); }
+
+  .key-tip {
+    margin-top: 10px;
+    font-size: 12px;
+    color: var(--muted);
+    text-align: right;
+  }
+
+  .jump-wrap {
+    margin-top: 18px;
+    background: var(--card);
+    border-radius: 12px;
+    padding: 14px 16px;
+    border: 1px solid #e2e8f0;
+  }
+
+  .jump-title {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  .jump-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .jump-dot {
+    width: 32px;
+    height: 30px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .jump-dot.current {
+    border-color: var(--primary);
+    background: var(--primary);
+    color: #fff;
+  }
+
+  .jump-dot.done-ok {
+    background: var(--ok-bg);
+    border-color: #86efac;
+    color: var(--ok);
+  }
+
+  .jump-dot.done-ng {
+    background: var(--ng-bg);
+    border-color: #fca5a5;
+    color: var(--ng);
+  }
+
+  .jump-dot.current.done-ok,
+  .jump-dot.current.done-ng {
+    box-shadow: 0 0 0 2px var(--primary);
+  }
+
+  .result-card {
+    display: none;
+    background: var(--card);
+    border-radius: 16px;
+    padding: 28px 24px;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
+    border: 2px solid var(--primary);
+    text-align: center;
+  }
+
+  .result-card.show { display: block; }
+
+  .result-score {
+    font-size: 42px;
+    font-weight: 900;
+    color: var(--primary-dark);
+    margin: 8px 0 4px;
+  }
+
+  .result-sub {
+    font-size: 15px;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+
+  .chapter-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
+    gap: 10px;
+    margin-bottom: 22px;
+    text-align: left;
+  }
+
+  .stat-chip {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  .result-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  @media (max-width: 560px) {
+    .q-card { padding: 18px 16px; }
+    .q-text { font-size: 15.5px; }
+    .choice-btn { font-size: 14.5px; padding: 10px 12px; }
+    .card-footer { flex-direction: column; align-items: stretch; }
+    .left-actions, .right-actions { justify-content: space-between; }
+    .btn-next { flex: 1; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="badge">中学1年生 理科 2学期末テスト対策</div>
+    <h1>「身のまわりの物質」1問1答 4択ステップテスト</h1>
+    <p class="subtitle">1問ずつ「選択 → 即答え合わせ・解説 → 次の問題へ」の順で集中演習できます（全40問）</p>
+  </div>
+</header>
+
+<div class="container">
+  <div class="course-bar">
+    <div class="filter-row" id="filterRow">
+      <button class="filter-btn active" data-filter="all">全範囲 (40問)</button>
+      <button class="filter-btn" data-filter="1">1章 物質の性質 (10)</button>
+      <button class="filter-btn" data-filter="2">2章 気体の性質 (8)</button>
+      <button class="filter-btn" data-filter="3">3章 水溶液 (11)</button>
+      <button class="filter-btn" data-filter="4">4章 状態変化・蒸留 (11)</button>
+      <button class="filter-btn" data-filter="important">重要・よく出るのみ</button>
+    </div>
+  </div>
+
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-top">
+      <span class="progress-count" id="progressCount">第 1 問 / 全 40 問</span>
+      <span class="progress-score" id="progressScore">正解: 0 問（解答済み: 0）</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill" style="width: 2.5%;"></div>
+    </div>
+  </div>
+
+  <div id="questionArea"></div>
+
+  <div class="result-card" id="resultCard">
+    <div style="font-size: 14px; font-weight: 700; color: #1e40af;">おつかれさまでした！</div>
+    <div class="result-score" id="resultScore">0点</div>
+    <div class="result-sub" id="resultSub">0問正解 / 40問中</div>
+    <div class="chapter-stats" id="chapterStats"></div>
+    <div class="result-actions">
+      <button class="btn btn-primary" id="retryWrongBtn" style="display:none;">間違えた問題だけ解き直す</button>
+      <button class="btn btn-secondary" id="restartBtn">最初からやり直す</button>
+    </div>
+  </div>
+
+  <div class="jump-wrap" id="jumpWrap">
+    <div class="jump-title">問題番号ジャンプ（クリックで移動）</div>
+    <div class="jump-grid" id="jumpGrid"></div>
+  </div>
+</div>
+
+<script>
+const allQuestions = [
+      // ================= 1章：いろいろな物質とその性質 (10問) =================
+      {
+        id: 1,
+        chapter: "1",
+        unit: "1章 ガスバーナーの使い方",
+        important: true,
+        text: "ガスバーナーに火をつけたところ、炎の色が赤色（オレンジ色）だった。青い炎に調節するための操作として正しいものはどれか。",
+        figure: `
+          <svg width="220" height="150" viewBox="0 0 220 150" aria-label="ガスバーナー">
+            <rect x="95" y="20" width="30" height="65" fill="#cbd5e1" stroke="#334155" stroke-width="2"/>
+            <rect x="88" y="65" width="44" height="14" rx="3" fill="#94a3b8" stroke="#334155" stroke-width="2"/>
+            <rect x="88" y="83" width="44" height="14" rx="3" fill="#64748b" stroke="#334155" stroke-width="2"/>
+            <path d="M75 120 L145 120 L135 100 L85 100 Z" fill="#475569" stroke="#334155" stroke-width="2"/>
+            <line x1="130" y1="90" x2="185" y2="90" stroke="#334155" stroke-width="6"/>
+            <text x="22" y="76" font-size="13" font-weight="bold" fill="#1e3a8a">Aのねじ →</text>
+            <text x="22" y="95" font-size="13" font-weight="bold" fill="#1e3a8a">Bのねじ →</text>
+          </svg>
+        `,
+        choices: [
+          "Bのねじをおさえたまま、Aのねじをさらに開ける。",
+          "Aのねじをおさえたまま、Bのねじをさらに開ける。",
+          "Bのねじをおさえたまま、Aのねじをしめる。",
+          "AのねじとBのねじの両方をしめる。"
+        ],
+        answer: 0,
+        explanation: "上のねじAが「空気調節ねじ」、下のねじBが「ガス調節ねじ」です。赤い炎は空気不足なので、ガス調節ねじ（B）が一緒に回らないようにおさえたまま、空気調節ねじ（A）をゆるめて（開けて）空気を多く入れます。消火するときは A → B → コック → 元栓 の順に閉めます。"
+      },
+      {
+        id: 2,
+        chapter: "1",
+        unit: "1章 物体と物質の区別",
+        important: false,
+        text: "「コップ」のように使う目的や形で区別したときの名称を何というか。また、「ガラス」や「プラスチック」のように材料で区別したときの名称を何というか。",
+        choices: [
+          "目的や形：物質 ／ 材料：物体",
+          "目的や形：物体 ／ 材料：物質",
+          "目的や形：純物質 ／ 材料：混合物",
+          "目的や形：有機物 ／ 材料：無機物"
+        ],
+        answer: 1,
+        explanation: "コップ・スプーン・机のように、形や使う目的で区別したものを「物体」、ガラス・プラスチック・鉄のように、物体をつくっている材料そのもので区別したものを「物質」といいます。"
+      },
+      {
+        id: 3,
+        chapter: "1",
+        unit: "1章 有機物と無機物",
+        important: true,
+        text: "砂糖・かたくり粉・食塩をそれぞれ燃焼さじで加熱し、燃えたものは石灰水を入れた集気びんに入れてよく振った。この実験結果について正しい説明はどれか。",
+        choices: [
+          "食塩は燃えて炭になり、石灰水を白くにごらせた。",
+          "砂糖とかたくり粉は炭素をふくむ無機物である。",
+          "かたくり粉が燃えたとき、集気びんの内側がくもったのは二酸化炭素ができたためである。",
+          "砂糖とかたくり粉は燃えて二酸化炭素と水が発生する有機物であり、食塩は燃えない無機物である。"
+        ],
+        answer: 3,
+        explanation: "砂糖・かたくり粉・エタノール・ろう・プラスチックのように、炭素をふくみ、燃えると二酸化炭素（石灰水を白くにごらせる）と水（集気びんの内側をくもらせる）が発生する物質を「有機物」といいます。食塩・鉄・ガラスなどは「無機物」です。"
+      },
+      {
+        id: 4,
+        chapter: "1",
+        unit: "1章 金属と非金属",
+        important: true,
+        text: "アルミニウム、銅、鉄などの金属に共通する性質として誤っているものはどれか。",
+        choices: [
+          "電気をよく通す（電気伝導性）",
+          "熱をよく伝える（熱伝導性）",
+          "すべての金属は磁石につく",
+          "みがくと特有の光沢が出たり、たたいて広げたり（展性）引きのばしたり（延性）できる"
+        ],
+        answer: 2,
+        explanation: "鉄（スチール缶など）は磁石につきますが、アルミニウム（アルミ缶）や銅、金などは磁石につきません。したがって「磁石につく」ことは金属共通の性質ではありません。"
+      },
+      {
+        id: 5,
+        chapter: "1",
+        unit: "1章 てんびんの使い方",
+        important: false,
+        text: "電子てんびんや上皿てんびんの使い方として正しいものはどれか。",
+        choices: [
+          "電子てんびんに薬包紙をのせたあと、表示を0にするスイッチを押してから薬品をはかりとる。",
+          "電子てんびんは、傾いた台の上でも水平に調整しなくてよい。",
+          "上皿てんびんは、指針が完全に止まるまで待たないとつり合ったか確認できない。",
+          "上皿てんびんを使うとき、薬品は直接うでの皿の上にのせてはかる。"
+        ],
+        answer: 0,
+        explanation: "電子てんびんも上皿てんびんも必ず水平な台に置いて使います。電子てんびんでは薬包紙をのせた後に0点スイッチを押します。上皿てんびんは指針が左右に同じ幅だけ振れればつり合っています（薬品をはかるときは薬包紙を両方の皿にのせます）。"
+      },
+      {
+        id: 6,
+        chapter: "1",
+        unit: "1章 メスシリンダーの使い方",
+        important: false,
+        text: "メスシリンダーで液体の体積をはかるとき、目の位置と目盛りの読み方として正しいものはどれか。",
+        choices: [
+          "液面の上のふちを斜め上から見て、最小目盛りの10分の1まで読む。",
+          "液面のいちばん低いところ（平らな部分）を真横から見て、最小目盛りの10分の1まで目分量で読む。",
+          "液面のいちばん低いところを真横から見て、最小目盛りの単位で四捨五入して読む。",
+          "液面の上のふちを真横から見て、最小目盛りの2分の1まで読む。"
+        ],
+        answer: 1,
+        explanation: "メスシリンダーは水平な台に置き、液面のいちばん低いところと目の高さを同じにして（真横から）見ます。目盛りは最小目盛りの10分の1まで目分量で読みとります（例：1cm³刻みなら0.1cm³の位まで）。"
+      },
+      {
+        id: 7,
+        chapter: "1",
+        unit: "1章 密度の計算",
+        important: true,
+        text: "100cm³のメスシリンダーに50.0cm³の目盛りまで水を入れ、質量31.36gの金属Xを完全に沈めたところ、水面が53.5cm³になった。金属Xの密度と種類（下の表）の組み合わせとして正しいものはどれか。",
+        figure: `
+          <table>
+            <tr><th>物質</th><th>亜鉛</th><th>鉄</th><th>銅</th><th>銀</th></tr>
+            <tr><td>密度 [g/cm³]</td><td>7.13</td><td>7.87</td><td>8.96</td><td>10.50</td></tr>
+          </table>
+        `,
+        choices: [
+          "7.13 g/cm³（亜鉛）",
+          "7.87 g/cm³（鉄）",
+          "8.96 g/cm³（銅）",
+          "10.50 g/cm³（銀）"
+        ],
+        answer: 2,
+        explanation: "金属Xの体積＝ 53.5 - 50.0 = 3.5 cm³。密度＝質量[g] ÷ 体積[cm³] ＝ 31.36 ÷ 3.5 ＝ 8.96 g/cm³。表より8.96 g/cm³は「銅」です。"
+      },
+      {
+        id: 8,
+        chapter: "1",
+        unit: "1章 密度による物質の区別",
+        important: false,
+        text: "金（19.3 g/cm³）、銀（10.5 g/cm³）、銅（8.96 g/cm³）、鉄（7.87 g/cm³）、アルミニウム（2.70 g/cm³）について、同じ質量で比べたとき、もっとも体積が大きいものはどれか。",
+        choices: [
+          "金",
+          "銀",
+          "鉄",
+          "アルミニウム"
+        ],
+        answer: 3,
+        explanation: "体積＝質量 ÷ 密度 なので、同じ質量であれば「密度がいちばん小さい物質」ほど体積が大きくなります。したがって、2.70 g/cm³のアルミニウムがもっとも体積が大きくなります。"
+      },
+      {
+        id: 9,
+        chapter: "1",
+        unit: "1章 密度と浮き沈み",
+        important: true,
+        text: "水（密度1.0 g/cm³）と油（密度0.91 g/cm³）を入れたビーカーに、静かに氷（密度0.92 g/cm³）を入れた。氷はどの位置で止まるか。",
+        figure: `
+          <svg width="160" height="140" viewBox="0 0 160 140" aria-label="水と油のビーカー">
+            <rect x="35" y="15" width="70" height="110" fill="none" stroke="#334155" stroke-width="2.5"/>
+            <rect x="36" y="35" width="68" height="42" fill="#fef08a" opacity="0.75"/>
+            <rect x="36" y="77" width="68" height="47" fill="#bfdbfe" opacity="0.85"/>
+            <text x="112" y="42" font-size="12" fill="#334155">ア（油の上）</text>
+            <text x="112" y="79" font-size="12" fill="#334155">イ（油と水の間）</text>
+            <text x="112" y="115" font-size="12" fill="#334155">ウ（水の底）</text>
+            <text x="58" y="60" font-size="12" fill="#854d0e">油</text>
+            <text x="58" y="105" font-size="12" fill="#1e40af">水</text>
+          </svg>
+        `,
+        choices: [
+          "ア（油の上面に浮く）",
+          "イ（油に沈み、水の上面に浮く）",
+          "ウ（水の底に沈む）",
+          "水と油のどちらにも浮きも沈みもしない"
+        ],
+        answer: 1,
+        explanation: "密度を比較すると「油(0.91) ＜ 氷(0.92) ＜ 水(1.0)」です。氷は油より密度が大きいので油に沈みますが、水より密度が小さいので水に浮きます。よって油と水の間（イ）で止まります。"
+      },
+      {
+        id: 10,
+        chapter: "1",
+        unit: "1章 入試問題（密度の応用）",
+        important: true,
+        text: "体積が500 cm³のガラスびんに砂を入れてキャップを閉めた物体をつくった。この物体を水（密度1.0 g/cm³）に入れると沈み、海水（密度1.05 g/cm³）に入れると浮いた。この物体の質量として正しいものはどれか。",
+        choices: [
+          "450 g",
+          "500 g",
+          "510 g",
+          "550 g"
+        ],
+        answer: 2,
+        explanation: "水に沈むので物体の密度は 1.0 g/cm³ より大きく（質量 ＞ 500×1.0＝500g）、海水に浮くので密度は 1.05 g/cm³ より小さい（質量 ＜ 500×1.05＝525g）。500gより大きく525gより小さいのは「510 g」です。"
+      },
+
+      // ================= 2章：いろいろな気体とその性質 (8問) =================
+      {
+        id: 11,
+        chapter: "2",
+        unit: "2章 気体の集め方",
+        important: true,
+        text: "気体の集め方（水上置換法・上方置換法・下方置換法）と気体の性質の組み合わせとして正しいものはどれか。",
+        choices: [
+          "水上置換法：水にとけにくく、空気より重い気体だけを集める。",
+          "上方置換法：水にとけやすく、密度が空気より小さい気体を集める。",
+          "下方置換法：水にとけにくく、密度が空気より大きい気体を集める。",
+          "水上置換法：集めた気体に空気が混ざりやすい方法である。"
+        ],
+        answer: 1,
+        explanation: "水上置換法は「水にとけにくい気体」を集める方法で、純粋な気体を集めやすく集まった量もわかりやすいのが特徴です。水にとけやすい気体のうち、空気より軽いものは「上方置換法」、空気より重いものは「下方置換法」で集めます。"
+      },
+      {
+        id: 12,
+        chapter: "2",
+        unit: "2章 気体の発生方法",
+        important: true,
+        text: "酸素、二酸化炭素、水素を発生させる薬品の組み合わせとして正しいものはどれか。",
+        choices: [
+          "酸素：石灰石 ＋ うすい塩酸",
+          "二酸化炭素：二酸化マンガン ＋ うすい過酸化水素水",
+          "水素：亜鉛 ＋ うすい塩酸",
+          "水素：塩化アンモニウム ＋ 水酸化カルシウム"
+        ],
+        answer: 2,
+        explanation: "酸素＝二酸化マンガン＋うすい過酸化水素水（オキシドール）、二酸化炭素＝石灰石（卵の殻）＋うすい塩酸、水素＝亜鉛（鉄などの金属）＋うすい塩酸、アンモニア＝塩化アンモニウム＋水酸化カルシウム（加熱）です。"
+      },
+      {
+        id: 13,
+        chapter: "2",
+        unit: "2章 酸素の性質と実験操作",
+        important: false,
+        text: "水上置換法で酸素を集めるとき、はじめに出てきた試験管1〜2本分の気体を捨てる理由と、酸素を集めた試験管に火のついた線香を入れたときの結果として正しいものはどれか。",
+        choices: [
+          "理由：はじめにガラス管やフラスコ内の空気が多くふくまれるから ／ 線香：激しく燃える",
+          "理由：はじめに出てくる気体は水にとけやすいから ／ 線香：激しく燃える",
+          "理由：はじめに空気が多くふくまれるから ／ 線香：火が消える",
+          "理由：はじめに出てくる気体は水素が混ざっているから ／ 線香：音を立てて燃える"
+        ],
+        answer: 0,
+        explanation: "反応開始直後の試験管には、もともと発生装置（フラスコやガラス管）の中にあった空気が多く含まれているため、1〜2本目は捨てます。酸素にはものを燃やすはたらき（助燃性）があるため、火のついた線香は激しく燃えます。"
+      },
+      {
+        id: 14,
+        chapter: "2",
+        unit: "2章 二酸化炭素の性質",
+        important: false,
+        text: "二酸化炭素の性質として誤っているものはどれか。",
+        choices: [
+          "石灰水を白くにごらせる。",
+          "水にとけやすく、水上置換法では集められない。",
+          "水に少しとけ、その水溶液は酸性を示す。",
+          "密度は空気より大きく、下方置換法でも集めることができる。"
+        ],
+        answer: 1,
+        explanation: "二酸化炭素は水に「少し」とけますが、発生量が多ければ水上置換法で集めることができます（水に溶けにくいか少し溶けるレベル）。また空気より重いので下方置換法でも集められ、水溶液は弱い酸性を示します。"
+      },
+      {
+        id: 15,
+        chapter: "2",
+        unit: "2章 アンモニアの性質",
+        important: true,
+        text: "アンモニアを集めたフラスコにフェノールフタレイン溶液を加えた水をスポイトで少し入れると、赤い噴水ができた。この実験からわかるアンモニアの性質の組み合わせとして正しいものはどれか。",
+        choices: [
+          "水にとけやすく、水溶液は酸性を示す。",
+          "水にとけにくく、水溶液はアルカリ性を示す。",
+          "水にとけやすく、水溶液はアルカリ性を示す。",
+          "水にとけやすく、水溶液は中性を示す。"
+        ],
+        answer: 2,
+        explanation: "少量の水に大量のアンモニアが一気にとけてフラスコ内の圧力が下がるため、ビーカーの水が吸い上げられて噴水になります（＝水によく溶ける）。また、フェノールフタレイン溶液が赤色に変化したことから「アルカリ性」であることがわかります。湿らせた赤色リトマス紙は青色に変わります。"
+      },
+      {
+        id: 16,
+        chapter: "2",
+        unit: "2章 水素の性質",
+        important: false,
+        text: "水素の性質と安全性について正しい説明はどれか。",
+        choices: [
+          "すべての物質の中で密度がもっとも大きく、火をつけると消える。",
+          "気体の中で密度がもっとも小さく、火をつけると音を立てて燃え、水ができる。",
+          "刺激臭があり、水によく溶けるため上方置換法で集める。",
+          "空気中に体積で約78％ふくまれており、燃えにくい。"
+        ],
+        answer: 1,
+        explanation: "水素は気体の中で密度がもっとも小さく（空気よりずっと軽い）、水にとけにくいため水上置換法で集めます。また、燃えやすい性質があり、火をつけるとポンッと音を立てて燃え、水ができます。"
+      },
+      {
+        id: 17,
+        chapter: "2",
+        unit: "2章 窒素の性質",
+        important: false,
+        text: "空気中に体積で約78％ふくまれ、ふつうの温度では他の物質と反応しにくいため、スナック菓子の袋に酸化防止用として詰められる気体はどれか。",
+        choices: [
+          "酸素",
+          "二酸化炭素",
+          "窒素",
+          "アンモニア"
+        ],
+        answer: 2,
+        explanation: "空気の約78％を占めるのは「窒素」（約21％は酸素）です。窒素はふつうの温度では変化しにくいため、食品の酸化を防ぐための封入ガスとして利用されます。"
+      },
+      {
+        id: 18,
+        chapter: "2",
+        unit: "2章 身のまわりのものからの気体発生",
+        important: false,
+        text: "次のA〜Dのうち、発生する気体が「二酸化炭素」であるものの組み合わせはどれか。\nA：発泡入浴剤に約60℃の湯を加える\nB：酸素系漂白剤に約60℃の湯を加える\nC：卵の殻に食酢を加える\nD：ダイコンおろしにオキシドールを加える",
+        choices: [
+          "A と B",
+          "A と C",
+          "B と D",
+          "C と D"
+        ],
+        answer: 1,
+        explanation: "発泡入浴剤＋湯（A）と、卵の殻＋食酢（C）からは「二酸化炭素」が発生します。酸素系漂白剤＋湯（B）と、ダイコンおろし＋オキシドール（D）からは「酸素」が発生します。発生させる方法が違っても、同じ気体であれば性質は同じです。"
+      },
+
+      // ================= 3章：水溶液の性質 (11問) =================
+      {
+        id: 19,
+        chapter: "3",
+        unit: "3章 水溶液の用語",
+        important: false,
+        text: "砂糖を水に溶かして砂糖水をつくったとき、「砂糖」「水」「砂糖水」をそれぞれ何というか。",
+        choices: [
+          "砂糖：溶媒 ／ 水：溶質 ／ 砂糖水：溶液",
+          "砂糖：溶質 ／ 水：溶媒 ／ 砂糖水：溶液（水溶液）",
+          "砂糖：溶液 ／ 水：溶媒 ／ 砂糖水：溶質",
+          "砂糖：溶質 ／ 水：溶液 ／ 砂糖水：飽和"
+        ],
+        answer: 1,
+        explanation: "液体にとけている物質（砂糖）を「溶質」、溶質をとかしている液体（水）を「溶媒」、溶質が溶媒にとけた液全体（砂糖水）を「溶液」といいます。溶媒が水の溶液はとくに「水溶液」といいます。"
+      },
+      {
+        id: 20,
+        chapter: "3",
+        unit: "3章 水溶液と粒子のモデル",
+        important: true,
+        text: "ビーカーに入れた水に砂糖を入れてラップでふたをし、3日間放置して砂糖を完全にとかした。とける前（水＋砂糖＋ビーカー）と、とけた後（水溶液＋ビーカー）のようすとして正しいものはどれか。",
+        choices: [
+          "砂糖の粒子は底の方にかたまっており、全体の質量は軽くなる。",
+          "砂糖の粒子は目に見える大きさで水中に浮いており、全体の質量は重くなる。",
+          "砂糖の粒子は水の中でまばらに均一に広がっており、全体の質量は変わらない。",
+          "さらに3日間放置すると、砂糖が底に沈んでくる。"
+        ],
+        answer: 2,
+        explanation: "水溶液では、溶質の粒子が非常に小さいため目に見えず（透明）、水の中でまばらに均一に広がっています。時間がたっても濃さは変わらず、溶かす前後で全体の質量も変わりません。"
+      },
+      {
+        id: 21,
+        chapter: "3",
+        unit: "3章 質量パーセント濃度の計算",
+        important: true,
+        text: "水120gに砂糖40gをすべてとかした砂糖水の質量パーセント濃度は何％か。",
+        choices: [
+          "20％",
+          "25％",
+          "30％",
+          "33.3％"
+        ],
+        answer: 1,
+        explanation: "質量パーセント濃度[％] ＝ 溶質[g] ÷ 溶液[g] × 100 です。溶液（砂糖水）全体の質量は「水120g ＋ 砂糖40g ＝ 160g」になります（120gで割らないように注意！）。40 ÷ 160 × 100 ＝ 25％。"
+      },
+      {
+        id: 22,
+        chapter: "3",
+        unit: "3章 質量パーセント濃度の応用",
+        important: false,
+        text: "質量パーセント濃度が15％の塩化ナトリウム水溶液を100gつくるには、塩化ナトリウムと水をそれぞれ何gずつ用意すればよいか。",
+        choices: [
+          "塩化ナトリウム 15g、水 100g",
+          "塩化ナトリウム 15g、水 85g",
+          "塩化ナトリウム 13g、水 87g",
+          "塩化ナトリウム 20g、水 80g"
+        ],
+        answer: 1,
+        explanation: "溶液100gの15％が塩化ナトリウムなので、塩化ナトリウム＝ 100 × 0.15 ＝ 15g。残りが水なので、水＝ 100 - 15 ＝ 85g になります。"
+      },
+      {
+        id: 23,
+        chapter: "3",
+        unit: "3章 濃度の調整（うすめる）",
+        important: true,
+        text: "質量パーセント濃度が20％の砂糖水Bが150gある。この砂糖水Bの質量パーセント濃度を15％にするには、砂糖と水のどちらを何g加えればよいか。",
+        choices: [
+          "水を 50g 加える",
+          "水を 15g 加える",
+          "砂糖を 15g 加える",
+          "水を 30g 加える"
+        ],
+        answer: 0,
+        explanation: "まず砂糖水B（150g, 20%）に含まれる砂糖は 150 × 0.20 ＝ 30g です。濃度を20%から15%へうすめたいので「水」を加えます。砂糖30gが15%になる溶液全体の質量は 30 ÷ 0.15 ＝ 200g。もとは150gなので、加える水は 200 - 150 ＝ 50g です。"
+      },
+      {
+        id: 24,
+        chapter: "3",
+        unit: "3章 入試問題（濃度計算）",
+        important: true,
+        text: "1kg（1000g）の水に食塩を加えて、日本近海の平均的な塩分濃度と同じ3.5％の食塩水をつくりたい。加える食塩の質量として最も適切なものはどれか。",
+        choices: [
+          "3.5 g",
+          "35 g",
+          "36.3 g",
+          "363 g"
+        ],
+        answer: 2,
+        explanation: "加える食塩を x gとすると、食塩水全体の質量は (1000 + x) gになります。x ÷ (1000 + x) × 100 ＝ 3.5 より、100x ＝ 3500 + 3.5x → 96.5x ＝ 3500 → x ＝ 3500 ÷ 96.5 ≒ 36.269... ≒ 36.3 g。"
+      },
+      {
+        id: 25,
+        chapter: "3",
+        unit: "3章 飽和と溶解度",
+        important: false,
+        text: "一定量の水に限界まで溶質がとけている状態を何というか。また、100gの水に物質をとかしてその状態の水溶液にしたとき、とけた溶質の質量の値を何というか。",
+        choices: [
+          "状態：飽和 ／ とけた質量：溶解度",
+          "状態：再結晶 ／ とけた質量：溶解度曲線",
+          "状態：飽和 ／ とけた質量：質量パーセント濃度",
+          "状態：ろ過 ／ とけた質量：結晶"
+        ],
+        answer: 0,
+        explanation: "限界まで溶質がとけている状態を「飽和」、その水溶液を「飽和水溶液」といいます。100gの水にとける物質の最大質量を「溶解度」といいます。"
+      },
+      {
+        id: 26,
+        chapter: "3",
+        unit: "3章 ろ過の操作",
+        important: false,
+        text: "ろ過の操作で正しいやり方として誤っているものはどれか。",
+        choices: [
+          "ろ過する液体は、ガラス棒に伝わらせて静かにろうとに注ぐ。",
+          "ろうとの足の切り口の長いほうを、ビーカーの壁につける。",
+          "ろうとの中に注ぐ液体の量は、ろ紙のふちすれすれまで入れる。",
+          "ろ紙を通りぬけるのは、ろ紙の穴よりも小さい粒子である。"
+        ],
+        answer: 2,
+        explanation: "ろうとに注ぐ液は「ろ紙のふちより少し下（8分目程度）」までにとどめます。ふちを超えると、ろ紙の外側から未ろ過の液が流れ落ちてしまいます。切り口の長いほうをビーカーの壁につけるのは、液がはねるのを防ぐためです。"
+      },
+      {
+        id: 27,
+        chapter: "3",
+        unit: "3章 再結晶と物質の取り出し方",
+        important: true,
+        text: "塩化ナトリウムと硝酸カリウム（またはミョウバン）の飽和水溶液を水で冷やしたとき、塩化ナトリウムの結晶がほとんど出てこない理由と、塩化ナトリウムを多く取り出す方法の組み合わせとして正しいものはどれか。",
+        choices: [
+          "理由：温度を下げると溶解度が大きくなるから ／ 方法：さらに冷やす",
+          "理由：温度を変えても溶解度があまり変わらないから ／ 方法：水を蒸発させる",
+          "理由：塩化ナトリウムは純物質ではないから ／ 方法：ろ過する",
+          "理由：塩化ナトリウムは温度を下げても溶け残るから ／ 方法：かき混ぜる"
+        ],
+        answer: 1,
+        explanation: "硝酸カリウムやミョウバンは温度による溶解度の変化が大きいため「冷却」で多くの結晶を取り出せます（再結晶）。一方、塩化ナトリウムは温度が変わっても溶解度がほとんど変わらないため、冷却しても結晶が出にくく、「水を蒸発させる」方法が適しています。"
+      },
+      {
+        id: 28,
+        chapter: "3",
+        unit: "3章 溶解度の表・グラフの読み取り",
+        important: true,
+        text: "下の表を参考にして、60℃の水100gに硝酸カリウムを46gとかして水溶液をつくった。この水溶液を20℃まで冷やしたとき、出てくる固体の質量は何gか。",
+        figure: `
+          <table>
+            <tr><th>水の温度 [℃]</th><th>0</th><th>10</th><th>20</th><th>30</th><th>40</th><th>50</th><th>60</th></tr>
+            <tr><td>硝酸カリウムの溶解度 [g]</td><td>13</td><td>22</td><td>32</td><td>46</td><td>64</td><td>85</td><td>109</td></tr>
+          </table>
+        `,
+        choices: [
+          "14 g",
+          "24 g",
+          "32 g",
+          "63 g"
+        ],
+        answer: 0,
+        explanation: "60℃の溶解度は109gなので46gはすべて溶けます（30℃で飽和水溶液になります）。さらに20℃まで冷やすと、20℃では32gまでしか溶けないため、46g - 32g ＝ 14g の結晶が出てきます。"
+      },
+      {
+        id: 29,
+        chapter: "3",
+        unit: "3章 混合物と純物質",
+        important: false,
+        text: "次のうち、「純物質」に分類されるものの組み合わせはどれか。\nア：水　イ：空気　ウ：海水　エ：エタノール　オ：10円硬貨",
+        choices: [
+          "ア と エ",
+          "イ と ウ",
+          "ア と ウ",
+          "エ と オ"
+        ],
+        answer: 0,
+        explanation: "1種類の物質でできているのが「純物質」（水、エタノール、塩化ナトリウム、二酸化炭素など）、複数の物質が混ざり合っているのが「混合物」（空気、海水、10円硬貨、塩酸など）です。"
+      },
+
+      // ================= 4章：物質のすがたとその変化 (11問) =================
+      {
+        id: 30,
+        chapter: "4",
+        unit: "4章 状態変化の性質",
+        important: false,
+        text: "物質が温度によって固体・液体・気体の間で状態を変えることを状態変化という。状態変化が起こったとき、物質の種類や全体の質量はどうなるか。",
+        choices: [
+          "別の物質に変わり、質量も変わる。",
+          "別の物質に変わるが、質量は変わらない。",
+          "別の物質には変わらないが、質量は変わる。",
+          "別の物質には変わらず、質量も変わらない。"
+        ],
+        answer: 3,
+        explanation: "状態変化は物質の「すがた」が変わるだけで、物質そのものが別の物質に変わるわけではありません。また、閉じ込めた容器の中で状態変化させても、粒子の数は変わらないので全体の質量は変化しません。"
+      },
+      {
+        id: 31,
+        chapter: "4",
+        unit: "4章 ろうの状態変化と体積・密度",
+        important: true,
+        text: "液体のろうを入れたビーカーを冷やして固体に変化させた。液体のときと比べて、固体のろうの「質量」「体積」「密度」はそれぞれどうなるか。",
+        choices: [
+          "質量：変わらない ／ 体積：大きくなる ／ 密度：小さくなる",
+          "質量：変わらない ／ 体積：小さくなる ／ 密度：大きくなる",
+          "質量：小さくなる ／ 体積：小さくなる ／ 密度：変わらない",
+          "質量：変わらない ／ 体積：変わらない ／ 密度：変わらない"
+        ],
+        answer: 1,
+        explanation: "ふつうの物質は「気体 → 液体 → 固体」と冷えて状態変化すると、質量は変わらずに体積が小さくなります（ろうの表面の中央がへこみます）。体積が小さくなり質量は同じなので、密度（質量÷体積）は大きくなります。"
+      },
+      {
+        id: 32,
+        chapter: "4",
+        unit: "4章 水の状態変化の例外",
+        important: true,
+        text: "寒い冬に湖の水面付近が凍っても、氷の下の魚が生きている理由の説明として正しいものはどれか。",
+        choices: [
+          "水は液体から固体になると体積が小さくなり、氷が湖の底に沈むため。",
+          "氷は水より密度が小さく、水に浮くため、湖の下の冷たい空気にふれにくくなり凍りにくくなるため。",
+          "氷は水より密度が大きく、氷が水の下に沈んで魚を守るため。",
+          "水は状態変化しても体積がまったく変わらないため。"
+        ],
+        answer: 1,
+        explanation: "水は例外的に、液体から固体（氷）になると体積が大きくなり、密度が小さく（約0.92 g/cm³）なります。そのため氷が水面に浮き、ふたのような役割をして下の水が冷たい空気にふれにくくなり、底まで凍らず魚が生きられます。"
+      },
+      {
+        id: 33,
+        chapter: "4",
+        unit: "4章 状態変化と粒子のモデル",
+        important: true,
+        text: "ポリエチレンの袋に液体のエタノールを少量入れて密封し、熱湯をかけると袋が大きくふくらんだ。このとき、袋の中のエタノールの「粒子の数」「粒子の運動の激しさ」「粒子どうしの間隔」は加熱前と比べてどう変化したか。",
+        choices: [
+          "粒子の数：増加した ／ 運動：激しくなった ／ 間隔：大きくなった",
+          "粒子の数：変化しなかった ／ 運動：激しくなった ／ 間隔：大きくなった",
+          "粒子の数：変化しなかった ／ 運動：激しくなった ／ 間隔：変化しなかった",
+          "粒子の数：増加した ／ 運動：変化しなかった ／ 間隔：大きくなった"
+        ],
+        answer: 1,
+        explanation: "密封された袋の中なので粒子の「数」は変わりません。熱湯で加熱されて液体から気体に状態変化すると、粒子の運動が激しくなり、粒子どうしの間隔が大きくなるため体積が増えて袋がふくらみます。"
+      },
+      {
+        id: 34,
+        chapter: "4",
+        unit: "4章 エタノールの沸騰実験と安全操作",
+        important: true,
+        text: "試験管に入れたエタノールを加熱して沸騰させる実験で、①湯浴み（水浴）で温める理由、②沸騰石を入れる理由、③火を消す前にガラス管の先端を試験管の液体から抜く理由、の組み合わせとして正しいものはどれか。",
+        choices: [
+          "①引火しやすいから ／ ②突沸を防ぐため ／ ③液体の逆流を防ぐため",
+          "①沸騰しやすいから ／ ②気体を発生させるため ／ ③引火を防ぐため",
+          "①引火しやすいから ／ ②沸点を下げるため ／ ③試験管が割れるのを防ぐため（蒸発防止）",
+          "①温度を100℃にするため ／ ②突沸を防ぐため ／ ③エタノールが逃げるのを防ぐため"
+        ],
+        answer: 0,
+        explanation: "エタノールは引火しやすい性質があるため直接ガスバーナーで加熱せず、湯で温めます。沸騰石は「急な沸騰（突沸）」を防ぐために入れます。火を消す前にガラス管を抜かないと、温度が下がって試験管内の圧力が下がり、冷えた液体が逆流して加熱されたフラスコ等が割れる危険があります。"
+      },
+      {
+        id: 35,
+        chapter: "4",
+        unit: "4章 沸点・融点と加熱グラフ",
+        important: true,
+        text: "下の図は、氷を加熱して水、さらに水蒸気に変化させたときの温度変化のグラフである。グラフのA、Bの温度の名称と、加熱する氷の質量を増やしたときのA、Bの温度変化として正しいものはどれか。",
+        figure: `
+          <svg width="260" height="150" viewBox="0 0 260 150" aria-label="水の加熱グラフ">
+            <line x1="40" y1="125" x2="240" y2="125" stroke="#334155" stroke-width="2"/>
+            <line x1="40" y1="15" x2="40" y2="125" stroke="#334155" stroke-width="2"/>
+            <polyline points="40,120 65,100 110,100 165,35 215,35 235,20" fill="none" stroke="#dc2626" stroke-width="2.5"/>
+            <line x1="40" y1="100" x2="65" y2="100" stroke="#94a3b8" stroke-dasharray="3,3"/>
+            <line x1="40" y1="35" x2="165" y2="35" stroke="#94a3b8" stroke-dasharray="3,3"/>
+            <text x="20" y="104" font-size="13" font-weight="bold" fill="#1e3a8a">B</text>
+            <text x="20" y="39" font-size="13" font-weight="bold" fill="#1e3a8a">A</text>
+            <text x="125" y="143" font-size="12" fill="#475569">加熱時間 [分]</text>
+            <text x="82" y="94" font-size="11" fill="#475569">C(平ら)</text>
+            <text x="180" y="29" font-size="11" fill="#475569">D(平ら)</text>
+          </svg>
+        `,
+        choices: [
+          "A：融点、B：沸点 ／ 質量を増やすとA・Bの温度は高くなる。",
+          "A：沸点、B：融点 ／ 質量を増やすとA・Bの温度は変わらない。",
+          "A：沸点、B：融点 ／ 質量を増やすとA・Bの温度は高くなる。",
+          "A：融点、B：沸点 ／ 質量を増やすとA・Bの温度は変わらない。"
+        ],
+        answer: 1,
+        explanation: "固体がとけて液体になる温度Bが「融点」（水は0℃）、液体が沸騰して気体になる温度Aが「沸点」（水は100℃）です。融点・沸点は物質の種類によって決まっているため、加熱する質量を増やしても温度は変わりません（状態変化にかかる時間は長くなります）。"
+      },
+      {
+        id: 36,
+        chapter: "4",
+        unit: "4章 融点・沸点と物質の状態",
+        important: false,
+        text: "下の表は4種類の物質の融点と沸点をまとめたものである。20℃のときに「液体」であるものの組み合わせとして正しいものはどれか。",
+        figure: `
+          <table>
+            <tr><th>物質</th><th>水</th><th>塩化ナトリウム</th><th>パルミチン酸</th><th>エタノール</th></tr>
+            <tr><td>融点 [℃]</td><td>0</td><td>801</td><td>63</td><td>-115</td></tr>
+            <tr><td>沸点 [℃]</td><td>100</td><td>1485</td><td>360</td><td>78</td></tr>
+          </table>
+        `,
+        choices: [
+          "水 と パルミチン酸",
+          "塩化ナトリウム と パルミチン酸",
+          "水 と エタノール",
+          "エタノール だけ"
+        ],
+        answer: 2,
+        explanation: "「融点 ＜ 20℃ ＜ 沸点」であれば20℃で液体です。水（0＜20＜100）とエタノール（-115＜20＜78）が液体です。塩化ナトリウムとパルミチン酸は20℃が融点より低いので固体です。"
+      },
+      {
+        id: 37,
+        chapter: "4",
+        unit: "4章 混合物の加熱グラフ",
+        important: true,
+        text: "水とエタノールの混合物を加熱して沸騰させたときの温度変化について、純粋な水やエタノールと比べた特徴として正しいものはどれか。",
+        choices: [
+          "78℃でしばらく一定になり、その後100℃で一定になる。",
+          "沸騰がはじまってからも温度は一定にならず、ゆるやかに上がり続ける。",
+          "常に100℃で一定のまま沸騰し続ける。",
+          "エタノールよりも低い温度で一定になる。"
+        ],
+        answer: 1,
+        explanation: "純粋な物質（純物質）は沸騰している間温度が一定になりますが、水とエタノールの混合物のように混合物を加熱すると、沸点が一定にならず沸騰中も温度が上がり続けます。"
+      },
+      {
+        id: 38,
+        chapter: "4",
+        unit: "4章 蒸留の実験結果",
+        important: true,
+        text: "水とエタノールの混合物を蒸留し、出てきた液体を順に試験管a（80〜92℃）、b（92〜99℃）、c（99〜100℃）に集めた。試験管a〜cの液体の性質について正しいものはどれか。",
+        choices: [
+          "試験管cにいちばんエタノールが多くふくまれ、火をつけるとすぐ燃える。",
+          "試験管aにいちばんエタノールが多くふくまれ、強いにおいがして火をつけるとよく燃える。",
+          "試験管a・b・cのどれも、エタノールの割合はまったく同じである。",
+          "蒸留では沸点の高い水から先に気体になって出てくる。"
+        ],
+        answer: 1,
+        explanation: "エタノールの沸点（約78℃）は水の沸点（100℃）より低いため、加熱すると最初にエタノールが多く気体になって出てきます。したがって最初に集めた試験管aにエタノールが最も多く含まれ、強いにおいがして火をよく燃やします。"
+      },
+      {
+        id: 39,
+        chapter: "4",
+        unit: "4章 蒸留の応用（赤ワイン・石油）",
+        important: false,
+        text: "蒸留のしくみを利用した「石油の分留（原油の分離）」では、加熱して気体にした原油を塔の中で冷やして分離する。沸点が低いものほど高い位置で冷やされて液体になる。下から上に向かって「重油→軽油→灯油→ガソリン」の順に液体になるとき、沸点がもっとも低いものはどれか。",
+        choices: [
+          "重油",
+          "軽油",
+          "灯油",
+          "ガソリン"
+        ],
+        answer: 3,
+        explanation: "沸点が低いものほど低い温度になるまで気体のまま塔の上の方へ上がり、上の方で冷やされて液体になります。したがって一番上の棚で取り出される「ガソリン」が、この4つの中で最も沸点が低い物質です。"
+      },
+      {
+        id: 40,
+        chapter: "4",
+        unit: "4章 状態変化の総合（グラフの状態判断）",
+        important: false,
+        text: "先ほどのQ35の「水の加熱グラフ」において、温度が0℃で平らになっている区間Cと、0℃〜100℃で温度が上がっている区間（CとDの間）では、それぞれどのような状態になっているか。",
+        choices: [
+          "区間C：すべて氷 ／ CとDの間：水と水蒸気",
+          "区間C：氷と水 ／ CとDの間：すべて水",
+          "区間C：すべて水 ／ CとDの間：氷と水",
+          "区間C：氷と水 ／ CとDの間：水と水蒸気"
+        ],
+        answer: 1,
+        explanation: "0℃で温度が一定の区間Cは、氷がとけて水に変わりつつある状態なので「氷と水」が混ざっています。すべてとけ終わると温度が上がりはじめ（CとDの間）、ここは「すべて水（液体）」の状態です。100℃の区間Dでは「水と水蒸気」が混ざっています。"
+      }
+    ];
+
+const labels = ["ア", "イ", "ウ", "エ"];
+
+const state = {
+  filter: "all",
+  activeList: [...allQuestions],
+  currentIndex: 0,
+  answers: {}, // q.id -> selectedIdx
+  finished: false
+};
+
+function setCourse(filter) {
+  state.filter = filter;
+  if (filter === "all") {
+    state.activeList = [...allQuestions];
+  } else if (filter === "important") {
+    state.activeList = allQuestions.filter(q => q.important);
+  } else {
+    state.activeList = allQuestions.filter(q => q.chapter === filter);
+  }
+  state.currentIndex = 0;
+  state.finished = false;
+  render();
+}
+
+function selectChoice(choiceIdx) {
+  const q = state.activeList[state.currentIndex];
+  if (!q || state.answers[q.id] !== undefined) return;
+  state.answers[q.id] = choiceIdx;
+  render();
+}
+
+function goNext() {
+  if (state.currentIndex < state.activeList.length - 1) {
+    state.currentIndex++;
+    render();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  } else {
+    state.finished = true;
+    render();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+}
+
+function goPrev() {
+  if (state.currentIndex > 0) {
+    state.currentIndex--;
+    render();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+}
+
+function jumpTo(idx) {
+  state.finished = false;
+  state.currentIndex = idx;
+  render();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function restartCourse(onlyWrong = false) {
+  if (onlyWrong) {
+    const wrongList = state.activeList.filter(q => state.answers[q.id] !== q.answer);
+    if (wrongList.length === 0) return;
+    wrongList.forEach(q => {
+      delete state.answers[q.id];
+    });
+    state.activeList = wrongList;
+  } else {
+    state.activeList.forEach(q => {
+      delete state.answers[q.id];
+    });
+  }
+  state.currentIndex = 0;
+  state.finished = false;
+  render();
+}
+
+function render() {
+  const total = state.activeList.length;
+  const answeredCount = state.activeList.filter(q => state.answers[q.id] !== undefined).length;
+  const okCount = state.activeList.filter(q => state.answers[q.id] === q.answer).length;
+
+  const progressWrap = document.getElementById("progressWrap");
+  const questionArea = document.getElementById("questionArea");
+  const resultCard = document.getElementById("resultCard");
+
+  if (state.finished) {
+    progressWrap.style.display = "none";
+    questionArea.innerHTML = "";
+    renderResult(okCount, total);
+    resultCard.classList.add("show");
+  } else {
+    progressWrap.style.display = "block";
+    resultCard.classList.remove("show");
+
+    const pct = total > 0 ? Math.round(((state.currentIndex + 1) / total) * 100) : 0;
+    document.getElementById("progressCount").textContent = `第 ${state.currentIndex + 1} 問 / 全 ${total} 問`;
+    document.getElementById("progressScore").textContent = `正解: ${okCount} 問（解答済み: ${answeredCount}）`;
+    document.getElementById("progressFill").style.width = `${pct}%`;
+
+    renderCurrentQuestion();
+  }
+
+  renderJumpGrid();
+}
+
+function renderCurrentQuestion() {
+  const area = document.getElementById("questionArea");
+  const q = state.activeList[state.currentIndex];
+  if (!q) {
+    area.innerHTML = "";
+    return;
+  }
+
+  const userAns = state.answers[q.id];
+  const isAnswered = userAns !== undefined;
+  const isOk = isAnswered && userAns === q.answer;
+  const isLast = state.currentIndex === state.activeList.length - 1;
+
+  const choicesHtml = q.choices.map((c, idx) => {
+    let cls = "choice-btn";
+    if (isAnswered) {
+      if (idx === q.answer) cls += " correct";
+      else if (idx === userAns) cls += " wrong";
+    }
+    return `
+      <button class="${cls}" ${isAnswered ? "disabled" : ""} onclick="selectChoice(${idx})">
+        <span class="choice-label">${labels[idx]}</span>
+        <span>${c}</span>
+      </button>
+    `;
+  }).join("");
+
+  const statusHtml = isAnswered
+    ? (isOk ? `<span class="q-status ok">⭕ 正解！</span>` : `<span class="q-status ng">❌ 不正解</span>`)
+    : "";
+
+  const ansBoxClass = isAnswered ? (isOk ? "answer-box show is-ok" : "answer-box show is-ng") : "answer-box";
+
+  area.innerHTML = `
+    <div class="q-card ${isAnswered ? (isOk ? "is-correct" : "is-wrong") : ""}">
+      <div class="q-header">
+        <span class="q-num">第 ${q.id} 問</span>
+        ${q.important ? '<span class="q-tag important">重要・よく出る</span>' : ""}
+        <span class="q-tag">${q.unit}</span>
+        ${statusHtml}
+      </div>
+      <p class="q-text">${q.text}</p>
+      ${q.figure ? `<div class="q-figure">${q.figure}</div>` : ""}
+      <div class="choices">${choicesHtml}</div>
+      <div class="${ansBoxClass}">
+        <div class="answer-key">${isOk ? "⭕ 正解！" : "❌ 不正解（正解：" + labels[q.answer] + "）"}</div>
+        <div class="explain">${q.explanation}</div>
+      </div>
+      <div class="card-footer">
+        <div class="left-actions">
+          <button class="btn btn-secondary" onclick="goPrev()" ${state.currentIndex === 0 ? "disabled" : ""}>← 前の問題</button>
+        </div>
+        <div class="right-actions">
+          ${isAnswered ? `<button class="btn btn-next" id="nextBtn" onclick="goNext()">${isLast ? "結果を見る 🎉" : "次の問題へ →"}</button>` : `<span style="font-size:13px; color:var(--muted);">選択肢を1つ選んでください</span>`}
+        </div>
+      </div>
+      <div class="key-tip">キーボードの 1〜4 で選択、Enterキーで次の問題へ進めます</div>
+    </div>
+  `;
+
+  if (isAnswered) {
+    const nextBtn = document.getElementById("nextBtn");
+    if (nextBtn) nextBtn.focus();
+  }
+}
+
+function renderResult(okCount, total) {
+  const score = total > 0 ? Math.round((okCount / total) * 100) : 0;
+  document.getElementById("resultScore").textContent = `${score}点`;
+  document.getElementById("resultSub").textContent = `${okCount} 問正解 / ${total} 問中（正答率 ${score}%）`;
+
+  const chMap = {
+    "1": { label: "1章 物質の性質", ok: 0, total: 0 },
+    "2": { label: "2章 気体の性質", ok: 0, total: 0 },
+    "3": { label: "3章 水溶液", ok: 0, total: 0 },
+    "4": { label: "4章 状態変化・蒸留", ok: 0, total: 0 }
+  };
+
+  state.activeList.forEach(q => {
+    chMap[q.chapter].total++;
+    if (state.answers[q.id] === q.answer) chMap[q.chapter].ok++;
+  });
+
+  const statsEl = document.getElementById("chapterStats");
+  statsEl.innerHTML = Object.values(chMap)
+    .filter(s => s.total > 0)
+    .map(s => {
+      const pct = Math.round((s.ok / s.total) * 100);
+      return `<div class="stat-chip"><strong>${s.label}</strong><br>${s.ok} / ${s.total} 問正解 (${pct}%)</div>`;
+    }).join("");
+
+  const wrongCount = total - okCount;
+  const retryBtn = document.getElementById("retryWrongBtn");
+  if (wrongCount > 0) {
+    retryBtn.style.display = "inline-block";
+    retryBtn.textContent = `間違えた問題だけ解き直す (${wrongCount}問)`;
+  } else {
+    retryBtn.style.display = "none";
+  }
+}
+
+function renderJumpGrid() {
+  const grid = document.getElementById("jumpGrid");
+  grid.innerHTML = state.activeList.map((q, idx) => {
+    let cls = "jump-dot";
+    if (!state.finished && idx === state.currentIndex) cls += " current";
+    if (state.answers[q.id] !== undefined) {
+      cls += state.answers[q.id] === q.answer ? " done-ok" : " done-ng";
+    }
+    return `<button class="${cls}" onclick="jumpTo(${idx})" title="第${q.id}問">${idx + 1}</button>`;
+  }).join("");
+}
+
+document.getElementById("filterRow").addEventListener("click", e => {
+  const btn = e.target.closest(".filter-btn");
+  if (!btn) return;
+  document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+  setCourse(btn.dataset.filter);
+});
+
+document.addEventListener("keydown", e => {
+  if (state.finished) return;
+  const q = state.activeList[state.currentIndex];
+  if (!q) return;
+  const isAnswered = state.answers[q.id] !== undefined;
+  if (!isAnswered && ["1", "2", "3", "4"].includes(e.key)) {
+    selectChoice(parseInt(e.key, 10) - 1);
+  } else if (isAnswered && e.key === "Enter") {
+    e.preventDefault();
+    goNext();
+  }
+});
+
+document.getElementById("retryWrongBtn").addEventListener("click", () => restartCourse(true));
+document.getElementById("restartBtn").addEventListener("click", () => restartCourse(false));
+
+render();
+</script>
+</body>
+</html>

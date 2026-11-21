@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>テスト対策ポータル</title>
+  <style>
+    :root {
+      --sidebar-width: 275px;
+      --primary: #1e3a8a;
+      --accent: #0f766e;
+      --video-color: #b45309;
+      --bg-sidebar: #0f172a;
+      --text-sidebar: #f8fafc;
+      --border: #e2e8f0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+      overflow: hidden;
+      background-color: #f1f5f9;
+    }
+
+    .app-container {
+      display: flex;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    /* 左側サイドバー */
+    .sidebar {
+      width: var(--sidebar-width);
+      background-color: var(--bg-sidebar);
+      color: var(--text-sidebar);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      transition: transform 0.25s ease;
+      z-index: 100;
+    }
+
+    .sidebar-header {
+      padding: 1.1rem 1rem;
+      background: linear-gradient(135deg, #1e3a8a 0%, #0f766e 100%);
+      font-weight: 700;
+      font-size: 1.05rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .close-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+
+    /* 学年・学期選択エリア */
+    .selector-wrap {
+      padding: 0.85rem 0.75rem;
+      background-color: #1e293b;
+      border-bottom: 1px solid #334155;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .select-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .select-label {
+      font-size: 0.72rem;
+      color: #94a3b8;
+      margin-bottom: 0.25rem;
+      font-weight: 700;
+    }
+
+    .nav-select {
+      width: 100%;
+      padding: 0.5rem 0.65rem;
+      border-radius: 8px;
+      border: 1px solid #475569;
+      background-color: #0f172a;
+      color: #ffffff;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .nav-select:focus {
+      border-color: #3b82f6;
+    }
+
+    /* 教科リスト */
+    .menu-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 0.75rem 0.6rem;
+    }
+
+    .menu-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      color: #e2e8f0;
+      padding: 0.65rem 0.85rem;
+      margin-bottom: 0.25rem;
+      border-radius: 8px;
+      font-size: 0.94rem;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .menu-item:hover {
+      background-color: #1e293b;
+    }
+
+    .menu-item.active {
+      background-color: #2563eb;
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    /* 右側メイン領域 */
+    .main-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      min-width: 0;
+    }
+
+    /* 上部コントロールバー */
+    .top-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.65rem;
+      background-color: #ffffff;
+      padding: 0.65rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    .title-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      min-width: 0;
+    }
+
+    .menu-toggle-btn {
+      display: none;
+      background-color: var(--primary);
+      color: #ffffff;
+      border: none;
+      border-radius: 6px;
+      padding: 0.4rem 0.75rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .current-title {
+      font-weight: 700;
+      font-size: 0.98rem;
+      color: #1e293b;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* 選択式(S) / 記述式(W) / 動画(V) 切り替えタブ */
+    .mode-switch {
+      display: flex;
+      background-color: #f1f5f9;
+      padding: 0.25rem;
+      border-radius: 10px;
+      border: 1px solid #cbd5e1;
+      gap: 0.2rem;
+    }
+
+    .mode-btn {
+      border: none;
+      background: none;
+      padding: 0.45rem 0.85rem;
+      border-radius: 7px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: #475569;
+      cursor: pointer;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+
+    .mode-btn:hover {
+      color: #1e293b;
+    }
+
+    .mode-btn.active {
+      background-color: #ffffff;
+      color: #1e3a8a;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+    }
+
+    .mode-btn.active.written {
+      color: #0f766e;
+    }
+
+    .mode-btn.active.video {
+      color: #b45309;
+    }
+
+    .frame-wrap {
+      position: relative;
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background-color: #f4f7fb;
+    }
+
+    /* 動画プレイヤー表示エリア */
+    .video-wrap {
+      display: none;
+      width: 100%;
+      height: 100%;
+      background-color: #0f172a;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .video-wrap.show {
+      display: flex;
+    }
+
+    video {
+      width: 100%;
+      max-width: 960px;
+      max-height: 78vh;
+      border-radius: 12px;
+      background-color: #000000;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.45);
+    }
+
+    .video-caption {
+      margin-top: 0.85rem;
+      color: #cbd5e1;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    /* ファイル未作成時の案内画面 */
+    .not-found-box {
+      display: none;
+      position: absolute;
+      inset: 0;
+      background-color: #f8fafc;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      color: #475569;
+    }
+
+    .not-found-box.show {
+      display: flex;
+    }
+
+    .not-found-box h2 {
+      margin: 0 0 0.5rem 0;
+      color: #1e293b;
+      font-size: 1.25rem;
+    }
+
+    .file-hint {
+      margin-top: 1rem;
+      background: #ffffff;
+      border: 1px dashed #94a3b8;
+      padding: 0.75rem 1.25rem;
+      border-radius: 8px;
+      font-family: monospace;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    /* スマホ・タブレット対応 */
+    @media (max-width: 768px) {
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        transform: translateX(-100%);
+      }
+
+      .sidebar.open {
+        transform: translateX(0);
+      }
+
+      .close-btn {
+        display: block;
+      }
+
+      .menu-toggle-btn {
+        display: inline-block;
+      }
+
+      .top-bar {
+        padding: 0.55rem 0.75rem;
+      }
+
+      .current-title {
+        font-size: 0.88rem;
+      }
+
+      .mode-btn {
+        padding: 0.38rem 0.55rem;
+        font-size: 0.78rem;
+      }
+
+      .video-wrap {
+        padding: 0.75rem;
+      }
+
+      .overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(15, 23, 42, 0.5);
+        z-index: 90;
+      }
+
+      .overlay.show {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="overlay" id="overlay" onclick="toggleSidebar(false)"></div>
+
+  <div class="app-container">
+    <!-- 左側メニュー -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <span>📚 テスト対策ポータル</span>
+        <button class="close-btn" onclick="toggleSidebar(false)">×</button>
+      </div>
+
+      <!-- ① 学年とテスト期間を選択 -->
+      <div class="selector-wrap">
+        <div class="select-group">
+          <label class="select-label" for="gradeSelect">▼ 学年</label>
+          <select class="nav-select" id="gradeSelect" onchange="onFilterChange()"></select>
+        </div>
+
+        <div class="select-group">
+          <label class="select-label" for="termSelect">▼ テスト期間</label>
+          <select class="nav-select" id="termSelect" onchange="onFilterChange()"></select>
+        </div>
+      </div>
+
+      <!-- ② 教科を選択（全9教科） -->
+      <div class="menu-list" id="menuList"></div>
+    </aside>
+
+    <!-- 右側コンテンツ -->
+    <main class="main-area">
+      <div class="top-bar">
+        <div class="title-group">
+          <button class="menu-toggle-btn" onclick="toggleSidebar(true)">☰ メニュー</button>
+          <span class="current-title" id="currentTitle">読み込み中...</span>
+        </div>
+
+        <!-- 選択式(S) / 記述式(W) / 動画解説(V) の切り替えボタン -->
+        <div class="mode-switch">
+          <button class="mode-btn active" id="btnS" onclick="setMode('S')">🔘 選択式 (S)</button>
+          <button class="mode-btn written" id="btnW" onclick="setMode('W')">✍️ 記述式 (W)</button>
+          <button class="mode-btn video" id="btnV" onclick="setMode('V')">🎬 動画解説 (V)</button>
+        </div>
+      </div>
+
+      <div class="frame-wrap">
+        <!-- HTMLテスト問題用 iframe -->
+        <iframe id="contentFrame" src="" title="テスト問題画面"></iframe>
+
+        <!-- MP4動画解説用 プレイヤー -->
+        <div class="video-wrap" id="videoWrap">
+          <video id="videoPlayer" controls playsinline preload="metadata"></video>
+          <div class="video-caption" id="videoCaption"></div>
+        </div>
+
+        <!-- ファイル未作成時の案内画面 -->
+        <div class="not-found-box" id="notFoundBox">
+          <h2>📝 このコンテンツはまだ準備中です</h2>
+          <p>以下のフォルダにこのファイル名で保存すると、自動的に開けるようになります。</p>
+          <div class="file-hint" id="expectedFilePath"></div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // =========================================================
+    // マスタ定義
+    // テスト問題：[学年]-[期間]-[教科]-[S/W].html
+    // 動画解説 ：[学年]-[期間]-[教科]-V.mp4
+    // =========================================================
+    const grades = [
+      { code: "G1", name: "中学1年 (G1)" },
+      { code: "G2", name: "中学2年 (G2)" },
+      { code: "G3", name: "中学3年 (G3)" }
+    ];
+
+    const terms = [
+      { code: "2E", name: "2学期 期末テスト (2E)" },
+      { code: "3F", name: "3学期 学年末テスト (3F)" },
+      { code: "1M", name: "1学期 中間テスト (1M)" },
+      { code: "1E", name: "1学期 期末テスト (1E)" },
+      { code: "2M", name: "2学期 中間テスト (2M)" }
+    ];
+
+    const subjects = [
+      { folder: "01_japanese", nameEn: "Japanese", label: "📖 国語" },
+      { folder: "02_math",     nameEn: "Math",     label: "📐 数学" },
+      { folder: "03_english",  nameEn: "English",  label: "🔤 英語" },
+      { folder: "04_science",  nameEn: "Science",  label: "🧪 理科" },
+      { folder: "05_social",   nameEn: "Social",   label: "🌍 社会" },
+      { folder: "06_tech",     nameEn: "Tech",     label: "💻 技術" },
+      { folder: "07_home",     nameEn: "Home",     label: "🍳 家庭" },
+      { folder: "08_pe",       nameEn: "PE",       label: "🏃 保健体育" },
+      { folder: "09_music",    nameEn: "Music",    label: "🎵 音楽" }
+    ];
+
+    let currentGradeIdx = 0;
+    let currentTermIdx = 0;
+    let currentSubjIdx = 3; // 04_science
+    let currentMode = "S";  // "S" | "W" | "V"
+
+    const gradeSelectEl = document.getElementById("gradeSelect");
+    const termSelectEl = document.getElementById("termSelect");
+    const menuListEl = document.getElementById("menuList");
+    const contentFrame = document.getElementById("contentFrame");
+    const videoWrap = document.getElementById("videoWrap");
+    const videoPlayer = document.getElementById("videoPlayer");
+    const videoCaption = document.getElementById("videoCaption");
+    const currentTitleEl = document.getElementById("currentTitle");
+    const notFoundBox = document.getElementById("notFoundBox");
+    const expectedFilePathEl = document.getElementById("expectedFilePath");
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
+
+    function init() {
+      grades.forEach((g, idx) => {
+        const opt = document.createElement("option");
+        opt.value = idx;
+        opt.textContent = g.name;
+        gradeSelectEl.appendChild(opt);
+      });
+
+      terms.forEach((t, idx) => {
+        const opt = document.createElement("option");
+        opt.value = idx;
+        opt.textContent = t.name;
+        termSelectEl.appendChild(opt);
+      });
+
+      subjects.forEach((s, idx) => {
+        const btn = document.createElement("button");
+        btn.className = "menu-item";
+        btn.textContent = s.label;
+        btn.onclick = () => {
+          currentSubjIdx = idx;
+          updateView();
+          toggleSidebar(false);
+        };
+        menuListEl.appendChild(btn);
+      });
+
+      updateView();
+    }
+
+    function onFilterChange() {
+      currentGradeIdx = Number(gradeSelectEl.value);
+      currentTermIdx = Number(termSelectEl.value);
+      updateView();
+    }
+
+    function setMode(mode) {
+      currentMode = mode;
+      document.getElementById("btnS").classList.toggle("active", mode === "S");
+      document.getElementById("btnW").classList.toggle("active", mode === "W");
+      document.getElementById("btnV").classList.toggle("active", mode === "V");
+      updateView();
+    }
+
+    function updateView() {
+      document.querySelectorAll(".menu-item").forEach((el, idx) => {
+        el.classList.toggle("active", idx === currentSubjIdx);
+      });
+
+      const grade = grades[currentGradeIdx];
+      const term = terms[currentTermIdx];
+      const subj = subjects[currentSubjIdx];
+
+      // 画面切り替え時は再生中の動画を一旦停止
+      videoPlayer.pause();
+      notFoundBox.classList.remove("show");
+
+      if (currentMode === "V") {
+        // 動画解説モード（.mp4）
+        const videoPath = `${subj.folder}/${grade.code}-${term.code}-${subj.nameEn}-V.mp4`;
+        const fullTitle = `${grade.code} ${term.name} ／ ${subj.label}（動画解説）`;
+
+        currentTitleEl.textContent = fullTitle;
+        expectedFilePathEl.textContent = videoPath;
+        videoCaption.textContent = `🎬 ${fullTitle}（NotebookLM 解説動画）`;
+
+        contentFrame.style.display = "none";
+        videoWrap.classList.add("show");
+        videoPlayer.src = videoPath;
+      } else {
+        // テスト問題モード（.html）
+        const filePath = `${subj.folder}/${grade.code}-${term.code}-${subj.nameEn}-${currentMode}.html`;
+        const modeText = currentMode === "S" ? "選択式" : "記述式";
+
+        currentTitleEl.textContent = `${grade.code} ${term.name} ／ ${subj.label}（${modeText}）`;
+        expectedFilePathEl.textContent = filePath;
+
+        videoWrap.classList.remove("show");
+        videoPlayer.removeAttribute("src");
+        contentFrame.style.display = "block";
+        contentFrame.src = filePath;
+      }
+    }
+
+    // HTMLファイルが見つからなかった場合
+    contentFrame.onload = function() {
+      try {
+        const doc = contentFrame.contentDocument || contentFrame.contentWindow.document;
+        if (doc && doc.title && (doc.title.includes("404") || doc.title.includes("見つかりません"))) {
+          showNotFound();
+        }
+      } catch (e) {}
+    };
+
+    contentFrame.onerror = function() {
+      showNotFound();
+    };
+
+    // MP4動画ファイルが見つからなかった場合
+    videoPlayer.onerror = function() {
+      if (currentMode === "V") {
+        showNotFound();
+      }
+    };
+
+    function showNotFound() {
+      contentFrame.style.display = "none";
+      videoWrap.classList.remove("show");
+      notFoundBox.classList.add("show");
+    }
+
+    function toggleSidebar(open) {
+      if (open) {
+        sidebar.classList.add("open");
+        overlay.classList.add("show");
+      } else {
+        sidebar.classList.remove("open");
+        overlay.classList.remove("show");
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>
