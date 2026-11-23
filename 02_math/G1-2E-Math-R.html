@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中1数学 2学期末テスト対策：記述・ひっかけ○×特化テスト</title>
+<style>
+  :root {
+    --bg: #f5f3ff;
+    --card: #ffffff;
+    --primary: #6d28d9;
+    --primary-light: #f5f3ff;
+    --primary-dark: #5b21b6;
+    --success: #16a34a;
+    --success-bg: #f0fdf4;
+    --danger: #dc2626;
+    --danger-bg: #fef2f2;
+    --warn: #d97706;
+    --warn-bg: #fffbeb;
+    --text: #1e293b;
+    --muted: #64748b;
+    --border: #e2e8f0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+  }
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 20px 16px 52px;
+  }
+  header {
+    background: linear-gradient(135deg, #4c1d95, #7c3aed);
+    color: #fff;
+    border-radius: 16px;
+    padding: 20px 24px;
+    margin-bottom: 18px;
+    box-shadow: 0 6px 18px rgba(109, 40, 217, 0.2);
+  }
+  header h1 {
+    margin: 0 0 6px;
+    font-size: 1.32rem;
+    font-weight: 700;
+  }
+  header p {
+    margin: 0;
+    font-size: 0.9rem;
+    opacity: 0.94;
+  }
+  .mode-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .mode-btn {
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--text);
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 0.86rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .mode-btn:hover { border-color: var(--primary); color: var(--primary); }
+  .mode-btn.active {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+  }
+  .progress-wrap {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+  }
+  .progress-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .progress-bar-bg {
+    width: 100%;
+    height: 8px;
+    background: #e2e8f0;
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #6d28d9, #a78bfa);
+    width: 0%;
+    transition: width 0.3s ease;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
+  }
+  .badge-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+  .badge-desc { background: #ede9fe; color: #5b21b6; }
+  .badge-ox { background: #e0f2fe; color: #0369a1; }
+  .badge-theme { background: #fef3c7; color: #b45309; }
+  .badge-pair { background: #fce7f3; color: #be185d; }
+  .q-text {
+    font-size: 1.07rem;
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .q-visual {
+    margin: 14px 0 18px;
+    display: flex;
+    justify-content: center;
+    overflow-x: auto;
+  }
+  table.math-table {
+    border-collapse: collapse;
+    margin: 6px auto;
+    font-size: 0.95rem;
+    background: #fff;
+  }
+  table.math-table th, table.math-table td {
+    border: 1px solid #94a3b8;
+    padding: 7px 14px;
+    text-align: center;
+    min-width: 48px;
+  }
+  table.math-table th {
+    background: #f1f5f9;
+    font-weight: 700;
+  }
+  /* 短文記述エリア */
+  .desc-area {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    margin-top: 10px;
+  }
+  .desc-label {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin-bottom: 6px;
+    display: block;
+  }
+  .desc-textarea {
+    width: 100%;
+    min-height: 92px;
+    padding: 12px;
+    border: 2px solid #cbd5e1;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 0.98rem;
+    line-height: 1.6;
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .desc-textarea:focus {
+    border-color: var(--primary);
+  }
+  .desc-hint {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+  /* ○×ボタン */
+  .ox-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 14px;
+  }
+  .ox-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 18px 12px;
+    background: #fff;
+    border: 2px solid var(--border);
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    color: var(--text);
+  }
+  .ox-btn:hover:not(:disabled) {
+    border-color: var(--primary);
+    background: var(--primary-light);
+    transform: translateY(-1px);
+  }
+  .ox-btn:disabled { cursor: default; }
+  .ox-symbol {
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+  .ox-sub {
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+  .ox-btn.correct {
+    border-color: var(--success);
+    background: var(--success-bg);
+    color: var(--success);
+  }
+  .ox-btn.wrong {
+    border-color: var(--danger);
+    background: var(--danger-bg);
+    color: var(--danger);
+  }
+  /* フィードバック・解説・キーワード */
+  .feedback {
+    margin-top: 18px;
+    border-radius: 12px;
+    padding: 18px;
+    display: none;
+    animation: fadeIn 0.2s ease;
+  }
+  .feedback.show { display: block; }
+  .feedback.is-correct {
+    background: var(--success-bg);
+    border: 1px solid #86efac;
+  }
+  .feedback.is-wrong {
+    background: var(--danger-bg);
+    border: 1px solid #fca5a5;
+  }
+  .feedback.is-review {
+    background: var(--warn-bg);
+    border: 1px solid #fcd34d;
+  }
+  .feedback-title {
+    font-weight: 800;
+    font-size: 1.06rem;
+    margin-bottom: 10px;
+  }
+  .feedback.is-correct .feedback-title { color: var(--success); }
+  .feedback.is-wrong .feedback-title { color: var(--danger); }
+  .feedback.is-review .feedback-title { color: var(--warn); }
+
+  .model-answer-box {
+    background: #fff;
+    border: 1px solid #cbd5e1;
+    border-left: 4px solid var(--primary);
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin: 10px 0;
+  }
+  .model-answer-title {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin-bottom: 4px;
+  }
+  .kw-box {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin: 10px 0;
+  }
+  .kw-title {
+    font-size: 0.84rem;
+    font-weight: 700;
+    color: #334155;
+    margin-bottom: 8px;
+  }
+  .kw-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .kw-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    background: #f1f5f9;
+    color: #334155;
+    border: 1px solid #cbd5e1;
+  }
+  .kw-chip.hit {
+    background: #dcfce7;
+    color: #166534;
+    border-color: #86efac;
+  }
+  .kw-chip.miss {
+    background: #fee2e2;
+    color: #991b1b;
+    border-color: #fca5a5;
+  }
+  .self-check-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px dashed #cbd5e1;
+  }
+  .self-btn {
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+    border: 1.5px solid var(--border);
+    background: #fff;
+  }
+  .self-btn.ok.selected { background: var(--success); color: #fff; border-color: var(--success); }
+  .self-btn.ng.selected { background: var(--danger); color: #fff; border-color: var(--danger); }
+
+  .explanation {
+    font-size: 0.94rem;
+    color: #1e293b;
+    margin-top: 10px;
+  }
+  .action-row {
+    margin-top: 14px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .nav-row {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+  .btn-primary {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 11px 22px;
+    font-size: 0.96rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .btn-primary:hover { background: var(--primary-dark); }
+  .btn-secondary {
+    background: #fff;
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 18px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .btn-secondary:hover { background: #f8fafc; }
+  .frac {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    vertical-align: middle;
+    margin: 0 2px;
+    font-size: 0.9em;
+    line-height: 1.1;
+  }
+  .frac .num { border-bottom: 1.5px solid currentColor; padding: 0 3px 1px; }
+  .frac .den { padding: 1px 3px 0; }
+  .summary-card { text-align: center; }
+  .score-big {
+    font-size: 2.3rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin: 8px 0;
+  }
+  .cat-breakdown {
+    text-align: left;
+    margin: 18px 0;
+    border-top: 1px solid var(--border);
+    padding-top: 14px;
+  }
+  .cat-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 7px 0;
+    border-bottom: 1px dashed var(--border);
+    font-size: 0.95rem;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>中1数学 2学期末テスト対策：記述＆ひっかけ○×特化テスト</h1>
+    <p>「理由・仕組みを答える短文記述」＋「紛らわしい用語ペアの○×問題」（全18問・1問1答）</p>
+  </header>
+
+  <div class="mode-bar" id="modeBar">
+    <button class="mode-btn active" data-cat="all">すべて（全18問）</button>
+    <button class="mode-btn" data-cat="desc">📝 短文記述：理由・仕組み（8問）</button>
+    <button class="mode-btn" data-cat="ox">⭕❌ ひっかけ○×：用語・対比（10問）</button>
+  </div>
+
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-top">
+      <span id="progressLabel">第 1 問 / 18 問</span>
+      <span id="scoreLabel">現在の正解数：0 問</span>
+    </div>
+    <div class="progress-bar-bg">
+      <div class="progress-bar-fill" id="progressFill"></div>
+    </div>
+  </div>
+
+  <div class="card" id="quizCard"></div>
+</div>
+
+<script>
+const frac = (n, d) => `<span class="frac"><span class="num">${n}</span><span class="den">${d}</span></span>`;
+
+const QUESTIONS = [
+  // ==========================================
+  // 1. 理由・仕組みを答える短文記述 (8問)
+  // ==========================================
+  {
+    id: 1,
+    type: "desc",
+    catLabel: "短文記述：理由・仕組み",
+    themeBadge: "重要テーマ① 関数の定義",
+    q: "下の表はある運送会社の荷物の重量と料金（25 kg まで）を表している。<b>「重量は料金の関数である」といえますか。</b>「いえる／いえない」を明記し、具体例を1つあげてその理由を説明しなさい。",
+    visual: `<table class="math-table">
+      <tr><th>重量</th><td>2kg以内</td><td>5kg以内</td><td>10kg以内</td><td>15kg以内</td><td>20kg以内</td><td>25kg以内</td></tr>
+      <tr><th>料金</th><td>850円</td><td>1000円</td><td>1300円</td><td>1600円</td><td>1800円</td><td>2000円</td></tr>
+    </table>`,
+    modelAnswer: "いえない。たとえば料金を1000円と決めても、重量は3kgや4kgなどいろいろ考えることができ、ただ1つに決まらないから。",
+    keywords: [
+      { label: "いえない", patterns: ["いえない", "言えない", "ない"] },
+      { label: "具体例（料金を〜円と決めても）", patterns: ["円", "850", "1000", "1300", "1600", "1800", "2000"] },
+      { label: "複数の値（いろいろある）", patterns: ["いろいろ", "複数", "いくつか", "たとえば", "や", "など"] },
+      { label: "ただ1つに決まらない", patterns: ["1つに決まら", "ひとつに決まら", "一つに決まら", "ただ1つ"] }
+    ],
+    exp: "<b>「<i>y</i> が <i>x</i> の関数である」</b>とは、「<i>x</i> の値を決めると、それに対応して <i>y</i> の値が<b>ただ1つ決まる</b>」ことをいいます。料金は重量を決めれば1つに決まりますが、逆に<b>料金（例：1000円）を決めても、重量は3kgや4kgなど2kgより大きく5kg以下の範囲でいろいろ考えられる</b>ため、ただ1つに決まりません。"
+  },
+  {
+    id: 2,
+    type: "desc",
+    catLabel: "短文記述：理由・仕組み",
+    themeBadge: "重要テーマ② 反比例の理由",
+    q: "下の表ア、イのうち、反比例の関係を表しているものは<b>イ</b>である。<b>イが反比例の関係を表しているといえる理由</b>を、<i>x</i> と <i>y</i> の変化や積の仕組みに注目して説明しなさい。",
+    visual: `<div style="display:flex;gap:18px;flex-wrap:wrap;justify-content:center;">
+      <div>
+        <div style="font-weight:700;text-align:center;margin-bottom:4px;">ア</div>
+        <table class="math-table">
+          <tr><th><i>x</i></th><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+          <tr><th><i>y</i></th><td>24</td><td>18</td><td>12</td><td>6</td></tr>
+        </table>
+      </div>
+      <div>
+        <div style="font-weight:700;text-align:center;margin-bottom:4px;">イ</div>
+        <table class="math-table">
+          <tr><th><i>x</i></th><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+          <tr><th><i>y</i></th><td>24</td><td>12</td><td>8</td><td>6</td></tr>
+        </table>
+      </div>
+    </div>`,
+    modelAnswer: "x の値が 2倍、3倍、4倍…になると、対応する y の値が 1/2倍、1/3倍、1/4倍…になっているから。（別解：対応する x と y の積 xy がつねに 24 で一定になっているから。）",
+    keywords: [
+      { label: "xが2倍, 3倍になると", patterns: ["2倍", "3倍", "倍になる"] },
+      { label: "yが1/2倍, 1/3倍になる", patterns: ["1/2", "1/3", "2分の1", "3分の1", "半分"] },
+      { label: "（別解）積 xy が一定", patterns: ["積", "xy", "かけ", "24", "一定"] }
+    ],
+    exp: "表アは「<i>x</i> が1増えるごとに <i>y</i> が6ずつ減る」という関係で、反比例ではありません。表イでは <b><i>x</i> が 2倍、3倍になると <i>y</i> が 1/2倍、1/3倍</b>になっており、どの組も <b>1×24＝24、2×12＝24、3×8＝24、4×6＝24</b> と積 <i>xy</i> がつねに一定（<i>y</i> = 24/<i>x</i>）になるため反比例といえます。"
+  },
+  {
+    id: 3,
+    type: "desc",
+    catLabel: "短文記述：理由・仕組み",
+    themeBadge: "重要テーマ① 関数の判定",
+    q: "「1000 mL の牛乳のうち、<i>x</i> mL 飲んだあとの残りは <i>y</i> mL である」という関係について、<b><i>y</i> は <i>x</i> の関数であるといえる理由</b>を説明しなさい。",
+    visual: "",
+    modelAnswer: "飲んだ量 x の値を決めると、残りの量 y の値が y = 1000 − x のようにただ1つ決まるから。",
+    keywords: [
+      { label: "xの値を決めると", patterns: ["x", "決めると", "決める"] },
+      { label: "yの値がただ1つ決まる", patterns: ["y", "ただ1つ", "1つに決まる", "ひとつに決まる", "一つに決まる"] }
+    ],
+    exp: "「最低気温 <i>x</i> ℃の日の最高気温 <i>y</i> ℃」や「身長 <i>x</i> cm の人の体重 <i>y</i> kg」は日や人によって変わるため関数ではありませんが、牛乳の残りは <b><i>y</i> = 1000 − <i>x</i></b> と決まるため、<i>x</i> を決めれば <i>y</i> が<b>ただ1つ決まり</b>ます。"
+  },
+  {
+    id: 4,
+    type: "desc",
+    catLabel: "短文記述：理由・仕組み",
+    themeBadge: "関数の活用と仕組み",
+    q: "同じ種類のくぎが何本かあり、25本の重さをはかったら40gだった。くぎ全体の重さ（960g）からくぎの本数を求めるには、<b>何がわかればよいか</b>と、<b>なぜそれで求められるのか（仕組み）</b>を簡潔に説明しなさい。",
+    visual: "",
+    modelAnswer: "くぎ1本あたりの重さがわかればよい。全体の重さを1本あたりの重さでわれば本数が求められるから（本数と全体の重さは比例するから）。",
+    keywords: [
+      { label: "1本あたりの重さ", patterns: ["1本あたり", "1本分", "1本の重さ", "一本あたり"] },
+      { label: "全体の重さをわる／比例する", patterns: ["全体", "わる", "割", "比例"] }
+    ],
+    exp: "本数と重さは比例するため、25本で40gという情報から<b>1本あたりの重さ（40÷25＝1.6g）</b>を求めれば、全体の重さ 960g を 1.6g でわって本数（600本）を求めることができます。"
+  },
+  {
+    id: 5,
+    type: "desc",
+    catLabel: "短文記述：理由・仕組み",
+    themeBadge: "比例定数の意味",
+    q: "①「10 cm の重さが 80 g の鉄の棒 <i>x</i> m の重さ <i>y</i> g（<i>y</i> = 800<i>x</i>）」と、②「分速 60 m で 20 分かかる道のりを分速 <i>x</i> m で歩く時間 <i>y</i> 分（<i>y</i> = 1200/<i>x</i>）」について、<b>それぞれの比例定数 800 と 1200 が表している量</b>を答えなさい。",
+    visual: "",
+    modelAnswer: "① 800 は「鉄の棒 1m あたりの重さ（800g）」を表している。② 1200 は「家から公園までの道のり（1200m）」を表している。",
+    keywords: [
+      { label: "1mあたりの重さ", patterns: ["1mあたり", "1mの重さ", "1メートル"] },
+      { label: "道のり（全体の距離）", patterns: ["道のり", "きょり", "距離"] }
+    ],
+    exp: "比例 <i>y</i> = <i>ax</i> の比例定数 <i>a</i> は<b>「<i>x</i> が1増えたときの量（1あたり量）」</b>を表します（10cmで80gなので1m＝100cmあたり800g）。一方、反比例 <i>y</i> = <i>a</i>/<i>x</i> の比例定数 <i>a</i> は積 <i>xy</i> なので<b>「全体の道のり（速さ×時間＝1200m）」</b>のように一定の総量を表します。"
+  },
+  {
+    id: 6,
+    type: "desc",
+    catLabel: "短文記述：理由・仕組み",
+    themeBadge: "比例の変化の仕組み",
+    q: "比例の式 <i>y</i> = −3<i>x</i> について、<i>x</i> の値が <b>1 ずつ増加すると、<i>y</i> の値はどのように変化するか</b>を答え、比例定数 −3 との関係を説明しなさい。",
+    visual: `<table class="math-table">
+      <tr><th><i>x</i></th><td>−2</td><td>−1</td><td>0</td><td>1</td><td>2</td></tr>
+      <tr><th><i>y</i></th><td>6</td><td>3</td><td>0</td><td>−3</td><td>−6</td></tr>
+    </table>`,
+    modelAnswer: "x の値が 1 ずつ増加すると、y の値は −3 ずつ増加する（3 ずつ減少する）。比例 y = ax では、x が 1 増加するごとに y は比例定数 a ずつ増加する仕組みになっている。",
+    keywords: [
+      { label: "−3ずつ増加（または3ずつ減少）", patterns: ["-3ずつ増加", "−3ずつ増加", "3ずつ減少", "3ずつ減"] },
+      { label: "比例定数 a ずつ増加", patterns: ["比例定数", "aずつ", "傾き"] }
+    ],
+    exp: "比例 <i>y</i> = <i>ax</i> では、<i>x</i> の値が 1 ずつ増加すると、<i>y</i> の値は<b>つねに比例定数 <i>a</i> ずつ増加</b>します。<i>a</i> = −3 のように負の数のときは「−3ずつ増加する（＝<b>3ずつ減少する</b>）」となります。"
+  },
+  {
+    id: 7,
+    type: "desc",
+    catLabel: "短文記述：理由・仕組み",
+    themeBadge: "反比例のグラフの仕組み",
+    q: "反比例 <i>y</i> = 18/<i>x</i> の表では <i>x</i> = 0 の欄が「×」になり、グラフ（双曲線）も <b><i>x</i> 軸や <i>y</i> 軸と交わらない</b>。その理由を説明しなさい。",
+    visual: `<table class="math-table">
+      <tr><th><i>x</i></th><td>−3</td><td>−2</td><td>−1</td><td>0</td><td>1</td><td>2</td><td>3</td></tr>
+      <tr><th><i>y</i></th><td>−6</td><td>−9</td><td>−18</td><td><b>×</b></td><td>18</td><td>9</td><td>6</td></tr>
+    </table>`,
+    modelAnswer: "数学では 0 でわることができないため x = 0 のときの y の値が存在せず、また xy = 18 となるには x も y も 0 にはなれないから。",
+    keywords: [
+      { label: "0でわれない／値がない", patterns: ["0でわ", "0で割", "存在しない", "値がない", "0になれない"] },
+      { label: "積 xy が 0 にならない", patterns: ["xy", "積", "18", "0に"] }
+    ],
+    exp: "反比例 <i>y</i> = <i>a</i>/<i>x</i>（<i>a</i> ≠ 0）では、分母である <i>x</i> に 0 を代入して 0 でわることができないため <i>y</i> 軸（<i>x</i> = 0）とは交わりません。また、<i>xy</i> = <i>a</i> ≠ 0 なので <i>y</i> = 0 になることもなく、<i>x</i> 軸とも交わりません。"
+  },
+  {
+    id: 8,
+    type: "desc",
+    catLabel: "短文記述：理由・仕組み",
+    themeBadge: "座標と図形の仕組み",
+    q: "関数 <i>y</i> = 12/<i>x</i> のグラフ上の点 P と、<i>y</i> 軸上の点 A(0, 6)、原点 O でつくる △OAP の面積が 24 になるとき、点 P の <i>x</i> 座標は <b>8 と −8 の 2 つ</b>ある。なぜ 2 つ出てくるのか仕組みを説明しなさい。",
+    visual: `<svg width="200" height="200" viewBox="-7 -7 14 14" style="background:#fff;border:1px solid #cbd5e1;border-radius:8px;">
+      <line x1="-6.5" y1="0" x2="6.5" y2="0" stroke="#475569" stroke-width="0.1"/>
+      <line x1="0" y1="-6.5" x2="0" y2="6.5" stroke="#475569" stroke-width="0.1"/>
+      <path d="M 1.2,-6 Q 2.4,-2.4 6,-1.2" fill="none" stroke="#6d28d9" stroke-width="0.16"/>
+      <path d="M -6,1.2 Q -2.4,2.4 -1.2,6" fill="none" stroke="#6d28d9" stroke-width="0.16"/>
+      <polygon points="0,0 0,-4 4.5,-1.6" fill="rgba(109,40,217,0.16)" stroke="#6d28d9" stroke-width="0.12"/>
+      <circle cx="0" cy="-4" r="0.22" fill="#dc2626"/>
+      <circle cx="4.5" cy="-1.6" r="0.22" fill="#6d28d9"/>
+      <text x="-1.7" y="-4" font-size="0.65" fill="#dc2626" font-weight="bold">A(0,6)</text>
+      <text x="4.7" y="-1.8" font-size="0.65" fill="#5b21b6" font-weight="bold">P</text>
+      <text x="0.2" y="0.8" font-size="0.6" fill="#475569">O</text>
+    </svg>`,
+    modelAnswer: "底辺を OA（長さ6）とすると、三角形の高さは点 P の x 座標の絶対値になるため、y 軸の右側（正）と左側（負）の両方に同じ面積の三角形ができるから。",
+    keywords: [
+      { label: "高さが x 座標の絶対値（距離）", patterns: ["高さ", "絶対値", "距離", "長さ"] },
+      { label: "y軸の右側(正)と左側(負)の両方", patterns: ["右側", "左側", "正", "負", "両方", "2つ"] }
+    ],
+    exp: "△OAP の底辺 OA の長さは 6 です。面積が 24 になるには高さが 8 になればよく、高さは <i>y</i> 軸から点 P までの距離（<i>x</i> 座標の絶対値）なので、<b>右側（<i>x</i> = 8）と左側（<i>x</i> = −8）の両方</b>に点 P がとれます。"
+  },
+
+  // ==========================================
+  // 2. 紛らわしい用語ペア・対比の○×問題 (10問)
+  // ==========================================
+  {
+    id: 9,
+    type: "ox",
+    catLabel: "ひっかけ○×：用語・対比",
+    pairBadge: "「より大きい・未満（＜）」vs「以上・以下（≦）」",
+    q: "変数 <i>x</i> の変域が<b>「−4より大きく1以下」</b>であるとき、不等号を使って <b>−4 ≦ <i>x</i> ＜ 1</b> と表し、数直線では −4 の位置に黒丸 ● をかく。",
+    visual: "",
+    ans: false, // ×
+    modelAnswer: "×（誤り）　正しくは「−4 ＜ x ≦ 1」、−4 は白丸 ○",
+    keywords: [
+      { label: "より大きい・未満 → ＜（白丸 ○）", patterns: [] },
+      { label: "以上・以下 → ≦（黒丸 ●）", patterns: [] }
+    ],
+    exp: "<b>ひっかけ注意！</b>「より大きい」「未満」はその数を含まないため <b>＜</b>（白丸 ○）、「以上」「以下」はその数を含むため <b>≦</b>（黒丸 ●）を使います。問題の式は記号が逆になっており、正しくは <b>−4 ＜ <i>x</i> ≦ 1</b> です。"
+  },
+  {
+    id: 10,
+    type: "ox",
+    catLabel: "ひっかけ○×：用語・対比",
+    pairBadge: "「関数である」vs「関数ではない」",
+    q: "「ある都市で、最低気温が <i>x</i> ℃の日の最高気温は <i>y</i> ℃である」という関係は、<i>x</i> の値を決めれば <i>y</i> の値も決まるので、<i>y</i> は <i>x</i> の関数であるといえる。",
+    visual: "",
+    ans: false, // ×
+    modelAnswer: "×（誤り）　日によって最高気温は変わるため関数とはいえない",
+    keywords: [
+      { label: "ただ1つに決まる", patterns: [] },
+      { label: "日によって変わる＝関数ではない", patterns: [] }
+    ],
+    exp: "同じ最低気温（例：10℃）の日でも、天気によって最高気温は 18℃ だったり 22℃ だったりして<b>ただ1つに決まりません</b>。したがって関数とはいえないのが正解です。"
+  },
+  {
+    id: 11,
+    type: "ox",
+    catLabel: "ひっかけ○×：用語・対比",
+    pairBadge: "「比例の倍率」vs「比例定数の符号」",
+    q: "比例の式 <i>y</i> = −6<i>x</i> について、<i>x</i> の値が負の数のとき、<i>x</i> の値が 2倍、3倍になると、対応する <i>y</i> の値は <b>−2倍、−3倍</b>になる。",
+    visual: "",
+    ans: false, // ×
+    modelAnswer: "×（誤り）　比例定数が負でも y の値は「2倍、3倍」になる",
+    keywords: [
+      { label: "比例は a が負でも 2倍・3倍", patterns: [] },
+      { label: "符号は変わらない", patterns: [] }
+    ],
+    exp: "<b>超定番のひっかけ問題！</b> 比例定数が −6 と負の数であっても、たとえば <i>x</i> = −1（<i>y</i> = 6）から <i>x</i> = −2（<i>y</i> = 12）のように、<i>x</i> が 2倍になると <i>y</i> も <b>2倍</b>になります。「−2倍」にはなりません。"
+  },
+  {
+    id: 12,
+    type: "ox",
+    catLabel: "ひっかけ○×：用語・対比",
+    pairBadge: "「y = ax（比例）」vs「y = a/x（反比例）」",
+    q: "「<i>x</i> m のリボンを 3 等分するとき、1つ分の長さを <i>y</i> m とする」という関係は、分数を使って <i>y</i> = " + frac("<i>x</i>", 3) + " と表せるので、<i>y</i> は <i>x</i> に反比例する。",
+    visual: "",
+    ans: false, // ×
+    modelAnswer: "×（誤り）　y = (1/3)x なので「比例」する",
+    keywords: [
+      { label: "x が分子なら比例（y = ax）", patterns: [] },
+      { label: "x が分母なら反比例（y = a/x）", patterns: [] }
+    ],
+    exp: "分数の形にだまされないように！ <i>x</i> が<b>分母</b>にある <i>y</i> = 3/<i>x</i> が反比例であり、<i>y</i> = <i>x</i>/3 は <b><i>y</i> = " + frac(1, 3) + "<i>x</i></b> と同じ形なので<b>比例</b>（比例定数 1/3）です。"
+  },
+  {
+    id: 13,
+    type: "ox",
+    catLabel: "ひっかけ○×：用語・対比",
+    pairBadge: "「商 y/x が一定（比例）」vs「積 xy が一定（反比例）」",
+    q: "<i>y</i> が <i>x</i> に反比例するとき、対応する <i>x</i> と <i>y</i> の積 <i>xy</i> の値はつねに一定であり、その値は比例定数 <i>a</i> と等しい。",
+    visual: "",
+    ans: true, // ○
+    modelAnswer: "○（正しい）　反比例では a = xy がつねに成り立つ",
+    keywords: [
+      { label: "反比例：積 xy = a（一定）", patterns: [] },
+      { label: "比例：商 y/x = a（一定）", patterns: [] }
+    ],
+    exp: "その通りです！反比例 <i>y</i> = <i>a</i>/<i>x</i> の両辺に <i>x</i> をかけると <b><i>xy</i> = <i>a</i></b> になります。表から反比例の式を求めるときも、1組の <i>x</i> と <i>y</i> をかけるだけで比例定数 <i>a</i> がすぐ求まります。"
+  },
+  {
+    id: 14,
+    type: "ox",
+    catLabel: "ひっかけ○×：用語・対比",
+    pairBadge: "「増加」vs「減少」（a < 0 の反比例）",
+    q: "反比例 <i>y</i> = −" + frac(20, "<i>x</i>") + " で、<i>x</i> の値が <b>−10 から −4 まで増加</b>するとき、対応する <i>y</i> の値も <b>増加</b>する。",
+    visual: "",
+    ans: true, // ○
+    modelAnswer: "○（正しい）　y の値は 2 から 5 まで増加する",
+    keywords: [
+      { label: "a < 0 の反比例は x が増えると y も増える", patterns: [] },
+      { label: "x = 0 をまたがない区間", patterns: [] }
+    ],
+    exp: "<i>x</i> = −10 のとき <i>y</i> = 2、<i>x</i> = −4 のとき <i>y</i> = 5 なので、<i>y</i> の値は <b>2 から 5 まで増加</b>します。式にマイナスがついていると「減少」と早とちりしやすいので、必ず具体的な値を代入して確かめましょう。（※ただし <i>x</i> = 0 をまたぐときは単純に増加とはいえません）"
+  },
+  {
+    id: 15,
+    type: "ox",
+    catLabel: "ひっかけ○×：用語・対比",
+    pairBadge: "「右上がり／右下がり」「直線／双曲線」",
+    q: "比例 <i>y</i> = −" + frac(3, 4) + "<i>x</i> のグラフは、原点 (0, 0) と点 (4, −3) を通る<b>右下がりの直線</b>である。",
+    visual: "",
+    ans: true, // ○
+    modelAnswer: "○（正しい）　a < 0 の比例は右下がりの直線",
+    keywords: [
+      { label: "比例のグラフ＝原点を通る直線", patterns: [] },
+      { label: "a < 0 なら右下がり", patterns: [] }
+    ],
+    exp: "比例のグラフは必ず<b>原点を通る直線</b>です。<i>x</i> = 4 を代入すると <i>y</i> = −3 となり、比例定数が負の数なので右下がりの直線になります。"
+  },
+  {
+    id: 16,
+    type: "ox",
+    catLabel: "ひっかけ○×：用語・対比",
+    pairBadge: "「原点について対称」vs「x軸・y軸について対称」",
+    q: "座標平面上の点 P(−4, 3) について、<b>原点について対称な点</b>の座標は <b>(4, 3)</b> である。",
+    visual: "",
+    ans: false, // ×
+    modelAnswer: "×（誤り）　原点対称は両方符号が逆の (4, −3)",
+    keywords: [
+      { label: "原点対称：x座標もy座標も符号が逆", patterns: [] },
+      { label: "y軸対称：x座標だけ逆 / x軸対称：y座標だけ逆", patterns: [] }
+    ],
+    exp: "(4, 3) は「<i>y</i> 軸について対称な点」です。<b>原点について対称な点</b>は <i>x</i> 座標・<i>y</i> 座標の<b>両方の符号を逆</b>にするため、<b>(4, −3)</b> が正解です。"
+  },
+  {
+    id: 17,
+    type: "ox",
+    catLabel: "ひっかけ○×：用語・対比",
+    pairBadge: "「正の整数だけ」vs「正と負の整数」",
+    q: "反比例 <i>y</i> = " + frac(12, "<i>x</i>") + " のグラフ上にある点で、<i>x</i> 座標と <i>y</i> 座標がともに整数となる点は全部で <b>6 個</b>ある。",
+    visual: "",
+    ans: false, // ×
+    modelAnswer: "×（誤り）　負の整数も含めるため全部で「12 個」",
+    keywords: [
+      { label: "整数＝正・負の両方を数える", patterns: [] },
+      { label: "12の約数 ±1, ±2, ±3, ±4, ±6, ±12", patterns: [] }
+    ],
+    exp: "「自然数」ではなく「<b>整数</b>」と問われているのがポイント！ <i>xy</i> = 12 となる整数 <i>x</i> は、正の約数（1, 2, 3, 4, 6, 12）の6個だけでなく、<b>負の約数（−1, −2, −3, −4, −6, −12）の6個</b>もあるため、合計 <b>12 個</b>です。"
+  },
+  {
+    id: 18,
+    type: "ox",
+    catLabel: "ひっかけ○×：用語・対比",
+    pairBadge: "「比例定数の意味（1あたり量 vs 全体量）」",
+    q: "「家から公園まで分速 60 m で歩くと 20 分かかる。分速 <i>x</i> m で歩いたときにかかる時間を <i>y</i> 分とする」とき、式は <i>y</i> = " + frac(1200, "<i>x</i>") + " となり、比例定数 1200 は<b>「1分間に進む距離」</b>を表している。",
+    visual: "",
+    ans: false, // ×
+    modelAnswer: "×（誤り）　1200 は「家から公園までの道のり（1200m）」",
+    keywords: [
+      { label: "反比例の比例定数 a = xy", patterns: [] },
+      { label: "速さ × 時間 ＝ 道のり", patterns: [] }
+    ],
+    exp: "反比例 <i>y</i> = 1200/<i>x</i> では <i>xy</i> = 1200（速さ × 時間）なので、比例定数 1200 は「1分間に進む距離」ではなく<b>「家から公園までの道のり（1200 m）」</b>を表しています。"
+  }
+];
+
+let activeCat = "all";
+let filtered = [...QUESTIONS];
+let idx = 0;
+let score = 0;
+let answered = false;
+let results = [];
+
+function filterQuestions(cat) {
+  activeCat = cat;
+  filtered = cat === "all" ? [...QUESTIONS] : QUESTIONS.filter(q => q.type === cat);
+  idx = 0;
+  score = 0;
+  results = [];
+  renderQuestion();
+}
+
+function renderQuestion() {
+  const card = document.getElementById("quizCard");
+  const progressWrap = document.getElementById("progressWrap");
+
+  if (idx >= filtered.length) {
+    renderSummary();
+    return;
+  }
+
+  progressWrap.style.display = "block";
+  const q = filtered[idx];
+  answered = false;
+
+  document.getElementById("progressLabel").textContent = `第 ${idx + 1} 問 / ${filtered.length} 問`;
+  document.getElementById("scoreLabel").textContent = `現在の正解数：${score} 問`;
+  document.getElementById("progressFill").style.width = `${(idx / filtered.length) * 100}%`;
+
+  const badgeHtml = q.type === "desc"
+    ? `<span class="badge badge-desc">📝 ${q.catLabel}</span><span class="badge badge-theme">${q.themeBadge}</span>`
+    : `<span class="badge badge-ox">⭕❌ ${q.catLabel}</span><span class="badge badge-pair">${q.pairBadge}</span>`;
+
+  let inputAreaHtml = "";
+  if (q.type === "desc") {
+    inputAreaHtml = `
+      <div class="desc-area">
+        <label class="desc-label" for="descInput">あなたの記述解答（キーワードを意識して書いてみよう）</label>
+        <textarea class="desc-textarea" id="descInput" placeholder="ここに理由や仕組みを短文で入力してください..."></textarea>
+        <div class="desc-hint">※入力後「答え合わせをする」を押すと、必須キーワードのチェックと模範解答・解説が表示されます。</div>
+        <div class="action-row">
+          <button class="btn-primary" id="checkDescBtn" onclick="checkDesc(false)">答え合わせをする</button>
+          <button class="btn-secondary" id="giveUpDescBtn" onclick="checkDesc(true)">答えとキーワードを見る</button>
+        </div>
+      </div>
+    `;
+  } else {
+    inputAreaHtml = `
+      <div class="ox-grid">
+        <button class="ox-btn" id="ox-true" onclick="checkOX(true)">
+          <span class="ox-symbol">⭕</span>
+          <span class="ox-sub">正しい（○）</span>
+        </button>
+        <button class="ox-btn" id="ox-false" onclick="checkOX(false)">
+          <span class="ox-symbol">❌</span>
+          <span class="ox-sub">誤り（×）</span>
+        </button>
+      </div>
+    `;
+  }
+
+  card.innerHTML = `
+    <div class="badge-row">${badgeHtml}</div>
+    <div class="q-text">Q${idx + 1}. ${q.q}</div>
+    ${q.visual ? `<div class="q-visual">${q.visual}</div>` : ""}
+    ${inputAreaHtml}
+    <div class="feedback" id="feedbackBox"></div>
+    <div class="nav-row">
+      <button class="btn-secondary" onclick="restartQuiz()">最初からやり直す</button>
+      <button class="btn-primary" id="nextBtn" style="display:none;" onclick="nextQuestion()">
+        ${idx + 1 < filtered.length ? "次の問題へ →" : "結果を見る →"}
+      </button>
+    </div>
+  `;
+}
+
+function normalizeText(s) {
+  return (s || "")
+    .replace(/[Ａ-Ｚａ-ｚ０-９]/g, c => String.fromCharCode(c.charCodeAt(0) - 0xFEE0))
+    .replace(/−/g, "-")
+    .replace(/\s+/g, "");
+}
+
+function checkDesc(isGiveUp) {
+  if (answered) return;
+  answered = true;
+
+  const q = filtered[idx];
+  const textarea = document.getElementById("descInput");
+  const userText = normalizeText(textarea.value);
+  textarea.disabled = true;
+  document.getElementById("checkDescBtn").disabled = true;
+  document.getElementById("giveUpDescBtn").disabled = true;
+
+  let hitCount = 0;
+  const kwChips = q.keywords.map(kw => {
+    const isHit = !isGiveUp && userText.length > 0 && kw.patterns.some(p => userText.includes(normalizeText(p)));
+    if (isHit) hitCount++;
+    const cls = isGiveUp ? "" : (isHit ? "hit" : "miss");
+    const icon = isGiveUp ? "🔑" : (isHit ? "✓" : "×");
+    return `<span class="kw-chip ${cls}">${icon} ${kw.label}</span>`;
+  }).join("");
+
+  const totalKw = q.keywords.length;
+  const autoPass = !isGiveUp && hitCount >= Math.ceil(totalKw * 0.7);
+  if (autoPass) score++;
+
+  const resultEntry = { id: q.id, catLabel: q.catLabel, correct: autoPass, qObj: q };
+  results.push(resultEntry);
+
+  const fb = document.getElementById("feedbackBox");
+  fb.className = `feedback show ${autoPass ? "is-correct" : (isGiveUp ? "is-wrong" : "is-review")}`;
+
+  const titleText = isGiveUp
+    ? "📖 模範解答と必須キーワード"
+    : (autoPass
+      ? `⭕ よく書けています！（必須キーワード ${hitCount} / ${totalKw} 個一致）`
+      : `📝 キーワードを確認しよう（一致：${hitCount} / ${totalKw} 個）`);
+
+  fb.innerHTML = `
+    <div class="feedback-title">${titleText}</div>
+    <div class="model-answer-box">
+      <div class="model-answer-title">【模範解答】</div>
+      <div><b>${q.modelAnswer}</b></div>
+    </div>
+    <div class="kw-box">
+      <div class="kw-title">📌 記述に含めるべき必須キーワード</div>
+      <div class="kw-list">${kwChips}</div>
+    </div>
+    <div class="explanation"><b>【詳しい解説】</b><br>${q.exp}</div>
+    <div class="self-check-row">
+      <span style="font-size:0.86rem;font-weight:700;color:#475569;">自己採点（記録を変更できます）：</span>
+      <button class="self-btn ok ${autoPass ? "selected" : ""}" id="selfOkBtn" onclick="setSelfScore(true)">⭕ 合格（書けた）</button>
+      <button class="self-btn ng ${!autoPass ? "selected" : ""}" id="selfNgBtn" onclick="setSelfScore(false)">❌ 要復習</button>
+    </div>
+  `;
+
+  document.getElementById("scoreLabel").textContent = `現在の正解数：${score} 問`;
+  document.getElementById("progressFill").style.width = `${((idx + 1) / filtered.length) * 100}%`;
+  document.getElementById("nextBtn").style.display = "inline-block";
+}
+
+function setSelfScore(val) {
+  const last = results[results.length - 1];
+  if (!last || last.correct === val) return;
+  last.correct = val;
+  score += val ? 1 : -1;
+  document.getElementById("scoreLabel").textContent = `現在の正解数：${score} 問`;
+  document.getElementById("selfOkBtn").classList.toggle("selected", val);
+  document.getElementById("selfNgBtn").classList.toggle("selected", !val);
+}
+
+function checkOX(choice) {
+  if (answered) return;
+  answered = true;
+
+  const q = filtered[idx];
+  const isCorrect = choice === q.ans;
+  if (isCorrect) score++;
+
+  results.push({ id: q.id, catLabel: q.catLabel, correct: isCorrect, qObj: q });
+
+  const btnT = document.getElementById("ox-true");
+  const btnF = document.getElementById("ox-false");
+  btnT.disabled = true;
+  btnF.disabled = true;
+
+  if (q.ans === true) btnT.classList.add("correct");
+  else btnF.classList.add("correct");
+  if (!isCorrect) {
+    (choice ? btnT : btnF).classList.add("wrong");
+  }
+
+  const kwChips = q.keywords.map(kw => `<span class="kw-chip">🔑 ${kw.label}</span>`).join("");
+
+  const fb = document.getElementById("feedbackBox");
+  fb.className = `feedback show ${isCorrect ? "is-correct" : "is-wrong"}`;
+  fb.innerHTML = `
+    <div class="feedback-title">${isCorrect ? "⭕ 正解！" : "❌ 不正解…ひっかけに注意！"}</div>
+    <div class="model-answer-box">
+      <div class="model-answer-title">【正解・ポイント】</div>
+      <div><b>${q.modelAnswer}</b></div>
+    </div>
+    <div class="kw-box">
+      <div class="kw-title">📌 記述・テストで押さえるべき必須キーワード</div>
+      <div class="kw-list">${kwChips}</div>
+    </div>
+    <div class="explanation"><b>【詳しい解説】</b><br>${q.exp}</div>
+  `;
+
+  document.getElementById("scoreLabel").textContent = `現在の正解数：${score} 問`;
+  document.getElementById("progressFill").style.width = `${((idx + 1) / filtered.length) * 100}%`;
+  document.getElementById("nextBtn").style.display = "inline-block";
+}
+
+function nextQuestion() {
+  idx++;
+  renderQuestion();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function restartQuiz() {
+  filterQuestions(activeCat);
+}
+
+function retryWrong() {
+  const wrongList = results.filter(r => !r.correct).map(r => r.qObj);
+  if (wrongList.length === 0) return;
+  filtered = wrongList;
+  idx = 0;
+  score = 0;
+  results = [];
+  renderQuestion();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function renderSummary() {
+  document.getElementById("progressWrap").style.display = "none";
+  const pct = Math.round((score / filtered.length) * 100);
+  const wrongCount = filtered.length - score;
+
+  const stats = {};
+  results.forEach(r => {
+    if (!stats[r.catLabel]) stats[r.catLabel] = { ok: 0, total: 0 };
+    stats[r.catLabel].total++;
+    if (r.correct) stats[r.catLabel].ok++;
+  });
+
+  const breakdownHtml = Object.entries(stats).map(([cat, st]) => `
+    <div class="cat-row">
+      <span>${cat}</span>
+      <strong>${st.ok} / ${st.total} 問正解（${Math.round((st.ok / st.total) * 100)}%）</strong>
+    </div>
+  `).join("");
+
+  let msg = "間違えた問題と必須キーワードをもう一度確認して、記述・ひっかけ対策を仕上げましょう！";
+  if (pct === 100) msg = "全問クリアです！記述のキーワードもひっかけ問題もバッチリですね！";
+  else if (pct >= 80) msg = "高得点です！要復習の問題のキーワードを押さえれば満点が狙えます。";
+
+  document.getElementById("quizCard").innerHTML = `
+    <div class="summary-card">
+      <div style="font-size:1.1rem;font-weight:700;">テスト結果</div>
+      <div class="score-big">${score} / ${filtered.length} 問（${pct}%）</div>
+      <p style="color:var(--muted);margin-top:4px;">${msg}</p>
+      <div class="cat-breakdown">
+        <div style="font-weight:700;margin-bottom:8px;">形式別の正答率</div>
+        ${breakdownHtml}
+      </div>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+        ${wrongCount > 0 ? `<button class="btn-primary" onclick="retryWrong()">要復習の ${wrongCount} 問だけやり直す</button>` : ""}
+        <button class="btn-secondary" onclick="restartQuiz()">このセットをもう一度解く</button>
+      </div>
+    </div>
+  `;
+}
+
+document.querySelectorAll(".mode-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".mode-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    filterQuestions(btn.dataset.cat);
+  });
+});
+
+renderQuestion();
+</script>
+</body>
+</html>

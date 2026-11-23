@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>中1・2学期末テスト対策 英語フラッシュカード (全48枚)</title>
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --card: #ffffff;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --primary-light: #eff6ff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --correct: #16a34a;
+      --correct-bg: #f0fdf4;
+      --correct-border: #86efac;
+      --again: #ea580c;
+      --again-bg: #fff7ed;
+      --again-border: #fdba74;
+      --accent: #f59e0b;
+      --accent-bg: #fffbeb;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      min-height: 100vh;
+      padding: 18px 14px 48px;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 14px;
+    }
+
+    .header-badge {
+      display: inline-block;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.78rem;
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 6px;
+      letter-spacing: 0.03em;
+    }
+
+    .header h1 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 4px;
+    }
+
+    .header p {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    /* Filter Pills */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      justify-content: center;
+      margin-bottom: 14px;
+    }
+
+    .filter-btn {
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--muted);
+      font-size: 0.76rem;
+      font-weight: 600;
+      padding: 5px 11px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .filter-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+    }
+
+    /* Toolbar */
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .tool-group {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .tool-btn {
+      background: #fff;
+      border: 1px solid var(--border);
+      color: #334155;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 9px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .tool-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .tool-btn.is-on {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    /* Status */
+    .status-card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 11px 15px;
+      margin-bottom: 16px;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+    }
+
+    .status-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.84rem;
+      font-weight: 700;
+      margin-bottom: 7px;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .status-badges {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .pill-ok {
+      background: var(--correct-bg);
+      color: var(--correct);
+      padding: 2px 10px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      border: 1px solid var(--correct-border);
+    }
+
+    .pill-again {
+      background: var(--again-bg);
+      color: var(--again);
+      padding: 2px 10px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      border: 1px solid var(--again-border);
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #3b82f6, #16a34a);
+      width: 0%;
+      transition: width 0.3s ease;
+      border-radius: 999px;
+    }
+
+    /* Flashcard 3D Flip */
+    .scene {
+      perspective: 1200px;
+      margin-bottom: 16px;
+    }
+
+    .flashcard {
+      position: relative;
+      width: 100%;
+      min-height: 320px;
+      transform-style: preserve-3d;
+      transition: transform 0.45s cubic-bezier(0.22, 0.8, 0.32, 1);
+      cursor: pointer;
+    }
+
+    .flashcard.is-flipped {
+      transform: rotateY(180deg);
+    }
+
+    .face {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      min-height: 320px;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      background: var(--card);
+      border-radius: var(--radius);
+      border: 1.5px solid var(--border);
+      box-shadow: var(--shadow);
+      padding: 22px 22px 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .face-back {
+      transform: rotateY(180deg);
+      border-color: #bfdbfe;
+      background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+    }
+
+    .face-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cat-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #0369a1;
+      background: #e0f2fe;
+      padding: 3px 10px;
+      border-radius: 6px;
+    }
+
+    .side-tag {
+      font-size: 0.74rem;
+      font-weight: 800;
+      padding: 2px 9px;
+      border-radius: 999px;
+      letter-spacing: 0.04em;
+    }
+
+    .side-front {
+      background: #f1f5f9;
+      color: #475569;
+    }
+
+    .side-back {
+      background: var(--primary-light);
+      color: var(--primary);
+    }
+
+    .front-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 18px 8px;
+    }
+
+    .q-label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .q-text {
+      font-size: 1.24rem;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.55;
+      margin-bottom: 10px;
+    }
+
+    .q-sub {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      background: var(--primary-light);
+      padding: 6px 14px;
+      border-radius: 8px;
+      display: inline-block;
+    }
+
+    .tap-hint {
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .back-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 14px 4px;
+      gap: 10px;
+    }
+
+    .ans-box {
+      background: var(--primary-light);
+      border: 1.5px solid #bfdbfe;
+      border-radius: 12px;
+      padding: 13px 16px;
+      text-align: center;
+    }
+
+    .ans-main {
+      font-size: 1.38rem;
+      font-weight: 900;
+      color: var(--primary-dark);
+      letter-spacing: 0.01em;
+    }
+
+    .ans-example {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #334155;
+      margin-top: 4px;
+    }
+
+    .point-box {
+      background: var(--accent-bg);
+      border-left: 4px solid var(--accent);
+      border-radius: 8px;
+      padding: 11px 14px;
+      font-size: 0.89rem;
+      color: #78350f;
+      font-weight: 600;
+    }
+
+    .point-title {
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #b45309;
+      margin-bottom: 2px;
+    }
+
+    /* Action Controls */
+    .controls {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .btn-action {
+      border: none;
+      border-radius: 12px;
+      padding: 14px 16px;
+      font-size: 0.98rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.12s ease, opacity 0.15s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .btn-action:active {
+      transform: scale(0.98);
+    }
+
+    .btn-again {
+      background: var(--again-bg);
+      color: var(--again);
+      border: 2px solid var(--again-border);
+    }
+
+    .btn-again:hover {
+      background: #ffedd5;
+    }
+
+    .btn-ok {
+      background: var(--correct);
+      color: #fff;
+      border: 2px solid var(--correct);
+    }
+
+    .btn-ok:hover {
+      background: #15803d;
+    }
+
+    .nav-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-nav {
+      background: #fff;
+      border: 1px solid var(--border);
+      color: #475569;
+      font-size: 0.84rem;
+      font-weight: 700;
+      padding: 8px 14px;
+      border-radius: 9px;
+      cursor: pointer;
+    }
+
+    .btn-nav:hover:not(:disabled) {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .btn-nav:disabled {
+      opacity: 0.4;
+      cursor: default;
+    }
+
+    .kbd-hint {
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* Completion Card */
+    .done-card {
+      display: none;
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 28px 22px;
+      text-align: center;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .done-card.show {
+      display: block;
+    }
+
+    .done-score {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--primary);
+      margin: 8px 0;
+    }
+
+    .done-msg {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 18px;
+    }
+
+    .done-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 12px 20px;
+      font-size: 0.94rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn-secondary {
+      background: #fff;
+      color: var(--text);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 11px 18px;
+      font-size: 0.94rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    /* List View */
+    .list-view {
+      display: none;
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 18px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .list-view.show {
+      display: block;
+    }
+
+    .list-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .list-item {
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 8px;
+      background: #fafcff;
+    }
+
+    .list-item-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .list-q {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .list-a {
+      font-size: 0.98rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-top: 3px;
+    }
+
+    .list-tip {
+      font-size: 0.82rem;
+      color: #78350f;
+      margin-top: 3px;
+    }
+
+    @media (max-width: 520px) {
+      .flashcard, .face { min-height: 300px; }
+      .face { padding: 18px 16px 14px; }
+      .q-text { font-size: 1.1rem; }
+      .ans-main { font-size: 1.22rem; }
+      .kbd-hint { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="header-badge">中学1年生・2学期末テスト対策</div>
+      <h1>英語 重要語句フラッシュカード</h1>
+      <p>スキマ時間にサクッと確認！表面で考えて、タップして裏面の答え＆一言ポイントをチェック</p>
+    </header>
+
+    <div class="filter-bar" id="filterBar">
+      <button class="filter-btn active" data-cat="ALL">すべて (48枚)</button>
+      <button class="filter-btn" data-cat="Which・Whose・所有代名詞">① Which・Whose</button>
+      <button class="filter-btn" data-cat="代名詞・目的格">② 代名詞</button>
+      <button class="filter-btn" data-cat="Why・Because">③ Why・Because</button>
+      <button class="filter-btn" data-cat="重要語句・連語">④ 重要語句</button>
+      <button class="filter-btn" data-cat="Step 3・紹介表現">⑤ 紹介表現</button>
+      <button class="filter-btn" data-cat="There is / are">⑥ There is/are</button>
+      <button class="filter-btn" data-cat="How・by + 乗り物">⑦ How・乗り物</button>
+    </div>
+
+    <div class="toolbar">
+      <div class="tool-group">
+        <button class="tool-btn" id="shuffleBtn">🔀 シャッフル</button>
+        <button class="tool-btn" id="listToggleBtn">📋 一覧で見る</button>
+      </div>
+      <div class="tool-group">
+        <button class="tool-btn" id="restartTopBtn">↺ 最初から</button>
+      </div>
+    </div>
+
+    <div class="status-card" id="statusCard">
+      <div class="status-top">
+        <span id="progressText">1 / 48 枚目</span>
+        <div class="status-badges">
+          <span class="pill-ok" id="okCount">⭕ 覚えた: 0</span>
+          <span class="pill-again" id="againCount">😅 まだ: 0</span>
+        </div>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+    </div>
+
+    <div id="studyArea">
+      <div class="scene">
+        <div class="flashcard" id="flashcard">
+          <div class="face face-front">
+            <div class="face-top">
+              <span class="cat-tag" id="frontCat"></span>
+              <span class="side-tag side-front" id="frontNum">表 / QUESTION</span>
+            </div>
+            <div class="front-body">
+              <div class="q-label">この英語・表現は？</div>
+              <div class="q-text" id="frontQuestion"></div>
+              <div class="q-sub" id="frontSub" style="display:none;"></div>
+            </div>
+            <div class="tap-hint">👆 カードをタップ（または Space）で答えを見る</div>
+          </div>
+
+          <div class="face face-back">
+            <div class="face-top">
+              <span class="cat-tag" id="backCat"></span>
+              <span class="side-tag side-back">裏 / ANSWER</span>
+            </div>
+            <div class="back-body">
+              <div class="ans-box">
+                <div class="ans-main" id="backAnswer"></div>
+                <div class="ans-example" id="backExample"></div>
+              </div>
+              <div class="point-box">
+                <div class="point-title">💡 テストで狙われやすい一言ポイント</div>
+                <div id="backTip"></div>
+              </div>
+            </div>
+            <div class="tap-hint">👇 下のボタンで仕分けして次へ進もう</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button class="btn-action btn-again" id="againBtn">😅 まだ（あとで復習）</button>
+        <button class="btn-action btn-ok" id="okBtn">⭕ 覚えた！</button>
+      </div>
+
+      <div class="nav-row">
+        <button class="btn-nav" id="prevBtn">← 前のカード</button>
+        <span class="kbd-hint">Space: めくる ／ ←: まだ ／ →: 覚えた</span>
+        <button class="btn-nav" id="flipBtn">🔄 カードをめくる</button>
+      </div>
+    </div>
+
+    <section class="done-card" id="doneCard">
+      <div class="header-badge">1周完了！</div>
+      <div class="done-score" id="doneScore"></div>
+      <div class="done-msg" id="doneMsg"></div>
+      <div class="done-actions">
+        <button class="btn-primary" id="retryAgainBtn" style="display:none;">😅 「まだ」のカードだけ復習する</button>
+        <button class="btn-secondary" id="restartDoneBtn">最初からもう1周する</button>
+      </div>
+    </section>
+
+    <section class="list-view" id="listView">
+      <div class="list-header">
+        <strong id="listTitle">全カード一覧</strong>
+        <button class="tool-btn" id="closeListBtn">✕ カードに戻る</button>
+      </div>
+      <div id="listContainer"></div>
+    </section>
+  </div>
+
+  <script>
+    const CARDS = [
+      // ① Which・Whose・所有代名詞 (8枚)
+      {
+        cat: "Which・Whose・所有代名詞",
+        q: "2つ以上の中から選ぶ「どちらの〜」をたずねる疑問詞は？",
+        sub: "(　　) desk is yours?",
+        a: "Which",
+        ex: "Which desk is yours?（どちらの机があなたのものですか。）",
+        tip: "「だれの〜」は Whose、「どちらの〜」は Which！2つの使い分けが最頻出。"
+      },
+      {
+        cat: "Which・Whose・所有代名詞",
+        q: "持ち主をたずねる「だれの〜」を表す疑問詞は？",
+        sub: "(　　) room is this?",
+        a: "Whose",
+        ex: "Whose room is this?（これはだれの部屋ですか。）",
+        tip: "Whose の質問に Yes / No では答えない！うしろは is this のような疑問文の語順。"
+      },
+      {
+        cat: "Which・Whose・所有代名詞",
+        q: "前に出た単数名詞のくり返しを避ける「〜のもの」を表す代名詞は？",
+        sub: "the blue one or the yellow (　　)?",
+        a: "one",
+        ex: "Which umbrella is yours, the blue one or the yellow one?",
+        tip: "〈the ＋ 形容詞 ＋ one〉（青いもの・黄色いもの）の形はそのまま覚えよう。"
+      },
+      {
+        cat: "Which・Whose・所有代名詞",
+        q: "「私のもの」を表す所有代名詞は？",
+        sub: "I — my — me — (　　)",
+        a: "mine",
+        ex: "This bag is mine.（このかばんは私のものです。）",
+        tip: "〈my ＋ 名詞 ＝ mine〉。うしろに名詞を置かないときに使う！"
+      },
+      {
+        cat: "Which・Whose・所有代名詞",
+        q: "「あなたのもの」を表す所有代名詞は？",
+        sub: "you — your — you — (　　)",
+        a: "yours",
+        ex: "Which desk is yours?（どちらの机があなたのものですか。）",
+        tip: "your に s をつけるだけ。your（あなたの）と混同しないように注意！"
+      },
+      {
+        cat: "Which・Whose・所有代名詞",
+        q: "「彼女のもの」を表す所有代名詞は？",
+        sub: "That green one is (　　).",
+        a: "hers",
+        ex: "That green one is hers.（あの緑色のが彼女のものです。）",
+        tip: "うしろに名詞があれば her（her mother）、名詞がなければ hers！"
+      },
+      {
+        cat: "Which・Whose・所有代名詞",
+        q: "「私たちのもの」「彼らのもの」を表す所有代名詞は？",
+        sub: "we → (　　) / they → (　　)",
+        a: "ours / theirs",
+        ex: "That school is ours. / These cups are theirs.",
+        tip: "目的格の us / them と混同しやすいので、最後に s がつく所有代名詞を区別しよう。"
+      },
+      {
+        cat: "Which・Whose・所有代名詞",
+        q: "「それはゆみのものです。」と人名を使って答えるときの表現は？",
+        sub: "Whose notebook is this? — (　　)",
+        a: "It's Yumi's.",
+        ex: "Whose notebook is this? — It's Yumi's.",
+        tip: "It's Yumi. だと「それはゆみです」になる！人名のあとの 's を絶対に忘れない。"
+      },
+
+      // ② 代名詞・目的格 (7枚)
+      {
+        cat: "代名詞・目的格",
+        q: "「彼を・彼に」を表す目的格の代名詞は？",
+        sub: "We like (　　). / I have lunch with (　　).",
+        a: "him",
+        ex: "This is our uncle. We like him.（私たちは彼が好きです。）",
+        tip: "動詞（like, know）や前置詞（with, to, for）のうしろは必ず3番目の目的格！"
+      },
+      {
+        cat: "代名詞・目的格",
+        q: "「彼女を・彼女に」を表す目的格の代名詞は？",
+        sub: "she — her — (　　) — hers",
+        a: "her",
+        ex: "Do you know her?（あなたは彼女を知っていますか。）",
+        tip: "所有格（彼女の）と目的格（彼女を）は同じ her になる。"
+      },
+      {
+        cat: "代名詞・目的格",
+        q: "「私たちを・私たちに」を表す目的格の代名詞は？",
+        sub: "Does Ichiro know [Tomomi and me]? → (　　)",
+        a: "us",
+        ex: "Does Ichiro know us?（一郎は私たちを知っていますか。）",
+        tip: "「〜と私」が動詞のうしろにあるときは目的格の us にかえる！"
+      },
+      {
+        cat: "代名詞・目的格",
+        q: "「彼らを・それらを」を表す目的格の代名詞は？",
+        sub: "Look at the boys. Do you know (　　)?",
+        a: "them",
+        ex: "Look at the boys. Do you know them?",
+        tip: "複数の名詞（the boys など）を動詞や前置詞のうしろで受けるときは them。"
+      },
+      {
+        cat: "代名詞・目的格",
+        q: "「私は2匹のイヌを飼っています。彼らは私が好きです。」の主語は？",
+        sub: "I have two dogs. (　　) like me.",
+        a: "They",
+        ex: "I have two dogs. They like me.",
+        tip: "テスト超頻出トラップ！動物やモノでも2つ以上（複数）なら It ではなく They！"
+      },
+      {
+        cat: "代名詞・目的格",
+        q: "「ユキと私はテニスが好きです。私たちは〜」の主語は？",
+        sub: "Yuki and I like tennis. (　　) play it together.",
+        a: "We",
+        ex: "Yuki and I like tennis. We play it together.",
+        tip: "I がふくまれていたら「私たち（We）」、you がふくまれていたら「あなたたち（You）」。"
+      },
+      {
+        cat: "代名詞・目的格",
+        q: "「私は彼をとてもよく知っています。」の正しい英語の語順は？",
+        sub: "know / I / very / him / well",
+        a: "I know him very well.",
+        ex: "I know him very well.",
+        tip: "動詞と目的語（know him）の間に very well を割り込ませないのが鉄則！"
+      },
+
+      // ③ Why・Because (6枚)
+      {
+        cat: "Why・Because",
+        q: "「なぜ〜ですか」と理由をたずねる疑問詞は？",
+        sub: "(　　) do you run every day?",
+        a: "Why",
+        ex: "Why do you run every day?（あなたはなぜ毎日走るのですか。）",
+        tip: "Why のうしろは必ず「疑問文の語順（do / does / is ＋ 主語〜）」にする。"
+      },
+      {
+        cat: "Why・Because",
+        q: "Why の質問に対して「なぜなら〜だからです」と答える語は？",
+        sub: "(　　) I can ski.",
+        a: "Because",
+        ex: "Why do you like winter? — Because I can ski.",
+        tip: "Because のうしろは「主語＋動詞」のふつうの文の語順！（疑問文の語順にしない）"
+      },
+      {
+        cat: "Why・Because",
+        q: "「健はなぜ花を育てるのですか。」を英語にすると？",
+        sub: "Why (　　) Ken (　　) flowers?",
+        a: "Why does Ken grow flowers?",
+        ex: "Why does Ken grow flowers?",
+        tip: "主語が三人称単数なので does を使い、動詞の s をとって原形 grow にする！"
+      },
+      {
+        cat: "Why・Because",
+        q: "「どうして理科はわくわくするのですか。」の正しい語順は？",
+        sub: "Why / science / is / exciting / ?",
+        a: "Why is science exciting?",
+        ex: "Why is science exciting?",
+        tip: "テスト超頻出ミス！Why science is ... ❌。必ず is を主語の前に出す！"
+      },
+      {
+        cat: "Why・Because",
+        q: "「犬の散歩をする」を表す英語表現は？",
+        sub: "Because I can (　　) my dog.",
+        a: "walk my dog",
+        ex: "Because I can walk my dog.（なぜなら犬の散歩ができるからです。）",
+        tip: "walk には「歩く」だけでなく「（犬を）散歩させる」という意味もある。"
+      },
+      {
+        cat: "Why・Because",
+        q: "「わくわくする／おもしろい」を表す形容詞は？",
+        sub: "Why is science (　　)?",
+        a: "exciting",
+        ex: "Science is exciting.（理科はわくわくします。）",
+        tip: "教科やスポーツの感想を言うときの定番形容詞。スペルも書けるようにしよう。"
+      },
+
+      // ④ 重要語句・連語（Program 6） (10枚)
+      {
+        cat: "重要語句・連語",
+        q: "「学校へ行く道（通学路）」を表す重要語句は？",
+        sub: "the (　　) to school",
+        a: "the way to school",
+        ex: "on the way to school（学校へ行く途中で）",
+        tip: "road ではなく way を使う！〈the way to ＋ 場所〉で「〜への道」。"
+      },
+      {
+        cat: "重要語句・連語",
+        q: "「コートを横切って」を表す重要語句は？",
+        sub: "(　　) the court",
+        a: "across the court",
+        ex: "run across the court（コートを横切って走る）",
+        tip: "across は「〜を横切って」を表す前置詞。"
+      },
+      {
+        cat: "重要語句・連語",
+        q: "「1時間かかります。」を英語で表すと？",
+        sub: "It (　　) an hour.",
+        a: "It takes an hour.",
+        ex: "It takes an hour.（1時間かかります。）",
+        tip: "It が主語なので takes（s つき）。hour は h を発音しないので a ではなく an！"
+      },
+      {
+        cat: "重要語句・連語",
+        q: "「お茶はどうですか。」と相手におすすめするときの表現は？",
+        sub: "(　　) about some tea?",
+        a: "How about some tea?",
+        ex: "How about some tea?（お茶はどうですか。）",
+        tip: "「〜はどうですか」とすすめるときは〈How about ~?〉！"
+      },
+      {
+        cat: "重要語句・連語",
+        q: "驚いたときの「まさか！／ありえない！」を英語で言うと？",
+        sub: "Program 6 まとめテスト重要連語",
+        a: "No way!",
+        ex: "No way!（まさか！）",
+        tip: "会話の反応表現としてテストで穴埋めや選択問題に出やすい。"
+      },
+      {
+        cat: "重要語句・連語",
+        q: "文末などに添える「〜なんだよね／知っているよね」の連語は？",
+        sub: "He's very kind, (　　).",
+        a: "you know",
+        ex: "He's very kind, you know.（彼はとても親切なんだよね。）",
+        tip: "カンマのあとに置かれる 2語の会話表現としてセットで覚えよう。"
+      },
+      {
+        cat: "重要語句・連語",
+        q: "「安全な場所」を英語で表すと？",
+        sub: "a (　　) place",
+        a: "a safe place",
+        ex: "a safe place（安全な場所）",
+        tip: "safe（安全な）のスペルを正確に書けるようにしておこう。"
+      },
+      {
+        cat: "重要語句・連語",
+        q: "「強いチーム」を英語で表すと？",
+        sub: "a (　　) team",
+        a: "a strong team",
+        ex: "Our club is a strong team.",
+        tip: "strong（強い）は形容詞なので名詞 team の前に置く。"
+      },
+      {
+        cat: "重要語句・連語",
+        q: "「それについて考える」を英語で表すと？",
+        sub: "Think (　　) it.",
+        a: "think about it",
+        ex: "Think about it.（それについて考えてみて。）",
+        tip: "前置詞 about のうしろなので代名詞は it（目的格）を置く。"
+      },
+      {
+        cat: "重要語句・連語",
+        q: "「〜が得意だ」を表す重要連語は？",
+        sub: "be (　　) at ~",
+        a: "be good at ~",
+        ex: "He is good at tennis.（彼はテニスが得意です。）",
+        tip: "前置詞 at とセットで覚えること！主語に合わせて be動詞を変える。"
+      },
+
+      // ⑤ Step 3・紹介表現 (6枚)
+      {
+        cat: "Step 3・紹介表現",
+        q: "「〜についてお話ししたいと思います。」（発表の導入表現）は？",
+        sub: "I'd (　　) to talk about udon.",
+        a: "I'd like to talk about ~.",
+        ex: "I'd like to talk about udon.",
+        tip: "〈I'd like to ＋ 動詞の原形〉（＝ I would like to ~）で「〜したいと思う」。"
+      },
+      {
+        cat: "Step 3・紹介表現",
+        q: "「たとえば」を表す2語の重要表現は？",
+        sub: "(　　), zaru-udon is delicious.",
+        a: "For example,",
+        ex: "For example, zaru-udon is delicious.",
+        tip: "具体例をあげるときの定番表現。直後のカンマ（,）も忘れない！"
+      },
+      {
+        cat: "Step 3・紹介表現",
+        q: "「いろいろな方法で」を表す3語の表現は？",
+        sub: "in (　　) ways",
+        a: "in many ways",
+        ex: "We can enjoy it in many ways.",
+        tip: "「たくさんの方法」なので way に複数形の s をつけて ways にする。"
+      },
+      {
+        cat: "Step 3・紹介表現",
+        q: "「BといっしょにAを楽しむ」を表す表現は？",
+        sub: "enjoy A (　　) B",
+        a: "enjoy A with B",
+        ex: "You can enjoy karaage with lemon.",
+        tip: "料理の食べ方や組み合わせを紹介するときの定番パターン。"
+      },
+      {
+        cat: "Step 3・紹介表現",
+        q: "料理の特徴を表す「サクサクした」「汁の多い（ジューシーな）」は？",
+        sub: "Step 3 重要形容詞ペア",
+        a: "crispy / juicy",
+        ex: "It is crispy and juicy.（それはサクサクしていてジューシーです。）",
+        tip: "からあげなどの食感を説明する重要単語。スペルも確認しておこう。"
+      },
+      {
+        cat: "Step 3・紹介表現",
+        q: "「ぜひためしてください！」（紹介文の結び表現）は？",
+        sub: "Please (　　) it!",
+        a: "Please try it!",
+        ex: "Please try it!（ぜひためしてみてください！）",
+        tip: "発表や紹介スピーチのしめくくりにそのまま使える決まり文句。"
+      },
+
+      // ⑥ There is / are (6枚)
+      {
+        cat: "There is / are",
+        q: "「私の家の近くに図書館があります。」（単数名詞のとき）",
+        sub: "There (　　) a library near my house.",
+        a: "There is ~",
+        ex: "There is a library near my house.",
+        tip: "be動詞が is か are かは、直後の名詞（a library＝単数）で決まる！"
+      },
+      {
+        cat: "There is / are",
+        q: "「その家には15室の部屋があります。」（複数名詞のとき）",
+        sub: "There (　　) fifteen rooms in the house.",
+        a: "There are ~",
+        ex: "There are fifteen rooms in the house.",
+        tip: "直後の名詞が複数（fifteen rooms, two desks, some horses など）なら必ず are！"
+      },
+      {
+        cat: "There is / are",
+        q: "「箱の中にボールはいくつかありますか。」（疑問文）",
+        sub: "(　　) there any balls in the box?",
+        a: "Are there any balls in the box?",
+        ex: "Are there any balls in the box? — Yes, there are.",
+        tip: "答え方も必ず there を使う！Yes, they are. ❌ → Yes, there are. ⭕"
+      },
+      {
+        cat: "There is / are",
+        q: "「そこにはパンダは1頭もいないんだ。」（否定文）",
+        sub: "Sorry, there (　　) any pandas there.",
+        a: "there are not any ~",
+        ex: "Sorry, there are not any pandas there.",
+        tip: "文頭の There（〜がある）に意味はないが、文末の there は「そこに」という副詞！"
+      },
+      {
+        cat: "There is / are",
+        q: "「彩は部屋にいます。」を英語で表すと？（特定の人・ものの場所）",
+        sub: "There is Aya ... は使える？",
+        a: "Aya is in the room.",
+        ex: "Aya is in the room.（彩は部屋にいます。）",
+        tip: "テスト超頻出トラップ！人名・the ~・my ~ など特定の人やものには There is は使えない！"
+      },
+      {
+        cat: "There is / are",
+        q: "「この動物園には5頭のゴリラがいます。」の先頭の語は？",
+        sub: "(　　) are five gorillas in this zoo.",
+        a: "There",
+        ex: "There are five gorillas in this zoo.",
+        tip: "These（これらは）や They（彼らは）と引っ掛け問題が出やすいので注意！"
+      },
+
+      // ⑦ How・by + 乗り物 (5枚)
+      {
+        cat: "How・by + 乗り物",
+        q: "手段や方法「どのようにして／どうやって」をたずねる疑問詞は？",
+        sub: "(　　) do you come to this library?",
+        a: "How",
+        ex: "How do you come to this library?",
+        tip: "How の質問に Yes / No では答えず、手段や方法を具体的に答える。"
+      },
+      {
+        cat: "How・by + 乗り物",
+        q: "「自転車で」「飛行機で」など〈乗り物で〉を表すときの形は？",
+        sub: "How can you go there? — (　　) plane.",
+        a: "by bike / by plane",
+        ex: "How can you go there? — By plane.",
+        tip: "〈by ＋ 乗り物〉のときは、a / an / the を絶対につけない！（by a plane ❌）"
+      },
+      {
+        cat: "How・by + 乗り物",
+        q: "「私は病院へ歩いていきます。」を英語で表すと？",
+        sub: "I (　　) to the hospital.",
+        a: "I walk to the hospital.",
+        ex: "I walk to the hospital.",
+        tip: "by walk ❌！walk は乗り物ではなく動詞なので〈walk to ＋ 場所〉で表す。"
+      },
+      {
+        cat: "How・by + 乗り物",
+        q: "「（人）に（場所）を案内する」を表す重要表現は？",
+        sub: "How can we (　　) John (　　) this city?",
+        a: "show ＋ 人 ＋ around ＋ 場所",
+        ex: "How can we show John around this city?",
+        tip: "show のすぐうしろに「人」、そのあとに around ＋ 場所を置く語順に注意！"
+      },
+      {
+        cat: "How・by + 乗り物",
+        q: "「そこへ行く」を英語で表すと？（to は必要？）",
+        sub: "How can you go (　　)?",
+        a: "go there",
+        ex: "How can you go there?（どうやってそこへ行きますか。）",
+        tip: "there 自体に「そこに／そこへ」の意味があるので go to there ❌！"
+      }
+    ];
+
+    let activeCategory = "ALL";
+    let isShuffled = false;
+    let deck = [];
+    let currentIndex = 0;
+    let okSet = new Set();
+    let againSet = new Set();
+
+    const filterBar = document.getElementById("filterBar");
+    const shuffleBtn = document.getElementById("shuffleBtn");
+    const listToggleBtn = document.getElementById("listToggleBtn");
+    const restartTopBtn = document.getElementById("restartTopBtn");
+    const statusCard = document.getElementById("statusCard");
+    const progressText = document.getElementById("progressText");
+    const okCount = document.getElementById("okCount");
+    const againCount = document.getElementById("againCount");
+    const progressFill = document.getElementById("progressFill");
+    const studyArea = document.getElementById("studyArea");
+    const flashcard = document.getElementById("flashcard");
+    const frontCat = document.getElementById("frontCat");
+    const frontNum = document.getElementById("frontNum");
+    const frontQuestion = document.getElementById("frontQuestion");
+    const frontSub = document.getElementById("frontSub");
+    const backCat = document.getElementById("backCat");
+    const backAnswer = document.getElementById("backAnswer");
+    const backExample = document.getElementById("backExample");
+    const backTip = document.getElementById("backTip");
+    const againBtn = document.getElementById("againBtn");
+    const okBtn = document.getElementById("okBtn");
+    const prevBtn = document.getElementById("prevBtn");
+    const flipBtn = document.getElementById("flipBtn");
+    const doneCard = document.getElementById("doneCard");
+    const doneScore = document.getElementById("doneScore");
+    const doneMsg = document.getElementById("doneMsg");
+    const retryAgainBtn = document.getElementById("retryAgainBtn");
+    const restartDoneBtn = document.getElementById("restartDoneBtn");
+    const listView = document.getElementById("listView");
+    const listTitle = document.getElementById("listTitle");
+    const listContainer = document.getElementById("listContainer");
+    const closeListBtn = document.getElementById("closeListBtn");
+
+    function shuffleArray(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function buildDeck(customList = null) {
+      let base = customList
+        ? [...customList]
+        : (activeCategory === "ALL" ? [...CARDS] : CARDS.filter(c => c.cat === activeCategory));
+      if (isShuffled) base = shuffleArray(base);
+      deck = base;
+      currentIndex = 0;
+      okSet = new Set();
+      againSet = new Set();
+      listView.classList.remove("show");
+      doneCard.classList.remove("show");
+      statusCard.style.display = "block";
+      studyArea.style.display = "block";
+      renderCard();
+    }
+
+    function renderCard() {
+      flashcard.classList.remove("is-flipped");
+      const card = deck[currentIndex];
+      const total = deck.length;
+
+      progressText.textContent = `${currentIndex + 1} / ${total} 枚目`;
+      okCount.textContent = `⭕ 覚えた: ${okSet.size}`;
+      againCount.textContent = `😅 まだ: ${againSet.size}`;
+      const doneCount = okSet.size + againSet.size;
+      progressFill.style.width = `${(doneCount / total) * 100}%`;
+
+      frontCat.textContent = card.cat;
+      backCat.textContent = card.cat;
+      frontNum.textContent = `CARD ${currentIndex + 1}`;
+      frontQuestion.textContent = card.q;
+
+      if (card.sub) {
+        frontSub.style.display = "inline-block";
+        frontSub.textContent = card.sub;
+      } else {
+        frontSub.style.display = "none";
+      }
+
+      backAnswer.textContent = card.a;
+      backExample.textContent = card.ex;
+      backTip.textContent = card.tip;
+
+      prevBtn.disabled = currentIndex === 0;
+    }
+
+    function flipCard() {
+      flashcard.classList.toggle("is-flipped");
+    }
+
+    function markAndNext(isOk) {
+      if (isOk) {
+        okSet.add(currentIndex);
+        againSet.delete(currentIndex);
+      } else {
+        againSet.add(currentIndex);
+        okSet.delete(currentIndex);
+      }
+
+      if (currentIndex < deck.length - 1) {
+        currentIndex++;
+        renderCard();
+      } else {
+        showDone();
+      }
+    }
+
+    function showDone() {
+      statusCard.style.display = "none";
+      studyArea.style.display = "none";
+      doneCard.classList.add("show");
+
+      const total = deck.length;
+      const ok = okSet.size;
+      const again = againSet.size;
+      const pct = Math.round((ok / total) * 100);
+
+      doneScore.textContent = `覚えた: ${ok} / ${total} 枚 (${pct}%)`;
+      if (again === 0) {
+        doneMsg.textContent = "🏆 すべて「覚えた！」になりました！2学期末テストも自信をもって臨めます！";
+        retryAgainBtn.style.display = "none";
+      } else {
+        doneMsg.textContent = `あと ${again} 枚！「まだ」のカードだけくり返して完璧にしよう。`;
+        retryAgainBtn.style.display = "inline-block";
+        retryAgainBtn.textContent = `😅 「まだ」のカードだけ復習する (${again}枚)`;
+        retryAgainBtn.onclick = () => {
+          const retryList = deck.filter((_, idx) => againSet.has(idx));
+          buildDeck(retryList);
+        };
+      }
+    }
+
+    function renderListView() {
+      listTitle.textContent = activeCategory === "ALL"
+        ? `全カード一覧 (${deck.length}枚)`
+        : `${activeCategory} (${deck.length}枚)`;
+      listContainer.innerHTML = "";
+      deck.forEach((c, idx) => {
+        const div = document.createElement("div");
+        div.className = "list-item";
+        div.innerHTML = `
+          <div class="list-item-top">
+            <span class="cat-tag">${c.cat}</span>
+            <span style="font-size:0.76rem;color:#64748b;font-weight:700;">#${idx + 1}</span>
+          </div>
+          <div class="list-q">${c.q} ${c.sub ? `<span style="color:#2563eb;">(${c.sub})</span>` : ""}</div>
+          <div class="list-a">→ ${c.a}</div>
+          <div class="list-tip">💡 ${c.tip}</div>
+        `;
+        listContainer.appendChild(div);
+      });
+    }
+
+    flashcard.addEventListener("click", flipCard);
+    flipBtn.addEventListener("click", flipCard);
+    okBtn.addEventListener("click", () => markAndNext(true));
+    againBtn.addEventListener("click", () => markAndNext(false));
+
+    prevBtn.addEventListener("click", () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        renderCard();
+      }
+    });
+
+    shuffleBtn.addEventListener("click", () => {
+      isShuffled = !isShuffled;
+      shuffleBtn.classList.toggle("is-on", isShuffled);
+      shuffleBtn.textContent = isShuffled ? "🔀 シャッフル ON" : "🔀 シャッフル";
+      buildDeck();
+    });
+
+    listToggleBtn.addEventListener("click", () => {
+      const showing = listView.classList.contains("show");
+      if (showing) {
+        listView.classList.remove("show");
+        statusCard.style.display = "block";
+        studyArea.style.display = "block";
+        listToggleBtn.classList.remove("is-on");
+      } else {
+        renderListView();
+        statusCard.style.display = "none";
+        studyArea.style.display = "none";
+        doneCard.classList.remove("show");
+        listView.classList.add("show");
+        listToggleBtn.classList.add("is-on");
+      }
+    });
+
+    closeListBtn.addEventListener("click", () => {
+      listView.classList.remove("show");
+      statusCard.style.display = "block";
+      studyArea.style.display = "block";
+      listToggleBtn.classList.remove("is-on");
+    });
+
+    restartTopBtn.addEventListener("click", () => buildDeck());
+    restartDoneBtn.addEventListener("click", () => buildDeck());
+
+    filterBar.querySelectorAll(".filter-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        filterBar.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        activeCategory = btn.dataset.cat;
+        listToggleBtn.classList.remove("is-on");
+        buildDeck();
+      });
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (studyArea.style.display === "none") return;
+      if (e.key === " ") {
+        e.preventDefault();
+        flipCard();
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault();
+        markAndNext(true);
+      } else if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        markAndNext(false);
+      }
+    });
+
+    buildDeck();
+  </script>
+</body>
+</html>

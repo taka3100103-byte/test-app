@@ -1,0 +1,1590 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>中1・2学期末テスト対策 英語「記述＆ひっかけ○×」マスター (30問)</title>
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --card: #ffffff;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --primary-light: #eff6ff;
+      --purple: #7c3aed;
+      --purple-light: #f5f3ff;
+      --teal: #0d9488;
+      --teal-light: #f0fdfa;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --correct: #16a34a;
+      --correct-bg: #f0fdf4;
+      --correct-border: #86efac;
+      --wrong: #dc2626;
+      --wrong-bg: #fef2f2;
+      --wrong-border: #fca5a5;
+      --accent: #f59e0b;
+      --accent-bg: #fffbeb;
+      --shadow: 0 4px 20px rgba(15, 23, 42, 0.07);
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      min-height: 100vh;
+      padding: 20px 14px 48px;
+    }
+
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    .header-badge {
+      display: inline-block;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.78rem;
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 8px;
+      letter-spacing: 0.03em;
+    }
+
+    .header h1 {
+      font-size: 1.42rem;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 4px;
+    }
+
+    .header p {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    /* Filter Pills */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .filter-btn {
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--muted);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 7px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .filter-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+    }
+
+    /* Status & Progress */
+    .status-card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+      border: 1px solid var(--border);
+    }
+
+    .status-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.86rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .score-pill {
+      background: var(--primary-light);
+      color: var(--primary);
+      padding: 2px 10px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #3b82f6, #2563eb);
+      width: 0%;
+      transition: width 0.3s ease;
+      border-radius: 999px;
+    }
+
+    /* Question Card */
+    .quiz-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 24px 22px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+
+    .q-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .q-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .q-type-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 6px;
+    }
+
+    .q-type-badge.essay {
+      background: var(--purple-light);
+      color: var(--purple);
+    }
+
+    .q-type-badge.tf {
+      background: var(--teal-light);
+      color: var(--teal);
+    }
+
+    .q-theme-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #0369a1;
+      background: #e0f2fe;
+      padding: 3px 10px;
+      border-radius: 6px;
+    }
+
+    .q-num {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .q-prompt {
+      font-size: 1.05rem;
+      color: #0f172a;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .q-target-box {
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: #0f172a;
+      background: #f8fafc;
+      border-left: 4px solid var(--primary);
+      padding: 13px 16px;
+      border-radius: 8px;
+      margin-bottom: 18px;
+    }
+
+    .q-target-box.essay-box {
+      border-left-color: var(--purple);
+    }
+
+    .q-target-box.tf-box {
+      border-left-color: var(--teal);
+    }
+
+    .q-pair-label {
+      display: block;
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    /* Essay Input Area */
+    .essay-area {
+      margin-bottom: 12px;
+    }
+
+    .essay-input {
+      width: 100%;
+      min-height: 92px;
+      padding: 12px 14px;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 0.96rem;
+      line-height: 1.6;
+      color: var(--text);
+      resize: vertical;
+      transition: border-color 0.15s ease;
+    }
+
+    .essay-input:focus {
+      outline: none;
+      border-color: var(--purple);
+    }
+
+    .essay-input:disabled {
+      background: #f8fafc;
+      color: #475569;
+    }
+
+    .essay-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    .hint-toggle-btn {
+      background: var(--accent-bg);
+      color: #92400e;
+      border: 1px solid #fde68a;
+      border-radius: 8px;
+      padding: 9px 14px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .hint-box {
+      display: none;
+      margin-top: 10px;
+      background: var(--accent-bg);
+      border-left: 3px solid var(--accent);
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      color: #78350f;
+      font-weight: 600;
+    }
+
+    .hint-box.show {
+      display: block;
+    }
+
+    /* True / False Buttons */
+    .tf-choices {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .tf-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      padding: 18px 12px;
+      background: #fff;
+      border: 2px solid var(--border);
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .tf-btn:hover:not(:disabled) {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      transform: translateY(-1px);
+    }
+
+    .tf-btn:disabled {
+      cursor: default;
+    }
+
+    .tf-symbol {
+      font-size: 1.8rem;
+      line-height: 1.1;
+    }
+
+    .tf-text {
+      font-size: 0.92rem;
+    }
+
+    .tf-btn.correct {
+      border-color: var(--correct);
+      background: var(--correct-bg);
+      color: #14532d;
+    }
+
+    .tf-btn.wrong {
+      border-color: var(--wrong);
+      background: var(--wrong-bg);
+      color: #7f1d1d;
+    }
+
+    .tf-btn.dimmed {
+      opacity: 0.5;
+    }
+
+    /* Explanation Box */
+    .explanation-box {
+      margin-top: 20px;
+      border-radius: 12px;
+      padding: 18px;
+      display: none;
+      animation: fadeIn 0.22s ease;
+    }
+
+    .explanation-box.show {
+      display: block;
+    }
+
+    .explanation-box.is-correct {
+      background: var(--correct-bg);
+      border: 1.5px solid var(--correct-border);
+    }
+
+    .explanation-box.is-wrong {
+      background: var(--wrong-bg);
+      border: 1.5px solid var(--wrong-border);
+    }
+
+    .explanation-box.is-review {
+      background: #f8fafc;
+      border: 1.5px solid #cbd5e1;
+    }
+
+    .exp-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.06rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .is-correct .exp-header { color: var(--correct); }
+    .is-wrong .exp-header { color: var(--wrong); }
+    .is-review .exp-header { color: var(--purple); }
+
+    .exp-model {
+      font-size: 0.94rem;
+      font-weight: 700;
+      color: #0f172a;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 10px 13px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+    }
+
+    .kw-section {
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(124, 58, 237, 0.25);
+      border-radius: 10px;
+      padding: 10px 13px;
+      margin-bottom: 12px;
+    }
+
+    .kw-title {
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--purple);
+      margin-bottom: 6px;
+    }
+
+    .kw-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .kw-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #f1f5f9;
+      color: #334155;
+      border: 1px solid #cbd5e1;
+    }
+
+    .kw-tag.hit {
+      background: #dcfce7;
+      color: #166534;
+      border-color: #86efac;
+    }
+
+    .kw-tag.miss {
+      background: #fee2e2;
+      color: #991b1b;
+      border-color: #fca5a5;
+    }
+
+    .exp-body {
+      font-size: 0.93rem;
+      color: #1e293b;
+      margin-bottom: 10px;
+    }
+
+    .exp-tip {
+      font-size: 0.86rem;
+      background: var(--accent-bg);
+      border-left: 3px solid var(--accent);
+      padding: 8px 12px;
+      border-radius: 6px;
+      color: #78350f;
+      font-weight: 600;
+    }
+
+    .self-grade-bar {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px dashed #cbd5e1;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .self-grade-label {
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: #475569;
+    }
+
+    .self-grade-btns {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-ok-small, .btn-ng-small {
+      border: none;
+      border-radius: 8px;
+      padding: 7px 14px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .btn-ok-small {
+      background: #dcfce7;
+      color: #166534;
+      border: 1px solid #86efac;
+    }
+
+    .btn-ok-small.selected {
+      background: var(--correct);
+      color: #fff;
+    }
+
+    .btn-ng-small {
+      background: #fee2e2;
+      color: #991b1b;
+      border: 1px solid #fca5a5;
+    }
+
+    .btn-ng-small.selected {
+      background: var(--wrong);
+      color: #fff;
+    }
+
+    .next-wrap {
+      margin-top: 16px;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 11px 22px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn-purple {
+      background: var(--purple);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 11px 22px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .btn-purple:hover {
+      background: #6d28d9;
+    }
+
+    .btn-secondary {
+      background: #fff;
+      color: var(--text);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 18px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    /* Result Screen */
+    .result-card {
+      display: none;
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 28px 22px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .result-card.show {
+      display: block;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .result-score-big {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--primary);
+      margin: 8px 0 4px;
+    }
+
+    .result-rank {
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 18px;
+    }
+
+    .breakdown {
+      text-align: left;
+      background: #f8fafc;
+      border-radius: 12px;
+      padding: 16px;
+      margin: 18px 0 22px;
+      border: 1px solid var(--border);
+    }
+
+    .breakdown h3 {
+      font-size: 0.92rem;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .bd-row {
+      margin-bottom: 10px;
+    }
+
+    .bd-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .bd-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .bd-bar {
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .bd-fill {
+      height: 100%;
+      background: var(--primary);
+      border-radius: 999px;
+    }
+
+    .result-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 22px;
+    }
+
+    .review-list {
+      text-align: left;
+      margin-top: 16px;
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+    }
+
+    .review-list h3 {
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+    }
+
+    .review-item {
+      padding: 12px;
+      border-radius: 10px;
+      margin-bottom: 8px;
+      border: 1px solid var(--border);
+      font-size: 0.88rem;
+    }
+
+    .review-item.r-ok {
+      background: #f0fdf4;
+      border-color: #bbf7d0;
+    }
+
+    .review-item.r-ng {
+      background: #fef2f2;
+      border-color: #fecaca;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 520px) {
+      .quiz-card { padding: 18px 15px; }
+      .tf-choices { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="header-badge">中学1年生・2学期末テスト対策</div>
+      <h1>英語「記述＆ひっかけ○×」対策テスト</h1>
+      <p>理由・仕組みを説明する短文記述（2大テーマ）と、紛らわしい用語ペアの○×問題を1問1答で完全攻略</p>
+    </header>
+
+    <div class="filter-bar" id="filterBar">
+      <button class="filter-btn active" data-mode="ALL">すべて (30問)</button>
+      <button class="filter-btn" data-mode="essay">✍️ 理由・仕組み 短文記述 (10問)</button>
+      <button class="filter-btn" data-mode="tf">⭕❌ 紛らわしい用語ペア ○× (20問)</button>
+    </div>
+
+    <div class="status-card" id="statusCard">
+      <div class="status-top">
+        <span id="progressText">第 1 問 / 全 30 問</span>
+        <span class="score-pill" id="scorePill">クリア: 0 問</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+    </div>
+
+    <main class="quiz-card" id="quizCard">
+      <div class="q-meta">
+        <div class="q-badges">
+          <span class="q-type-badge" id="qTypeBadge"></span>
+          <span class="q-theme-badge" id="qThemeBadge"></span>
+        </div>
+        <span class="q-num" id="qNum"></span>
+      </div>
+
+      <div class="q-prompt" id="qPrompt"></div>
+      <div class="q-target-box" id="qTargetBox"></div>
+
+      <!-- Essay Input -->
+      <div id="essayArea" class="essay-area" style="display:none;">
+        <textarea id="essayInput" class="essay-input" placeholder="ここに理由・仕組みを日本語で入力してください（空欄のまま答え合わせもできます）"></textarea>
+        <div class="essay-actions">
+          <button class="btn-purple" id="checkEssayBtn">答え合わせをする</button>
+          <button class="hint-toggle-btn" id="hintToggleBtn">💡 ヒントを見る</button>
+        </div>
+        <div class="hint-box" id="hintBox"></div>
+      </div>
+
+      <!-- True/False Buttons -->
+      <div id="tfChoices" class="tf-choices" style="display:none;">
+        <button class="tf-btn" data-val="true">
+          <span class="tf-symbol">⭕</span>
+          <span class="tf-text">正しい（○）</span>
+        </button>
+        <button class="tf-btn" data-val="false">
+          <span class="tf-symbol">❌</span>
+          <span class="tf-text">誤り（×）</span>
+        </button>
+      </div>
+
+      <!-- Explanation -->
+      <div class="explanation-box" id="explanationBox">
+        <div class="exp-header" id="expHeader"></div>
+        <div class="exp-model" id="expModel"></div>
+        <div class="kw-section">
+          <div class="kw-title" id="kwTitle">📌 記述に含めるべき必須キーワード</div>
+          <div class="kw-list" id="kwList"></div>
+        </div>
+        <div class="exp-body" id="expBody"></div>
+        <div class="exp-tip" id="expTip"></div>
+
+        <div class="self-grade-bar" id="selfGradeBar" style="display:none;">
+          <span class="self-grade-label">この記述は書けましたか？（復習リストに反映されます）</span>
+          <div class="self-grade-btns">
+            <button class="btn-ok-small" id="selfOkBtn">⭕ 書けた</button>
+            <button class="btn-ng-small" id="selfNgBtn">❌ 要復習</button>
+          </div>
+        </div>
+
+        <div class="next-wrap">
+          <button class="btn-primary" id="nextBtn">次の問題へ →</button>
+        </div>
+      </div>
+    </main>
+
+    <section class="result-card" id="resultCard">
+      <div class="header-badge">テスト結果</div>
+      <div class="result-score-big" id="resultScore"></div>
+      <div class="result-rank" id="resultRank"></div>
+      <div class="breakdown" id="breakdown"></div>
+      <div class="result-actions">
+        <button class="btn-primary" id="retryWrongBtn" style="display:none;">要復習の問題だけやり直す</button>
+        <button class="btn-secondary" id="restartBtn">最初からやり直す</button>
+      </div>
+      <div class="review-list" id="reviewList"></div>
+    </section>
+  </div>
+
+  <script>
+    const QUESTIONS = [
+      // =========================================================
+      // パート1：理由・仕組みを答える短文記述（重要テーマ2つ・全10問）
+      // =========================================================
+
+      // --- 重要テーマ1：There is / are と単複・特定の人やものの仕組み (4問) ---
+      {
+        type: "essay",
+        theme: "テーマ①：There is / are の仕組み",
+        prompt: "「彩は部屋にいます。」を英語にするとき、なぜ「There is Aya in the room.」ではなく「Aya is in the room.」にするのか、その理由を説明しなさい。",
+        targetLabel: "対象の文（Program 7-1 / p.64 ポイント）",
+        target: "❌ There is Aya in the room.　→　⭕ Aya is in the room.",
+        hint: "Aya や my cat, the pen などの性質に注目して、「どんな人やもののときに There is を使わないか」を書こう。",
+        model: "Aya のような「特定の人やもの」について居場所を表すときは、There is [are] 〜 を使わず、〈主語 ＋ is [are] 〜〉の形を使うから。",
+        keywords: [
+          { label: "特定の人（やもの）", match: ["特定"] },
+          { label: "There is [are] を使わない", match: ["there is", "there", "使わない", "使えない"] },
+          { label: "主語 ＋ is [are]（be動詞）", match: ["主語", "aya is", "be動詞"] }
+        ],
+        exp: "〈There is [are] 〜 ＋ 場所〉は「（不特定の）〜がある／いる」と新しく話題に出すときに使います。Aya（彩）、my cat（私のネコ）、the pen（そのペン）のように「特定の人やもの」の居場所を言うときは、ふつうの文〈主語 ＋ is [are] ＋ 場所〉で表します。",
+        tip: "定期テストの記述・誤文訂正で超頻出！Aya / my cat / the pen が来たら There is は NG と覚えよう。"
+      },
+      {
+        type: "essay",
+        theme: "テーマ①：There is / are の仕組み",
+        prompt: "「There ___ fifteen rooms in the house.」の空欄に is ではなく are を入れるのはなぜですか。仕組みを説明しなさい。",
+        targetLabel: "対象の文（Program 7-1 / p.64 ポイント）",
+        target: "There are fifteen rooms in the house.（その家には15室の部屋があります。）",
+        hint: "There is / are の文で、be動詞を is にするか are にするかは「文のどこにある名詞」で決まりますか？",
+        model: "There is [are] 〜 の文では、be動詞を「直後の名詞」が単数か複数かにあわせて決めるから（fifteen rooms は複数なので are にする）。",
+        keywords: [
+          { label: "直後（うしろ）の名詞", match: ["直後", "うしろ", "後ろ", "fifteen rooms"] },
+          { label: "単数・複数の区別", match: ["単数", "複数"] },
+          { label: "複数なので are", match: ["are", "複数"] }
+        ],
+        exp: "ふつうの文では主語が前にありますが、There is [are] 〜 の文では「何があるか」を表す名詞が be動詞のすぐ後ろに置かれます。そのため、直後の名詞が単数（a library など）なら is、複数（fifteen rooms など）なら are にします。",
+        tip: "「There のあとにすぐ is と書いてしまう」ミスが頻発します。必ず後ろの名詞を見て単複を確認しよう！"
+      },
+      {
+        type: "essay",
+        theme: "テーマ①：There is / are の仕組み",
+        prompt: "「Sorry, there are not any pandas there.」には there が2回出てきますが、それぞれの働き（意味）の違いを説明しなさい。",
+        targetLabel: "対象の文（Program 7-1 / p.64-65）",
+        target: "Sorry, there are not any pandas there.（申し訳ない、そこにはパンダは1頭もいないんだ。）",
+        hint: "1つ目の there は「〜がいる」という文の決まり文句、2つ目の there は場所を表す言葉です。",
+        model: "文頭の there は「〜がある／いる」という存在を表す働きで「そこに」という意味はなく、文末の there が場所を表す「そこに」という意味になるから。",
+        keywords: [
+          { label: "文頭の there（存在／意味なし）", match: ["文頭", "前", "1つ目", "存在", "意味はない", "意味がない"] },
+          { label: "「そこに」という意味はない", match: ["そこに"] },
+          { label: "文末の there＝「そこに」", match: ["文末", "最後", "2つ目", "場所"] }
+        ],
+        exp: "〈There is [are] 〜〉の文頭の There 自体には「そこに」という意味はありません。そのため、「そこに〜がある／いる」と言いたいときは、文末に場所を表す副詞の there（そこに）をあらためて置く必要があります。",
+        tip: "「There is a steak restaurant over there.（あそこにステーキレストランがあります）」も同じ仕組みです！"
+      },
+      {
+        type: "essay",
+        theme: "テーマ①：There is / are の仕組み",
+        prompt: "「Are there any balls in the box?」という質問に対して、「Yes, they are.」と答えてはいけない理由を説明しなさい。",
+        targetLabel: "対象の文（Program 7-1 / p.64-65）",
+        target: "Are there any balls in the box? — ⭕ Yes, there are. / ❌ Yes, they are.",
+        hint: "疑問文が〈Are there 〜?〉で聞かれていることに注目しよう。",
+        model: "〈Is [Are] there 〜?〉の疑問文に答えるときは、they ではなく質問と同じ there を使って〈Yes, there is [are]. / No, there is [are] not.〉と答える決まりだから。",
+        keywords: [
+          { label: "there を使って答える", match: ["there", "同じ"] },
+          { label: "they にかえない", match: ["they"] },
+          { label: "Yes, there are.", match: ["yes, there are", "there are"] }
+        ],
+        exp: "〈Are there 〜?〉は「〜はありますか」と存在をたずねる文なので、返事でも they におきかえずにそのまま there を使って〈Yes, there are. / No, there are not.〉と答えます。",
+        tip: "「they と there のスペル・音」が似ているので、ひっかけ問題としてよく狙われます！"
+      },
+
+      // --- 重要テーマ2：代名詞の格変化・Why/Because・by+乗り物などの仕組み (6問) ---
+      {
+        type: "essay",
+        theme: "テーマ②：代名詞・疑問詞の仕組み",
+        prompt: "「I have two dogs. ( ) like me.」の空欄に、動物であっても It ではなく They を入れる理由を説明しなさい。",
+        targetLabel: "対象の文（文法4 代名詞 / p.63 注意）",
+        target: "I have two dogs. They like me.（私は2匹のイヌを飼っています。彼らは私が好きです。）",
+        hint: "「2匹のイヌ（two dogs）」が単数か複数かに注目しよう。",
+        model: "動物やモノであっても、two dogs のように「複数（2つ以上）」を指すときは it ではなく「それら／彼ら」を表す複数形の they を使うから。",
+        keywords: [
+          { label: "複数（2つ以上）", match: ["複数", "2匹", "2つ以上", "two dogs"] },
+          { label: "It は単数のみ", match: ["it"] },
+          { label: "They を使う", match: ["they"] }
+        ],
+        exp: "「動物・モノ＝いつでも it」と覚えてしまうとひっかかります！it はあくまで「単数（1つ・1匹）」のときだけ。2つ以上（複数）の動物やモノを指すときは、主語の位置なら they、目的格なら them を使います。",
+        tip: "p.63 の「注意」欄にも大きく書かれている超重要ポイントです！"
+      },
+      {
+        type: "essay",
+        theme: "テーマ②：代名詞・疑問詞の仕組み",
+        prompt: "「We like him.」や「I have lunch with him.」で、he ではなく目的格の him を使う理由を、文中の位置に着目して説明しなさい。",
+        targetLabel: "対象の文（Program 6-1 / 文法4 p.56-57, 63）",
+        target: "We like him. / I have lunch with him.",
+        hint: "like（動詞）と with（前置詞）の「どこ」に him が置かれているかを確認しよう。",
+        model: "「〜を／〜に」を表す位置、つまり「動詞」や「前置詞（with など）」のうしろに置く代名詞は、主格（he）ではなく目的格（him）を使う決まりだから。",
+        keywords: [
+          { label: "動詞のうしろ", match: ["動詞"] },
+          { label: "前置詞（withなど）のうしろ", match: ["前置詞", "with"] },
+          { label: "目的格（〜を[に]の形）", match: ["目的格", "〜を", "3番目"] }
+        ],
+        exp: "代名詞は「文の中でどの役割をするか」で形が変わります。主語（〜は）なら he、動詞（like, know など）や前置詞（with, to, about など）のうしろに置くときは目的格（him）を使います。",
+        tip: "「前置詞のうしろも目的格！」（with him / for us / about them）を必ずセットで書けるようにしよう。"
+      },
+      {
+        type: "essay",
+        theme: "テーマ②：代名詞・疑問詞の仕組み",
+        prompt: "「Whose notebook is this?」の答えとして、「It's Yumi.」が誤りで「It's Yumi's.」にする理由を説明しなさい。",
+        targetLabel: "対象の文（Program 6-1 / p.54-55）",
+        target: "Whose notebook is this? — ❌ It's Yumi. / ⭕ It's Yumi's.",
+        hint: "’s があるときとないときで、日本語の意味がどう変わってしまうかを考えよう。",
+        model: "「〜のもの」と持ち主を表すときは人名のあとに ’s をつける必要があるから。It's Yumi. だと「それはゆみです」という意味になってしまう。",
+        keywords: [
+          { label: "〜のもの（所有）", match: ["〜のもの", "のもの", "所有", "持ち主"] },
+          { label: "’s をつける", match: ["'s", "アポストロフィ"] },
+          { label: "「それはゆみです」になる", match: ["ゆみです", "yumiです", "人"] }
+        ],
+        exp: "Whose ~?（だれの〜）に対する答えは「〜のもの」という所有を表す形にする必要があります。人名なら Yumi's、代名詞なら mine / yours / his / hers / ours / theirs を使います。",
+        tip: "「It's Yumi's.」と「It's my brother's.」のように、家族や人名にも ’s を忘れないように！"
+      },
+      {
+        type: "essay",
+        theme: "テーマ②：代名詞・疑問詞の仕組み",
+        prompt: "「Why is science exciting?」と「Because it's exciting.」で、Why のあとと Because のあとの語順がどう違うか説明しなさい。",
+        targetLabel: "対象の文（Program 6-2 / p.58-59）",
+        target: "Why is science exciting? — Because it's exciting.",
+        hint: "p.59 のポイントメモにある「Why の後は〇〇の語順、Because の後は〇〇」を思い出そう。",
+        model: "Why のうしろは「疑問文の語順（be動詞や do/does が主語の前）」になり、Because のうしろは「主語＋動詞（ふつうの文の語順）」になるから。",
+        keywords: [
+          { label: "Why＋疑問文の語順", match: ["疑問文"] },
+          { label: "Because＋主語＋動詞", match: ["主語", "動詞", "ふつうの文", "肯定文"] }
+        ],
+        exp: "「Why science is exciting?」としてしまうのが中1で一番多いミスです。Why のうしろは必ず疑問文の語順（is science / does Ken / do you）、逆に Because のうしろは理由を述べる文なので〈主語 ＋ 動詞〉の語順にします。",
+        tip: "「疑問文の頭に Why をつけるだけ」と覚えると語順ミスを防げます！"
+      },
+      {
+        type: "essay",
+        theme: "テーマ②：代名詞・疑問詞の仕組み",
+        prompt: "「How can you go there?」に「By plane.」と答え、「I walk to the hospital.」で「by walk」と言わない理由をそれぞれ説明しなさい。",
+        targetLabel: "対象の文（Program 7-2 / p.66）",
+        target: "⭕ By plane.（❌ By a plane.） / ⭕ I walk to the hospital.（❌ by walk）",
+        hint: "① by のあとの乗り物に a/the はつくか？ ② walk は「乗り物（名詞）」か「動詞」か？",
+        model: "〈by ＋ 乗り物〉では乗り物の前に a・an・the をつけない決まりだから。また、walk は乗り物ではなく「歩く」という動詞なので、by walk とは言わず〈walk to ＋ 場所〉で表すから。",
+        keywords: [
+          { label: "a・an・the をつけない", match: ["a", "an", "the", "冠詞"] },
+          { label: "walk は動詞（乗り物ではない）", match: ["動詞", "乗り物ではない", "歩く"] },
+          { label: "walk to 〜", match: ["walk to"] }
+        ],
+        exp: "交通手段を表す〈by ＋ 乗り物〉（by bus, by bike, by plane など）は無冠詞（a や the をつけない）にするのがルールです。一方、「歩いていく」の walk は「歩く」という動詞なので、〈I walk to ＋ 場所〉の形にします。",
+        tip: "p.66 の基本解説と並べかえ問題の両方で狙われる重要ペアです！"
+      },
+      {
+        type: "essay",
+        theme: "テーマ②：代名詞・疑問詞の仕組み",
+        prompt: "「Which umbrella is yours, the blue one or the yellow one?」で、umbrella ではなく one を使っている理由を説明しなさい。",
+        targetLabel: "対象の文（Program 6 / p.54 ポイント）",
+        target: "Which umbrella is yours, the blue one or the yellow one?",
+        hint: "同じ単語（umbrella）を何度も言うのを避けるための代名詞の働きを書こう。",
+        model: "前に出た単数名詞（umbrella）のくり返しを避けるために、代名詞の one をおきかえて使っているから。",
+        keywords: [
+          { label: "前に出た名詞（umbrella）", match: ["前", "umbrella", "単数名詞"] },
+          { label: "くり返しを避ける", match: ["くり返", "繰り返", "同じ語"] },
+          { label: "one を使う", match: ["one"] }
+        ],
+        exp: "英語では同じ名詞を何度もくり返すのを嫌うため、前に出た数えられる単数名詞（umbrella, dog など）を受けるときは、代わりに one（〜なもの）を使います。",
+        tip: "「the ＋ 形容詞 ＋ one」（the blue one / the small one）の形ごと覚えておこう！"
+      },
+
+      // =========================================================
+      // パート2：紛らわしい用語ペア・対比の○×問題（全20問）
+      // =========================================================
+      {
+        type: "tf",
+        theme: "ひっかけ○×：Which vs. Whose",
+        prompt: "次の文が「これはだれのノートですか。」を表す英文として正しければ○、誤っていれば×を選びなさい。",
+        targetLabel: "紛らわしいペア：Which（どちらの） vs. Whose（だれの）",
+        target: "Which notebook is this?",
+        ans: false,
+        model: "❌ 誤り（×） → 正しくは：Whose notebook is this?",
+        keywords: [
+          { label: "Whose（だれの〜）", match: [] },
+          { label: "Which（どちらの〜）", match: [] }
+        ],
+        exp: "「だれの〜」と持ち主をたずねるときは Whose を使います。Which は「どちらの〜」と2つ以上の中から選ぶときに使う疑問詞です。",
+        tip: "w で始まる疑問詞（Who / Which / Whose）の区別はテスト第1問目の定番です！"
+      },
+      {
+        type: "tf",
+        theme: "ひっかけ○×：one の使い方",
+        prompt: "次の文の下線部（one）は、前に出た単数名詞 umbrella のくり返しを避けるために使われている。正しければ○、誤っていれば×を選びなさい。",
+        targetLabel: "紛らわしいペア：one vs. it",
+        target: "Which umbrella is yours, the blue [one] or the yellow [one]?",
+        ans: true,
+        model: "⭕ 正しい（○）",
+        keywords: [
+          { label: "前に出た単数名詞のくり返し", match: [] },
+          { label: "the ＋ 形容詞 ＋ one", match: [] }
+        ],
+        exp: "その通り！前に出た umbrella のくり返しを避けるため、「青い（かさ）」「黄色い（かさ）」を the blue one / the yellow one と表しています。",
+        tip: "「それそのもの」を指す it と違い、不特定の「〜なもの」を表すのが one です。"
+      },
+      {
+        type: "tf",
+        theme: "ひっかけ○×：her vs. hers",
+        prompt: "「この本は彼女のものです。」を表す英文として、次の文は正しいか。○か×を選びなさい。",
+        targetLabel: "紛らわしいペア：所有格 her vs. 所有代名詞 hers",
+        target: "This book is her.",
+        ans: false,
+        model: "❌ 誤り（×） → 正しくは：This book is hers.",
+        keywords: [
+          { label: "her（彼女の〜）＋名詞", match: [] },
+          { label: "hers（彼女のもの）", match: [] }
+        ],
+        exp: "her は「彼女の（〜）」という意味なので、後ろに名詞（her book など）が必要です。うしろに名詞がなく「彼女のもの」と言うときは所有代名詞の hers にします。",
+        tip: "she - her - her - hers の3番目と4番目はスペルに注意！"
+      },
+      {
+        type: "tf",
+        theme: "ひっかけ○×：It's Yumi. vs. It's Yumi's.",
+        prompt: "「Whose notebook is this?」の答えとして、「ゆみのものです。」と言うときは次のように答える。正しいか。○か×を選びなさい。",
+        targetLabel: "紛らわしいペア：Yumi vs. Yumi's",
+        target: "It's Yumi's.",
+        ans: true,
+        model: "⭕ 正しい（○）",
+        keywords: [
+          { label: "人名 ＋ 's（〜のもの）", match: [] },
+          { label: "It's Yumi. は「ゆみです」", match: [] }
+        ],
+        exp: "正解です！人名を使って「〜のもの」と答えるときは、名前のあとに 's をつけて Yumi's（＝Yumi's notebook）にします。",
+        tip: "'s を忘れると「それはゆみです」という意味になってしまいます。"
+      },
+      {
+        type: "tf",
+        theme: "ひっかけ○×：their vs. theirs",
+        prompt: "「これらのカップは彼らのものだ。」を表す英文として、次の文は正しいか。○か×を選びなさい。",
+        targetLabel: "紛らわしいペア：them（彼らを） vs. theirs（彼らのもの）",
+        target: "These cups are them.",
+        ans: false,
+        model: "❌ 誤り（×） → 正しくは：These cups are theirs.",
+        keywords: [
+          { label: "them（彼らを）", match: [] },
+          { label: "theirs（彼らのもの）", match: [] }
+        ],
+        exp: "them は「彼らを」という目的格です。「彼らのもの」を表す所有代名詞は theirs なので、These cups are theirs. が正解です。",
+        tip: "p.59 の「必ず覚えたい語句」にも出ているひっかけ問題です！"
+      },
+      {
+        type: "tf",
+        theme: "ひっかけ○×：he vs. him（動詞のうしろ）",
+        prompt: "次の文は文法的に正しいか。○か×を選びなさい。",
+        targetLabel: "紛らわしいペア：主格 he vs. 目的格 him",
+        target: "That is Ken's father. I know he.",
+        ans: false,
+        model: "❌ 誤り（×） → 正しくは：I know him.",
+        keywords: [
+          { label: "動詞 know のうしろ", match: [] },
+          { label: "目的格 him", match: [] }
+        ],
+        exp: "動詞 know（〜を知っている）のうしろは「〜を」にあたる位置なので、主格の he ではなく目的格の him を使います。",
+        tip: "p.63「まちがい直し」に出ている問題そのものです！"
+      },
+      {
+        type: "tf",
+        theme: "ひっかけ○×：前置詞 with のうしろ",
+        prompt: "「私は彼といっしょに昼食を食べます。」を表す英文として、次の文は正しいか。○か×を選びなさい。",
+        targetLabel: "紛らわしいペア：with he vs. with him",
+        target: "I have lunch with him.",
+        ans: true,
+        model: "⭕ 正しい（○）",
+        keywords: [
+          { label: "前置詞 with のうしろ", match: [] },
+          { label: "目的格 him", match: [] }
+        ],
+        exp: "正しいです！動詞のうしろだけでなく、with / to / for / about などの前置詞のうしろにも必ず目的格（him / her / us / them など）を置きます。",
+        tip: "「with us（私たちと）」「about them（それらについて）」もよく出ます。"
+      },
+      {
+        type: "tf",
+        theme: "ひっかけ○×：two dogs → It vs. They",
+        prompt: "「私は2匹のイヌを飼っています。彼らは私が好きです。」を表すとき、2文目は次の形で正しいか。○か×を選びなさい。",
+        targetLabel: "紛らわしいペア：単数 It vs. 複数 They",
+        target: "I have two dogs. It likes me.",
+        ans: false,
+        model: "❌ 誤り（×） → 正しくは：They like me.",
+        keywords: [
+          { label: "two dogs は複数", match: [] },
+          { label: "They を使う", match: [] }
+        ],
+        exp: "動物でも2匹以上（two dogs＝複数）のときは It ではなく They を使います。動詞も likes ではなく like になります。",
+        tip: "「I have two cats. I like them.」のように、目的語の位置なら them にします！"
+      },
+      {
+        type: "tf",
+        theme: "ひっかけ○×：Yuki and I → We vs. They",
+        prompt: "「Yuki and I like tennis.」の主語（Yuki and I）を1語の代名詞にかえると「We」になる。正しいか。○か×を選びなさい。",
+        targetLabel: "紛らわしいペア：We（私たち） vs. They（彼ら）",
+        target: "Yuki and I → We",
+        ans: true,
+        model: "⭕ 正しい（○）",
+        keywords: [
+          { label: "I がふくまれる → We", match: [] },
+          { label: "you がふくまれる → You", match: [] }
+        ],
+        exp: "正解です！「ユキと私」のように自分（I）がふくまれていたら「私たち（We）」になります。ちなみに「You and Hiroshi」のように you がふくまれていたら「あなたたち（You）」です。",
+        tip: "p.63 で▲（要注意）マークがついている重要問題です！"
+      },
+      {
+        type: "tf",
+        theme: "ひっかけ○×：Tomomi and me → we vs. us",
+        prompt: "「Does Ichiro know [Tomomi and me]?」の下線部を1語の代名詞にかえると、「Does Ichiro know we?」になる。正しいか。○か×を選びなさい。",
+        targetLabel: "紛らわしいペア：we（私たちは） vs. us（私たちを）",
+        target: "Does Ichiro know we?",
+        ans: false,
+        model: "❌ 誤り（×） → 正しくは：Does Ichiro know us?",
+        keywords: [
+          { label: "動詞 know のうしろ", match: [] },
+          { label: "目的格 us", match: [] }
+        ],
+        exp: "「知美と私」は「私たち」ですが、動詞 know のうしろにあるので目的格の us にします。主語のときだけ we を使います。",
+        tip: "「主語か、動詞のうしろか」を必ず確認するクセをつけよう！"
+      },
+      {
+        type: "tf",
+        theme: "ひっかけ○×：Why のうしろの語順",
+        prompt: "「どうして理科はわくわくするのですか。」を表す英文として、次の文は正しいか。○か×を選びなさい。",
+        targetLabel: "紛らわしいペア：Why science is vs. Why is science",
+        target: "Why science is exciting?",
+        ans: false,
+        model: "❌ 誤り（×） → 正しくは：Why is science exciting?",
+        keywords: [
+          { label: "Why ＋ 疑問文の語順", match: [] },
+          { label: "is を主語の前に出す", match: [] }
+        ],
+        exp: "Why のうしろは必ず疑問文の語順にします。be動詞（is）の文なので、is を主語（science）の前に出して Why is science exciting? とします。",
+        tip: "p.59 の生徒ノートでも赤ペンで語順の矢印直しが入っていた超要注意ポイントです！"
+      },
+      {
+        type: "tf",
+        theme: "ひっかけ○×：Why does ~ + 動詞の原形",
+        prompt: "「健はなぜ花を育てるのですか。」を表す英文として、次の文は正しいか。○か×を選びなさい。",
+        targetLabel: "紛らわしいペア：grow vs. grows（does のあと）",
+        target: "Why does Ken grow flowers?",
+        ans: true,
+        model: "⭕ 正しい（○）",
+        keywords: [
+          { label: "主語 Ken（三人称単数）→ does", match: [] },
+          { label: "動詞は原形 grow", match: [] }
+        ],
+        exp: "正しいです！主語が Ken（三人称単数）なので does を使い、その代わり動詞の grow には s をつけず原形にします。",
+        tip: "「Why does she goes to Tokyo?」のように goes にしないよう注意！"
+      },
+      {
+        type: "tf",
+        theme: "ひっかけ○×：Because のうしろの語順",
+        prompt: "「Why do you like winter?」の答えとして、「Because I can ski.」のように Because のうしろは〈主語＋動詞〉の語順で続ける。正しいか。○か×を選びなさい。",
+        targetLabel: "紛らわしいペア：Because＋主語＋動詞 vs. 疑問文の語順",
+        target: "Why do you like winter? — Because I can ski.",
+        ans: true,
+        model: "⭕ 正しい（○）",
+        keywords: [
+          { label: "Because ＋ 主語 ＋ 動詞", match: [] },
+          { label: "ふつうの文の語順", match: [] }
+        ],
+        exp: "正解です！Why のうしろは疑問文の語順ですが、Because のうしろは「〜だから」と説明するふつうの文（主語＋動詞）の語順になります。",
+        tip: "「Because can I walk ...」のように助動詞や be動詞を前に出さないように！"
+      },
+      {
+        type: "tf",
+        theme: "ひっかけ○×：very well の位置",
+        prompt: "「私は彼をとてもよく知っています。」を表す英文として、次の文は正しいか。○か×を選びなさい。",
+        targetLabel: "紛らわしいペア：know him very well vs. very know him well",
+        target: "I very know him well.",
+        ans: false,
+        model: "❌ 誤り（×） → 正しくは：I know him very well.",
+        keywords: [
+          { label: "動詞 ＋ 目的語 ＋ かざりの語句", match: [] },
+          { label: "know him very well", match: [] }
+        ],
+        exp: "英語では〈主語（I）＋ 動詞（know）＋ 目的語（him）〉のまとまりのあとに、程度を表す very well を置きます。know と him の間を割り込ませてはいけません。",
+        tip: "同じように「Why do you study English hard?」も、study English のうしろに hard を置きます（p.60 並べかえ）。"
+      },
+      {
+        type: "tf",
+        theme: "ひっかけ○×：There is / are の使い分け",
+        prompt: "「この動物園には5頭のゴリラがいます。」を英語にするとき、「These are five gorillas in this zoo.」とする。正しいか。○か×を選びなさい。",
+        targetLabel: "紛らわしいペア：There are vs. These are",
+        target: "These are five gorillas in this zoo.",
+        ans: false,
+        model: "❌ 誤り（×） → 正しくは：There are five gorillas in this zoo.",
+        keywords: [
+          { label: "存在「〜がいる」＝ There are", match: [] },
+          { label: "These＝「これらは」", match: [] }
+        ],
+        exp: "「（場所に）〜がいます／あります」という存在を表すときは There is [are] 〜 を使います。These are 〜 だと「これらは5頭のゴリラです」という意味になってしまいます。",
+        tip: "p.64 A-1(3) でそのまま出題されているひっかけペアです！"
+      },
+      {
+        type: "tf",
+        theme: "ひっかけ○×：There is Aya の誤り",
+        prompt: "「彩は部屋にいます。」を英語で表すと、「There is Aya in the room.」になる。正しいか。○か×を選びなさい。",
+        targetLabel: "紛らわしいペア：There is Aya vs. Aya is",
+        target: "There is Aya in the room.",
+        ans: false,
+        model: "❌ 誤り（×） → 正しくは：Aya is in the room.",
+        keywords: [
+          { label: "特定の人（Aya）は There is 不可", match: [] },
+          { label: "Aya is in the room.", match: [] }
+        ],
+        exp: "Aya や my cat、the pen など「特定の人やもの」の居場所を表すときは There is 〜 は使わず、〈主語 ＋ is [are] ＋ 場所〉で表します。",
+        tip: "「a girl（ある女の子）」なら There is a girl、「Aya（彩）」なら Aya is と区別しよう！"
+      },
+      {
+        type: "tf",
+        theme: "ひっかけ○×：There is / are の疑問文の答え方",
+        prompt: "「Are there any balls in the box?」という質問に「はい、あります。」と答えるときは、「Yes, there are.」を使う。正しいか。○か×を選びなさい。",
+        targetLabel: "紛らわしいペア：Yes, there are. vs. Yes, they are.",
+        target: "Are there any balls in the box? — Yes, there are.",
+        ans: true,
+        model: "⭕ 正しい（○）",
+        keywords: [
+          { label: "Are there 〜? → Yes, there are.", match: [] }
+        ],
+        exp: "その通り！〈Is [Are] there 〜?〉と聞かれたら、they にはかえずにそのまま there を使って〈Yes, there is [are]. / No, there is [are] not.〉と答えます。",
+        tip: "否定の答え方は No, there are not. (aren't) です。"
+      },
+      {
+        type: "tf",
+        theme: "ひっかけ○×：by + 乗り物（冠詞不要）",
+        prompt: "「飛行機で行くことができます。」と英語で答えるときは、「By a plane.」ではなく「By plane.」とする。正しいか。○か×を選びなさい。",
+        targetLabel: "紛らわしいペア：By plane. vs. By a plane.",
+        target: "How can you go there? — By plane.",
+        ans: true,
+        model: "⭕ 正しい（○）",
+        keywords: [
+          { label: "by ＋ 乗り物（a / the なし）", match: [] }
+        ],
+        exp: "正解です！〈by ＋ 乗り物〉で交通手段を表すときは、乗り物の名詞の前に a / an / the をつけません。",
+        tip: "by bus / by bike / by train / by plane すべて a や the は不要です！"
+      },
+      {
+        type: "tf",
+        theme: "ひっかけ○×：by walk vs. walk to",
+        prompt: "「私は病院へ歩いていきます。」を表す英文として、次の文は正しいか。○か×を選びなさい。",
+        targetLabel: "紛らわしいペア：by walk vs. walk to",
+        target: "I go to the hospital by walk.",
+        ans: false,
+        model: "❌ 誤り（×） → 正しくは：I walk to the hospital.",
+        keywords: [
+          { label: "walk は動詞", match: [] },
+          { label: "walk to ＋ 場所", match: [] }
+        ],
+        exp: "walk は「歩く」という動詞であり乗り物ではないため、by walk とは言いません。動詞 walk を使って〈I walk to the hospital.〉で表します。",
+        tip: "「歩いて学校へ行く」は I walk to school. です（to school と同じ形）。"
+      },
+      {
+        type: "tf",
+        theme: "ひっかけ○×：an hour / How の答え方",
+        prompt: "「How do you come to this library?」と質問されたら、「Yes, I do.」で答えることができる。正しいか。○か×を選びなさい。",
+        targetLabel: "紛らわしいペア：How 〜? の答え方（Yes/No 不可）",
+        target: "How do you come to this library? — Yes, I do.",
+        ans: false,
+        model: "❌ 誤り（×） → 手段・方法を具体的に答える（例：By bike.）",
+        keywords: [
+          { label: "How の疑問文は Yes / No 不可", match: [] },
+          { label: "手段・方法を具体的に答える", match: [] }
+        ],
+        exp: "How（どのようにして）や Which / Whose / Why などの疑問詞で始まる疑問文には、Yes / No では答えません。手段や方法を具体的に（By bike. や I walk. など）答えます。",
+        tip: "疑問詞の文に Yes / No で答えないのは英語の大原則です！"
+      }
+    ];
+
+    let activeMode = "ALL";
+    let deck = [];
+    let currentIndex = 0;
+    let score = 0;
+    let results = []; // { q, isCorrect, userText }
+    let answered = false;
+
+    const filterBar = document.getElementById("filterBar");
+    const statusCard = document.getElementById("statusCard");
+    const quizCard = document.getElementById("quizCard");
+    const resultCard = document.getElementById("resultCard");
+    const progressText = document.getElementById("progressText");
+    const scorePill = document.getElementById("scorePill");
+    const progressFill = document.getElementById("progressFill");
+
+    const qTypeBadge = document.getElementById("qTypeBadge");
+    const qThemeBadge = document.getElementById("qThemeBadge");
+    const qNum = document.getElementById("qNum");
+    const qPrompt = document.getElementById("qPrompt");
+    const qTargetBox = document.getElementById("qTargetBox");
+
+    const essayArea = document.getElementById("essayArea");
+    const essayInput = document.getElementById("essayInput");
+    const checkEssayBtn = document.getElementById("checkEssayBtn");
+    const hintToggleBtn = document.getElementById("hintToggleBtn");
+    const hintBox = document.getElementById("hintBox");
+
+    const tfChoices = document.getElementById("tfChoices");
+    const tfBtns = tfChoices.querySelectorAll(".tf-btn");
+
+    const explanationBox = document.getElementById("explanationBox");
+    const expHeader = document.getElementById("expHeader");
+    const expModel = document.getElementById("expModel");
+    const kwTitle = document.getElementById("kwTitle");
+    const kwList = document.getElementById("kwList");
+    const expBody = document.getElementById("expBody");
+    const expTip = document.getElementById("expTip");
+    const selfGradeBar = document.getElementById("selfGradeBar");
+    const selfOkBtn = document.getElementById("selfOkBtn");
+    const selfNgBtn = document.getElementById("selfNgBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    function startQuiz(customList = null) {
+      if (customList) {
+        deck = customList;
+      } else if (activeMode === "ALL") {
+        deck = [...QUESTIONS];
+      } else {
+        deck = QUESTIONS.filter(q => q.type === activeMode);
+      }
+      currentIndex = 0;
+      score = 0;
+      results = [];
+      statusCard.style.display = "block";
+      quizCard.style.display = "block";
+      resultCard.classList.remove("show");
+      renderQuestion();
+    }
+
+    function renderQuestion() {
+      answered = false;
+      const q = deck[currentIndex];
+      const total = deck.length;
+
+      progressText.textContent = `第 ${currentIndex + 1} 問 / 全 ${total} 問`;
+      scorePill.textContent = `クリア: ${score} 問`;
+      progressFill.style.width = `${(currentIndex / total) * 100}%`;
+
+      qTypeBadge.textContent = q.type === "essay" ? "✍️ 短文記述（理由・仕組み）" : "⭕❌ ひっかけ○×";
+      qTypeBadge.className = `q-type-badge ${q.type}`;
+      qThemeBadge.textContent = q.theme;
+      qNum.textContent = `Q${currentIndex + 1}`;
+      qPrompt.textContent = q.prompt;
+
+      qTargetBox.className = `q-target-box ${q.type === "essay" ? "essay-box" : "tf-box"}`;
+      qTargetBox.innerHTML = `<span class="q-pair-label">${q.targetLabel}</span>${q.target}`;
+
+      explanationBox.className = "explanation-box";
+      selfGradeBar.style.display = "none";
+      selfOkBtn.classList.remove("selected");
+      selfNgBtn.classList.remove("selected");
+
+      if (q.type === "essay") {
+        essayArea.style.display = "block";
+        tfChoices.style.display = "none";
+        essayInput.value = "";
+        essayInput.disabled = false;
+        checkEssayBtn.disabled = false;
+        hintBox.classList.remove("show");
+        hintBox.textContent = `💡 ヒント：${q.hint}`;
+        hintToggleBtn.style.display = "inline-block";
+      } else {
+        essayArea.style.display = "none";
+        tfChoices.style.display = "grid";
+        tfBtns.forEach(btn => {
+          btn.disabled = false;
+          btn.className = "tf-btn";
+        });
+      }
+
+      nextBtn.textContent = currentIndex === total - 1 ? "結果を見る →" : "次の問題へ →";
+    }
+
+    function checkEssay() {
+      if (answered) return;
+      answered = true;
+
+      const q = deck[currentIndex];
+      const raw = essayInput.value.trim();
+      const norm = raw.toLowerCase();
+
+      essayInput.disabled = true;
+      checkEssayBtn.disabled = true;
+      hintToggleBtn.style.display = "none";
+
+      let hitCount = 0;
+      kwList.innerHTML = "";
+
+      q.keywords.forEach(kw => {
+        const hit = raw.length > 0 && kw.match.some(m => norm.includes(m.toLowerCase()));
+        if (hit) hitCount++;
+        const tag = document.createElement("span");
+        if (raw.length === 0) {
+          tag.className = "kw-tag";
+          tag.textContent = `🔑 ${kw.label}`;
+        } else {
+          tag.className = `kw-tag ${hit ? "hit" : "miss"}`;
+          tag.textContent = `${hit ? "✅" : "⬜"} ${kw.label}`;
+        }
+        kwList.appendChild(tag);
+      });
+
+      const autoPass = raw.length > 0 && hitCount >= Math.max(2, q.keywords.length - 1);
+      if (autoPass) score++;
+
+      results.push({ q, isCorrect: autoPass, userText: raw || "（未入力）" });
+      scorePill.textContent = `クリア: ${score} 問`;
+      progressFill.style.width = `${((currentIndex + 1) / deck.length) * 100}%`;
+
+      if (raw.length === 0) {
+        explanationBox.className = "explanation-box show is-review";
+        expHeader.textContent = "📘 模範解答と必須キーワードを確認しよう";
+      } else if (autoPass) {
+        explanationBox.className = "explanation-box show is-correct";
+        expHeader.textContent = `⭕ ナイス記述！（必須キーワード ${hitCount} / ${q.keywords.length} 個ヒット）`;
+      } else {
+        explanationBox.className = "explanation-box show is-wrong";
+        expHeader.textContent = `✏️ 惜しい！（必須キーワード ${hitCount} / ${q.keywords.length} 個ヒット）`;
+      }
+
+      kwTitle.textContent = "📌 記述に含めるべき必須キーワード";
+      expModel.textContent = `模範解答例： ${q.model}`;
+      expBody.textContent = q.exp;
+      expTip.textContent = `💡 ${q.tip}`;
+
+      selfGradeBar.style.display = "flex";
+      if (autoPass) selfOkBtn.classList.add("selected");
+      else selfNgBtn.classList.add("selected");
+    }
+
+    function updateSelfGrade(ok) {
+      const last = results[results.length - 1];
+      if (!last || last.isCorrect === ok) return;
+      last.isCorrect = ok;
+      score += ok ? 1 : -1;
+      scorePill.textContent = `クリア: ${score} 問`;
+      selfOkBtn.classList.toggle("selected", ok);
+      selfNgBtn.classList.toggle("selected", !ok);
+    }
+
+    selfOkBtn.addEventListener("click", () => updateSelfGrade(true));
+    selfNgBtn.addEventListener("click", () => updateSelfGrade(false));
+
+    checkEssayBtn.addEventListener("click", checkEssay);
+    hintToggleBtn.addEventListener("click", () => {
+      hintBox.classList.toggle("show");
+    });
+
+    tfBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        if (answered) return;
+        answered = true;
+
+        const q = deck[currentIndex];
+        const chosen = btn.dataset.val === "true";
+        const isCorrect = chosen === q.ans;
+        if (isCorrect) score++;
+
+        results.push({ q, isCorrect, userText: chosen ? "○" : "×" });
+        scorePill.textContent = `クリア: ${score} 問`;
+        progressFill.style.width = `${((currentIndex + 1) / deck.length) * 100}%`;
+
+        tfBtns.forEach(b => {
+          b.disabled = true;
+          const bVal = b.dataset.val === "true";
+          if (bVal === q.ans) b.classList.add("correct");
+          else if (bVal === chosen && !isCorrect) b.classList.add("wrong");
+          else b.classList.add("dimmed");
+        });
+
+        explanationBox.className = `explanation-box show ${isCorrect ? "is-correct" : "is-wrong"}`;
+        expHeader.textContent = isCorrect ? "⭕ 正解！ひっかけを見抜けた！" : `❌ おしい！ 正解は「${q.ans ? "○（正しい）" : "×（誤り）"}」`;
+        expModel.textContent = q.model;
+
+        kwTitle.textContent = "📌 理由を記述で書かされた場合の必須キーワード";
+        kwList.innerHTML = "";
+        q.keywords.forEach(kw => {
+          const tag = document.createElement("span");
+          tag.className = "kw-tag";
+          tag.textContent = `🔑 ${kw.label}`;
+          kwList.appendChild(tag);
+        });
+
+        expBody.textContent = q.exp;
+        expTip.textContent = `💡 ${q.tip}`;
+      });
+    });
+
+    nextBtn.addEventListener("click", () => {
+      if (currentIndex < deck.length - 1) {
+        currentIndex++;
+        renderQuestion();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        showResults();
+      }
+    });
+
+    function showResults() {
+      statusCard.style.display = "none";
+      quizCard.style.display = "none";
+      resultCard.classList.add("show");
+
+      const total = deck.length;
+      const pct = Math.round((score / total) * 100);
+      document.getElementById("resultScore").textContent = `${score} / ${total} 問 (${pct}%)`;
+
+      let rank = "";
+      if (pct === 100) rank = "🏆 パーフェクト！記述もひっかけ問題も完璧です！";
+      else if (pct >= 80) rank = "✨ すばらしい！減点されやすいポイントもよく押さえています！";
+      else if (pct >= 60) rank = "👍 いい調子！必須キーワードを意識して復習しよう！";
+      else rank = "📘 解説と必須キーワードを読み直して、もう1周チャレンジしよう！";
+      document.getElementById("resultRank").textContent = rank;
+
+      const stats = {
+        "✍️ 理由・仕組み 短文記述": { ok: 0, total: 0 },
+        "⭕❌ 紛らわしい用語ペア ○×": { ok: 0, total: 0 }
+      };
+      results.forEach(r => {
+        const key = r.q.type === "essay" ? "✍️ 理由・仕組み 短文記述" : "⭕❌ 紛らわしい用語ペア ○×";
+        stats[key].total++;
+        if (r.isCorrect) stats[key].ok++;
+      });
+
+      const breakdownEl = document.getElementById("breakdown");
+      breakdownEl.innerHTML = "<h3>パート別の達成率</h3>";
+      Object.entries(stats).forEach(([label, st]) => {
+        if (st.total === 0) return;
+        const cPct = Math.round((st.ok / st.total) * 100);
+        breakdownEl.innerHTML += `
+          <div class="bd-row">
+            <div class="bd-label"><span>${label}</span><span>${st.ok} / ${st.total} (${cPct}%)</span></div>
+            <div class="bd-bar"><div class="bd-fill" style="width:${cPct}%"></div></div>
+          </div>
+        `;
+      });
+
+      const wrongList = results.filter(r => !r.isCorrect).map(r => r.q);
+      const retryWrongBtn = document.getElementById("retryWrongBtn");
+      if (wrongList.length > 0) {
+        retryWrongBtn.style.display = "inline-block";
+        retryWrongBtn.textContent = `要復習の問題だけやり直す (${wrongList.length}問)`;
+        retryWrongBtn.onclick = () => startQuiz(wrongList);
+      } else {
+        retryWrongBtn.style.display = "none";
+      }
+
+      const reviewList = document.getElementById("reviewList");
+      reviewList.innerHTML = "<h3>解答・必須キーワード一覧</h3>";
+      results.forEach((r, i) => {
+        const kws = r.q.keywords.map(k => k.label).join(" ／ ");
+        reviewList.innerHTML += `
+          <div class="review-item ${r.isCorrect ? "r-ok" : "r-ng"}">
+            <div><strong>Q${i + 1} [${r.q.theme}]</strong> ${r.isCorrect ? "⭕" : "❌"}</div>
+            <div style="margin-top:3px;"><strong>${r.q.model}</strong></div>
+            <div style="color:#6d28d9; font-size:0.82rem; margin-top:3px;">🔑 必須キーワード：${kws}</div>
+            <div style="color:#475569; margin-top:3px;">${r.q.exp}</div>
+          </div>
+        `;
+      });
+    }
+
+    document.getElementById("restartBtn").addEventListener("click", () => startQuiz());
+
+    filterBar.querySelectorAll(".filter-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        filterBar.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        activeMode = btn.dataset.mode;
+        startQuiz();
+      });
+    });
+
+    startQuiz();
+  </script>
+</body>
+</html>
