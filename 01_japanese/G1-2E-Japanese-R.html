@@ -1,0 +1,1534 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中1 国語 2学期末テスト対策｜短文記述＆ひっかけ○×一問一答</title>
+<style>
+  :root {
+    --bg: #f4f5f8;
+    --card: #ffffff;
+    --primary: #4f46e5;
+    --primary-hover: #4338ca;
+    --primary-light: #eef2ff;
+    --text: #1e293b;
+    --muted: #64748b;
+    --border: #e2e8f0;
+    --correct: #16a34a;
+    --correct-bg: #f0fdf4;
+    --wrong: #dc2626;
+    --wrong-bg: #fef2f2;
+    --amber: #d97706;
+    --amber-bg: #fffbeb;
+    --amber-border: #fde68a;
+    --radius: 14px;
+    --shadow: 0 4px 20px rgba(15, 23, 42, 0.06);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic UI", "Meiryo", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 20px 14px 60px;
+  }
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  header h1 {
+    font-size: 1.42rem;
+    margin: 0 0 6px;
+    color: #0f172a;
+  }
+  header p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+  .card {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 24px;
+    margin-bottom: 18px;
+    border: 1px solid var(--border);
+  }
+
+  /* Theme Highlight Banner on Start Screen */
+  .theme-banner {
+    background: var(--amber-bg);
+    border: 1px solid var(--amber-border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 18px;
+  }
+  .theme-banner-title {
+    font-weight: 800;
+    font-size: 0.92rem;
+    color: #92400e;
+    margin: 0 0 6px;
+  }
+  .theme-banner ul {
+    margin: 0;
+    padding-left: 18px;
+    font-size: 0.86rem;
+    color: #78350f;
+  }
+  .theme-banner li + li { margin-top: 3px; }
+
+  /* Mode & Unit Selection */
+  .section-label {
+    font-size: 0.92rem;
+    font-weight: 700;
+    margin: 0 0 8px;
+    color: #0f172a;
+  }
+  .mode-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+  .mode-tab {
+    flex: 1 1 180px;
+    padding: 10px 12px;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    background: #fff;
+    cursor: pointer;
+    text-align: center;
+    font-family: inherit;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--text);
+    transition: all 0.15s ease;
+  }
+  .mode-tab:hover {
+    border-color: var(--primary);
+    background: var(--primary-light);
+  }
+  .mode-tab.active {
+    border-color: var(--primary);
+    background: var(--primary);
+    color: #fff;
+  }
+  .unit-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(195px, 1fr));
+    gap: 9px;
+    margin: 0 0 18px;
+  }
+  .unit-btn {
+    text-align: left;
+    padding: 10px 12px;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    background: #fff;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    font-family: inherit;
+  }
+  .unit-btn:hover {
+    border-color: var(--primary);
+    background: var(--primary-light);
+  }
+  .unit-btn.active {
+    border-color: var(--primary);
+    background: var(--primary-light);
+    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.16);
+  }
+  .unit-btn .u-title {
+    display: block;
+    font-weight: 700;
+    font-size: 0.88rem;
+    color: var(--text);
+  }
+  .unit-btn .u-count {
+    display: block;
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+  .controls-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+  }
+  .toggle-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    user-select: none;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 11px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 0.94rem;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.08s ease, opacity 0.15s ease;
+  }
+  .btn:active { transform: scale(0.98); }
+  .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .btn-primary { background: var(--primary); color: #fff; }
+  .btn-primary:hover:not(:disabled) { background: var(--primary-hover); }
+  .btn-secondary { background: #e2e8f0; color: #334155; }
+  .btn-secondary:hover:not(:disabled) { background: #cbd5e1; }
+  .btn-outline {
+    background: #fff;
+    color: var(--primary);
+    border: 1.5px solid var(--primary);
+  }
+  .btn-outline:hover:not(:disabled) { background: var(--primary-light); }
+  .btn-correct { background: var(--correct); color: #fff; }
+  .btn-correct:hover { background: #15803d; }
+  .btn-wrong { background: var(--wrong); color: #fff; }
+  .btn-wrong:hover { background: #b91c1c; }
+
+  /* Quiz Screen */
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .badge-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+  }
+  .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 0.76rem;
+    font-weight: 700;
+    background: var(--primary-light);
+    color: var(--primary);
+  }
+  .badge-essay {
+    background: #ede9fe;
+    color: #5b21b6;
+  }
+  .badge-ox {
+    background: #e0f2fe;
+    color: #0369a1;
+  }
+  .badge-core {
+    background: var(--amber-bg);
+    color: #b45309;
+    border: 1px solid var(--amber-border);
+  }
+  .progress-info {
+    font-size: 0.86rem;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  .progress-track {
+    width: 100%;
+    height: 8px;
+    background: #e2e8f0;
+    border-radius: 999px;
+    overflow: hidden;
+    margin-bottom: 18px;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--primary);
+    width: 0%;
+    transition: width 0.25s ease;
+  }
+  .q-text {
+    font-size: 1.07rem;
+    font-weight: 700;
+    margin: 0 0 14px;
+    color: #0f172a;
+    white-space: pre-line;
+  }
+
+  /* Essay Input Area */
+  .hint-box {
+    margin-bottom: 12px;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  .hint-btn {
+    background: none;
+    border: 1px dashed #cbd5e1;
+    border-radius: 8px;
+    padding: 4px 10px;
+    font-size: 0.8rem;
+    color: #475569;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .hint-btn:hover { background: #f8fafc; border-color: var(--primary); color: var(--primary); }
+  .hint-text {
+    margin-top: 6px;
+    padding: 8px 12px;
+    background: #f8fafc;
+    border-radius: 8px;
+    color: #334155;
+    border: 1px solid var(--border);
+  }
+  .essay-textarea {
+    width: 100%;
+    min-height: 105px;
+    padding: 12px 14px;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    font-size: 0.98rem;
+    font-family: inherit;
+    line-height: 1.6;
+    resize: vertical;
+    transition: border-color 0.15s ease;
+  }
+  .essay-textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+  }
+  .char-counter {
+    text-align: right;
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+  .action-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  /* OX Buttons */
+  .ox-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 8px;
+  }
+  .ox-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 18px 12px;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    background: #fff;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.15s ease;
+  }
+  .ox-btn:hover:not(:disabled) {
+    border-color: var(--primary);
+    background: var(--primary-light);
+    transform: translateY(-1px);
+  }
+  .ox-btn:disabled { cursor: default; }
+  .ox-symbol {
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1.1;
+  }
+  .ox-btn[data-val="true"] .ox-symbol { color: #2563eb; }
+  .ox-btn[data-val="false"] .ox-symbol { color: #dc2626; }
+  .ox-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+  .ox-btn.correct {
+    border-color: var(--correct);
+    background: var(--correct-bg);
+  }
+  .ox-btn.wrong {
+    border-color: var(--wrong);
+    background: var(--wrong-bg);
+  }
+  .ox-btn.dimmed { opacity: 0.5; }
+
+  /* Feedback & Keyword Box */
+  .feedback-box {
+    margin-top: 20px;
+    padding: 18px;
+    border-radius: 12px;
+    border-left: 5px solid var(--primary);
+    background: #f8fafc;
+    display: none;
+  }
+  .feedback-box.show { display: block; animation: fadeIn 0.18s ease; }
+  .feedback-box.is-correct {
+    border-left-color: var(--correct);
+    background: var(--correct-bg);
+  }
+  .feedback-box.is-wrong {
+    border-left-color: var(--wrong);
+    background: var(--wrong-bg);
+  }
+  .feedback-box.is-review {
+    border-left-color: var(--amber);
+    background: var(--amber-bg);
+  }
+  .feedback-title {
+    font-weight: 800;
+    font-size: 1.05rem;
+    margin: 0 0 10px;
+  }
+  .feedback-box.is-correct .feedback-title { color: var(--correct); }
+  .feedback-box.is-wrong .feedback-title { color: var(--wrong); }
+  .feedback-box.is-review .feedback-title { color: #b45309; }
+
+  .model-answer-box {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-bottom: 12px;
+  }
+  .sub-label {
+    font-size: 0.78rem;
+    font-weight: 800;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    display: block;
+  }
+  .model-answer-text {
+    font-weight: 700;
+    color: #0f172a;
+    font-size: 0.98rem;
+  }
+
+  .kw-section {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 11px 14px;
+    margin-bottom: 12px;
+  }
+  .kw-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 6px;
+  }
+  .kw-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    background: #f1f5f9;
+    color: #334155;
+    border: 1px solid #cbd5e1;
+  }
+  .kw-chip.hit {
+    background: #dcfce7;
+    color: #166534;
+    border-color: #86efac;
+  }
+  .kw-chip.miss {
+    background: #fff7ed;
+    color: #9a3412;
+    border-color: #fdba74;
+  }
+
+  .trap-box {
+    background: #ffffff;
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+    color: #7f1d1d;
+  }
+  .feedback-exp {
+    margin: 0;
+    font-size: 0.93rem;
+    color: #1e293b;
+  }
+  .self-grade-row {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed rgba(0,0,0,0.12);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+  }
+  .next-row {
+    margin-top: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+  .kbd-hint {
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+
+  /* Result Screen */
+  .score-hero {
+    text-align: center;
+    padding: 16px 0 20px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 18px;
+  }
+  .score-num {
+    font-size: 2.3rem;
+    font-weight: 800;
+    color: var(--primary);
+    line-height: 1.2;
+  }
+  .score-sub {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-top: 4px;
+  }
+  .type-summary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .type-box {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+  }
+  .type-box .t-name {
+    font-size: 0.82rem;
+    color: var(--muted);
+    font-weight: 700;
+  }
+  .type-box .t-val {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-top: 2px;
+  }
+  .breakdown-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 22px;
+  }
+  .breakdown-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    background: #f8fafc;
+    border-radius: 8px;
+    font-size: 0.9rem;
+  }
+  .breakdown-bar-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .mini-bar {
+    width: 90px;
+    height: 7px;
+    background: #e2e8f0;
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .mini-fill {
+    height: 100%;
+    background: var(--correct);
+  }
+  .hidden { display: none !important; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (max-width: 560px) {
+    .card { padding: 18px 15px; }
+    .q-text { font-size: 1.01rem; }
+    .kbd-hint { display: none; }
+    .type-summary { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>中1 国語 2学期末テスト対策｜短文記述＆ひっかけ○×</h1>
+    <p>理由・仕組みを答える記述問題と紛らわしい用語の○×問題に特化｜1問ごとに必須キーワード＆解説</p>
+  </header>
+
+  <!-- Start Screen -->
+  <section id="start-screen" class="card">
+    <div class="theme-banner">
+      <div class="theme-banner-title">テストで特に狙われる「理由・仕組み」2大重要記述テーマ</div>
+      <ul>
+        <li><strong>重要テーマ①：シジュウカラの実験</strong>（なぜ検証1は音声だけにしたのか／検証1の不足点と検証2で補った仕組み）</li>
+        <li><strong>重要テーマ②：集中力と休憩の実験</strong>（直後と翌日・1週間後で結果が逆転した理由／40分の壁とノマド勉強法の仕組み）</li>
+      </ul>
+    </div>
+
+    <p class="section-label">1. 出題タイプを選ぶ</p>
+    <div class="mode-tabs" id="mode-tabs">
+      <button class="mode-tab active" data-mode="all">すべて（記述＋○×）</button>
+      <button class="mode-tab" data-mode="essay">✍️ 短文記述のみ</button>
+      <button class="mode-tab" data-mode="ox">⚡ ひっかけ○×のみ</button>
+    </div>
+
+    <p class="section-label">2. 出題単元を選ぶ</p>
+    <div id="unit-grid" class="unit-grid"></div>
+
+    <div class="controls-row">
+      <label class="toggle-label">
+        <input type="checkbox" id="shuffle-toggle">
+        <span>出題順をシャッフルする</span>
+      </label>
+      <button id="start-btn" class="btn btn-primary">テストを開始する</button>
+    </div>
+  </section>
+
+  <!-- Quiz Screen -->
+  <section id="quiz-screen" class="card hidden">
+    <div class="top-bar">
+      <div class="badge-group">
+        <span id="q-unit-badge" class="badge"></span>
+        <span id="q-type-badge" class="badge"></span>
+        <span id="q-core-badge" class="badge badge-core hidden">重要記述テーマ</span>
+      </div>
+      <span id="q-progress-text" class="progress-info"></span>
+    </div>
+    <div class="progress-track">
+      <div id="progress-fill" class="progress-fill"></div>
+    </div>
+
+    <p id="q-text" class="q-text"></p>
+
+    <!-- Essay UI -->
+    <div id="essay-area" class="hidden">
+      <div id="hint-box" class="hint-box hidden">
+        <button type="button" id="hint-toggle-btn" class="hint-btn">ヒント・文字数目安を見る</button>
+        <div id="hint-text" class="hint-text hidden"></div>
+      </div>
+      <textarea id="essay-input" class="essay-textarea" placeholder="ここに理由や仕組みを自分の言葉で書いてみましょう（書かずに「答えを見る」こともできます）"></textarea>
+      <div id="char-counter" class="char-counter">0文字</div>
+      <div class="action-row">
+        <button id="check-essay-btn" class="btn btn-primary">答え合わせをする</button>
+        <button id="giveup-essay-btn" class="btn btn-secondary">模範解答と必須キーワードを見る</button>
+      </div>
+    </div>
+
+    <!-- OX UI -->
+    <div id="ox-area" class="hidden">
+      <div class="ox-grid">
+        <button class="ox-btn" data-val="true">
+          <span class="ox-symbol">○</span>
+          <span class="ox-label">正しい（キー: 1）</span>
+        </button>
+        <button class="ox-btn" data-val="false">
+          <span class="ox-symbol">×</span>
+          <span class="ox-label">誤り（キー: 2）</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Feedback Box -->
+    <div id="feedback-box" class="feedback-box">
+      <div id="feedback-title" class="feedback-title"></div>
+
+      <div id="model-answer-box" class="model-answer-box hidden">
+        <span class="sub-label">模範解答</span>
+        <div id="model-answer-text" class="model-answer-text"></div>
+      </div>
+
+      <div id="kw-section" class="kw-section hidden">
+        <span class="sub-label">記述に含めるべき必須キーワード（入力文から自動チェック）</span>
+        <div id="kw-chips" class="kw-chips"></div>
+      </div>
+
+      <div id="trap-box" class="trap-box hidden">
+        <strong>ひっかけ注意ポイント：</strong><span id="trap-text"></span>
+      </div>
+
+      <p id="feedback-exp" class="feedback-exp"></p>
+
+      <div id="self-grade-row" class="self-grade-row hidden">
+        <span style="font-size:0.86rem; font-weight:700; color:#334155;">必須キーワードをふまえて自己採点：</span>
+        <button id="grade-ok-btn" class="btn btn-correct" style="padding:8px 16px; font-size:0.88rem;">書けた（正解）</button>
+        <button id="grade-ng-btn" class="btn btn-wrong" style="padding:8px 16px; font-size:0.88rem;">もう一度復習する</button>
+      </div>
+
+      <div id="next-row" class="next-row hidden">
+        <span class="kbd-hint">Enterキーでも次へ進めます</span>
+        <button id="next-btn" class="btn btn-primary">次の問題へ</button>
+      </div>
+    </div>
+
+    <div style="margin-top:16px; display:flex; justify-content:space-between; align-items:center;">
+      <button id="quit-btn" class="btn btn-secondary" style="padding:7px 14px; font-size:0.82rem;">設定に戻る</button>
+      <span id="live-score" class="progress-info"></span>
+    </div>
+  </section>
+
+  <!-- Result Screen -->
+  <section id="result-screen" class="card hidden">
+    <div class="score-hero">
+      <div id="final-score" class="score-num"></div>
+      <div id="final-sub" class="score-sub"></div>
+    </div>
+    <div id="type-summary" class="type-summary"></div>
+    <h3 style="margin:0 0 10px; font-size:1rem;">単元別の正答率</h3>
+    <div id="breakdown-list" class="breakdown-list"></div>
+    <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:center;">
+      <button id="retry-wrong-btn" class="btn btn-primary hidden">間違えた・要復習の問題だけやり直す</button>
+      <button id="retry-all-btn" class="btn btn-outline">同じ設定でもう一度</button>
+      <button id="back-home-btn" class="btn btn-secondary">設定に戻る</button>
+    </div>
+  </section>
+</div>
+
+<script>
+const QUESTIONS = [
+  // =========================================================
+  // 【1】シジュウカラ（重要テーマ①＋関連記述＋ひっかけ○×）
+  // =========================================================
+  {
+    unit: "シジュウカラ",
+    type: "essay",
+    coreTheme: true,
+    q: "【重要テーマ①：シジュウカラの実験】\n仮説に対する「検証1」で、筆者がヘビのいない状況で録音した音声だけを聞かせたのはなぜか。理由を短文で答えなさい。",
+    hint: "目安：35〜50字。「恐怖心」「姿を見せずに」などの語を使ってみよう。",
+    modelAnswer: "「ジャージャー」という鳴き声はヘビを見た恐怖心から発したものかもしれず、ヘビの姿を見せずに鳴き声だけ聞かせる必要があったから。",
+    keywords: ["恐怖心", "ヘビの姿を見せず", "鳴き声だけ"],
+    exp: "もしヘビがいる状態で鳴き声を聞かせると、ヘビの姿を見た「恐怖心」による行動なのか、鳴き声そのものに意味があるのかが区別できません。そのため、ヘビの姿を見せずに「鳴き声だけ」を聞かせて反応を調べる必要がありました。"
+  },
+  {
+    unit: "シジュウカラ",
+    type: "essay",
+    coreTheme: true,
+    q: "【重要テーマ①：シジュウカラの実験】\n「検証1」の結果、なぜ「ジャージャー」と「ピーツピ」の違いだけでは「ヘビを意味する単語」と断定できなかったのか（問題点・別の解釈）を説明しなさい。",
+    hint: "目安：30〜45字。「地面や巣箱を確認しろ」「命令」がポイント。",
+    modelAnswer: "「ジャージャー」という鳴き声が、ヘビを意味する単語ではなく「地面や巣箱を確認しろ」という命令とも考えられるため。",
+    keywords: ["地面や巣箱を確認しろ", "命令"],
+    exp: "検証1で「ジャージャー」を聞いた親鳥が地面や巣箱をのぞく行動をとりましたが、これだけでは「ヘビ（名詞）」を伝えているのか、「地面や巣箱を確認しろ（命令）」と指示しているのかが判別できないという問題点がありました。"
+  },
+  {
+    unit: "シジュウカラ",
+    type: "essay",
+    coreTheme: true,
+    q: "【重要テーマ①：シジュウカラの実験】\n「検証1」の不足点を明らかにしつつ、それを補うために「検証2」でどのように何を調べたかを50字以上60字以内でまとめなさい。",
+    hint: "目安：50〜60字。「音声だけで検証したという不足点」「小枝を動かし」「ヘビの姿を思い浮かべている（イメージしている）か」を入れよう。",
+    modelAnswer: "仮説の検証1は、音声だけで検証したという不足点があった。それを補うため、仮説の検証2では、音声を流しながら小枝を動かし調べた。",
+    keywords: ["音声だけ", "不足点", "小枝", "音声を流し"],
+    exp: "記述レッスンの模範解答のポイントは2点です。①検証1の不足点（音声だけで検証したこと／ヘビの姿をイメージできているかわからなかったこと）、②検証2の方法（音声を流しながら小枝を動かし、ヘビの姿をイメージしているか調べたこと）。「検証回数が少ない」と書くのは誤りなので注意！"
+  },
+  {
+    unit: "シジュウカラ",
+    type: "essay",
+    coreTheme: false,
+    q: "コラム「生きる知恵としての言葉」で、体の小さいコガラが大きなゴジュウカラなどからエサを得られるのは、どのような仕組み（知恵）によるものか。",
+    hint: "目安：30〜45字。「タカが来た」「追い払う」を使おう。",
+    modelAnswer: "タカがいなくても「タカが来た！」という鳴き声（言葉）を発して他の鳥たちを追い払い、エサにありつく仕組み。",
+    keywords: ["タカ", "追い払", "言葉"],
+    exp: "カラ類の力の強さは「ゴジュウカラ ＞ シジュウカラ ＞ コガラ」の順です。力の弱いコガラは、他種の鳥もシジュウカラの言葉を理解する性質を利用し、タカがいなくても「タカが来た！」と鳴くことで他の鳥を追い払ってエサを得ています。"
+  },
+  {
+    unit: "シジュウカラ",
+    type: "ox",
+    q: "【ひっかけ○×】シジュウカラの「検証1」のグラフ2（「ピーツピ」を聞かせた結果）から、この鳴き声はヘビを警戒したものではないといえる理由は、「ヘビは地面や巣箱から侵入する行動が見られなかったから」である。",
+    answer: false,
+    trap: "ヘビの行動ではなく、親鳥の行動がどうだったかを見分ける問題です！",
+    exp: "【×】正しい理由は「ヘビは地面から木をはい上がり、巣箱に侵入するが、グラフ2では『左右を警戒』する行動しか見られなかったから」です。地面や巣箱をのぞく行動が見られなかったことがポイントです。"
+  },
+  {
+    unit: "シジュウカラ",
+    type: "ox",
+    q: "【ひっかけ○×】検証1で「鳴き声を流さない」場合、地面を確認する行動が一羽のみに見られたが、それ以外の警戒行動はどの鳥にも見られなかった。",
+    answer: true,
+    trap: "「どの鳥にも全く見られなかった」と言い切るひっかけに注意。",
+    exp: "【○】グラフ1〜3の内容として正しい記述です。「鳴き声なし」では、地面を確認する行動が1羽のみ見られましたが、それ以外の警戒行動は見られませんでした。"
+  },
+  {
+    unit: "シジュウカラ",
+    type: "ox",
+    q: "【ひっかけ○×】検証1の不足点は、実験の「検証回数」が少なかったことであり、検証2では同じ実験を何度もくり返してデータの正確性を高めた。",
+    answer: false,
+    trap: "「検証回数」ではなく「検証方法（音声だけだったこと）」が不足点です。",
+    exp: "【×】検証1と検証2はどちらもシジュウカラの行動をくり返し調べています。不足点は回数ではなく「音声だけで検証したため、ヘビの姿を思い浮かべているか分からなかったこと」です。"
+  },
+  {
+    unit: "シジュウカラ",
+    type: "ox",
+    q: "【ひっかけ○×】カラ類の鳥の中で体が大きく力がある順番は、強い方から「ゴジュウカラ → シジュウカラ → コガラ」である。",
+    answer: true,
+    trap: "名前に「五十」「四十」「小」と入っているので、大きい順に「ゴジュウ → シジュウ → コ」と覚えよう。",
+    exp: "【○】「ゴジュウカラ → シジュウカラ → コガラ」の順に力が強いです。逆に「コガラが一番強い」とするひっかけがよく出ます。"
+  },
+  {
+    unit: "シジュウカラ",
+    type: "ox",
+    q: "【ひっかけ○×】語句の意味として、「分析」とは「仮説が正しいかどうか実際に調べて確かめること」であり、「検証」とは「細かな要素に分け、性質や内容を明らかにすること」である。",
+    answer: false,
+    trap: "「分析」と「検証」の意味が逆に入れ替わっています！",
+    exp: "【×】逆です。「分析」＝細かな要素に分け、性質や内容を明らかにすること。「検証」＝仮説が正しいかどうか、実際に調べて確かめること。また「実証」＝証拠をもって証明すること、「仮説」＝仮に立てた考えです。"
+  },
+
+  // =========================================================
+  // 【2】集中力・案内文（重要テーマ②＋関連記述＋ひっかけ○×）
+  // =========================================================
+  {
+    unit: "集中力・案内文",
+    type: "essay",
+    coreTheme: true,
+    q: "【重要テーマ②：集中力と休憩の実験】\n英単語テストの実験で、学習直後はグループA（休憩なし60分）の方が高得点だったのに、翌日と1週間後のテストではグループB（15分×3＋休憩）が逆転してよい成績を残したのはなぜか。理由を答えなさい。",
+    hint: "目安：35〜50字。「学習内容」「長期的に脳に定着」「合間の休憩」を使おう。",
+    modelAnswer: "学習内容を長期的に脳に定着させるためには、学習の合間の休憩が効果を発揮するから。",
+    keywords: ["長期的に", "定着", "合間の休憩"],
+    exp: "学習した直後は連続で詰め込んだグループAの方が高得点でしたが、時間がたつと逆転しました。これは「学習内容を長期的に脳に定着させるためには、学習の合間の休憩が効果を発揮する」ことを示しています。"
+  },
+  {
+    unit: "集中力・案内文",
+    type: "essay",
+    coreTheme: true,
+    q: "【重要テーマ②：集中力と休憩の実験】\n実験で脳波を計測した結果、休憩をとると集中力が維持できるのはどのような仕組みによるものか。「ガンマ波」「前頭葉」「パワー」などの語を使って説明しなさい。",
+    hint: "目安：40〜60字。40分を境に何が起き、休憩によってどうなるかを書こう。",
+    modelAnswer: "前頭葉のガンマ波は40分をさかいに急激に低下するが、休憩によってパワーが復活し、一定の集中力を維持できる仕組み。",
+    keywords: ["ガンマ波", "40分", "復活", "維持"],
+    exp: "脳の「前頭葉」のガンマ波（集中力の目安）は、休憩なしだと時間とともに低下し、とくに40分をさかいに急激に下がります。一方、休憩をはさむとパワーが復活するため、一定の集中力を維持できるという仕組みです。"
+  },
+  {
+    unit: "集中力・案内文",
+    type: "essay",
+    coreTheme: false,
+    q: "『モヤモヤそうだんクリニック』で筆者がおすすめする「ノマド（遊牧民）のような勉強法」とは、具体的にどのように勉強することか。",
+    hint: "目安：35〜50字。「スペースを複数用意」「移動しながら」がキーワード。",
+    modelAnswer: "家の中に勉強するスペースを複数用意しておいて、いろいろな場所に移動しながら勉強すること。",
+    keywords: ["スペースを複数用意", "移動しながら"],
+    exp: "自分の勉強机だけでなく、床に座るミニデスクやダイニングテーブルなど、家の中に勉強スペースを複数用意して移動しながら勉強し、ついでにストレッチなどの息抜きをとる方法です。"
+  },
+  {
+    unit: "集中力・案内文",
+    type: "essay",
+    coreTheme: false,
+    q: "演劇祭の保護者向け案内文で、「車での来校するのはだめです」「スリッパなどを用意してね」という下書きを修正する際、なぜ書き方を変える必要があるのか（2つの工夫点）。",
+    hint: "目安：30〜45字。「箇条書き」「読みやすく」「丁寧な表現」がポイント。",
+    modelAnswer: "内容を箇条書きにして読みやすくし、保護者の方が読むことを考えて丁寧な表現に直す必要があるから。",
+    keywords: ["箇条書き", "保護者", "丁寧な表現"],
+    exp: "「4. その他」は情報が混ざって読みにくいため①箇条書きにして見やすくすること、また②保護者が読むため「ひかえてください」「用意してください」のような丁寧な表現に直すことが大切です。"
+  },
+  {
+    unit: "集中力・案内文",
+    type: "ox",
+    q: "【ひっかけ○×】英単語テストの実験で、グループBは合計の学習時間がグループAより「多い」にもかかわらず、学習直後のテストではグループAに負けてしまった。",
+    answer: false,
+    trap: "学習時間（60分 vs 45分）の大小関係が逆です！",
+    exp: "【×】グループAは「60分」学習したのに対し、グループBは15分×3＝「45分」しか学習していません。つまりグループBはグループAよりも学習時間が「短い」にもかかわらず、翌日・1週間後に好成績を残したのです。"
+  },
+  {
+    unit: "集中力・案内文",
+    type: "ox",
+    q: "【ひっかけ○×】集中力の目安となる「ガンマ波」は、学習開始から「15分」をさかいに急激に低下し始めるため、筆者は15分ごとの休憩をすすめている。",
+    answer: false,
+    trap: "実験の「15分×3」という数字と「40分」を混同させるひっかけ！",
+    exp: "【×】ガンマ波が急激に下がり始めるのは「40分」をさかいに、です。そのため筆者は「集中力がつづくのは40分ほど」と述べています。"
+  },
+  {
+    unit: "集中力・案内文",
+    type: "ox",
+    q: "【ひっかけ○×】この文章の構成は、「最初に実験の方法と結果を述べ、次になぜそのような結果になったのかを説明し、最後に具体的な提案を示している」とまとめられる。",
+    answer: true,
+    trap: "「筆者の実体験」や「筆者の疑問」から始まっている、という選択肢に惑わされないこと。",
+    exp: "【○】実験の方法・結果（グループA・Bの比較）→理由・仕組みの説明（前頭葉のガンマ波）→具体的な提案（ノマドのような勉強法）という構成になっています。"
+  },
+  {
+    unit: "集中力・案内文",
+    type: "ox",
+    q: "【ひっかけ○×】演劇祭の案内文で「当日は、南側の門よりお入りください。」の横に添える資料としては、「学校と周辺施設の位置関係がわかる航空写真」が最も適切である。",
+    answer: false,
+    trap: "航空写真ではなく、門と体育館の位置がわかる「学校全体の地図」が正解。",
+    exp: "【×】保護者が当日迷わずに南側の門から体育館へ入れるようにするため、「門や体育館の場所がわかる学校全体の地図」を添えるのが最も適切です。"
+  },
+  {
+    unit: "集中力・案内文",
+    type: "ox",
+    q: "【ひっかけ○×】「10月4日」に発行する案内文の季節の挨拶として、「秋風が心地よい季節となりました」を使うのは適切である。",
+    answer: true,
+    trap: "発行日（10月＝秋）と挨拶の季節が合っているか確認しよう。",
+    exp: "【○】10月4日は秋なので「秋風が心地よい季節となりました」が適切です。「厳寒の候（冬）」や「本格的な夏」などは不適切です。"
+  },
+
+  // =========================================================
+  // 【3】方言と共通語
+  // =========================================================
+  {
+    unit: "方言と共通語",
+    type: "essay",
+    coreTheme: false,
+    q: "「方言」と「共通語」は、それぞれどのような場面や目的で使われる言葉か。違いがわかるように説明しなさい。",
+    hint: "目安：40〜55字。「家族や地域の人との交流」「全国・不特定多数の人」がキーワード。",
+    modelAnswer: "方言は家族や地域の人との交流の中で使われ、共通語はテレビニュースなど不特定多数の人に伝える場で使われる。",
+    keywords: ["家族や地域", "交流", "不特定多数"],
+    exp: "方言は「地域ごとの特色が表れた言葉」で、家族や地域の人との交流の中で自然に使われます。一方、共通語は「日本全国、どの地域の人にも通用する言葉」で、全国向けのテレビニュースなど不特定多数の人に伝える場で使われます。"
+  },
+  {
+    unit: "方言と共通語",
+    type: "ox",
+    q: "【ひっかけ○×】「共通語」は標準語とも呼ばれ、テレビニュースや書き言葉としてのみ使われ、日常の話し言葉として使われることはない。",
+    answer: false,
+    trap: "「書き言葉のみ」「話し言葉のみ」といった極端な限定はひっかけの定番です。",
+    exp: "【×】共通語は日本全国どの地域の人にも通用する言葉であり、全国向けのニュースなどのほか、異なる地域の人どうしの会話（話し言葉）でも使われます。"
+  },
+  {
+    unit: "方言と共通語",
+    type: "ox",
+    q: "【ひっかけ○×】「捨てる」という意味の方言について、「ホーカル」「ホカル」を使う地域が多いのは近畿地方であり、北海道・東北地方では主に「ナゲル」「ブンナゲル」が使われる。",
+    answer: true,
+    trap: "北海道・東北の「ナゲル」と近畿の「ホーカル」の入れ替えに注意。",
+    exp: "【○】方言分布図では、北海道・東北地方は「ナゲル」「ブンナゲル」、近畿地方は「ホーカル」「ホカル」が広く分布しています。"
+  },
+  {
+    unit: "方言と共通語",
+    type: "ox",
+    q: "【ひっかけ○×】日本の消滅危機言語の語彙のうち、「イヤイライケレ（ありがとう）」「コタン（村）」「ピリカ（よい）」は、すべて沖縄語の言葉である。",
+    answer: false,
+    trap: "沖縄語とアイヌ語の混ぜこぜひっかけ！",
+    exp: "【×】「イヤイライケレ」「コタン」「ピリカ」「カムイ（神）」は北海道の【アイヌ語】です。沖縄語は「まやー（猫）」「とぅめて（早朝）」「てぃーだ（太陽）」などです。"
+  },
+  {
+    unit: "方言と共通語",
+    type: "ox",
+    q: "【ひっかけ○×】沖縄語の「まやー」は共通語で「猫」を意味し、「とぅめて」は共通語で「早朝」を意味する。",
+    answer: true,
+    trap: "「まやー（猫）」と「ぽーきゃ（大きい）」などを混同しないように。",
+    exp: "【○】「まやー＝猫」「とぅめて＝早朝」はどちらも正しい沖縄語と共通語の組み合わせです。"
+  },
+
+  // =========================================================
+  // 【4】文法（文の組み立て）
+  // =========================================================
+  {
+    unit: "文法（文の組み立て）",
+    type: "essay",
+    coreTheme: false,
+    q: "次の文の主語と述語をそれぞれ抜き出し、なぜそれが主語といえるのか（主語の条件の注意点）を説明しなさい。\n文：「もう 悩みは ない。」",
+    hint: "目安：30〜45字。「何が」「人や生き物とは限らない」を入れよう。",
+    modelAnswer: "主語は「悩みは」、述語は「ない。」。主語は「何が・誰が」にあたり、人や生き物とは限らないから。",
+    keywords: ["悩みは", "ない", "人や生き物とは限らない"],
+    exp: "「何が ないのか？」と考えると「悩みは」が主語になります。教科書にも「主語は、人や生き物とは限らない」という重要ポイントが書かれています。"
+  },
+  {
+    unit: "文法（文の組み立て）",
+    type: "ox",
+    q: "【ひっかけ○×】「あたたかい 春が 来た。」の「あたたかい」は、形容詞であり用言なので、連用修飾語である。",
+    answer: false,
+    trap: "修飾語の種類は「自分の品詞」ではなく「【何を】修飾しているか（被修飾語）」で決まります！",
+    exp: "【×】「あたたかい」が修飾しているのは「春が（体言＝名詞）」です。体言を詳しく説明する文節は【連体修飾語】になります（自分の品詞で判断してはいけません）。"
+  },
+  {
+    unit: "文法（文の組み立て）",
+    type: "ox",
+    q: "【ひっかけ○×】「暗いので 照明を つける。」の「暗いので」は、文の先頭にあって調子を整えているので「独立語」である。",
+    answer: false,
+    trap: "「〜ので」「〜ば」を独立語と勘違いさせるひっかけ！",
+    exp: "【×】「暗いので」は「〜ので」の形で【理由】を表し、後の文節につなぐ働きをしているため【接続語】です。同様に「晴れれば 運動会が できる。」の「晴れれば」も条件を表す接続語です。"
+  },
+  {
+    unit: "文法（文の組み立て）",
+    type: "ox",
+    q: "【ひっかけ○×】「いいえ、私が 当番です。」の「いいえ、」や、「まあ、虹が 出て いるわ。」の「まあ、」は、他の文節と直接関係がない「独立語」である。",
+    answer: true,
+    trap: "応答（いいえ・はい）や感動（まあ・ねえ）、呼びかけ（おはよう）が独立語。",
+    exp: "【○】他の文節と直接関係がなく、それだけで独立している文節が「独立語」です。「いいえ（応答）」「まあ（感動）」はどちらも独立語です。"
+  },
+  {
+    unit: "文法（文の組み立て）",
+    type: "ox",
+    q: "【ひっかけ○×】「あの 青い 洋服が 欲しい。」という文で、「あの」も「青い」もどちらも「洋服が」を修飾している。",
+    answer: true,
+    trap: "「あの」が「青い」を修飾しているように錯覚させるひっかけに注意！",
+    exp: "【○】「あの 青い」とはつながりません。「あの 洋服」「青い 洋服」と、どちらも体言「洋服が」を修飾する連体修飾語です。"
+  },
+
+  // =========================================================
+  // 【5】いろは歌
+  // =========================================================
+  {
+    unit: "いろは歌",
+    type: "essay",
+    coreTheme: false,
+    q: "現在でも、物事の基本や初歩を「いろは」と呼ぶようになったのはなぜか。歴史的な用途の変化をふまえて説明しなさい。",
+    hint: "目安：35〜50字。「手習い」「寺子屋」「最初に学ぶ」がポイント。",
+    modelAnswer: "後の時代に手習いに使われ、寺子屋で子供が最初に学ぶことになったから。",
+    keywords: ["手習い", "寺子屋", "最初"],
+    exp: "『いろは歌』は平安時代には文字を覚えるために土器の皿に書かれたり、順番（仮名手本・物の順序）を示すものとして使われましたが、後の時代に「手習い」に使われ、寺子屋で子供が最初に学ぶようになったことから、物事の基本を意味するようになりました。"
+  },
+  {
+    unit: "いろは歌",
+    type: "ox",
+    q: "【ひっかけ○×】『いろは歌』は「いろはにほへと（7）／ちりぬるを（5）」のように、7音・5音を四回くり返す「今様（いまよう）」形式で作られている。",
+    answer: true,
+    trap: "短歌（5・7・5・7・7）や俳句（5・7・5）との混同に注意。",
+    exp: "【○】7音・5音を四回くり返す「今様」形式です。また、当時の「47文字」の仮名を重複なく1回ずつ使って作られています。"
+  },
+  {
+    unit: "いろは歌",
+    type: "ox",
+    q: "【ひっかけ○×】『いろは歌』は、50音すべての仮名を重複なく1回ずつ使って作られた歌である。",
+    answer: false,
+    trap: "「50音」ではなく「47文字」！",
+    exp: "【×】『いろは歌』に使われているのは「47文字」の仮名です（「ん」などは含まれません）。"
+  },
+  {
+    unit: "いろは歌",
+    type: "ox",
+    q: "【ひっかけ○×】平仮名で書かれた『いろは歌』の最古の資料は、江戸時代に寺子屋の子供たちが文字を覚えるために土器の皿に書いたものである。",
+    answer: false,
+    trap: "時代（平安時代後期 vs 江戸時代）と場所（伊勢神宮の女官 vs 寺子屋）のすり替え！",
+    exp: "【×】最古の資料は【平安時代後期】、伊勢神宮に仕えた女官が文字を覚えるために土器の皿に書いたものとされています。寺子屋で使われたのは「後の時代」です。"
+  },
+  {
+    unit: "いろは歌",
+    type: "ox",
+    q: "【ひっかけ○×】『いろは歌』の後半「うゐのおくやま けふこえて あさきゆめみし ゑひもせす」は、「人生の困難を避けて気楽に生きようとする気持ち」を表している。",
+    answer: false,
+    trap: "「困難を避ける」のではなく「厳しい人生を生き抜く覚悟」！",
+    exp: "【×】「厳しい人生を生き抜こうとする覚悟」を表しています。"
+  },
+
+  // =========================================================
+  // 【6】歴史的仮名遣い
+  // =========================================================
+  {
+    unit: "歴史的仮名遣い",
+    type: "essay",
+    coreTheme: false,
+    q: "歴史的仮名遣いを現代仮名遣いに直すとき、「を」を「お」に直さずそのままにするのはどのような場合か。また、「は・ひ・ふ・へ・ほ」をワ行に直さないのはどのような場合か。",
+    hint: "目安：35〜50字。「助詞の『を』」「語頭（言葉の最初）」がキーワード。",
+    modelAnswer: "「〇〇を〇〇する」などの助詞の「を」は直さない。また、語頭（言葉の最初）のハ行はワ行に直さない。",
+    keywords: ["助詞", "を", "語頭"],
+    exp: "歴史的仮名遣いの2大例外ルールです。①ワ行の「ゐ・ゑ・を」は「い・え・お」に直すが、助詞の「を」（例：竹を取る）は直さない。②ハ行をワ行に直すのは「語頭以外」に限られ、語頭の「は・ひ・ふ・へ・ほ」は直さない。"
+  },
+  {
+    unit: "歴史的仮名遣い",
+    type: "ox",
+    q: "【ひっかけ○×】歴史的仮名遣いの「けふこえて」を現代仮名遣いに直すと、「けうこえて」になる。",
+    answer: false,
+    trap: "「ふ→う」だけ機械的に直すと引っかかります！",
+    exp: "【×】「けふ（kefu）」のように「efu」の音は「you（よう）」と読むため、「きょうこえて」が正解です（同様に「てふてふ」→「ちょうちょう」）。"
+  },
+  {
+    unit: "歴史的仮名遣い",
+    type: "ox",
+    q: "【ひっかけ○×】歴史的仮名遣いの「くゎしを食べ」を現代仮名遣いに直すと、「くわしをたべ」になる。",
+    answer: false,
+    trap: "「くゎ」は「くわ」ではなく「か」に直します！",
+    exp: "【×】「くゎ」は「か」、「ぐゎ」は「が」に直します。したがって「かしをたべ（菓子を食べ）」が正解です（例：にぐゎつ→にがつ）。"
+  },
+  {
+    unit: "歴史的仮名遣い",
+    type: "ox",
+    q: "【ひっかけ○×】歴史的仮名遣いでは、現代仮名遣いで小さく書く「っ・ゃ・ゅ・ょ」も、普通（大きく書く）文字と同じ大きさで書かれている。",
+    answer: true,
+    trap: "ワークの小書き文字のルール（やうす→ようす、あやしう→あやしゅう 等）を確認。",
+    exp: "【○】歴史的仮名遣いでは拗音・促音（「っ・ゃ・ゅ・ょ」）も普通の大きさで書かれます。"
+  },
+  {
+    unit: "歴史的仮名遣い",
+    type: "ox",
+    q: "【ひっかけ○×】「竹なむ一筋ありける」や「わが求むる山ならむ」の「む」は、どちらも現代仮名遣いに直すと「ん」になる。",
+    answer: true,
+    trap: "語尾の「む」はほとんどの場合「ん」に直します。",
+    exp: "【○】語尾の「む」はほとんどの場合「ん」に直すため、「なん」「ならん」となります。"
+  },
+
+  // =========================================================
+  // 【7】竹取物語（蓬莱の玉の枝）
+  // =========================================================
+  {
+    unit: "竹取物語",
+    type: "essay",
+    coreTheme: false,
+    q: "古典の文章を読むとき、現代語訳と照らし合わせながら「現代の言葉を補って」読む必要があるのはなぜか。また、「名をば、さぬきのみやつことなむいひける。」の「なむ……ける」はどのような働きか。",
+    hint: "目安：35〜50字。「昔の言葉で書かれており主語などが省略されやすいため」「過去・強調」がキーワード。",
+    modelAnswer: "古典は昔の言葉で書かれており省略が多いため現代の言葉を補って読む必要がある。「なむ……ける」は強調を伴う過去（……た）を表す。",
+    keywords: ["昔の言葉", "補", "なむ", "た"],
+    exp: "古典は昔の言葉で書かれており、主語や背景が省略されることも多いため、現代の言葉を補って読むと話が理解しやすくなります。「なむ……ける」は係り結びで「……た」と訳します。"
+  },
+  {
+    unit: "竹取物語",
+    type: "ox",
+    q: "【ひっかけ○×】『竹取物語』の「三寸ばかりなる人、いとうつくしうてゐたり。」の「うつくし」は、現代語と同じく「顔立ちが美しい・きれいだ」という意味である。",
+    answer: false,
+    trap: "古文単語最大のひっかけ！「うつくし」は「美しい」ではありません。",
+    exp: "【×】古文の「うつくし」は「かわいらしい（愛らしい）」という意味です。「美しい」と訳すと不正解になります。"
+  },
+  {
+    unit: "竹取物語",
+    type: "ox",
+    q: "【ひっかけ○×】かぐや姫が最初に発見されたときの大きさ「三寸」は約9センチであり、一般的なホチキスほどの長さである。",
+    answer: true,
+    trap: "「三寸（約9cm）」と「五尺（約150cm）」の単位の違いに注意。",
+    exp: "【○】1寸は約3cmなので、三寸は約9cm（一般的なホチキスの長さくらい）です。一方、天人の「五尺」は約150cmです。"
+  },
+  {
+    unit: "竹取物語",
+    type: "ox",
+    q: "【ひっかけ○×】『竹取物語』の結末で、かぐや姫は「駿河の国の山」へ昇っていき、帝は残された不死の薬を「月の世界」で燃やさせた。",
+    answer: false,
+    trap: "「月の世界」と「駿河の国の山」が逆！",
+    exp: "【×】逆です。かぐや姫が昇っていったのは「月の世界」で、帝が手紙を添えて残された不死の薬を燃やさせたのが「駿河の国の山（富士山）」です。"
+  },
+
+  // =========================================================
+  // 【8】漢字・語句
+  // =========================================================
+  {
+    unit: "漢字・語句",
+    type: "ox",
+    q: "【ひっかけ○×】「風車小屋を見学する」の「風車」は「かざぐるま」と読み、「折り紙で風車を折る」の「風車」は「ふうしゃ」と読む。",
+    answer: false,
+    trap: "同じ漢字「風車」でも意味によって音読み（ふうしゃ）と訓読み（かざぐるま）が変わります！",
+    exp: "【×】逆です。施設や動力装置としての「風車小屋」は【ふうしゃ（音読み）】、おもちゃの「折り紙の風車」は【かざぐるま（訓読み）】と読みます。"
+  },
+  {
+    unit: "漢字・語句",
+    type: "ox",
+    q: "【ひっかけ○×】「梅雨前線が近づく」の「梅雨」は「ばいう」と読み、「もうすぐ梅雨入りだ」の「梅雨」は「つゆ」と読む。",
+    answer: true,
+    trap: "熟語「梅雨前線」は音読み（ばいう）、「梅雨入り」は訓読み（つゆ）。",
+    exp: "【○】「梅雨前線（ばいうぜんせん）」「梅雨入り（つゆいり）」で正しい組み合わせです。"
+  },
+  {
+    unit: "漢字・語句",
+    type: "ox",
+    q: "【ひっかけ○×】「食べ方は多岐に渡る」の「多岐」とは「量がたいへん多いこと」であり、「先入観を持たない」の「先入観」とは「進歩しようとする意識」のことである。",
+    answer: false,
+    trap: "語句の意味のひっかけ選択肢がそのまま出題されています！",
+    exp: "【×】「多岐」＝いろいろな種類があること（道がいくつにも分かれていることから）。「先入観」＝初めにできた思い込みのこと。"
+  },
+  {
+    unit: "漢字・語句",
+    type: "ox",
+    q: "【ひっかけ○×】漢字の表記として、「敵を警界する」「証古をつかむ」「解訳が分かれる」は、いずれも正しい漢字である。",
+    answer: false,
+    trap: "同音異義語・誤字のひっかけ（界・古・訳）を見抜こう！",
+    exp: "【×】すべて誤字です。正しくは「警戒（けいかい）」「証拠（しょうこ）」「解釈（かいしゃく）」と書きます。"
+  }
+];
+
+const UNIT_ORDER = [
+  "すべて（全範囲）",
+  "シジュウカラ",
+  "集中力・案内文",
+  "方言と共通語",
+  "文法（文の組み立て）",
+  "いろは歌",
+  "歴史的仮名遣い",
+  "竹取物語",
+  "漢字・語句"
+];
+
+let selectedMode = "all"; // all | essay | ox
+let selectedUnit = "すべて（全範囲）";
+let activeList = [];
+let currentIndex = 0;
+let score = 0;
+let answered = false;
+let wrongItems = [];
+let unitStats = {};
+let typeStats = { essay: { total: 0, correct: 0 }, ox: { total: 0, correct: 0 } };
+
+const startScreen = document.getElementById("start-screen");
+const quizScreen = document.getElementById("quiz-screen");
+const resultScreen = document.getElementById("result-screen");
+const unitGrid = document.getElementById("unit-grid");
+const shuffleToggle = document.getElementById("shuffle-toggle");
+
+function getFilteredQuestions() {
+  return QUESTIONS.filter(q => {
+    const modeOk = selectedMode === "all" || q.type === selectedMode;
+    const unitOk = selectedUnit === "すべて（全範囲）" || q.unit === selectedUnit;
+    return modeOk && unitOk;
+  });
+}
+
+function initUnitGrid() {
+  unitGrid.innerHTML = "";
+  UNIT_ORDER.forEach(u => {
+    const count = QUESTIONS.filter(q => {
+      const modeOk = selectedMode === "all" || q.type === selectedMode;
+      const unitOk = u === "すべて（全範囲）" || q.unit === u;
+      return modeOk && unitOk;
+    }).length;
+
+    const btn = document.createElement("button");
+    btn.className = "unit-btn" + (u === selectedUnit ? " active" : "");
+    btn.innerHTML = `<span class="u-title">${u}</span><span class="u-count">${count}問</span>`;
+    btn.addEventListener("click", () => {
+      selectedUnit = u;
+      document.querySelectorAll(".unit-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+    });
+    unitGrid.appendChild(btn);
+  });
+}
+
+document.querySelectorAll(".mode-tab").forEach(tab => {
+  tab.addEventListener("click", () => {
+    selectedMode = tab.dataset.mode;
+    document.querySelectorAll(".mode-tab").forEach(t => t.classList.remove("active"));
+    tab.classList.add("active");
+    initUnitGrid();
+  });
+});
+
+function shuffleArray(arr) {
+  const copy = [...arr];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
+function startQuiz(customList = null) {
+  let base = customList ? [...customList] : getFilteredQuestions();
+  if (base.length === 0) {
+    alert("該当する問題がありません。出題タイプや単元を変更してください。");
+    return;
+  }
+  if (shuffleToggle.checked && !customList) {
+    base = shuffleArray(base);
+  }
+  activeList = base;
+  currentIndex = 0;
+  score = 0;
+  wrongItems = [];
+  unitStats = {};
+  typeStats = { essay: { total: 0, correct: 0 }, ox: { total: 0, correct: 0 } };
+
+  startScreen.classList.add("hidden");
+  resultScreen.classList.add("hidden");
+  quizScreen.classList.remove("hidden");
+  renderQuestion();
+}
+
+function renderQuestion() {
+  answered = false;
+  const item = activeList[currentIndex];
+  document.getElementById("q-unit-badge").textContent = item.unit;
+
+  const typeBadge = document.getElementById("q-type-badge");
+  typeBadge.textContent = item.type === "essay" ? "✍️ 短文記述（理由・仕組み）" : "⚡ ひっかけ○×";
+  typeBadge.className = "badge " + (item.type === "essay" ? "badge-essay" : "badge-ox");
+
+  const coreBadge = document.getElementById("q-core-badge");
+  coreBadge.classList.toggle("hidden", !item.coreTheme);
+
+  document.getElementById("q-progress-text").textContent = `第 ${currentIndex + 1} 問 / 全 ${activeList.length} 問`;
+  document.getElementById("progress-fill").style.width = `${(currentIndex / activeList.length) * 100}%`;
+  document.getElementById("live-score").textContent = `現在の正解数：${score}問`;
+  document.getElementById("q-text").textContent = item.q;
+
+  const feedbackBox = document.getElementById("feedback-box");
+  feedbackBox.className = "feedback-box";
+  document.getElementById("model-answer-box").classList.add("hidden");
+  document.getElementById("kw-section").classList.add("hidden");
+  document.getElementById("trap-box").classList.add("hidden");
+  document.getElementById("self-grade-row").classList.add("hidden");
+  document.getElementById("next-row").classList.add("hidden");
+
+  const essayArea = document.getElementById("essay-area");
+  const oxArea = document.getElementById("ox-area");
+
+  if (item.type === "essay") {
+    essayArea.classList.remove("hidden");
+    oxArea.classList.add("hidden");
+
+    const textarea = document.getElementById("essay-input");
+    textarea.value = "";
+    textarea.disabled = false;
+    document.getElementById("char-counter").textContent = "0文字";
+    document.getElementById("check-essay-btn").disabled = false;
+    document.getElementById("giveup-essay-btn").disabled = false;
+
+    const hintBox = document.getElementById("hint-box");
+    const hintText = document.getElementById("hint-text");
+    const hintBtn = document.getElementById("hint-toggle-btn");
+    if (item.hint) {
+      hintBox.classList.remove("hidden");
+      hintText.textContent = item.hint;
+      hintText.classList.add("hidden");
+      hintBtn.textContent = "ヒント・文字数目安を見る";
+    } else {
+      hintBox.classList.add("hidden");
+    }
+    setTimeout(() => textarea.focus(), 50);
+  } else {
+    essayArea.classList.add("hidden");
+    oxArea.classList.remove("hidden");
+
+    document.querySelectorAll(".ox-btn").forEach(btn => {
+      btn.disabled = false;
+      btn.className = "ox-btn";
+    });
+  }
+
+  document.getElementById("next-btn").textContent =
+    (currentIndex === activeList.length - 1) ? "結果を見る" : "次の問題へ";
+}
+
+// Hint toggle
+document.getElementById("hint-toggle-btn").addEventListener("click", () => {
+  const hintText = document.getElementById("hint-text");
+  const hintBtn = document.getElementById("hint-toggle-btn");
+  const isHidden = hintText.classList.toggle("hidden");
+  hintBtn.textContent = isHidden ? "ヒント・文字数目安を見る" : "ヒントを隠す";
+});
+
+// Char counter
+document.getElementById("essay-input").addEventListener("input", (e) => {
+  const len = e.target.value.replace(/\s+/g, "").length;
+  document.getElementById("char-counter").textContent = `${len}文字（空白除く）`;
+});
+
+// Essay check
+function showEssayFeedback(giveUp = false) {
+  const item = activeList[currentIndex];
+  const userText = document.getElementById("essay-input").value.trim();
+
+  document.getElementById("essay-input").disabled = true;
+  document.getElementById("check-essay-btn").disabled = true;
+  document.getElementById("giveup-essay-btn").disabled = true;
+
+  const feedbackBox = document.getElementById("feedback-box");
+  feedbackBox.className = "feedback-box show is-review";
+  document.getElementById("feedback-title").textContent = giveUp
+    ? "模範解答と必須キーワードを確認しよう"
+    : "答え合わせ：必須キーワードが入っているか確認しよう";
+
+  document.getElementById("model-answer-box").classList.remove("hidden");
+  document.getElementById("model-answer-text").textContent = item.modelAnswer;
+
+  const kwSection = document.getElementById("kw-section");
+  const kwChips = document.getElementById("kw-chips");
+  kwSection.classList.remove("hidden");
+  kwChips.innerHTML = "";
+  (item.keywords || []).forEach(kw => {
+    const chip = document.createElement("span");
+    const hasInput = userText.length > 0;
+    const hit = hasInput && userText.includes(kw);
+    chip.className = "kw-chip " + (hasInput ? (hit ? "hit" : "miss") : "");
+    chip.textContent = (hasInput ? (hit ? "✓ " : "・") : "") + kw;
+    kwChips.appendChild(chip);
+  });
+
+  document.getElementById("feedback-exp").textContent = item.exp;
+  document.getElementById("self-grade-row").classList.remove("hidden");
+  document.getElementById("next-row").classList.add("hidden");
+}
+
+function finalizeEssayGrade(isCorrect) {
+  if (answered) return;
+  answered = true;
+  const item = activeList[currentIndex];
+
+  if (!unitStats[item.unit]) unitStats[item.unit] = { total: 0, correct: 0 };
+  unitStats[item.unit].total += 1;
+  typeStats.essay.total += 1;
+
+  const feedbackBox = document.getElementById("feedback-box");
+  if (isCorrect) {
+    score += 1;
+    unitStats[item.unit].correct += 1;
+    typeStats.essay.correct += 1;
+    feedbackBox.className = "feedback-box show is-correct";
+    document.getElementById("feedback-title").textContent = "記録しました：書けた（正解）";
+  } else {
+    wrongItems.push(item);
+    feedbackBox.className = "feedback-box show is-wrong";
+    document.getElementById("feedback-title").textContent = "記録しました：もう一度復習する";
+  }
+
+  document.getElementById("self-grade-row").classList.add("hidden");
+  document.getElementById("next-row").classList.remove("hidden");
+  document.getElementById("progress-fill").style.width = `${((currentIndex + 1) / activeList.length) * 100}%`;
+  document.getElementById("live-score").textContent = `現在の正解数：${score}問`;
+}
+
+document.getElementById("check-essay-btn").addEventListener("click", () => showEssayFeedback(false));
+document.getElementById("giveup-essay-btn").addEventListener("click", () => showEssayFeedback(true));
+document.getElementById("grade-ok-btn").addEventListener("click", () => finalizeEssayGrade(true));
+document.getElementById("grade-ng-btn").addEventListener("click", () => finalizeEssayGrade(false));
+
+// OX check
+function selectOX(chosenBool) {
+  if (answered) return;
+  const item = activeList[currentIndex];
+  if (item.type !== "ox") return;
+  answered = true;
+
+  const isCorrect = (chosenBool === item.answer);
+  if (!unitStats[item.unit]) unitStats[item.unit] = { total: 0, correct: 0 };
+  unitStats[item.unit].total += 1;
+  typeStats.ox.total += 1;
+
+  if (isCorrect) {
+    score += 1;
+    unitStats[item.unit].correct += 1;
+    typeStats.ox.correct += 1;
+  } else {
+    wrongItems.push(item);
+  }
+
+  document.querySelectorAll(".ox-btn").forEach(btn => {
+    btn.disabled = true;
+    const val = btn.dataset.val === "true";
+    if (val === item.answer) {
+      btn.classList.add("correct");
+    } else if (val === chosenBool && !isCorrect) {
+      btn.classList.add("wrong");
+    } else {
+      btn.classList.add("dimmed");
+    }
+  });
+
+  const feedbackBox = document.getElementById("feedback-box");
+  feedbackBox.className = "feedback-box show " + (isCorrect ? "is-correct" : "is-wrong");
+  const ansSymbol = item.answer ? "○（正しい）" : "×（誤り）";
+  document.getElementById("feedback-title").textContent = isCorrect
+    ? `正解！（${ansSymbol}）`
+    : `不正解… 正解は「${ansSymbol}」`;
+
+  if (item.trap) {
+    document.getElementById("trap-box").classList.remove("hidden");
+    document.getElementById("trap-text").textContent = item.trap;
+  }
+  document.getElementById("feedback-exp").textContent = item.exp;
+  document.getElementById("next-row").classList.remove("hidden");
+  document.getElementById("progress-fill").style.width = `${((currentIndex + 1) / activeList.length) * 100}%`;
+  document.getElementById("live-score").textContent = `現在の正解数：${score}問`;
+}
+
+document.querySelectorAll(".ox-btn").forEach(btn => {
+  btn.addEventListener("click", () => selectOX(btn.dataset.val === "true"));
+});
+
+function nextQuestion() {
+  if (!answered) return;
+  if (currentIndex < activeList.length - 1) {
+    currentIndex += 1;
+    renderQuestion();
+  } else {
+    showResult();
+  }
+}
+
+function showResult() {
+  quizScreen.classList.add("hidden");
+  resultScreen.classList.remove("hidden");
+  const total = activeList.length;
+  const pct = Math.round((score / total) * 100);
+  document.getElementById("final-score").textContent = `${score} / ${total} 問正解（${pct}%）`;
+  document.getElementById("final-sub").textContent =
+    pct === 100 ? "全問達成！記述のキーワードもひっかけ対策もバッチリです。"
+    : pct >= 80 ? "よくできました！間違えた問題やキーワード漏れを復習して完璧にしよう。"
+    : "ひっかけポイントと必須キーワードを確認して、もう一度チャレンジしよう！";
+
+  const typeSummary = document.getElementById("type-summary");
+  typeSummary.innerHTML = "";
+  [
+    { key: "essay", label: "✍️ 短文記述（理由・仕組み）" },
+    { key: "ox", label: "⚡ ひっかけ○×問題" }
+  ].forEach(t => {
+    const st = typeStats[t.key];
+    if (st.total > 0) {
+      const tpct = Math.round((st.correct / st.total) * 100);
+      const box = document.createElement("div");
+      box.className = "type-box";
+      box.innerHTML = `<div class="t-name">${t.label}</div><div class="t-val">${st.correct} / ${st.total} 問（${tpct}%）</div>`;
+      typeSummary.appendChild(box);
+    }
+  });
+
+  const list = document.getElementById("breakdown-list");
+  list.innerHTML = "";
+  Object.keys(unitStats).forEach(u => {
+    const st = unitStats[u];
+    const upct = Math.round((st.correct / st.total) * 100);
+    const row = document.createElement("div");
+    row.className = "breakdown-item";
+    row.innerHTML = `
+      <strong>${u}</strong>
+      <div class="breakdown-bar-wrap">
+        <span>${st.correct}/${st.total} (${upct}%)</span>
+        <div class="mini-bar"><div class="mini-fill" style="width:${upct}%"></div></div>
+      </div>
+    `;
+    list.appendChild(row);
+  });
+
+  const retryWrongBtn = document.getElementById("retry-wrong-btn");
+  if (wrongItems.length > 0) {
+    retryWrongBtn.classList.remove("hidden");
+    retryWrongBtn.textContent = `間違えた・要復習の問題だけやり直す（${wrongItems.length}問）`;
+  } else {
+    retryWrongBtn.classList.add("hidden");
+  }
+}
+
+document.getElementById("start-btn").addEventListener("click", () => startQuiz());
+document.getElementById("next-btn").addEventListener("click", nextQuestion);
+document.getElementById("quit-btn").addEventListener("click", () => {
+  quizScreen.classList.add("hidden");
+  startScreen.classList.remove("hidden");
+});
+document.getElementById("back-home-btn").addEventListener("click", () => {
+  resultScreen.classList.add("hidden");
+  startScreen.classList.remove("hidden");
+});
+document.getElementById("retry-all-btn").addEventListener("click", () => startQuiz());
+document.getElementById("retry-wrong-btn").addEventListener("click", () => startQuiz(wrongItems));
+
+document.addEventListener("keydown", (e) => {
+  if (quizScreen.classList.contains("hidden")) return;
+  const item = activeList[currentIndex];
+  if (!answered && item.type === "ox") {
+    if (e.key === "1") selectOX(true);
+    if (e.key === "2") selectOX(false);
+  } else if (answered && e.key === "Enter") {
+    nextQuestion();
+  }
+});
+
+initUnitGrid();
+</script>
+</body>
+</html>

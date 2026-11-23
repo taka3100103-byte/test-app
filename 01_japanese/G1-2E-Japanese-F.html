@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中1 国語 2学期末テスト対策 重要語句フラッシュカード</title>
+<style>
+  :root {
+    --bg: #f1f5f9;
+    --card: #ffffff;
+    --primary: #4f46e5;
+    --primary-hover: #4338ca;
+    --primary-light: #eef2ff;
+    --text: #0f172a;
+    --muted: #64748b;
+    --border: #e2e8f0;
+    --ok: #16a34a;
+    --ok-bg: #f0fdf4;
+    --retry: #ea580c;
+    --retry-bg: #fff7ed;
+    --point-bg: #fefce8;
+    --point-border: #eab308;
+    --radius: 16px;
+    --shadow: 0 8px 28px rgba(15, 23, 42, 0.08);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic UI", "Meiryo", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 18px 14px 56px;
+  }
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  header h1 {
+    font-size: 1.38rem;
+    margin: 0 0 4px;
+    color: var(--text);
+  }
+  header p {
+    margin: 0;
+    font-size: 0.86rem;
+    color: var(--muted);
+  }
+
+  /* Mode Tabs */
+  .tabs {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+  .tab-btn {
+    padding: 8px 18px;
+    border-radius: 999px;
+    border: 1.5px solid var(--border);
+    background: #fff;
+    color: var(--muted);
+    font-weight: 700;
+    font-size: 0.88rem;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.15s ease;
+  }
+  .tab-btn.active {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+  }
+
+  /* Unit Filter Bar */
+  .panel {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    padding: 16px 18px;
+    margin-bottom: 16px;
+  }
+  .unit-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-bottom: 12px;
+  }
+  .pill {
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1.5px solid var(--border);
+    background: #fff;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #334155;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.12s ease;
+  }
+  .pill:hover {
+    border-color: var(--primary);
+    background: var(--primary-light);
+  }
+  .pill.active {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+  }
+  .toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+    font-size: 0.84rem;
+  }
+  .toolbar-left, .toolbar-right {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+  .mini-btn {
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: #f8fafc;
+    color: #334155;
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .mini-btn:hover { background: #e2e8f0; }
+  .mini-btn.accent {
+    background: var(--retry-bg);
+    color: var(--retry);
+    border-color: #fdba74;
+  }
+
+  /* Progress */
+  .progress-wrap {
+    margin-bottom: 14px;
+  }
+  .progress-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.84rem;
+    font-weight: 700;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .progress-track {
+    height: 8px;
+    background: #e2e8f0;
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--primary);
+    width: 0%;
+    transition: width 0.25s ease;
+  }
+
+  /* 3D Flip Card */
+  .scene {
+    perspective: 1200px;
+    margin-bottom: 16px;
+  }
+  .flashcard {
+    position: relative;
+    width: 100%;
+    min-height: 310px;
+    transform-style: preserve-3d;
+    transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+    cursor: pointer;
+  }
+  .flashcard.is-flipped {
+    transform: rotateY(180deg);
+  }
+  .face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    padding: 22px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .face-back {
+    transform: rotateY(180deg);
+    background: #ffffff;
+    cursor: default;
+  }
+  .face-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+  }
+  .badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 0.76rem;
+    font-weight: 700;
+    background: var(--primary-light);
+    color: var(--primary);
+  }
+  .side-tag {
+    font-size: 0.76rem;
+    font-weight: 700;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+  .front-body {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 18px 8px;
+  }
+  .q-prompt {
+    font-size: 1.24rem;
+    font-weight: 800;
+    color: var(--text);
+    white-space: pre-line;
+    margin: 0;
+  }
+  .tap-hint {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  .back-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 14px;
+    padding: 12px 0;
+  }
+  .answer-box {
+    text-align: center;
+    padding: 12px 14px;
+    background: var(--primary-light);
+    border-radius: 12px;
+  }
+  .answer-label {
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 2px;
+  }
+  .answer-text {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #1e1b4b;
+    margin: 0;
+    white-space: pre-line;
+  }
+  .point-box {
+    padding: 12px 14px;
+    background: var(--point-bg);
+    border-left: 4px solid var(--point-border);
+    border-radius: 8px;
+    font-size: 0.92rem;
+    color: #334155;
+  }
+  .point-label {
+    font-weight: 800;
+    font-size: 0.8rem;
+    color: #a16207;
+    margin-bottom: 2px;
+  }
+
+  /* Action Buttons */
+  .actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .act-btn {
+    padding: 13px 16px;
+    border-radius: 12px;
+    border: 2px solid transparent;
+    font-size: 0.98rem;
+    font-weight: 800;
+    font-family: inherit;
+    cursor: pointer;
+    transition: transform 0.08s ease, opacity 0.15s ease;
+  }
+  .act-btn:active { transform: scale(0.98); }
+  .act-retry {
+    background: var(--retry-bg);
+    color: var(--retry);
+    border-color: #fdba74;
+  }
+  .act-ok {
+    background: var(--ok-bg);
+    color: var(--ok);
+    border-color: #86efac;
+  }
+  .nav-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+  .flip-btn {
+    width: 100%;
+    padding: 13px;
+    border-radius: 12px;
+    border: none;
+    background: var(--primary);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 800;
+    font-family: inherit;
+    cursor: pointer;
+  }
+  .flip-btn:hover { background: var(--primary-hover); }
+
+  /* Complete View */
+  .done-card {
+    text-align: center;
+    padding: 30px 20px;
+  }
+  .done-title {
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin: 0 0 8px;
+  }
+  .done-sub {
+    color: var(--muted);
+    margin: 0 0 20px;
+    font-size: 0.94rem;
+  }
+  .done-btns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+  .btn-main {
+    padding: 11px 20px;
+    border-radius: 10px;
+    border: none;
+    background: var(--primary);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.92rem;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .btn-sub {
+    padding: 11px 20px;
+    border-radius: 10px;
+    border: 1.5px solid var(--border);
+    background: #fff;
+    color: var(--text);
+    font-weight: 700;
+    font-size: 0.92rem;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  /* List Mode (Red-Sheet Style) */
+  .list-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .list-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+  }
+  .list-q {
+    font-weight: 700;
+    font-size: 0.96rem;
+    margin: 6px 0 8px;
+    white-space: pre-line;
+  }
+  .list-ans {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 6px;
+    background: var(--primary-light);
+    color: #1e1b4b;
+    font-weight: 800;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .list-ans.masked {
+    background: #ef4444;
+    color: transparent;
+    user-select: none;
+  }
+  .list-point {
+    margin-top: 8px;
+    font-size: 0.85rem;
+    color: #475569;
+  }
+
+  .hidden { display: none !important; }
+  @media (max-width: 540px) {
+    .flashcard { min-height: 330px; }
+    .q-prompt { font-size: 1.1rem; }
+    .answer-text { font-size: 1.15rem; }
+    .kbd-hint { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>中1 国語 2学期末テスト 重要語句フラッシュカード</h1>
+    <p>全66枚｜表面で用語を思い出し、裏面で「答え＋狙われやすい一言ポイント」を確認</p>
+  </header>
+
+  <div class="tabs">
+    <button id="tab-card" class="tab-btn active">カードで復習</button>
+    <button id="tab-list" class="tab-btn">一覧・赤シートモード</button>
+  </div>
+
+  <div class="panel">
+    <div id="unit-pills" class="unit-pills"></div>
+    <div class="toolbar">
+      <div class="toolbar-left">
+        <button id="shuffle-btn" class="mini-btn">順番をシャッフル</button>
+        <button id="only-retry-btn" class="mini-btn accent hidden">要復習のみ（<span id="retry-count-badge">0</span>）</button>
+      </div>
+      <div class="toolbar-right">
+        <span id="deck-info" style="color:var(--muted); font-weight:700;"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card Mode -->
+  <div id="card-mode">
+    <div id="play-area">
+      <div class="progress-wrap">
+        <div class="progress-meta">
+          <span id="card-pos">1 / 66</span>
+          <span id="mastered-info">覚えた：0枚 ／ 要復習：0枚</span>
+        </div>
+        <div class="progress-track">
+          <div id="progress-fill" class="progress-fill"></div>
+        </div>
+      </div>
+
+      <div class="scene">
+        <div id="flashcard" class="flashcard">
+          <div class="face face-front">
+            <div class="face-top">
+              <span id="front-unit" class="badge"></span>
+              <span class="side-tag">問題（表面）</span>
+            </div>
+            <div class="front-body">
+              <p id="front-q" class="q-prompt"></p>
+            </div>
+            <div class="tap-hint">カードをタップ（または Spaceキー）で裏返す</div>
+          </div>
+
+          <div class="face face-back">
+            <div class="face-top">
+              <span id="back-unit" class="badge"></span>
+              <span class="side-tag">答え＆ポイント（裏面）</span>
+            </div>
+            <div class="back-body">
+              <div class="answer-box">
+                <div class="answer-label">答え</div>
+                <p id="back-a" class="answer-text"></p>
+              </div>
+              <div class="point-box">
+                <div class="point-label">テストで狙われやすい一言ポイント</div>
+                <div id="back-p"></div>
+              </div>
+            </div>
+            <div class="tap-hint">下のボタンで仕分けして次へ進もう</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="front-action">
+        <button id="flip-btn" class="flip-btn">答えを見る（裏返す）</button>
+      </div>
+      <div id="back-action" class="actions hidden">
+        <button id="btn-retry" class="act-btn act-retry">もう一度（要復習）</button>
+        <button id="btn-ok" class="act-btn act-ok">覚えた！（OK）</button>
+      </div>
+
+      <div class="nav-row">
+        <button id="prev-btn" class="mini-btn">← 前のカード</button>
+        <span class="kbd-hint">Space：裏返す ／ ←：要復習 ／ →：覚えた</span>
+        <button id="reset-deck-btn" class="mini-btn">最初からやり直す</button>
+      </div>
+    </div>
+
+    <div id="done-area" class="panel done-card hidden">
+      <h2 class="done-title">このセットを1周しました！</h2>
+      <p id="done-summary" class="done-sub"></p>
+      <div class="done-btns">
+        <button id="done-retry-btn" class="btn-main hidden">「要復習」だけもう1周する</button>
+        <button id="done-restart-btn" class="btn-sub">全枚数を最初から</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- List Mode -->
+  <div id="list-mode" class="hidden">
+    <div class="list-controls">
+      <span style="font-size:0.85rem; color:var(--muted);">赤い部分をタップすると答えが見えます</span>
+      <button id="toggle-mask-btn" class="mini-btn">すべての答えを隠す／表示</button>
+    </div>
+    <div id="list-container"></div>
+  </div>
+</div>
+
+<script>
+const CARDS = [
+  // === 1. シジュウカラ ===
+  {
+    unit: "シジュウカラ",
+    q: "シジュウカラの胸から腹にかけてある特徴的な模様は、何に例えられるか。",
+    a: "ネクタイ（のような黒い模様）",
+    p: "大きさは「スズメほど（約15cm）」、黒い頭に白い頬、ネクタイ模様。カラスやハトとのひっかけに注意。"
+  },
+  {
+    unit: "シジュウカラ",
+    q: "筆者がシジュウカラを研究する「転機」となった出来事（2008年6月）は何か。",
+    a: "アオダイショウ（ヘビ）が巣箱に迫り、親鳥が「ジャージャー」と鳴いたこと",
+    p: "ヘビに対してだけ、タカなど他の天敵とは違う鳴き声を出したことに着目した。"
+  },
+  {
+    unit: "シジュウカラ",
+    q: "シジュウカラの「ジャージャー」という鳴き声は、何を意味する「単語」だと考えられたか。",
+    a: "ヘビ",
+    p: "「逃げろ」や「エサがある」ではなく、天敵の種類そのもの（ヘビ）を表す単語。"
+  },
+  {
+    unit: "シジュウカラ",
+    q: "シジュウカラが周囲を警戒するときに出す鳴き声はどれか。",
+    a: "ピーツピ",
+    p: "「ピーツピ」を聞かせると首を左右に振って周囲を警戒する。地面や巣箱をのぞくのは「ジャージャー」。"
+  },
+  {
+    unit: "シジュウカラ",
+    q: "【検証1】ヘビの姿を見せずに、録音した音声だけを聞かせたのはなぜか。",
+    a: "ヘビを見た「恐怖心」で鳴いたのか、鳴き声自体が意味をもつのかを区別するため",
+    p: "記述頻出！「ヘビがいない状態で音声だけを聞かせる」理由を言えるようにしよう。"
+  },
+  {
+    unit: "シジュウカラ",
+    q: "【検証2】音声実験に加えて、ヘビに似た動きをする「小枝」を見せた理由は何か。",
+    a: "「地面や巣箱を確認しろ」という命令である可能性を排除し、ヘビの姿を思い浮かべているか確かめるため",
+    p: "検証1だけでは「命令」という別の解釈が残るため、視覚と組み合わせて1つの解釈に絞った。"
+  },
+  {
+    unit: "シジュウカラ",
+    q: "筆者が20年以上の研究から導いた結論で、シジュウカラは異なる単語をどうする能力をもつとされるか。",
+    a: "複数の「単語」を組み合わせる能力",
+    p: "単語を使い分けるだけでなく、組み合わせてより複雑なメッセージを伝えることができる。"
+  },
+  {
+    unit: "シジュウカラ",
+    q: "コラム「生きる知恵としての言葉」で、カラ類3種を力が強い順に並べると？",
+    a: "ゴジュウカラ → シジュウカラ → コガラ",
+    p: "一番小さいコガラは「タカが来た！」という言葉を巧みに使ってエサにありつく。"
+  },
+  {
+    unit: "シジュウカラ",
+    q: "【重要語句】仮に立てた考えのことを何というか。",
+    a: "仮説（かせつ）",
+    p: "「分析（細かな要素に分ける）」「検証（実際に調べて確かめる）」「定義（意味をはっきり決める）」と区別！"
+  },
+  {
+    unit: "シジュウカラ",
+    q: "【重要語句】驚くような高い大きな音があがる様子を表す言葉は？",
+    a: "けたたましい",
+    p: "ほかに「いち早く（まっ先に）」「転機（別の状態に変わるきっかけ）」もテストで狙われやすい。"
+  },
+
+  // === 2. 集中力・案内文 ===
+  {
+    unit: "集中力・案内文",
+    q: "英単語実験で、学習「直後」のテストで高得点だったのはグループA（休憩なし）・B（休憩あり）のどちらか。",
+    a: "グループA（休憩なし60分）",
+    p: "直後はAが高いが、翌日と1週間後は休憩をはさんだBが逆転！ここがひっかけの定番。"
+  },
+  {
+    unit: "集中力・案内文",
+    q: "実験で、集中力の目安となる「ガンマ波」が急激に下がり始めるのは何分をさかいにか。",
+    a: "40分",
+    p: "脳の部位は「前頭葉（ぜんとうよう）」。集中力が続くのは40分ほどとされる。"
+  },
+  {
+    unit: "集中力・案内文",
+    q: "筆者がおすすめする「ノマド（遊牧民）のような勉強法」とはどのような方法か。",
+    a: "家の中に複数の勉強スペースを用意し、移動しながら勉強する方法",
+    p: "自分の机だけでなく、ダイニングテーブルやミニデスクなどに場所を変えて集中力を保つ。"
+  },
+  {
+    unit: "集中力・案内文",
+    q: "「10月4日」発行の中学校演劇祭の案内文に入れる、季節の挨拶として適切な言葉は？",
+    a: "秋風が心地よい季節となりました",
+    p: "発行月（10月＝秋）と季節の挨拶が一致しているかをチェックする問題が定番。"
+  },
+  {
+    unit: "集中力・案内文",
+    q: "案内文「当日は、南側の門よりお入りください。」の横に添えると親切な資料は何か。",
+    a: "門や体育館の場所がわかる学校全体の地図",
+    p: "イベントの写真やイラストではなく、「保護者が迷わず会場に着くための地図」が正解。"
+  },
+  {
+    unit: "集中力・案内文",
+    q: "「車での来校するのはだめです」を保護者向けの丁寧な案内文に直すとどうなるか。",
+    a: "車での来校はひかえてください。",
+    p: "「だめです」などの口語を敬語に直し、注意事項は「箇条書き」にすると読みやすい。"
+  },
+  {
+    unit: "集中力・案内文",
+    q: "案内文で日時・場所・持ち物などを整理して見やすくする工夫を何というか。",
+    a: "箇条書き（かじょうがき）",
+    p: "文章でだらだら書かず、項目ごとに箇条書きにすることで必要な情報がすぐ伝わる。"
+  },
+  {
+    unit: "集中力・案内文",
+    q: "グループBの学習スケジュール（合計60分枠）の内訳はどうなっていたか。",
+    a: "15分の学習×3回 ＋ 7分半の休憩×2回",
+    p: "学習時間は合計45分だが、休憩をはさむことで長期的な記憶定着につながった。"
+  },
+
+  // === 3. 方言と共通語 ===
+  {
+    unit: "方言と共通語",
+    q: "家族や地域の人との交流の中で自然に使われる、地域の特色が表れた言葉を何というか。",
+    a: "方言（ほうげん）",
+    p: "「共通語」は日本全国どこでも通用し、ニュースなど不特定多数の人に伝える場で使われる。"
+  },
+  {
+    unit: "方言と共通語",
+    q: "「捨てる」という意味で「ホーカル」「ホカル」を使う地域が多いのはどの地方か。",
+    a: "近畿地方",
+    p: "関西・近畿地方の代表例。関東は「ウッチャル」など。"
+  },
+  {
+    unit: "方言と共通語",
+    q: "「捨てる」という意味で「ナゲル」「ブンナゲル」を使う地域が多いのはどの地方か。",
+    a: "北海道地方・東北地方",
+    p: "共通語の「投げる」とは意味が違い、「捨てる」という意味で使われる。"
+  },
+  {
+    unit: "方言と共通語",
+    q: "日本にある八つの消滅危機言語のうち、北海道で使われている言語は何か。",
+    a: "アイヌ語",
+    p: "「方言」ではなく独自の言語。「琉球語・沖縄語」と混同しないように注意。"
+  },
+  {
+    unit: "方言と共通語",
+    q: "アイヌ語の「コタン」「ピリカ」「カムイ」は、それぞれ日本語でどういう意味か。",
+    a: "コタン＝村 ／ ピリカ＝よい ／ カムイ＝神",
+    p: "北海道の地名や商品名にも残っている重要な3語。"
+  },
+  {
+    unit: "方言と共通語",
+    q: "沖縄語の「まやー」「とぅめて」「てぃーだ」は、それぞれ日本語でどういう意味か。",
+    a: "まやー＝猫 ／ とぅめて＝早朝 ／ てぃーだ＝太陽",
+    p: "アイヌ語（北海道）と沖縄語（沖縄）の語彙が入れ替わったひっかけ問題に注意！"
+  },
+
+  // === 4. 文法（文の組み立て） ===
+  {
+    unit: "文法（文の組み立て）",
+    q: "「何が・誰が」にあたる文節を何というか。",
+    a: "主語（しゅご）",
+    p: "主語は「〜は」「〜が」「〜も」などの形をとることが多い。"
+  },
+  {
+    unit: "文法（文の組み立て）",
+    q: "「どうする・どんなだ・何だ・ある・いる・ない」にあたる文節を何というか。",
+    a: "述語（じゅつご）",
+    p: "日本語では原則として「文の最後」に来る。「〜そろえる。」など。"
+  },
+  {
+    unit: "文法（文の組み立て）",
+    q: "体言（名詞）を詳しく説明する修飾語を、特に何修飾語というか。",
+    a: "連体修飾語（れんたいしゅうしょくご）",
+    p: "例：「【あたたかい】 春が 来た。」→「春（名詞）」を修飾しているので連体修飾語。"
+  },
+  {
+    unit: "文法（文の組み立て）",
+    q: "用言（動詞・形容詞・形容動詞）などを詳しく説明する修飾語を、特に何修飾語というか。",
+    a: "連用修飾語（れんようしゅうしょくご）",
+    p: "例：「【ボランティアに】 加わる。」→「加わる（動詞）」を修飾しているので連用修飾語。"
+  },
+  {
+    unit: "文法（文の組み立て）",
+    q: "前の文や文節と、後ろの文や文節をつなぐ働きをする文節を何というか。",
+    a: "接続語（せつぞくご）",
+    p: "「しかし、」だけでなく、「【暗いので】 照明を つける。」のように理由を表す文節も接続語！"
+  },
+  {
+    unit: "文法（文の組み立て）",
+    q: "他の文節とは直接関係がなく、それだけで独立して感動・呼びかけ・応答などを表す文節は？",
+    a: "独立語（どくりつご）",
+    p: "例：「【おはよう】、今日も 元気だね。」「【まあ】、虹が 出ているわ。」"
+  },
+  {
+    unit: "文法（文の組み立て）",
+    q: "文を文節に区切るとき、間に何をはさんで不自然でない所を区切るのが基本か。",
+    a: "「ね」や「さ」",
+    p: "例：「実験に（ね）必要な（ね）材料を（ね）そろえる。」"
+  },
+  {
+    unit: "文法（文の組み立て）",
+    q: "「冷たい プリンを 食べる。」で、「冷たい」が修飾している文節はどれか。",
+    a: "プリンを",
+    p: "「食べる」ではなく、すぐ下の名詞「プリンを」を詳しく説明している。"
+  },
+
+  // === 5. いろは歌 ===
+  {
+    unit: "いろは歌",
+    q: "『いろは歌』のように、7音・5音を4回くり返す形式を何というか。",
+    a: "今様（いまよう）形式",
+    p: "短歌（5・7・5・7・7）や俳句（5・7・5）ではない点に注意！"
+  },
+  {
+    unit: "いろは歌",
+    q: "『いろは歌』は、当時の何文字の仮名を重複なく1回ずつ使って作られているか。",
+    a: "47文字",
+    p: "「ん」が入らない47文字すべてを1回ずつ使っているのが最大の特徴。"
+  },
+  {
+    unit: "いろは歌",
+    q: "「いろはにほへと ちりぬるを」の現代語訳は？",
+    a: "（花は）美しく照り映えていても、やがて散ってしまうものである",
+    p: "「にほふ」は現代語の「におう（香り）」ではなく「色美しく映える」の意味。"
+  },
+  {
+    unit: "いろは歌",
+    q: "「わがよたれそ つねならむ」の現代語訳は？",
+    a: "誰がいつまでも変わらないでいられようか（いや、いられない）",
+    p: "この世のすべては移り変わり、永遠のものはない（無常）という意味。"
+  },
+  {
+    unit: "いろは歌",
+    q: "「うゐのおくやま けふこえて」の「うゐ（有為）の奥山」とは何の例えか。",
+    a: "（変化が激しく）厳しい人生・困難の多い世の中",
+    p: "「今日越えて」と続くことで、困難を乗り越えようとする前向きな姿勢を表す。"
+  },
+  {
+    unit: "いろは歌",
+    q: "「あさきゆめみし ゑひもせす」は、全体としてどのような気持ちを表しているか。",
+    a: "厳しい人生を生き抜こうとする覚悟",
+    p: "「はかない夢を見たり、酔いしれたりしない」という強い決意。"
+  },
+  {
+    unit: "いろは歌",
+    q: "平仮名で書かれた『いろは歌』の最古の資料は、いつ・誰が何に書いたものか。",
+    a: "平安時代後期、伊勢神宮の女官が土器の皿に書いたもの",
+    p: "文字を覚えるために練習として書いたものが最古の資料。江戸時代には寺子屋の手本に。"
+  },
+
+  // === 6. 歴史的仮名遣い ===
+  {
+    unit: "歴史的仮名遣い",
+    q: "歴史的仮名遣いの基本ルール①：語頭以外の「は・ひ・ふ・へ・ほ」はどう直すか。",
+    a: "ワ行（わ・い・う・え・お）に直す",
+    p: "語の先頭（語頭）のハ行はそのまま！2文字目以降をワ行に直す。"
+  },
+  {
+    unit: "歴史的仮名遣い",
+    q: "「竹取の翁と【いふ】もの」を現代仮名遣いに直すと？",
+    a: "いう",
+    p: "語頭以外の「ふ」→「う」。漢字の読みでは「言（い）う」。"
+  },
+  {
+    unit: "歴史的仮名遣い",
+    q: "「天人の【よそほひ】したる女」を現代仮名遣いに直すと？",
+    a: "よそおい",
+    p: "「ほ」→「お」、「ひ」→「い」。2か所ともハ行→ワ行のルールを適用！"
+  },
+  {
+    unit: "歴史的仮名遣い",
+    q: "「【答へていはく】」を現代仮名遣いに直すと？",
+    a: "こたえていわく",
+    p: "「へ」→「え」、「は」→「わ」。漢字部分もひらがなで書けるように。"
+  },
+  {
+    unit: "歴史的仮名遣い",
+    q: "「そのよし【うけたまはりて】」を現代仮名遣いに直すと？",
+    a: "うけたまわりて",
+    p: "語頭以外の「は」→「わ」。"
+  },
+  {
+    unit: "歴史的仮名遣い",
+    q: "ワ行の「ゐ・ゑ・を」は現代仮名遣いに直すとどうなるか。（助詞の「を」を除く）",
+    a: "い・え・お",
+    p: "例：「ゐたり」→「いたり」、「ゑひもせす」→「えいもせず」。助詞の「を」はそのまま。"
+  },
+  {
+    unit: "歴史的仮名遣い",
+    q: "「【よろづ】のこと」のように、「ぢ」「づ」は原則としてどう直すか。",
+    a: "じ・ず（例：よろず）",
+    p: "ほとんどの場合「ぢ→じ」「づ→ず」に直す。"
+  },
+  {
+    unit: "歴史的仮名遣い",
+    q: "「竹【なむ】一筋ありける」のように、語尾の「む」はどう直すか。",
+    a: "ん（例：なん）",
+    p: "助動詞の「む」（ならむ→ならん）や係助詞の「なむ」（→なん）でよく出る。"
+  },
+  {
+    unit: "歴史的仮名遣い",
+    q: "「【けふ】こえて」のように、「efu（えふ）」の音はどう直すか。",
+    a: "you（よう）（例：きょう）",
+    p: "「けふ（kefu）」→「きょう（kyou）」。「けう」と書かないよう注意！"
+  },
+  {
+    unit: "歴史的仮名遣い",
+    q: "「【やう】なし」や「【くゎし】」を現代仮名遣いに直すと？",
+    a: "よう（やう→よう）／ かし（くゎ→か）",
+    p: "「au→ou」「くゎ→か」「ぐゎ→が」のルール。菓子（くゎし→かし）が定番。"
+  },
+
+  // === 7. 竹取物語 ===
+  {
+    unit: "竹取物語",
+    q: "「竹取の翁といふもの【ありけり】。」の「けり」はどのような意味を表すか。",
+    a: "過去・伝聞（〜ていた・〜たそうだ）",
+    p: "物語の冒頭で使われ、「昔、〜という人がいた」と語りかける表現。"
+  },
+  {
+    unit: "竹取物語",
+    q: "「名をば、さぬきのみやつこと【なむ】いひ【ける】。」の「なむ……ける」を何の文法というか。",
+    a: "係り結び（強調を伴う過去：〜た）",
+    p: "「なむ」があると文末が連体形「ける」になる。訳はシンプルに「〜と言った」。"
+  },
+  {
+    unit: "竹取物語",
+    q: "竹取の翁の名前を、古文の表記そのままにひらがなで答えると？",
+    a: "さぬきのみやつこ",
+    p: "「さぬきのみやつこ」の表記や、「翁（おきな）＝おじいさん」の意味を押さえよう。"
+  },
+  {
+    unit: "竹取物語",
+    q: "光る竹の筒の中にいた「三寸ばかりなる人」とは、どれくらいの大きさか。",
+    a: "約9センチ（1寸≒3cm）",
+    p: "テキストの図ではホッチキス（ステープラー）ほどの大きさとして比較されている。"
+  },
+  {
+    unit: "竹取物語",
+    q: "古文「いとうつくしうてゐたり」の「うつくし」は現代語でどういう意味か。",
+    a: "かわいらしい（愛らしい）",
+    p: "最重要ひっかけ！現代語の「美しい・きれいだ」ではなく「かわいらしい」。"
+  },
+  {
+    unit: "竹取物語",
+    q: "中秋の名月の夜、かぐや姫はどこへ昇っていき、帝に何を残したか。",
+    a: "月の世界へ昇り、手紙と「不死の薬」を残した",
+    p: "その後、帝はかぐや姫のいない世で生きても仕方ないと、駿河の国の山（富士山）で薬を燃やさせた。"
+  },
+  {
+    unit: "竹取物語",
+    q: "『蓬莱の玉の枝』に出る漢字「遣（や）る／遣（つか）わす」の漢字としての意味は？",
+    a: "さしむける・はたらかせる",
+    p: "「派遣（はけん）」「遣唐使」の「遣」と同じ意味。"
+  },
+
+  // === 8. 漢字・語句 ===
+  {
+    unit: "漢字・語句",
+    q: "「生」の読み方：生命／一生／生き物／生卵 を順に読むと？",
+    a: "せい ／ いっしょう ／ いきもの ／ なまたまご",
+    p: "同じ漢字でも音読み（せい・しょう）と訓読み（い・なま）が多様にある。"
+  },
+  {
+    unit: "漢字・語句",
+    q: "「明」の読み方：発明／光明／夜明け／明るい を順に読むと？",
+    a: "はつめい ／ こうみょう ／ よあけ ／ あかるい",
+    p: "特に「光明（こうみょう）」を「こうめい」と読まないように注意！"
+  },
+  {
+    unit: "漢字・語句",
+    q: "「風車」の2通りの読み方：風車小屋 ／ 折り紙の風車",
+    a: "ふうしゃ（小屋）／ かざぐるま（折り紙）",
+    p: "意味や文脈によって音読み（ふうしゃ）と訓読み（かざぐるま）を使い分ける。"
+  },
+  {
+    unit: "漢字・語句",
+    q: "「梅雨」の2通りの読み方：梅雨前線 ／ 梅雨入り",
+    a: "ばいう（前線）／ つゆ（入り）",
+    p: "熟語として続くときは「ばいう」、単独や和語と結びつくときは「つゆ」。"
+  },
+  {
+    unit: "漢字・語句",
+    q: "カタカナを漢字に直そう：敵をケイカイする ／ ショウコをつかむ ／ カイシャクが分かれる",
+    a: "警戒 ／ 証拠 ／ 解釈",
+    p: "「拠」や「釈」の字形（つくり）を正確に書けるかチェック！"
+  },
+  {
+    unit: "漢字・語句",
+    q: "漢字の読み：濃度 ／ 納涼 ／ 遮断",
+    a: "のうど ／ のうりょう ／ しゃだん",
+    p: "「遮断（しゃだん）」の読みは定期テストで頻出。"
+  },
+  {
+    unit: "漢字・語句",
+    q: "漢字の読み：陪審員 ／ 発酵 ／ 視聴",
+    a: "ばいしんいん ／ はっこう ／ しちょう",
+    p: "「発酵」を「はつこう」と読まない（促音「っ」になる）点に注意。"
+  },
+  {
+    unit: "漢字・語句",
+    q: "語句の意味：「食べ方は【多岐】に渡る」の「多岐」とはどういう意味か。",
+    a: "いろいろな種類があること（道がいくつにも分かれていること）",
+    p: "「多岐にわたる」の形でよく使われる。"
+  },
+  {
+    unit: "漢字・語句",
+    q: "語句の意味：「【先入観】を持たない」の「先入観」とはどういう意味か。",
+    a: "初めにできた思い込み（固定された見方）",
+    p: "「先入観にとらわれず」などの文脈で出題される。"
+  },
+  {
+    unit: "漢字・語句",
+    q: "語句の意味：「分析」と「定義」の違いを一言で言うと？",
+    a: "分析＝細かな要素に分けて明らかにすること ／ 定義＝意味や内容をはっきり決めること",
+    p: "説明文（シジュウカラなど）の読解用語として「仮説・検証」とセットで覚える。"
+  }
+];
+
+const UNIT_ORDER = [
+  "すべて",
+  "シジュウカラ",
+  "集中力・案内文",
+  "方言と共通語",
+  "文法（文の組み立て）",
+  "いろは歌",
+  "歴史的仮名遣い",
+  "竹取物語",
+  "漢字・語句"
+];
+
+let selectedUnit = "すべて";
+let onlyRetryMode = false;
+let isShuffled = false;
+let activeDeck = [];
+let currentIdx = 0;
+let isFlipped = false;
+let okSet = new Set();
+let retrySet = new Set();
+let listMasked = false;
+
+// Assign stable IDs
+CARDS.forEach((c, i) => { c.id = i; });
+
+const unitPills = document.getElementById("unit-pills");
+const flashcard = document.getElementById("flashcard");
+const frontAction = document.getElementById("front-action");
+const backAction = document.getElementById("back-action");
+const playArea = document.getElementById("play-area");
+const doneArea = document.getElementById("done-area");
+const onlyRetryBtn = document.getElementById("only-retry-btn");
+const retryCountBadge = document.getElementById("retry-count-badge");
+
+function initPills() {
+  unitPills.innerHTML = "";
+  UNIT_ORDER.forEach(u => {
+    const count = u === "すべて" ? CARDS.length : CARDS.filter(c => c.unit === u).length;
+    const btn = document.createElement("button");
+    btn.className = "pill" + (u === selectedUnit ? " active" : "");
+    btn.textContent = `${u} (${count})`;
+    btn.addEventListener("click", () => {
+      selectedUnit = u;
+      onlyRetryMode = false;
+      initPills();
+      buildDeck();
+    });
+    unitPills.appendChild(btn);
+  });
+}
+
+function shuffleArr(arr) {
+  const copy = [...arr];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
+function buildDeck() {
+  let list = selectedUnit === "すべて"
+    ? [...CARDS]
+    : CARDS.filter(c => c.unit === selectedUnit);
+
+  if (onlyRetryMode) {
+    const filtered = list.filter(c => retrySet.has(c.id));
+    if (filtered.length > 0) list = filtered;
+    else onlyRetryMode = false;
+  }
+  if (isShuffled) list = shuffleArr(list);
+
+  activeDeck = list;
+  currentIdx = 0;
+  isFlipped = false;
+
+  playArea.classList.remove("hidden");
+  doneArea.classList.add("hidden");
+  document.getElementById("deck-info").textContent =
+    (onlyRetryMode ? "要復習モード：" : "") + `全 ${activeDeck.length} 枚`;
+
+  renderCard();
+  renderList();
+}
+
+function updateRetryBadge() {
+  retryCountBadge.textContent = retrySet.size;
+  if (retrySet.size > 0) {
+    onlyRetryBtn.classList.remove("hidden");
+  } else {
+    onlyRetryBtn.classList.add("hidden");
+  }
+}
+
+function renderCard() {
+  if (currentIdx >= activeDeck.length) {
+    showDone();
+    return;
+  }
+  const c = activeDeck[currentIdx];
+  isFlipped = false;
+  flashcard.classList.remove("is-flipped");
+  frontAction.classList.remove("hidden");
+  backAction.classList.add("hidden");
+
+  document.getElementById("front-unit").textContent = c.unit;
+  document.getElementById("back-unit").textContent = c.unit;
+  document.getElementById("front-q").textContent = c.q;
+  document.getElementById("back-a").textContent = c.a;
+  document.getElementById("back-p").textContent = c.p;
+
+  document.getElementById("card-pos").textContent = `${currentIdx + 1} / ${activeDeck.length} 枚目`;
+  document.getElementById("mastered-info").textContent = `覚えた：${okSet.size}枚 ／ 要復習：${retrySet.size}枚`;
+  document.getElementById("progress-fill").style.width = `${(currentIdx / activeDeck.length) * 100}%`;
+  updateRetryBadge();
+}
+
+function flipCard() {
+  isFlipped = !isFlipped;
+  flashcard.classList.toggle("is-flipped", isFlipped);
+  if (isFlipped) {
+    frontAction.classList.add("hidden");
+    backAction.classList.remove("hidden");
+  } else {
+    frontAction.classList.remove("hidden");
+    backAction.classList.add("hidden");
+  }
+}
+
+function markCard(isOk) {
+  const c = activeDeck[currentIdx];
+  if (isOk) {
+    okSet.add(c.id);
+    retrySet.delete(c.id);
+  } else {
+    retrySet.add(c.id);
+    okSet.delete(c.id);
+  }
+  currentIdx += 1;
+  renderCard();
+}
+
+function showDone() {
+  playArea.classList.add("hidden");
+  doneArea.classList.remove("hidden");
+  updateRetryBadge();
+
+  const unitRetryCount = activeDeck.filter(c => retrySet.has(c.id)).length;
+  document.getElementById("done-summary").textContent =
+    unitRetryCount === 0
+      ? `この範囲の ${activeDeck.length} 枚をすべて「覚えた！」にしました。完璧です！`
+      : `${activeDeck.length} 枚中、要復習が ${unitRetryCount} 枚あります。もう1周して定着させよう！`;
+
+  const doneRetryBtn = document.getElementById("done-retry-btn");
+  if (unitRetryCount > 0) {
+    doneRetryBtn.classList.remove("hidden");
+    doneRetryBtn.textContent = `「要復習（${unitRetryCount}枚）」だけもう1周する`;
+  } else {
+    doneRetryBtn.classList.add("hidden");
+  }
+}
+
+function renderList() {
+  const container = document.getElementById("list-container");
+  container.innerHTML = "";
+  activeDeck.forEach((c, idx) => {
+    const div = document.createElement("div");
+    div.className = "list-item";
+    div.innerHTML = `
+      <span class="badge">${c.unit} #${idx + 1}</span>
+      <div class="list-q">${c.q}</div>
+      <div><span class="list-ans ${listMasked ? "masked" : ""}">${c.a}</span></div>
+      <div class="list-point">💡 ${c.p}</div>
+    `;
+    const ansEl = div.querySelector(".list-ans");
+    ansEl.addEventListener("click", () => ansEl.classList.toggle("masked"));
+    container.appendChild(div);
+  });
+}
+
+// Events
+flashcard.addEventListener("click", (e) => {
+  if (e.target.closest(".face-back") && window.getSelection().toString()) return;
+  flipCard();
+});
+document.getElementById("flip-btn").addEventListener("click", flipCard);
+document.getElementById("btn-ok").addEventListener("click", () => markCard(true));
+document.getElementById("btn-retry").addEventListener("click", () => markCard(false));
+document.getElementById("prev-btn").addEventListener("click", () => {
+  if (currentIdx > 0) {
+    currentIdx -= 1;
+    renderCard();
+  }
+});
+document.getElementById("reset-deck-btn").addEventListener("click", () => {
+  onlyRetryMode = false;
+  buildDeck();
+});
+document.getElementById("shuffle-btn").addEventListener("click", () => {
+  isShuffled = !isShuffled;
+  document.getElementById("shuffle-btn").textContent = isShuffled ? "順番を元に戻す" : "順番をシャッフル";
+  buildDeck();
+});
+onlyRetryBtn.addEventListener("click", () => {
+  onlyRetryMode = !onlyRetryMode;
+  buildDeck();
+});
+document.getElementById("done-retry-btn").addEventListener("click", () => {
+  onlyRetryMode = true;
+  buildDeck();
+});
+document.getElementById("done-restart-btn").addEventListener("click", () => {
+  onlyRetryMode = false;
+  buildDeck();
+});
+
+document.getElementById("tab-card").addEventListener("click", () => {
+  document.getElementById("tab-card").classList.add("active");
+  document.getElementById("tab-list").classList.remove("active");
+  document.getElementById("card-mode").classList.remove("hidden");
+  document.getElementById("list-mode").classList.add("hidden");
+});
+document.getElementById("tab-list").addEventListener("click", () => {
+  document.getElementById("tab-list").classList.add("active");
+  document.getElementById("tab-card").classList.remove("active");
+  document.getElementById("list-mode").classList.remove("hidden");
+  document.getElementById("card-mode").classList.add("hidden");
+});
+document.getElementById("toggle-mask-btn").addEventListener("click", () => {
+  listMasked = !listMasked;
+  document.querySelectorAll(".list-ans").forEach(el => {
+    el.classList.toggle("masked", listMasked);
+  });
+});
+
+document.addEventListener("keydown", (e) => {
+  if (document.getElementById("card-mode").classList.contains("hidden")) return;
+  if (!doneArea.classList.contains("hidden")) return;
+  if (e.code === "Space") {
+    e.preventDefault();
+    flipCard();
+  } else if (e.key === "ArrowRight" && isFlipped) {
+    markCard(true);
+  } else if (e.key === "ArrowLeft" && isFlipped) {
+    markCard(false);
+  }
+});
+
+initPills();
+buildDeck();
+</script>
+</body>
+</html>
