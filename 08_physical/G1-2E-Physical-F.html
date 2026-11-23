@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>中1 保健体育 2学期末テスト対策 フラッシュカード（全54枚）</title>
+  <style>
+    :root {
+      --bg: #f3f6fb;
+      --card: #ffffff;
+      --primary: #1d6fa5;
+      --primary-dark: #14527c;
+      --primary-light: #e8f3fb;
+      --accent: #0f9d8a;
+      --accent-light: #e6f7f4;
+      --warn: #d97706;
+      --warn-bg: #fef3c7;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #dbe4ef;
+      --ok: #15803d;
+      --ok-bg: #dcfce7;
+      --shadow: 0 10px 28px rgba(15, 35, 60, 0.1);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: linear-gradient(135deg, #165b8a, #0f8b8d);
+      color: #fff;
+      padding: 18px 16px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.3rem;
+      letter-spacing: 0.02em;
+    }
+
+    header p {
+      margin: 5px 0 0;
+      font-size: 0.88rem;
+      opacity: 0.92;
+    }
+
+    main {
+      width: 100%;
+      max-width: 820px;
+      margin: 20px auto 40px;
+      padding: 0 16px;
+      flex: 1;
+    }
+
+    .panel {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px;
+      border: 1px solid var(--border);
+    }
+
+    .hidden { display: none !important; }
+
+    /* Top Controls */
+    .controls-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .unit-select {
+      flex: 1;
+      min-width: 210px;
+      padding: 10px 12px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      font-family: inherit;
+      color: var(--text);
+      background: #fff;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .unit-select:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .btn-small {
+      background: #fff;
+      color: var(--primary-dark);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 12px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.15s ease;
+    }
+
+    .btn-small:hover {
+      border-color: var(--primary);
+      background: var(--primary-light);
+    }
+
+    .btn-small.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    /* Progress & Stats */
+    .stats-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 8px;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .stats-pills {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .pill-ok {
+      background: var(--ok-bg);
+      color: var(--ok);
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+    }
+
+    .pill-warn {
+      background: var(--warn-bg);
+      color: #b45309;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+    }
+
+    .progress-wrap {
+      width: 100%;
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 18px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      width: 0%;
+      transition: width 0.25s ease;
+    }
+
+    /* 3D Flip Card */
+    .scene {
+      perspective: 1200px;
+      margin-bottom: 18px;
+    }
+
+    .flashcard {
+      width: 100%;
+      min-height: 290px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+      cursor: pointer;
+    }
+
+    .flashcard.is-flipped {
+      transform: rotateY(180deg);
+    }
+
+    .card-face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: var(--radius);
+      padding: 24px 24px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 2px solid var(--border);
+      box-shadow: 0 8px 22px rgba(15, 35, 60, 0.07);
+    }
+
+    .card-front {
+      background: #ffffff;
+    }
+
+    .card-back {
+      background: linear-gradient(180deg, #f7fbff 0%, #eef7f6 100%);
+      border-color: #93c5fd;
+      transform: rotateY(180deg);
+    }
+
+    .face-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .unit-tag {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+
+    .side-tag {
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+    }
+
+    .card-back .side-tag {
+      color: var(--accent);
+    }
+
+    .face-center {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 16px 4px;
+    }
+
+    .front-question {
+      font-size: 1.18rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 0;
+      line-height: 1.65;
+    }
+
+    .back-answer {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin: 0 0 14px;
+      line-height: 1.4;
+    }
+
+    .back-point {
+      width: 100%;
+      text-align: left;
+      background: #ffffff;
+      border-left: 4px solid var(--accent);
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 0.92rem;
+      color: var(--text);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    .back-point-label {
+      display: inline-block;
+      font-size: 0.76rem;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 3px;
+    }
+
+    .face-bottom {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* Action Buttons */
+    .action-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .btn-flip {
+      grid-column: 1 / -1;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 13px 18px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.15s ease;
+    }
+
+    .btn-flip:hover { background: var(--primary-dark); }
+
+    .btn-unsure {
+      background: #fff7ed;
+      color: #c2410c;
+      border: 2px solid #fdba74;
+      border-radius: 12px;
+      padding: 13px 14px;
+      font-size: 0.96rem;
+      font-weight: 800;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.15s ease;
+    }
+
+    .btn-unsure:hover { background: #ffedd5; }
+
+    .btn-gotit {
+      background: #ecfdf5;
+      color: #15803d;
+      border: 2px solid #6ee7b7;
+      border-radius: 12px;
+      padding: 13px 14px;
+      font-size: 0.96rem;
+      font-weight: 800;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.15s ease;
+    }
+
+    .btn-gotit:hover { background: #d1fae5; }
+
+    .nav-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.84rem;
+      color: var(--muted);
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .kbd-hint {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    /* Complete Screen */
+    .complete-box {
+      text-align: center;
+      padding: 24px 12px;
+    }
+
+    .complete-box h2 {
+      margin: 0 0 8px;
+      color: var(--primary-dark);
+      font-size: 1.35rem;
+    }
+
+    .complete-box p {
+      margin: 0 0 20px;
+      color: var(--muted);
+    }
+
+    .complete-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 12px 20px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .btn-primary:hover { background: var(--primary-dark); }
+
+    .btn-secondary {
+      background: #fff;
+      color: var(--primary-dark);
+      border: 2px solid var(--primary);
+      border-radius: 12px;
+      padding: 10px 18px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .btn-secondary:hover { background: var(--primary-light); }
+
+    /* List View */
+    .list-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .card-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .list-item {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      background: #fafcff;
+    }
+
+    .list-item-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .list-q {
+      font-weight: 700;
+      font-size: 0.96rem;
+      margin-bottom: 8px;
+    }
+
+    .list-a {
+      display: inline-block;
+      font-weight: 800;
+      color: var(--primary-dark);
+      background: var(--primary-light);
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+      transition: all 0.15s ease;
+    }
+
+    .list-a.masked {
+      background: #cbd5e1;
+      color: transparent;
+      user-select: none;
+      cursor: pointer;
+    }
+
+    .list-point {
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 600px) {
+      .panel { padding: 16px 14px; }
+      .flashcard { min-height: 310px; }
+      .card-face { padding: 18px 16px; }
+      .front-question { font-size: 1.06rem; }
+      .back-answer { font-size: 1.25rem; }
+      .kbd-hint { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>中1 保健体育 2学期末テスト対策 フラッシュカード</h1>
+    <p>全7単元・54枚 ／ スキマ時間に重要語句＆狙われやすいポイントを高速チェック</p>
+  </header>
+
+  <main>
+    <section class="panel">
+      <!-- 上部コントロール -->
+      <div class="controls-bar">
+        <select id="unit-select" class="unit-select" aria-label="単元を選択">
+          <option value="ALL">すべての単元（全54枚）</option>
+        </select>
+        <div class="btn-group">
+          <button id="shuffle-btn" class="btn-small">🔀 シャッフル</button>
+          <button id="mode-card-btn" class="btn-small active">🃏 カード</button>
+          <button id="mode-list-btn" class="btn-small">📋 一覧</button>
+        </div>
+      </div>
+
+      <!-- カードモード -->
+      <div id="card-view">
+        <div class="stats-row">
+          <span id="card-counter">1 / 54 枚目</span>
+          <div class="stats-pills">
+            <span id="gotit-pill" class="pill-ok">✓ 覚えた: 0</span>
+            <span id="unsure-pill" class="pill-warn">↺ まだ不安: 0</span>
+          </div>
+        </div>
+
+        <div class="progress-wrap">
+          <div id="progress-bar" class="progress-bar"></div>
+        </div>
+
+        <div id="deck-area">
+          <div class="scene">
+            <div id="flashcard" class="flashcard" tabindex="0" role="button" aria-label="カードをめくる">
+              <!-- 表面 -->
+              <div class="card-face card-front">
+                <div class="face-top">
+                  <span id="front-unit" class="unit-tag">単元名</span>
+                  <span class="side-tag">表面：問題</span>
+                </div>
+                <div class="face-center">
+                  <p id="front-q" class="front-question"></p>
+                </div>
+                <div class="face-bottom">タップ / クリック（または Spaceキー）で答えを見る</div>
+              </div>
+
+              <!-- 裏面 -->
+              <div class="card-face card-back">
+                <div class="face-top">
+                  <span id="back-unit" class="unit-tag">単元名</span>
+                  <span class="side-tag">裏面：答え＆ポイント</span>
+                </div>
+                <div class="face-center">
+                  <p id="back-a" class="back-answer"></p>
+                  <div class="back-point">
+                    <span class="back-point-label">💡 テストで狙われやすい一言ポイント</span>
+                    <div id="back-p"></div>
+                  </div>
+                </div>
+                <div class="face-bottom">下のボタンで仕分けしよう</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="action-row">
+            <button id="flip-btn" class="btn-flip">答えを見る（カードをめくる）</button>
+            <button id="unsure-btn" class="btn-unsure hidden">↺ まだ不安（あとで復習）</button>
+            <button id="gotit-btn" class="btn-gotit hidden">✓ 覚えた！（次へ）</button>
+          </div>
+
+          <div class="nav-row">
+            <div>
+              <button id="prev-btn" class="btn-small">← 前のカード</button>
+              <button id="reset-btn" class="btn-small">最初からやり直す</button>
+            </div>
+            <span class="kbd-hint">ショートカット：Space=めくる ／ 1=まだ不安 ／ 2=覚えた</span>
+          </div>
+        </div>
+
+        <!-- 1周完了画面 -->
+        <div id="complete-area" class="complete-box hidden">
+          <h2 id="complete-title">1周おつかれさま！</h2>
+          <p id="complete-desc"></p>
+          <div class="complete-actions">
+            <button id="retry-unsure-btn" class="btn-primary hidden">↺ 「まだ不安」のカードだけ復習する</button>
+            <button id="retry-all-btn" class="btn-secondary">最初からもう一度回す</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 一覧モード -->
+      <div id="list-view" class="hidden">
+        <div class="list-toolbar">
+          <span id="list-count" style="font-size:0.9rem; font-weight:700; color:var(--muted);">全 54 枚</span>
+          <button id="mask-toggle-btn" class="btn-small">🟥 答えを隠す（赤シート風）</button>
+        </div>
+        <div id="card-list" class="card-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const CARDS = [
+      // 1. 健康の成り立ち（7枚）
+      {
+        unit: "1. 健康の成り立ち",
+        q: "かつての日本（1950年ごろまで）で死因の上位を占めていた、結核や赤痢などの病気の総称は？",
+        a: "感染症",
+        p: "衛生環境の改善・栄養状態の向上・医療技術の進歩により大幅に減少しました。"
+      },
+      {
+        unit: "1. 健康の成り立ち",
+        q: "1950年代ごろまで日本の死因の多くを占めていた代表的な感染症を2つ挙げると？",
+        a: "結核・赤痢（肺炎など）",
+        p: "戦後の衛生環境の改善や治療薬の普及によって大きく減りました。"
+      },
+      {
+        unit: "1. 健康の成り立ち",
+        q: "近年の日本で死因の上位を占めている、がん・心臓病・脳卒中などの病気の総称は？",
+        a: "生活習慣病",
+        p: "食生活の変化（欧米化）や運動不足などが主な原因です。"
+      },
+      {
+        unit: "1. 健康の成り立ち",
+        q: "2018年に日本の死因の第3位となったのは何か？",
+        a: "老衰",
+        p: "高齢化とともに、自然な死を受け入れる考え方が増えたためと推測されています。"
+      },
+      {
+        unit: "1. 健康の成り立ち",
+        q: "健康を左右する2つの大きな要因のうち、個人の「素因（体質・年齢）」や「行動（運動・食事）」を指すのは？",
+        a: "主体の要因",
+        p: "「環境の要因」とセットで出題されます。自分自身のことは『主体』と覚えましょう。"
+      },
+      {
+        unit: "1. 健康の成り立ち",
+        q: "健康を左右する2つの大きな要因のうち、個人を取り巻く状態（物理的・化学的／生物学的／社会的）を指すのは？",
+        a: "環境の要因",
+        p: "医療制度・衛生行政・福祉などは「社会的環境」に分類されます。"
+      },
+      {
+        unit: "1. 健康の成り立ち",
+        q: "健康を保持増進するために必要な、2つの立場からの取り組みとは？",
+        a: "個人の努力 と 社会的な取り組み",
+        p: "主体の要因＝個人の努力、環境の要因＝社会的な取り組みの両方が必要です。"
+      },
+
+      // 2. 運動と健康・運動指針（8枚）
+      {
+        unit: "2. 運動と健康・運動指針",
+        q: "適度な運動によって、緊張やストレスを和らげ気分転換ができる効果を何効果というか？",
+        a: "精神的効果",
+        p: "心臓・骨・筋肉を発達させる「身体的効果」と合わせて押さえましょう。"
+      },
+      {
+        unit: "2. 運動と健康・運動指針",
+        q: "健康づくりのための運動が満たすべき「3つの条件」とは？",
+        a: "安全・効果・楽しい",
+        p: "この3条件に加え、運動以外の生活との関連を考慮して種類・強さ・時間・頻度を決めます。"
+      },
+      {
+        unit: "2. 運動と健康・運動指針",
+        q: "中学生の時期に骨や関節に負担のかかる運動を繰り返して起こる、野球肘やオスグッド病などのケガを何というか？",
+        a: "スポーツ障害",
+        p: "中学生は骨や関節が著しく発育する時期なので特に注意が必要です。"
+      },
+      {
+        unit: "2. 運動と健康・運動指針",
+        q: "運動指針で、ウオーキング・ジョギング・水泳などによって高められる体力要素は？",
+        a: "持久力",
+        p: "強さの目安は「ややきつい〜かなりきつい」です。"
+      },
+      {
+        unit: "2. 運動と健康・運動指針",
+        q: "運動指針における「持久力」を高める運動の望ましい時間と頻度は？",
+        a: "1日10〜30分、週3日以上",
+        p: "数字の穴埋めで超頻出！「週3日以上」と筋力の「週2日程度」を混同しないように。"
+      },
+      {
+        unit: "2. 運動と健康・運動指針",
+        q: "運動指針における「筋力」を高める運動（トレーニング）の望ましい時間と頻度は？",
+        a: "1日10〜30分、週2日程度",
+        p: "筋肉を休ませて回復させる時間が必要なため、毎日ではなく「週2日程度」です。"
+      },
+      {
+        unit: "2. 運動と健康・運動指針",
+        q: "運動指針で「柔軟性」を高める運動として挙げられているのは何か？",
+        a: "ストレッチング",
+        p: "時間の目安は「1日5〜30分」。ケガ予防や疲労回復にもつながります。"
+      },
+      {
+        unit: "2. 運動と健康・運動指針",
+        q: "歩くより少し速いペースで、景色や会話を楽しみながらゆっくり長く走るトレーニング方法は？",
+        a: "ロング・スロー・ディスタンス（LSD）",
+        p: "「きつくない」「ゆっくり」でも心肺機能を高める高い効果があります。"
+      },
+
+      // 3. 食生活と健康（5枚）
+      {
+        unit: "3. 食生活と健康",
+        q: "じっとしているときにも消費している、生命維持に最小限必要なエネルギー消費量を何というか？",
+        a: "基礎代謝量",
+        p: "無理なダイエットで筋肉が減ると基礎代謝も下がり、痩せにくくなります。"
+      },
+      {
+        unit: "3. 食生活と健康",
+        q: "「1日に消費するエネルギー量」を求める計算式は？",
+        a: "基礎代謝量 ＋ 活動や運動による消費エネルギー量",
+        p: "摂取エネルギーがこの合計を上回り続けると肥満につながります。"
+      },
+      {
+        unit: "3. 食生活と健康",
+        q: "活動量が少ない人が普通の食事をとり続けたときになりやすい、消費より摂取が多い状態は？",
+        a: "エネルギー過多",
+        p: "生活の中に積極的に運動を取り入れてバランスをとることが大切です。"
+      },
+      {
+        unit: "3. 食生活と健康",
+        q: "体重50kgの人がごはん1杯（約220kcal）を普通の歩行（約3kcal/分）で消費するには何分歩く必要がある？",
+        a: "約73分（220 ÷ 3）",
+        p: "計算問題で出やすい！食べ過ぎを運動だけで消費するのは大変だと覚えておこう。"
+      },
+      {
+        unit: "3. 食生活と健康",
+        q: "食物の栄養素は、どのようなとり方をするとさまざまな障害の原因になるか？",
+        a: "不足したり、とりすぎたりすること",
+        p: "「不足」だけでなく「とりすぎ」も障害の原因になる点がポイントです。"
+      },
+
+      // 4. 休養・睡眠と健康（6枚）
+      {
+        unit: "4. 休養・睡眠と健康",
+        q: "長時間の学習・運動・作業などがもたらす、眠気やだるさ、頭痛などの心身の状態の変化を何というか？",
+        a: "疲労",
+        p: "体だけでなく心の使いすぎでも起こります。"
+      },
+      {
+        unit: "4. 休養・睡眠と健康",
+        q: "疲労やストレスが蓄積すると、体の何が低下して感染症にかかりやすくなるか？",
+        a: "抵抗力",
+        p: "さらに胃潰瘍・高血圧・心臓病・脳卒中などの健康障害につながることもあります。"
+      },
+      {
+        unit: "4. 休養・睡眠と健康",
+        q: "休養には大きく分けてどんな2つの役割があるか？",
+        a: "疲労回復・緊張解消 と 英気（活力）を養うこと",
+        p: "単にゴロゴロするだけでなく、次の活動への「英気（活力）を養う」のも休養です。"
+      },
+      {
+        unit: "4. 休養・睡眠と健康",
+        q: "総務省の調査（2021年）資料で紹介されている「世界の平均睡眠時間」は？",
+        a: "8時間28分",
+        p: "2021年の日本（男7時間58分・女7時間49分）はこれよりかなり短い状態です。"
+      },
+      {
+        unit: "4. 休養・睡眠と健康",
+        q: "2021年の日本人の平均睡眠時間は、2016年までと比べてどう変化したか？",
+        a: "増加したが、世界平均よりはかなり短い",
+        p: "「2016年より減った」というひっかけ○×問題に注意！"
+      },
+      {
+        unit: "4. 休養・睡眠と健康",
+        q: "日本人の睡眠時間が短い理由として挙げられている3つの要因は？",
+        a: "労働時間が長い／睡眠への関心が薄い／寝る前のスマホ使用",
+        p: "中学生に身近な「寝る前のスマートフォンの使用」は記述でもよく狙われます。"
+      },
+
+      // 5. 調和のとれた生活（5枚）
+      {
+        unit: "5. 調和のとれた生活",
+        q: "運動・食事・休養・睡眠のバランスがとれた、健康保持増進に欠かせない生活のことを何というか？",
+        a: "調和のとれた生活",
+        p: "年齢や生活環境に応じて、どれか1つに偏らないことが大切です。"
+      },
+      {
+        unit: "5. 調和のとれた生活",
+        q: "決まった時間帯に眠ることで整えられる、体に備わった約1日周期のリズムを何というか？",
+        a: "体内リズム（生体リズム）",
+        p: "規則正しい睡眠は体内リズムを整え、日中の活動力を高めます。"
+      },
+      {
+        unit: "5. 調和のとれた生活",
+        q: "朝食を食べることで、寝ている間に低下した体の何が上昇して体や脳が働くようになるか？",
+        a: "体温",
+        p: "朝食＝「体温上昇」のキーワードを忘れずに！"
+      },
+      {
+        unit: "5. 調和のとれた生活",
+        q: "朝食を抜くと、次の食事で食べ過ぎてしまい、どんな病気や状態につながりやすくなるか？",
+        a: "肥満・生活習慣病",
+        p: "欠食→1回の食事量が増える→食べ過ぎ→肥満・生活習慣病、の因果関係を説明できるように。"
+      },
+      {
+        unit: "5. 調和のとれた生活",
+        q: "近年の中学生の朝食欠食率は、どのような生活習慣の人ほど高い傾向があるか？",
+        a: "起床時刻や就寝時刻が定まっていない人",
+        p: "夜更かしや夜食（胃腸への負担）も、翌朝の欠食につながる悪循環の原因です。"
+      },
+
+      // 6. 体の発育・発達（12枚）
+      {
+        unit: "6. 体の発育・発達",
+        q: "身長や体重など、体の「大きさ」が増すことを何というか？",
+        a: "発育",
+        p: "「発達（働きが高まる）」との違いを問う問題はテストの超定番です！"
+      },
+      {
+        unit: "6. 体の発育・発達",
+        q: "運動能力や精神面など、体の「働き（機能）」が高まることを何というか？",
+        a: "発達",
+        p: "大きさ＝発「育」、働き＝発「達」と区別しましょう。"
+      },
+      {
+        unit: "6. 体の発育・発達",
+        q: "人生で最初に身長や体重が急激に伸びる「乳幼児期」を何というか？",
+        a: "第1発育急進期",
+        p: "思春期の「第2発育急進期」とセットで覚えましょう。"
+      },
+      {
+        unit: "6. 体の発育・発達",
+        q: "子どもから大人への移行期で「第2発育急進期」にあたる時期を何というか？男女どちらが早い？",
+        a: "思春期（一般に女子が男子より早い）",
+        p: "男女で始まる時期に違いがあり、さらに個人差も大きいのが特徴です。"
+      },
+      {
+        unit: "6. 体の発育・発達",
+        q: "スキャモンの発育曲線で、骨・筋肉・肺・心臓・胃腸など大部分の器官が当てはまる型は？",
+        a: "一般型",
+        p: "第1発育急進期（乳幼児期）と第2発育急進期（思春期）の2回急に伸びるS字カーブです。"
+      },
+      {
+        unit: "6. 体の発育・発達",
+        q: "スキャモンの発育曲線で、脳や脊髄などが含まれ、幼少期に早く発育する型は？",
+        a: "神経型",
+        p: "思春期にはすでに大人と同じくらいまで発育しています。"
+      },
+      {
+        unit: "6. 体の発育・発達",
+        q: "スキャモンの発育曲線で、卵巣や精巣などが含まれ、思春期に急速に発達する型は？",
+        a: "生殖型",
+        p: "12歳ごろから急に伸び、男女それぞれの体の特徴が現れます。"
+      },
+      {
+        unit: "6. 体の発育・発達",
+        q: "思春期に生殖器が発達することで現れる、声変わりや月経・発毛などの体の特徴を何というか？",
+        a: "二次性徴",
+        p: "排卵や射精などの生殖機能の発達もこの時期に起こります。"
+      },
+      {
+        unit: "6. 体の発育・発達",
+        q: "スキャモンの発育曲線で、12歳ごろに大人以上（180〜200近く）まで発育し、その後減少する型と代表的な器官は？",
+        a: "リンパ型（扁桃・胸腺など）",
+        p: "「12歳ごろに大人を超える（200近くになる）」のがリンパ型の最大の特徴です！"
+      },
+      {
+        unit: "6. 体の発育・発達",
+        q: "無理なダイエットで不足しやすく、筋肉量の減少を招く栄養素は？",
+        a: "たんぱく質",
+        p: "肉・魚・卵・大豆製品などに多く含まれます。"
+      },
+      {
+        unit: "6. 体の発育・発達",
+        q: "無理なダイエットをすると太りやすく痩せにくい体になるのは、何が下がるからか？",
+        a: "基礎代謝（筋肉量が減るため）",
+        p: "たんぱく質不足→筋肉減→基礎代謝低下→脂肪が燃えにくい、の流れを押さえよう。"
+      },
+      {
+        unit: "6. 体の発育・発達",
+        q: "思春期にたんぱく質とともに特に十分にとるべき、骨を作る栄養素と血液を作る栄養素は？",
+        a: "カルシウム（骨）・鉄分（血液）",
+        p: "不足すると骨がもろくなったり貧血になりやすくなったりします。"
+      },
+
+      // 7. 呼吸器・循環器（11枚）
+      {
+        unit: "7. 呼吸器・循環器",
+        q: "気管から左右の肺に入り、細かく枝分かれしている空気の通り道を何というか？",
+        a: "気管支",
+        p: "気管 → 気管支 → 肺胞 の順に空気が届きます。"
+      },
+      {
+        unit: "7. 呼吸器・循環器",
+        q: "肺の中にある、毛細血管におおわれた無数の小さな袋を何というか？",
+        a: "肺胞",
+        p: "発育とともに肺胞の数が増え、肺全体が大きくなります。"
+      },
+      {
+        unit: "7. 呼吸器・循環器",
+        q: "肺胞と毛細血管の間で、酸素（O₂）と二酸化炭素（CO₂）を交換することを何というか？",
+        a: "ガス交換",
+        p: "酸素を血液に取り込み、不要な二酸化炭素を吐き出します。"
+      },
+      {
+        unit: "7. 呼吸器・循環器",
+        q: "肺そのものは動けないため、周りの骨と筋肉でできた何や何が動いて呼吸しているか？",
+        a: "胸郭 と 横隔膜",
+        p: "吸うときは胸郭が広がり横隔膜が下がり、吐くときは胸郭が狭まります。"
+      },
+      {
+        unit: "7. 呼吸器・循環器",
+        q: "息を吸うときの空気を何といい、吐き出すときの空気を何というか？",
+        a: "吸気（吸う）・呼気（吐く）",
+        p: "呼気には、ガス交換によって吸気より二酸化炭素が多く含まれます。"
+      },
+      {
+        unit: "7. 呼吸器・循環器",
+        q: "心臓から肺へ血液を送る血管と、肺から心臓へ血液を戻す血管をそれぞれ何というか？",
+        a: "肺動脈（心→肺）・肺静脈（肺→心）",
+        p: "心臓から出ていくのが「動脈」、心臓に戻るのが「静脈」です。"
+      },
+      {
+        unit: "7. 呼吸器・循環器",
+        q: "毛細血管の中を流れ、肺胞で受け取った酸素を全身の細胞へ運ぶ血液の成分は？",
+        a: "赤血球",
+        p: "ひっかけ注意！酸素を運ぶのは「白血球」ではなく『赤血球』です。"
+      },
+      {
+        unit: "7. 呼吸器・循環器",
+        q: "5歳の頃と比べて呼吸器が発達すると、安静時の「呼吸数」と「肺活量」はどう変化するか？",
+        a: "呼吸数は減少・肺活量は増大",
+        p: "1回の呼吸量が増えるため、少ない回数（呼吸数減少）で済むようになります。"
+      },
+      {
+        unit: "7. 呼吸器・循環器",
+        q: "循環器が発達して心臓の収縮力が強くなると、1回の「拍出量」と安静時の「脈拍数」はどう変化するか？",
+        a: "拍出量は増大・脈拍数は減少",
+        p: "1回で多くの血液を送れるため、少ない拍動（脈拍数減少）で全身に届きます。"
+      },
+      {
+        unit: "7. 呼吸器・循環器",
+        q: "呼吸器・循環器の機能とかかわりが深く、思春期に高めるのに最も適した体力は？",
+        a: "持久力",
+        p: "呼吸器・循環器の発達が盛んな中学生の時期が伸ばしどきです。"
+      },
+      {
+        unit: "7. 呼吸器・循環器",
+        q: "思春期に持久力を効果的に高めるための、適切な運動の「強さ」と「脈拍数」の目安は？",
+        a: "「少しきつい」（脈拍数 120〜140拍/分）を継続的に",
+        p: "この強さを継続することで、1回の呼吸量や拍出量が増大します。"
+      }
+    ];
+
+    const unitSelect = document.getElementById("unit-select");
+    const shuffleBtn = document.getElementById("shuffle-btn");
+    const modeCardBtn = document.getElementById("mode-card-btn");
+    const modeListBtn = document.getElementById("mode-list-btn");
+
+    const cardView = document.getElementById("card-view");
+    const listView = document.getElementById("list-view");
+
+    const cardCounter = document.getElementById("card-counter");
+    const gotitPill = document.getElementById("gotit-pill");
+    const unsurePill = document.getElementById("unsure-pill");
+    const progressBar = document.getElementById("progress-bar");
+
+    const deckArea = document.getElementById("deck-area");
+    const completeArea = document.getElementById("complete-area");
+    const completeTitle = document.getElementById("complete-title");
+    const completeDesc = document.getElementById("complete-desc");
+    const retryUnsureBtn = document.getElementById("retry-unsure-btn");
+    const retryAllBtn = document.getElementById("retry-all-btn");
+
+    const flashcard = document.getElementById("flashcard");
+    const frontUnit = document.getElementById("front-unit");
+    const backUnit = document.getElementById("back-unit");
+    const frontQ = document.getElementById("front-q");
+    const backA = document.getElementById("back-a");
+    const backP = document.getElementById("back-p");
+
+    const flipBtn = document.getElementById("flip-btn");
+    const unsureBtn = document.getElementById("unsure-btn");
+    const gotitBtn = document.getElementById("gotit-btn");
+    const prevBtn = document.getElementById("prev-btn");
+    const resetBtn = document.getElementById("reset-btn");
+
+    const listCount = document.getElementById("list-count");
+    const maskToggleBtn = document.getElementById("mask-toggle-btn");
+    const cardList = document.getElementById("card-list");
+
+    let deck = [];
+    let currentIndex = 0;
+    let isFlipped = false;
+    let gotItIds = new Set();
+    let unsureIds = new Set();
+    let isShuffled = false;
+    let isMasked = false;
+
+    function shuffleArray(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function initUnitSelect() {
+      const counts = {};
+      const units = [];
+      CARDS.forEach((c, idx) => {
+        c._id = idx;
+        if (!counts[c.unit]) {
+          counts[c.unit] = 0;
+          units.push(c.unit);
+        }
+        counts[c.unit]++;
+      });
+      units.forEach((u) => {
+        const opt = document.createElement("option");
+        opt.value = u;
+        opt.textContent = `${u}（${counts[u]}枚）`;
+        unitSelect.appendChild(opt);
+      });
+    }
+
+    function getFilteredCards() {
+      const val = unitSelect.value;
+      const base = val === "ALL" ? [...CARDS] : CARDS.filter((c) => c.unit === val);
+      return isShuffled ? shuffleArray(base) : base;
+    }
+
+    function loadDeck(customList = null) {
+      deck = customList ? customList : getFilteredCards();
+      currentIndex = 0;
+      gotItIds = new Set();
+      unsureIds = new Set();
+      deckArea.classList.remove("hidden");
+      completeArea.classList.add("hidden");
+      renderCard();
+      renderList();
+    }
+
+    function renderCard() {
+      if (currentIndex >= deck.length) {
+        showComplete();
+        return;
+      }
+
+      isFlipped = false;
+      flashcard.classList.remove("is-flipped");
+      flipBtn.classList.remove("hidden");
+      unsureBtn.classList.add("hidden");
+      gotitBtn.classList.add("hidden");
+
+      const item = deck[currentIndex];
+      frontUnit.textContent = item.unit;
+      backUnit.textContent = item.unit;
+      frontQ.textContent = item.q;
+      backA.textContent = item.a;
+      backP.textContent = item.p;
+
+      cardCounter.textContent = `${currentIndex + 1} / ${deck.length} 枚目`;
+      gotitPill.textContent = `✓ 覚えた: ${gotItIds.size}`;
+      unsurePill.textContent = `↺ まだ不安: ${unsureIds.size}`;
+      progressBar.style.width = `${(currentIndex / deck.length) * 100}%`;
+      prevBtn.disabled = currentIndex === 0;
+    }
+
+    function flipCard() {
+      if (currentIndex >= deck.length) return;
+      isFlipped = !isFlipped;
+      flashcard.classList.toggle("is-flipped", isFlipped);
+      if (isFlipped) {
+        flipBtn.classList.add("hidden");
+        unsureBtn.classList.remove("hidden");
+        gotitBtn.classList.remove("hidden");
+      } else {
+        flipBtn.classList.remove("hidden");
+        unsureBtn.classList.add("hidden");
+        gotitBtn.classList.add("hidden");
+      }
+    }
+
+    function markAndNext(isGotIt) {
+      if (currentIndex >= deck.length) return;
+      const item = deck[currentIndex];
+      if (isGotIt) {
+        gotItIds.add(item._id);
+        unsureIds.delete(item._id);
+      } else {
+        unsureIds.add(item._id);
+        gotItIds.delete(item._id);
+      }
+      currentIndex++;
+      renderCard();
+    }
+
+    function showComplete() {
+      progressBar.style.width = "100%";
+      gotitPill.textContent = `✓ 覚えた: ${gotItIds.size}`;
+      unsurePill.textContent = `↺ まだ不安: ${unsureIds.size}`;
+      deckArea.classList.add("hidden");
+      completeArea.classList.remove("hidden");
+
+      const total = deck.length;
+      const ok = gotItIds.size;
+      const ng = unsureIds.size;
+
+      if (ng === 0) {
+        completeTitle.textContent = `全 ${total} 枚パーフェクト！`;
+        completeDesc.textContent = "この範囲の重要キーワードはすべて「覚えた！」になりました。本番もこの調子でバッチリです。";
+        retryUnsureBtn.classList.add("hidden");
+      } else {
+        completeTitle.textContent = `1周完了！（${ok} / ${total} 枚クリア）`;
+        completeDesc.textContent = `「まだ不安」が ${ng} 枚あります。もう一度だけ復習して、弱点をゼロにしましょう！`;
+        retryUnsureBtn.classList.remove("hidden");
+        retryUnsureBtn.textContent = `↺ 「まだ不安」の ${ng} 枚だけ復習する`;
+      }
+    }
+
+    function renderList() {
+      const items = getFilteredCards();
+      listCount.textContent = `全 ${items.length} 枚`;
+      cardList.innerHTML = "";
+      items.forEach((item, idx) => {
+        const div = document.createElement("div");
+        div.className = "list-item";
+        div.innerHTML = `
+          <div class="list-item-top">
+            <span class="unit-tag">${item.unit}</span>
+            <span style="font-size:0.78rem; color:var(--muted); font-weight:700;">#${idx + 1}</span>
+          </div>
+          <div class="list-q">${item.q}</div>
+          <div class="list-a ${isMasked ? "masked" : ""}">${item.a}</div>
+          <div class="list-point">💡 ${item.p}</div>
+        `;
+        const ansEl = div.querySelector(".list-a");
+        ansEl.addEventListener("click", () => {
+          ansEl.classList.toggle("masked");
+        });
+        cardList.appendChild(div);
+      });
+    }
+
+    // Events
+    flashcard.addEventListener("click", flipCard);
+    flipBtn.addEventListener("click", flipCard);
+    unsureBtn.addEventListener("click", () => markAndNext(false));
+    gotitBtn.addEventListener("click", () => markAndNext(true));
+
+    prevBtn.addEventListener("click", () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        renderCard();
+      }
+    });
+
+    resetBtn.addEventListener("click", () => loadDeck());
+    retryAllBtn.addEventListener("click", () => loadDeck());
+    retryUnsureBtn.addEventListener("click", () => {
+      const subset = deck.filter((c) => unsureIds.has(c._id));
+      loadDeck(isShuffled ? shuffleArray(subset) : subset);
+    });
+
+    unitSelect.addEventListener("change", () => loadDeck());
+
+    shuffleBtn.addEventListener("click", () => {
+      isShuffled = !isShuffled;
+      shuffleBtn.classList.toggle("active", isShuffled);
+      loadDeck();
+    });
+
+    modeCardBtn.addEventListener("click", () => {
+      modeCardBtn.classList.add("active");
+      modeListBtn.classList.remove("active");
+      cardView.classList.remove("hidden");
+      listView.classList.add("hidden");
+    });
+
+    modeListBtn.addEventListener("click", () => {
+      modeListBtn.classList.add("active");
+      modeCardBtn.classList.remove("active");
+      listView.classList.remove("hidden");
+      cardView.classList.add("hidden");
+    });
+
+    maskToggleBtn.addEventListener("click", () => {
+      isMasked = !isMasked;
+      maskToggleBtn.classList.toggle("active", isMasked);
+      maskToggleBtn.textContent = isMasked ? "👁 答えをすべて表示" : "🟥 答えを隠す（赤シート風）";
+      document.querySelectorAll(".list-a").forEach((el) => {
+        el.classList.toggle("masked", isMasked);
+      });
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (cardView.classList.contains("hidden") || deckArea.classList.contains("hidden")) return;
+      if (e.target.tagName === "SELECT") return;
+      if (e.code === "Space" || e.key === "Enter") {
+        e.preventDefault();
+        flipCard();
+      } else if (isFlipped && (e.key === "1" || e.key === "ArrowLeft")) {
+        e.preventDefault();
+        markAndNext(false);
+      } else if (isFlipped && (e.key === "2" || e.key === "ArrowRight")) {
+        e.preventDefault();
+        markAndNext(true);
+      }
+    });
+
+    initUnitSelect();
+    loadDeck();
+  </script>
+</body>
+</html>

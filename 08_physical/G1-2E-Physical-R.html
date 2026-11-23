@@ -1,0 +1,1563 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>中1 保健体育 2学期末テスト対策（短文記述＆ひっかけ○×問題）</title>
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --card: #ffffff;
+      --primary: #1d6fa5;
+      --primary-dark: #14527c;
+      --primary-light: #e8f3fb;
+      --accent: #0f9d8a;
+      --purple: #6b46c1;
+      --purple-light: #f3efff;
+      --amber: #d97706;
+      --amber-light: #fef3c7;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #dbe4ef;
+      --correct-bg: #e8f8ef;
+      --correct-border: #1e9e5a;
+      --correct-text: #136f3e;
+      --wrong-bg: #fdecec;
+      --wrong-border: #dc3545;
+      --wrong-text: #9f1f2c;
+      --partial-bg: #fff8e6;
+      --partial-border: #e09f1f;
+      --partial-text: #925c00;
+      --shadow: 0 8px 24px rgba(15, 35, 60, 0.08);
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: linear-gradient(135deg, #165b8a, #0f8b8d);
+      color: #fff;
+      padding: 20px 16px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.32rem;
+      letter-spacing: 0.02em;
+    }
+
+    header p {
+      margin: 6px 0 0;
+      font-size: 0.9rem;
+      opacity: 0.92;
+    }
+
+    main {
+      width: 100%;
+      max-width: 840px;
+      margin: 24px auto 40px;
+      padding: 0 16px;
+      flex: 1;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      border: 1px solid var(--border);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* Start Screen */
+    .start-intro {
+      margin-bottom: 18px;
+    }
+
+    .start-intro h2 {
+      margin: 0 0 8px;
+      font-size: 1.2rem;
+      color: var(--primary-dark);
+    }
+
+    .start-intro p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .tip-banner {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-size: 0.88rem;
+      color: #78350f;
+      margin-bottom: 18px;
+    }
+
+    .mode-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 16px 0 20px;
+      padding: 14px 16px;
+      background: var(--primary-light);
+      border-radius: 12px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .toggle-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--primary-dark);
+    }
+
+    .toggle-label input {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+
+    .mode-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .mode-card-btn {
+      text-align: left;
+      background: #fff;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      font-family: inherit;
+    }
+
+    .mode-card-btn:hover {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      transform: translateY(-2px);
+    }
+
+    .mode-card-btn .mode-title {
+      display: block;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .mode-card-btn .mode-desc {
+      display: block;
+      font-size: 0.83rem;
+      color: var(--muted);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 14px 22px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.18s ease, transform 0.12s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn-primary:active {
+      transform: scale(0.99);
+    }
+
+    .btn-secondary {
+      background: #fff;
+      color: var(--primary-dark);
+      border: 2px solid var(--primary);
+      border-radius: 12px;
+      padding: 12px 18px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.18s ease;
+    }
+
+    .btn-secondary:hover {
+      background: var(--primary-light);
+    }
+
+    .btn-ghost {
+      background: #f1f5f9;
+      color: #475569;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 10px 16px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.15s ease;
+    }
+
+    .btn-ghost:hover {
+      background: #e2e8f0;
+    }
+
+    .btn-full {
+      width: 100%;
+    }
+
+    /* Quiz Screen */
+    .quiz-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .badge-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .unit-badge {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      font-weight: 700;
+      font-size: 0.8rem;
+      padding: 4px 12px;
+      border-radius: 999px;
+      border: 1px solid #c3ddf2;
+    }
+
+    .type-badge {
+      font-weight: 700;
+      font-size: 0.78rem;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+
+    .type-badge.is-reason {
+      background: var(--purple-light);
+      color: var(--purple);
+      border: 1px solid #d6bcfa;
+    }
+
+    .type-badge.is-ox {
+      background: var(--amber-light);
+      color: #b45309;
+      border: 1px solid #fcd34d;
+    }
+
+    .quiz-stats {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .progress-wrap {
+      width: 100%;
+      height: 10px;
+      background: #e5edf5;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .question-text {
+      font-size: 1.12rem;
+      font-weight: 700;
+      margin: 0 0 18px;
+      color: var(--text);
+      line-height: 1.75;
+    }
+
+    /* Reason (Short Answer) UI */
+    .reason-textarea {
+      width: 100%;
+      min-height: 100px;
+      padding: 14px 16px;
+      font-size: 1rem;
+      font-family: inherit;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      outline: none;
+      resize: vertical;
+      line-height: 1.6;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .reason-textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(29, 111, 165, 0.15);
+    }
+
+    .reason-textarea:disabled {
+      background: #f8fafc;
+      color: #334155;
+    }
+
+    .input-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+      align-items: center;
+    }
+
+    .hint-box {
+      margin-top: 14px;
+      background: #f8fafc;
+      border-left: 4px solid var(--primary);
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 0.92rem;
+      color: #334155;
+    }
+
+    /* O/X UI */
+    .ox-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .ox-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      padding: 20px 16px;
+      background: #fff;
+      border: 2px solid var(--border);
+      border-radius: 14px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.15s ease;
+    }
+
+    .ox-btn:hover:not(:disabled) {
+      border-color: var(--primary);
+      background: #f7fbff;
+      transform: translateY(-2px);
+    }
+
+    .ox-btn:disabled {
+      cursor: default;
+    }
+
+    .ox-symbol {
+      font-size: 2.2rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .ox-btn[data-val="true"] .ox-symbol {
+      color: #0f9d8a;
+    }
+
+    .ox-btn[data-val="false"] .ox-symbol {
+      color: #e11d48;
+    }
+
+    .ox-sub {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .ox-btn.correct {
+      background: var(--correct-bg);
+      border-color: var(--correct-border);
+    }
+
+    .ox-btn.wrong {
+      background: var(--wrong-bg);
+      border-color: var(--wrong-border);
+    }
+
+    .ox-btn.dimmed {
+      opacity: 0.55;
+    }
+
+    /* Feedback Box */
+    .feedback-box {
+      margin-top: 20px;
+      border-radius: 14px;
+      padding: 18px 20px;
+      border: 2px solid var(--border);
+      animation: fadeIn 0.2s ease;
+    }
+
+    .feedback-box.is-correct {
+      background: var(--correct-bg);
+      border-color: var(--correct-border);
+    }
+
+    .feedback-box.is-partial {
+      background: var(--partial-bg);
+      border-color: var(--partial-border);
+    }
+
+    .feedback-box.is-wrong {
+      background: var(--wrong-bg);
+      border-color: var(--wrong-border);
+    }
+
+    .feedback-header {
+      font-size: 1.08rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .feedback-box.is-correct .feedback-header { color: var(--correct-text); }
+    .feedback-box.is-partial .feedback-header { color: var(--partial-text); }
+    .feedback-box.is-wrong .feedback-header { color: var(--wrong-text); }
+
+    .kw-section {
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-bottom: 10px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .kw-title {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 8px;
+    }
+
+    .kw-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .kw-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+
+    .kw-chip.hit {
+      background: var(--correct-bg);
+      color: var(--correct-text);
+      border: 1px solid var(--correct-border);
+    }
+
+    .kw-chip.miss {
+      background: #f1f5f9;
+      color: #475569;
+      border: 1px dashed #94a3b8;
+    }
+
+    .model-answer-box {
+      background: #fff;
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-bottom: 10px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      font-size: 0.95rem;
+    }
+
+    .model-answer-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .explanation-body {
+      background: rgba(255, 255, 255, 0.88);
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 0.95rem;
+      color: var(--text);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .explanation-body strong {
+      color: var(--primary-dark);
+    }
+
+    .self-grade-group {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .self-grade-btn {
+      background: #fff;
+      border-radius: 8px;
+      padding: 5px 12px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .self-grade-btn.ok {
+      color: var(--correct-text);
+      border: 1.5px solid var(--correct-border);
+    }
+
+    .self-grade-btn.ok:hover { background: var(--correct-bg); }
+
+    .self-grade-btn.ng {
+      color: var(--wrong-text);
+      border: 1.5px solid var(--wrong-border);
+    }
+
+    .self-grade-btn.ng:hover { background: var(--wrong-bg); }
+
+    .quiz-actions {
+      margin-top: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .quit-link {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 0.88rem;
+      cursor: pointer;
+      text-decoration: underline;
+      font-family: inherit;
+      padding: 4px 0;
+    }
+
+    .quit-link:hover { color: var(--text); }
+
+    /* Result Screen */
+    .result-hero {
+      text-align: center;
+      padding: 12px 0 20px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 20px;
+    }
+
+    .score-circle {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: var(--primary-light);
+      border: 6px solid var(--primary);
+      margin-bottom: 12px;
+    }
+
+    .score-num {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      line-height: 1.1;
+    }
+
+    .score-sub {
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .result-msg {
+      font-size: 1.12rem;
+      font-weight: 700;
+      margin: 6px 0 0;
+      color: var(--text);
+    }
+
+    .unit-breakdown {
+      margin: 18px 0 24px;
+    }
+
+    .unit-breakdown h3 {
+      margin: 0 0 12px;
+      font-size: 1rem;
+      color: var(--primary-dark);
+    }
+
+    .breakdown-row {
+      margin-bottom: 10px;
+    }
+
+    .breakdown-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .breakdown-bar-bg {
+      height: 10px;
+      background: #e9eff6;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .breakdown-bar-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 999px;
+    }
+
+    .result-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .review-list {
+      margin-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .review-item {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      background: #fafcff;
+    }
+
+    .review-item.item-wrong { border-left: 5px solid var(--wrong-border); }
+    .review-item.item-correct { border-left: 5px solid var(--correct-border); }
+
+    .review-q {
+      font-weight: 700;
+      margin-bottom: 6px;
+      font-size: 0.96rem;
+    }
+
+    .review-ans {
+      font-size: 0.88rem;
+      margin-bottom: 6px;
+      color: var(--muted);
+    }
+
+    .review-exp {
+      font-size: 0.88rem;
+      background: #fff;
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      .card { padding: 18px 14px; }
+      .question-text { font-size: 1.04rem; }
+      .ox-btn { padding: 16px 12px; }
+      .ox-symbol { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>中1 保健体育 2学期末テスト対策（記述＆ひっかけ○×）</h1>
+    <p>理由・仕組みの短文記述（12問）＋ 紛らわしい用語の○×問題（20問）</p>
+  </header>
+
+  <main>
+    <!-- スタート画面 -->
+    <section id="start-screen" class="card">
+      <div class="start-intro">
+        <h2>記述力とひっかけ見抜き力を仕上げよう！</h2>
+        <p>定期テストで差がつく「なぜそうなるのか（理由・仕組み）」の短文記述と、用語の入れ替え・逆転などのひっかけ○×問題に特化した1問1答テストです。</p>
+      </div>
+
+      <div class="tip-banner">
+        <strong>短文記述の採点機能：</strong>答え合わせをすると、入力した文章の中に<strong>「記述に含めるべき必須キーワード」</strong>が入っているかを自動でチェックします。表現が少し違っても意味が合っていれば、解説画面から正解・不正解を自分で切り替えることもできます。
+      </div>
+
+      <div class="mode-options">
+        <label class="toggle-label">
+          <input type="checkbox" id="shuffle-toggle" />
+          問題をシャッフルして出題する
+        </label>
+      </div>
+
+      <button id="start-all-btn" class="btn-primary btn-full">
+        全32問（短文記述12問 ＋ ○×20問）に挑戦する
+      </button>
+
+      <h3 style="margin: 22px 0 6px; font-size: 1rem; color: var(--primary-dark);">形式を選んで集中対策する</h3>
+      <div class="mode-grid">
+        <button class="mode-card-btn" id="start-reason-btn">
+          <span class="mode-title">✍️ 理由・仕組みの短文記述</span>
+          <span class="mode-desc">全12問 ／ 必須キーワードの抜け漏れをチェック！</span>
+        </button>
+        <button class="mode-card-btn" id="start-ox-btn">
+          <span class="mode-title">⭕❌ ひっかけ対策 ○×問題</span>
+          <span class="mode-desc">全20問 ／ 発育と発達・赤血球・増大と減少の罠を見抜く！</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- クイズ画面 -->
+    <section id="quiz-screen" class="card hidden">
+      <div class="quiz-top">
+        <div class="badge-group">
+          <span id="unit-badge" class="unit-badge">単元名</span>
+          <span id="type-badge" class="type-badge">形式</span>
+        </div>
+        <span id="quiz-stats" class="quiz-stats">1 / 32（正解: 0）</span>
+      </div>
+
+      <div class="progress-wrap">
+        <div id="progress-bar" class="progress-bar"></div>
+      </div>
+
+      <p id="question-text" class="question-text"></p>
+
+      <!-- 短文記述用エリア -->
+      <div id="reason-area" class="hidden">
+        <textarea id="reason-input" class="reason-textarea" placeholder="ここに理由や仕組みを自分の言葉で入力してください（箇条書きやメモ書きでもOK）..."></textarea>
+        <div id="reason-controls" class="input-controls">
+          <button id="check-reason-btn" class="btn-primary">答え合わせ</button>
+          <button id="hint-btn" class="btn-ghost">書くべきヒントを見る</button>
+          <button id="giveup-btn" class="btn-ghost">模範解答を見る</button>
+        </div>
+        <div id="hint-box" class="hint-box hidden"></div>
+      </div>
+
+      <!-- ○×用エリア -->
+      <div id="ox-area" class="hidden">
+        <div class="ox-buttons">
+          <button class="ox-btn" data-val="true">
+            <span class="ox-symbol">○</span>
+            <span class="ox-sub">正しい（1 / O）</span>
+          </button>
+          <button class="ox-btn" data-val="false">
+            <span class="ox-symbol">×</span>
+            <span class="ox-sub">誤り（2 / X）</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- フィードバック＆解説 -->
+      <div id="feedback-box" class="feedback-box hidden">
+        <div id="feedback-header" class="feedback-header"></div>
+        <div id="kw-section" class="kw-section hidden">
+          <div class="kw-title">📌 記述に含めるべき必須キーワード</div>
+          <div id="kw-list" class="kw-list"></div>
+        </div>
+        <div id="model-answer-box" class="model-answer-box hidden"></div>
+        <div id="explanation-body" class="explanation-body"></div>
+      </div>
+
+      <div class="quiz-actions">
+        <button id="quit-btn" class="quit-link">← モード選択に戻る</button>
+        <button id="next-btn" class="btn-primary hidden">次の問題へ →</button>
+      </div>
+    </section>
+
+    <!-- 結果画面 -->
+    <section id="result-screen" class="card hidden">
+      <div class="result-hero">
+        <div class="score-circle">
+          <span id="score-num" class="score-num">0 / 0</span>
+          <span id="score-pct" class="score-sub">0%</span>
+        </div>
+        <p id="result-msg" class="result-msg"></p>
+      </div>
+
+      <div id="unit-breakdown" class="unit-breakdown">
+        <h3>形式別の正答率</h3>
+        <div id="breakdown-list"></div>
+      </div>
+
+      <div class="result-buttons">
+        <button id="retry-wrong-btn" class="btn-primary hidden">間違えた問題だけ復習する</button>
+        <button id="retry-same-btn" class="btn-secondary">もう一度同じ範囲を解く</button>
+        <button id="back-home-btn" class="btn-secondary">モード選択に戻る</button>
+      </div>
+
+      <details open>
+        <summary style="font-weight:700; cursor:pointer; color:var(--primary-dark);">解答・必須キーワード・解説の一覧</summary>
+        <div id="review-list" class="review-list"></div>
+      </details>
+    </section>
+  </main>
+
+  <script>
+    const QUESTIONS = [
+      // ==========================================
+      // パートA：理由・仕組みを答える短文記述（12問）
+      // ==========================================
+      {
+        kind: "reason",
+        unit: "6. 体の発育・発達",
+        q: "なぜ無理なダイエットをすると、かえって「太りやすく痩せにくい体」になってしまうのか。理由を簡潔に説明しなさい。",
+        hint: "「何の栄養素が不足するか」→「何が減るか」→「何が下がり、どうなるか」の順でつなげてみよう。",
+        keywords: [
+          { label: "たんぱく質（不足）", patterns: ["たんぱく質", "タンパク質", "たんぱくしつ"] },
+          { label: "筋肉量の減少", patterns: ["筋肉"] },
+          { label: "基礎代謝の低下", patterns: ["基礎代謝", "代謝"] },
+          { label: "脂肪が燃えにくい", patterns: ["脂肪", "燃えにく", "燃焼"] }
+        ],
+        modelAnswer: "肉・魚・卵などに多い「たんぱく質」が不足すると筋肉量が減り、「基礎代謝」が下がってしまうため、運動しても脂肪が燃えにくく、太りやすく痩せにくい体になるから。",
+        exp: "無理なダイエットで<strong>たんぱく質</strong>が不足すると筋肉が減り、生きているだけで消費するエネルギー（<strong>基礎代謝</strong>）が下がります。その結果、脂肪が燃えにくい体になってしまいます。"
+      },
+      {
+        kind: "reason",
+        unit: "5. 調和のとれた生活",
+        q: "なぜ朝食を食べないと、肥満や生活習慣病につながりやすいのか。理由を説明しなさい。",
+        hint: "朝食を抜いたあと、昼や夜などの食事のとり方がどう変わってしまうかを考えよう。",
+        keywords: [
+          { label: "1回の食事量が増える", patterns: ["1回", "一回", "食事量", "食事の量", "次の食事", "昼や夜"] },
+          { label: "食べ過ぎる", patterns: ["食べ過ぎ", "食べすぎ", "過食", "とりすぎ"] }
+        ],
+        modelAnswer: "朝食を食べないと、1回の食事の量が増えて食べ過ぎてしまい、肥満や生活習慣病の発症につながることがあるから。",
+        exp: "朝食を抜くと空腹状態が続くため、次の食事で<strong>1回の食事量が増えて食べ過ぎてしまい</strong>、<strong>肥満や生活習慣病</strong>につながります。また、寝ている間に低下した体温が上がらず、体や脳も十分に働きません。"
+      },
+      {
+        kind: "reason",
+        unit: "7. 呼吸器・循環器",
+        q: "5歳の頃と比べて中学生になると、なぜ安静時の「呼吸数」が減少するのか。肺の発達に触れて説明しなさい。",
+        hint: "「肺胞」や「肺の大きさ」の変化と、「1回の呼吸量」の変化を結びつけて書こう。",
+        keywords: [
+          { label: "肺胞数の増加／肺が大きくなる", patterns: ["肺胞", "肺全体", "肺が大"] },
+          { label: "1回の呼吸量が増える", patterns: ["呼吸量", "肺活量", "1回", "一回", "たくさん吸"] }
+        ],
+        modelAnswer: "呼吸器が発達して肺胞の数が増え、肺全体が大きくなることで「1回の呼吸量」が増えるため、少ない回数で必要な酸素を取り込めるようになるから。",
+        exp: "呼吸器が発達すると<strong>肺胞の数が増え、肺全体が大きく</strong>なります。すると<strong>1回の呼吸量（肺活量）が増える</strong>ため、安静時には少ない回数で足りるようになり、呼吸数が減少します。"
+      },
+      {
+        kind: "reason",
+        unit: "7. 呼吸器・循環器",
+        q: "循環器が発達すると、なぜ安静時の「脈拍数」が減少するのか。心臓の変化に触れて説明しなさい。",
+        hint: "「心臓の大きさ・収縮力」の変化と、「1回の拍出量」の変化をセットで書こう。",
+        keywords: [
+          { label: "心臓が大きく・収縮力が強くなる", patterns: ["心臓が大", "収縮力", "心臓が強く"] },
+          { label: "1回の拍出量が増える", patterns: ["拍出量", "送り出す血液", "血液の量"] }
+        ],
+        modelAnswer: "心臓が大きくなり収縮力が強くなることで「1回の拍出量」が増えるため、少ない拍動回数で全身に血液を送れるようになるから。",
+        exp: "循環器が発達すると<strong>心臓が大きくなり、収縮力が強く</strong>なります。そのため1回に送り出す血液の量（<strong>拍出量</strong>）が増大し、安静時の<strong>脈拍数</strong>が少なくても全身に血液を送れるようになります。"
+      },
+      {
+        kind: "reason",
+        unit: "7. 呼吸器・循環器",
+        q: "肺そのものは自分の力で膨らんだりしぼんだりできないが、私たちはどのようにして呼吸しているのか。仕組みを説明しなさい。",
+        hint: "肺の周りにある「骨と筋肉でできた枠」と「下の膜」の動きに注目しよう。",
+        keywords: [
+          { label: "胸郭・横隔膜", patterns: ["胸郭", "横隔膜", "骨と筋肉"] },
+          { label: "広がる・狭まる（動く）", patterns: ["広が", "狭ま", "動"] }
+        ],
+        modelAnswer: "肺の周りにある骨と筋肉でできた「胸郭」や「横隔膜」が動くことで、吸うときは胸郭が広がって肺も膨らみ、吐くときは胸郭が狭まって肺もしぼむことで呼吸している。",
+        exp: "肺そのものは動けません。周りの<strong>胸郭</strong>や<strong>横隔膜</strong>が広がったり狭まったりすることで、肺に空気が入ったり出たりしています。"
+      },
+      {
+        kind: "reason",
+        unit: "1. 健康の成り立ち",
+        q: "かつての日本で死因の上位を占めていた「結核」などの感染症が、1950年代以降に減少した主な理由を3つ挙げて説明しなさい。",
+        hint: "生活環境・食べ物・病院や薬の3つの視点で思い出そう。",
+        keywords: [
+          { label: "衛生環境の改善", patterns: ["衛生"] },
+          { label: "栄養状態の向上", patterns: ["栄養"] },
+          { label: "医療技術の進歩", patterns: ["医療"] }
+        ],
+        modelAnswer: "衛生環境の改善、栄養状態の向上、医療技術の進歩などによる。",
+        exp: "感染症が大きく減少した理由は、<strong>①衛生環境の改善、②栄養状態の向上、③医療技術の進歩</strong>の3つです。代わって近年は生活習慣病が死因の上位になっています。"
+      },
+      {
+        kind: "reason",
+        unit: "1. 健康の成り立ち",
+        q: "2018年に「老衰」が日本の死因の第3位になった背景には、どのような変化があると推測されているか。説明しなさい。",
+        hint: "お年寄りの増加と、死に対する意識の変化の2点を書こう。",
+        keywords: [
+          { label: "高齢化", patterns: ["高齢"] },
+          { label: "自然な死を受け入れる考え方", patterns: ["自然な死", "受け入れ"] }
+        ],
+        modelAnswer: "高齢化が進むとともに、自然な死を受け入れる考え方が増えたためと推測されている。",
+        exp: "人口の<strong>高齢化</strong>に加え、無理な延命だけでなく<strong>自然な死を受け入れる考え方</strong>が増えたため、老衰が死因の上位に入ってきたと推測されています。"
+      },
+      {
+        kind: "reason",
+        unit: "1. 健康の成り立ち",
+        q: "健康を保持増進するためには、なぜ「個人の努力」だけでなく「社会的な取り組み」の両方が必要なのか。2つの要因を使って説明しなさい。",
+        hint: "健康の成り立ちに関わる「〇〇の要因」と「〇〇の要因」という言葉を使おう。",
+        keywords: [
+          { label: "主体の要因", patterns: ["主体"] },
+          { label: "環境の要因", patterns: ["環境"] }
+        ],
+        modelAnswer: "健康は、個人に関わる「主体の要因」と、取り巻く状態である「環境の要因」の両方を良好に保つことで成り立つため、生活を見直す個人の努力と環境整備などの社会的な取り組みの両方が必要になる。",
+        exp: "<strong>主体の要因</strong>（生活習慣など）は個人の努力で改善できますが、医療制度や空気・水などの<strong>環境の要因</strong>を整えるには<strong>社会的な取り組み</strong>が欠かせません。"
+      },
+      {
+        kind: "reason",
+        unit: "2. 運動と健康・運動指針",
+        q: "中学生の時期は、なぜ「野球肘」や「オスグッド病」などのスポーツ障害を起こしやすいのか。体の特徴に触れて説明しなさい。",
+        hint: "中学生の体のどこが急激に育っている時期か、またどんな運動が原因になるかを書こう。",
+        keywords: [
+          { label: "骨や関節", patterns: ["骨", "関節"] },
+          { label: "著しく発育", patterns: ["発育", "成長"] },
+          { label: "負担のかかる運動の繰り返し", patterns: ["負担", "繰り返"] }
+        ],
+        modelAnswer: "中学生の時期は「骨や関節」が著しく発育する時期であり、骨や関節に負担のかかる運動を繰り返すとスポーツ障害を起こしやすいから。",
+        exp: "成長期の<strong>骨や関節が著しく発育</strong>している段階では過度な負荷に弱いため、<strong>負担のかかる運動の繰り返し</strong>に注意が必要です。"
+      },
+      {
+        kind: "reason",
+        unit: "5. 調和のとれた生活",
+        q: "「夜食をとる」ことが、なぜ翌日の「体や脳が十分に働かない」状態につながってしまうのか。その流れを説明しなさい。",
+        hint: "夜食 → お腹の臓器への影響 → 翌朝の食事、という順番でつなげてみよう。",
+        keywords: [
+          { label: "胃や腸に負担", patterns: ["胃", "腸", "負担"] },
+          { label: "朝食を抜く", patterns: ["朝食", "朝", "抜", "食べない"] }
+        ],
+        modelAnswer: "夜食をとると寝ている間に胃や腸に負担がかかり、翌朝に朝食を抜くことになってエネルギーや体温が上がらず、体も脳も十分に働かなくなるから。",
+        exp: "<strong>夜食をとる → 胃や腸に負担 → 翌日朝食を抜く → 体も脳も十分に働かない</strong>という悪循環が起きます。規則正しい生活リズムが大切です。"
+      },
+      {
+        kind: "reason",
+        unit: "4. 休養・睡眠と健康",
+        q: "日本人の平均睡眠時間が世界の平均（8時間28分）と比べてかなり短い理由として、挙げられている原因を2つ以上説明しなさい。",
+        hint: "大人の仕事時間、睡眠への意識、寝る前のデジタル機器の使い方を思い出そう。",
+        keywords: [
+          { label: "労働時間が長い", patterns: ["労働", "仕事"] },
+          { label: "睡眠への関心が薄い", patterns: ["関心"] },
+          { label: "寝る前のスマホ使用", patterns: ["スマホ", "スマートフォン", "携帯"] }
+        ],
+        modelAnswer: "労働時間が長いこと、睡眠に対する関心が薄いこと、寝る前のスマートフォンの使用などが原因として挙げられている。",
+        exp: "日本人の睡眠時間が短い背景には、<strong>労働時間の長さ・睡眠に対する関心の薄さ・寝る前のスマートフォンの使用</strong>などがあります（3つのうち2つ以上書けていれば十分です）。"
+      },
+      {
+        kind: "reason",
+        unit: "3. 食生活と健康",
+        q: "活動量が少ない人が普通の食事をとり続けるとどのような状態になりやすく、生活の中で何を心がけるべきか説明しなさい。",
+        hint: "摂取と消費のバランスがどう崩れるか（〇〇過多）と、何を生活に取り入れるべきかを書こう。",
+        keywords: [
+          { label: "エネルギー過多（とりすぎ）", patterns: ["エネルギー過多", "とりすぎ", "過剰", "摂りすぎ"] },
+          { label: "運動を取り入れる", patterns: ["運動"] }
+        ],
+        modelAnswer: "普通の食事でも「エネルギー過多（とりすぎ）」になりやすいため、生活の中に積極的に「運動」を取り入れることが大切である。",
+        exp: "1日の消費エネルギー＝基礎代謝量＋活動や運動による消費エネルギーです。活動量が少ないと<strong>エネルギー過多</strong>になりやすいため、意識して<strong>運動</strong>を取り入れましょう。"
+      },
+
+      // ==========================================
+      // パートB：紛らわしい用語のひっかけ対策 ○×問題（20問）
+      // ==========================================
+      {
+        kind: "ox",
+        unit: "6. 体の発育・発達",
+        q: "体の「働き（機能）」が高まることを「発育」といい、身長や体重など体の「大きさ」が増すことを「発達」という。",
+        answer: false,
+        exp: "<strong>【ひっかけ注意！】</strong> 逆です。体の<strong>大きさ</strong>が増すことが「<strong>発育</strong>」、体の<strong>働き（機能）</strong>が高まることが「<strong>発達</strong>」です。"
+      },
+      {
+        kind: "ox",
+        unit: "6. 体の発育・発達",
+        q: "思春期（第2発育急進期）が訪れる時期は、一般に男子よりも女子の方が早く来ることが多いが、個人差もある。",
+        answer: true,
+        exp: "その通りです。思春期は<strong>第2発育急進期</strong>にあたり、一般に女子の方が男子よりも早く来ますが、個人差があります。"
+      },
+      {
+        kind: "ox",
+        unit: "6. 体の発育・発達",
+        q: "乳幼児期に身長や体重が急激に伸びる時期を「第2発育急進期」といい、思春期の急激な発育を「第1発育急進期」という。",
+        answer: false,
+        exp: "<strong>【ひっかけ注意！】</strong> 順番が逆です。乳幼児期が「<strong>第1発育急進期</strong>」、思春期が「<strong>第2発育急進期</strong>」です。"
+      },
+      {
+        kind: "ox",
+        unit: "6. 体の発育・発達",
+        q: "スキャモンの発育曲線において、扁桃や胸腺などの「リンパ型」は、12歳ごろに大人（20歳＝100）以上まで発育し、その後減少する。",
+        answer: true,
+        exp: "その通りです。<strong>リンパ型（扁桃・胸腺など）</strong>は、思春期前に大人の約2倍近く（180〜200）まで発育し、その後大人に向けて減少するのが特徴です。"
+      },
+      {
+        kind: "ox",
+        unit: "6. 体の発育・発達",
+        q: "スキャモンの発育曲線で、脳や脊髄などの「神経型」は、乳幼児期にはほとんど発育せず、思春期になってから急速に大人と同じくらいまで発達する。",
+        answer: false,
+        exp: "<strong>【ひっかけ注意！】</strong> 「神経型（脳・脊髄など）」は<strong>早くから発育</strong>し、思春期にはすでに大人と同じくらいまで発育しています。（思考力や判断力などの心の働きは中学生頃から盛んに発達します）"
+      },
+      {
+        kind: "ox",
+        unit: "6. 体の発育・発達",
+        q: "スキャモンの発育曲線で、肺・心臓・骨・筋肉などは「生殖型」に分類され、卵巣や精巣は「一般型」に分類される。",
+        answer: false,
+        exp: "<strong>【ひっかけ注意！】</strong> 逆です。骨・筋肉・肺・心臓・胃腸など大部分の器官が「<strong>一般型</strong>」、卵巣や精巣が「<strong>生殖型</strong>」です。"
+      },
+      {
+        kind: "ox",
+        unit: "7. 呼吸器・循環器",
+        q: "肺そのものは自分の筋肉で伸び縮みすることができるため、周りの胸郭や横隔膜が動かなくても呼吸ができる。",
+        answer: false,
+        exp: "<strong>【ひっかけ注意！】</strong> <strong>肺そのものが膨らんだりしぼんだりすることはできません。</strong>周りの骨と筋肉でできた<strong>胸郭</strong>や<strong>横隔膜</strong>が動くことで呼吸しています。"
+      },
+      {
+        kind: "ox",
+        unit: "7. 呼吸器・循環器",
+        q: "息を吸うときは胸郭が狭まって肺が膨らみ、息を吐くときは胸郭が広がって肺がしぼむ。",
+        answer: false,
+        exp: "<strong>【ひっかけ注意！】</strong> 胸郭の動きが逆です。息を吸うときは胸郭が<strong>広がり</strong>肺も膨らみ、吐くときは胸郭が<strong>狭まり</strong>肺もしぼみます。"
+      },
+      {
+        kind: "ox",
+        unit: "7. 呼吸器・循環器",
+        q: "5歳の頃と中学生を比べると、呼吸器の発達によって1回の呼吸量が増えるため、肺活量は増大し、安静時の呼吸数も増加する。",
+        answer: false,
+        exp: "<strong>【超重要ひっかけ！】</strong> <strong>肺活量は増大</strong>しますが、1回でたくさん吸えるようになるため、安静時の<strong>呼吸数は「減少」</strong>します（5歳の頃の方が呼吸数は多いです）。"
+      },
+      {
+        kind: "ox",
+        unit: "7. 呼吸器・循環器",
+        q: "循環器が発達して心臓の収縮力が強くなると、1回の拍出量は増大し、安静時の脈拍数は減少する。",
+        answer: true,
+        exp: "その通りです。1回の<strong>拍出量が増大</strong>するため、少ない回数で全身に血液を送れるようになり、安静時の<strong>脈拍数は減少</strong>します。"
+      },
+      {
+        kind: "ox",
+        unit: "7. 呼吸器・循環器",
+        q: "肺胞でのガス交換で毛細血管に取り入れられた酸素は、血液中の「白血球」によって全身に運ばれる。",
+        answer: false,
+        exp: "<strong>【超重要ひっかけ！】</strong> 酸素を全身に運ぶのは「<strong>赤血球</strong>」です！ 白血球は体に入った細菌などと戦う働きをします。"
+      },
+      {
+        kind: "ox",
+        unit: "7. 呼吸器・循環器",
+        q: "肺と心臓をつなぐ血管のうち、二酸化炭素を多く含む血液が心臓から肺へ送られる血管を「肺動脈」、酸素を取り入れて心臓へ戻る血管を「肺静脈」という。",
+        answer: true,
+        exp: "その通りです。心臓から出ていく血管が「動脈」、心臓へ戻る血管が「静脈」なので、肺へ向かう血管が<strong>肺動脈</strong>、肺から戻る血管が<strong>肺静脈</strong>になります。"
+      },
+      {
+        kind: "ox",
+        unit: "7. 呼吸器・循環器",
+        q: "思春期に持久力を高めるには、限界まで苦しい「脈拍数180〜200拍/分」程度の運動を短期間だけ集中的に行うのが最も効果的である。",
+        answer: false,
+        exp: "<strong>【ひっかけ注意！】</strong> 適切な強さは「<strong>少しきつい（脈拍数120〜140拍/分）</strong>」程度で、これを<strong>継続的</strong>に続けることが効果的です。"
+      },
+      {
+        kind: "ox",
+        unit: "2. 運動と健康・運動指針",
+        q: "運動指針では、持久力を高める運動は「1日10〜30分・週2日程度」、筋力を高めるトレーニングは「週3日以上」行うのが望ましいとされている。",
+        answer: false,
+        exp: "<strong>【ひっかけ注意！】</strong> 頻度が逆です。<strong>持久力</strong>を高める運動が「<strong>週3日以上</strong>」、<strong>筋力</strong>トレーニングが「<strong>週2日程度</strong>」です。"
+      },
+      {
+        kind: "ox",
+        unit: "2. 運動と健康・運動指針",
+        q: "歩くより少し速いくらいのペースで、会話したり景色を楽しんだりしながらゆっくり長い距離を走る方法（LSD）でも、心肺機能の向上に高い効果がある。",
+        answer: true,
+        exp: "その通りです。<strong>ロング・スロー・ディスタンス（LSD）</strong>は「きつくない」「ゆっくり」でも心肺機能を高める効果が高い走り方です。"
+      },
+      {
+        kind: "ox",
+        unit: "1. 健康の成り立ち",
+        q: "体質・性・年齢などの「素因」や運動・食事などの「行動」は「環境の要因」に分類され、医療制度や衛生行政は「主体の要因」に分類される。",
+        answer: false,
+        exp: "<strong>【ひっかけ注意！】</strong> 逆です。個人の素因と行動が「<strong>主体の要因</strong>」、医療制度などの社会的環境は「<strong>環境の要因</strong>」です。"
+      },
+      {
+        kind: "ox",
+        unit: "4. 休養・睡眠と健康",
+        q: "2021年の調査では、日本人の平均睡眠時間は2016年までより増加したものの、世界の平均睡眠時間（8時間28分）と比べるとかなり短い。",
+        answer: true,
+        exp: "その通りです。男性7時間58分・女性7時間49分と以前より増えましたが、世界平均の<strong>8時間28分</strong>には届いていません。"
+      },
+      {
+        kind: "ox",
+        unit: "3. 食生活と健康",
+        q: "私たちがじっとして眠っている間は体を動かしていないため、エネルギーは消費されず、基礎代謝量は0になる。",
+        answer: false,
+        exp: "<strong>【ひっかけ注意！】</strong> じっとしている間も、心臓を動かしたり体温を保ったりして生命を維持するために最小限のエネルギー（<strong>基礎代謝量</strong>）を消費しています。"
+      },
+      {
+        kind: "ox",
+        unit: "5. 調和のとれた生活",
+        q: "朝食を食べることには、寝ている間に低下した体温を上昇させ、体や脳をしっかり働かせる役割がある。",
+        answer: true,
+        exp: "その通りです。朝食をとることで<strong>寝ている間に低下した体温が上昇</strong>し、午前中から体と脳が活発に働きます。"
+      },
+      {
+        kind: "ox",
+        unit: "6. 体の発育・発達",
+        q: "思春期の無理なダイエットで不足しやすい栄養素のうち、筋肉をつくるのは「カルシウム」、骨をつくるのは「たんぱく質」である。",
+        answer: false,
+        exp: "<strong>【ひっかけ注意！】</strong> 筋肉をつくるのが「<strong>たんぱく質</strong>」、骨をつくるのが「<strong>カルシウム</strong>」、血液をつくるのが「<strong>鉄分</strong>」です。"
+      }
+    ];
+
+    const startScreen = document.getElementById("start-screen");
+    const quizScreen = document.getElementById("quiz-screen");
+    const resultScreen = document.getElementById("result-screen");
+
+    const shuffleToggle = document.getElementById("shuffle-toggle");
+    const unitBadge = document.getElementById("unit-badge");
+    const typeBadge = document.getElementById("type-badge");
+    const quizStats = document.getElementById("quiz-stats");
+    const progressBar = document.getElementById("progress-bar");
+    const questionText = document.getElementById("question-text");
+
+    const reasonArea = document.getElementById("reason-area");
+    const reasonInput = document.getElementById("reason-input");
+    const reasonControls = document.getElementById("reason-controls");
+    const checkReasonBtn = document.getElementById("check-reason-btn");
+    const hintBtn = document.getElementById("hint-btn");
+    const giveupBtn = document.getElementById("giveup-btn");
+    const hintBox = document.getElementById("hint-box");
+
+    const oxArea = document.getElementById("ox-area");
+    const oxButtons = oxArea.querySelectorAll(".ox-btn");
+
+    const feedbackBox = document.getElementById("feedback-box");
+    const feedbackHeader = document.getElementById("feedback-header");
+    const kwSection = document.getElementById("kw-section");
+    const kwList = document.getElementById("kw-list");
+    const modelAnswerBox = document.getElementById("model-answer-box");
+    const explanationBody = document.getElementById("explanation-body");
+    const nextBtn = document.getElementById("next-btn");
+
+    const scoreNum = document.getElementById("score-num");
+    const scorePct = document.getElementById("score-pct");
+    const resultMsg = document.getElementById("result-msg");
+    const breakdownList = document.getElementById("breakdown-list");
+    const retryWrongBtn = document.getElementById("retry-wrong-btn");
+    const retrySameBtn = document.getElementById("retry-same-btn");
+    const backHomeBtn = document.getElementById("back-home-btn");
+    const reviewList = document.getElementById("review-list");
+
+    let activePool = [];
+    let lastSourcePool = [];
+    let currentIndex = 0;
+    let score = 0;
+    let answered = false;
+    let history = [];
+
+    function shuffleArray(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function normalizeText(str) {
+      return str
+        .trim()
+        .replace(/[Ａ-Ｚａ-ｚ０-９]/g, (s) => String.fromCharCode(s.charCodeAt(0) - 0xfee0))
+        .replace(/\s+/g, "");
+    }
+
+    function startQuiz(pool) {
+      lastSourcePool = pool;
+      activePool = shuffleToggle.checked ? shuffleArray(pool) : [...pool];
+      currentIndex = 0;
+      score = 0;
+      history = [];
+
+      startScreen.classList.add("hidden");
+      resultScreen.classList.add("hidden");
+      quizScreen.classList.remove("hidden");
+      renderQuestion();
+    }
+
+    function renderQuestion() {
+      answered = false;
+      const item = activePool[currentIndex];
+      const total = activePool.length;
+
+      unitBadge.textContent = item.unit;
+      if (item.kind === "reason") {
+        typeBadge.textContent = "✍️ 短文記述";
+        typeBadge.className = "type-badge is-reason";
+      } else {
+        typeBadge.textContent = "⭕❌ ひっかけ○×";
+        typeBadge.className = "type-badge is-ox";
+      }
+
+      quizStats.textContent = `第 ${currentIndex + 1} 問 / ${total} 問（正解: ${score}）`;
+      progressBar.style.width = `${(currentIndex / total) * 100}%`;
+      questionText.textContent = item.q;
+
+      feedbackBox.classList.add("hidden");
+      feedbackBox.classList.remove("is-correct", "is-partial", "is-wrong");
+      kwSection.classList.add("hidden");
+      modelAnswerBox.classList.add("hidden");
+      nextBtn.classList.add("hidden");
+      nextBtn.textContent = currentIndex === total - 1 ? "結果を見る →" : "次の問題へ →";
+
+      if (item.kind === "reason") {
+        oxArea.classList.add("hidden");
+        reasonArea.classList.remove("hidden");
+        reasonInput.value = "";
+        reasonInput.disabled = false;
+        reasonControls.classList.remove("hidden");
+        hintBox.classList.add("hidden");
+        hintBox.textContent = "💡 ヒント： " + item.hint;
+        setTimeout(() => reasonInput.focus(), 50);
+      } else {
+        reasonArea.classList.add("hidden");
+        oxArea.classList.remove("hidden");
+        oxButtons.forEach((btn) => {
+          btn.disabled = false;
+          btn.classList.remove("correct", "wrong", "dimmed");
+        });
+      }
+    }
+
+    function gradeReason(isGiveUp = false) {
+      if (answered) return;
+      const item = activePool[currentIndex];
+      const userText = reasonInput.value.trim();
+
+      if (!isGiveUp && userText === "") {
+        reasonInput.focus();
+        return;
+      }
+
+      answered = true;
+      reasonInput.disabled = true;
+      reasonControls.classList.add("hidden");
+      hintBox.classList.add("hidden");
+
+      const norm = normalizeText(userText);
+      let hitCount = 0;
+      const kwResults = item.keywords.map((kw) => {
+        const hit = !isGiveUp && kw.patterns.some((p) => norm.includes(normalizeText(p)));
+        if (hit) hitCount++;
+        return { label: kw.label, hit };
+      });
+
+      const totalKw = item.keywords.length;
+      const isFull = !isGiveUp && hitCount === totalKw;
+      const isPartial = !isGiveUp && hitCount > 0 && hitCount < totalKw;
+      const isCorrect = isFull || (hitCount >= Math.ceil(totalKw * 0.7) && totalKw >= 3);
+
+      if (isCorrect) {
+        score++;
+      }
+
+      const record = {
+        question: item,
+        userAnswer: isGiveUp ? "（模範解答を確認）" : userText,
+        isCorrect,
+        hitCount,
+        totalKw
+      };
+      history.push(record);
+
+      showReasonFeedback(record, kwResults, isFull, isPartial, isGiveUp);
+    }
+
+    function showReasonFeedback(record, kwResults, isFull, isPartial, isGiveUp) {
+      const item = record.question;
+      feedbackBox.classList.remove("hidden", "is-correct", "is-partial", "is-wrong");
+
+      if (record.isCorrect) {
+        feedbackBox.classList.add("is-correct");
+        feedbackHeader.innerHTML = `
+          <span>⭕ 正解！（必須キーワード ${record.hitCount}/${record.totalKw} 個カバー）</span>
+          <div class="self-grade-group">
+            <button class="self-grade-btn ng" id="toggle-grade-btn">不正解にする</button>
+          </div>
+        `;
+      } else if (isPartial) {
+        feedbackBox.classList.add("is-partial");
+        feedbackHeader.innerHTML = `
+          <span>🔺 おしい！（必須キーワード ${record.hitCount}/${record.totalKw} 個）</span>
+          <div class="self-grade-group">
+            <button class="self-grade-btn ok" id="toggle-grade-btn">意味が合っているので正解にする</button>
+          </div>
+        `;
+      } else {
+        feedbackBox.classList.add("is-wrong");
+        const title = isGiveUp ? "📖 模範解答と必須キーワード" : `❌ キーワード不足（${record.hitCount}/${record.totalKw} 個）`;
+        feedbackHeader.innerHTML = `
+          <span>${title}</span>
+          ${!isGiveUp ? '<div class="self-grade-group"><button class="self-grade-btn ok" id="toggle-grade-btn">自分の答えを正解にする</button></div>' : ""}
+        `;
+      }
+
+      const toggleBtn = document.getElementById("toggle-grade-btn");
+      if (toggleBtn) {
+        toggleBtn.addEventListener("click", () => {
+          if (record.isCorrect) {
+            record.isCorrect = false;
+            score--;
+          } else {
+            record.isCorrect = true;
+            score++;
+          }
+          quizStats.textContent = `第 ${currentIndex + 1} 問 / ${activePool.length} 問（正解: ${score}）`;
+          showReasonFeedback(record, kwResults, record.isCorrect, false, isGiveUp);
+        });
+      }
+
+      kwList.innerHTML = "";
+      kwResults.forEach((r) => {
+        const chip = document.createElement("span");
+        chip.className = `kw-chip ${r.hit ? "hit" : "miss"}`;
+        chip.textContent = `${r.hit ? "✓" : "・"} ${r.label}`;
+        kwList.appendChild(chip);
+      });
+      kwSection.classList.remove("hidden");
+
+      modelAnswerBox.innerHTML = `<span class="model-answer-label">模範解答例</span><strong>${item.modelAnswer}</strong>`;
+      modelAnswerBox.classList.remove("hidden");
+
+      explanationBody.innerHTML = item.exp;
+      nextBtn.classList.remove("hidden");
+      quizStats.textContent = `第 ${currentIndex + 1} 問 / ${activePool.length} 問（正解: ${score}）`;
+    }
+
+    function gradeOX(selectedVal) {
+      if (answered) return;
+      answered = true;
+      const item = activePool[currentIndex];
+      const isCorrect = selectedVal === item.answer;
+
+      oxButtons.forEach((btn) => {
+        btn.disabled = true;
+        const btnVal = btn.dataset.val === "true";
+        if (btnVal === item.answer) {
+          btn.classList.add("correct");
+        } else if (btnVal === selectedVal && !isCorrect) {
+          btn.classList.add("wrong");
+        } else {
+          btn.classList.add("dimmed");
+        }
+      });
+
+      if (isCorrect) {
+        score++;
+      }
+
+      history.push({
+        question: item,
+        userAnswer: selectedVal ? "○" : "×",
+        isCorrect
+      });
+
+      feedbackBox.classList.remove("hidden", "is-correct", "is-partial", "is-wrong");
+      feedbackBox.classList.add(isCorrect ? "is-correct" : "is-wrong");
+
+      const ansLabel = item.answer ? "○（正しい）" : "×（誤り）";
+      feedbackHeader.textContent = isCorrect
+        ? `⭕ 正解！ 答えは「${ansLabel}」です`
+        : `❌ 不正解… 答えは「${ansLabel}」です`;
+
+      kwSection.classList.add("hidden");
+      modelAnswerBox.classList.add("hidden");
+      explanationBody.innerHTML = item.exp;
+      nextBtn.classList.remove("hidden");
+      quizStats.textContent = `第 ${currentIndex + 1} 問 / ${activePool.length} 問（正解: ${score}）`;
+    }
+
+    function goNext() {
+      if (currentIndex < activePool.length - 1) {
+        currentIndex++;
+        renderQuestion();
+      } else {
+        showResult();
+      }
+    }
+
+    function showResult() {
+      quizScreen.classList.add("hidden");
+      resultScreen.classList.remove("hidden");
+
+      const total = activePool.length;
+      const pct = Math.round((score / total) * 100);
+      scoreNum.textContent = `${score} / ${total}`;
+      scorePct.textContent = `${pct}%`;
+
+      if (pct === 100) {
+        resultMsg.textContent = "全問正解！記述もひっかけ対策もバッチリです！";
+      } else if (pct >= 80) {
+        resultMsg.textContent = "よくできました！間違えた問題だけ復習して仕上げましょう。";
+      } else if (pct >= 60) {
+        resultMsg.textContent = "あと一歩！解説の「必須キーワード」とひっかけ箇所を確認しよう。";
+      } else {
+        resultMsg.textContent = "間違えた問題を中心に、仕組みと用語の区別を復習しよう！";
+      }
+
+      // 形式別の集計
+      const stats = {
+        reason: { label: "✍️ 短文記述（理由・仕組み）", total: 0, correct: 0 },
+        ox: { label: "⭕❌ ひっかけ○×問題", total: 0, correct: 0 }
+      };
+      history.forEach((h) => {
+        const k = h.question.kind;
+        stats[k].total++;
+        if (h.isCorrect) stats[k].correct++;
+      });
+
+      breakdownList.innerHTML = "";
+      ["reason", "ox"].forEach((k) => {
+        const s = stats[k];
+        if (s.total === 0) return;
+        const p = Math.round((s.correct / s.total) * 100);
+        const row = document.createElement("div");
+        row.className = "breakdown-row";
+        row.innerHTML = `
+          <div class="breakdown-label">
+            <span>${s.label}</span>
+            <span>${s.correct} / ${s.total} 問（${p}%）</span>
+          </div>
+          <div class="breakdown-bar-bg">
+            <div class="breakdown-bar-fill" style="width: ${p}%"></div>
+          </div>
+        `;
+        breakdownList.appendChild(row);
+      });
+
+      const wrongPool = history.filter((h) => !h.isCorrect).map((h) => h.question);
+      if (wrongPool.length > 0) {
+        retryWrongBtn.classList.remove("hidden");
+        retryWrongBtn.textContent = `間違えた問題（${wrongPool.length}問）だけ復習する`;
+        retryWrongBtn.onclick = () => startQuiz(wrongPool);
+      } else {
+        retryWrongBtn.classList.add("hidden");
+      }
+
+      reviewList.innerHTML = "";
+      history.forEach((h, i) => {
+        const q = h.question;
+        const div = document.createElement("div");
+        div.className = `review-item ${h.isCorrect ? "item-correct" : "item-wrong"}`;
+        const typeLabel = q.kind === "reason" ? "短文記述" : "○×問題";
+        const ansHtml = q.kind === "reason"
+          ? `あなたの解答：${escapeHtml(h.userAnswer)}<br>模範解答：<strong>${q.modelAnswer}</strong><br>必須キーワード：${q.keywords.map(k => k.label).join(" ／ ")}`
+          : `あなたの解答：${h.userAnswer} ／ 正解：<strong>${q.answer ? "○（正しい）" : "×（誤り）"}</strong>`;
+
+        div.innerHTML = `
+          <div class="review-q">${h.isCorrect ? "⭕" : "❌"} Q${i + 1}. [${typeLabel} / ${q.unit}] ${q.q}</div>
+          <div class="review-ans">${ansHtml}</div>
+          <div class="review-exp">${q.exp}</div>
+        `;
+        reviewList.appendChild(div);
+      });
+    }
+
+    function escapeHtml(text) {
+      const d = document.createElement("div");
+      d.textContent = text;
+      return d.innerHTML;
+    }
+
+    document.getElementById("start-all-btn").addEventListener("click", () => startQuiz(QUESTIONS));
+    document.getElementById("start-reason-btn").addEventListener("click", () => {
+      startQuiz(QUESTIONS.filter((q) => q.kind === "reason"));
+    });
+    document.getElementById("start-ox-btn").addEventListener("click", () => {
+      startQuiz(QUESTIONS.filter((q) => q.kind === "ox"));
+    });
+
+    checkReasonBtn.addEventListener("click", () => gradeReason(false));
+    giveupBtn.addEventListener("click", () => gradeReason(true));
+    hintBtn.addEventListener("click", () => hintBox.classList.toggle("hidden"));
+
+    oxButtons.forEach((btn) => {
+      btn.addEventListener("click", () => gradeOX(btn.dataset.val === "true"));
+    });
+
+    nextBtn.addEventListener("click", goNext);
+
+    document.getElementById("quit-btn").addEventListener("click", () => {
+      quizScreen.classList.add("hidden");
+      startScreen.classList.remove("hidden");
+    });
+
+    retrySameBtn.addEventListener("click", () => startQuiz(lastSourcePool));
+    backHomeBtn.addEventListener("click", () => {
+      resultScreen.classList.add("hidden");
+      startScreen.classList.remove("hidden");
+    });
+
+    // キーボード操作（○×問題は 1/O, 2/X、次へは Enter）
+    document.addEventListener("keydown", (e) => {
+      if (quizScreen.classList.contains("hidden")) return;
+      const item = activePool[currentIndex];
+      if (!answered && item.kind === "ox") {
+        if (e.key === "1" || e.key.toLowerCase() === "o") {
+          gradeOX(true);
+        } else if (e.key === "2" || e.key.toLowerCase() === "x") {
+          gradeOX(false);
+        }
+      } else if (answered && e.key === "Enter" && document.activeElement !== reasonInput) {
+        e.preventDefault();
+        goNext();
+      }
+    });
+  </script>
+</body>
+</html>

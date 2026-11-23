@@ -1,0 +1,1712 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>中1 保健体育 2学期末テスト対策 通し模擬テスト（全35問・25分）</title>
+  <style>
+    :root {
+      --bg: #f3f6fb;
+      --card: #ffffff;
+      --primary: #1a5f96;
+      --primary-dark: #11426a;
+      --primary-light: #e8f2fb;
+      --accent: #0f9d8a;
+      --warn: #d97706;
+      --warn-bg: #fef3c7;
+      --danger: #dc2626;
+      --danger-bg: #fee2e2;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #dbe3ee;
+      --correct-bg: #e8f8ef;
+      --correct-border: #1e9e5a;
+      --correct-text: #136f3e;
+      --wrong-bg: #fdecec;
+      --wrong-border: #dc3545;
+      --wrong-text: #9f1f2c;
+      --shadow: 0 6px 20px rgba(15, 35, 60, 0.07);
+      --radius: 14px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      min-height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(135deg, #124874, #0d7a7c);
+      color: #fff;
+      padding: 18px 16px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.3rem;
+      letter-spacing: 0.02em;
+    }
+
+    header p {
+      margin: 4px 0 0;
+      font-size: 0.88rem;
+      opacity: 0.92;
+    }
+
+    main {
+      width: 100%;
+      max-width: 880px;
+      margin: 22px auto 48px;
+      padding: 0 16px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      border: 1px solid var(--border);
+    }
+
+    .hidden { display: none !important; }
+
+    /* Start Screen */
+    .start-title {
+      margin: 0 0 10px;
+      font-size: 1.22rem;
+      color: var(--primary-dark);
+    }
+
+    .start-desc {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .spec-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .spec-box {
+      background: var(--primary-light);
+      border: 1px solid #c6def5;
+      border-radius: 12px;
+      padding: 14px;
+      text-align: center;
+    }
+
+    .spec-val {
+      display: block;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+    }
+
+    .spec-lbl {
+      display: block;
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    .rules-box {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin-bottom: 20px;
+      font-size: 0.92rem;
+    }
+
+    .rules-box ul {
+      margin: 6px 0 0;
+      padding-left: 20px;
+    }
+
+    .rules-box li { margin-bottom: 4px; }
+
+    .mode-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 20px;
+      padding: 12px 16px;
+      background: #f1f5f9;
+      border-radius: 10px;
+    }
+
+    .toggle-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.93rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--text);
+    }
+
+    .toggle-label input {
+      width: 17px;
+      height: 17px;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 14px 24px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.16s ease, transform 0.1s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-primary:hover { background: var(--primary-dark); }
+    .btn-primary:active { transform: scale(0.99); }
+
+    .btn-secondary {
+      background: #fff;
+      color: var(--primary-dark);
+      border: 2px solid var(--primary);
+      border-radius: 12px;
+      padding: 11px 18px;
+      font-size: 0.94rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.16s ease;
+    }
+
+    .btn-secondary:hover { background: var(--primary-light); }
+
+    .btn-accent {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 12px 22px;
+      font-size: 0.98rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .btn-accent:hover { background: #0c8272; }
+    .btn-full { width: 100%; }
+
+    /* Sticky Exam Bar */
+    .exam-bar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 16px;
+      margin-bottom: 16px;
+      box-shadow: 0 6px 18px rgba(15, 35, 60, 0.1);
+    }
+
+    .exam-bar-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .timer-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.08rem;
+      font-weight: 800;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      border: 1px solid #bfd9f2;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .timer-pill.is-warn {
+      background: var(--warn-bg);
+      color: var(--warn);
+      border-color: #f59e0b;
+    }
+
+    .timer-pill.is-danger {
+      background: var(--danger-bg);
+      color: var(--danger);
+      border-color: #ef4444;
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.65; }
+    }
+
+    .answered-status {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .answered-status strong {
+      color: var(--primary-dark);
+    }
+
+    .nav-dots {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid #e8eef5;
+    }
+
+    .nav-dot {
+      width: 28px;
+      height: 26px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--muted);
+      font-size: 0.76rem;
+      font-weight: 700;
+      cursor: pointer;
+      padding: 0;
+      font-family: inherit;
+      transition: all 0.12s ease;
+    }
+
+    .nav-dot:hover { border-color: var(--primary); color: var(--primary); }
+    .nav-dot.is-done {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+    }
+    .nav-dot.is-flagged {
+      outline: 2px solid var(--warn);
+      outline-offset: 1px;
+    }
+
+    /* Question Cards */
+    .questions-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .q-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      box-shadow: 0 3px 10px rgba(15, 35, 60, 0.04);
+      scroll-margin-top: 130px;
+    }
+
+    .q-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .q-badges {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .q-num {
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: var(--primary-dark);
+      margin-right: 4px;
+    }
+
+    .badge {
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+
+    .badge-unit {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+    }
+
+    .badge-type-choice {
+      background: #ede9fe;
+      color: #5b21b6;
+    }
+
+    .badge-type-blank {
+      background: #e0f2fe;
+      color: #0369a1;
+    }
+
+    .badge-type-ox {
+      background: #fef3c7;
+      color: #b45309;
+    }
+
+    .flag-btn {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 4px 10px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--muted);
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .flag-btn.active {
+      background: var(--warn-bg);
+      border-color: var(--warn);
+      color: var(--warn);
+    }
+
+    .q-text {
+      font-size: 1.04rem;
+      font-weight: 700;
+      margin: 0 0 14px;
+      color: var(--text);
+    }
+
+    /* Choice & OX Options */
+    .opt-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .ox-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .opt-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 14px;
+      cursor: pointer;
+      font-size: 0.96rem;
+      transition: all 0.14s ease;
+      background: #fff;
+    }
+
+    .opt-label:hover {
+      border-color: var(--primary);
+      background: #f7fbff;
+    }
+
+    .opt-label input {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--primary);
+      margin: 0;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .opt-label.selected {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      font-weight: 700;
+    }
+
+    /* Blank Inputs */
+    .blank-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .blank-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .blank-lbl {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      min-width: 70px;
+    }
+
+    .blank-input {
+      flex: 1;
+      min-width: 200px;
+      padding: 10px 14px;
+      font-size: 1rem;
+      font-family: inherit;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      outline: none;
+      transition: border-color 0.15s ease;
+    }
+
+    .blank-input:focus {
+      border-color: var(--primary);
+    }
+
+    .exam-footer {
+      margin-top: 24px;
+      text-align: center;
+      padding: 20px;
+      background: #fff;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    /* Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 16px;
+    }
+
+    .modal-box {
+      background: #fff;
+      border-radius: 16px;
+      padding: 24px;
+      max-width: 440px;
+      width: 100%;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal-box h3 {
+      margin: 0 0 8px;
+      font-size: 1.12rem;
+      color: var(--primary-dark);
+    }
+
+    .modal-box p {
+      margin: 0 0 18px;
+      font-size: 0.94rem;
+      color: var(--muted);
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    /* Result Screen */
+    .result-hero {
+      text-align: center;
+      padding: 8px 0 22px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 22px;
+    }
+
+    .score-ring {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 158px;
+      height: 158px;
+      border-radius: 50%;
+      background: var(--primary-light);
+      border: 7px solid var(--primary);
+      margin-bottom: 12px;
+    }
+
+    .score-100 {
+      font-size: 2.3rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      line-height: 1.05;
+    }
+
+    .score-100 span {
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .score-raw {
+      font-size: 0.88rem;
+      color: var(--muted);
+      font-weight: 700;
+      margin-top: 4px;
+    }
+
+    .result-meta {
+      font-size: 0.92rem;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .result-msg {
+      font-size: 1.12rem;
+      font-weight: 700;
+      margin: 4px 0 0;
+    }
+
+    .breakdown-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .breakdown-panel {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .breakdown-panel h3 {
+      margin: 0 0 12px;
+      font-size: 0.98rem;
+      color: var(--primary-dark);
+    }
+
+    .b-row { margin-bottom: 10px; }
+    .b-row:last-child { margin-bottom: 0; }
+
+    .b-lbl {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .b-bar-bg {
+      height: 9px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .b-bar-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 999px;
+      transition: width 0.3s ease;
+    }
+
+    .result-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .filter-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .filter-tab {
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--muted);
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .filter-tab.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+    }
+
+    .review-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .rev-item {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 18px;
+      background: #fff;
+    }
+
+    .rev-item.is-correct { border-left: 6px solid var(--correct-border); }
+    .rev-item.is-wrong { border-left: 6px solid var(--wrong-border); }
+
+    .rev-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .rev-status {
+      font-weight: 800;
+      font-size: 0.92rem;
+    }
+
+    .rev-item.is-correct .rev-status { color: var(--correct-text); }
+    .rev-item.is-wrong .rev-status { color: var(--wrong-text); }
+
+    .rev-q {
+      font-weight: 700;
+      font-size: 0.98rem;
+      margin-bottom: 10px;
+    }
+
+    .rev-ans-box {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+    }
+
+    .rev-user {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 12px;
+    }
+
+    .rev-model {
+      background: var(--correct-bg);
+      border: 1px solid #b6e6ca;
+      border-radius: 8px;
+      padding: 8px 12px;
+      color: var(--correct-text);
+    }
+
+    .rev-exp {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 0.9rem;
+    }
+
+    .rev-exp strong { color: var(--primary-dark); }
+
+    .self-override-btn {
+      background: #fff;
+      border: 1.5px solid var(--correct-border);
+      color: var(--correct-text);
+      border-radius: 8px;
+      padding: 4px 10px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .self-override-btn:hover { background: var(--correct-bg); }
+
+    @media (max-width: 600px) {
+      .card, .q-card { padding: 16px 14px; }
+      .ox-list { grid-template-columns: 1fr; }
+      .nav-dot { width: 25px; height: 24px; font-size: 0.72rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>中1 保健体育 2学期末テスト 通し模擬テスト</h1>
+    <p>全7単元バランス出題（全35問・制限時間25分・一括採点形式）</p>
+  </header>
+
+  <main>
+    <!-- スタート画面 -->
+    <section id="start-screen" class="card">
+      <h2 class="start-title">本番そっくりに実力を試そう！</h2>
+      <p class="start-desc">
+        これまでの単元学習・記述練習の総仕上げとして、全範囲からバランスよく35問を出題します。解答中はヒントや解説が出ない本番形式で、最後にまとめて採点されます。
+      </p>
+
+      <div class="spec-grid">
+        <div class="spec-box">
+          <span class="spec-val">全 35 問</span>
+          <span class="spec-lbl">7単元 × 各5問</span>
+        </div>
+        <div class="spec-box">
+          <span class="spec-val">25 分</span>
+          <span class="spec-lbl">カウントダウン形式</span>
+        </div>
+        <div class="spec-box">
+          <span class="spec-val">3 形式</span>
+          <span class="spec-lbl">4択・穴埋め・○×</span>
+        </div>
+      </div>
+
+      <div class="rules-box">
+        <strong>模擬テストのルール</strong>
+        <ul>
+          <li>解答中の<strong>ヒント表示や即時採点は行われません</strong>。</li>
+          <li>上部の番号ボタンから問題へジャンプでき、「見直し」マークもつけられます。</li>
+          <li>全問解き終わったら<strong>「採点する」</strong>ボタンを押してください（25分経過すると自動で採点されます）。</li>
+        </ul>
+      </div>
+
+      <div class="mode-options">
+        <label class="toggle-label">
+          <input type="checkbox" id="shuffle-toggle" />
+          問題の順番をシャッフルして出題する（OFFの場合は単元順）
+        </label>
+      </div>
+
+      <button id="start-btn" class="btn-primary btn-full">
+        模擬テストを開始する（25:00 スタート）
+      </button>
+    </section>
+
+    <!-- 試験画面 -->
+    <section id="exam-screen" class="hidden">
+      <div class="exam-bar">
+        <div class="exam-bar-top">
+          <div id="timer-pill" class="timer-pill">⏱ 残り 25:00</div>
+          <div class="answered-status">回答済み: <strong id="answered-count">0</strong> / <span id="total-count">35</span> 問</div>
+          <button id="submit-exam-btn" class="btn-accent">採点する</button>
+        </div>
+        <div id="nav-dots" class="nav-dots"></div>
+      </div>
+
+      <div id="questions-list" class="questions-list"></div>
+
+      <div class="exam-footer">
+        <p style="margin: 0 0 12px; font-size: 0.94rem; color: var(--muted);">
+          見直しが終わったら、下のボタンを押して採点してください。
+        </p>
+        <button id="submit-exam-bottom-btn" class="btn-accent" style="min-width: 240px;">
+          テストを終了して採点する
+        </button>
+      </div>
+    </section>
+
+    <!-- 結果画面 -->
+    <section id="result-screen" class="card hidden">
+      <div class="result-hero">
+        <div class="score-ring">
+          <div class="score-100"><span id="score-100" style="font-size:2.3rem;">0</span><span>点</span></div>
+          <div id="score-raw" class="score-raw">0 / 35 問正解</div>
+        </div>
+        <div id="result-meta" class="result-meta"></div>
+        <p id="result-msg" class="result-msg"></p>
+      </div>
+
+      <div class="breakdown-grid">
+        <div class="breakdown-panel">
+          <h3>単元別の正答率</h3>
+          <div id="unit-breakdown"></div>
+        </div>
+        <div class="breakdown-panel">
+          <h3>出題形式別の正答率</h3>
+          <div id="type-breakdown"></div>
+        </div>
+      </div>
+
+      <div class="result-actions">
+        <button id="retry-wrong-btn" class="btn-primary hidden">間違えた問題だけ解き直す</button>
+        <button id="retry-all-btn" class="btn-secondary">もう一度 模擬テストを受ける</button>
+        <button id="back-home-btn" class="btn-secondary">スタート画面に戻る</button>
+      </div>
+
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all">すべて表示</button>
+        <button class="filter-tab" data-filter="wrong">間違えた問題のみ</button>
+        <button class="filter-tab" data-filter="correct">正解した問題のみ</button>
+      </div>
+
+      <div id="review-list" class="review-list"></div>
+    </section>
+  </main>
+
+  <!-- 確認モーダル -->
+  <div id="confirm-modal" class="modal-backdrop hidden">
+    <div class="modal-box">
+      <h3>採点に進みますか？</h3>
+      <p id="modal-msg"></p>
+      <div class="modal-actions">
+        <button id="modal-cancel-btn" class="btn-secondary">戻って見直す</button>
+        <button id="modal-confirm-btn" class="btn-accent">採点する</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 全7単元 × 各5問 ＝ 全35問（選択式14問・穴埋め14問・○×7問）
+    const QUESTIONS = [
+      // === 1. 健康の成り立ち（5問） ===
+      {
+        unit: "1. 健康の成り立ち",
+        kind: "choice",
+        q: "かつての日本（1950年ごろまで）で死因の上位を占めていたが、衛生環境の改善・栄養状態の向上・医療技術の進歩により大幅に減少した病気はどれか。",
+        choices: ["結核や赤痢などの感染症", "がんや心臓病などの生活習慣病", "老衰", "スポーツ障害"],
+        answer: 0,
+        exp: "かつての日本では結核・赤痢・肺炎などの<strong>感染症</strong>が主な死因でしたが、衛生環境の改善や栄養状態の向上、医療技術の進歩などによって大きく減少しました。"
+      },
+      {
+        unit: "1. 健康の成り立ち",
+        kind: "blank",
+        q: "近年の日本では、食生活の変化や運動不足などによって、がん・心臓病・脳卒中などの【　　】が死因の上位を占めている。",
+        blanks: [["生活習慣病", "せいかつしゅうかんびょう"]],
+        exp: "食生活の変化や運動不足などの生活習慣が関わる<strong>生活習慣病</strong>（がん・心臓病・脳卒中など）が、現代の日本の死因の上位を占めています。"
+      },
+      {
+        unit: "1. 健康の成り立ち",
+        kind: "blank",
+        q: "病気や健康に関わる要因のうち、体質・性・年齢などの素因や運動・食事・休養などの行動を【　①　】といい、個人を取り巻く状態を【　②　】という。",
+        labels: ["①", "②"],
+        blanks: [
+          ["主体の要因", "主体", "しゅたいのよういん", "しゅたい"],
+          ["環境の要因", "環境", "かんきょうのよういん", "かんきょう"]
+        ],
+        exp: "健康は、個人の素因・行動である<strong>主体の要因</strong>と、物理的・化学的環境、生物学的環境、社会的環境などの<strong>環境の要因</strong>の両方を良好に保つことで成り立ちます。"
+      },
+      {
+        unit: "1. 健康の成り立ち",
+        kind: "ox",
+        q: "健康の保持増進のためには、一人ひとりが生活習慣を見直す個人の努力だけでなく、医療制度や環境整備などの社会的な取り組みの両方が必要である。",
+        answer: true,
+        exp: "正しい（○）。主体の要因を整える<strong>個人の努力</strong>と、環境の要因を整える<strong>社会的な取り組み</strong>の両輪が必要です。"
+      },
+      {
+        unit: "1. 健康の成り立ち",
+        kind: "choice",
+        q: "2018年に日本の死因の第3位となったのはどれか。",
+        choices: ["老衰", "感染症", "脳卒中", "不慮の事故"],
+        answer: 0,
+        exp: "高齢化の進展と自然な死を受け入れる考え方の広がりなどから、2018年には<strong>老衰</strong>が日本の死因の第3位となりました。"
+      },
+
+      // === 2. 運動と健康・運動指針（5問） ===
+      {
+        unit: "2. 運動と健康・運動指針",
+        kind: "blank",
+        q: "健康づくりのための運動が満たすべき「3つの条件」は、【　①　】であること、【　②　】があること、【　③　】ことである。",
+        labels: ["①", "②", "③"],
+        blanks: [
+          ["安全", "あんぜん", "安全であること"],
+          ["効果", "こうか", "効果があること"],
+          ["楽しい", "たのしい", "楽しいこと"]
+        ],
+        exp: "健康づくりのための運動の3つの条件は、<strong>安全</strong>であること・<strong>効果</strong>があること・<strong>楽しい</strong>ことです。"
+      },
+      {
+        unit: "2. 運動と健康・運動指針",
+        kind: "choice",
+        q: "運動指針において、「持久力」を高める運動（ウオーキング、ジョギング、水泳など）の望ましい時間と頻度はどれか。",
+        choices: ["1日10〜30分、週3日以上", "1日5分、週1日程度", "1日10〜30分、週2日程度", "1日90分以上、毎日"],
+        answer: 0,
+        exp: "運動指針では、持久力を高める運動は「ややきつい〜かなりきつい」強さで、<strong>1日10〜30分、週3日以上</strong>が目安とされています（筋力トレーニングは週2日程度）。"
+      },
+      {
+        unit: "2. 運動と健康・運動指針",
+        kind: "blank",
+        q: "中学生の時期は骨や関節が著しく発育するため、負担のかかる運動を繰り返すと、野球肘やオスグッド病などの【　　】を起こしやすい。",
+        blanks: [["スポーツ障害", "すぽーつしょうがい"]],
+        exp: "成長期の骨や関節に同じ負担を繰り返しかけることで起きるケガを<strong>スポーツ障害</strong>といいます。"
+      },
+      {
+        unit: "2. 運動と健康・運動指針",
+        kind: "choice",
+        q: "歩くより少し速いくらいのペースで、景色を楽しんだり会話したりしながらゆっくり長い距離を走るトレーニング方法を何というか。",
+        choices: ["ロング・スロー・ディスタンス（LSD）", "インターバルトレーニング", "スキャモンのトレーニング", "高強度サーキット"],
+        answer: 0,
+        exp: "「きつくない」「ゆっくり」でも心肺機能を高める効果が高い走り方を<strong>ロング・スロー・ディスタンス（LSD）</strong>といいます。"
+      },
+      {
+        unit: "2. 運動と健康・運動指針",
+        kind: "ox",
+        q: "運動には、心臓・骨・筋肉を発達させる身体的効果だけでなく、緊張やストレスを和らげる精神的効果もある。",
+        answer: true,
+        exp: "正しい（○）。適度な運動は体の各器官を発達させるとともに、気分転換やストレス解消などの<strong>精神的効果</strong>ももたらします。"
+      },
+
+      // === 3. 食生活と健康（5問） ===
+      {
+        unit: "3. 食生活と健康",
+        kind: "blank",
+        q: "私たちがじっとしているときにも消費している、生命を維持するために最小限必要なエネルギーの消費量を【　　】という。",
+        blanks: [["基礎代謝量", "きそたいしゃりょう", "基礎代謝", "きそたいしゃ"]],
+        exp: "安静にしていても心臓を動かしたり体温を保ったりするために使われる最小限のエネルギー量を<strong>基礎代謝量</strong>といいます。"
+      },
+      {
+        unit: "3. 食生活と健康",
+        kind: "choice",
+        q: "1日に消費するエネルギー量の計算式として正しいものはどれか。",
+        choices: [
+          "基礎代謝量 ＋ 活動や運動によって消費するエネルギー量",
+          "摂取エネルギー量 － 基礎代謝量",
+          "基礎代謝量 × 睡眠時間",
+          "活動による消費エネルギー量 － 基礎代謝量"
+        ],
+        answer: 0,
+        exp: "1日の消費エネルギー量 ＝ <strong>基礎代謝量 ＋ 活動や運動によって消費するエネルギー量</strong> です。"
+      },
+      {
+        unit: "3. 食生活と健康",
+        kind: "blank",
+        q: "体重50kgの人が、ごはん1杯分（約220kcal）のエネルギーを普通の歩行（約3kcal/分）だけで消費しようとすると、およそ【　　】分間歩く必要がある。（数字で答えよ）",
+        blanks: [["73", "７３", "73分", "約73分", "74"]],
+        exp: "220kcal ÷ 3kcal/分 ＝ 73.3… なので、およそ<strong>73分</strong>歩く必要があります。食事と運動のバランスが大切です。"
+      },
+      {
+        unit: "3. 食生活と健康",
+        kind: "blank",
+        q: "活動量が少ない人が普通の食事をとり続けると、【　　】（とりすぎ）になりやすいため、生活の中に運動を取り入れることが大切である。",
+        blanks: [["エネルギー過多", "えねるぎーかた", "エネルギー過剰", "カロリー過多"]],
+        exp: "消費エネルギーより摂取エネルギーが上回る状態を<strong>エネルギー過多</strong>といいます。"
+      },
+      {
+        unit: "3. 食生活と健康",
+        kind: "ox",
+        q: "食物に含まれる栄養素は、不足すると障害の原因になるが、とりすぎた場合は体からすべて排出されるため問題はない。",
+        answer: false,
+        exp: "誤り（×）。栄養素は<strong>不足</strong>しても<strong>とりすぎ</strong>てもさまざまな健康障害の原因になります。"
+      },
+
+      // === 4. 休養・睡眠と健康（5問） ===
+      {
+        unit: "4. 休養・睡眠と健康",
+        kind: "blank",
+        q: "疲労やストレスが蓄積すると、体の【　　】が低下して感染症にかかりやすくなったり、胃潰瘍や高血圧などの健康障害につながったりする。",
+        blanks: [["抵抗力", "ていこうりょく", "免疫力", "めんえきりょく"]],
+        exp: "疲労やストレスがたまると体の<strong>抵抗力</strong>が低下し、感染症にかかりやすくなります。"
+      },
+      {
+        unit: "4. 休養・睡眠と健康",
+        kind: "choice",
+        q: "休養の役割として、最も適切な説明はどれか。",
+        choices: [
+          "心身の疲労を回復し緊張を解消するとともに、英気（活力）を養う",
+          "体を一切動かさずに基礎代謝量を下げる",
+          "睡眠時間を削って活動の時間を増やす",
+          "栄養補給を控えてエネルギー消費を減らす"
+        ],
+        answer: 0,
+        exp: "休養は、心身の疲労を<strong>回復</strong>させ緊張を解消するとともに、次の活動に向けて<strong>英気（活力）を養う</strong>ために必要です。"
+      },
+      {
+        unit: "4. 休養・睡眠と健康",
+        kind: "blank",
+        q: "世界の平均睡眠時間は【　①　】時間【　②　】分であり、日本人の平均睡眠時間はこれと比べてかなり短い。",
+        labels: ["①時間", "②分"],
+        blanks: [["8", "８"], ["28", "２８"]],
+        exp: "世界の平均睡眠時間は<strong>8時間28分</strong>です。日本の平均睡眠時間は2016年より増加したものの、世界平均と比べるとかなり短い状況です。"
+      },
+      {
+        unit: "4. 休養・睡眠と健康",
+        kind: "choice",
+        q: "日本人の睡眠時間が短い理由として挙げられているものの組み合わせはどれか。",
+        choices: [
+          "労働時間の長さ、睡眠への関心の薄さ、寝る前のスマートフォンの使用",
+          "昼寝の時間が長すぎること、朝の食事量が多いこと",
+          "運動量が多すぎること、気温が高いこと",
+          "中学生の通学時間が長いこと、入浴時間が長いこと"
+        ],
+        answer: 0,
+        exp: "日本人の睡眠時間が短い理由には、<strong>労働時間が長いこと、睡眠への関心が薄いこと、寝る前のスマートフォンの使用</strong>などが挙げられています。"
+      },
+      {
+        unit: "4. 休養・睡眠と健康",
+        kind: "ox",
+        q: "長時間の学習、運動、作業などによって生じる眠気やだるさ、頭痛などの心身の状態の変化を「疲労」という。",
+        answer: true,
+        exp: "正しい（○）。<strong>疲労</strong>は、眠気やだるさ、頭痛、集中力の低下など、心身の状態の変化として現れます。"
+      },
+
+      // === 5. 調和のとれた生活（5問） ===
+      {
+        unit: "5. 調和のとれた生活",
+        kind: "blank",
+        q: "心身の健康を保持増進するためには、年齢や生活環境に応じて、運動・食事・休養・睡眠の【　　】を送る必要がある。",
+        blanks: [["調和のとれた生活", "ちょうわのとれたせいかつ", "調和の取れた生活"]],
+        exp: "どれか1つに偏らず、運動・食事・休養・睡眠の<strong>調和のとれた生活</strong>を送ることが大切です。"
+      },
+      {
+        unit: "5. 調和のとれた生活",
+        kind: "blank",
+        q: "朝食を食べることで、寝ている間に低下した【　　】を上昇させ、体や脳がしっかり働くようになる。",
+        blanks: [["体温", "たいおん"]],
+        exp: "朝食をとることで、睡眠中に下がった<strong>体温</strong>が上昇し、午前中から体と脳が活発に働きます。"
+      },
+      {
+        unit: "5. 調和のとれた生活",
+        kind: "choice",
+        q: "朝食を食べないと起こりやすい問題として正しいものはどれか。",
+        choices: [
+          "1回の食事量が増えて食べ過ぎてしまい、肥満や生活習慣病につながることがある",
+          "基礎代謝が上がりすぎて痩せすぎてしまう",
+          "寝ている間に上がった体温を下げられなくなる",
+          "心臓の拍出量が急に増えすぎる"
+        ],
+        answer: 0,
+        exp: "朝食を抜くと空腹から1回の食事量が増えて食べ過ぎてしまい、<strong>肥満や生活習慣病の発症</strong>につながることがあります。"
+      },
+      {
+        unit: "5. 調和のとれた生活",
+        kind: "choice",
+        q: "近年の中学生の朝食の欠食率についてわかっていることはどれか。",
+        choices: [
+          "起床時刻や就寝時刻が定まっていない人ほど、欠食率が高い",
+          "早寝早起きの人ほど、欠食率が高い",
+          "夜食をとる人ほど、翌朝の朝食をしっかり食べる",
+          "中学生で朝食を抜く人はほぼゼロになった"
+        ],
+        answer: 0,
+        exp: "<strong>起床時刻や就寝時刻が定まっていない人ほど欠食率が高い</strong>ことがわかっています。夜食で胃腸に負担がかかり翌朝食べられなくなる悪循環も起こります。"
+      },
+      {
+        unit: "5. 調和のとれた生活",
+        kind: "ox",
+        q: "睡眠は、平日に削った分を休日にまとめて長時間眠れば、体内リズム（生体リズム）を整えることができる。",
+        answer: false,
+        exp: "誤り（×）。睡眠は<strong>体内リズム（生体リズム）に合わせて毎日決まった時間帯に眠る</strong>ことが望ましく、休日の寝だめはリズムを乱す原因になります。"
+      },
+
+      // === 6. 体の発育・発達（5問） ===
+      {
+        unit: "6. 体の発育・発達",
+        kind: "ox",
+        q: "体の「働き（機能）」が高まることを「発育」といい、身長や体重など体の「大きさ」が増すことを「発達」という。",
+        answer: false,
+        exp: "誤り（×）。逆です！体の<strong>大きさ</strong>が増すことが<strong>発育</strong>、体の<strong>働き（機能）</strong>が高まることが<strong>発達</strong>です。"
+      },
+      {
+        unit: "6. 体の発育・発達",
+        kind: "blank",
+        q: "スキャモンの発育曲線で、20歳を100としたとき、12歳ごろに大人以上（180〜200近く）まで発育するのは、扁桃や胸腺などの【　　】である。",
+        blanks: [["リンパ型", "りんぱ型", "りんぱがた", "リンパ"]],
+        exp: "扁桃や胸腺などの<strong>リンパ型</strong>は、思春期に大人以上に発育し、その後減少するのが特徴です。"
+      },
+      {
+        unit: "6. 体の発育・発達",
+        kind: "choice",
+        q: "スキャモンの発育曲線において、次の器官と型の組み合わせが正しいものはどれか。",
+        choices: [
+          "脳・脊髄 ― 神経型 ／ 卵巣・精巣 ― 生殖型",
+          "骨・筋肉 ― リンパ型 ／ 心臓・肺 ― 神経型",
+          "扁桃・胸腺 ― 一般型 ／ 脳・脊髄 ― リンパ型",
+          "卵巣・精巣 ― 一般型 ／ 心臓・肺 ― 生殖型"
+        ],
+        answer: 0,
+        exp: "<strong>脳・脊髄＝神経型</strong>、<strong>卵巣・精巣＝生殖型</strong>、<strong>骨・筋肉・肺・心臓＝一般型</strong>、<strong>扁桃・胸腺＝リンパ型</strong>です。"
+      },
+      {
+        unit: "6. 体の発育・発達",
+        kind: "blank",
+        q: "無理なダイエットをすると、筋肉をつくる【　①　】が不足して筋肉量が減り、【　②　】が下がって脂肪が燃えにくい体になってしまう。",
+        labels: ["①栄養素", "②"],
+        blanks: [
+          ["たんぱく質", "タンパク質", "たんぱくしつ"],
+          ["基礎代謝", "きそたいしゃ", "基礎代謝量", "きそたいしゃりょう"]
+        ],
+        exp: "<strong>たんぱく質</strong>の不足で筋肉量が減ると<strong>基礎代謝</strong>が下がり、太りやすく痩せにくい体になります。"
+      },
+      {
+        unit: "6. 体の発育・発達",
+        kind: "choice",
+        q: "乳幼児期の急激な発育を「第1発育急進期」というのに対し、思春期の急激な発育と男女の時期の違いについて正しいものはどれか。",
+        choices: [
+          "第2発育急進期といい、一般に女子の方が男子より早く来る",
+          "第2発育急進期といい、一般に男子の方が女子より早く来る",
+          "二次性徴期といい、男女まったく同じ年齢で始まる",
+          "神経型発育期といい、女子だけに起こる"
+        ],
+        answer: 0,
+        exp: "思春期は<strong>第2発育急進期</strong>にあたり、個人差はあるものの一般に<strong>女子の方が男子より早く来ます</strong>。"
+      },
+
+      // === 7. 呼吸器・循環器（5問） ===
+      {
+        unit: "7. 呼吸器・循環器",
+        kind: "blank",
+        q: "肺の中にある無数の小さな袋である【　①　】と毛細血管との間で、酸素と二酸化炭素を交換することを【　②　】という。",
+        labels: ["①", "②"],
+        blanks: [
+          ["肺胞", "はいほう"],
+          ["ガス交換", "がすこうかん"]
+        ],
+        exp: "空気の通り道（気管支）の先にある小さな袋が<strong>肺胞</strong>で、毛細血管との間で酸素と二酸化炭素を交換する働きを<strong>ガス交換</strong>といいます。"
+      },
+      {
+        unit: "7. 呼吸器・循環器",
+        kind: "choice",
+        q: "呼吸の仕組みについて、正しい説明はどれか。",
+        choices: [
+          "肺そのものは動けず、周りの胸郭や横隔膜が動くことで空気を出し入れしている",
+          "肺の筋肉が自分で伸び縮みして空気を吸い込んでいる",
+          "息を吸うときは胸郭が狭まり、横隔膜が上がる",
+          "息を吐くときは胸郭が広がり、肺が膨らむ"
+        ],
+        answer: 0,
+        exp: "肺そのものは動けないため、周りの骨と筋肉でできた<strong>胸郭</strong>や<strong>横隔膜</strong>が動くことで呼吸しています。"
+      },
+      {
+        unit: "7. 呼吸器・循環器",
+        kind: "ox",
+        q: "毛細血管の中を流れて、肺胞から取り入れた酸素を全身へ運ぶ働きをするのは「白血球」である。",
+        answer: false,
+        exp: "誤り（×）。酸素を運ぶのは<strong>赤血球</strong>です（白血球は体内に侵入した細菌やウイルスと戦う働きをします）。"
+      },
+      {
+        unit: "7. 呼吸器・循環器",
+        kind: "choice",
+        q: "5歳の頃と中学生を比べたとき、呼吸器・循環器の発達による変化として正しいものはどれか。",
+        choices: [
+          "呼吸数と脈拍数は減少し、肺活量と拍出量は増大する",
+          "呼吸数・脈拍数・肺活量・拍出量のすべてが増加する",
+          "呼吸数と脈拍数は増加し、肺活量と拍出量は減少する",
+          "呼吸数と肺活量は変わらず、脈拍数だけが増加する"
+        ],
+        answer: 0,
+        exp: "呼吸器・循環器が発達すると1回に取り込める空気量・送り出せる血液量が増えるため、<strong>肺活量と拍出量は増大</strong>し、安静時の<strong>呼吸数と脈拍数は減少</strong>します。"
+      },
+      {
+        unit: "7. 呼吸器・循環器",
+        kind: "blank",
+        q: "思春期は呼吸器・循環器とかかわりの深い【　①　】を高めるのに適した時期であり、「少しきつい」（脈拍数【　②　】〜【　③　】拍/分）程度の運動を継続的に行うと効果的である。",
+        labels: ["①", "②下限", "③上限"],
+        blanks: [
+          ["持久力", "じきゅうりょく", "全身持久力"],
+          ["120", "１２０"],
+          ["140", "１４０"]
+        ],
+        exp: "思春期は<strong>持久力</strong>を高めるのに最も適した時期で、「少しきつい」（脈拍数<strong>120〜140</strong>拍/分）程度の運動を継続的に行うことが効果的です。"
+      }
+    ];
+
+    const EXAM_DURATION_SEC = 25 * 60;
+
+    const startScreen = document.getElementById("start-screen");
+    const examScreen = document.getElementById("exam-screen");
+    const resultScreen = document.getElementById("result-screen");
+
+    const shuffleToggle = document.getElementById("shuffle-toggle");
+    const timerPill = document.getElementById("timer-pill");
+    const answeredCountEl = document.getElementById("answered-count");
+    const totalCountEl = document.getElementById("total-count");
+    const navDotsEl = document.getElementById("nav-dots");
+    const questionsListEl = document.getElementById("questions-list");
+
+    const confirmModal = document.getElementById("confirm-modal");
+    const modalMsg = document.getElementById("modal-msg");
+
+    const score100El = document.getElementById("score-100");
+    const scoreRawEl = document.getElementById("score-raw");
+    const resultMetaEl = document.getElementById("result-meta");
+    const resultMsgEl = document.getElementById("result-msg");
+    const unitBreakdownEl = document.getElementById("unit-breakdown");
+    const typeBreakdownEl = document.getElementById("type-breakdown");
+    const retryWrongBtn = document.getElementById("retry-wrong-btn");
+    const reviewListEl = document.getElementById("review-list");
+
+    let activeQuestions = [];
+    let userAnswers = []; // choice: number|null, ox: boolean|null, blank: string[]
+    let flagged = [];
+    let gradedResults = []; // { correct: boolean, autoCorrect: boolean, userDisplay: string, modelDisplay: string }
+    let timerId = null;
+    let remainingSec = EXAM_DURATION_SEC;
+    let currentFilter = "all";
+
+    function shuffleArray(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function normalizeText(str) {
+      return String(str || "")
+        .trim()
+        .replace(/[Ａ-Ｚａ-ｚ０-９]/g, (s) => String.fromCharCode(s.charCodeAt(0) - 0xFEE0))
+        .replace(/[\u30a1-\u30f6]/g, (s) => String.fromCharCode(s.charCodeAt(0) - 0x60))
+        .replace(/[\s　・･、。,.「」『』（）()]/g, "")
+        .toLowerCase();
+    }
+
+    function formatTime(sec) {
+      const m = Math.floor(sec / 60);
+      const s = sec % 60;
+      return `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+    }
+
+    function startExam(customPool = null) {
+      const basePool = customPool || QUESTIONS;
+      const prepared = basePool.map((q) => {
+        if (q.kind === "choice") {
+          const indexed = q.choices.map((text, idx) => ({ text, isCorrect: idx === q.answer }));
+          return { ...q, renderedChoices: shuffleArray(indexed) };
+        }
+        return { ...q };
+      });
+
+      activeQuestions = shuffleToggle.checked ? shuffleArray(prepared) : prepared;
+      userAnswers = activeQuestions.map((q) => {
+        if (q.kind === "blank") return q.blanks.map(() => "");
+        return null;
+      });
+      flagged = activeQuestions.map(() => false);
+
+      remainingSec = EXAM_DURATION_SEC;
+      updateTimerUI();
+
+      startScreen.classList.add("hidden");
+      resultScreen.classList.add("hidden");
+      examScreen.classList.remove("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+
+      renderExam();
+      startTimer();
+    }
+
+    function startTimer() {
+      stopTimer();
+      timerId = setInterval(() => {
+        remainingSec--;
+        updateTimerUI();
+        if (remainingSec <= 0) {
+          stopTimer();
+          gradeExam(true);
+        }
+      }, 1000);
+    }
+
+    function stopTimer() {
+      if (timerId !== null) {
+        clearInterval(timerId);
+        timerId = null;
+      }
+    }
+
+    function updateTimerUI() {
+      timerPill.textContent = `⏱ 残り ${formatTime(Math.max(0, remainingSec))}`;
+      timerPill.classList.remove("is-warn", "is-danger");
+      if (remainingSec <= 60) {
+        timerPill.classList.add("is-danger");
+      } else if (remainingSec <= 300) {
+        timerPill.classList.add("is-warn");
+      }
+    }
+
+    function isQuestionAnswered(idx) {
+      const q = activeQuestions[idx];
+      const ans = userAnswers[idx];
+      if (q.kind === "blank") {
+        return ans.every((v) => v.trim().length > 0);
+      }
+      return ans !== null;
+    }
+
+    function updateProgressStatus() {
+      let done = 0;
+      const dots = navDotsEl.querySelectorAll(".nav-dot");
+      activeQuestions.forEach((_, idx) => {
+        const isDone = isQuestionAnswered(idx);
+        if (isDone) done++;
+        if (dots[idx]) {
+          dots[idx].classList.toggle("is-done", isDone);
+          dots[idx].classList.toggle("is-flagged", flagged[idx]);
+        }
+      });
+      answeredCountEl.textContent = done;
+      totalCountEl.textContent = activeQuestions.length;
+    }
+
+    function renderExam() {
+      navDotsEl.innerHTML = "";
+      questionsListEl.innerHTML = "";
+
+      activeQuestions.forEach((q, idx) => {
+        // Nav dot
+        const dot = document.createElement("button");
+        dot.className = "nav-dot";
+        dot.textContent = idx + 1;
+        dot.title = `第${idx + 1}問へ移動`;
+        dot.addEventListener("click", () => {
+          document.getElementById(`q-card-${idx}`).scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+        navDotsEl.appendChild(dot);
+
+        // Question card
+        const card = document.createElement("article");
+        card.className = "q-card";
+        card.id = `q-card-${idx}`;
+
+        const typeLabel = q.kind === "choice" ? "4択" : q.kind === "blank" ? "穴埋め" : "○×";
+        const typeClass = q.kind === "choice" ? "badge-type-choice" : q.kind === "blank" ? "badge-type-blank" : "badge-type-ox";
+
+        card.innerHTML = `
+          <div class="q-head">
+            <div class="q-badges">
+              <span class="q-num">第 ${idx + 1} 問</span>
+              <span class="badge badge-unit">${q.unit}</span>
+              <span class="badge ${typeClass}">${typeLabel}</span>
+            </div>
+            <button type="button" class="flag-btn" data-idx="${idx}">⚑ 見直し</button>
+          </div>
+          <p class="q-text">${q.q}</p>
+          <div class="q-body"></div>
+        `;
+
+        const flagBtn = card.querySelector(".flag-btn");
+        flagBtn.addEventListener("click", () => {
+          flagged[idx] = !flagged[idx];
+          flagBtn.classList.toggle("active", flagged[idx]);
+          flagBtn.textContent = flagged[idx] ? "⚑ 見直し中" : "⚑ 見直し";
+          updateProgressStatus();
+        });
+
+        const body = card.querySelector(".q-body");
+
+        if (q.kind === "choice") {
+          const optList = document.createElement("div");
+          optList.className = "opt-list";
+          q.renderedChoices.forEach((c, cIdx) => {
+            const lbl = document.createElement("label");
+            lbl.className = "opt-label";
+            lbl.innerHTML = `
+              <input type="radio" name="q_${idx}" value="${cIdx}" />
+              <span>${c.text}</span>
+            `;
+            const radio = lbl.querySelector("input");
+            radio.addEventListener("change", () => {
+              userAnswers[idx] = cIdx;
+              optList.querySelectorAll(".opt-label").forEach((el, i) => {
+                el.classList.toggle("selected", i === cIdx);
+              });
+              updateProgressStatus();
+            });
+            optList.appendChild(lbl);
+          });
+          body.appendChild(optList);
+        } else if (q.kind === "ox") {
+          const oxList = document.createElement("div");
+          oxList.className = "ox-list";
+          [
+            { val: true, label: "⭕ 正しい（○）" },
+            { val: false, label: "❌ 誤り（×）" }
+          ].forEach((opt, oIdx) => {
+            const lbl = document.createElement("label");
+            lbl.className = "opt-label";
+            lbl.innerHTML = `
+              <input type="radio" name="q_${idx}" value="${opt.val}" />
+              <span>${opt.label}</span>
+            `;
+            const radio = lbl.querySelector("input");
+            radio.addEventListener("change", () => {
+              userAnswers[idx] = opt.val;
+              oxList.querySelectorAll(".opt-label").forEach((el, i) => {
+                el.classList.toggle("selected", i === oIdx);
+              });
+              updateProgressStatus();
+            });
+            oxList.appendChild(lbl);
+          });
+          body.appendChild(oxList);
+        } else if (q.kind === "blank") {
+          const grp = document.createElement("div");
+          grp.className = "blank-group";
+          q.blanks.forEach((_, bIdx) => {
+            const row = document.createElement("div");
+            row.className = "blank-row";
+            if (q.blanks.length > 1) {
+              const lblText = (q.labels && q.labels[bIdx]) ? q.labels[bIdx] : `空欄 ${bIdx + 1}`;
+              const lbl = document.createElement("span");
+              lbl.className = "blank-lbl";
+              lbl.textContent = lblText;
+              row.appendChild(lbl);
+            }
+            const input = document.createElement("input");
+            input.type = "text";
+            input.className = "blank-input";
+            input.placeholder = "答えを入力";
+            input.autocomplete = "off";
+            input.addEventListener("input", () => {
+              userAnswers[idx][bIdx] = input.value;
+              updateProgressStatus();
+            });
+            row.appendChild(input);
+            grp.appendChild(row);
+          });
+          body.appendChild(grp);
+        }
+
+        questionsListEl.appendChild(card);
+      });
+
+      updateProgressStatus();
+    }
+
+    function requestSubmit() {
+      const unanswered = activeQuestions.filter((_, i) => !isQuestionAnswered(i)).length;
+      if (unanswered > 0) {
+        modalMsg.textContent = `まだ未回答（または入力途中）の問題が ${unanswered} 問あります。このまま採点に進みますか？`;
+      } else {
+        modalMsg.textContent = "全問回答済みです！テストを終了して採点結果を表示しますか？";
+      }
+      confirmModal.classList.remove("hidden");
+    }
+
+    function gradeExam(isTimeUp = false) {
+      stopTimer();
+      confirmModal.classList.add("hidden");
+
+      const usedSec = EXAM_DURATION_SEC - Math.max(0, remainingSec);
+
+      gradedResults = activeQuestions.map((q, idx) => {
+        const ans = userAnswers[idx];
+        let isCorrect = false;
+        let userDisplay = "";
+        let modelDisplay = "";
+
+        if (q.kind === "choice") {
+          const correctChoice = q.renderedChoices.find((c) => c.isCorrect);
+          modelDisplay = correctChoice.text;
+          if (ans === null) {
+            userDisplay = "（未回答）";
+          } else {
+            userDisplay = q.renderedChoices[ans].text;
+            isCorrect = q.renderedChoices[ans].isCorrect;
+          }
+        } else if (q.kind === "ox") {
+          modelDisplay = q.answer ? "○（正しい）" : "×（誤り）";
+          if (ans === null) {
+            userDisplay = "（未回答）";
+          } else {
+            userDisplay = ans ? "○（正しい）" : "×（誤り）";
+            isCorrect = ans === q.answer;
+          }
+        } else if (q.kind === "blank") {
+          const allMatch = q.blanks.every((accepted, bIdx) => {
+            const normUser = normalizeText(ans[bIdx] || "");
+            if (!normUser) return false;
+            return accepted.some((acc) => normalizeText(acc) === normUser);
+          });
+          isCorrect = allMatch;
+          userDisplay = q.blanks.map((_, bIdx) => {
+            const val = (ans[bIdx] || "").trim() || "（未入力）";
+            return q.blanks.length > 1 && q.labels ? `${q.labels[bIdx]}: ${val}` : val;
+          }).join(" ／ ");
+          modelDisplay = q.blanks.map((acc, bIdx) => {
+            return q.blanks.length > 1 && q.labels ? `${q.labels[bIdx]}: ${acc[0]}` : acc[0];
+          }).join(" ／ ");
+        }
+
+        return {
+          correct: isCorrect,
+          autoCorrect: isCorrect,
+          userDisplay,
+          modelDisplay
+        };
+      });
+
+      examScreen.classList.add("hidden");
+      resultScreen.classList.remove("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+
+      resultMetaEl.textContent = isTimeUp
+        ? "⏱ 時間終了により自動採点されました（所要時間 25:00）"
+        : `所要時間：${formatTime(usedSec)} / 25:00`;
+
+      currentFilter = "all";
+      document.querySelectorAll(".filter-tab").forEach((t) => {
+        t.classList.toggle("active", t.dataset.filter === "all");
+      });
+
+      renderResults();
+    }
+
+    function renderResults() {
+      const total = activeQuestions.length;
+      const correctCount = gradedResults.filter((r) => r.correct).length;
+      const score100 = Math.round((correctCount / total) * 100);
+
+      score100El.textContent = score100;
+      scoreRawEl.textContent = `${correctCount} / ${total} 問正解`;
+
+      if (score100 >= 90) {
+        resultMsgEl.textContent = "素晴らしい！テスト本番でも高得点が狙える仕上がりです！";
+      } else if (score100 >= 75) {
+        resultMsgEl.textContent = "よくできました！間違えた箇所を復習すればさらに盤石です。";
+      } else if (score100 >= 55) {
+        resultMsgEl.textContent = "基礎は定着しています。穴埋めとひっかけ問題を見直しましょう！";
+      } else {
+        resultMsgEl.textContent = "まずは下の解説一覧で間違えた問題を確認して、再挑戦しよう！";
+      }
+
+      // Unit breakdown
+      const unitMap = {};
+      const typeMap = {
+        choice: { label: "4択問題", total: 0, ok: 0 },
+        blank: { label: "穴埋め問題", total: 0, ok: 0 },
+        ox: { label: "○×問題", total: 0, ok: 0 }
+      };
+
+      activeQuestions.forEach((q, idx) => {
+        if (!unitMap[q.unit]) unitMap[q.unit] = { total: 0, ok: 0 };
+        unitMap[q.unit].total++;
+        typeMap[q.kind].total++;
+        if (gradedResults[idx].correct) {
+          unitMap[q.unit].ok++;
+          typeMap[q.kind].ok++;
+        }
+      });
+
+      unitBreakdownEl.innerHTML = "";
+      Object.entries(unitMap).forEach(([unit, st]) => {
+        const pct = Math.round((st.ok / st.total) * 100);
+        unitBreakdownEl.innerHTML += `
+          <div class="b-row">
+            <div class="b-lbl"><span>${unit}</span><span>${st.ok} / ${st.total} (${pct}%)</span></div>
+            <div class="b-bar-bg"><div class="b-bar-fill" style="width:${pct}%"></div></div>
+          </div>
+        `;
+      });
+
+      typeBreakdownEl.innerHTML = "";
+      Object.values(typeMap).forEach((st) => {
+        if (st.total === 0) return;
+        const pct = Math.round((st.ok / st.total) * 100);
+        typeBreakdownEl.innerHTML += `
+          <div class="b-row">
+            <div class="b-lbl"><span>${st.label}</span><span>${st.ok} / ${st.total} (${pct}%)</span></div>
+            <div class="b-bar-bg"><div class="b-bar-fill" style="width:${pct}%"></div></div>
+          </div>
+        `;
+      });
+
+      const wrongCount = total - correctCount;
+      retryWrongBtn.classList.toggle("hidden", wrongCount === 0);
+
+      renderReviewList();
+    }
+
+    function renderReviewList() {
+      reviewListEl.innerHTML = "";
+      activeQuestions.forEach((q, idx) => {
+        const res = gradedResults[idx];
+        if (currentFilter === "wrong" && res.correct) return;
+        if (currentFilter === "correct" && !res.correct) return;
+
+        const item = document.createElement("div");
+        item.className = `rev-item ${res.correct ? "is-correct" : "is-wrong"}`;
+
+        const typeLabel = q.kind === "choice" ? "4択" : q.kind === "blank" ? "穴埋め" : "○×";
+        const statusText = res.correct ? "⭕ 正解" : "❌ 不正解";
+
+        item.innerHTML = `
+          <div class="rev-top">
+            <div>
+              <span class="rev-status">${statusText}</span>
+              <span style="font-size:0.85rem; color:var(--muted); margin-left:8px;">第${idx + 1}問 ／ ${q.unit}（${typeLabel}）</span>
+            </div>
+            ${q.kind === "blank" ? `<button type="button" class="self-override-btn">${res.correct ? "不正解に戻す" : "表記違いのため正解にする"}</button>` : ""}
+          </div>
+          <div class="rev-q">${q.q}</div>
+          <div class="rev-ans-box">
+            <div class="rev-user"><strong>あなたの解答：</strong>${res.userDisplay}</div>
+            <div class="rev-model"><strong>模範解答：</strong>${res.modelDisplay}</div>
+          </div>
+          <div class="rev-exp"><strong>解説：</strong>${q.exp}</div>
+        `;
+
+        if (q.kind === "blank") {
+          item.querySelector(".self-override-btn").addEventListener("click", () => {
+            gradedResults[idx].correct = !gradedResults[idx].correct;
+            renderResults();
+          });
+        }
+
+        reviewListEl.appendChild(item);
+      });
+
+      if (reviewListEl.children.length === 0) {
+        reviewListEl.innerHTML = `<p style="text-align:center; color:var(--muted); padding:20px;">該当する問題はありません。</p>`;
+      }
+    }
+
+    // Event Listeners
+    document.getElementById("start-btn").addEventListener("click", () => startExam());
+    document.getElementById("submit-exam-btn").addEventListener("click", requestSubmit);
+    document.getElementById("submit-exam-bottom-btn").addEventListener("click", requestSubmit);
+
+    document.getElementById("modal-cancel-btn").addEventListener("click", () => {
+      confirmModal.classList.add("hidden");
+    });
+    document.getElementById("modal-confirm-btn").addEventListener("click", () => gradeExam(false));
+
+    document.getElementById("retry-wrong-btn").addEventListener("click", () => {
+      const wrongQs = activeQuestions.filter((_, idx) => !gradedResults[idx].correct);
+      startExam(wrongQs);
+    });
+
+    document.getElementById("retry-all-btn").addEventListener("click", () => startExam());
+
+    document.getElementById("back-home-btn").addEventListener("click", () => {
+      resultScreen.classList.add("hidden");
+      startScreen.classList.remove("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    document.querySelectorAll(".filter-tab").forEach((tab) => {
+      tab.addEventListener("click", () => {
+        currentFilter = tab.dataset.filter;
+        document.querySelectorAll(".filter-tab").forEach((t) => t.classList.remove("active"));
+        tab.classList.add("active");
+        renderReviewList();
+      });
+    });
+  </script>
+</body>
+</html>
