@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中1 家庭科 2学期末テスト対策 フラッシュカード</title>
+<style>
+  :root {
+    --bg: #f4f7fb;
+    --card: #ffffff;
+    --text: #1e293b;
+    --muted: #64748b;
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --primary-light: #eff6ff;
+    --ok: #16a34a;
+    --ok-bg: #f0fdf4;
+    --ok-border: #86efac;
+    --retry: #ea580c;
+    --retry-bg: #fff7ed;
+    --retry-border: #fdba74;
+    --border: #e2e8f0;
+    --shadow: 0 8px 28px rgba(15, 23, 42, 0.08);
+    --radius: 16px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Meiryo", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+    padding: 18px 14px 48px;
+  }
+  .container { max-width: 760px; margin: 0 auto; }
+  header { text-align: center; margin-bottom: 16px; }
+  header h1 { font-size: 1.4rem; font-weight: 800; color: #0f172a; margin-bottom: 4px; }
+  header p { font-size: 0.88rem; color: var(--muted); }
+
+  .controls-bar {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 12px 14px;
+    margin-bottom: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+  }
+  .ctrl-group { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .ctrl-group label { font-size: 0.82rem; font-weight: 700; color: var(--muted); }
+  select {
+    font-family: inherit; font-size: 0.88rem; padding: 6px 10px;
+    border-radius: 8px; border: 1px solid var(--border); background: #f8fafc; color: var(--text); cursor: pointer;
+  }
+  .btn-sm {
+    font-family: inherit; font-size: 0.83rem; font-weight: 700; padding: 6px 11px;
+    border-radius: 8px; border: 1px solid var(--border); background: #fff; color: var(--text);
+    cursor: pointer; transition: all 0.15s;
+  }
+  .btn-sm:hover { background: #f1f5f9; }
+  .btn-sm.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+  .progress-wrap { margin-bottom: 14px; }
+  .progress-meta {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.85rem; font-weight: 700; color: var(--muted); margin-bottom: 6px;
+  }
+  .stats-inline { display: flex; gap: 12px; }
+  .stat-ok { color: var(--ok); }
+  .stat-retry { color: var(--retry); }
+  .progress-track { height: 9px; background: #e2e8f0; border-radius: 999px; overflow: hidden; }
+  .progress-fill {
+    height: 100%; background: linear-gradient(90deg, #3b82f6, #2563eb);
+    border-radius: 999px; transition: width 0.25s ease; width: 0%;
+  }
+
+  /* Flashcard */
+  .flashcard {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    min-height: 310px;
+    padding: 22px 22px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.12s ease, border-color 0.2s ease;
+    position: relative;
+  }
+  .flashcard:active { transform: scale(0.995); }
+  .flashcard.flipped { border-color: #93c5fd; background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%); }
+
+  .fc-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 14px; }
+  .badge {
+    font-size: 0.76rem; font-weight: 700; padding: 4px 10px; border-radius: 999px;
+    background: var(--primary-light); color: var(--primary-dark);
+  }
+  .side-pill {
+    font-size: 0.75rem; font-weight: 800; padding: 3px 9px; border-radius: 999px;
+    background: #f1f5f9; color: #475569;
+  }
+  .flashcard.flipped .side-pill { background: #dbeafe; color: #1d4ed8; }
+
+  .fc-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10px 6px;
+  }
+  .fc-question {
+    font-size: 1.22rem;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.55;
+  }
+  .svg-box {
+    margin-top: 14px;
+    padding: 10px 18px;
+    background: #f8fafc;
+    border: 1px dashed #cbd5e1;
+    border-radius: 10px;
+  }
+  .care-svg { height: 70px; width: auto; color: #0f172a; display: block; }
+
+  .fc-answer-box { width: 100%; text-align: left; animation: fadeIn 0.18s ease; }
+  .fc-q-mini {
+    font-size: 0.85rem; color: var(--muted); margin-bottom: 10px;
+    padding-bottom: 8px; border-bottom: 1px dashed var(--border);
+  }
+  .fc-answer-label { font-size: 0.78rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 4px; }
+  .fc-answer {
+    font-size: 1.18rem; font-weight: 800; color: #0f172a;
+    background: #eff6ff; border-left: 4px solid var(--primary);
+    padding: 10px 14px; border-radius: 8px; margin-bottom: 12px;
+  }
+  .fc-point {
+    font-size: 0.92rem; color: #334155;
+    background: #fffbeb; border: 1px solid #fde68a;
+    padding: 10px 14px; border-radius: 8px;
+  }
+  .fc-point strong { color: #b45309; }
+
+  .fc-foot {
+    text-align: center;
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-top: 14px;
+  }
+
+  .card-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 14px;
+  }
+  .btn-judge {
+    font-family: inherit; font-size: 0.98rem; font-weight: 800;
+    padding: 13px 16px; border-radius: 12px; border: 2px solid transparent;
+    cursor: pointer; transition: all 0.15s;
+  }
+  .btn-retry { background: var(--retry-bg); color: var(--retry); border-color: var(--retry-border); }
+  .btn-retry:hover { background: #ffedd5; }
+  .btn-ok { background: var(--ok-bg); color: var(--ok); border-color: var(--ok-border); }
+  .btn-ok:hover { background: #dcfce7; }
+
+  .nav-row {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 12px; gap: 10px;
+  }
+  .btn-nav {
+    font-family: inherit; font-size: 0.88rem; font-weight: 700;
+    padding: 8px 14px; border-radius: 8px; border: 1px solid var(--border);
+    background: #fff; color: var(--text); cursor: pointer;
+  }
+  .btn-nav:disabled { opacity: 0.4; cursor: default; }
+
+  .hint-keys { text-align: center; margin-top: 12px; font-size: 0.78rem; color: var(--muted); }
+
+  /* Summary */
+  .summary-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 26px 22px; box-shadow: var(--shadow); text-align: center;
+  }
+  .summary-big { font-size: 2.1rem; font-weight: 900; color: var(--primary); margin-bottom: 6px; }
+  .summary-msg { font-size: 1rem; font-weight: 700; margin-bottom: 18px; }
+  .summary-actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+  .btn-primary {
+    font-family: inherit; font-size: 0.95rem; font-weight: 700; padding: 11px 20px;
+    border-radius: 10px; border: none; background: var(--primary); color: #fff; cursor: pointer;
+  }
+  .btn-primary:hover { background: var(--primary-dark); }
+
+  /* List View */
+  .list-wrap { display: flex; flex-direction: column; gap: 10px; }
+  .list-item {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 14px 16px; box-shadow: 0 2px 6px rgba(15, 23, 42, 0.03);
+  }
+  .list-item-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+  .list-q { font-weight: 800; font-size: 0.98rem; color: #0f172a; margin-bottom: 6px; }
+  .list-a { font-weight: 700; font-size: 0.95rem; color: var(--primary-dark); margin-bottom: 4px; }
+  .list-p { font-size: 0.86rem; color: #475569; }
+
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 560px) {
+    .flashcard { padding: 18px 16px; min-height: 280px; }
+    .fc-question { font-size: 1.08rem; }
+    .fc-answer { font-size: 1.04rem; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>中1 家庭科 2学期末テスト対策 フラッシュカード</h1>
+    <p>全48枚｜表：用語を問う問題 ／ 裏：答え＆テストで狙われやすい一言ポイント</p>
+  </header>
+
+  <div class="controls-bar">
+    <div class="ctrl-group">
+      <label for="catSelect">分野:</label>
+      <select id="catSelect"></select>
+    </div>
+    <div class="ctrl-group">
+      <button class="btn-sm" id="shuffleBtn" type="button">シャッフル: OFF</button>
+      <button class="btn-sm" id="modeBtn" type="button">一覧表示</button>
+      <button class="btn-sm" id="restartBtn" type="button">最初から</button>
+    </div>
+  </div>
+
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-meta">
+      <span id="progressText">1 / 48</span>
+      <span class="stats-inline">
+        <span class="stat-ok" id="okText">○ 覚えた: 0</span>
+        <span class="stat-retry" id="retryText">△ もう一度: 0</span>
+      </span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+
+  <main id="mainArea"></main>
+  <p class="hint-keys" id="hintKeys">操作: カードをクリック（または Space）で裏返す ／ [1] もう一度 ・ [2] 覚えた</p>
+</div>
+
+<script>
+const ALL_CARDS = [
+  {
+    "id": 1,
+    "category": "衣服計画・入手",
+    "front": "衣服計画を立てるときの4つの手順（順番）は？",
+    "answer": "①必要な衣服を挙げる → ②持っている衣服を調べる → ③足りない衣服の数を確認 → ④入手方法を考える",
+    "point": "「必要→調べる→足りない→入手方法」の順！まず手持ちを調べる前に必要なものを挙げます。"
+  },
+  {
+    "id": 2,
+    "category": "衣服計画・入手",
+    "front": "衣服の主な入手方法3つは？",
+    "answer": "既製服を購入する・自分で製作する・人からゆずってもらう",
+    "point": "「購入・製作・ゆずってもらう」の3つをセットで覚えよう。"
+  },
+  {
+    "id": 3,
+    "category": "衣服計画・入手",
+    "front": "通信販売で衣服を購入するときの主なデメリットは？",
+    "answer": "試着ができないこと",
+    "point": "メリット（店に行かなくてよい・家に届く・すぐ買える）との対比でよく問われます。"
+  },
+  {
+    "id": 4,
+    "category": "表示・採寸",
+    "front": "既製服のサイズ表示（身長・胸囲など）が示しているのは何の寸法？",
+    "answer": "着用する人の身体の寸法",
+    "point": "「衣服そのものの出来上がり寸法」ではない！ひっかけ問題の定番です。"
+  },
+  {
+    "id": 5,
+    "category": "表示・採寸",
+    "front": "日本で既製服の形状や寸法などを規定している規格の略称は？",
+    "answer": "JIS（日本産業規格）",
+    "point": "JAS（農林規格）と混同しないように注意！"
+  },
+  {
+    "id": 6,
+    "category": "表示・採寸",
+    "front": "タグにある「ポリエステル65％・綿35％」のような表示を何という？",
+    "answer": "組成表示",
+    "point": "使われている「繊維」の種類と混用率を示します。"
+  },
+  {
+    "id": 7,
+    "category": "表示・採寸",
+    "front": "タグの「原産国」表示（例：中国製）が指すのはどんな国？",
+    "answer": "衣服が裁断・縫製された国",
+    "point": "原料が収穫された国やデザインされた国ではありません。"
+  },
+  {
+    "id": 8,
+    "category": "表示・採寸",
+    "front": "タグに書かれる性能表示「はっ水性」とはどんな性質？",
+    "answer": "水をはじく性質",
+    "point": "「汗を吸う（吸水性）」と逆にしないよう注意。"
+  },
+  {
+    "id": 9,
+    "category": "表示・採寸",
+    "front": "採寸で「バスト（女子）」と「チェスト（男子）」の測り方の違いは？",
+    "answer": "バスト：胸のいちばん高いところ ／ チェスト：腕の付け根の下を通って胸回り（どちらも水平）",
+    "point": "「水平に測る」ことと、男女の名称・位置の違いを押さえよう。"
+  },
+  {
+    "id": 10,
+    "category": "表示・採寸",
+    "front": "採寸で「ウエスト（女子・男子）」と「ヒップ」を測る位置は？",
+    "answer": "ウエスト（女子：胴のいちばん細い所／男子：腰骨上端のすぐ上）・ヒップ（腰のいちばん太い所）",
+    "point": "男子のウエストは「腰骨上端のすぐ上」と指定されているのがポイント。"
+  },
+  {
+    "id": 11,
+    "category": "汚れ・繊維・洗剤",
+    "front": "「体から付く汚れ」の例と見た目の特徴は？",
+    "answer": "あか・皮脂・汗など ／ 汚れが見えにくい",
+    "point": "外から付く汚れ（ほこり・泥・食べこぼし＝見えやすい）と対比で覚えよう。"
+  },
+  {
+    "id": 12,
+    "category": "汚れ・繊維・洗剤",
+    "front": "天然繊維のうち「植物繊維」に分類される2つの繊維は？",
+    "answer": "綿・麻",
+    "point": "動物繊維（毛・絹）と区別！どちらも縮みやすい特徴があります。"
+  },
+  {
+    "id": 13,
+    "category": "汚れ・繊維・洗剤",
+    "front": "天然繊維のうち「動物繊維」に分類される2つの繊維は？",
+    "answer": "毛・絹",
+    "point": "どちらも「虫の害を受けやすい」「中性洗剤が適する」という共通点があります。"
+  },
+  {
+    "id": 14,
+    "category": "汚れ・繊維・洗剤",
+    "front": "化学繊維のうち「再生繊維」に分類される繊維は？",
+    "answer": "レーヨン",
+    "point": "合成繊維（ポリエステル・ナイロン・アクリル）と混ぜて出題されやすい！"
+  },
+  {
+    "id": 15,
+    "category": "汚れ・繊維・洗剤",
+    "front": "化学繊維のうち「合成繊維」に分類される主な3つの繊維は？",
+    "answer": "ポリエステル・ナイロン・アクリル",
+    "point": "湿気を吸いにくく（△）、静電気が起きやすいのが共通の特徴。"
+  },
+  {
+    "id": 16,
+    "category": "汚れ・繊維・洗剤",
+    "front": "「湿気の吸いやすさ」がすぐれている（◎）繊維はどれ？",
+    "answer": "綿・絹・レーヨン",
+    "point": "麻・毛は○、合成繊維（ポリエステル・ナイロン・アクリル）は△です。"
+  },
+  {
+    "id": 17,
+    "category": "汚れ・繊維・洗剤",
+    "front": "「ぬれたときの強度」が弱くなる（△）2つの繊維は？",
+    "answer": "絹・レーヨン",
+    "point": "特にレーヨンは水に入れると型崩れしやすい！綿・麻・合成繊維は◎。"
+  },
+  {
+    "id": 18,
+    "category": "汚れ・繊維・洗剤",
+    "front": "「しわになりにくさ」がすぐれている（◎）2つの繊維は？",
+    "answer": "毛・ポリエステル",
+    "point": "逆に綿・麻・絹・レーヨンはしわになりやすい（△）です。"
+  },
+  {
+    "id": 19,
+    "category": "汚れ・繊維・洗剤",
+    "front": "「中性」の洗剤が適している3つの繊維は？",
+    "answer": "毛・絹・レーヨン",
+    "point": "動物繊維（毛・絹）＋再生繊維（レーヨン）＝中性洗剤！他（綿・麻・合成繊維）は弱アルカリ性。"
+  },
+  {
+    "id": 20,
+    "category": "汚れ・繊維・洗剤",
+    "front": "「絹」と「毛」の特有の弱点はそれぞれ何？",
+    "answer": "絹：日光で黄変する ／ 毛：水中でもむと縮む",
+    "point": "「虫の害を受ける」は毛・絹の両方に共通する弱点です。"
+  },
+  {
+    "id": 21,
+    "category": "汚れ・繊維・洗剤",
+    "front": "「合成繊維」の洗濯・着用時の注意点は？",
+    "answer": "縮まないが、熱水中でしわが付くと取れにくく、静電気が起きやすい",
+    "point": "熱湯洗い厳禁＆静電気に注意！"
+  },
+  {
+    "id": 22,
+    "category": "汚れ・繊維・洗剤",
+    "front": "「せっけん」の原料・液性・冷水への溶けやすさは？",
+    "answer": "原料：天然油脂 ／ 液性：弱アルカリ性 ／ 冷水に溶けにくい",
+    "point": "冷水に溶けにくいため、湯で溶かすか前もって溶かして使います（汚れ落ちは良い）。"
+  },
+  {
+    "id": 23,
+    "category": "汚れ・繊維・洗剤",
+    "front": "「合成洗剤」の原料・液性・冷水への溶けやすさは？",
+    "answer": "原料：天然油脂や石油 ／ 液性：中性・弱アルカリ性 ／ 冷水にもよく溶ける",
+    "point": "せっけんとの違い（石油原料あり・中性もある・冷水によく溶ける）を整理！"
+  },
+  {
+    "id": 24,
+    "category": "洗濯の手順・表示",
+    "front": "衣服のほころびや傷んだ部分の補修は、洗濯の「前」「後」どちらに行う？",
+    "answer": "洗濯の「前」に行う",
+    "point": "洗濯中に傷みが広がるのを防ぐため、表示確認・仕分けの段階で先に直します。"
+  },
+  {
+    "id": 25,
+    "category": "洗濯の手順・表示",
+    "front": "洗濯機で洗うとき、「洗濯ネット」に入れるのはどんな衣服？",
+    "answer": "摩擦に弱いものや型崩れしやすいもの",
+    "point": "仕分け（繊維の種類・色・色落ち・汚れの程度）と合わせて確認しよう。"
+  },
+  {
+    "id": 26,
+    "category": "洗濯の手順・表示",
+    "front": "洗濯機を使うときの節水の工夫として挙げられるものは？",
+    "answer": "風呂の残り湯などを利用する",
+    "point": "使用量の目安を守ること・取り扱い説明書をよく読むことも大切。"
+  },
+  {
+    "id": 27,
+    "category": "洗濯の手順・表示",
+    "front": "洗濯物の脱水後、すぐに取り出して乾燥させる理由は？",
+    "answer": "放っておくとしわになるから",
+    "point": "取り出したら表示を確認し、適した干し方をするか乾燥機を利用します。"
+  },
+  {
+    "id": 28,
+    "category": "洗濯の手順・表示",
+    "front": "この洗濯表示マークの意味は？",
+    "svg": "<svg viewBox=\"0 0 80 68\" class=\"care-svg\"><path d=\"M12 20 L20 56 L60 56 L68 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"4\" stroke-linejoin=\"round\"/><path d=\"M14 28 Q26 24 38 28 T66 28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\"/><text x=\"40\" y=\"49\" text-anchor=\"middle\" font-size=\"18\" font-weight=\"bold\" fill=\"currentColor\">40</text></svg>",
+    "answer": "液温は40℃を限度に洗濯機で通常洗濯ができる",
+    "point": "数字は「上限温度（〜以下）」を表します。下線がないので通常の強さです。"
+  },
+  {
+    "id": 29,
+    "category": "洗濯の手順・表示",
+    "front": "洗濯桶のマークの下に「横線（アンダーライン）」があるとどう変わる？",
+    "svg": "<svg viewBox=\"0 0 80 68\" class=\"care-svg\"><path d=\"M12 16 L20 48 L60 48 L68 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"4\" stroke-linejoin=\"round\"/><path d=\"M14 24 Q26 20 38 24 T66 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\"/><text x=\"40\" y=\"42\" text-anchor=\"middle\" font-size=\"16\" font-weight=\"bold\" fill=\"currentColor\">40</text><line x1=\"18\" y1=\"55\" x2=\"62\" y2=\"55\" stroke=\"currentColor\" stroke-width=\"3.5\"/></svg>",
+    "answer": "弱い洗濯になる（線が増えるほど弱い力で洗う）",
+    "point": "線なし＝強い（通常）、線あり＝弱い！ひっかけ問題に出やすいポイントです。"
+  },
+  {
+    "id": 30,
+    "category": "洗濯の手順・表示",
+    "front": "洗濯桶の中に「手」が入っているマークと「×」がついたマークの意味は？",
+    "answer": "手：手洗いができる ／ ×：家庭での洗濯はできない",
+    "point": "洗濯桶に×がある服は、家庭で水洗いせずクリーニングなどを確認します。"
+  },
+  {
+    "id": 31,
+    "category": "洗濯の手順・表示",
+    "front": "この取り扱い表示マーク（△）の意味は？",
+    "svg": "<svg viewBox=\"0 0 80 68\" class=\"care-svg\"><polygon points=\"40,12 14,56 66,56\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"4\" stroke-linejoin=\"round\"/></svg>",
+    "answer": "塩素系及び酸素系漂白剤で漂白ができる",
+    "point": "△＝漂白のマーク。斜線2本なら酸素系のみ、×なら漂白不可です。"
+  },
+  {
+    "id": 32,
+    "category": "洗濯の手順・表示",
+    "front": "この取り扱い表示マーク（丸の中にP）の意味は？",
+    "svg": "<svg viewBox=\"0 0 80 68\" class=\"care-svg\"><circle cx=\"40\" cy=\"34\" r=\"22\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"4\"/><text x=\"40\" y=\"42\" text-anchor=\"middle\" font-size=\"24\" font-weight=\"bold\" fill=\"currentColor\">P</text></svg>",
+    "answer": "パークロロエチレン及び石油系溶剤でドライクリーニングができる",
+    "point": "丸のマークはクリーニング（商業クリーニング）を表します。"
+  },
+  {
+    "id": 33,
+    "category": "洗濯の手順・表示",
+    "front": "このマーク（四角の中に丸）の意味は？",
+    "svg": "<svg viewBox=\"0 0 80 68\" class=\"care-svg\"><rect x=\"18\" y=\"12\" width=\"44\" height=\"44\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"4\"/><circle cx=\"40\" cy=\"34\" r=\"14\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\"/><circle cx=\"40\" cy=\"34\" r=\"3.5\" fill=\"currentColor\"/></svg>",
+    "answer": "タンブル乾燥（家の乾燥機）が使える",
+    "point": "四角の中に丸＝乾燥機。×がついていれば乾燥機は使えません。"
+  },
+  {
+    "id": 34,
+    "category": "洗濯の手順・表示",
+    "front": "自然乾燥マークで「縦線」「横線」「左上の斜め線」はそれぞれ何を表す？",
+    "svg": "<svg viewBox=\"0 0 80 68\" class=\"care-svg\"><rect x=\"18\" y=\"12\" width=\"44\" height=\"44\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"4\"/><line x1=\"18\" y1=\"28\" x2=\"34\" y2=\"12\" stroke=\"currentColor\" stroke-width=\"3.5\"/><line x1=\"40\" y1=\"20\" x2=\"40\" y2=\"48\" stroke=\"currentColor\" stroke-width=\"3.5\"/></svg>",
+    "answer": "縦線：つり干し ／ 横線：平干し ／ 左上の斜め線：日かげ干し",
+    "point": "図のマークは「日かげでつり干し」。斜め線がなければ日なた干しです。"
+  },
+  {
+    "id": 35,
+    "category": "洗濯の手順・表示",
+    "front": "日本で初めて洗濯表示ができたのは何年？",
+    "answer": "1968年",
+    "point": "洗濯表示すごろくの豆知識！数字をそのまま覚えておこう。"
+  },
+  {
+    "id": 36,
+    "category": "洗濯の手順・表示",
+    "front": "洗濯物は時間がたつとどうなるので早めに洗うべき？また洗濯前に何を確認する？",
+    "answer": "汚れが落ちにくくなるため早めに洗う ／ 洗濯前にポケットの中を確認する",
+    "point": "干すときは「しわをのばしてから」干すのもポイントです。"
+  },
+  {
+    "id": 37,
+    "category": "洗剤量・しみ抜き",
+    "front": "洗剤の量と洗浄力にはどのような関係がある？",
+    "answer": "量とともに洗浄力は高くなるが、適量を越えると頭打ちになる",
+    "point": "「入れれば入れるほど汚れが落ちる」は誤り！"
+  },
+  {
+    "id": 38,
+    "category": "洗剤量・しみ抜き",
+    "front": "洗剤が適量より「多すぎる」ときのデメリットは？",
+    "answer": "洗剤が無駄になる・泡切れが悪くすすぎで水や電気代が無駄になる",
+    "point": "柔軟剤の入れすぎは「香りが強すぎ」「吸水性が悪くなる」原因に。"
+  },
+  {
+    "id": 39,
+    "category": "洗剤量・しみ抜き",
+    "front": "洗剤が適量より「少なすぎる」ときのデメリットは？（重要語句も）",
+    "answer": "洗浄力が弱く汚れ落ちが悪い・落ちた汚れが再び付く（再汚染）",
+    "point": "「再汚染」は多すぎるではなく「少なすぎる」ときの現象！"
+  },
+  {
+    "id": 40,
+    "category": "洗剤量・しみ抜き",
+    "front": "衣服に付いた「部分的な汚れ」を何といい、落とすときの基本ポイントは？",
+    "answer": "しみ ／ こすらず、たたいて他の布（タオル）に汚れを移す",
+    "point": "下にタオルを敷いて上からたたきます。こすると生地が傷みます。"
+  },
+  {
+    "id": 41,
+    "category": "洗剤量・しみ抜き",
+    "front": "「水溶性汚れ」「脂溶性汚れ」「色素・油性汚れ」の落とし方はそれぞれ何？",
+    "answer": "水溶性：水（落ちにくい時は洗剤）／ 脂溶性：洗剤 ／ 色素・油性：洗剤→漂白剤",
+    "point": "汚れの性質ごとに使うものが変わるのを整理しよう。"
+  },
+  {
+    "id": 42,
+    "category": "洗剤量・しみ抜き",
+    "front": "墨汁などの「不溶性汚れ」の落とし方は？",
+    "answer": "ご飯粒と洗剤を混ぜてすりこみ、へらでかきだす（その後洗剤で洗う）",
+    "point": "水や漂白剤だけでは落ちない不溶性汚れの代表例です。"
+  },
+  {
+    "id": 43,
+    "category": "アイロンかけ・手入れ",
+    "front": "アイロン低温（120℃以下・点1つ）が適する繊維は？",
+    "svg": "<svg viewBox=\"0 0 90 60\" class=\"care-svg\"><path d=\"M18 48 L74 48 L64 24 L30 24 L26 16 L54 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><circle cx=\"48\" cy=\"37\" r=\"3.2\" fill=\"currentColor\"/></svg>",
+    "answer": "アクリル",
+    "point": "低温（120℃以下・点1つ）＝アクリル！一問一答でピンポイントで狙われます。"
+  },
+  {
+    "id": 44,
+    "category": "アイロンかけ・手入れ",
+    "front": "アイロン中温（160℃以下・点2つ）が適する繊維は？",
+    "svg": "<svg viewBox=\"0 0 90 60\" class=\"care-svg\"><path d=\"M18 48 L74 48 L64 24 L30 24 L26 16 L54 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><circle cx=\"43\" cy=\"37\" r=\"3\" fill=\"currentColor\"/><circle cx=\"53\" cy=\"37\" r=\"3\" fill=\"currentColor\"/></svg>",
+    "answer": "毛・レーヨン・絹・ポリエステル（・ナイロン）",
+    "point": "160℃以下・点2つ。一番種類が多いのが中温です。"
+  },
+  {
+    "id": 45,
+    "category": "アイロンかけ・手入れ",
+    "front": "アイロン高温（210℃以下・点3つ）が適する2つの繊維は？",
+    "svg": "<svg viewBox=\"0 0 90 60\" class=\"care-svg\"><path d=\"M18 48 L74 48 L64 24 L30 24 L26 16 L54 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><circle cx=\"40\" cy=\"37\" r=\"3\" fill=\"currentColor\"/><circle cx=\"49\" cy=\"37\" r=\"3\" fill=\"currentColor\"/><circle cx=\"58\" cy=\"37\" r=\"3\" fill=\"currentColor\"/></svg>",
+    "answer": "綿・麻",
+    "point": "210℃以下・点3つ＝植物繊維（綿・麻）と覚えればスッキリ！"
+  },
+  {
+    "id": 46,
+    "category": "アイロンかけ・手入れ",
+    "front": "アイロンを動かす方向と、かける場所の順番は？",
+    "answer": "布目の方向に動かし、えりなど面積の小さい所から大きい所へ順にかける",
+    "point": "「布目」「小さい所から大きい所へ」が記述・穴埋めの定番キーワード！"
+  },
+  {
+    "id": 47,
+    "category": "アイロンかけ・手入れ",
+    "front": "アイロンをかけ終わった後の正しい手順は？",
+    "answer": "目盛りを「切」にし、電源プラグを抜く",
+    "point": "使ったあとのアイロンは熱いのでさわらないことにも注意。"
+  },
+  {
+    "id": 48,
+    "category": "アイロンかけ・手入れ",
+    "front": "毎日は洗わない制服などの日常の手入れ方法は？",
+    "answer": "ブラシをかけ、ちりやほこりをはらう",
+    "point": "日常の手入れが衣服を長持ちさせます。"
+  }
+];
+
+let state = {
+  category: "すべて",
+  shuffle: false,
+  listView: false,
+  pool: [],
+  idx: 0,
+  flipped: false,
+  okIds: new Set(),
+  retryIds: new Set()
+};
+
+const catSelect = document.getElementById("catSelect");
+const shuffleBtn = document.getElementById("shuffleBtn");
+const modeBtn = document.getElementById("modeBtn");
+const restartBtn = document.getElementById("restartBtn");
+const progressWrap = document.getElementById("progressWrap");
+const progressText = document.getElementById("progressText");
+const okText = document.getElementById("okText");
+const retryText = document.getElementById("retryText");
+const progressFill = document.getElementById("progressFill");
+const mainArea = document.getElementById("mainArea");
+const hintKeys = document.getElementById("hintKeys");
+
+function initCategories() {
+  const cats = ["すべて", ...new Set(ALL_CARDS.map(c => c.category))];
+  catSelect.innerHTML = cats.map(c => {
+    const n = c === "すべて" ? ALL_CARDS.length : ALL_CARDS.filter(x => x.category === c).length;
+    return `<option value="${c}">${c}（${n}枚）</option>`;
+  }).join("");
+}
+
+function shuffleArray(arr) {
+  const copy = [...arr];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
+function startDeck(customPool = null) {
+  let base = customPool
+    ? customPool
+    : (state.category === "すべて" ? ALL_CARDS : ALL_CARDS.filter(c => c.category === state.category));
+  if (state.shuffle) base = shuffleArray(base);
+  state.pool = base;
+  state.idx = 0;
+  state.flipped = false;
+  if (!customPool) {
+    state.okIds = new Set();
+    state.retryIds = new Set();
+  } else {
+    customPool.forEach(c => state.retryIds.delete(c.id));
+  }
+  render();
+}
+
+function updateProgress() {
+  const total = state.pool.length;
+  const done = Math.min(state.idx, total);
+  progressText.textContent = `${Math.min(state.idx + 1, total)} / ${total}`;
+  okText.textContent = `○ 覚えた: ${state.okIds.size}`;
+  retryText.textContent = `△ もう一度: ${state.retryIds.size}`;
+  progressFill.style.width = `${total ? (done / total) * 100 : 0}%`;
+}
+
+function render() {
+  if (state.listView) {
+    progressWrap.style.display = "none";
+    hintKeys.style.display = "none";
+    renderList();
+    return;
+  }
+  progressWrap.style.display = "block";
+  hintKeys.style.display = "block";
+  updateProgress();
+
+  if (state.idx >= state.pool.length) {
+    renderSummary();
+    return;
+  }
+
+  const c = state.pool[state.idx];
+  const svgHtml = c.svg ? `<div class="svg-box">${c.svg}</div>` : "";
+  const bodyHtml = !state.flipped
+    ? `<div class="fc-question">${c.front}</div>${svgHtml}`
+    : `<div class="fc-answer-box">
+         <div class="fc-q-mini">Q. ${c.front}</div>
+         <div class="fc-answer-label">答え</div>
+         <div class="fc-answer">${c.answer}</div>
+         <div class="fc-point"><strong>★テストの一言ポイント：</strong>${c.point}</div>
+       </div>`;
+
+  mainArea.innerHTML = `
+    <div class="flashcard ${state.flipped ? "flipped" : ""}" id="flashcard" tabindex="0">
+      <div class="fc-top">
+        <span class="badge">${c.category}</span>
+        <span class="side-pill">${state.flipped ? "裏面（答え）" : "表面（問題）"}</span>
+      </div>
+      <div class="fc-body">${bodyHtml}</div>
+      <div class="fc-foot">${state.flipped ? "クリックで表に戻す ／ 下のボタンで仕分け" : "タップ・クリックして答えを見る"}</div>
+    </div>
+    <div class="card-actions">
+      <button class="btn-judge btn-retry" id="retryBtn" type="button">△ もう一度（苦手）</button>
+      <button class="btn-judge btn-ok" id="okBtn" type="button">○ 覚えた！</button>
+    </div>
+    <div class="nav-row">
+      <button class="btn-nav" id="prevBtn" type="button" ${state.idx === 0 ? "disabled" : ""}>← 前のカード</button>
+      <button class="btn-nav" id="nextBtn" type="button">スキップして次へ →</button>
+    </div>
+  `;
+
+  document.getElementById("flashcard").addEventListener("click", () => {
+    state.flipped = !state.flipped;
+    render();
+  });
+  document.getElementById("retryBtn").addEventListener("click", () => judge(false));
+  document.getElementById("okBtn").addEventListener("click", () => judge(true));
+  document.getElementById("prevBtn").addEventListener("click", () => {
+    if (state.idx > 0) {
+      state.idx--;
+      state.flipped = false;
+      render();
+    }
+  });
+  document.getElementById("nextBtn").addEventListener("click", () => {
+    state.idx++;
+    state.flipped = false;
+    render();
+  });
+}
+
+function judge(isOk) {
+  const c = state.pool[state.idx];
+  if (isOk) {
+    state.okIds.add(c.id);
+    state.retryIds.delete(c.id);
+  } else {
+    state.retryIds.add(c.id);
+    state.okIds.delete(c.id);
+  }
+  state.idx++;
+  state.flipped = false;
+  render();
+}
+
+function renderSummary() {
+  progressFill.style.width = "100%";
+  const retryPool = ALL_CARDS.filter(c => state.retryIds.has(c.id));
+  const total = state.pool.length;
+  const okCount = state.pool.filter(c => state.okIds.has(c.id)).length;
+  const msg = retryPool.length === 0
+    ? "すべて「覚えた！」になりました！テスト本番もバッチリです。"
+    : `あと ${retryPool.length} 枚！「△ もう一度」のカードだけテンポよく復習しよう。`;
+
+  const retryBtnHtml = retryPool.length > 0
+    ? `<button class="btn-primary" id="retryDeckBtn" type="button">「もう一度」だけ復習する（${retryPool.length}枚）</button>`
+    : "";
+
+  mainArea.innerHTML = `
+    <div class="summary-card">
+      <div class="summary-big">${okCount} / ${total} 枚 覚えた！</div>
+      <div class="summary-msg">${msg}</div>
+      <div class="summary-actions">
+        ${retryBtnHtml}
+        <button class="btn-sm" id="resetDeckBtn" type="button" style="padding:11px 18px;font-size:0.92rem;">最初からやり直す</button>
+      </div>
+    </div>
+  `;
+  if (retryPool.length > 0) {
+    document.getElementById("retryDeckBtn").addEventListener("click", () => startDeck(retryPool));
+  }
+  document.getElementById("resetDeckBtn").addEventListener("click", () => startDeck());
+}
+
+function renderList() {
+  const items = state.pool.map((c, i) => `
+    <div class="list-item">
+      <div class="list-item-head">
+        <span class="badge">${c.category}</span>
+        <span style="font-size:0.8rem;color:var(--muted);font-weight:700;">#${i + 1}</span>
+      </div>
+      <div class="list-q">Q. ${c.front}</div>
+      ${c.svg ? `<div class="svg-box" style="display:inline-block;margin:4px 0 8px;">${c.svg}</div>` : ""}
+      <div class="list-a">A. ${c.answer}</div>
+      <div class="list-p"><strong>★ポイント：</strong>${c.point}</div>
+    </div>
+  `).join("");
+  mainArea.innerHTML = `<div class="list-wrap">${items}</div>`;
+}
+
+catSelect.addEventListener("change", () => {
+  state.category = catSelect.value;
+  startDeck();
+});
+
+shuffleBtn.addEventListener("click", () => {
+  state.shuffle = !state.shuffle;
+  shuffleBtn.textContent = `シャッフル: ${state.shuffle ? "ON" : "OFF"}`;
+  shuffleBtn.classList.toggle("active", state.shuffle);
+  startDeck();
+});
+
+modeBtn.addEventListener("click", () => {
+  state.listView = !state.listView;
+  modeBtn.textContent = state.listView ? "カード表示" : "一覧表示";
+  modeBtn.classList.toggle("active", state.listView);
+  render();
+});
+
+restartBtn.addEventListener("click", () => startDeck());
+
+document.addEventListener("keydown", (e) => {
+  if (state.listView || state.idx >= state.pool.length) return;
+  if (e.code === "Space" || e.key === "Enter") {
+    e.preventDefault();
+    state.flipped = !state.flipped;
+    render();
+  } else if (e.key === "1") {
+    judge(false);
+  } else if (e.key === "2") {
+    judge(true);
+  }
+});
+
+initCategories();
+startDeck();
+</script>
+</body>
+</html>

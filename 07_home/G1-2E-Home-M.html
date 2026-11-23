@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中1 家庭科 2学期末テスト 通し模擬テスト（35問・100点満点）</title>
+<style>
+  :root {
+    --bg: #f1f5f9;
+    --card: #ffffff;
+    --text: #0f172a;
+    --muted: #64748b;
+    --primary: #1d4ed8;
+    --primary-light: #eff6ff;
+    --correct: #15803d;
+    --correct-bg: #f0fdf4;
+    --correct-border: #86efac;
+    --wrong: #b91c1c;
+    --wrong-bg: #fef2f2;
+    --wrong-border: #fca5a5;
+    --warn: #b45309;
+    --warn-bg: #fffbeb;
+    --border: #cbd5e1;
+    --radius: 12px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Meiryo", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    padding-bottom: 64px;
+  }
+  .sticky-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 2px solid var(--border);
+    box-shadow: 0 2px 12px rgba(15, 23, 42, 0.08);
+    padding: 10px 16px;
+  }
+  .sticky-inner {
+    max-width: 880px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .exam-title-sm {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--text);
+  }
+  .timer-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f8fafc;
+    border: 1.5px solid var(--border);
+    border-radius: 999px;
+    padding: 5px 14px;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+  }
+  .timer-box.warn {
+    background: var(--warn-bg);
+    border-color: #f59e0b;
+    color: var(--warn);
+  }
+  .timer-box.danger {
+    background: var(--wrong-bg);
+    border-color: #ef4444;
+    color: var(--wrong);
+    animation: pulse 1s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+  .timer-display { font-size: 1.15rem; }
+  .btn-xs {
+    font-family: inherit;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: #fff;
+    color: var(--text);
+    cursor: pointer;
+  }
+  .btn-xs:hover { background: #e2e8f0; }
+  .status-pill {
+    font-size: 0.86rem;
+    font-weight: 700;
+    color: var(--primary);
+    background: var(--primary-light);
+    padding: 5px 12px;
+    border-radius: 999px;
+  }
+  .container {
+    max-width: 880px;
+    margin: 20px auto 0;
+    padding: 0 14px;
+  }
+  .intro-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+    margin-bottom: 18px;
+  }
+  .intro-card h1 {
+    font-size: 1.35rem;
+    margin-bottom: 6px;
+  }
+  .intro-meta {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+  .nav-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+  }
+  .nav-dot {
+    width: 32px;
+    height: 30px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: #f8fafc;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--muted);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+  }
+  .nav-dot.answered {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #fff;
+  }
+  .nav-dot.res-ok {
+    background: var(--correct);
+    border-color: var(--correct);
+    color: #fff;
+  }
+  .nav-dot.res-ng {
+    background: var(--wrong);
+    border-color: var(--wrong);
+    color: #fff;
+  }
+  .q-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+    margin-bottom: 16px;
+    scroll-margin-top: 76px;
+  }
+  .q-card.is-ok { border-left: 6px solid var(--correct); }
+  .q-card.is-ng { border-left: 6px solid var(--wrong); }
+  .q-top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .q-badges {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .badge {
+    font-size: 0.76rem;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 999px;
+    background: var(--primary-light);
+    color: var(--primary);
+  }
+  .badge-type {
+    background: #f1f5f9;
+    color: #334155;
+  }
+  .q-pts {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--muted);
+  }
+  .q-text {
+    font-size: 1.04rem;
+    font-weight: 700;
+    margin-bottom: 14px;
+    white-space: pre-line;
+  }
+  .svg-box {
+    display: flex;
+    justify-content: center;
+    background: #f8fafc;
+    border: 1px dashed var(--border);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 14px;
+  }
+  .care-svg { height: 72px; width: auto; color: #0f172a; }
+  .choices-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .choice-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.12s;
+    font-size: 0.96rem;
+  }
+  .choice-label:hover { background: #f8fafc; border-color: #93c5fd; }
+  .choice-label input { margin-top: 4px; accent-color: var(--primary); }
+  .choice-label.selected { background: var(--primary-light); border-color: var(--primary); }
+  .ox-row {
+    display: flex;
+    gap: 12px;
+  }
+  .ox-btn {
+    flex: 1;
+    padding: 12px;
+    font-family: inherit;
+    font-size: 1.15rem;
+    font-weight: 800;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    background: #fff;
+    cursor: pointer;
+    transition: all 0.12s;
+  }
+  .ox-btn:hover { background: #f8fafc; border-color: #93c5fd; }
+  .ox-btn.selected { background: var(--primary-light); border-color: var(--primary); color: var(--primary); }
+  .fill-input {
+    width: 100%;
+    max-width: 360px;
+    font-family: inherit;
+    font-size: 1rem;
+    padding: 10px 14px;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    outline: none;
+  }
+  .fill-input:focus { border-color: var(--primary); }
+  .submit-area {
+    text-align: center;
+    margin: 28px 0;
+  }
+  .btn-submit {
+    font-family: inherit;
+    font-size: 1.12rem;
+    font-weight: 800;
+    padding: 15px 40px;
+    border-radius: 12px;
+    border: none;
+    background: var(--primary);
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(29, 78, 216, 0.3);
+  }
+  .btn-submit:hover { background: #1e40af; }
+  .result-panel {
+    background: var(--card);
+    border: 2px solid var(--primary);
+    border-radius: var(--radius);
+    padding: 24px 22px;
+    margin-bottom: 22px;
+    display: none;
+  }
+  .result-panel.show { display: block; }
+  .score-hero {
+    text-align: center;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 18px;
+  }
+  .score-num {
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: var(--primary);
+    line-height: 1.15;
+  }
+  .score-sub {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+  .breakdown-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .bd-item {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 0.86rem;
+  }
+  .bd-bar-track {
+    height: 7px;
+    background: #e2e8f0;
+    border-radius: 999px;
+    margin-top: 6px;
+    overflow: hidden;
+  }
+  .bd-bar-fill {
+    height: 100%;
+    background: var(--primary);
+    border-radius: 999px;
+  }
+  .res-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+  .btn-filter {
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 700;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1.5px solid var(--border);
+    background: #fff;
+    cursor: pointer;
+  }
+  .btn-filter.active {
+    background: var(--text);
+    color: #fff;
+    border-color: var(--text);
+  }
+  .review-box {
+    margin-top: 14px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    font-size: 0.92rem;
+  }
+  .review-box.ok {
+    background: var(--correct-bg);
+    border: 1px solid var(--correct-border);
+  }
+  .review-box.ng {
+    background: var(--wrong-bg);
+    border: 1px solid var(--wrong-border);
+  }
+  .review-head {
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+  .review-box.ok .review-head { color: var(--correct); }
+  .review-box.ng .review-head { color: var(--wrong); }
+  @media (max-width: 600px) {
+    .q-card { padding: 16px 14px; }
+    .score-num { font-size: 2.2rem; }
+  }
+</style>
+</head>
+<body>
+<div class="sticky-bar">
+  <div class="sticky-inner">
+    <div class="exam-title-sm">中1 家庭科 2学期末 通し模擬テスト</div>
+    <div class="timer-box" id="timerBox">
+      <span>⏱ 残り時間</span>
+      <span class="timer-display" id="timerDisplay">25:00</span>
+      <button type="button" class="btn-xs" id="pauseBtn">一時停止</button>
+    </div>
+    <div class="status-pill" id="answeredCount">解答済み: 0 / 35</div>
+  </div>
+</div>
+
+<div class="container">
+  <section class="intro-card">
+    <h1>中1 家庭科 2学期末テスト 通し模擬テスト</h1>
+    <p class="intro-meta">全35問（100点満点）／ 制限時間 25分 ／ 解答中はヒント・解説は出ません。全問解答後に「採点する」を押してください。</p>
+    <div class="nav-grid" id="navGrid"></div>
+  </section>
+
+  <section class="result-panel" id="resultPanel">
+    <div class="score-hero">
+      <div class="score-num" id="scoreNum">0 / 100 点</div>
+      <div class="score-sub" id="scoreSub"></div>
+    </div>
+    <h3 style="font-size:0.95rem;margin-bottom:10px;">単元別の正答率</h3>
+    <div class="breakdown-grid" id="breakdownGrid"></div>
+    <div class="res-controls">
+      <button type="button" class="btn-filter active" id="showAllBtn">全問を表示（35問）</button>
+      <button type="button" class="btn-filter" id="showWrongBtn">間違えた問題のみ表示</button>
+      <button type="button" class="btn-filter" id="retryBtn">最初からやり直す</button>
+    </div>
+  </section>
+
+  <form id="examForm">
+    <div id="questionsContainer"></div>
+    <div class="submit-area" id="submitArea">
+      <button type="button" class="btn-submit" id="gradeBtn">採点する（全35問）</button>
+    </div>
+  </form>
+</div>
+
+<script>
+const QUESTIONS = [
+  {
+    "id": 1,
+    "category": "衣服計画・入手",
+    "type": "choice",
+    "points": 3,
+    "question": "衣服計画を立てるときの正しい手順はどれか。",
+    "choices": [
+      "必要な衣服を挙げる → 持っている衣服を調べる → 足りない衣服の種類と数を確認する → 入手方法を考える",
+      "持っている衣服を調べる → 入手方法を考える → 必要な衣服を挙げる → 足りない衣服の種類と数を確認する",
+      "入手方法を考える → 必要な衣服を挙げる → 持っている衣服を調べる → 足りない衣服の種類と数を確認する",
+      "足りない衣服の種類と数を確認する → 持っている衣服を調べる → 必要な衣服を挙げる → 入手方法を考える"
+    ],
+    "answer": 0,
+    "explanation": "衣服計画は、①【必要】な衣服を挙げる → ②持っている衣服を【調べる】 → ③【足りない】衣服の種類と数を確認する → ④衣服の【入手方法】を考える、の順に進めます。"
+  },
+  {
+    "id": 2,
+    "category": "衣服計画・入手",
+    "type": "fill",
+    "points": 3,
+    "question": "衣服の主な入手方法として、①既製服を（　A　）する、②自分で（　B　）する、③人からゆずってもらう、の3つが挙げられる。Aに当てはまる漢字2字を答えなさい。",
+    "answer": "購入",
+    "accepts": [
+      "購入",
+      "こうにゅう"
+    ],
+    "explanation": "衣服の入手方法は、①既製服を【購入】する、②自分で【製作】する、③人から【ゆずってもらう】の3つです。"
+  },
+  {
+    "id": 3,
+    "category": "衣服計画・入手",
+    "type": "choice",
+    "points": 3,
+    "question": "通信販売で衣服を購入するときの「デメリット」として適切なものはどれか。",
+    "choices": [
+      "試着ができない",
+      "店に行かなければならない",
+      "待っていても家に届けてくれない",
+      "すぐに買うことができない"
+    ],
+    "answer": 0,
+    "explanation": "通信販売は「店に行かなくてよい」「待っていると家に届けてくれる」「すぐに買える」というメリットがある一方、「試着ができない」というデメリットがあります。"
+  },
+  {
+    "id": 4,
+    "category": "衣服計画・入手",
+    "type": "ox",
+    "points": 2,
+    "question": "衣服計画を立てるときは、まず入手方法（購入・製作など）を決めてから、自分が持っている衣服を調べるのがよい。",
+    "answer": false,
+    "explanation": "【×】入手方法を考えるのは最後（4番目）です。まず「必要な衣服を挙げる」→「持っている衣服を調べる」→「足りない衣服を確認する」の順に行います。"
+  },
+  {
+    "id": 5,
+    "category": "表示・採寸",
+    "type": "fill",
+    "points": 3,
+    "question": "日本で既製服の形状や寸法などを規定している規格を、アルファベット3文字で（　　）規格という。",
+    "answer": "JIS",
+    "accepts": [
+      "JIS",
+      "jis",
+      "ＪＩＳ"
+    ],
+    "explanation": "日本では【JIS】（日本産業規格）によって既製服の形状や寸法などが規定されています。"
+  },
+  {
+    "id": 6,
+    "category": "表示・採寸",
+    "type": "ox",
+    "points": 2,
+    "question": "既製服のサイズ表示（例：身長160・胸囲80など）は、着用する人の身体の寸法ではなく、衣服そのものの出来上がり寸法を示している。",
+    "answer": false,
+    "explanation": "【×】既製服のサイズ表示は、着用する人の「身体の寸法」を示しています。衣服そのものの寸法ではありません。"
+  },
+  {
+    "id": 7,
+    "category": "表示・採寸",
+    "type": "fill",
+    "points": 3,
+    "question": "衣服のタグにある「ポリエステル65％・綿35％」のように、使われている繊維の種類と混用率を示した表示を（　　）表示という。",
+    "answer": "組成",
+    "accepts": [
+      "組成",
+      "そせい",
+      "組成表示"
+    ],
+    "explanation": "使われている繊維の種類と割合（混用率）を示すのが【組成】表示です。"
+  },
+  {
+    "id": 8,
+    "category": "表示・採寸",
+    "type": "choice",
+    "points": 3,
+    "question": "衣服のタグにある「原産国表示」とは、どの国を示しているか。",
+    "choices": [
+      "その衣服が裁断・縫製された国",
+      "繊維の原料が生産された国",
+      "衣服のデザインが行われた国",
+      "衣服が販売されている国"
+    ],
+    "answer": 0,
+    "explanation": "【原産国】表示は、その衣服が「裁断・縫製された国」を示しています。"
+  },
+  {
+    "id": 9,
+    "category": "表示・採寸",
+    "type": "choice",
+    "points": 3,
+    "question": "採寸の仕方について、正しいものはどれか。",
+    "choices": [
+      "チェスト（男子）は、腕の付け根の下を通って胸回りを水平に測る",
+      "バスト（女子）は、腕の付け根のすぐ上を斜めに測る",
+      "ウエスト（女子）は、腰骨上端のすぐ上を測る",
+      "ヒップは、胴のいちばん細いところを水平に測る"
+    ],
+    "answer": 0,
+    "explanation": "男子のチェストは「腕の付け根の下を通って胸回り」を水平に測ります。女子のバストは「胸のいちばん高いところ」、女子のウエストは「胴のいちばん細いところ」、男子のウエストは「腰骨上端のすぐ上」、ヒップは「腰のいちばん太いところ」を水平に測ります。"
+  },
+  {
+    "id": 10,
+    "category": "汚れ・繊維・洗剤",
+    "type": "ox",
+    "points": 2,
+    "question": "あか・皮脂・汗などの「体から付く汚れ」は、ほこりや泥などの「外から付く汚れ」に比べて汚れが見えやすい。",
+    "answer": false,
+    "explanation": "【×】あか・皮脂・汗などの体から付く汚れは「汚れが見えにくい」のが特徴です。ほこり・泥・食べこぼしなどの外から付く汚れは「汚れが見えやすい」です。"
+  },
+  {
+    "id": 11,
+    "category": "汚れ・繊維・洗剤",
+    "type": "choice",
+    "points": 3,
+    "question": "次のうち、天然繊維の「動物繊維」に分類される組み合わせはどれか。",
+    "choices": [
+      "毛・絹",
+      "綿・麻",
+      "レーヨン・ポリエステル",
+      "ナイロン・アクリル"
+    ],
+    "answer": 0,
+    "explanation": "天然繊維は「植物繊維（綿・麻）」と「動物繊維（毛・絹）」に分かれます。レーヨンは再生繊維、ポリエステル・ナイロン・アクリルは合成繊維です。"
+  },
+  {
+    "id": 12,
+    "category": "汚れ・繊維・洗剤",
+    "type": "fill",
+    "points": 3,
+    "question": "化学繊維のうち、植物の繊維などを溶かして再生して作る（　　）は「再生繊維」に分類される。",
+    "answer": "レーヨン",
+    "accepts": [
+      "レーヨン",
+      "れーよん"
+    ],
+    "explanation": "化学繊維は「再生繊維（レーヨン）」と「合成繊維（ポリエステル・ナイロン・アクリル）」に分かれます。"
+  },
+  {
+    "id": 13,
+    "category": "汚れ・繊維・洗剤",
+    "type": "choice",
+    "points": 3,
+    "question": "次の繊維のグループのうち、「中性の洗剤」が適する組み合わせはどれか。",
+    "choices": [
+      "毛・絹・レーヨン",
+      "綿・麻・ポリエステル",
+      "ナイロン・アクリル・綿",
+      "ポリエステル・ナイロン・アクリル"
+    ],
+    "answer": 0,
+    "explanation": "動物繊維（毛・絹）と再生繊維（レーヨン）には【中性】の洗剤が適しています。綿・麻・合成繊維には【弱アルカリ性】が適しています。"
+  },
+  {
+    "id": 14,
+    "category": "汚れ・繊維・洗剤",
+    "type": "ox",
+    "points": 2,
+    "question": "レーヨンと絹は、どちらも「ぬれたときの強度」が弱い（△）という性質がある。",
+    "answer": true,
+    "explanation": "【○】絹とレーヨンはぬれたときの強度が劣ります（△）。特にレーヨンは水に入れると型崩れしやすい特徴があります。"
+  },
+  {
+    "id": 15,
+    "category": "汚れ・繊維・洗剤",
+    "type": "fill",
+    "points": 4,
+    "question": "天然油脂を原料とする「せっけん」の液性は（　　）性であり、冷水に溶けにくいため湯で溶かすなどの工夫が必要である。",
+    "answer": "弱アルカリ",
+    "accepts": [
+      "弱アルカリ",
+      "弱アルカリ性"
+    ],
+    "explanation": "せっけんは原料が天然油脂、液性が【弱アルカリ性】で、冷水に溶けにくいのが特徴です（合成洗剤は冷水にもよく溶けます）。"
+  },
+  {
+    "id": 16,
+    "category": "洗濯の手順・表示",
+    "type": "ox",
+    "points": 2,
+    "question": "ほころびや傷んだ部分の補修は、洗濯機で洗った「あと」に行うのが正しい手順である。",
+    "answer": false,
+    "explanation": "【×】ほころびや傷んだ部分の補修、汚れのひどい部分の部分洗いは、洗濯する「前」に行います（洗っている間に傷みが広がるのを防ぐため）。"
+  },
+  {
+    "id": 17,
+    "category": "洗濯の手順・表示",
+    "type": "choice",
+    "points": 3,
+    "question": "次の取り扱い表示マークの意味として正しいものはどれか。",
+    "svg": "<svg viewBox=\"0 0 80 68\" class=\"care-svg\"><path d=\"M12 20 L20 56 L60 56 L68 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"4\" stroke-linejoin=\"round\"/><path d=\"M14 28 Q26 24 38 28 T66 28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\"/><text x=\"40\" y=\"49\" text-anchor=\"middle\" font-size=\"18\" font-weight=\"bold\" fill=\"currentColor\">40</text></svg>",
+    "choices": [
+      "液温は40℃を限度に、洗濯機で通常の洗濯ができる",
+      "液温は40℃以上で、手洗いのみできる",
+      "家庭での洗濯はできない",
+      "ドライクリーニングのみできる"
+    ],
+    "answer": 0,
+    "explanation": "洗濯桶の中に「40」が書かれたマーク（下線なし）は、「液温は40℃を限度に洗濯機で通常洗濯ができる」という意味です。"
+  },
+  {
+    "id": 18,
+    "category": "洗濯の手順・表示",
+    "type": "choice",
+    "points": 3,
+    "question": "次の取り扱い表示マークの意味として正しいものはどれか。",
+    "svg": "<svg viewBox=\"0 0 80 68\" class=\"care-svg\"><polygon points=\"40,12 14,56 66,56\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"4\" stroke-linejoin=\"round\"/></svg>",
+    "choices": [
+      "塩素系及び酸素系漂白剤で漂白ができる",
+      "アイロン仕上げができる",
+      "タンブル乾燥ができる",
+      "日かげでつり干しができる"
+    ],
+    "answer": 0,
+    "explanation": "△（三角形）のマークは「塩素系及び酸素系漂白剤で漂白ができる」ことを表しています。"
+  },
+  {
+    "id": 19,
+    "category": "洗濯の手順・表示",
+    "type": "choice",
+    "points": 3,
+    "question": "次の取り扱い表示マークの意味として正しいものはどれか。",
+    "svg": "<svg viewBox=\"0 0 80 68\" class=\"care-svg\"><circle cx=\"40\" cy=\"34\" r=\"22\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"4\"/><text x=\"40\" y=\"42\" text-anchor=\"middle\" font-size=\"24\" font-weight=\"bold\" fill=\"currentColor\">P</text></svg>",
+    "choices": [
+      "パークロロエチレン及び石油系溶剤でドライクリーニングができる",
+      "家庭の洗濯機で弱い洗濯ができる",
+      "酸素系漂白剤のみ使用できる",
+      "平干しするのがよい"
+    ],
+    "answer": 0,
+    "explanation": "丸の中に「P」があるマークは、「パークロロエチレン及び石油系溶剤でドライクリーニングができる」ことを表しています。"
+  },
+  {
+    "id": 20,
+    "category": "洗濯の手順・表示",
+    "type": "fill",
+    "points": 4,
+    "question": "洗濯機で脱水が終わった洗濯物を放置せず、すぐに取り出して乾燥させるのは、放っておくと（　　）になるからである。",
+    "answer": "しわ",
+    "accepts": [
+      "しわ",
+      "シワ"
+    ],
+    "explanation": "脱水後、洗濯槽の中に放っておくと【しわ】になるため、すぐに取り出して干すか乾燥機を利用します。"
+  },
+  {
+    "id": 21,
+    "category": "洗濯の手順・表示",
+    "type": "ox",
+    "points": 2,
+    "question": "洗濯機を使うとき、風呂の残り湯などを利用すると節水になる。",
+    "answer": true,
+    "explanation": "【○】洗濯機の取り扱い説明書をよく読み、風呂の残り湯などを利用すると節水になります（洗剤は使用量の目安を守って使います）。"
+  },
+  {
+    "id": 22,
+    "category": "洗剤量・しみ抜き",
+    "type": "choice",
+    "points": 3,
+    "question": "洗剤の量と洗浄力の関係について、正しい説明はどれか。",
+    "choices": [
+      "洗剤の量とともに洗浄力は高くなるが、適量を越えると洗浄力は頭打ちになる",
+      "洗剤は入れれば入れるほど、洗浄力がどこまでも上がり続ける",
+      "洗剤は適量より少ない方が、洗浄力が高くなる",
+      "洗剤の量と洗浄力には関係がない"
+    ],
+    "answer": 0,
+    "explanation": "洗剤の量とともに洗浄力は高くなりますが、適量を越えると洗浄力は【頭打ち】になり、多く入れてもそれ以上きれいになりません。"
+  },
+  {
+    "id": 23,
+    "category": "洗剤量・しみ抜き",
+    "type": "ox",
+    "points": 2,
+    "question": "洗剤が適量より「多すぎる」と、一度落ちた汚れが洗濯機の中で再び衣服についてしまう（再汚染）が起きやすくなる。",
+    "answer": false,
+    "explanation": "【×】一度落ちた汚れが再び衣服についてしまう（再汚染）のは、洗剤が適量より【少なすぎる】場合のデメリットです。多すぎる場合は、洗剤の無駄・泡切れが悪くなりすすぎの水や電気代が無駄になるなどのデメリットがあります。"
+  },
+  {
+    "id": 24,
+    "category": "洗剤量・しみ抜き",
+    "type": "fill",
+    "points": 4,
+    "question": "衣服に付いた部分的な汚れ（しみ）を抜くときは、生地を傷めないようこすらず、（　　）て他の布（タオル）に汚れを移すのがポイントである。",
+    "answer": "たたい",
+    "accepts": [
+      "たたい",
+      "たたいて",
+      "叩い",
+      "叩いて"
+    ],
+    "explanation": "しみ抜きの基本は「こすらず、【たたい】て他の布に汚れを移すこと」です（下にタオルを敷いて上からたたきます）。"
+  },
+  {
+    "id": 25,
+    "category": "洗剤量・しみ抜き",
+    "type": "choice",
+    "points": 3,
+    "question": "しみの種類と落とし方の組み合わせとして、正しいものはどれか。",
+    "choices": [
+      "不溶性汚れ（墨汁など）：ご飯粒と洗剤を混ぜてすりこみ、へらでかきだす",
+      "水溶性汚れ（しょうゆなど）：水は使わず、まず漂白剤だけで落とす",
+      "脂溶性汚れ（油など）：水だけで洗い落とす",
+      "色素汚れ（インクなど）：洗剤も漂白剤も使わず水洗いのみで行う"
+    ],
+    "answer": 0,
+    "explanation": "水溶性汚れは「水（落ちにくい場合は洗剤）」、脂溶性汚れは「洗剤」、色素汚れ・油性汚れは「洗剤→漂白剤」、不溶性汚れ（墨汁）は「ご飯粒と洗剤を混ぜてすりこみ、へらでかきだす」などで落とします。"
+  },
+  {
+    "id": 26,
+    "category": "洗剤量・しみ抜き",
+    "type": "fill",
+    "points": 3,
+    "question": "柔軟剤を入れすぎると、香りが強くなりすぎたり、衣類の（　　）性が悪くなったりするデメリットがある。",
+    "answer": "吸水",
+    "accepts": [
+      "吸水",
+      "きゅうすい",
+      "吸水性"
+    ],
+    "explanation": "柔軟剤を入れすぎると、香りが強くなりすぎたり、【吸水】性が悪くなったりします。"
+  },
+  {
+    "id": 27,
+    "category": "アイロンかけ・手入れ",
+    "type": "choice",
+    "points": 3,
+    "question": "次のアイロン表示（点1つ・低温120℃以下）が適している繊維はどれか。",
+    "svg": "<svg viewBox=\"0 0 90 60\" class=\"care-svg\"><path d=\"M18 48 L74 48 L64 24 L30 24 L26 16 L54 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><circle cx=\"48\" cy=\"37\" r=\"3.2\" fill=\"currentColor\"/></svg>",
+    "choices": [
+      "アクリル",
+      "綿",
+      "麻",
+      "毛"
+    ],
+    "answer": 0,
+    "explanation": "低温（120℃以下・点1つ）は【アクリル】です。中温（160℃以下・点2つ）は毛・レーヨン・絹・ポリエステル（ナイロンも中）、高温（210℃以下・点3つ）は綿・麻です。"
+  },
+  {
+    "id": 28,
+    "category": "アイロンかけ・手入れ",
+    "type": "fill",
+    "points": 4,
+    "question": "アイロンは（　　）の方向に動かし、えりなど面積が小さい所から大きい所へ順にかけていく。",
+    "answer": "布目",
+    "accepts": [
+      "布目",
+      "ぬのめ"
+    ],
+    "explanation": "アイロンは【布目】の方向に動かし、面積の小さい所から大きい所へ順にかけていきます。"
+  },
+  {
+    "id": 29,
+    "category": "アイロンかけ・手入れ",
+    "type": "choice",
+    "points": 3,
+    "question": "毎日は洗わない制服などの日常の手入れとして、プリントに書かれている正しい方法はどれか。",
+    "choices": [
+      "ブラシをかけ、ちりやほこりをはらう",
+      "毎日洗濯機で標準洗いをする",
+      "毎回高温のアイロンを直接あてる",
+      "湿ったままクローゼットにしまう"
+    ],
+    "answer": 0,
+    "explanation": "毎日は洗わない制服などは、【ブラシ】をかけ、ちりやほこりをはらうようにします。"
+  },
+  {
+    "id": 30,
+    "category": "アイロンかけ・手入れ",
+    "type": "ox",
+    "points": 2,
+    "question": "アイロンをかけ終わった後は、目盛りを「低」に下げた状態で電源プラグを抜くのが正しい。",
+    "answer": false,
+    "explanation": "【×】終わったら、目盛りを「切」にしてから電源プラグを抜きます。使ったあとのアイロンは熱いのでさわらないようにします。"
+  },
+  {
+    "id": 31,
+    "category": "洗濯表示マスター",
+    "type": "fill",
+    "points": 4,
+    "question": "日本で初めて洗濯表示ができたのは西暦（　　）年である。（半角数字4桁で入力）",
+    "answer": "1968",
+    "accepts": [
+      "1968",
+      "１９６８",
+      "1968年"
+    ],
+    "explanation": "日本で初めて洗濯表示ができたのは【1968】年です。"
+  },
+  {
+    "id": 32,
+    "category": "洗濯表示マスター",
+    "type": "ox",
+    "points": 2,
+    "question": "洗濯桶の中に「30」と書かれたマークは、「30℃以上の温かいお湯で洗う」という意味である。",
+    "answer": false,
+    "explanation": "【×】洗濯桶の中の数字は「上限温度」を表しているため、「30」は「30℃以下の温度で洗う」という意味です。"
+  },
+  {
+    "id": 33,
+    "category": "洗濯表示マスター",
+    "type": "choice",
+    "points": 3,
+    "question": "洗濯桶の「40」について、A（下線なし）とB（下線あり）のうち、強い力で洗ってよいのはどちらか。",
+    "svg": "<svg viewBox=\"0 0 160 68\" class=\"care-svg\"><g transform=\"translate(0,0)\"><path d=\"M12 16 L18 48 L54 48 L60 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\"/><path d=\"M13 23 Q24 20 36 23 T59 23\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\"/><text x=\"36\" y=\"42\" text-anchor=\"middle\" font-size=\"16\" font-weight=\"bold\" fill=\"currentColor\">40</text><text x=\"36\" y=\"64\" text-anchor=\"middle\" font-size=\"11\" fill=\"currentColor\">A(線なし)</text></g><g transform=\"translate(86,0)\"><path d=\"M12 16 L18 48 L54 48 L60 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\"/><path d=\"M13 23 Q24 20 36 23 T59 23\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\"/><text x=\"36\" y=\"42\" text-anchor=\"middle\" font-size=\"16\" font-weight=\"bold\" fill=\"currentColor\">40</text><line x1=\"16\" y1=\"53\" x2=\"56\" y2=\"53\" stroke=\"currentColor\" stroke-width=\"3\"/><text x=\"36\" y=\"66\" text-anchor=\"middle\" font-size=\"11\" fill=\"currentColor\">B(線あり)</text></g></svg>",
+    "choices": [
+      "A（下線なし）の方が強い力で洗ってよい",
+      "B（下線あり）の方が強い力で洗ってよい",
+      "どちらも同じ強さで洗う",
+      "どちらも手洗い専用である"
+    ],
+    "answer": 0,
+    "explanation": "下線がない「40」は通常の洗濯（強い力）、下線がある「40」は弱い洗濯を表します（下線が増えるほど弱くなります）。"
+  },
+  {
+    "id": 34,
+    "category": "洗濯表示マスター",
+    "type": "ox",
+    "points": 2,
+    "question": "干し方のマークで、四角の左上に斜め線が入っているものは「日かげ干し」、四角の中に横線が入っているものは「平干し」を表す。",
+    "answer": true,
+    "explanation": "【○】左上の斜め線は「日かげ」、四角の中の「横線」は「平干し」（縦線は「つり干し」）を表します。"
+  },
+  {
+    "id": 35,
+    "category": "洗濯表示マスター",
+    "type": "choice",
+    "points": 3,
+    "question": "次の2着の服のうち、家庭で洗濯できるのはどちらで、その理由は何か。\n・服A（毛75％・ポリエステル25％）：洗濯桶に×、ドライクリーニングP\n・服B（綿100％）：洗濯桶40、△、アイロン高、つり干し",
+    "choices": [
+      "服B。服Aは洗濯桶に×がついており、家庭での水洗いができないから",
+      "服A。ポリエステルが入っていて乾きやすいから",
+      "どちらも家庭で洗濯できる",
+      "どちらも家庭では洗濯できない"
+    ],
+    "answer": 0,
+    "explanation": "服Aは洗濯桶に×がついているため家庭で水洗いできません。服Bは「40」の洗濯桶マークがあるため家庭で洗濯できます。"
+  }
+];
+const LABELS = ["ア", "イ", "ウ", "エ"];
+const TYPE_NAME = { choice: "選択式", fill: "穴埋め", ox: "○×問題" };
+
+let userAnswers = {};
+let graded = false;
+let totalSeconds = 25 * 60;
+let remainingSeconds = totalSeconds;
+let timerPaused = false;
+let timerInterval = null;
+
+const timerBox = document.getElementById("timerBox");
+const timerDisplay = document.getElementById("timerDisplay");
+const pauseBtn = document.getElementById("pauseBtn");
+const answeredCount = document.getElementById("answeredCount");
+const navGrid = document.getElementById("navGrid");
+const questionsContainer = document.getElementById("questionsContainer");
+const gradeBtn = document.getElementById("gradeBtn");
+const submitArea = document.getElementById("submitArea");
+const resultPanel = document.getElementById("resultPanel");
+
+function normalizeText(s) {
+  return (s || "")
+    .trim()
+    .replace(/[Ａ-Ｚａ-ｚ０-９]/g, ch => String.fromCharCode(ch.charCodeAt(0) - 0xFEE0))
+    .replace(/\s+/g, "")
+    .toLowerCase();
+}
+
+function formatTime(sec) {
+  const m = Math.floor(sec / 60);
+  const s = sec % 60;
+  return `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+}
+
+function startTimer() {
+  clearInterval(timerInterval);
+  timerInterval = setInterval(() => {
+    if (timerPaused || graded) return;
+    remainingSeconds--;
+    timerDisplay.textContent = formatTime(Math.max(0, remainingSeconds));
+    timerBox.classList.remove("warn", "danger");
+    if (remainingSeconds <= 60) timerBox.classList.add("danger");
+    else if (remainingSeconds <= 300) timerBox.classList.add("warn");
+
+    if (remainingSeconds <= 0) {
+      clearInterval(timerInterval);
+      alert("25分が経過しました！テストを終了して採点します。");
+      gradeExam(true);
+    }
+  }, 1000);
+}
+
+pauseBtn.addEventListener("click", () => {
+  if (graded) return;
+  timerPaused = !timerPaused;
+  pauseBtn.textContent = timerPaused ? "再開" : "一時停止";
+});
+
+function updateProgress() {
+  const count = QUESTIONS.filter(q => {
+    const val = userAnswers[q.id];
+    if (q.type === "fill") return typeof val === "string" && val.trim().length > 0;
+    return val !== undefined && val !== null;
+  }).length;
+  answeredCount.textContent = `解答済み: ${count} / ${QUESTIONS.length}`;
+  QUESTIONS.forEach(q => {
+    const dot = document.getElementById(`nav-${q.id}`);
+    const val = userAnswers[q.id];
+    const hasAns = q.type === "fill" ? (typeof val === "string" && val.trim().length > 0) : (val !== undefined && val !== null);
+    dot.classList.toggle("answered", hasAns && !graded);
+  });
+}
+
+function renderExam() {
+  navGrid.innerHTML = QUESTIONS.map(q =>
+    `<a href="#q-${q.id}" class="nav-dot" id="nav-${q.id}">${q.id}</a>`
+  ).join("");
+
+  questionsContainer.innerHTML = QUESTIONS.map(q => {
+    const svgHtml = q.svg ? `<div class="svg-box">${q.svg}</div>` : "";
+    let inputHtml = "";
+    if (q.type === "choice") {
+      inputHtml = `<div class="choices-list">` + q.choices.map((c, idx) => `
+        <label class="choice-label" id="lbl-${q.id}-${idx}">
+          <input type="radio" name="q-${q.id}" value="${idx}">
+          <span><strong>${LABELS[idx]}.</strong> ${c}</span>
+        </label>
+      `).join("") + `</div>`;
+    } else if (q.type === "ox") {
+      inputHtml = `
+        <div class="ox-row">
+          <button type="button" class="ox-btn" data-qid="${q.id}" data-val="true">○（正しい）</button>
+          <button type="button" class="ox-btn" data-qid="${q.id}" data-val="false">×（誤り）</button>
+        </div>
+      `;
+    } else {
+      inputHtml = `<input type="text" class="fill-input" id="fill-${q.id}" placeholder="答えを入力してください" autocomplete="off">`;
+    }
+
+    return `
+      <article class="q-card" id="q-${q.id}">
+        <div class="q-top">
+          <div class="q-badges">
+            <span class="badge">問${q.id}</span>
+            <span class="badge">${q.category}</span>
+            <span class="badge badge-type">${TYPE_NAME[q.type]}</span>
+          </div>
+          <span class="q-pts">配点 ${q.points}点</span>
+        </div>
+        <div class="q-text">${q.question}</div>
+        ${svgHtml}
+        ${inputHtml}
+        <div id="review-${q.id}"></div>
+      </article>
+    `;
+  }).join("");
+
+  // Event listeners
+  QUESTIONS.forEach(q => {
+    if (q.type === "choice") {
+      document.querySelectorAll(`input[name="q-${q.id}"]`).forEach(radio => {
+        radio.addEventListener("change", (e) => {
+          if (graded) return;
+          const val = Number(e.target.value);
+          userAnswers[q.id] = val;
+          q.choices.forEach((_, i) => {
+            document.getElementById(`lbl-${q.id}-${i}`).classList.toggle("selected", i === val);
+          });
+          updateProgress();
+        });
+      });
+    } else if (q.type === "ox") {
+      document.querySelectorAll(`.ox-btn[data-qid="${q.id}"]`).forEach(btn => {
+        btn.addEventListener("click", () => {
+          if (graded) return;
+          const val = btn.dataset.val === "true";
+          userAnswers[q.id] = val;
+          document.querySelectorAll(`.ox-btn[data-qid="${q.id}"]`).forEach(b => {
+            b.classList.toggle("selected", (b.dataset.val === "true") === val);
+          });
+          updateProgress();
+        });
+      });
+    } else {
+      const inp = document.getElementById(`fill-${q.id}`);
+      inp.addEventListener("input", () => {
+        if (graded) return;
+        userAnswers[q.id] = inp.value;
+        updateProgress();
+      });
+    }
+  });
+}
+
+function checkCorrect(q) {
+  const val = userAnswers[q.id];
+  if (q.type === "choice") return val === q.answer;
+  if (q.type === "ox") return val === q.answer;
+  const norm = normalizeText(val);
+  if (!norm) return false;
+  return q.accepts.some(a => normalizeText(a) === norm);
+}
+
+function formatUserAnswer(q) {
+  const val = userAnswers[q.id];
+  if (q.type === "choice") return val !== undefined ? `${LABELS[val]}. ${q.choices[val]}` : "（未解答）";
+  if (q.type === "ox") return val === true ? "○" : val === false ? "×" : "（未解答）";
+  return val && val.trim() ? val.trim() : "（未解答）";
+}
+
+function formatCorrectAnswer(q) {
+  if (q.type === "choice") return `${LABELS[q.answer]}. ${q.choices[q.answer]}`;
+  if (q.type === "ox") return q.answer ? "○（正しい）" : "×（誤り）";
+  return q.answer;
+}
+
+function gradeExam(auto = false) {
+  if (graded) return;
+  const unanswered = QUESTIONS.filter(q => {
+    const val = userAnswers[q.id];
+    if (q.type === "fill") return !val || !val.trim();
+    return val === undefined || val === null;
+  }).length;
+
+  if (!auto && unanswered > 0) {
+    if (!confirm(`未解答の問題が ${unanswered} 問あります。このまま採点しますか？`)) {
+      return;
+    }
+  }
+
+  graded = true;
+  clearInterval(timerInterval);
+  pauseBtn.disabled = true;
+  submitArea.style.display = "none";
+
+  // Disable inputs
+  document.querySelectorAll("#examForm input, #examForm button.ox-btn").forEach(el => {
+    el.disabled = true;
+  });
+
+  let earnedPoints = 0;
+  let correctCount = 0;
+  const catStats = {};
+
+  QUESTIONS.forEach(q => {
+    if (!catStats[q.category]) catStats[q.category] = { ok: 0, total: 0, pts: 0, maxPts: 0 };
+    catStats[q.category].total++;
+    catStats[q.category].maxPts += q.points;
+
+    const ok = checkCorrect(q);
+    if (ok) {
+      earnedPoints += q.points;
+      correctCount++;
+      catStats[q.category].ok++;
+      catStats[q.category].pts += q.points;
+    }
+
+    const card = document.getElementById(`q-${q.id}`);
+    card.classList.add(ok ? "is-ok" : "is-ng");
+    card.dataset.ok = ok ? "1" : "0";
+
+    const dot = document.getElementById(`nav-${q.id}`);
+    dot.classList.remove("answered");
+    dot.classList.add(ok ? "res-ok" : "res-ng");
+
+    const rev = document.getElementById(`review-${q.id}`);
+    rev.innerHTML = `
+      <div class="review-box ${ok ? "ok" : "ng"}">
+        <div class="review-head">${ok ? `○ 正解（+${q.points}点）` : "× 不正解（0点）"}</div>
+        <div><strong>あなたの解答：</strong>${formatUserAnswer(q)} ／ <strong>正解：</strong>${formatCorrectAnswer(q)}</div>
+        <div style="margin-top:6px;"><strong>解説：</strong>${q.explanation}</div>
+      </div>
+    `;
+  });
+
+  const elapsed = totalSeconds - remainingSeconds;
+  document.getElementById("scoreNum").textContent = `${earnedPoints} / 100 点`;
+  document.getElementById("scoreSub").textContent = `正解数：${correctCount} / ${QUESTIONS.length} 問 ／ 所要時間：${formatTime(elapsed)}`;
+
+  document.getElementById("breakdownGrid").innerHTML = Object.entries(catStats).map(([cat, st]) => {
+    const pct = Math.round((st.ok / st.total) * 100);
+    return `
+      <div class="bd-item">
+        <strong>${cat}</strong>
+        <div>${st.ok} / ${st.total} 問正解（${pct}%）｜ ${st.pts}/${st.maxPts}点</div>
+        <div class="bd-bar-track"><div class="bd-bar-fill" style="width:${pct}%"></div></div>
+      </div>
+    `;
+  }).join("");
+
+  resultPanel.classList.add("show");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+gradeBtn.addEventListener("click", () => gradeExam(false));
+
+document.getElementById("showAllBtn").addEventListener("click", (e) => {
+  document.getElementById("showAllBtn").classList.add("active");
+  document.getElementById("showWrongBtn").classList.remove("active");
+  document.querySelectorAll(".q-card").forEach(c => c.style.display = "block");
+});
+
+document.getElementById("showWrongBtn").addEventListener("click", () => {
+  document.getElementById("showWrongBtn").classList.add("active");
+  document.getElementById("showAllBtn").classList.remove("active");
+  document.querySelectorAll(".q-card").forEach(c => {
+    c.style.display = c.dataset.ok === "0" ? "block" : "none";
+  });
+});
+
+document.getElementById("retryBtn").addEventListener("click", () => {
+  location.reload();
+});
+
+renderExam();
+updateProgress();
+startTimer();
+</script>
+</body>
+</html>

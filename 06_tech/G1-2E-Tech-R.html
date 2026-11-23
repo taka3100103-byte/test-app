@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>中1 技術科 2学期末テスト対策 記述＆○×ひっかけ問題（G1-2E-Tech-R）</title>
+  <style>
+    :root {
+      --bg: #f3f6fb;
+      --surface: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --primary-soft: #eef2ff;
+      --teal: #0f766e;
+      --teal-soft: #f0fdfa;
+      --correct: #16a34a;
+      --correct-bg: #f0fdf4;
+      --correct-border: #86efac;
+      --partial: #d97706;
+      --partial-bg: #fffbeb;
+      --partial-border: #fcd34d;
+      --wrong: #dc2626;
+      --wrong-bg: #fef2f2;
+      --wrong-border: #fca5a5;
+      --shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+      --radius: 16px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic UI", "Meiryo", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      padding: 20px 16px 56px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: linear-gradient(135deg, #312e81, #4f46e5);
+      color: #ffffff;
+      padding: 22px 24px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 20px;
+    }
+
+    header .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    header .tag {
+      background: rgba(255, 255, 255, 0.18);
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    header h1 {
+      margin: 0 0 6px;
+      font-size: 21px;
+      line-height: 1.35;
+    }
+
+    header p {
+      margin: 0;
+      font-size: 13.5px;
+      opacity: 0.92;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      margin-bottom: 18px;
+    }
+
+    .mode-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin: 16px 0 20px;
+    }
+
+    .mode-btn {
+      text-align: left;
+      background: #f8fafc;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      font-family: inherit;
+    }
+
+    .mode-btn:hover {
+      border-color: var(--primary);
+      background: var(--primary-soft);
+    }
+
+    .mode-btn.active {
+      border-color: var(--primary);
+      background: var(--primary-soft);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+    }
+
+    .mode-btn .mode-title {
+      display: block;
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+
+    .mode-btn .mode-desc {
+      display: block;
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+
+    .options-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    .toggle-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .toggle-label input {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      border: none;
+      border-radius: 10px;
+      padding: 12px 20px;
+      font-size: 15px;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background 0.15s ease, transform 0.1s ease, border-color 0.15s ease;
+    }
+
+    .btn:active { transform: translateY(1px); }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover { background: var(--primary-hover); }
+
+    .btn-secondary {
+      background: #e2e8f0;
+      color: var(--text);
+    }
+
+    .btn-secondary:hover { background: #cbd5e1; }
+
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid var(--border);
+      color: var(--text);
+    }
+
+    .btn-outline:hover {
+      background: #f8fafc;
+      border-color: #94a3b8;
+    }
+
+    .progress-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .progress-bar-wrap {
+      width: 100%;
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #4f46e5, #06b6d4);
+      width: 0%;
+      transition: width 0.25s ease;
+    }
+
+    .q-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .badge-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .q-category {
+      display: inline-block;
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+
+    .q-type-badge {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+
+    .q-type-essay {
+      background: #fef3c7;
+      color: #b45309;
+    }
+
+    .q-type-ox {
+      background: #e0f2fe;
+      color: #0369a1;
+    }
+
+    .q-important {
+      display: inline-block;
+      background: #fee2e2;
+      color: #b91c1c;
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 999px;
+    }
+
+    .q-number {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .q-text {
+      font-size: 17.5px;
+      font-weight: 700;
+      line-height: 1.6;
+      margin: 0 0 18px;
+    }
+
+    /* Essay Input */
+    .essay-box {
+      margin-bottom: 14px;
+    }
+
+    .essay-box textarea {
+      width: 100%;
+      min-height: 100px;
+      padding: 14px;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 15.5px;
+      line-height: 1.6;
+      resize: vertical;
+      transition: border-color 0.15s ease;
+    }
+
+    .essay-box textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    .essay-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    /* OX Buttons */
+    .ox-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .ox-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      padding: 18px 16px;
+      border: 2px solid var(--border);
+      border-radius: 14px;
+      background: #f8fafc;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.15s ease;
+    }
+
+    .ox-btn:hover:not(:disabled) {
+      border-color: var(--primary);
+      background: var(--primary-soft);
+      transform: translateY(-1px);
+    }
+
+    .ox-btn:disabled {
+      cursor: default;
+    }
+
+    .ox-symbol {
+      font-size: 32px;
+      font-weight: 800;
+      line-height: 1.1;
+    }
+
+    .ox-label {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .ox-btn.selected-correct {
+      border-color: var(--correct);
+      background: var(--correct-bg);
+      color: var(--correct);
+    }
+
+    .ox-btn.selected-wrong {
+      border-color: var(--wrong);
+      background: var(--wrong-bg);
+      color: var(--wrong);
+    }
+
+    .ox-btn.show-answer {
+      border-color: var(--correct);
+      background: var(--correct-bg);
+      box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.14);
+    }
+
+    /* Hint */
+    .hint-box {
+      display: none;
+      background: #f8fafc;
+      border: 1px dashed #94a3b8;
+      border-radius: 10px;
+      padding: 11px 14px;
+      font-size: 13.5px;
+      color: #334155;
+      margin-top: 12px;
+    }
+
+    .hint-box.visible { display: block; }
+
+    /* Feedback & Keywords */
+    .feedback {
+      display: none;
+      margin-top: 18px;
+      border-radius: 12px;
+      padding: 18px;
+      border: 1.5px solid var(--border);
+    }
+
+    .feedback.visible { display: block; }
+
+    .feedback.is-correct {
+      background: var(--correct-bg);
+      border-color: var(--correct-border);
+    }
+
+    .feedback.is-partial {
+      background: var(--partial-bg);
+      border-color: var(--partial-border);
+    }
+
+    .feedback.is-wrong {
+      background: var(--wrong-bg);
+      border-color: var(--wrong-border);
+    }
+
+    .feedback.is-neutral {
+      background: #f8fafc;
+      border-color: #cbd5e1;
+    }
+
+    .feedback-title {
+      font-size: 16.5px;
+      font-weight: 800;
+      margin: 0 0 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .feedback.is-correct .feedback-title { color: var(--correct); }
+    .feedback.is-partial .feedback-title { color: var(--partial); }
+    .feedback.is-wrong .feedback-title { color: var(--wrong); }
+
+    .model-answer-box {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-bottom: 12px;
+    }
+
+    .model-answer-label {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: 0.04em;
+      margin-bottom: 4px;
+    }
+
+    .model-answer-text {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      margin: 0;
+    }
+
+    .kw-section {
+      margin-bottom: 12px;
+    }
+
+    .kw-title {
+      font-size: 12.5px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .kw-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .kw-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12.5px;
+      font-weight: 700;
+      border: 1px solid transparent;
+    }
+
+    .kw-chip.hit {
+      background: #dcfce7;
+      color: #166534;
+      border-color: #86efac;
+    }
+
+    .kw-chip.miss {
+      background: #fee2e2;
+      color: #991b1b;
+      border-color: #fca5a5;
+    }
+
+    .kw-chip.neutral {
+      background: #e0e7ff;
+      color: #3730a3;
+      border-color: #c7d2fe;
+    }
+
+    .explain-text {
+      margin: 0;
+      font-size: 14.5px;
+      color: #334155;
+    }
+
+    .contrast-box {
+      margin-top: 10px;
+      background: rgba(255, 255, 255, 0.85);
+      border-left: 4px solid var(--teal);
+      padding: 9px 12px;
+      border-radius: 0 8px 8px 0;
+      font-size: 13.5px;
+      color: #0f172a;
+    }
+
+    .self-grade-row {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px dashed #cbd5e1;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .self-grade-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--muted);
+      margin-right: 4px;
+    }
+
+    .grade-btn {
+      padding: 7px 14px;
+      border-radius: 8px;
+      border: 1.5px solid var(--border);
+      background: #ffffff;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.12s ease;
+    }
+
+    .grade-btn.active-ok {
+      background: var(--correct);
+      color: #ffffff;
+      border-color: var(--correct);
+    }
+
+    .grade-btn.active-ng {
+      background: var(--wrong);
+      color: #ffffff;
+      border-color: var(--wrong);
+    }
+
+    .nav-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 18px;
+      gap: 12px;
+    }
+
+    /* Result Screen */
+    .score-hero {
+      text-align: center;
+      padding: 12px 0 20px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 20px;
+    }
+
+    .score-num {
+      font-size: 44px;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1.1;
+      margin: 6px 0;
+    }
+
+    .score-sub {
+      font-size: 14.5px;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .breakdown-list {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .breakdown-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .result-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .hidden { display: none !important; }
+
+    @media (max-width: 520px) {
+      .card { padding: 18px; }
+      .q-text { font-size: 16.5px; }
+      .ox-grid { gap: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="badge-row">
+        <span class="tag">中学1年 技術</span>
+        <span class="tag">2学期末テスト対策</span>
+        <span class="tag">記述＆○×ひっかけ特化</span>
+      </div>
+      <h1>理由・仕組み記述 ＆ 紛らわしい用語○×テスト</h1>
+      <p>製図（構想図・製作図・等角図・第三角法）と木材加工（材料取り・けがき・切断）の失点しやすいポイントを1問1答で対策します。</p>
+    </header>
+
+    <!-- Start Screen -->
+    <section id="start-screen" class="card">
+      <h2 style="margin:0 0 8px; font-size:18px;">出題モードを選んでスタート</h2>
+      <p style="margin:0; font-size:13.5px; color:var(--muted);">
+        記述問題は<strong>「必須キーワード」</strong>が自動でチェックされ、○×問題は<strong>「ひっかけの対比ポイント」</strong>がすぐに確認できます。
+      </p>
+
+      <div class="mode-grid" id="mode-grid">
+        <button type="button" class="mode-btn active" data-mode="all">
+          <span class="mode-title">全問チャレンジ（20問）</span>
+          <span class="mode-desc">短文記述6問＋○×ひっかけ14問をまとめて対策</span>
+        </button>
+        <button type="button" class="mode-btn" data-mode="essay">
+          <span class="mode-title">理由・仕組み 短文記述のみ（6問）</span>
+          <span class="mode-desc">重要テーマ2選＋図法・けがき・切断の記述対策</span>
+        </button>
+        <button type="button" class="mode-btn" data-mode="ox">
+          <span class="mode-title">紛らわしい用語 ○×のみ（14問）</span>
+          <span class="mode-desc">構想図vs製作図・長手vs妻手・数値ひっかけ対策</span>
+        </button>
+      </div>
+
+      <div class="options-row">
+        <label class="toggle-label">
+          <input type="checkbox" id="shuffle-toggle" />
+          問題の順番をシャッフルする
+        </label>
+        <button type="button" id="start-btn" class="btn btn-primary">テストを始める →</button>
+      </div>
+    </section>
+
+    <!-- Quiz Screen -->
+    <section id="quiz-screen" class="card hidden">
+      <div class="progress-header">
+        <span id="progress-label">問題 1 / 20</span>
+        <span id="score-live">現在の正解: 0</span>
+      </div>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" id="progress-fill"></div>
+      </div>
+
+      <div class="q-meta">
+        <div class="badge-group">
+          <span class="q-category" id="q-category"></span>
+          <span class="q-type-badge" id="q-type-badge"></span>
+          <span class="q-important hidden" id="q-important">★ 超重要記述テーマ</span>
+        </div>
+        <span class="q-number" id="q-number"></span>
+      </div>
+
+      <p class="q-text" id="q-text"></p>
+
+      <!-- Essay Input Area -->
+      <div id="essay-area" class="hidden">
+        <div class="essay-box">
+          <textarea id="essay-input" placeholder="ここに自分の言葉で理由や仕組みを入力しよう…（そのまま「答え合わせ」でもOK）"></textarea>
+        </div>
+        <div class="essay-actions">
+          <button type="button" id="check-essay-btn" class="btn btn-primary">答え合わせ・キーワード確認</button>
+          <button type="button" id="hint-btn" class="btn btn-outline">ヒントを見る</button>
+        </div>
+      </div>
+
+      <!-- OX Choice Area -->
+      <div id="ox-area" class="hidden">
+        <div class="ox-grid">
+          <button type="button" class="ox-btn" data-choice="true" id="btn-o">
+            <span class="ox-symbol">○</span>
+            <span class="ox-label">正しい</span>
+          </button>
+          <button type="button" class="ox-btn" data-choice="false" id="btn-x">
+            <span class="ox-symbol">×</span>
+            <span class="ox-label">まちがい</span>
+          </button>
+        </div>
+      </div>
+
+      <div id="hint-box" class="hint-box"></div>
+
+      <!-- Feedback Area -->
+      <div id="feedback-box" class="feedback">
+        <div class="feedback-title" id="feedback-title"></div>
+
+        <div id="model-answer-wrap" class="model-answer-box hidden">
+          <div class="model-answer-label">模範解答</div>
+          <p class="model-answer-text" id="model-answer-text"></p>
+        </div>
+
+        <div id="kw-wrap" class="kw-section hidden">
+          <div class="kw-title">記述に含めるべき必須キーワード（自動チェック）</div>
+          <div class="kw-list" id="kw-list"></div>
+        </div>
+
+        <p class="explain-text" id="explain-text"></p>
+
+        <div id="contrast-box" class="contrast-box hidden"></div>
+
+        <div id="self-grade-row" class="self-grade-row hidden">
+          <span class="self-grade-label">自己採点（記録用）：</span>
+          <button type="button" class="grade-btn" id="grade-ok-btn">○ 書けた・理解した</button>
+          <button type="button" class="grade-btn" id="grade-ng-btn">✕ 要復習にする</button>
+        </div>
+      </div>
+
+      <div class="nav-footer">
+        <button type="button" id="quit-btn" class="btn btn-outline">最初に戻る</button>
+        <button type="button" id="next-btn" class="btn btn-primary hidden">次の問題へ →</button>
+      </div>
+    </section>
+
+    <!-- Result Screen -->
+    <section id="result-screen" class="card hidden">
+      <div class="score-hero">
+        <div style="font-size:14px; font-weight:700; color:var(--muted);">テスト結果</div>
+        <div class="score-num" id="final-score">0 / 0</div>
+        <p class="score-sub" id="final-comment"></p>
+      </div>
+
+      <h3 style="margin:0 0 10px; font-size:16px;">単元・形式別の成績</h3>
+      <div class="breakdown-list" id="breakdown-list"></div>
+
+      <div class="result-actions">
+        <button type="button" id="retry-wrong-btn" class="btn btn-primary hidden">間違えた・要復習の問題だけ解き直す</button>
+        <button type="button" id="retry-all-btn" class="btn btn-secondary">同じモードでもう一度</button>
+        <button type="button" id="back-home-btn" class="btn btn-outline">モード選択に戻る</button>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const QUESTIONS = [
+      // ===== 短文記述（6問：うち重要テーマ2つを明示） =====
+      {
+        id: "e1",
+        type: "essay",
+        important: true,
+        category: "製図のルール",
+        question: "【重要テーマ①】構想図や製作図をかくとき、日本ではJIS（日本産業規格）によって製図のルールが細かく決められています。その理由を説明しなさい。",
+        hint: "「だれが」「だれに」「どう伝わるように」を意識して書こう。",
+        modelAnswer: "設計者の考えが他の人に正しく伝わるようにするため。",
+        keywords: [
+          { label: "設計者の考え", match: ["設計者の考え", "設計者の思い", "設計者の意図", "考えたこと"] },
+          { label: "他の人に", match: ["他の人", "ほかの人", "他人", "相手", "作る人", "つくる人", "別の人"] },
+          { label: "正しく伝わる", match: ["正しく伝わ", "正確に伝わ", "間違いなく伝わ", "しっかり伝わ"] }
+        ],
+        explanation: "図面は設計者の頭の中にあるイメージや寸法を伝えるための共通言語です。人によってかき方がバラバラだと誤解やミスが起きるため、JIS（日本産業規格）でルールが統一されています。"
+      },
+      {
+        id: "e2",
+        type: "essay",
+        important: true,
+        category: "材料取り（けがき）",
+        question: "【重要テーマ②】木材の材料取り（けがき）をするとき、「節（ふし）」の部分をできるだけさけてけがくのはなぜですか。2つの理由を含めて説明しなさい。",
+        hint: "節がある部分を切ったり、くぎを打ったりするとどうなるかを思い出そう。",
+        modelAnswer: "切断後に欠け落ちやすく、かたくてくぎが打ちにくいこともあるため。",
+        keywords: [
+          { label: "欠け落ちやすい", match: ["欠け落ち", "かけ落ち", "欠けやす", "かけやす", "割れやす", "取れやす"] },
+          { label: "かたくて", match: ["かたく", "硬く", "固く"] },
+          { label: "くぎが打ちにくい", match: ["くぎが打ちにく", "釘が打ちにく", "くぎを打ちにく", "くぎが打てな", "くぎ打ち"] }
+        ],
+        explanation: "「節（ふし）」は木の枝が生えていた跡で、周囲の木材より非常に硬い一方、乾燥や切断の衝撃でぽろっと欠け落ちやすい性質があります。そのため、材料取りの段階でできるだけ避けてけがく必要があります。"
+      },
+      {
+        id: "e3",
+        type: "essay",
+        important: false,
+        category: "等角図",
+        question: "等角図は、立体の底面の直角に交わる2辺をどのように傾け、幅・奥行き・高さの割合をどのようにしてかく図法ですか。仕組みを説明しなさい。",
+        hint: "水平線に対する「角度」と、「実物」との割合の2つがポイントです。",
+        modelAnswer: "立体の底面の直角に交わる2辺を水平線に対して30°傾けてかき、幅・奥行き・高さの割合を実物と同じ（1：1：1）にしてかく。",
+        keywords: [
+          { label: "水平線に対して30°", match: ["30°", "30度", "３０°", "３０度", "三十度"] },
+          { label: "実物と同じ割合（1:1:1）", match: ["実物と同じ", "同じ割合", "変えず", "1:1:1", "１：１：１", "1対1対1"] }
+        ],
+        explanation: "等角図は、幅・奥行き・高さの割合を変えずに立体的に表すのに適した図法です。水平線から左右に30°ずつ傾けることで、3つの軸が互いに120°をなすように表現します。"
+      },
+      {
+        id: "e4",
+        type: "essay",
+        important: false,
+        category: "第三角法による正投影図",
+        question: "第三角法による正投影図は、どのような仕組みで3つの図をかき、どのような点が優れていますか。",
+        hint: "立体の手前に何を置き、どこから見た形をかくか、そして何が正確に表せるかを書こう。",
+        modelAnswer: "立体の手前に透明な3つの図面（平画面・立画面・側画面）を置き、各図面を正面から見た形をかくことで、正確な部品の形や寸法を表すことができる。",
+        keywords: [
+          { label: "手前に透明な3つの図面", match: ["透明な", "3つの図面", "３つの図面", "平画面", "立画面", "側画面"] },
+          { label: "正面から見た形", match: ["正面から見た", "正面から見"] },
+          { label: "正確な形や寸法", match: ["正確な", "部品の形", "形や寸法", "形と寸法"] }
+        ],
+        explanation: "等角図は立体的に見えやすい反面、角度や裏側の形などが歪んだり読み取りにくかったりします。第三角法では上から（平面図）・前から（正面図）・右から（右側面図）の3方向から見た形を並べるため、正確な部品の形や寸法を伝えられます。"
+      },
+      {
+        id: "e5",
+        type: "essay",
+        important: false,
+        category: "材料取り（けがき）",
+        question: "けがき寸法線をかくとき、仕上がり寸法線（線A）から4mm程度とって線Bをけがき、その中間に切断線（線C）をかくのはなぜですか。",
+        hint: "木材を切って仕上げるときに減ってしまう2つの「〜しろ」の名前を使おう。",
+        modelAnswer: "のこぎりびきの溝の幅（切りしろ）と、かんななどでけずり取る幅（けずりしろ）を見込んでおき、切断・仕上げ後に両側の部品が正確な仕上がり寸法になるようにするため。",
+        keywords: [
+          { label: "切りしろ（のこの溝の幅）", match: ["切りしろ", "切り代", "のこぎりびきの溝", "のこの溝"] },
+          { label: "けずりしろ（けずり取る幅）", match: ["けずりしろ", "削りしろ", "削り代", "けずり取る", "削り取る"] }
+        ],
+        explanation: "1本の線で切ってしまうと、のこぎりの刃の厚み（切りしろ）とかんな仕上げ（けずりしろ）の分だけ部品が短くなります。左右の部品それぞれに約2mmずつ余裕をもたせるため、合計4mm程度の幅をとり、その真ん中（中間）に切断線を引きます。"
+      },
+      {
+        id: "e6",
+        type: "essay",
+        important: false,
+        category: "切断の技能",
+        question: "のこぎりで木材を切断するとき、切り終わりは材料が欠けやすくなります。欠けを防ぐための切り方の工夫を2つ答えなさい。",
+        hint: "「材料をどうするか」と「のこぎりをひく角度をどうするか」の2点です。",
+        modelAnswer: "材料を支えてもらい、のこぎりをひく角度を水平にして切る。",
+        keywords: [
+          { label: "材料を支える（支えてもらう）", match: ["支え", "ささえ"] },
+          { label: "ひく角度を水平にする", match: ["水平", "すいへい"] }
+        ],
+        explanation: "切り終わりに近づくと、残ったわずかな木の部分が重みで折れて裏側がバリッと欠けやすくなります。切り落とす側を別の人に支えてもらい、のこぎりを水平に保って軽く引くのがコツです。"
+      },
+
+      // ===== 紛らわしい用語ペア・対比の○×問題（14問） =====
+      {
+        id: "ox1",
+        type: "ox",
+        category: "構想図と製作図",
+        question: "できあがりのイメージをかき表し、つくるものの全体の形や部品同士の位置関係、説明事項などを記入する図を「製作図」という。",
+        answer: false,
+        explanation: "誤りです。できあがりのイメージや部品同士の位置関係・説明事項などをかくのは「構想図」です。",
+        contrast: "【対比】構想図＝全体イメージ・位置関係・説明事項 ／ 製作図＝形状・寸法を正確に記入（必要に応じて部品図・拡大図もかく）"
+      },
+      {
+        id: "ox2",
+        type: "ox",
+        category: "構想図と製作図",
+        question: "製作図では、製作品の形状や寸法を正確に記入し、必要に応じて「部品図」や「拡大図」もかく。",
+        answer: true,
+        explanation: "正しいです。細かい部分が見えにくいときや複雑な加工が必要なときは、部品ごとの「部品図」や大きく表した「拡大図」をかき加えます。",
+        contrast: "【流れ】アイデアスケッチ → 構想図 → 製作図（＋部品図・拡大図）"
+      },
+      {
+        id: "ox3",
+        type: "ox",
+        category: "等角図 vs 第三角法",
+        question: "正確な部品の形や寸法を表すのに適しているのは、幅・奥行き・高さの割合を実物と同じにして立体的に表す「等角図」である。",
+        answer: false,
+        explanation: "誤りです。正確な部品の形や寸法を表せるのは「第三角法による正投影図」です。等角図は、全体の立体イメージや3辺の割合を変えずに表すのに適しています。",
+        contrast: "【対比】等角図＝割合を変えず立体的に表す ／ 第三角法（正投影図）＝正確な部品の形や寸法を表す"
+      },
+      {
+        id: "ox4",
+        type: "ox",
+        category: "等角図",
+        question: "等角図をかくとき、立体の底面の直角に交わる2辺は、水平線に対して「45°」傾けてかく。",
+        answer: false,
+        explanation: "誤りです。水平線に対して「30°」傾けてかきます（45°ではありません）。垂直線と合わせて3つの軸のなす角がそれぞれ120°になります。",
+        contrast: "【数値注意】水平線に対する傾き＝30° ／ 3軸の間の角度＝120° ／ 割合＝1：1：1"
+      },
+      {
+        id: "ox5",
+        type: "ox",
+        category: "第三角法による正投影図",
+        question: "第三角法による正投影図では、「正面図」の真上に「平面図」を配置し、正面図の右横に「右側面図」を配置する。",
+        answer: true,
+        explanation: "正しいです。正面図を基準にして、上から見た「平面図」を上に、右から見た「右側面図」を右に配置するのが第三角法の決まりです。",
+        contrast: "【配置】上＝平面図（平画面） ／ 左下＝正面図（立画面） ／ 右下＝右側面図（側画面）"
+      },
+      {
+        id: "ox6",
+        type: "ox",
+        category: "けがきの工具（さしがね）",
+        question: "さしがねで線をかくときは、「妻手」の内側を材料の基準面に密着させ、「長手」の外側を使って線をひく。",
+        answer: false,
+        explanation: "誤りです。長いほうの「長手」の内側を材料の基準面に密着させ、短いほうの「妻手」の外側を使って線をかきます。逆なのでテストで非常に出やすいひっかけです！",
+        contrast: "【対比】長手（長いほう）＝内側を基準面に密着 ／ 妻手（短いほう）＝外側を使って線をかく"
+      },
+      {
+        id: "ox7",
+        type: "ox",
+        category: "けがきの工具",
+        question: "「けびき」は、基準面からの幅を同じ寸法でとるときに使う工具である。",
+        answer: true,
+        explanation: "正しいです。けびきは定規部分を基準面に当てて滑らせることで、同じ幅の平行線を正確にけがくことができます。",
+        contrast: "【工具整理】さしがね＝直角の線 ／ 自由金（角度定規）＝こばや角材・角度のけがき ／ けびき＝基準面から同じ幅をとる"
+      },
+      {
+        id: "ox8",
+        type: "ox",
+        category: "けがきの工具",
+        question: "「自由金（角度定規）」は、材料をクランプで固定するときに傷を防ぐためにはさむ道具である。",
+        answer: false,
+        explanation: "誤りです。自由金（角度定規）は、こばや角材にけがくとき（角度をとるとき）に使う工具です。クランプで固定するときにはさむのは「あて木」です。",
+        contrast: "【対比】自由金＝こばや角材にけがく工具 ／ あて木＝材料の固定や切りはじめで使う木片"
+      },
+      {
+        id: "ox9",
+        type: "ox",
+        category: "切りしろ・けずりしろ",
+        question: "「切りしろ」とはのこぎりびきの溝の幅のことであり、「けずりしろ」とはかんななどでけずり取る幅のことである。",
+        answer: true,
+        explanation: "正しいです。どちらも仕上がり寸法より余分にとっておく幅ですが、目的が異なります。",
+        contrast: "【対比】切りしろ＝のこぎりびきの溝の幅 ／ けずりしろ＝かんななどでけずり取る幅"
+      },
+      {
+        id: "ox10",
+        type: "ox",
+        category: "けがき寸法線の順序",
+        question: "けがき寸法線をかくとき、線Aと線Bの間隔（切りしろとけずりしろの幅）は「10mm」程度とり、その中間に切断線（線C）をけがく。",
+        answer: false,
+        explanation: "誤りです。線Aと線Bの間隔は「4mm」程度（片側2mmずつ）とります。10mmでは広すぎます。",
+        contrast: "【数値注意】線A〜線Bの間隔＝4mm程度（2mm＋2mm） ／ 線C（切断線）＝線Aと線Bの中間"
+      },
+      {
+        id: "ox11",
+        type: "ox",
+        category: "切断の技能（切りはじめ）",
+        question: "のこぎりの切りはじめは、切断線にあて木や親指の関節・つめをあて、のこ身の「さき（先端）」のほうを使ってひき溝をつくる。",
+        answer: false,
+        explanation: "誤りです。切りはじめは、力が安定しやすいのこ身の「もと（手元）」のほうを使ってひき溝をつくります。",
+        contrast: "【対比】切りはじめ＝のこ身の「もと」を使う ／ 本切り＝刃わたりの8割程度を使う"
+      },
+      {
+        id: "ox12",
+        type: "ox",
+        category: "切断の技能",
+        question: "のこぎりで木材を切断するときは、のこぎりを「押す」ときに力を入れ、刃わたりの8割程度を使って切る。",
+        answer: false,
+        explanation: "誤りです。日本ののこぎりは「ひく」ときに力を入れて切ります。押すときに力を入れると刃が曲がったり折れたりしやすくなります。",
+        contrast: "【対比】力を入れる方向＝「ひく」とき（押すときではない） ／ 使う長さ＝刃わたりの8割程度"
+      },
+      {
+        id: "ox13",
+        type: "ox",
+        category: "切断の技能",
+        question: "のこぎりで直線に切断するときは、のこ身と顔の中心がそろうように真上から見て、刃わたりの「8割程度」を使って切る。",
+        answer: true,
+        explanation: "正しいです。斜めから見ると線がずれて曲がりやすいため、真上から見てのこ身と顔の中心をそろえ、刃を大きく（8割程度）使って切ります。",
+        contrast: "【視点と割合】見る位置＝真上から ／ 使う長さ＝刃わたりの8割程度"
+      },
+      {
+        id: "ox14",
+        type: "ox",
+        category: "材料の固定",
+        question: "材料を切断する前に固定するときは、材料に傷がつくのを防ぐため「あて木」をはさんで「クランプ」などでしっかり固定する。",
+        answer: true,
+        explanation: "正しいです。クランプを直接木材に強く締めると跡が残ったり傷ついたりするため、あて木をはさんで固定します。",
+        contrast: "【固定セット】あて木（傷防止）＋ クランプ（しっかり固定）"
+      }
+    ];
+
+    let selectedMode = "all";
+    let activeQuestions = [];
+    let currentIndex = 0;
+    let score = 0;
+    let results = []; // { q, isCorrect }
+
+    const startScreen = document.getElementById("start-screen");
+    const quizScreen = document.getElementById("quiz-screen");
+    const resultScreen = document.getElementById("result-screen");
+
+    const modeBtns = document.querySelectorAll(".mode-btn");
+    const shuffleToggle = document.getElementById("shuffle-toggle");
+    const startBtn = document.getElementById("start-btn");
+
+    const progressLabel = document.getElementById("progress-label");
+    const scoreLive = document.getElementById("score-live");
+    const progressFill = document.getElementById("progress-fill");
+    const qCategory = document.getElementById("q-category");
+    const qTypeBadge = document.getElementById("q-type-badge");
+    const qImportant = document.getElementById("q-important");
+    const qNumber = document.getElementById("q-number");
+    const qText = document.getElementById("q-text");
+
+    const essayArea = document.getElementById("essay-area");
+    const essayInput = document.getElementById("essay-input");
+    const checkEssayBtn = document.getElementById("check-essay-btn");
+    const hintBtn = document.getElementById("hint-btn");
+    const hintBox = document.getElementById("hint-box");
+
+    const oxArea = document.getElementById("ox-area");
+    const btnO = document.getElementById("btn-o");
+    const btnX = document.getElementById("btn-x");
+
+    const feedbackBox = document.getElementById("feedback-box");
+    const feedbackTitle = document.getElementById("feedback-title");
+    const modelAnswerWrap = document.getElementById("model-answer-wrap");
+    const modelAnswerText = document.getElementById("model-answer-text");
+    const kwWrap = document.getElementById("kw-wrap");
+    const kwList = document.getElementById("kw-list");
+    const explainText = document.getElementById("explain-text");
+    const contrastBox = document.getElementById("contrast-box");
+    const selfGradeRow = document.getElementById("self-grade-row");
+    const gradeOkBtn = document.getElementById("grade-ok-btn");
+    const gradeNgBtn = document.getElementById("grade-ng-btn");
+
+    const quitBtn = document.getElementById("quit-btn");
+    const nextBtn = document.getElementById("next-btn");
+
+    const finalScore = document.getElementById("final-score");
+    const finalComment = document.getElementById("final-comment");
+    const breakdownList = document.getElementById("breakdown-list");
+    const retryWrongBtn = document.getElementById("retry-wrong-btn");
+    const retryAllBtn = document.getElementById("retry-all-btn");
+    const backHomeBtn = document.getElementById("back-home-btn");
+
+    modeBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        modeBtns.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        selectedMode = btn.dataset.mode;
+      });
+    });
+
+    function shuffleArray(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function startQuiz(customList = null) {
+      let list;
+      if (customList) {
+        list = [...customList];
+      } else {
+        if (selectedMode === "essay") {
+          list = QUESTIONS.filter(q => q.type === "essay");
+        } else if (selectedMode === "ox") {
+          list = QUESTIONS.filter(q => q.type === "ox");
+        } else {
+          list = [...QUESTIONS];
+        }
+        if (shuffleToggle.checked) {
+          list = shuffleArray(list);
+        }
+      }
+
+      activeQuestions = list;
+      currentIndex = 0;
+      score = 0;
+      results = [];
+
+      startScreen.classList.add("hidden");
+      resultScreen.classList.add("hidden");
+      quizScreen.classList.remove("hidden");
+
+      renderQuestion();
+    }
+
+    function renderQuestion() {
+      const q = activeQuestions[currentIndex];
+      const total = activeQuestions.length;
+
+      progressLabel.textContent = `問題 ${currentIndex + 1} / ${total}`;
+      scoreLive.textContent = `現在の正解: ${score}`;
+      progressFill.style.width = `${(currentIndex / total) * 100}%`;
+
+      qCategory.textContent = q.category;
+      qNumber.textContent = `Q${currentIndex + 1}`;
+      qText.textContent = q.question;
+
+      if (q.type === "essay") {
+        qTypeBadge.textContent = "短文記述";
+        qTypeBadge.className = "q-type-badge q-type-essay";
+      } else {
+        qTypeBadge.textContent = "○×ひっかけ";
+        qTypeBadge.className = "q-type-badge q-type-ox";
+      }
+
+      if (q.important) {
+        qImportant.classList.remove("hidden");
+      } else {
+        qImportant.classList.add("hidden");
+      }
+
+      // Reset areas
+      feedbackBox.className = "feedback";
+      feedbackBox.classList.remove("visible");
+      hintBox.classList.remove("visible");
+      hintBox.textContent = "";
+      nextBtn.classList.add("hidden");
+      contrastBox.classList.add("hidden");
+      modelAnswerWrap.classList.add("hidden");
+      kwWrap.classList.add("hidden");
+      selfGradeRow.classList.add("hidden");
+      gradeOkBtn.className = "grade-btn";
+      gradeNgBtn.className = "grade-btn";
+
+      if (q.type === "essay") {
+        essayArea.classList.remove("hidden");
+        oxArea.classList.add("hidden");
+        essayInput.value = "";
+        essayInput.disabled = false;
+        checkEssayBtn.disabled = false;
+        hintBtn.disabled = false;
+      } else {
+        essayArea.classList.add("hidden");
+        oxArea.classList.remove("hidden");
+        btnO.disabled = false;
+        btnX.disabled = false;
+        btnO.className = "ox-btn";
+        btnX.className = "ox-btn";
+      }
+    }
+
+    hintBtn.addEventListener("click", () => {
+      const q = activeQuestions[currentIndex];
+      hintBox.textContent = "💡 ヒント： " + q.hint;
+      hintBox.classList.add("visible");
+    });
+
+    function normalizeForCheck(str) {
+      return (str || "")
+        .replace(/\s+/g, "")
+        .replace(/[Ａ-Ｚａ-ｚ０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xFEE0))
+        .toLowerCase();
+    }
+
+    let currentEssayResultRecorded = false;
+
+    checkEssayBtn.addEventListener("click", () => {
+      const q = activeQuestions[currentIndex];
+      const userVal = normalizeForCheck(essayInput.value);
+      const hasInput = userVal.length > 0;
+
+      essayInput.disabled = true;
+      checkEssayBtn.disabled = true;
+      hintBtn.disabled = true;
+
+      let hitCount = 0;
+      kwList.innerHTML = "";
+
+      q.keywords.forEach(kw => {
+        const matched = hasInput && kw.match.some(m => userVal.includes(normalizeForCheck(m)));
+        if (matched) hitCount++;
+
+        const chip = document.createElement("span");
+        if (!hasInput) {
+          chip.className = "kw-chip neutral";
+          chip.textContent = `🔑 ${kw.label}`;
+        } else if (matched) {
+          chip.className = "kw-chip hit";
+          chip.textContent = `✓ ${kw.label}`;
+        } else {
+          chip.className = "kw-chip miss";
+          chip.textContent = `✗ ${kw.label}`;
+        }
+        kwList.appendChild(chip);
+      });
+
+      const totalKw = q.keywords.length;
+      let autoCorrect = false;
+
+      if (!hasInput) {
+        feedbackBox.className = "feedback visible is-neutral";
+        feedbackTitle.textContent = "📖 模範解答と必須キーワード";
+      } else if (hitCount === totalKw) {
+        feedbackBox.className = "feedback visible is-correct";
+        feedbackTitle.textContent = `○ すばらしい！必須キーワードをすべて含んでいます（${hitCount}/${totalKw}）`;
+        autoCorrect = true;
+      } else if (hitCount > 0) {
+        feedbackBox.className = "feedback visible is-partial";
+        feedbackTitle.textContent = `△ おしい！あと少し（キーワード ${hitCount}/${totalKw} 一致）`;
+      } else {
+        feedbackBox.className = "feedback visible is-wrong";
+        feedbackTitle.textContent = `✕ キーワードが抜けています（0/${totalKw} 一致）`;
+      }
+
+      modelAnswerWrap.classList.remove("hidden");
+      modelAnswerText.textContent = q.modelAnswer;
+      kwWrap.classList.remove("hidden");
+      explainText.textContent = q.explanation;
+
+      selfGradeRow.classList.remove("hidden");
+      currentEssayResultRecorded = true;
+
+      // 初期の記録（あとで自己採点ボタンで切り替え可能）
+      const entry = { q, isCorrect: autoCorrect };
+      results.push(entry);
+      if (autoCorrect) {
+        score++;
+        gradeOkBtn.classList.add("active-ok");
+      } else {
+        gradeNgBtn.classList.add("active-ng");
+      }
+      scoreLive.textContent = `現在の正解: ${score}`;
+
+      nextBtn.classList.remove("hidden");
+      nextBtn.textContent = currentIndex === activeQuestions.length - 1 ? "結果を見る →" : "次の問題へ →";
+    });
+
+    function setEssayGrade(isOk) {
+      if (!currentEssayResultRecorded) return;
+      const lastEntry = results[results.length - 1];
+      if (lastEntry.isCorrect === isOk) return;
+
+      lastEntry.isCorrect = isOk;
+      score += isOk ? 1 : -1;
+      scoreLive.textContent = `現在の正解: ${score}`;
+
+      gradeOkBtn.className = isOk ? "grade-btn active-ok" : "grade-btn";
+      gradeNgBtn.className = !isOk ? "grade-btn active-ng" : "grade-btn";
+    }
+
+    gradeOkBtn.addEventListener("click", () => setEssayGrade(true));
+    gradeNgBtn.addEventListener("click", () => setEssayGrade(false));
+
+    function handleOxChoice(userChoice) {
+      const q = activeQuestions[currentIndex];
+      const isCorrect = (userChoice === q.answer);
+
+      btnO.disabled = true;
+      btnX.disabled = true;
+
+      const selectedBtn = userChoice ? btnO : btnX;
+      const correctBtn = q.answer ? btnO : btnX;
+
+      if (isCorrect) {
+        selectedBtn.classList.add("selected-correct");
+        feedbackBox.className = "feedback visible is-correct";
+        feedbackTitle.textContent = `○ 正解！（答え：${q.answer ? "○ 正しい" : "× まちがい"}）`;
+        score++;
+      } else {
+        selectedBtn.classList.add("selected-wrong");
+        correctBtn.classList.add("show-answer");
+        feedbackBox.className = "feedback visible is-wrong";
+        feedbackTitle.textContent = `✕ まちがい！（正解は：${q.answer ? "○ 正しい" : "× まちがい"}）`;
+      }
+
+      results.push({ q, isCorrect });
+      scoreLive.textContent = `現在の正解: ${score}`;
+
+      explainText.textContent = q.explanation;
+      if (q.contrast) {
+        contrastBox.textContent = q.contrast;
+        contrastBox.classList.remove("hidden");
+      }
+
+      nextBtn.classList.remove("hidden");
+      nextBtn.textContent = currentIndex === activeQuestions.length - 1 ? "結果を見る →" : "次の問題へ →";
+    }
+
+    btnO.addEventListener("click", () => handleOxChoice(true));
+    btnX.addEventListener("click", () => handleOxChoice(false));
+
+    nextBtn.addEventListener("click", () => {
+      currentEssayResultRecorded = false;
+      currentIndex++;
+      if (currentIndex < activeQuestions.length) {
+        renderQuestion();
+      } else {
+        showResults();
+      }
+    });
+
+    function showResults() {
+      quizScreen.classList.add("hidden");
+      resultScreen.classList.remove("hidden");
+
+      const total = results.length;
+      const pct = Math.round((score / total) * 100);
+      finalScore.textContent = `${score} / ${total}（${pct}%）`;
+
+      if (pct === 100) {
+        finalComment.textContent = "全問クリア！記述のキーワードもひっかけ問題も完璧です。";
+      } else if (pct >= 80) {
+        finalComment.textContent = "よくできました！間違えた問題・要復習だけもう一度確認すればバッチリです。";
+      } else if (pct >= 60) {
+        finalComment.textContent = "あと一歩！記述の必須キーワードと、逆になりやすい用語ペアを復習しよう。";
+      } else {
+        finalComment.textContent = "まずは解説の対比ポイントとキーワードを声に出して確認しながら解き直してみよう！";
+      }
+
+      // 形式別・単元別の集計
+      const groups = {};
+      results.forEach(r => {
+        const key = r.q.type === "essay" ? "📝 短文記述" : "⚡ ○×ひっかけ問題";
+        if (!groups[key]) groups[key] = { ok: 0, total: 0 };
+        groups[key].total++;
+        if (r.isCorrect) groups[key].ok++;
+      });
+
+      breakdownList.innerHTML = "";
+      Object.entries(groups).forEach(([name, stat]) => {
+        const div = document.createElement("div");
+        div.className = "breakdown-item";
+        div.innerHTML = `<span>${name}</span><span>${stat.ok} / ${stat.total} 問正解</span>`;
+        breakdownList.appendChild(div);
+      });
+
+      const wrongList = results.filter(r => !r.isCorrect).map(r => r.q);
+      if (wrongList.length > 0) {
+        retryWrongBtn.classList.remove("hidden");
+        retryWrongBtn.textContent = `間違えた・要復習の問題だけ解き直す（${wrongList.length}問）`;
+        retryWrongBtn.onclick = () => startQuiz(wrongList);
+      } else {
+        retryWrongBtn.classList.add("hidden");
+      }
+    }
+
+    startBtn.addEventListener("click", () => startQuiz());
+    retryAllBtn.addEventListener("click", () => startQuiz());
+
+    function backHome() {
+      quizScreen.classList.add("hidden");
+      resultScreen.classList.add("hidden");
+      startScreen.classList.remove("hidden");
+    }
+
+    quitBtn.addEventListener("click", backHome);
+    backHomeBtn.addEventListener("click", backHome);
+  </script>
+</body>
+</html>

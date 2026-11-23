@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>中1 技術科 2学期末テスト対策 フラッシュカード</title>
+  <style>
+    :root {
+      --bg: #f1f5f9;
+      --surface: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --primary: #0284c7;
+      --primary-hover: #0369a1;
+      --primary-soft: #e0f2fe;
+      --ok: #16a34a;
+      --ok-bg: #f0fdf4;
+      --ok-border: #86efac;
+      --retry: #ea580c;
+      --retry-bg: #fff7ed;
+      --retry-border: #fdba74;
+      --point-bg: #fefce8;
+      --point-border: #fde047;
+      --point-text: #854d0e;
+      --shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic UI", "Meiryo", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 16px 14px 48px;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0369a1, #0ea5e9);
+      color: #ffffff;
+      padding: 18px 22px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 14px;
+    }
+
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 2px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .view-switch {
+      display: inline-flex;
+      background: rgba(15, 23, 42, 0.2);
+      padding: 3px;
+      border-radius: 10px;
+      gap: 3px;
+    }
+
+    .view-btn {
+      border: none;
+      background: transparent;
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 12.5px;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.15s ease;
+    }
+
+    .view-btn.active {
+      background: #ffffff;
+      color: #0369a1;
+    }
+
+    header h1 {
+      margin: 0 0 4px;
+      font-size: 20px;
+      line-height: 1.35;
+    }
+
+    header p {
+      margin: 0;
+      font-size: 13px;
+      opacity: 0.92;
+    }
+
+    /* Controls & Unit Filter */
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 14px;
+      margin-bottom: 14px;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+    }
+
+    .filter-scroll {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .chip {
+      border: 1.5px solid var(--border);
+      background: #f8fafc;
+      color: var(--text);
+      font-size: 12.5px;
+      font-weight: 700;
+      padding: 6px 11px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.15s ease;
+    }
+
+    .chip:hover {
+      border-color: var(--primary);
+      background: var(--primary-soft);
+    }
+
+    .chip.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    .chip.retry-chip.active {
+      background: var(--retry);
+      border-color: var(--retry);
+    }
+
+    .stats-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding-top: 8px;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+    }
+
+    .progress-text {
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .progress-text strong {
+      color: var(--ok);
+    }
+
+    .mini-actions {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .mini-btn {
+      border: 1px solid var(--border);
+      background: #ffffff;
+      color: var(--text);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 5px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .mini-btn:hover {
+      background: #f1f5f9;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 6px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #0284c7, #16a34a);
+      width: 0%;
+      transition: width 0.25s ease;
+    }
+
+    /* 3D Flashcard */
+    .stage {
+      perspective: 1200px;
+      margin-bottom: 14px;
+    }
+
+    .flashcard {
+      position: relative;
+      width: 100%;
+      min-height: 310px;
+      transform-style: preserve-3d;
+      transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .flashcard.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .card-face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card-back {
+      transform: rotateY(180deg);
+      background: #ffffff;
+      border-color: #bae6fd;
+    }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .unit-tag {
+      background: var(--primary-soft);
+      color: #0369a1;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+
+    .card-status {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 999px;
+    }
+
+    .status-unseen {
+      background: #f1f5f9;
+      color: var(--muted);
+    }
+
+    .status-ok {
+      background: var(--ok-bg);
+      color: var(--ok);
+      border: 1px solid var(--ok-border);
+    }
+
+    .status-retry {
+      background: var(--retry-bg);
+      color: var(--retry);
+      border: 1px solid var(--retry-border);
+    }
+
+    .card-center {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 16px 4px;
+    }
+
+    .side-label {
+      font-size: 11.5px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    .question-text {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    .answer-text {
+      font-size: 28px;
+      font-weight: 800;
+      color: #0369a1;
+      line-height: 1.35;
+      margin: 0 0 6px;
+    }
+
+    .answer-sub {
+      font-size: 14px;
+      color: var(--muted);
+      font-weight: 600;
+      margin: 0 0 14px;
+    }
+
+    .point-box {
+      width: 100%;
+      text-align: left;
+      background: var(--point-bg);
+      border: 1px solid var(--point-border);
+      border-radius: 12px;
+      padding: 11px 14px;
+      font-size: 13.5px;
+      color: var(--point-text);
+      line-height: 1.55;
+    }
+
+    .point-box strong {
+      display: inline-block;
+      margin-right: 4px;
+    }
+
+    .card-bottom {
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    /* Action Buttons */
+    .action-bar {
+      display: grid;
+      grid-template-columns: auto 1fr 1fr auto;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .act-btn {
+      border: none;
+      border-radius: 12px;
+      padding: 13px 14px;
+      font-size: 14.5px;
+      font-weight: 800;
+      font-family: inherit;
+      cursor: pointer;
+      transition: transform 0.1s ease, background 0.15s ease;
+    }
+
+    .act-btn:active {
+      transform: translateY(1px);
+    }
+
+    .btn-nav {
+      background: #e2e8f0;
+      color: var(--text);
+      padding: 13px 16px;
+    }
+
+    .btn-nav:hover {
+      background: #cbd5e1;
+    }
+
+    .btn-retry {
+      background: var(--retry-bg);
+      color: var(--retry);
+      border: 1.5px solid var(--retry-border);
+    }
+
+    .btn-retry:hover {
+      background: #ffedd5;
+    }
+
+    .btn-ok {
+      background: var(--ok-bg);
+      color: var(--ok);
+      border: 1.5px solid var(--ok-border);
+    }
+
+    .btn-ok:hover {
+      background: #dcfce7;
+    }
+
+    .shortcut-hint {
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    kbd {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 5px;
+      padding: 1px 6px;
+      font-size: 11px;
+      font-family: inherit;
+      font-weight: 700;
+    }
+
+    /* Empty State */
+    .empty-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 40px 20px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .empty-box h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+
+    .empty-box p {
+      margin: 0 0 16px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    /* List / Red Sheet Mode */
+    .list-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .red-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #fef2f2;
+      border: 1.5px solid #fca5a5;
+      color: #b91c1c;
+      padding: 7px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .red-toggle.active {
+      background: #dc2626;
+      color: #ffffff;
+      border-color: #dc2626;
+    }
+
+    .list-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .list-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 16px;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+    }
+
+    .list-item-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .list-q {
+      font-size: 15px;
+      font-weight: 700;
+      margin: 0 0 8px;
+    }
+
+    .list-a-wrap {
+      border-top: 1px dashed var(--border);
+      padding-top: 8px;
+      cursor: pointer;
+    }
+
+    .list-a {
+      font-size: 16px;
+      font-weight: 800;
+      color: #0369a1;
+      margin-bottom: 4px;
+    }
+
+    .list-p {
+      font-size: 13px;
+      color: var(--point-text);
+      background: var(--point-bg);
+      padding: 6px 10px;
+      border-radius: 8px;
+      border: 1px solid var(--point-border);
+    }
+
+    .masked .list-a,
+    .masked .list-p {
+      background: #fee2e2;
+      color: transparent;
+      border-color: #fca5a5;
+      user-select: none;
+      border-radius: 6px;
+    }
+
+    .masked .list-a::before {
+      content: "タップして答えを表示";
+      color: #dc2626;
+      font-size: 12.5px;
+      font-weight: 700;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @media (max-width: 540px) {
+      .question-text {
+        font-size: 17.5px;
+      }
+      .answer-text {
+        font-size: 23px;
+      }
+      .card-face {
+        padding: 18px 16px;
+      }
+      .action-bar {
+        grid-template-columns: 1fr 1fr;
+      }
+      .btn-nav {
+        order: 2;
+      }
+      .shortcut-hint {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="header-top">
+        <span class="badge">中1 技術科・2学期末テスト対策</span>
+        <div class="view-switch">
+          <button class="view-btn active" id="modeCardBtn" type="button">カードで暗記</button>
+          <button class="view-btn" id="modeListBtn" type="button">一覧・赤シート</button>
+        </div>
+      </div>
+      <h1>重要語句フラッシュカード（全34語）</h1>
+      <p>スキマ時間にテンポよくチェック！タップで裏返して「テストで狙われる一言ポイント」まで確認しよう。</p>
+    </header>
+
+    <div class="panel">
+      <div class="filter-scroll" id="filterBar">
+        <button class="chip active" data-unit="all" type="button">全単元 (34)</button>
+        <button class="chip" data-unit="構想図と製作図" type="button">構想図と製作図</button>
+        <button class="chip" data-unit="等角図" type="button">等角図</button>
+        <button class="chip" data-unit="第三角法" type="button">第三角法</button>
+        <button class="chip" data-unit="材料取り（けがき）" type="button">材料取り（けがき）</button>
+        <button class="chip" data-unit="切断の技能" type="button">切断の技能</button>
+        <button class="chip retry-chip" data-unit="retry" id="retryFilterBtn" type="button">要復習のみ (0)</button>
+      </div>
+      <div class="stats-row">
+        <div class="progress-text">
+          進捗：<span id="counterText">1 / 34</span>（覚えた：<strong id="knownCountText">0</strong>）
+        </div>
+        <div class="mini-actions">
+          <button class="mini-btn" id="shuffleBtn" type="button">🔀 シャッフル</button>
+          <button class="mini-btn" id="resetBtn" type="button">↺ 記録リセット</button>
+        </div>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+    </div>
+
+    <!-- Card Mode -->
+    <div id="cardView">
+      <div class="stage" id="cardStage">
+        <div class="flashcard" id="flashcard" tabindex="0" role="button" aria-label="カードを裏返す">
+          <div class="card-face card-front">
+            <div class="card-top">
+              <span class="unit-tag" id="frontUnit">単元</span>
+              <span class="card-status status-unseen" id="frontStatus">未チェック</span>
+            </div>
+            <div class="card-center">
+              <div class="side-label">QUESTION</div>
+              <p class="question-text" id="questionText"></p>
+            </div>
+            <div class="card-bottom">タップ（または Space）で答えを見る</div>
+          </div>
+
+          <div class="card-face card-back">
+            <div class="card-top">
+              <span class="unit-tag" id="backUnit">単元</span>
+              <span class="card-status status-unseen" id="backStatus">未チェック</span>
+            </div>
+            <div class="card-center">
+              <div class="side-label">ANSWER</div>
+              <p class="answer-text" id="answerText"></p>
+              <p class="answer-sub" id="answerSub"></p>
+              <div class="point-box" id="pointBox"></div>
+            </div>
+            <div class="card-bottom">下のボタンで「まだ」「覚えた！」を選んで次へ</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="empty-box hidden" id="emptyBox">
+        <h3>要復習のカードはありません！</h3>
+        <p>「全単元」に切り替えるか、記録をリセットしてもう1周チャレンジしよう。</p>
+        <button class="act-btn btn-ok" id="backToAllBtn" type="button">全単元に戻る</button>
+      </div>
+
+      <div class="action-bar" id="actionBar">
+        <button class="act-btn btn-nav" id="prevBtn" type="button">← 前へ</button>
+        <button class="act-btn btn-retry" id="markRetryBtn" type="button">↻ まだ（要復習）</button>
+        <button class="act-btn btn-ok" id="markOkBtn" type="button">✓ 覚えた！</button>
+        <button class="act-btn btn-nav" id="nextBtn" type="button">次へ →</button>
+      </div>
+
+      <div class="shortcut-hint">
+        キーボード：<kbd>Space</kbd> 裏返す ／ <kbd>1</kbd> まだ ／ <kbd>2</kbd> 覚えた！ ／ <kbd>←</kbd><kbd>→</kbd> 移動
+      </div>
+    </div>
+
+    <!-- List / Red Sheet Mode -->
+    <div id="listView" class="hidden">
+      <div class="list-toolbar">
+        <span style="font-size:13px;color:var(--muted);font-weight:700;">テスト直前の総ざらいに！</span>
+        <button class="red-toggle" id="redSheetBtn" type="button">🟥 赤シート（答えを隠す）：OFF</button>
+      </div>
+      <div class="list-grid" id="listGrid"></div>
+    </div>
+  </div>
+
+  <script>
+    const CARDS = [
+      // 1. 構想図と製作図
+      {
+        id: 1,
+        unit: "構想図と製作図",
+        q: "日本で製図のルールを細かく定めている規格（アルファベット3文字）は？",
+        a: "JIS",
+        sub: "日本産業規格",
+        point: "設計者の考えが他の人に正しく伝わるように定められた共通ルール。「JIS」と「日本産業規格」の両方を言えるようにしよう。"
+      },
+      {
+        id: 2,
+        unit: "構想図と製作図",
+        q: "できあがりのイメージをかき表し、全体の形・部品の位置関係・寸法などを記入する図は？",
+        a: "構想図",
+        sub: "こうそうず",
+        point: "「全体のイメージ」をまとめる図。正確な形状・寸法を清書する「製作図」との違いがテストでよく問われる。"
+      },
+      {
+        id: 3,
+        unit: "構想図と製作図",
+        q: "製作品の形状や寸法を正確に記入し、ものづくりの設計図として使う図は？",
+        a: "製作図",
+        sub: "せいさくず",
+        point: "構想図をもとに、実際に作れるように正確な形・寸法をかいた図。「制作図（×）」と漢字を間違えないように注意！"
+      },
+      {
+        id: 4,
+        unit: "構想図と製作図",
+        q: "製作図において、細かい部分をわかりやすくするために必要に応じてかく図は？（2つ）",
+        a: "部品図・拡大図",
+        sub: "ぶひんず・かくだいず",
+        point: "全体図だけでは見えにくい接合部や細かい寸法は、部品図や拡大図をかいて正確に伝える。"
+      },
+      {
+        id: 5,
+        unit: "構想図と製作図",
+        q: "構想図をかく前段階として、思いついたアイデアを自由にメモ書きする図は？",
+        a: "アイデアスケッチ",
+        sub: "設計の最初のステップ",
+        point: "製図の流れは「アイデアスケッチ → 構想図 → 製作図」の順番！並び替え問題で狙われやすい。"
+      },
+
+      // 2. 等角図
+      {
+        id: 6,
+        unit: "等角図",
+        q: "立体の底面の直角に交わる2辺を、水平線に対して30°傾けてかく立体図法は？",
+        a: "等角図",
+        sub: "とうかくず",
+        point: "立体のまま1つの図で見せるのが「等角図」。正面・上・横に分けてかく「第三角法（正投影図）」と区別しよう。"
+      },
+      {
+        id: 7,
+        unit: "等角図",
+        q: "等角図で、立体の底面の直角に交わる2辺は水平線に対して何度傾けてかくか？",
+        a: "30°",
+        sub: "左右それぞれ30度",
+        point: "45°や60°にすり替えるひっかけ問題が定番！必ず「30°」と覚えよう。"
+      },
+      {
+        id: 8,
+        unit: "等角図",
+        q: "等角図で、幅・奥行き・高さの3つの軸が交わる中心の角度はそれぞれ何度か？",
+        a: "120°",
+        sub: "360° ÷ 3 = 120°",
+        point: "水平線との傾きは「30°」、3本の軸どうしの角度は「120°」。どちらを聞かれているか問題文をよく読もう。"
+      },
+      {
+        id: 9,
+        unit: "等角図",
+        q: "等角図では、幅・奥行き・高さの割合を何と同じにしてかくか？",
+        a: "実物",
+        sub: "a : b : c = 1 : 1 : 1",
+        point: "奥行きを半分に縮めたりせず、実物と同じ割合（1：1：1）でかくのが等角図のルール。"
+      },
+      {
+        id: 10,
+        unit: "等角図",
+        q: "等角図は、立体の「幅・奥行き・高さの何」を変えずに表すのに適しているか？",
+        a: "割合",
+        sub: "立体全体のバランス",
+        point: "穴埋め問題の頻出ワード！「幅・奥行き・高さの【割合】を変えずに表す」をそのまま覚えておこう。"
+      },
+      {
+        id: 11,
+        unit: "等角図",
+        q: "等角図の仕上げで、必要な線を太い線でなぞったあと、最後にすべきことは？",
+        a: "不要な線を消す",
+        sub: "下がき線（補助線）を消す",
+        point: "図法の手順問題で出やすい。太い線でなぞる前ではなく、なぞったあとに不要な線を消す。"
+      },
+
+      // 3. 第三角法による正投影図
+      {
+        id: 12,
+        unit: "第三角法",
+        q: "立体を正面・上・右などから見た平らな形で正確に表す図法を「何による正投影図」というか？",
+        a: "第三角法",
+        sub: "だいさんかくほう",
+        point: "「第三角法」の漢字を正確に書けるようにしよう。「第一角法（×）」などのひっかけに注意！"
+      },
+      {
+        id: 13,
+        unit: "第三角法",
+        q: "第三角法では、立体の手前に何枚の透明な図面を置くイメージで考えるか？",
+        a: "3つ",
+        sub: "平画面・立画面・側画面",
+        point: "立体を透明な箱の中に入れ、上（平画面）・前（立画面）・右（側画面）の3面にうつして開いたのが正投影図。"
+      },
+      {
+        id: 14,
+        unit: "第三角法",
+        q: "第三角法で各図面をかくとき、それぞれの面に対してどの方向から見た形をかくか？",
+        a: "正面",
+        sub: "面に垂直な正面方向",
+        point: "斜めから見たり遠近感をつけたりせず、必ず各面の「正面」からまっすぐ見た形をかく。"
+      },
+      {
+        id: 15,
+        unit: "第三角法",
+        q: "第三角法で、立体を真上から見て「平画面」にうつした図を何というか？",
+        a: "平面図",
+        sub: "へいめんず",
+        point: "配置ルール：平面図は必ず「正面図の真上」にかく。位置関係もテストで問われる！"
+      },
+      {
+        id: 16,
+        unit: "第三角法",
+        q: "第三角法で、立体を正面から見て「立画面」にうつした図を何というか？",
+        a: "正面図",
+        sub: "しょうめんず",
+        point: "正投影図の基準になる図。部品の特徴がいちばんよくわかる向きを正面に選ぶ。"
+      },
+      {
+        id: 17,
+        unit: "第三角法",
+        q: "第三角法で、立体を右横から見て「側画面」にうつした図を何というか？",
+        a: "右側面図",
+        sub: "みぎそくめんず",
+        point: "ただの「側面図」ではなく「右側面図」と書くのが正確。正面図の真右に配置する。"
+      },
+
+      // 4. 材料取り（けがき）
+      {
+        id: 18,
+        unit: "材料取り（けがき）",
+        q: "木材に仕上がり寸法線や切断線などのしるしをつける作業を何というか？",
+        a: "けがき",
+        sub: "材料取りの重要作業",
+        point: "「材料取り」の中で、実際に定規などを使って線を引く作業のこと。"
+      },
+      {
+        id: 19,
+        unit: "材料取り（けがき）",
+        q: "直角を測ったり、木材に直角の線を引いたりするときに使うL字形の金属製定規は？",
+        a: "さしがね",
+        sub: "曲尺",
+        point: "直角の線を引くときの基本工具。ひらがなで「さしがね」と書ければOK。"
+      },
+      {
+        id: 20,
+        unit: "材料取り（けがき）",
+        q: "さしがねの「長い方」と「短い方」の名称はそれぞれ何か？",
+        a: "長手 ／ 妻手",
+        sub: "長手（ながて）・妻手（つまて）",
+        point: "超頻出の漢字＆使い方！「【長手】の【内側】を基準面に密着させ、【妻手】の【外側】を使って線をかく」。"
+      },
+      {
+        id: 21,
+        unit: "材料取り（けがき）",
+        q: "角度を自由に変えて固定でき、こばや角材にけがくときに使う工具は？",
+        a: "自由定規",
+        sub: "自由金（じゆうがね）",
+        point: "さしがねと違い、ねじをゆるめて好きな角度に合わせられるのが特徴。"
+      },
+      {
+        id: 22,
+        unit: "材料取り（けがき）",
+        q: "基準面から同じ幅の平行線を、くり返し正確にけがくときに使う工具は？",
+        a: "けびき",
+        sub: "罫引",
+        point: "「同じ幅」がキーワード！さしがね・自由定規・けびきの3つの用途の区別はテスト鉄板。"
+      },
+      {
+        id: 23,
+        unit: "材料取り（けがき）",
+        q: "けがきで寸法を測るもとになる面を何というか？（長さ・幅・厚みの3つが必要）",
+        a: "基準面",
+        sub: "きじゅんめん",
+        point: "長さ方向・幅方向・厚み方向の3つの基準面を決めてから測ることで、寸法のズレを防ぐ。"
+      },
+      {
+        id: 24,
+        unit: "材料取り（けがき）",
+        q: "材料取りの際、木材のどの部分をできるだけさけてけがく必要があるか？",
+        a: "節",
+        sub: "ふし",
+        point: "理由も記述でよく出る！「切断後に欠け落ちやすく、かたくてくぎが打ちにくいこともあるため」。"
+      },
+      {
+        id: 25,
+        unit: "材料取り（けがき）",
+        q: "のこぎりびきの溝によって失われる幅のことを何というか？",
+        a: "切りしろ",
+        sub: "のこぎりびきの溝の幅",
+        point: "のこぎりの刃の厚み分だけ木が削れてなくなる。「けずりしろ（かんな）」と取り違えないように！"
+      },
+      {
+        id: 26,
+        unit: "材料取り（けがき）",
+        q: "かんななどでけずり取る幅のことを何というか？",
+        a: "けずりしろ",
+        sub: "仕上げのけずり幅",
+        point: "切り口を平らに整えるための余裕分。切りしろ＋けずりしろの両方を考えて部品の線を引く。"
+      },
+      {
+        id: 27,
+        unit: "材料取り（けがき）",
+        q: "けがきで、部品の仕上がり線Aと線Bの間にとる「切りしろ＋けずりしろ」の幅は約何mmか？",
+        a: "約4mm",
+        sub: "線Aと線Bの中間（2mm＋2mm）に切断線C",
+        point: "数値「4mm」と、切断線Cを「線Aと線Bの中間」にかくことがセットで穴埋めに出る！"
+      },
+
+      // 5. 切断の技能
+      {
+        id: 28,
+        unit: "切断の技能",
+        q: "のこぎりで切る前に、材料を作業台などにしっかり固定するために使う器具は？",
+        a: "クランプ",
+        sub: "あて木をはさんで固定",
+        point: "クランプを直接締めると木がへこむので、「あて木」をはさむのもあわせて覚えよう。"
+      },
+      {
+        id: 29,
+        unit: "切断の技能",
+        q: "のこぎりで切りはじめるとき、切断線にあててガイドにするものは何か？（2つ）",
+        a: "あて木・親指の関節（つめ）",
+        sub: "刃がずれないように支える",
+        point: "最初の一引きで刃が逃げるのを防ぐための工夫。親指の関節やつめをそえる。"
+      },
+      {
+        id: 30,
+        unit: "切断の技能",
+        q: "のこぎりで「切りはじめ」のひき溝をつくるとき、のこ身のどの部分を使うか？",
+        a: "もと",
+        sub: "手元側（ハンドルに近い側）",
+        point: "先端（さき）ではなく「もと」のほう！手元に近いほうが刃がぶれにくく安定する。"
+      },
+      {
+        id: 31,
+        unit: "切断の技能",
+        q: "のこぎりで切るとき、のこ身と顔の中心がそろうようにどこから見るのが正しいか？",
+        a: "真上",
+        sub: "まうえ",
+        point: "横から覗き込むと刃が傾いて曲がって切れてしまうため、必ず「真上」から見る。"
+      },
+      {
+        id: 32,
+        unit: "切断の技能",
+        q: "のこぎりは「ひくとき」と「押すとき」のどちらに力を入れるか？また刃わたりの何割程度を使うか？",
+        a: "ひくとき ／ 約8割",
+        sub: "刃わたりの8割程度",
+        point: "日本ののこぎりは「ひくとき」に切れる！押すときに力を入れると刃が曲がるので注意。"
+      },
+      {
+        id: 33,
+        unit: "切断の技能",
+        q: "切り終わりは材料が欠けやすいため、どう工夫して切るか？（2点）",
+        a: "材料を支えてもらい、ひく角度を水平にして切る",
+        sub: "キーワード：「支える」「水平」",
+        point: "記述問題の定番！切り落とす側の重みで裏が欠けるのを防ぐため、「支える」「水平」の2語を必ず入れる。"
+      },
+      {
+        id: 34,
+        unit: "切断の技能",
+        q: "もし切り終わりなどで材料が欠けてしまった場合、どうやって修正するか？",
+        a: "欠けた部分を切り取って水平にする",
+        sub: "切り取って平らに整える",
+        point: "接着剤で貼り直すのではなく、「欠けた部分は切り取って水平にする」のが正しい修正方法。"
+      }
+    ];
+
+    const STORAGE_KEY = "g1_2e_tech_f_progress_v1";
+    let statusMap = {};
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) statusMap = JSON.parse(saved);
+    } catch (e) {}
+
+    let activeUnit = "all";
+    let deck = [...CARDS];
+    let currentIndex = 0;
+    let isFlipped = false;
+    let currentView = "card"; // "card" | "list"
+    let redSheetOn = false;
+
+    const flashcardEl = document.getElementById("flashcard");
+    const cardStageEl = document.getElementById("cardStage");
+    const actionBarEl = document.getElementById("actionBar");
+    const emptyBoxEl = document.getElementById("emptyBox");
+    const frontUnitEl = document.getElementById("frontUnit");
+    const backUnitEl = document.getElementById("backUnit");
+    const frontStatusEl = document.getElementById("frontStatus");
+    const backStatusEl = document.getElementById("backStatus");
+    const questionTextEl = document.getElementById("questionText");
+    const answerTextEl = document.getElementById("answerText");
+    const answerSubEl = document.getElementById("answerSub");
+    const pointBoxEl = document.getElementById("pointBox");
+    const counterTextEl = document.getElementById("counterText");
+    const knownCountTextEl = document.getElementById("knownCountText");
+    const progressFillEl = document.getElementById("progressFill");
+    const retryFilterBtn = document.getElementById("retryFilterBtn");
+    const cardViewEl = document.getElementById("cardView");
+    const listViewEl = document.getElementById("listView");
+    const listGridEl = document.getElementById("listGrid");
+    const redSheetBtn = document.getElementById("redSheetBtn");
+
+    function saveProgress() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(statusMap));
+      } catch (e) {}
+    }
+
+    function getFilteredCards() {
+      if (activeUnit === "all") return [...CARDS];
+      if (activeUnit === "retry") {
+        return CARDS.filter(c => statusMap[c.id] === "retry");
+      }
+      return CARDS.filter(c => c.unit === activeUnit);
+    }
+
+    function updateHeaderStats() {
+      const retryTotal = CARDS.filter(c => statusMap[c.id] === "retry").length;
+      retryFilterBtn.textContent = `要復習のみ (${retryTotal})`;
+
+      const knownInDeck = deck.filter(c => statusMap[c.id] === "ok").length;
+      knownCountTextEl.textContent = knownInDeck;
+
+      if (deck.length === 0) {
+        counterTextEl.textContent = "0 / 0";
+        progressFillEl.style.width = "0%";
+      } else {
+        counterTextEl.textContent = `${currentIndex + 1} / ${deck.length}`;
+        const pct = Math.round((knownInDeck / deck.length) * 100);
+        progressFillEl.style.width = `${pct}%`;
+      }
+    }
+
+    function applyStatusBadge(el, st) {
+      el.className = "card-status";
+      if (st === "ok") {
+        el.classList.add("status-ok");
+        el.textContent = "✓ 覚えた";
+      } else if (st === "retry") {
+        el.classList.add("status-retry");
+        el.textContent = "↻ 要復習";
+      } else {
+        el.classList.add("status-unseen");
+        el.textContent = "未チェック";
+      }
+    }
+
+    function renderCard() {
+      updateHeaderStats();
+      if (deck.length === 0) {
+        cardStageEl.classList.add("hidden");
+        actionBarEl.classList.add("hidden");
+        emptyBoxEl.classList.remove("hidden");
+        return;
+      }
+
+      cardStageEl.classList.remove("hidden");
+      actionBarEl.classList.remove("hidden");
+      emptyBoxEl.classList.add("hidden");
+
+      const card = deck[currentIndex];
+      const st = statusMap[card.id] || "unseen";
+
+      frontUnitEl.textContent = card.unit;
+      backUnitEl.textContent = card.unit;
+      applyStatusBadge(frontStatusEl, st);
+      applyStatusBadge(backStatusEl, st);
+
+      questionTextEl.textContent = card.q;
+      answerTextEl.textContent = card.a;
+      answerSubEl.textContent = card.sub || "";
+      answerSubEl.style.display = card.sub ? "block" : "none";
+      pointBoxEl.innerHTML = `<strong>💡 狙われるポイント：</strong>${card.point}`;
+
+      isFlipped = false;
+      flashcardEl.classList.remove("flipped");
+    }
+
+    function renderList() {
+      updateHeaderStats();
+      listGridEl.innerHTML = "";
+      if (deck.length === 0) {
+        listGridEl.innerHTML = `<div class="empty-box"><h3>該当するカードがありません</h3><p>単元を切り替えてください。</p></div>`;
+        return;
+      }
+
+      deck.forEach((card, idx) => {
+        const item = document.createElement("div");
+        item.className = "list-item" + (redSheetOn ? " masked" : "");
+        const st = statusMap[card.id] || "unseen";
+        const stLabel = st === "ok" ? "✓ 覚えた" : st === "retry" ? "↻ 要復習" : "未チェック";
+        const stClass = st === "ok" ? "status-ok" : st === "retry" ? "status-retry" : "status-unseen";
+
+        item.innerHTML = `
+          <div class="list-item-head">
+            <span class="unit-tag">${card.unit}</span>
+            <span class="card-status ${stClass}">${stLabel}</span>
+          </div>
+          <p class="list-q">Q${idx + 1}. ${card.q}</p>
+          <div class="list-a-wrap" title="タップで表示切り替え">
+            <div class="list-a">${card.a}${card.sub ? ` <span style="font-size:13px;font-weight:600;color:#64748b;">（${card.sub}）</span>` : ""}</div>
+            <div class="list-p"><strong>💡 ポイント：</strong>${card.point}</div>
+          </div>
+        `;
+
+        const wrap = item.querySelector(".list-a-wrap");
+        wrap.addEventListener("click", () => {
+          if (item.classList.contains("masked")) {
+            item.classList.remove("masked");
+          } else if (redSheetOn) {
+            item.classList.add("masked");
+          }
+        });
+
+        listGridEl.appendChild(item);
+      });
+    }
+
+    function render() {
+      if (currentView === "card") {
+        renderCard();
+      } else {
+        renderList();
+      }
+    }
+
+    function flipCard() {
+      if (deck.length === 0) return;
+      isFlipped = !isFlipped;
+      flashcardEl.classList.toggle("flipped", isFlipped);
+    }
+
+    function nextCard() {
+      if (deck.length === 0) return;
+      currentIndex = (currentIndex + 1) % deck.length;
+      renderCard();
+    }
+
+    function prevCard() {
+      if (deck.length === 0) return;
+      currentIndex = (currentIndex - 1 + deck.length) % deck.length;
+      renderCard();
+    }
+
+    function markCard(state) {
+      if (deck.length === 0) return;
+      const card = deck[currentIndex];
+      statusMap[card.id] = state;
+      saveProgress();
+
+      if (activeUnit === "retry" && state === "ok") {
+        deck = getFilteredCards();
+        if (currentIndex >= deck.length) currentIndex = 0;
+        renderCard();
+      } else {
+        nextCard();
+      }
+    }
+
+    // Event Listeners
+    flashcardEl.addEventListener("click", flipCard);
+    document.getElementById("prevBtn").addEventListener("click", prevCard);
+    document.getElementById("nextBtn").addEventListener("click", nextCard);
+    document.getElementById("markRetryBtn").addEventListener("click", () => markCard("retry"));
+    document.getElementById("markOkBtn").addEventListener("click", () => markCard("ok"));
+
+    document.getElementById("filterBar").addEventListener("click", (e) => {
+      const btn = e.target.closest(".chip");
+      if (!btn) return;
+      document.querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
+      btn.classList.add("active");
+      activeUnit = btn.dataset.unit;
+      deck = getFilteredCards();
+      currentIndex = 0;
+      render();
+    });
+
+    document.getElementById("backToAllBtn").addEventListener("click", () => {
+      document.querySelector('.chip[data-unit="all"]').click();
+    });
+
+    document.getElementById("shuffleBtn").addEventListener("click", () => {
+      for (let i = deck.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [deck[i], deck[j]] = [deck[j], deck[i]];
+      }
+      currentIndex = 0;
+      render();
+    });
+
+    document.getElementById("resetBtn").addEventListener("click", () => {
+      if (!confirm("「覚えた！」「要復習」の記録をすべてリセットしますか？")) return;
+      statusMap = {};
+      saveProgress();
+      deck = getFilteredCards();
+      currentIndex = 0;
+      render();
+    });
+
+    document.getElementById("modeCardBtn").addEventListener("click", () => {
+      currentView = "card";
+      document.getElementById("modeCardBtn").classList.add("active");
+      document.getElementById("modeListBtn").classList.remove("active");
+      cardViewEl.classList.remove("hidden");
+      listViewEl.classList.add("hidden");
+      render();
+    });
+
+    document.getElementById("modeListBtn").addEventListener("click", () => {
+      currentView = "list";
+      document.getElementById("modeListBtn").classList.add("active");
+      document.getElementById("modeCardBtn").classList.remove("active");
+      listViewEl.classList.remove("hidden");
+      cardViewEl.classList.add("hidden");
+      render();
+    });
+
+    redSheetBtn.addEventListener("click", () => {
+      redSheetOn = !redSheetOn;
+      redSheetBtn.classList.toggle("active", redSheetOn);
+      redSheetBtn.textContent = redSheetOn
+        ? "🟥 赤シート（答えを隠す）：ON"
+        : "🟥 赤シート（答えを隠す）：OFF";
+      renderList();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (currentView !== "card" || deck.length === 0) return;
+      if (e.code === "Space" || e.code === "Enter") {
+        if (document.activeElement.tagName === "BUTTON") return;
+        e.preventDefault();
+        flipCard();
+      } else if (e.code === "ArrowRight") {
+        nextCard();
+      } else if (e.code === "ArrowLeft") {
+        prevCard();
+      } else if (e.key === "1") {
+        markCard("retry");
+      } else if (e.key === "2") {
+        markCard("ok");
+      }
+    });
+
+    // Touch swipe support on flashcard
+    let touchStartX = 0;
+    flashcardEl.addEventListener("touchstart", (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    flashcardEl.addEventListener("touchend", (e) => {
+      const diff = e.changedTouches[0].screenX - touchStartX;
+      if (Math.abs(diff) > 55) {
+        if (diff < 0) nextCard();
+        else prevCard();
+      }
+    }, { passive: true });
+
+    render();
+  </script>
+</body>
+</html>

@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>中1 技術科 2学期末テスト 通し模擬テスト（全35問・25分）</title>
+  <style>
+    :root {
+      --bg: #f1f5f9;
+      --surface: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --primary: #1d4ed8;
+      --primary-hover: #1e40af;
+      --primary-soft: #eff6ff;
+      --correct: #15803d;
+      --correct-bg: #f0fdf4;
+      --correct-border: #86efac;
+      --wrong: #b91c1c;
+      --wrong-bg: #fef2f2;
+      --wrong-border: #fca5a5;
+      --warn: #b45309;
+      --warn-bg: #fffbeb;
+      --warn-border: #fcd34d;
+      --shadow: 0 6px 20px rgba(15, 23, 42, 0.07);
+      --radius: 14px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic UI", "Meiryo", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      padding: 16px 14px 64px;
+    }
+
+    .container {
+      max-width: 840px;
+      margin: 0 auto;
+    }
+
+    header.hero {
+      background: linear-gradient(135deg, #0f172a, #1d4ed8);
+      color: #ffffff;
+      padding: 22px 24px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .tag {
+      background: rgba(255, 255, 255, 0.16);
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    header.hero h1 {
+      margin: 0 0 6px;
+      font-size: 22px;
+      line-height: 1.35;
+    }
+
+    header.hero p {
+      margin: 0;
+      font-size: 13.5px;
+      opacity: 0.92;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      margin-bottom: 16px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* Start Screen */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 12px;
+      margin: 16px 0 20px;
+    }
+
+    .info-box {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+    }
+
+    .info-box .label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .info-box .val {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .unit-list {
+      margin: 12px 0 20px;
+      padding-left: 20px;
+      font-size: 14px;
+    }
+
+    .unit-list li {
+      margin-bottom: 6px;
+    }
+
+    .rule-box {
+      background: var(--primary-soft);
+      border: 1px solid #bfdbfe;
+      border-radius: 12px;
+      padding: 14px 16px;
+      font-size: 13.5px;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      border: none;
+      border-radius: 10px;
+      padding: 12px 22px;
+      font-size: 15px;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background 0.15s ease, transform 0.1s ease;
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+    }
+
+    .btn-success {
+      background: #15803d;
+      color: #ffffff;
+    }
+
+    .btn-success:hover {
+      background: #166534;
+    }
+
+    .btn-outline {
+      background: #ffffff;
+      border: 1.5px solid var(--border);
+      color: var(--text);
+    }
+
+    .btn-outline:hover {
+      background: #f8fafc;
+      border-color: #94a3b8;
+    }
+
+    .btn-sm {
+      padding: 8px 14px;
+      font-size: 13px;
+      border-radius: 8px;
+    }
+
+    /* Sticky Exam Bar */
+    .exam-bar {
+      position: sticky;
+      top: 10px;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+      padding: 12px 16px;
+      margin-bottom: 18px;
+    }
+
+    .exam-bar-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .timer-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #0f172a;
+      color: #ffffff;
+      padding: 7px 14px;
+      border-radius: 999px;
+      font-size: 15px;
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .timer-pill.warning {
+      background: #dc2626;
+      animation: pulse 1.2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.78; }
+    }
+
+    .progress-pill {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .progress-pill strong {
+      color: var(--primary);
+      font-size: 16px;
+    }
+
+    .nav-toggle {
+      background: #f1f5f9;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 6px 12px;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--text);
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .q-palette {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(34px, 1fr));
+      gap: 6px;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    .q-dot {
+      height: 32px;
+      border-radius: 7px;
+      border: 1px solid var(--border);
+      background: #f8fafc;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: inherit;
+    }
+
+    .q-dot.answered {
+      background: var(--primary-soft);
+      border-color: #93c5fd;
+      color: var(--primary);
+    }
+
+    /* Question Cards */
+    .unit-banner {
+      background: #e2e8f0;
+      color: #0f172a;
+      font-weight: 800;
+      font-size: 15px;
+      padding: 10px 16px;
+      border-radius: 10px;
+      margin: 24px 0 12px;
+      border-left: 5px solid var(--primary);
+    }
+
+    .q-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      margin-bottom: 14px;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+      scroll-margin-top: 110px;
+    }
+
+    .q-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .q-num {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .q-type-badge {
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: #f1f5f9;
+      color: #475569;
+    }
+
+    .q-text {
+      font-size: 16px;
+      font-weight: 700;
+      margin: 0 0 14px;
+      line-height: 1.6;
+    }
+
+    .choices-list {
+      display: grid;
+      gap: 9px;
+    }
+
+    .choice-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 11px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      background: #f8fafc;
+      cursor: pointer;
+      font-size: 14.5px;
+      transition: all 0.12s ease;
+    }
+
+    .choice-label:hover {
+      border-color: #93c5fd;
+      background: #eff6ff;
+    }
+
+    .choice-label input[type="radio"] {
+      margin-top: 4px;
+      accent-color: var(--primary);
+      width: 17px;
+      height: 17px;
+      flex-shrink: 0;
+    }
+
+    .choice-label.selected {
+      border-color: var(--primary);
+      background: var(--primary-soft);
+      font-weight: 700;
+    }
+
+    .ox-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .ox-label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      background: #f8fafc;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .ox-label:hover {
+      border-color: #93c5fd;
+      background: #eff6ff;
+    }
+
+    .ox-label.selected {
+      border-color: var(--primary);
+      background: var(--primary-soft);
+      color: var(--primary);
+    }
+
+    .ox-label input {
+      display: none;
+    }
+
+    .fill-input {
+      width: 100%;
+      max-width: 380px;
+      padding: 11px 14px;
+      font-size: 15.5px;
+      font-family: inherit;
+      font-weight: 700;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      background: #ffffff;
+      color: var(--text);
+      transition: border-color 0.15s ease;
+    }
+
+    .fill-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.12);
+    }
+
+    .submit-footer {
+      text-align: center;
+      padding: 24px;
+    }
+
+    /* Results Screen */
+    .score-hero {
+      text-align: center;
+      padding: 26px 20px;
+      background: linear-gradient(135deg, #eff6ff, #f8fafc);
+      border: 1px solid #bfdbfe;
+      border-radius: var(--radius);
+      margin-bottom: 20px;
+    }
+
+    .score-big {
+      font-size: 46px;
+      font-weight: 900;
+      color: var(--primary);
+      line-height: 1.1;
+      margin: 6px 0;
+    }
+
+    .score-sub {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .breakdown-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .stat-row {
+      margin-bottom: 12px;
+    }
+
+    .stat-head {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13.5px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .bar-bg {
+      height: 9px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      background: var(--primary);
+      border-radius: 999px;
+    }
+
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .filter-btns {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .review-card {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      margin-bottom: 14px;
+    }
+
+    .review-card.is-correct {
+      border-color: var(--correct-border);
+      background: #fcfffd;
+    }
+
+    .review-card.is-wrong {
+      border-color: var(--wrong-border);
+      background: #fffafa;
+    }
+
+    .judge-badge {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+
+    .judge-badge.ok {
+      background: var(--correct-bg);
+      color: var(--correct);
+      border: 1px solid var(--correct-border);
+    }
+
+    .judge-badge.ng {
+      background: var(--wrong-bg);
+      color: var(--wrong);
+      border: 1px solid var(--wrong-border);
+    }
+
+    .ans-compare {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+      margin: 12px 0;
+      font-size: 14px;
+    }
+
+    .ans-box {
+      padding: 10px 12px;
+      border-radius: 8px;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+    }
+
+    .ans-box .lbl {
+      display: block;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+
+    .explain-box {
+      background: #f8fafc;
+      border-left: 4px solid var(--primary);
+      padding: 11px 14px;
+      border-radius: 0 8px 8px 0;
+      font-size: 13.8px;
+      line-height: 1.65;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <header class="hero">
+    <div class="badge-row">
+      <span class="tag">中学1年 技術</span>
+      <span class="tag">2学期末テスト 本番対策</span>
+      <span class="tag">通し模擬テスト</span>
+    </div>
+    <h1>技術科 2学期末 通し模擬テスト（全35問）</h1>
+    <p>製図のルール・等角図・第三角法・材料取り（けがき）・切断の技能まで全範囲を網羅</p>
+  </header>
+
+  <!-- START SCREEN -->
+  <section id="startScreen" class="card">
+    <h2 style="margin-top:0; font-size:19px;">模擬テストのルールと出題範囲</h2>
+    <div class="info-grid">
+      <div class="info-box">
+        <div class="label">出題数</div>
+        <div class="val">全 35 問</div>
+      </div>
+      <div class="info-box">
+        <div class="label">制限時間</div>
+        <div class="val">25 分</div>
+      </div>
+      <div class="info-box">
+        <div class="label">出題形式</div>
+        <div class="val">4択・穴埋め・○×</div>
+      </div>
+      <div class="info-box">
+        <div class="label">採点方式</div>
+        <div class="val">最後に一括採点</div>
+      </div>
+    </div>
+
+    <h3 style="font-size:15px; margin-bottom:6px;">出題単元（各7問・バランス出題）</h3>
+    <ul class="unit-list">
+      <li><strong>単元1：</strong>構想図と製作図（製図のルール・JIS）</li>
+      <li><strong>単元2：</strong>等角図のかき方と特徴</li>
+      <li><strong>単元3：</strong>第三角法による正投影図</li>
+      <li><strong>単元4：</strong>材料取り（けがき）と工具・寸法線</li>
+      <li><strong>単元5：</strong>切断の技能（固定・のこぎりびき・修正）</li>
+    </ul>
+
+    <div class="rule-box">
+      <strong>本番形式について：</strong>解答中はヒントや正誤判定・解説は表示されません。すべての問題を解き終えて「採点する」ボタンを押す（または25分が経過する）と、合計点・単元別正答率・全問の解説がまとめて表示されます。
+    </div>
+
+    <div style="text-align:center;">
+      <button id="startBtn" class="btn btn-primary" style="min-width:240px;">テストを開始する（25:00）</button>
+    </div>
+  </section>
+
+  <!-- EXAM SCREEN -->
+  <section id="examScreen" class="hidden">
+    <div class="exam-bar">
+      <div class="exam-bar-top">
+        <div id="timerDisplay" class="timer-pill">⏱ 残り 25:00</div>
+        <div class="progress-pill">回答済み：<strong id="answeredCount">0</strong> / 35 問</div>
+        <div style="display:flex; gap:8px; align-items:center;">
+          <button id="paletteToggleBtn" class="nav-toggle" type="button">問題番号一覧 ▼</button>
+          <button id="topSubmitBtn" class="btn btn-success btn-sm" type="button">採点する</button>
+        </div>
+      </div>
+      <div id="questionPalette" class="q-palette hidden"></div>
+    </div>
+
+    <div id="questionsContainer"></div>
+
+    <div class="card submit-footer">
+      <p style="margin:0 0 14px; font-size:14.5px; color:var(--muted);">
+        見直しが終わったら下のボタンを押して採点してください。
+      </p>
+      <button id="bottomSubmitBtn" class="btn btn-success" style="min-width:240px;" type="button">
+        全問を採点する
+      </button>
+    </div>
+  </section>
+
+  <!-- RESULT SCREEN -->
+  <section id="resultScreen" class="hidden">
+    <div class="card score-hero">
+      <div style="font-size:14px; font-weight:700; color:var(--muted);">2学期末 技術 通し模擬テスト 結果</div>
+      <div id="scoreBig" class="score-big">0 点</div>
+      <div id="scoreSub" class="score-sub">0 / 35 問正解（所要時間 00:00）</div>
+    </div>
+
+    <div class="breakdown-grid">
+      <div class="card" style="margin-bottom:0;">
+        <h3 style="margin-top:0; font-size:16px;">単元別の正答率</h3>
+        <div id="unitStats"></div>
+      </div>
+      <div class="card" style="margin-bottom:0;">
+        <h3 style="margin-top:0; font-size:16px;">問題形式別の正答率</h3>
+        <div id="typeStats"></div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px;">
+      <div class="filter-bar">
+        <h3 style="margin:0; font-size:17px;">全問の正誤と詳しい解説一覧</h3>
+        <div class="filter-btns">
+          <button id="filterAllBtn" class="btn btn-primary btn-sm" type="button">すべて表示 (35)</button>
+          <button id="filterWrongBtn" class="btn btn-outline btn-sm" type="button">間違えた問題のみ</button>
+          <button id="retryBtn" class="btn btn-outline btn-sm" type="button">もう一度挑戦</button>
+        </div>
+      </div>
+      <div id="reviewList"></div>
+    </div>
+  </section>
+</div>
+
+<script>
+const QUESTIONS = [
+  // 単元1：構想図と製作図（7問）
+  {
+    id: 1,
+    unit: "単元1：構想図と製作図",
+    type: "choice",
+    question: "設計者の考えが他の人に正しく伝わるように、日本では何によって製図のルールが細かく決められていますか。",
+    choices: [
+      "JIS（日本産業規格）",
+      "ISO（国際教育基準）",
+      "JAS（日本農林規格）",
+      "UNESCO（国連教育科学文化機関）"
+    ],
+    answer: 0,
+    explanation: "日本では、設計者の考えが誰にでも正しく伝わるように、JIS（日本産業規格）によって製図のルールが細かく決められています。"
+  },
+  {
+    id: 2,
+    unit: "単元1：構想図と製作図",
+    type: "fill",
+    question: "アイデアスケッチをもとに、できあがりのイメージをかき表し、寸法を記入する図面を【　　】図といいます。（漢字2字で入力）",
+    acceptable: ["構想", "構想図", "こうそう", "こうそうず"],
+    displayAnswer: "構想（構想図）",
+    explanation: "アイデアスケッチから最初にまとめるのが「構想図」です。つくるものの全体の形、部品同士の位置関係、説明事項などをかきます。"
+  },
+  {
+    id: 3,
+    unit: "単元1：構想図と製作図",
+    type: "fill",
+    question: "構想図をもとに、製作品の形状・寸法を正確に記入する図面を【　　】図といいます。（漢字2字で入力）",
+    acceptable: ["製作", "製作図", "せいさく", "せいさくず"],
+    displayAnswer: "製作（製作図）",
+    explanation: "実際にものをつくるために、形状や寸法を正確にかくのが「製作図」です。構想図の次の段階でかきます。"
+  },
+  {
+    id: 4,
+    unit: "単元1：構想図と製作図",
+    type: "choice",
+    question: "構想図にかく内容の例として、教科書・プリントに挙げられていないものはどれですか。",
+    choices: [
+      "つくるものの全体の形",
+      "部品同士の位置関係",
+      "説明事項",
+      "のこぎりびきの切りしろの幅（4mm）"
+    ],
+    answer: 3,
+    explanation: "構想図には「つくるものの全体の形」「部品同士の位置関係」「説明事項」などをかきます。「切りしろの幅（4mm）」は材料取り（けがき）の段階の内容です。"
+  },
+  {
+    id: 5,
+    unit: "単元1：構想図と製作図",
+    type: "ox",
+    question: "製作図では、必要に応じて「部品図」や「拡大図」もかく。",
+    answer: "○",
+    explanation: "正しい（○）。製作図では製作品の形状・寸法を正確に記入し、必要に応じて部品図や拡大図もかきます。"
+  },
+  {
+    id: 6,
+    unit: "単元1：構想図と製作図",
+    type: "ox",
+    question: "製図を進める順序は、まず「製作図」を正確にかいてから、最後に「構想図」をかく。",
+    answer: "×",
+    explanation: "誤り（×）。正しくは「アイデアスケッチ」→「構想図」→「製作図」の順で進めます。"
+  },
+  {
+    id: 7,
+    unit: "単元1：構想図と製作図",
+    type: "choice",
+    question: "JIS（日本産業規格）によって製図のルールが細かく決められている理由として、最も適切なものはどれですか。",
+    choices: [
+      "設計者の考えが他の人に正しく伝わるようにするため",
+      "図面をかく人の個性を自由に表現できるようにするため",
+      "木材の値段を全国で同じにするため",
+      "図面をできるだけ早く簡略化してかくため"
+    ],
+    answer: 0,
+    explanation: "人によってかき方がバラバラだと寸法や形が伝わらないため、JISによってルールを統一し、設計者の考えが他の人に正しく伝わるようにしています。"
+  },
+
+  // 単元2：等角図（7問）
+  {
+    id: 8,
+    unit: "単元2：等角図",
+    type: "fill",
+    question: "等角図は、立体の底面の直角に交わる2辺を、水平線に対して【　　】°傾けてかきます。（半角数字）",
+    acceptable: ["30", "30°", "３０", "３０°"],
+    displayAnswer: "30",
+    explanation: "等角図では、底面の直角に交わる2辺を水平線に対して左右それぞれ30°傾けてかきます。"
+  },
+  {
+    id: 9,
+    unit: "単元2：等角図",
+    type: "fill",
+    question: "等角図では、幅・奥行き・高さの割合を【　　】と同じにします。（漢字2字で入力）",
+    acceptable: ["実物", "じつぶつ"],
+    displayAnswer: "実物",
+    explanation: "等角図では、幅・奥行き・高さの割合を「実物」と同じ（a:b:c = 1:1:1）にします。"
+  },
+  {
+    id: 10,
+    unit: "単元2：等角図",
+    type: "choice",
+    question: "等角図の3つの軸の比（a：b：c）と、中心で交わる3つの角の大きさの組み合わせとして正しいものはどれですか。",
+    choices: [
+      "a：b：c ＝ 1：1：1、各120°",
+      "a：b：c ＝ 1：0.5：1、各90°",
+      "a：b：c ＝ 2：1：1、各120°",
+      "a：b：c ＝ 1：1：1、各60°"
+    ],
+    answer: 0,
+    explanation: "等角図は3つの軸の割合がすべて同じ「1：1：1」で、中心の3つの角度は「120°」ずつになります。"
+  },
+  {
+    id: 11,
+    unit: "単元2：等角図",
+    type: "ox",
+    question: "等角図は、幅・奥行き・高さの「割合」を変えずに立体の形を表すのに適している。",
+    answer: "○",
+    explanation: "正しい（○）。幅・奥行き・高さの割合が実物と同じ1：1：1であるため、割合を変えずに立体を表すのに適しています。"
+  },
+  {
+    id: 12,
+    unit: "単元2：等角図",
+    type: "choice",
+    question: "方眼紙に等角図をかくとき、最初（手順①）に行う作業はどれですか。",
+    choices: [
+      "水平線に対して30°の線を2本と垂直線を1本かく",
+      "必要な線を太い線でなぞり、不要な線を消す",
+      "立方体の上面をつくるために左右の交点から線を引く",
+      "正面図の基準となる水平線と垂直線をかく"
+    ],
+    answer: 0,
+    explanation: "等角図のかき方では、まず手順①として「水平線に対して30°の線を2本と垂直線を1本」かきます。"
+  },
+  {
+    id: 13,
+    unit: "単元2：等角図",
+    type: "ox",
+    question: "方眼紙に等角図をかく手順の最後（手順④）では、必要な線を細い線でなぞり、不要な線はそのまま残しておく。",
+    answer: "×",
+    explanation: "誤り（×）。手順④では、必要な線を「太い線」でなぞったら、「不要な線は消す」のが正しい手順です。"
+  },
+  {
+    id: 14,
+    unit: "単元2：等角図",
+    type: "choice",
+    question: "等角図についての説明として、正しいものはどれですか。",
+    choices: [
+      "立体を1つの図に立体的に表し、底面の2辺を水平線に対して30°傾けてかく",
+      "立体の手前に透明な3つの図面を置いて、それぞれの正面から見た形をかく",
+      "奥行きを実物の半分の長さにして、水平線に対して45°傾けてかく",
+      "部品の寸法は記入せず、色や模様だけを表すために用いる"
+    ],
+    answer: 0,
+    explanation: "等角図は30°の傾きと実物と同じ割合（1:1:1）を使って立体的に表す図です。透明な3つの図面を使うのは「第三角法による正投影図」です。"
+  },
+
+  // 単元3：第三角法による正投影図（7問）
+  {
+    id: 15,
+    unit: "単元3：第三角法による正投影図",
+    type: "fill",
+    question: "立体の手前に透明な3つの図面を置き、それぞれの方向から見た形をかいて表す図法を【　　】による正投影図といいます。（漢字4字）",
+    acceptable: ["第三角法", "だいさんかくほう"],
+    displayAnswer: "第三角法",
+    explanation: "立体の手前に透明な3つの図面（平画面・立画面・側画面）を置いて表す方法を「第三角法」といいます。"
+  },
+  {
+    id: 16,
+    unit: "単元3：第三角法による正投影図",
+    type: "choice",
+    question: "第三角法による正投影図において、立画面の真正面から見た形をかく図面の名称はどれですか。",
+    choices: [
+      "正面図",
+      "平面図",
+      "右側面図",
+      "等角図"
+    ],
+    answer: 0,
+    explanation: "立画面の正面から見た形を「正面図」、平画面（真上）から見た形を「平面図」、側画面（右横）から見た形を「右側面図」といいます。"
+  },
+  {
+    id: 17,
+    unit: "単元3：第三角法による正投影図",
+    type: "fill",
+    question: "第三角法で、平画面（真上）から見た形をかく図面を【　　】図といいます。（漢字2字）",
+    acceptable: ["平面", "平面図", "へいめん", "へいめんず"],
+    displayAnswer: "平面（平面図）",
+    explanation: "平画面から見た形は「平面図」といい、正面図の真上に配置します。"
+  },
+  {
+    id: 18,
+    unit: "単元3：第三角法による正投影図",
+    type: "fill",
+    question: "第三角法で、側画面（右横）から見た形をかく図面を【　　】図といいます。（漢字3字）",
+    acceptable: ["右側面", "右側面図", "みぎそくめん", "みぎそくめんず"],
+    displayAnswer: "右側面（右側面図）",
+    explanation: "側画面（右側）から見た形は「右側面図」といい、正面図の右側に配置します。"
+  },
+  {
+    id: 19,
+    unit: "単元3：第三角法による正投影図",
+    type: "ox",
+    question: "第三角法による正投影図は、正確な部品の形や寸法を表せる。",
+    answer: "○",
+    explanation: "正しい（○）。各図面を正面から見た形としてかくため、正確な部品の形や寸法を表すことができます。"
+  },
+  {
+    id: 20,
+    unit: "単元3：第三角法による正投影図",
+    type: "ox",
+    question: "第三角法による正投影図では、正面図の「下」に平面図をかき、正面図の「左」に右側面図をかく。",
+    answer: "×",
+    explanation: "誤り（×）。正面図の「上」に平面図、正面図の「右」に右側面図を配置するのが正しい決まりです。"
+  },
+  {
+    id: 21,
+    unit: "単元3：第三角法による正投影図",
+    type: "choice",
+    question: "方眼紙に第三角法による正投影図をかくとき、手順の最後（手順④）に行うことはどれですか。",
+    choices: [
+      "外形線をかいたら、不要な線を消す",
+      "正面図の基準となる水平線と垂直線をかく",
+      "右側面図と平面図の基準線をかく",
+      "水平線に対して30°の線を2本引く"
+    ],
+    answer: 0,
+    explanation: "基準線や下がき線をかいたあと、手順④で「外形線をかいたら、不要な線を消す」ことで仕上げます。"
+  },
+
+  // 単元4：材料取り（けがき）（7問）
+  {
+    id: 22,
+    unit: "単元4：材料取り（けがき）",
+    type: "choice",
+    question: "「さしがね」を使って材料に線をかくときの正しい使い方はどれですか。",
+    choices: [
+      "長手の内側を材料の基準面に密着させ、妻手の外側を使う",
+      "妻手の内側を材料の基準面に密着させ、長手の外側を使う",
+      "長手の外側を基準面にあて、妻手の内側を使って線を引く",
+      "長手と妻手のどちらを使ってもよく、基準面に密着させる必要はない"
+    ],
+    answer: 0,
+    explanation: "さしがねは、長いほうを「長手」、短いほうを「妻手」といい、長手の内側を材料の基準面に密着させ、妻手の外側を使って線をかきます。"
+  },
+  {
+    id: 23,
+    unit: "単元4：材料取り（けがき）",
+    type: "fill",
+    question: "こばや角材にけがくときに使う工具を【　　】といいます。（漢字3字）",
+    acceptable: ["自由金", "じゆうかね", "じゆうがね"],
+    displayAnswer: "自由金",
+    explanation: "こばや角材にけがくときに使う工具は「自由金（じゆうかね）」です。"
+  },
+  {
+    id: 24,
+    unit: "単元4：材料取り（けがき）",
+    type: "fill",
+    question: "基準面からの幅を同じ寸法でとるときに使う工具を【　　】といいます。（ひらがな3字）",
+    acceptable: ["けびき", "毛引き"],
+    displayAnswer: "けびき",
+    explanation: "基準面からの幅を同じ寸法でとるときに使う工具は「けびき」です。"
+  },
+  {
+    id: 25,
+    unit: "単元4：材料取り（けがき）",
+    type: "ox",
+    question: "「切りしろ」とはかんななどでけずり取る幅のことで、「けずりしろ」とはのこぎりびきの溝の幅のことである。",
+    answer: "×",
+    explanation: "誤り（×）。説明が逆です。「切りしろ」がのこぎりびきの溝の幅、「けずりしろ」がかんななどでけずり取る幅です。"
+  },
+  {
+    id: 26,
+    unit: "単元4：材料取り（けがき）",
+    type: "fill",
+    question: "けがき寸法線をかくとき、部品①の仕上がり寸法をとった線Aより、切りしろとけずりしろの幅【　　】mm程度をとって線Bをけがきます。（半角数字）",
+    acceptable: ["4", "4mm", "４", "４mm"],
+    displayAnswer: "4",
+    explanation: "線Aより、切りしろとけずりしろの幅を「4mm」程度（左右2mmずつ）とって線Bをけがきます。"
+  },
+  {
+    id: 27,
+    unit: "単元4：材料取り（けがき）",
+    type: "choice",
+    question: "材料取り（けがき）において、木材の「節（ふし）」の部分をできるだけさけてけがく理由として正しいものはどれですか。",
+    choices: [
+      "切断後に欠け落ちやすく、かたくてくぎが打ちにくいこともあるため",
+      "節の部分は特にやわらかく、のこぎりの刃がすべりやすいため",
+      "節の部分は基準面として必ず残しておかなければならないため",
+      "節の部分を切ると、切りしろが4mmより小さくなってしまうため"
+    ],
+    answer: 0,
+    explanation: "節（ふし）の部分は、切断後に欠け落ちやすく、かたくてくぎが打ちにくいこともあるため、できるだけさけてけがきます。"
+  },
+  {
+    id: 28,
+    unit: "単元4：材料取り（けがき）",
+    type: "ox",
+    question: "けがき寸法線をかく順序では、仕上がり寸法をとった線Aと、切りしろ・けずりしろをとった線Bの「中間」に切断線（線C）をけがく。",
+    answer: "○",
+    explanation: "正しい（○）。線Aと線Bの「中間」に、のこぎりびきで切る線である切断線（線C）をけがきます。"
+  },
+
+  // 単元5：切断の技能（7問）
+  {
+    id: 29,
+    unit: "単元5：切断の技能",
+    type: "fill",
+    question: "切断前に材料を固定するときは、あて木をはさんで【　　】などでしっかり固定します。（カタカナ4字）",
+    acceptable: ["クランプ", "くらんぷ"],
+    displayAnswer: "クランプ",
+    explanation: "材料に傷がつかないように「あて木」をはさみ、「クランプ」などでしっかり固定します。"
+  },
+  {
+    id: 30,
+    unit: "単元5：切断の技能",
+    type: "choice",
+    question: "のこぎりの「切りはじめ」の正しい方法として、最も適切なものはどれですか。",
+    choices: [
+      "切断線にあて木や親指の関節・つめをあて、のこ身の「もと」のほうを使いひき溝をつくる",
+      "切断線にのこ身の「さき」のほうをあて、最初から刃わたりの8割を使って大きくひく",
+      "あて木は使わず、のこぎりを水平にして押すときに力を入れて切りはじめる",
+      "親指をのこ身の刃の上に直接乗せて、真横から見ながら切る"
+    ],
+    answer: 0,
+    explanation: "切りはじめは、切断線にあて木や親指の関節・つめをあて、のこ身の「もと」のほうを使ってひき溝をつくります。"
+  },
+  {
+    id: 31,
+    unit: "単元5：切断の技能",
+    type: "fill",
+    question: "のこぎりで切断するときは、のこ身と顔の中心がそろうように【　　】から見ます。（漢字2字）",
+    acceptable: ["真上", "まうえ"],
+    displayAnswer: "真上",
+    explanation: "まっすぐ切るために、のこ身と顔の中心がそろうように「真上」から見ます。"
+  },
+  {
+    id: 32,
+    unit: "単元5：切断の技能",
+    type: "choice",
+    question: "のこぎりで切断するときの、力の入れ方と刃の使い方として正しいものはどれですか。",
+    choices: [
+      "ひくときに力を入れ、刃わたりの8割程度を使って切る",
+      "押すときに力を入れ、刃わたりの8割程度を使って切る",
+      "ひくときに力を入れ、刃わたりの2割程度だけを使って細かく切る",
+      "押すときもひくときも同じ力を入れ、のこ身のもとのほうだけを使う"
+    ],
+    answer: 0,
+    explanation: "のこぎりは「ひく」ときに力を入れ、「刃わたり」の「8割」程度を使って切ります。"
+  },
+  {
+    id: 33,
+    unit: "単元5：切断の技能",
+    type: "ox",
+    question: "切り終わりは材料が欠けやすいので、材料を支えてもらい、ひく角度を「水平」にして切る。",
+    answer: "○",
+    explanation: "正しい（○）。切り終わりは材料の重みで欠けやすいため、材料を支えてもらい、ひく角度を水平にして切ります。"
+  },
+  {
+    id: 34,
+    unit: "単元5：切断の技能",
+    type: "ox",
+    question: "切断中に材料が欠けてしまった場合は、欠けた部分はそのまま切り取らずに、上からあて木を打ちつけて修正する。",
+    answer: "×",
+    explanation: "誤り（×）。修正方法として、欠けた部分は「切り取って水平（平ら）」にします。"
+  },
+  {
+    id: 35,
+    unit: "単元5：切断の技能",
+    type: "fill",
+    question: "曲線の切断に用いるのこぎりの名称を【　　】といいます。（漢字とひらがな5字）",
+    acceptable: ["糸のこぎり", "いとのこぎり", "糸鋸"],
+    displayAnswer: "糸のこぎり",
+    explanation: "直線の切断には両刃のこぎりなどを使いますが、曲線の切断には「糸のこぎり」を使います。"
+  }
+];
+
+const TYPE_LABELS = {
+  choice: "4択問題",
+  fill: "穴埋め記述",
+  ox: "○×問題"
+};
+
+let userAnswers = {};
+let timerInterval = null;
+let remainingSeconds = 25 * 60;
+let startTimeMs = 0;
+let isSubmitted = false;
+
+const startScreen = document.getElementById("startScreen");
+const examScreen = document.getElementById("examScreen");
+const resultScreen = document.getElementById("resultScreen");
+const timerDisplay = document.getElementById("timerDisplay");
+const answeredCountEl = document.getElementById("answeredCount");
+const questionPalette = document.getElementById("questionPalette");
+const paletteToggleBtn = document.getElementById("paletteToggleBtn");
+const questionsContainer = document.getElementById("questionsContainer");
+
+function normalizeText(str) {
+  if (!str) return "";
+  return str
+    .trim()
+    .replace(/[Ａ-Ｚａ-ｚ０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xFEE0))
+    .replace(/\s+/g, "")
+    .toLowerCase();
+}
+
+function formatTime(sec) {
+  const m = Math.floor(sec / 60);
+  const s = sec % 60;
+  return `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+}
+
+function updateAnsweredCount() {
+  let count = 0;
+  QUESTIONS.forEach(q => {
+    const val = userAnswers[q.id];
+    if (q.type === "fill") {
+      if (typeof val === "string" && val.trim().length > 0) count++;
+    } else {
+      if (val !== undefined && val !== null && val !== "") count++;
+    }
+    const dot = document.getElementById(`dot-${q.id}`);
+    if (dot) {
+      const answered = q.type === "fill" ? (typeof val === "string" && val.trim().length > 0) : (val !== undefined && val !== null && val !== "");
+      dot.classList.toggle("answered", answered);
+    }
+  });
+  answeredCountEl.textContent = count;
+  return count;
+}
+
+function renderExam() {
+  questionsContainer.innerHTML = "";
+  questionPalette.innerHTML = "";
+
+  let currentUnit = "";
+  QUESTIONS.forEach((q, idx) => {
+    if (q.unit !== currentUnit) {
+      currentUnit = q.unit;
+      const banner = document.createElement("div");
+      banner.className = "unit-banner";
+      banner.textContent = currentUnit;
+      questionsContainer.appendChild(banner);
+    }
+
+    // Palette dot
+    const dot = document.createElement("button");
+    dot.type = "button";
+    dot.id = `dot-${q.id}`;
+    dot.className = "q-dot";
+    dot.textContent = q.id;
+    dot.addEventListener("click", () => {
+      document.getElementById(`qcard-${q.id}`).scrollIntoView({ behavior: "smooth" });
+    });
+    questionPalette.appendChild(dot);
+
+    // Question card
+    const card = document.createElement("div");
+    card.className = "q-card";
+    card.id = `qcard-${q.id}`;
+
+    const header = document.createElement("div");
+    header.className = "q-header";
+    header.innerHTML = `
+      <span class="q-num">第 ${q.id} 問</span>
+      <span class="q-type-badge">${TYPE_LABELS[q.type]}</span>
+    `;
+    card.appendChild(header);
+
+    const qText = document.createElement("p");
+    qText.className = "q-text";
+    qText.textContent = q.question;
+    card.appendChild(qText);
+
+    if (q.type === "choice") {
+      const list = document.createElement("div");
+      list.className = "choices-list";
+      q.choices.forEach((cText, cIdx) => {
+        const label = document.createElement("label");
+        label.className = "choice-label";
+        const radio = document.createElement("input");
+        radio.type = "radio";
+        radio.name = `q-${q.id}`;
+        radio.value = cIdx;
+        radio.addEventListener("change", () => {
+          userAnswers[q.id] = cIdx;
+          list.querySelectorAll(".choice-label").forEach(el => el.classList.remove("selected"));
+          label.classList.add("selected");
+          updateAnsweredCount();
+        });
+        const span = document.createElement("span");
+        span.textContent = cText;
+        label.appendChild(radio);
+        label.appendChild(span);
+        list.appendChild(label);
+      });
+      card.appendChild(list);
+    } else if (q.type === "ox") {
+      const grid = document.createElement("div");
+      grid.className = "ox-grid";
+      ["○", "×"].forEach(val => {
+        const label = document.createElement("label");
+        label.className = "ox-label";
+        const radio = document.createElement("input");
+        radio.type = "radio";
+        radio.name = `q-${q.id}`;
+        radio.value = val;
+        radio.addEventListener("change", () => {
+          userAnswers[q.id] = val;
+          grid.querySelectorAll(".ox-label").forEach(el => el.classList.remove("selected"));
+          label.classList.add("selected");
+          updateAnsweredCount();
+        });
+        const span = document.createElement("span");
+        span.textContent = val === "○" ? "○（正しい）" : "×（誤り）";
+        label.appendChild(radio);
+        label.appendChild(span);
+        grid.appendChild(label);
+      });
+      card.appendChild(grid);
+    } else if (q.type === "fill") {
+      const input = document.createElement("input");
+      input.type = "text";
+      input.className = "fill-input";
+      input.placeholder = "ここに答えを入力";
+      input.autocomplete = "off";
+      input.addEventListener("input", () => {
+        userAnswers[q.id] = input.value;
+        updateAnsweredCount();
+      });
+      card.appendChild(input);
+    }
+
+    questionsContainer.appendChild(card);
+  });
+}
+
+function startExam() {
+  userAnswers = {};
+  isSubmitted = false;
+  remainingSeconds = 25 * 60;
+  startTimeMs = Date.now();
+  renderExam();
+  updateAnsweredCount();
+
+  startScreen.classList.add("hidden");
+  resultScreen.classList.add("hidden");
+  examScreen.classList.remove("hidden");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+
+  timerDisplay.classList.remove("warning");
+  timerDisplay.textContent = `⏱ 残り ${formatTime(remainingSeconds)}`;
+
+  clearInterval(timerInterval);
+  timerInterval = setInterval(() => {
+    remainingSeconds--;
+    if (remainingSeconds <= 300) {
+      timerDisplay.classList.add("warning");
+    }
+    if (remainingSeconds <= 0) {
+      remainingSeconds = 0;
+      timerDisplay.textContent = "⏱ 残り 00:00";
+      clearInterval(timerInterval);
+      alert("制限時間の25分が終了しました。自動的に採点します。");
+      gradeExam(true);
+    } else {
+      timerDisplay.textContent = `⏱ 残り ${formatTime(remainingSeconds)}`;
+    }
+  }, 1000);
+}
+
+function checkCorrect(q, ans) {
+  if (q.type === "choice") {
+    return ans === q.answer;
+  }
+  if (q.type === "ox") {
+    return ans === q.answer;
+  }
+  if (q.type === "fill") {
+    const norm = normalizeText(ans);
+    if (!norm) return false;
+    return q.acceptable.some(a => normalizeText(a) === norm);
+  }
+  return false;
+}
+
+function formatUserAnswer(q, ans) {
+  if (q.type === "choice") {
+    return ans !== undefined ? q.choices[ans] : "（未回答）";
+  }
+  if (q.type === "ox") {
+    return ans !== undefined ? ans : "（未回答）";
+  }
+  if (q.type === "fill") {
+    return ans && ans.trim() !== "" ? ans.trim() : "（未回答）";
+  }
+  return "（未回答）";
+}
+
+function formatCorrectAnswer(q) {
+  if (q.type === "choice") return q.choices[q.answer];
+  if (q.type === "ox") return q.answer;
+  return q.displayAnswer;
+}
+
+function gradeExam(auto = false) {
+  if (isSubmitted) return;
+  if (!auto) {
+    const answered = updateAnsweredCount();
+    if (answered < QUESTIONS.length) {
+      const ok = confirm(`未回答の問題が ${QUESTIONS.length - answered} 問あります。このまま採点しますか？`);
+      if (!ok) return;
+    }
+  }
+
+  isSubmitted = true;
+  clearInterval(timerInterval);
+
+  const elapsedSec = Math.min(25 * 60, Math.max(1, Math.round((Date.now() - startTimeMs) / 1000)));
+  let totalCorrect = 0;
+  const unitMap = {};
+  const typeMap = {
+    choice: { label: "4択問題", total: 0, correct: 0 },
+    fill: { label: "穴埋め記述", total: 0, correct: 0 },
+    ox: { label: "○×問題", total: 0, correct: 0 }
+  };
+
+  const results = QUESTIONS.map(q => {
+    const ans = userAnswers[q.id];
+    const ok = checkCorrect(q, ans);
+    if (ok) totalCorrect++;
+
+    if (!unitMap[q.unit]) unitMap[q.unit] = { total: 0, correct: 0 };
+    unitMap[q.unit].total++;
+    if (ok) unitMap[q.unit].correct++;
+
+    typeMap[q.type].total++;
+    if (ok) typeMap[q.type].correct++;
+
+    return { q, ans, ok };
+  });
+
+  const score100 = Math.round((totalCorrect / QUESTIONS.length) * 100);
+  document.getElementById("scoreBig").textContent = `${score100} 点`;
+  document.getElementById("scoreSub").textContent = `${totalCorrect} / ${QUESTIONS.length} 問正解（所要時間 ${formatTime(elapsedSec)}）`;
+
+  // Unit stats
+  const unitStatsEl = document.getElementById("unitStats");
+  unitStatsEl.innerHTML = "";
+  Object.entries(unitMap).forEach(([uName, st]) => {
+    const pct = Math.round((st.correct / st.total) * 100);
+    unitStatsEl.innerHTML += `
+      <div class="stat-row">
+        <div class="stat-head">
+          <span>${uName}</span>
+          <span>${st.correct} / ${st.total} 問（${pct}%）</span>
+        </div>
+        <div class="bar-bg"><div class="bar-fill" style="width:${pct}%"></div></div>
+      </div>
+    `;
+  });
+
+  // Type stats
+  const typeStatsEl = document.getElementById("typeStats");
+  typeStatsEl.innerHTML = "";
+  Object.values(typeMap).forEach(st => {
+    const pct = Math.round((st.correct / st.total) * 100);
+    typeStatsEl.innerHTML += `
+      <div class="stat-row">
+        <div class="stat-head">
+          <span>${st.label}</span>
+          <span>${st.correct} / ${st.total} 問（${pct}%）</span>
+        </div>
+        <div class="bar-bg"><div class="bar-fill" style="width:${pct}%; background:#0f766e;"></div></div>
+      </div>
+    `;
+  });
+
+  renderReviewList(results, "all");
+
+  document.getElementById("filterAllBtn").onclick = () => {
+    document.getElementById("filterAllBtn").className = "btn btn-primary btn-sm";
+    document.getElementById("filterWrongBtn").className = "btn btn-outline btn-sm";
+    renderReviewList(results, "all");
+  };
+
+  document.getElementById("filterWrongBtn").onclick = () => {
+    document.getElementById("filterWrongBtn").className = "btn btn-primary btn-sm";
+    document.getElementById("filterAllBtn").className = "btn btn-outline btn-sm";
+    renderReviewList(results, "wrong");
+  };
+
+  examScreen.classList.add("hidden");
+  resultScreen.classList.remove("hidden");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function renderReviewList(results, mode) {
+  const listEl = document.getElementById("reviewList");
+  listEl.innerHTML = "";
+
+  const filtered = mode === "wrong" ? results.filter(r => !r.ok) : results;
+  if (filtered.length === 0) {
+    listEl.innerHTML = `<p style="text-align:center; color:var(--correct); font-weight:700; padding:20px 0;">全問正解です！間違えた問題はありません。</p>`;
+    return;
+  }
+
+  filtered.forEach(({ q, ans, ok }) => {
+    const card = document.createElement("div");
+    card.className = `review-card ${ok ? "is-correct" : "is-wrong"}`;
+    card.innerHTML = `
+      <div class="q-header">
+        <span class="q-num">第 ${q.id} 問（${q.unit} / ${TYPE_LABELS[q.type]}）</span>
+        <span class="judge-badge ${ok ? "ok" : "ng"}">${ok ? "○ 正解" : "× 不正解"}</span>
+      </div>
+      <p class="q-text" style="margin-bottom:10px;">${q.question}</p>
+      <div class="ans-compare">
+        <div class="ans-box">
+          <span class="lbl">あなたの解答</span>
+          <strong style="color:${ok ? "var(--correct)" : "var(--wrong)"}">${escapeHtml(formatUserAnswer(q, ans))}</strong>
+        </div>
+        <div class="ans-box">
+          <span class="lbl">正解</span>
+          <strong style="color:var(--correct)">${escapeHtml(formatCorrectAnswer(q))}</strong>
+        </div>
+      </div>
+      <div class="explain-box">
+        <strong>解説：</strong>${escapeHtml(q.explanation)}
+      </div>
+    `;
+    listEl.appendChild(card);
+  });
+}
+
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+document.getElementById("startBtn").addEventListener("click", startExam);
+document.getElementById("topSubmitBtn").addEventListener("click", () => gradeExam(false));
+document.getElementById("bottomSubmitBtn").addEventListener("click", () => gradeExam(false));
+document.getElementById("retryBtn").addEventListener("click", () => {
+  resultScreen.classList.add("hidden");
+  startScreen.classList.remove("hidden");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+paletteToggleBtn.addEventListener("click", () => {
+  const isHidden = questionPalette.classList.toggle("hidden");
+  paletteToggleBtn.textContent = isHidden ? "問題番号一覧 ▼" : "問題番号一覧 ▲";
+});
+</script>
+</body>
+</html>
