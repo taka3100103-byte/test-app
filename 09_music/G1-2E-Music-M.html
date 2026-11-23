@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>中1 2学期末テスト対策 音楽 通し模擬テスト</title>
+  <style>
+    :root {
+      --bg: #f1f5f9;
+      --card: #ffffff;
+      --primary: #1e40af;
+      --primary-light: #dbeafe;
+      --primary-hover: #1d4ed8;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #cbd5e1;
+      --border-soft: #e2e8f0;
+      --correct: #15803d;
+      --correct-bg: #dcfce7;
+      --wrong: #b91c1c;
+      --wrong-bg: #fee2e2;
+      --warn: #d97706;
+      --warn-bg: #fef3c7;
+      --shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      min-height: 100vh;
+      padding-bottom: 60px;
+    }
+
+    /* Sticky Top Bar */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 16px;
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.05);
+    }
+
+    .topbar-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .topbar-title {
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: var(--primary);
+    }
+
+    .topbar-controls {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .timer-box {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #f8fafc;
+      border: 1.5px solid var(--border);
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 0.95rem;
+      font-variant-numeric: tabular-nums;
+      color: var(--text);
+    }
+
+    .timer-box.warn {
+      background: var(--warn-bg);
+      border-color: var(--warn);
+      color: #92400e;
+    }
+
+    .timer-box.danger {
+      background: var(--wrong-bg);
+      border-color: var(--wrong);
+      color: var(--wrong);
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.65; }
+    }
+
+    .progress-pill {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .progress-pill strong {
+      color: var(--primary);
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 24px auto 0;
+      padding: 0 14px;
+    }
+
+    /* Start Screen */
+    .start-card {
+      background: var(--card);
+      border-radius: 18px;
+      padding: 36px 28px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border-soft);
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 0.82rem;
+      padding: 4px 14px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+    }
+
+    .start-card h1 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .start-desc {
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 600px;
+      margin: 0 auto 24px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 12px;
+      margin-bottom: 28px;
+      text-align: left;
+    }
+
+    .info-item {
+      background: #f8fafc;
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+      padding: 14px;
+    }
+
+    .info-item .label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .info-item .val {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: none;
+      border-radius: 12px;
+      font-family: inherit;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      padding: 14px 32px;
+      font-size: 1.05rem;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: #fff;
+      color: var(--text);
+      border: 1.5px solid var(--border);
+      padding: 10px 20px;
+      font-size: 0.92rem;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    /* Section Header */
+    .section-banner {
+      background: var(--primary);
+      color: #fff;
+      padding: 12px 18px;
+      border-radius: 12px;
+      margin: 28px 0 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .section-banner h2 {
+      font-size: 1.05rem;
+      font-weight: 800;
+    }
+
+    .section-banner span {
+      font-size: 0.82rem;
+      opacity: 0.9;
+      font-weight: 700;
+    }
+
+    /* Question Card */
+    .q-card {
+      background: var(--card);
+      border: 1px solid var(--border-soft);
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 14px;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+    }
+
+    .q-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      gap: 8px;
+    }
+
+    .q-num {
+      font-weight: 800;
+      font-size: 0.9rem;
+      color: var(--primary);
+      background: var(--primary-light);
+      padding: 3px 10px;
+      border-radius: 6px;
+    }
+
+    .q-type-tag {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--muted);
+      background: #f1f5f9;
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+
+    .q-text {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .visual-box {
+      background: #f8fafc;
+      border: 1px solid var(--border-soft);
+      border-radius: 10px;
+      padding: 12px;
+      margin-bottom: 14px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: auto;
+    }
+
+    /* Choices & Inputs */
+    .choices-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .choice-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 14px;
+      border: 1.5px solid var(--border-soft);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.12s ease;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .choice-label:hover {
+      border-color: var(--primary);
+      background: #f8fafc;
+    }
+
+    .choice-label input[type="radio"] {
+      accent-color: var(--primary);
+      width: 17px;
+      height: 17px;
+      flex-shrink: 0;
+    }
+
+    .choice-label.selected {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      color: var(--primary);
+    }
+
+    .tf-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .tf-label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px;
+      border: 1.5px solid var(--border-soft);
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 800;
+      font-size: 1.05rem;
+      transition: all 0.12s ease;
+    }
+
+    .tf-label:hover {
+      border-color: var(--primary);
+    }
+
+    .tf-label input[type="radio"] {
+      display: none;
+    }
+
+    .tf-label.selected {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      color: var(--primary);
+    }
+
+    .text-input {
+      width: 100%;
+      max-width: 420px;
+      padding: 11px 14px;
+      font-size: 1rem;
+      font-family: inherit;
+      font-weight: 700;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      outline: none;
+      transition: border-color 0.15s ease;
+    }
+
+    .text-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.12);
+    }
+
+    .submit-area {
+      margin-top: 28px;
+      text-align: center;
+      background: var(--card);
+      padding: 24px;
+      border-radius: 16px;
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow);
+    }
+
+    /* Results View */
+    .result-summary {
+      background: var(--card);
+      border-radius: 18px;
+      padding: 28px 24px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border-soft);
+      margin-bottom: 24px;
+    }
+
+    .score-hero {
+      text-align: center;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border-soft);
+      margin-bottom: 20px;
+    }
+
+    .score-big {
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: var(--primary);
+      line-height: 1.1;
+      margin: 6px 0;
+    }
+
+    .score-sub {
+      font-size: 0.95rem;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .unit-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .unit-card {
+      background: #f8fafc;
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+      padding: 14px;
+    }
+
+    .unit-card-title {
+      font-size: 0.85rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .unit-card-num {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    .bar-bg {
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      background: var(--primary);
+      border-radius: 999px;
+    }
+
+    .filter-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .filter-btns {
+      display: flex;
+      gap: 8px;
+    }
+
+    .filter-btn {
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: 1.5px solid var(--border);
+      background: #fff;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+
+    .filter-btn.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .review-card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 14px;
+      border: 1.5px solid var(--border-soft);
+    }
+
+    .review-card.is-correct {
+      border-left: 6px solid var(--correct);
+    }
+
+    .review-card.is-wrong {
+      border-left: 6px solid var(--wrong);
+    }
+
+    .status-badge {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+
+    .status-badge.ok {
+      background: var(--correct-bg);
+      color: var(--correct);
+    }
+
+    .status-badge.ng {
+      background: var(--wrong-bg);
+      color: var(--wrong);
+    }
+
+    .ans-compare {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+      margin: 12px 0;
+      padding: 12px;
+      background: #f8fafc;
+      border-radius: 10px;
+      font-size: 0.9rem;
+    }
+
+    .ans-compare div span {
+      display: block;
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .explain-box {
+      background: #f0f9ff;
+      border: 1px solid #bae6fd;
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 0.9rem;
+      color: #0c4a6e;
+    }
+
+    .explain-box strong {
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    /* Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 200;
+      padding: 16px;
+    }
+
+    .modal-box {
+      background: #fff;
+      border-radius: 16px;
+      padding: 24px;
+      max-width: 420px;
+      width: 100%;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+
+    .modal-box h3 {
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+    }
+
+    .modal-box p {
+      font-size: 0.92rem;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="topbar" class="topbar hidden">
+    <div class="topbar-inner">
+      <div class="topbar-title">中1 2学期末テスト対策 音楽 模擬テスト</div>
+      <div class="topbar-controls">
+        <div class="progress-pill">回答：<strong id="answered-count">0</strong> / 35問</div>
+        <div id="timer-box" class="timer-box">⏱ <span id="timer-text">25:00</span></div>
+        <button id="top-grade-btn" class="btn btn-primary" style="padding: 7px 14px; font-size: 0.85rem;">採点する</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Start Screen -->
+    <div id="start-screen" class="start-card">
+      <div class="badge">中学1年・2学期末テスト 本番対策</div>
+      <h1>音楽 通し模擬テスト（全35問）</h1>
+      <p class="start-desc">
+        「魔王・シューベルト」「リコーダー」「楽典（音名・音符・休符）」の全範囲からバランスよく出題します。解答中のヒントや即時解説はありません。25分以内に全問解ききり、最後にまとめて採点しましょう。
+      </p>
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="label">出題数</div>
+          <div class="val">全 35 問</div>
+        </div>
+        <div class="info-item">
+          <div class="label">制限時間</div>
+          <div class="val">25 分（タイマー付）</div>
+        </div>
+        <div class="info-item">
+          <div class="label">問題形式</div>
+          <div class="val">4択・穴埋め・○×</div>
+        </div>
+        <div class="info-item">
+          <div class="label">採点方式</div>
+          <div class="val">終了後に一括採点</div>
+        </div>
+      </div>
+      <button id="start-btn" class="btn btn-primary">テストを開始する（25:00スタート）</button>
+    </div>
+
+    <!-- Exam Screen -->
+    <div id="exam-screen" class="hidden">
+      <div id="questions-container"></div>
+      <div class="submit-area">
+        <p style="font-size: 0.92rem; color: var(--muted); margin-bottom: 14px;">
+          すべての問題を確認したら、下のボタンから採点してください。
+        </p>
+        <button id="bottom-grade-btn" class="btn btn-primary">採点する</button>
+      </div>
+    </div>
+
+    <!-- Result Screen -->
+    <div id="result-screen" class="hidden">
+      <div class="result-summary">
+        <div class="score-hero">
+          <div class="badge" id="time-used-badge">所要時間：--:--</div>
+          <div class="score-big"><span id="score-points">0</span>点 <span style="font-size: 1.2rem; color: var(--muted);">/ 100点</span></div>
+          <div class="score-sub" id="score-detail">35問中 0問正解</div>
+        </div>
+
+        <div class="unit-stats" id="unit-stats"></div>
+
+        <div style="text-align: center;">
+          <button id="retry-btn" class="btn btn-secondary">もう一度最初から挑戦する</button>
+        </div>
+      </div>
+
+      <div class="filter-bar">
+        <h3 style="font-size: 1.05rem; font-weight: 800;">全問の正誤と解説</h3>
+        <div class="filter-btns">
+          <button class="filter-btn active" data-filter="all">すべて表示（35）</button>
+          <button class="filter-btn" data-filter="wrong" id="wrong-filter-btn">不正解のみ（0）</button>
+        </div>
+      </div>
+
+      <div id="review-container"></div>
+    </div>
+  </div>
+
+  <!-- Confirm Modal -->
+  <div id="confirm-modal" class="modal-backdrop hidden">
+    <div class="modal-box">
+      <h3 id="modal-title">採点しますか？</h3>
+      <p id="modal-msg"></p>
+      <div class="modal-actions">
+        <button id="modal-cancel" class="btn btn-secondary">戻って見直す</button>
+        <button id="modal-confirm" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.92rem;">このまま採点する</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // SVG Helpers
+    function svgStaffNote(positions) {
+      // positions: array of { step: 0 (middle C / 下第1線) to 9 (high E / 第4間), label?: string }
+      // step 0 = C4 (ledger line below), step 1 = D4, step 2 = E4 (line 1), step 3 = F4 (space 1),
+      // step 4 = G4 (line 2), step 5 = A4 (space 2), step 6 = B4 (line 3), step 7 = C5 (space 3),
+      // step 8 = D5 (line 4), step 9 = E5 (space 4), step 10 = F5 (line 5)
+      const lineY = [100, 84, 68, 52, 36]; // line 1 (E4) to line 5 (F5)
+      let linesSvg = lineY.map(y => `<line x1="20" y1="${y}" x2="220" y2="${y}" stroke="#1e293b" stroke-width="1.6"/>`).join("");
+      let notesSvg = "";
+      positions.forEach((pos, idx) => {
+        const y = 116 - pos.step * 8;
+        const x = positions.length === 1 ? 135 : 95 + idx * 55;
+        let ledger = "";
+        if (pos.step === 0) {
+          ledger = `<line x1="${x - 16}" y1="116" x2="${x + 16}" y2="116" stroke="#1e293b" stroke-width="1.8"/>`;
+        }
+        notesSvg += `
+          ${ledger}
+          <ellipse cx="${x}" cy="${y}" rx="9" ry="6.5" transform="rotate(-18 ${x} ${y})" fill="#0f172a"/>
+          <line x1="${pos.step >= 6 ? x - 8 : x + 8}" y1="${y}" x2="${pos.step >= 6 ? x - 8 : x + 8}" y2="${pos.step >= 6 ? y + 36 : y - 36}" stroke="#0f172a" stroke-width="2"/>
+        `;
+      });
+      return `
+        <svg width="240" height="140" viewBox="0 0 240 140" aria-label="五線譜">
+          ${linesSvg}
+          <text x="26" y="96" font-size="64" font-family="serif" fill="#1e293b">𝄞</text>
+          ${notesSvg}
+        </svg>
+      `;
+    }
+
+    function svgRecorder(holes) {
+      // holes: [0, 1, 2, 3] where true = filled, false = open
+      const labels = ["0(裏)", "1", "2", "3"];
+      let circles = "";
+      holes.forEach((filled, i) => {
+        const y = 34 + i * 32;
+        circles += `
+          <circle cx="55" cy="${y}" r="10" fill="${filled ? '#0f172a' : '#ffffff'}" stroke="#0f172a" stroke-width="2.2"/>
+          <text x="76" y="${y + 4}" font-size="12" font-weight="700" fill="#475569">${labels[i]}</text>
+        `;
+      });
+      return `
+        <svg width="140" height="160" viewBox="0 0 140 160" aria-label="アルトリコーダー運指図">
+          <rect x="33" y="14" width="44" height="136" rx="10" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.8"/>
+          ${circles}
+        </svg>
+      `;
+    }
+
+    function svgNoteSymbol(type) {
+      if (type === "dotted_half") {
+        return `<svg width="90" height="90" viewBox="0 0 90 90"><ellipse cx="36" cy="64" rx="10" ry="7" transform="rotate(-20 36 64)" fill="none" stroke="#0f172a" stroke-width="2.6"/><line x1="45" y1="62" x2="45" y2="18" stroke="#0f172a" stroke-width="2.6"/><circle cx="56" cy="64" r="3.5" fill="#0f172a"/></svg>`;
+      }
+      if (type === "dotted_quarter") {
+        return `<svg width="90" height="90" viewBox="0 0 90 90"><ellipse cx="36" cy="64" rx="10" ry="7" transform="rotate(-20 36 64)" fill="#0f172a"/><line x1="45" y1="62" x2="45" y2="18" stroke="#0f172a" stroke-width="2.6"/><circle cx="56" cy="64" r="3.5" fill="#0f172a"/></svg>`;
+      }
+      if (type === "quarter_rest") {
+        return `<svg width="90" height="90" viewBox="0 0 90 90"><text x="30" y="66" font-size="56" font-family="serif" fill="#0f172a">𝄽</text></svg>`;
+      }
+      if (type === "eighth_rest") {
+        return `<svg width="90" height="90" viewBox="0 0 90 90"><text x="32" y="64" font-size="52" font-family="serif" fill="#0f172a">𝄾</text></svg>`;
+      }
+      return "";
+    }
+
+    const QUESTIONS = [
+      // === 単元1: 『魔王』・シューベルト (12問) ===
+      {
+        id: 1,
+        unit: "『魔王』・シューベルト",
+        type: "input",
+        text: "シューベルトは、（　　　）のウィーン郊外に生まれました。空欄に入る国名を答えなさい。",
+        answers: ["オーストリア", "おーすとりあ"],
+        displayAnswer: "オーストリア",
+        explanation: "シューベルトはオーストリアのウィーン郊外に生まれました。ドイツ語の歌曲（リート）を多く作ったため「ドイツ」と混同しやすいので注意しましょう。"
+      },
+      {
+        id: 2,
+        unit: "『魔王』・シューベルト",
+        type: "input",
+        text: "シューベルトは（　　）歳という若さで亡くなりました。空欄に入る数字を答えなさい。",
+        answers: ["31", "３１", "31歳", "３１歳"],
+        displayAnswer: "31（歳）",
+        explanation: "シューベルトは31歳という若さで亡くなりましたが、管弦楽曲、室内楽曲、ピアノ曲、リート、宗教音楽など数多くの作品を残しています。"
+      },
+      {
+        id: 3,
+        unit: "『魔王』・シューベルト",
+        type: "choice",
+        text: "シューベルトがおよそ600曲もの作品を残した「ドイツ語による歌曲」のことを何といいますか。",
+        choices: ["オペラ", "リート", "カンタータ", "ソナタ"],
+        correctIndex: 1,
+        explanation: "ドイツ語による歌曲を「リート」といいます。シューベルトはおよそ600曲ものリートを残しました。"
+      },
+      {
+        id: 4,
+        unit: "『魔王』・シューベルト",
+        type: "tf",
+        text: "【○×問題】「リート」とは、イタリア語による歌曲のことである。",
+        correctTF: false,
+        explanation: "×です。「リート」は「ドイツ語による歌曲」のことです。"
+      },
+      {
+        id: 5,
+        unit: "『魔王』・シューベルト",
+        type: "choice",
+        text: "歌曲『魔王』の詩を作った（作詞した）人物はだれですか。",
+        choices: ["シューベルト", "ベートーヴェン", "ゲーテ", "モーツァルト"],
+        correctIndex: 2,
+        explanation: "『魔王』は、ドイツの詩人ゲーテが作詞し、シューベルトが作曲した作品です。"
+      },
+      {
+        id: 6,
+        unit: "『魔王』・シューベルト",
+        type: "input",
+        text: "リートでは、（　　）とピアノ伴奏が一体となって、詩の内容やイメージが巧みに表現されています。空欄に入る言葉を答えなさい。",
+        answers: ["歌", "うた"],
+        displayAnswer: "歌",
+        explanation: "リートでは「歌」と「ピアノ伴奏」が一体となって、詩の内容やイメージが巧みに表現されています。"
+      },
+      {
+        id: 7,
+        unit: "『魔王』・シューベルト",
+        type: "choice",
+        text: "『魔王』の楽譜の冒頭に書かれている速度標語とテンポとして正しいものはどれですか。",
+        choices: ["ゆっくり（♩=60）", "速く（♩=152）", "中くらいの速さで（♩=100）", "きわめてゆっくり（♩=48）"],
+        correctIndex: 1,
+        explanation: "『魔王』の楽譜の冒頭には「速く（♩=152）〈原調：ト短調〉」と書かれています。"
+      },
+      {
+        id: 8,
+        unit: "『魔王』・シューベルト",
+        type: "tf",
+        text: "【○×問題】『魔王』の原調は「ハ長調」である。",
+        correctTF: false,
+        explanation: "×です。『魔王』の原調は「ト短調」です。緊迫感のある暗い響きになっています。"
+      },
+      {
+        id: 9,
+        unit: "『魔王』・シューベルト",
+        type: "input",
+        text: "『魔王』のピアノ伴奏の右手で連続して使われている、1拍を3つに分ける音符の名前を答えなさい。",
+        answers: ["三連符", "さんれんぷ", "3連符", "３連符"],
+        displayAnswer: "三連符",
+        explanation: "1拍を3等分して演奏する音符を「三連符」といいます。"
+      },
+      {
+        id: 10,
+        unit: "『魔王』・シューベルト",
+        type: "choice",
+        text: "『魔王』のピアノ伴奏の右手（上の段）の三連符は、何を表現していますか。",
+        choices: ["穏やかな川の流れ", "馬が激しく走っている様子", "教会の鐘の音", "小鳥のさえずり"],
+        correctIndex: 1,
+        explanation: "右手の連続する三連符は、夜道を馬が激しく走っている様子（疾走感）を表現しています。"
+      },
+      {
+        id: 11,
+        unit: "『魔王』・シューベルト",
+        type: "choice",
+        text: "『魔王』のピアノ伴奏の左手（下の段）は、何を表現していますか。",
+        choices: ["親子の楽しい会話", "恐ろしさ・嵐のような様子", "朝の静かな森", "馬のいななき"],
+        correctIndex: 1,
+        explanation: "左手の低い音域のフレーズは、恐ろしさや嵐のような不気味な様子を表現しています。"
+      },
+      {
+        id: 12,
+        unit: "『魔王』・シューベルト",
+        type: "tf",
+        text: "【○×問題】シューベルトは31歳という若さで亡くなったため、管弦楽曲や室内楽曲はほとんど残していない。",
+        correctTF: false,
+        explanation: "×です。若くして亡くなりましたが、管弦楽曲や室内楽曲、ピアノ曲、リート、宗教音楽など数多くの作品を残しています。"
+      },
+
+      // === 単元2: リコーダー (11問) ===
+      {
+        id: 13,
+        unit: "リコーダー",
+        type: "input",
+        text: "リコーダーを吹くときは、「（　　　　　）に合わせて、指を素早く動かそう。」空欄に入る言葉をカタカナで答えなさい。",
+        answers: ["タンギング", "たんぎんぐ"],
+        displayAnswer: "タンギング",
+        explanation: "「タンギングに合わせて、指を素早く動かそう。」と教科書に書かれています。"
+      },
+      {
+        id: 14,
+        unit: "リコーダー",
+        type: "choice",
+        text: "リコーダーをバランスよく支える「3点」の組み合わせとして正しいものはどれですか。",
+        choices: [
+          "唇・左手親指・右手人差し指",
+          "唇・左手中指・右手親指",
+          "あご・左手小指・右手薬指",
+          "唇・左手薬指・右手小指"
+        ],
+        correctIndex: 1,
+        explanation: "リコーダーを支える3点は「唇」「左手中指」「右手親指」です。"
+      },
+      {
+        id: 15,
+        unit: "リコーダー",
+        type: "input",
+        text: "3点で楽器が安定しない場合は、「右手の（　　）を6と7のトーンホールの間に添えるとよい」とされています。空欄に入る指の名前を答えなさい。",
+        answers: ["小指", "こゆび"],
+        displayAnswer: "小指",
+        explanation: "高い「レ」などの運指で楽器が安定しないときは、右手の小指を6と7のトーンホールの間に添えます。"
+      },
+      {
+        id: 16,
+        unit: "リコーダー",
+        type: "tf",
+        text: "【○×問題】3点で楽器が安定しない場合は、右手の小指を「4と5」のトーンホールの間に添えるとよい。",
+        correctTF: false,
+        explanation: "×です。「4と5」ではなく「6と7」のトーンホールの間に添えます。"
+      },
+      {
+        id: 17,
+        unit: "リコーダー",
+        type: "choice",
+        visual: svgRecorder([false, false, true, false]),
+        text: "上の運指図（2のみ押さえる）が表すアルトリコーダーの音名は何ですか。",
+        choices: ["高いド", "高いレ", "シ", "ラ"],
+        correctIndex: 1,
+        explanation: "0（裏穴）も1も押さえず、2だけを押さえるのはアルトリコーダーの「高いレ」です。"
+      },
+      {
+        id: 18,
+        unit: "リコーダー",
+        type: "choice",
+        visual: svgRecorder([true, false, true, false]),
+        text: "上の運指図（0と2を押さえる）が表すアルトリコーダーの音名は何ですか。",
+        choices: ["高いド", "高いレ", "シ", "ソ"],
+        correctIndex: 0,
+        explanation: "0（裏穴）と2を押さえるのはアルトリコーダーの「高いド」です。"
+      },
+      {
+        id: 19,
+        unit: "リコーダー",
+        type: "tf",
+        visual: svgRecorder([true, true, false, false]),
+        text: "【○×問題】上の運指図（0と1を押さえる）は、アルトリコーダーの「ラ」の音である。",
+        correctTF: false,
+        explanation: "×です。0と1を押さえるのは「シ」です。「ラ」は0・1・2を押さえます。"
+      },
+      {
+        id: 20,
+        unit: "リコーダー",
+        type: "choice",
+        visual: svgRecorder([true, true, true, true]),
+        text: "上の運指図（0・1・2・3を押さえる）が表すアルトリコーダーの音名は何ですか。",
+        choices: ["ラ", "ソ", "ファ", "ミ"],
+        correctIndex: 1,
+        explanation: "0・1・2・3をすべて押さえるのはアルトリコーダーの「ソ」です。"
+      },
+      {
+        id: 21,
+        unit: "リコーダー",
+        type: "input",
+        text: "リコーダーの練習曲として載っている『喜びの歌』の作曲者はだれですか。",
+        answers: ["ベートーヴェン", "ベートーベン", "L.v.ベートーヴェン", "L.v.ベートーベン", "べーとーゔぇん", "べーとーべん"],
+        displayAnswer: "L.v.ベートーヴェン（ベートーヴェン）",
+        explanation: "『喜びの歌』は、L.v.ベートーヴェン作曲です。"
+      },
+      {
+        id: 22,
+        unit: "リコーダー",
+        type: "choice",
+        text: "『喜びの歌』の楽譜に示されている演奏の速さ（テンポ）はどれですか。",
+        choices: ["♩=60〜72", "♩=88〜96", "♩=116〜126", "♩=152"],
+        correctIndex: 2,
+        explanation: "アルトリコーダー・ソプラノリコーダーともに「♩=116〜126」と示されています。"
+      },
+      {
+        id: 23,
+        unit: "リコーダー",
+        type: "tf",
+        text: "【○×問題】リコーダーの運指図にある「0」の番号は、楽器の裏側にある親指で押さえる穴を表している。",
+        correctTF: true,
+        explanation: "○です。0は裏側の親指の穴、1は左手人差し指、2は左手中指、3は左手薬指を表しています。"
+      },
+
+      // === 単元3: 楽典・音名・音符・休符 (12問) ===
+      {
+        id: 24,
+        unit: "楽典・音名・音符・休符",
+        type: "choice",
+        visual: svgStaffNote([{ step: 0 }]),
+        text: "五線譜に書かれたこの音符の音名は何ですか。",
+        choices: ["ド", "レ", "ミ", "ファ"],
+        correctIndex: 0,
+        explanation: "五線の下に短い線（加線）を引いた位置にあるこの音は「ド」です。"
+      },
+      {
+        id: 25,
+        unit: "楽典・音名・音符・休符",
+        type: "input",
+        visual: svgStaffNote([{ step: 4 }]),
+        text: "五線譜の第2線上にあるこの音符の音名をカタカナで答えなさい。",
+        answers: ["ソ", "そ"],
+        displayAnswer: "ソ",
+        explanation: "下から2番目の線上にある音は「ソ」です（ト音記号の渦巻きの中心と同じ位置です）。"
+      },
+      {
+        id: 26,
+        unit: "楽典・音名・音符・休符",
+        type: "choice",
+        visual: svgStaffNote([{ step: 7 }]),
+        text: "五線譜の第3間（下から3つ目の間）にあるこの音符の音名は何ですか。",
+        choices: ["ラ", "シ", "ド（高いド）", "レ（高いレ）"],
+        correctIndex: 2,
+        explanation: "第3間にある音は「高いド」です。"
+      },
+      {
+        id: 27,
+        unit: "楽典・音名・音符・休符",
+        type: "tf",
+        visual: svgStaffNote([{ step: 9 }]),
+        text: "【○×問題】五線譜の第4間（一番上の間）にあるこの音は「ファ」である。",
+        correctTF: false,
+        explanation: "×です。第4間にある音は「ミ（高いミ）」です。「ファ」は第1間または第5線上です。"
+      },
+      {
+        id: 28,
+        unit: "楽典・音名・音符・休符",
+        type: "input",
+        text: "音符や休符に「付点」がつくと、長さはもとの（　　）倍になります。空欄に入る数字を答えなさい。",
+        answers: ["1.5", "１．５", "1.5倍", "１．５倍"],
+        displayAnswer: "1.5",
+        explanation: "付点がつくと、もとの音符の長さの1.5倍（もとの長さ＋その半分の長さ）になります。"
+      },
+      {
+        id: 29,
+        unit: "楽典・音名・音符・休符",
+        type: "choice",
+        visual: svgNoteSymbol("dotted_half"),
+        text: "この音符の名前と長さの組み合わせとして正しいものはどれですか。",
+        choices: ["2分音符・2拍", "付点2分音符・3拍", "付点4分音符・1と1/2拍", "全音符・4拍"],
+        correctIndex: 1,
+        explanation: "2分音符（2拍）に付点がついた「付点2分音符」で、長さは2×1.5＝3拍です。"
+      },
+      {
+        id: 30,
+        unit: "楽典・音名・音符・休符",
+        type: "input",
+        visual: svgNoteSymbol("dotted_quarter"),
+        text: "この「付点4分音符」の長さは、「1と（　　）拍」です。空欄に入る分数を答えなさい。（例：1/3）",
+        answers: ["1/2", "１／２", "0.5", "０．５", "2分の1", "２分の１"],
+        displayAnswer: "1/2",
+        explanation: "4分音符（1拍）の1.5倍なので、1と1/2拍（1.5拍）になります。"
+      },
+      {
+        id: 31,
+        unit: "楽典・音名・音符・休符",
+        type: "tf",
+        text: "【○×問題】「付点8分音符」の長さは「3/4拍」である。",
+        correctTF: true,
+        explanation: "○です。8分音符（1/2拍）にその半分（1/4拍）が足されるため、合計で3/4拍になります。"
+      },
+      {
+        id: 32,
+        unit: "楽典・音名・音符・休符",
+        type: "choice",
+        visual: svgNoteSymbol("quarter_rest"),
+        text: "この休符の名前と長さの組み合わせとして正しいものはどれですか。",
+        choices: ["4分休符・1拍", "8分休符・1/2拍", "2分休符・2拍", "16分休符・1/4拍"],
+        correctIndex: 0,
+        explanation: "これは「4分休符」で、4分音符と同じ1拍休みます。"
+      },
+      {
+        id: 33,
+        unit: "楽典・音名・音符・休符",
+        type: "choice",
+        visual: svgNoteSymbol("eighth_rest"),
+        text: "この休符の名前と長さの組み合わせとして正しいものはどれですか。",
+        choices: ["4分休符・1拍", "8分休符・1/2拍", "付点8分休符・3/4拍", "16分休符・1/4拍"],
+        correctIndex: 1,
+        explanation: "これは「8分休符」で、8分音符と同じ1/2拍休みます。"
+      },
+      {
+        id: 34,
+        unit: "楽典・音名・音符・休符",
+        type: "tf",
+        text: "【○×問題】「16分音符」の長さは「1/8拍」である。",
+        correctTF: false,
+        explanation: "×です。16分音符の長さは「1/4拍」です。8分音符（1/2拍）のさらに半分になります。"
+      },
+      {
+        id: 35,
+        unit: "楽典・音名・音符・休符",
+        type: "input",
+        text: "8分音符が2つや4つ続くとき、旗をばらばらに書く代わりに、音符同士を（　　　）形で書かれます。空欄に入る言葉を答えなさい。",
+        answers: ["つなげた", "つないだ", "繋げた", "繋いだ", "連桁", "れんこう"],
+        displayAnswer: "つなげた（形）",
+        explanation: "プリントの「重要」欄に「8分音符が2つ続く時は、…音符同士をつなげた形で書かれます。同じように、16分音符が4つ続く時も…書かれます。」とあります。"
+      }
+    ];
+
+    // State
+    let userAnswers = {}; // { [id]: value }
+    let timerInterval = null;
+    let remainingSeconds = 25 * 60;
+    let graded = false;
+    let currentFilter = "all";
+    let reviewData = [];
+
+    // Elements
+    const startScreen = document.getElementById("start-screen");
+    const examScreen = document.getElementById("exam-screen");
+    const resultScreen = document.getElementById("result-screen");
+    const topbar = document.getElementById("topbar");
+    const timerBox = document.getElementById("timer-box");
+    const timerText = document.getElementById("timer-text");
+    const answeredCountEl = document.getElementById("answered-count");
+    const questionsContainer = document.getElementById("questions-container");
+    const confirmModal = document.getElementById("confirm-modal");
+
+    function normalizeText(str) {
+      if (!str) return "";
+      return String(str)
+        .trim()
+        .replace(/[Ａ-Ｚａ-ｚ０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xFEE0))
+        .replace(/．/g, ".")
+        .replace(/／/g, "/")
+        .replace(/\s+/g, "")
+        .toLowerCase();
+    }
+
+    function formatTime(sec) {
+      const m = Math.floor(sec / 60);
+      const s = sec % 60;
+      return `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+    }
+
+    function updateProgress() {
+      let count = 0;
+      QUESTIONS.forEach(q => {
+        const val = userAnswers[q.id];
+        if (val !== undefined && val !== null && String(val).trim() !== "") {
+          count++;
+        }
+      });
+      answeredCountEl.textContent = count;
+      return count;
+    }
+
+    function renderQuestions() {
+      questionsContainer.innerHTML = "";
+      const units = ["『魔王』・シューベルト", "リコーダー", "楽典・音名・音符・休符"];
+      units.forEach((unitName, uIdx) => {
+        const unitQs = QUESTIONS.filter(q => q.unit === unitName);
+        const banner = document.createElement("div");
+        banner.className = "section-banner";
+        banner.innerHTML = `<h2>第${uIdx + 1}単元：${unitName}</h2><span>全${unitQs.length}問</span>`;
+        questionsContainer.appendChild(banner);
+
+        unitQs.forEach(q => {
+          const card = document.createElement("div");
+          card.className = "q-card";
+          const typeLabel = q.type === "choice" ? "4択" : q.type === "tf" ? "○×" : "穴埋め";
+
+          let visualHtml = q.visual ? `<div class="visual-box">${q.visual}</div>` : "";
+          let inputHtml = "";
+
+          if (q.type === "choice") {
+            inputHtml = `<div class="choices-list">` + q.choices.map((c, idx) => `
+              <label class="choice-label" data-qid="${q.id}">
+                <input type="radio" name="q_${q.id}" value="${idx}" />
+                <span>${["ア", "イ", "ウ", "エ"][idx]}. ${c}</span>
+              </label>
+            `).join("") + `</div>`;
+          } else if (q.type === "tf") {
+            inputHtml = `
+              <div class="tf-row">
+                <label class="tf-label" data-qid="${q.id}">
+                  <input type="radio" name="q_${q.id}" value="true" />
+                  <span>○（正しい）</span>
+                </label>
+                <label class="tf-label" data-qid="${q.id}">
+                  <input type="radio" name="q_${q.id}" value="false" />
+                  <span>×（誤り）</span>
+                </label>
+              </div>
+            `;
+          } else {
+            inputHtml = `
+              <input type="text" class="text-input" id="input_${q.id}" placeholder="答えを入力してください" autocomplete="off" />
+            `;
+          }
+
+          card.innerHTML = `
+            <div class="q-header">
+              <span class="q-num">問 ${q.id}</span>
+              <span class="q-type-tag">${typeLabel}</span>
+            </div>
+            ${visualHtml}
+            <div class="q-text">${q.text}</div>
+            ${inputHtml}
+          `;
+          questionsContainer.appendChild(card);
+
+          // Bind events
+          if (q.type === "choice" || q.type === "tf") {
+            const labels = card.querySelectorAll("label");
+            labels.forEach(lbl => {
+              const radio = lbl.querySelector("input[type='radio']");
+              radio.addEventListener("change", () => {
+                labels.forEach(l => l.classList.remove("selected"));
+                lbl.classList.add("selected");
+                userAnswers[q.id] = q.type === "choice" ? Number(radio.value) : (radio.value === "true");
+                updateProgress();
+              });
+            });
+          } else {
+            const inp = card.querySelector(`#input_${q.id}`);
+            inp.addEventListener("input", () => {
+              userAnswers[q.id] = inp.value;
+              updateProgress();
+            });
+          }
+        });
+      });
+    }
+
+    function startTimer() {
+      remainingSeconds = 25 * 60;
+      timerText.textContent = formatTime(remainingSeconds);
+      timerBox.classList.remove("warn", "danger");
+
+      clearInterval(timerInterval);
+      timerInterval = setInterval(() => {
+        remainingSeconds--;
+        if (remainingSeconds <= 0) {
+          remainingSeconds = 0;
+          timerText.textContent = "00:00";
+          clearInterval(timerInterval);
+          if (!graded) {
+            executeGrade(true);
+          }
+          return;
+        }
+        timerText.textContent = formatTime(remainingSeconds);
+        if (remainingSeconds <= 60) {
+          timerBox.classList.remove("warn");
+          timerBox.classList.add("danger");
+        } else if (remainingSeconds <= 300) {
+          timerBox.classList.add("warn");
+        }
+      }, 1000);
+    }
+
+    function handleGradeClick() {
+      const count = updateProgress();
+      const unanswered = QUESTIONS.length - count;
+      const modalTitle = document.getElementById("modal-title");
+      const modalMsg = document.getElementById("modal-msg");
+      if (unanswered > 0) {
+        modalTitle.textContent = "未回答の問題があります";
+        modalMsg.textContent = `全35問中、まだ ${unanswered} 問が未回答です。このまま採点して終了しますか？`;
+      } else {
+        modalTitle.textContent = "テストを終了して採点しますか？";
+        modalMsg.textContent = "全35問回答済みです。採点結果と詳しい解説を表示します。";
+      }
+      confirmModal.classList.remove("hidden");
+    }
+
+    function executeGrade(timeUp = false) {
+      graded = true;
+      clearInterval(timerInterval);
+      confirmModal.classList.add("hidden");
+      topbar.classList.add("hidden");
+      examScreen.classList.add("hidden");
+      resultScreen.classList.remove("hidden");
+
+      const usedSec = 25 * 60 - remainingSeconds;
+      document.getElementById("time-used-badge").textContent = timeUp
+        ? "時間終了（25:00経過で自動採点）"
+        : `所要時間：${formatTime(usedSec)}`;
+
+      let correctCount = 0;
+      const unitMap = {};
+      reviewData = QUESTIONS.map(q => {
+        if (!unitMap[q.unit]) unitMap[q.unit] = { total: 0, correct: 0 };
+        unitMap[q.unit].total++;
+
+        const ans = userAnswers[q.id];
+        let isCorrect = false;
+        let userDisplay = "（未回答）";
+        let correctDisplay = "";
+
+        if (q.type === "choice") {
+          correctDisplay = `${["ア", "イ", "ウ", "エ"][q.correctIndex]}. ${q.choices[q.correctIndex]}`;
+          if (ans !== undefined) {
+            userDisplay = `${["ア", "イ", "ウ", "エ"][ans]}. ${q.choices[ans]}`;
+            isCorrect = (ans === q.correctIndex);
+          }
+        } else if (q.type === "tf") {
+          correctDisplay = q.correctTF ? "○（正しい）" : "×（誤り）";
+          if (ans !== undefined) {
+            userDisplay = ans ? "○（正しい）" : "×（誤り）";
+            isCorrect = (ans === q.correctTF);
+          }
+        } else {
+          correctDisplay = q.displayAnswer;
+          if (ans !== undefined && String(ans).trim() !== "") {
+            userDisplay = String(ans).trim();
+            const normUser = normalizeText(ans);
+            isCorrect = q.answers.some(a => normalizeText(a) === normUser);
+          }
+        }
+
+        if (isCorrect) {
+          correctCount++;
+          unitMap[q.unit].correct++;
+        }
+
+        return { q, isCorrect, userDisplay, correctDisplay };
+      });
+
+      const points = Math.round((correctCount / QUESTIONS.length) * 100);
+      document.getElementById("score-points").textContent = points;
+      document.getElementById("score-detail").textContent = `${QUESTIONS.length}問中 ${correctCount}問正解`;
+
+      const wrongCount = QUESTIONS.length - correctCount;
+      document.getElementById("wrong-filter-btn").textContent = `不正解のみ（${wrongCount}）`;
+
+      // Unit stats
+      const unitStatsEl = document.getElementById("unit-stats");
+      unitStatsEl.innerHTML = "";
+      Object.keys(unitMap).forEach(unitName => {
+        const st = unitMap[unitName];
+        const pct = Math.round((st.correct / st.total) * 100);
+        const div = document.createElement("div");
+        div.className = "unit-card";
+        div.innerHTML = `
+          <div class="unit-card-title">${unitName}</div>
+          <div class="unit-card-num">${st.correct} / ${st.total} 問（${pct}%）</div>
+          <div class="bar-bg"><div class="bar-fill" style="width: ${pct}%"></div></div>
+        `;
+        unitStatsEl.appendChild(div);
+      });
+
+      currentFilter = "all";
+      document.querySelectorAll(".filter-btn").forEach(b => b.classList.toggle("active", b.dataset.filter === "all"));
+      renderReview();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function renderReview() {
+      const container = document.getElementById("review-container");
+      container.innerHTML = "";
+      const list = currentFilter === "wrong" ? reviewData.filter(r => !r.isCorrect) : reviewData;
+
+      if (list.length === 0) {
+        container.innerHTML = `<div class="q-card" style="text-align:center; font-weight:700; color:var(--correct);">不正解の問題はありません。全問正解おめでとうございます！</div>`;
+        return;
+      }
+
+      list.forEach(({ q, isCorrect, userDisplay, correctDisplay }) => {
+        const card = document.createElement("div");
+        card.className = `review-card ${isCorrect ? "is-correct" : "is-wrong"}`;
+        card.innerHTML = `
+          <div class="q-header">
+            <div>
+              <span class="q-num">問 ${q.id}</span>
+              <span class="q-type-tag" style="margin-left:6px;">${q.unit}</span>
+            </div>
+            <span class="status-badge ${isCorrect ? "ok" : "ng"}">${isCorrect ? "〇 正解" : "× 不正解"}</span>
+          </div>
+          ${q.visual ? `<div class="visual-box">${q.visual}</div>` : ""}
+          <div class="q-text">${q.text}</div>
+          <div class="ans-compare">
+            <div><span>あなたの解答</span><strong style="color:${isCorrect ? 'var(--correct)' : 'var(--wrong)'}">${userDisplay}</strong></div>
+            <div><span>正解</span><strong style="color:var(--correct)">${correctDisplay}</strong></div>
+          </div>
+          <div class="explain-box">
+            <strong>解説</strong>
+            ${q.explanation}
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // Event Listeners
+    document.getElementById("start-btn").addEventListener("click", () => {
+      userAnswers = {};
+      graded = false;
+      startScreen.classList.add("hidden");
+      resultScreen.classList.add("hidden");
+      topbar.classList.remove("hidden");
+      examScreen.classList.remove("hidden");
+      renderQuestions();
+      updateProgress();
+      startTimer();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    document.getElementById("top-grade-btn").addEventListener("click", handleGradeClick);
+    document.getElementById("bottom-grade-btn").addEventListener("click", handleGradeClick);
+    document.getElementById("modal-cancel").addEventListener("click", () => {
+      confirmModal.classList.add("hidden");
+    });
+    document.getElementById("modal-confirm").addEventListener("click", () => executeGrade(false));
+
+    document.getElementById("retry-btn").addEventListener("click", () => {
+      resultScreen.classList.add("hidden");
+      startScreen.classList.remove("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    document.querySelectorAll(".filter-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        currentFilter = btn.dataset.filter;
+        document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        renderReview();
+      });
+    });
+  </script>
+</body>
+</html>

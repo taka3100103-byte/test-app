@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>中1 2学期末テスト対策 音楽｜記述＆ひっかけ○×特化テスト</title>
+  <style>
+    :root {
+      --bg: #f1f5f9;
+      --card: #ffffff;
+      --primary: #0f766e;
+      --primary-light: #ccfbf1;
+      --primary-dark: #115e59;
+      --indigo: #4338ca;
+      --indigo-light: #e0e7ff;
+      --amber: #b45309;
+      --amber-light: #fef3c7;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --correct: #15803d;
+      --correct-bg: #dcfce7;
+      --wrong: #b91c1c;
+      --wrong-bg: #fee2e2;
+      --shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      min-height: 100vh;
+      padding: 20px 14px 56px;
+    }
+
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .badge-title {
+      display: inline-block;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      font-weight: 800;
+      font-size: 0.82rem;
+      padding: 4px 14px;
+      border-radius: 999px;
+      margin-bottom: 8px;
+      letter-spacing: 0.03em;
+    }
+
+    h1 {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .subtitle {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .mode-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 18px;
+    }
+
+    .mode-btn {
+      border: 1.5px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 8px 15px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .mode-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .mode-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 26px 24px;
+      border: 1px solid var(--border);
+    }
+
+    .progress-wrap {
+      margin-bottom: 18px;
+    }
+
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .progress-bar {
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), #14b8a6);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .q-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+      align-items: center;
+    }
+
+    .tag {
+      font-size: 0.78rem;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 6px;
+    }
+
+    .tag-unit {
+      background: #f1f5f9;
+      color: #334155;
+    }
+
+    .tag-essay {
+      background: var(--indigo-light);
+      color: var(--indigo);
+    }
+
+    .tag-ox {
+      background: var(--amber-light);
+      color: var(--amber);
+    }
+
+    .tag-core {
+      background: #fce7f3;
+      color: #be185d;
+    }
+
+    .q-text {
+      font-size: 1.12rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 16px;
+      line-height: 1.65;
+    }
+
+    .pair-hint {
+      font-size: 0.84rem;
+      background: #f8fafc;
+      border: 1px dashed #cbd5e1;
+      border-radius: 10px;
+      padding: 8px 12px;
+      color: #475569;
+      margin-bottom: 16px;
+    }
+
+    /* ○× Buttons */
+    .ox-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .ox-btn {
+      border: 2px solid var(--border);
+      background: #fff;
+      border-radius: 14px;
+      padding: 18px 12px;
+      font-size: 1.15rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      color: var(--text);
+    }
+
+    .ox-btn .symbol {
+      font-size: 2rem;
+      line-height: 1.1;
+    }
+
+    .ox-btn:hover:not(:disabled) {
+      border-color: var(--primary);
+      background: #f0fdfa;
+      transform: translateY(-1px);
+    }
+
+    .ox-btn.selected-correct {
+      border-color: var(--correct);
+      background: var(--correct-bg);
+      color: var(--correct);
+    }
+
+    .ox-btn.selected-wrong {
+      border-color: var(--wrong);
+      background: var(--wrong-bg);
+      color: var(--wrong);
+    }
+
+    .ox-btn.reveal-correct {
+      border-color: var(--correct);
+      background: #f0fdf4;
+      color: var(--correct);
+    }
+
+    .ox-btn:disabled {
+      cursor: default;
+      opacity: 0.9;
+    }
+
+    /* Essay input */
+    .essay-wrap {
+      margin-bottom: 14px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 105px;
+      padding: 12px 14px;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 1rem;
+      line-height: 1.6;
+      resize: vertical;
+      transition: border-color 0.15s;
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    .action-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 10px;
+      padding: 11px 18px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn-secondary {
+      background: #e2e8f0;
+      color: #334155;
+    }
+
+    .btn-secondary:hover {
+      background: #cbd5e1;
+    }
+
+    /* Feedback Box */
+    .feedback {
+      margin-top: 18px;
+      border-radius: 14px;
+      padding: 18px;
+      border: 1.5px solid var(--border);
+      display: none;
+    }
+
+    .feedback.show {
+      display: block;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .feedback.is-correct {
+      background: #f0fdf4;
+      border-color: #86efac;
+    }
+
+    .feedback.is-wrong {
+      background: #fef2f2;
+      border-color: #fca5a5;
+    }
+
+    .feedback.is-partial {
+      background: #fffbeb;
+      border-color: #fcd34d;
+    }
+
+    .fb-header {
+      font-size: 1.05rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .fb-header.correct-text { color: var(--correct); }
+    .fb-header.wrong-text { color: var(--wrong); }
+    .fb-header.partial-text { color: var(--amber); }
+
+    .model-answer {
+      background: #ffffff;
+      border-left: 4px solid var(--primary);
+      padding: 10px 14px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+    }
+
+    .model-answer strong {
+      display: block;
+      font-size: 0.82rem;
+      color: var(--primary-dark);
+      margin-bottom: 3px;
+    }
+
+    .kw-box {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-bottom: 12px;
+    }
+
+    .kw-title {
+      font-size: 0.83rem;
+      font-weight: 800;
+      color: var(--indigo);
+      margin-bottom: 8px;
+    }
+
+    .kw-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .kw-chip {
+      font-size: 0.84rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid #cbd5e1;
+      background: #f8fafc;
+      color: #334155;
+    }
+
+    .kw-chip.hit {
+      background: var(--correct-bg);
+      border-color: #4ade80;
+      color: var(--correct);
+    }
+
+    .kw-chip.miss {
+      background: #fee2e2;
+      border-color: #f87171;
+      color: var(--wrong);
+    }
+
+    .explanation {
+      font-size: 0.94rem;
+      color: #1e293b;
+      line-height: 1.7;
+    }
+
+    .trap-box {
+      margin-top: 10px;
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 8px;
+      padding: 9px 12px;
+      font-size: 0.88rem;
+      color: #92400e;
+    }
+
+    .self-grade {
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px dashed #cbd5e1;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .sg-btn {
+      border: 1.5px solid var(--border);
+      background: #fff;
+      border-radius: 8px;
+      padding: 5px 12px;
+      font-size: 0.83rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .sg-btn.active-ok {
+      background: var(--correct-bg);
+      border-color: var(--correct);
+      color: var(--correct);
+    }
+
+    .sg-btn.active-ng {
+      background: var(--wrong-bg);
+      border-color: var(--wrong);
+      color: var(--wrong);
+    }
+
+    .next-wrap {
+      margin-top: 16px;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    /* Result Screen */
+    .result-screen {
+      display: none;
+      text-align: center;
+    }
+
+    .result-screen.show {
+      display: block;
+    }
+
+    .score-circle {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 10px auto 18px;
+      border: 4px solid var(--primary);
+    }
+
+    .score-num {
+      font-size: 2rem;
+      font-weight: 900;
+      line-height: 1.1;
+    }
+
+    .score-sub {
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .breakdown {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 18px 0;
+      text-align: left;
+    }
+
+    .bd-card {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 14px;
+    }
+
+    .bd-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .bd-val {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-top: 2px;
+    }
+
+    .result-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 18px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 520px) {
+      .card { padding: 18px 16px; }
+      .breakdown { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="badge-title">中学1年 2学期末テスト対策｜音楽</div>
+      <h1>記述問題＆ひっかけ○× 特化テスト</h1>
+      <p class="subtitle">「理由・仕組みを答える短文記述」＋「紛らわしい用語ペアの○×」を1問1答で完全攻略</p>
+    </header>
+
+    <div class="mode-bar" id="modeBar">
+      <button class="mode-btn active" data-mode="all">すべて（全20問）</button>
+      <button class="mode-btn" data-mode="essay">短文記述のみ（6問）</button>
+      <button class="mode-btn" data-mode="ox">ひっかけ○×のみ（14問）</button>
+    </div>
+
+    <div class="card" id="quizCard">
+      <div class="progress-wrap">
+        <div class="progress-meta">
+          <span id="progressLabel">第 1 問 / 20 問</span>
+          <span id="scoreLabel">正解：0 問</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </div>
+
+      <div class="q-tags" id="qTags"></div>
+      <div class="q-text" id="qText"></div>
+      <div class="pair-hint" id="pairHint" style="display:none;"></div>
+
+      <!-- ○× UI -->
+      <div class="ox-grid" id="oxArea" style="display:none;">
+        <button class="ox-btn" id="btnO" onclick="answerOX(true)">
+          <span class="symbol">○</span>
+          <span>正しい</span>
+        </button>
+        <button class="ox-btn" id="btnX" onclick="answerOX(false)">
+          <span class="symbol">×</span>
+          <span>誤り（ひっかけ）</span>
+        </button>
+      </div>
+
+      <!-- Essay UI -->
+      <div class="essay-wrap" id="essayArea" style="display:none;">
+        <textarea id="essayInput" placeholder="ここに理由や仕組みを短文で入力してください..."></textarea>
+        <div class="action-row">
+          <button class="btn btn-primary" id="checkEssayBtn" onclick="checkEssay()">答え合わせ＆解説を見る</button>
+          <button class="btn btn-secondary" id="skipEssayBtn" onclick="revealEssay()">わからない（模範解答を見る）</button>
+        </div>
+      </div>
+
+      <!-- Feedback -->
+      <div class="feedback" id="feedbackBox">
+        <div class="fb-header" id="fbHeader"></div>
+        <div class="model-answer" id="modelAnswerBox" style="display:none;">
+          <strong>模範解答</strong>
+          <span id="modelAnswerText"></span>
+        </div>
+        <div class="kw-box" id="kwBox" style="display:none;">
+          <div class="kw-title">📌 記述に含めるべき必須キーワード（採点ポイント）</div>
+          <div class="kw-list" id="kwList"></div>
+        </div>
+        <div class="explanation" id="fbExplanation"></div>
+        <div class="trap-box" id="trapBox" style="display:none;"></div>
+        <div class="self-grade" id="selfGradeBox" style="display:none;">
+          <span>自己採点を変更：</span>
+          <button class="sg-btn" id="sgOk" onclick="setSelfGrade(true)">〇 正解にする</button>
+          <button class="sg-btn" id="sgNg" onclick="setSelfGrade(false)">× 要復習にする</button>
+        </div>
+        <div class="next-wrap">
+          <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()">次の問題へ →</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card result-screen" id="resultCard">
+      <h2>テスト結果</h2>
+      <div class="score-circle">
+        <div class="score-num" id="finalPercent">0%</div>
+        <div class="score-sub" id="finalFraction">0 / 0 問</div>
+      </div>
+      <p id="finalMessage" style="font-weight:700; color:#334155;"></p>
+
+      <div class="breakdown">
+        <div class="bd-card">
+          <div class="bd-title">短文記述（理由・仕組み）</div>
+          <div class="bd-val" id="bdEssay">-</div>
+        </div>
+        <div class="bd-card">
+          <div class="bd-title">ひっかけ○×（用語対比）</div>
+          <div class="bd-val" id="bdOx">-</div>
+        </div>
+      </div>
+
+      <div class="result-actions">
+        <button class="btn btn-primary" id="retryWrongBtn" onclick="retryWrong()">間違えた問題だけ復習する</button>
+        <button class="btn btn-secondary" onclick="restartMode()">最初からやり直す</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const ALL_QUESTIONS = [
+      // ====== 【重要テーマ1】短文記述（理由・仕組み） ======
+      {
+        id: 1,
+        type: "essay",
+        unit: "魔王・シューベルト",
+        coreTheme: "重要テーマ①",
+        question: "シューベルトの代表分野である「リート」とはどのような特徴・仕組みをもつ楽曲ですか。また、『魔王』ではそれによって何がどのように表現されていますか。",
+        modelAnswer: "ドイツ語による歌曲で、歌とピアノ伴奏が一体となって、詩の内容やイメージを巧みに表現している。",
+        keywords: [
+          { label: "ドイツ語（による歌曲）", match: ["ドイツ語", "歌曲"] },
+          { label: "歌とピアノ伴奏が一体", match: ["一体", "歌とピアノ", "伴奏"] },
+          { label: "詩の内容やイメージを表現", match: ["詩の内容", "イメージ", "詩"] }
+        ],
+        explanation: "プリントでは「リート（ドイツ語による歌曲）では歌とピアノ伴奏が一体となって、詩の内容やイメージが巧みに表現されています」と説明されています。単なる「歌の伴奏」ではなく、ピアノも物語を描く主役の一部になっている点が記述の核になります。",
+        trap: "「イタリア語」や「ピアノだけの独奏曲」と書かないように注意！"
+      },
+      {
+        id: 2,
+        type: "essay",
+        unit: "魔王・シューベルト",
+        coreTheme: "重要テーマ①",
+        question: "『魔王』のピアノ伴奏において、右手（上の段）の三連符と、左手（下の段）はそれぞれ何を表現していますか。左右の役割の違いがわかるように説明しなさい。",
+        modelAnswer: "右手（上の段）の三連符は馬が激しく走っている様子を表現し、左手（下の段）は恐ろしさや嵐のような不気味さを表現している。",
+        keywords: [
+          { label: "右手：馬が激しく走っている", match: ["馬", "走"] },
+          { label: "三連符", match: ["三連符", "3連符"] },
+          { label: "左手：恐ろしさ・嵐のような", match: ["恐ろしさ", "嵐", "怖"] }
+        ],
+        explanation: "『魔王』の楽譜では、速く（♩=152）・ト短調の緊迫した雰囲気の中で、右手が連続する三連符で「馬が激しく走っている様子（馬の疾走）」を、左手の低い音型が「恐ろしさ・嵐のような様子」を表現しています。",
+        trap: "右手（上の段）と左手（下の段）の表現を逆に書かないように注意！"
+      },
+      // ====== 【重要テーマ2】短文記述（理由・仕組み） ======
+      {
+        id: 3,
+        type: "essay",
+        unit: "リコーダー",
+        coreTheme: "重要テーマ②",
+        question: "アルトリコーダーで高い「レ」などを吹くとき、なぜ決まった3点で楽器を支えるのですか。また、それでも安定しない場合はどのように工夫すればよいですか。",
+        modelAnswer: "唇・左手中指・右手親指の3点で楽器をバランスよく支えるため。それでも安定しない場合は、右手の小指を6と7のトーンホールの間に添えるとよい。",
+        keywords: [
+          { label: "唇・左手中指・右手親指の3点", match: ["唇", "左手中指", "右手親指"] },
+          { label: "バランスよく支える", match: ["バランス", "支え"] },
+          { label: "右手の小指を6と7のトーンホールの間に添える", match: ["小指", "6と7", "トーンホール"] }
+        ],
+        explanation: "高い「レ」などの運指では押さえる穴が少なく楽器が不安定になりやすいため、「唇・左手中指・右手親指」の3点でバランスよく支えます。さらに安定しないときは「右手の小指を6と7のトーンホールの間に添える」のが正しい工夫です。",
+        trap: "「左手の親指」や「右手の中指」など、左右・指の名称の取り違えに注意！"
+      },
+      {
+        id: 4,
+        type: "essay",
+        unit: "楽典・音符と休符",
+        coreTheme: "重要テーマ②",
+        question: "音符に「付点」がつくと、音の長さはどのような仕組みで変わりますか。具体例を1つ挙げて説明しなさい。",
+        modelAnswer: "付点がつくと音の長さはもとの1.5倍になる。例えば、2分音符（2拍）に付点がついた付点2分音符は3拍になる（または4分音符1拍→付点4分音符1と1/2拍）。",
+        keywords: [
+          { label: "1.5倍になる", match: ["1.5倍"] },
+          { label: "具体例（2分音符→3拍 など）", match: ["2分音符", "3拍", "4分音符", "1と1/2", "1.5拍", "8分音符", "3/4"] }
+        ],
+        explanation: "テスト対策プリントの重要ルール「※付点がつくと長さは1.5倍になる」をそのまま説明できれば満点です。もとの音符の長さ＋その半分の長さを足す仕組みなので、2分音符（2拍）→3拍、4分音符（1拍）→1と1/2拍、8分音符（1/2拍）→3/4拍になります。",
+        trap: "「どんな音符でも0.5拍増える」と覚えるのが最大のひっかけ！必ず「もとの長さの1.5倍」と書きましょう。"
+      },
+      {
+        id: 5,
+        type: "essay",
+        unit: "楽典・音符と休符",
+        question: "8分音符が2つや4つ連続するとき、楽譜ではなぜ1つずつバラバラに書かずにつなげて書くのですか。また、16分音符が4つ続くときはどう書かれますか。",
+        modelAnswer: "拍のまとまりを見やすくするため音符同士をつなげた形（連桁）で書かれる。16分音符が4つ続くときも同様に、4つの音符をつなげた形で書かれる。",
+        keywords: [
+          { label: "音符同士をつなげた形（連桁）", match: ["つなげ", "連桁", "つないだ"] },
+          { label: "16分音符も4つをつなげて書く", match: ["16分音符", "4つ"] }
+        ],
+        explanation: "プリントの「重要」欄にある通り、8分音符が2つ・4つ続くときは旗を1本ずつ書かずに音符同士をつなげた形で書かれます。16分音符が4つ続くときも同じく、2本の横線（連桁）で音符同士をつなげた形で書かれます。",
+        trap: "『魔王』の「三連符」と混同しないこと！三連符は数字の「3」がつき1拍を3等分する音符、こちらは8分・16分音符をつないだ形です。"
+      },
+      {
+        id: 6,
+        type: "essay",
+        unit: "リコーダー",
+        question: "リコーダーの「吹いてみよう」で、タンギングに合わせて指をどのように動かすことが大切だと書かれていますか。",
+        modelAnswer: "タンギングに合わせて、指を素早く動かすことが大切。",
+        keywords: [
+          { label: "タンギングに合わせて", match: ["タンギング"] },
+          { label: "指を素早く動かす", match: ["素早く", "すばやく", "速く"] }
+        ],
+        explanation: "リコーダー教材の「吹いてみよう」の見出し横に「タンギングに合わせて、指を素早く動かそう。」と書かれています。息（タンギング）と指の動きがずれると音が濁るため、タイミングを合わせて素早く動かすのがポイントです。",
+        trap: "「ゆっくり動かす」は誤り。必ず「素早く」がキーワードです。"
+      },
+
+      // ====== ひっかけ○×問題（紛らわしい用語ペア・対比） ======
+      {
+        id: 7,
+        type: "ox",
+        unit: "魔王・シューベルト",
+        pair: "対比ペア：出身国（オーストリア） vs 言語・ジャンル（ドイツ語／リート）",
+        question: "シューベルトはドイツのウィーン郊外に生まれ、ドイツ語による歌曲「リート」を数多く作曲した。",
+        correct: false,
+        explanation: "×（誤り）です！シューベルトが生まれたのは「ドイツ」ではなく「オーストリア」のウィーン郊外です。プリントの上の欄に「ドイツ」と書かれていても、出身国はオーストリアなので要注意！",
+        trap: "ひっかけポイント：プリントの曲名欄に「国名：ドイツ」とあるため、出身国までドイツと勘違いさせる超定番のひっかけです。"
+      },
+      {
+        id: 8,
+        type: "ox",
+        unit: "魔王・シューベルト",
+        pair: "対比ペア：作曲を始めた年齢（18歳頃） vs 亡くなった年齢（31歳）",
+        question: "シューベルトは18歳頃に作曲を始め、31歳という若さで亡くなったが、リートではおよそ600曲もの作品を残した。",
+        correct: true,
+        explanation: "○（正しい）です！18歳頃に作曲を始め、31歳で亡くなるまでの短い生涯で、リート（ドイツ語による歌曲）を約600曲も作曲しました。",
+        trap: "「18歳」と「31歳」と「600曲」の数字が入れ替えられて出題されやすいのでセットで覚えましょう。"
+      },
+      {
+        id: 9,
+        type: "ox",
+        unit: "魔王・シューベルト",
+        pair: "対比ペア：作曲者（シューベルト） vs 作詞者（ゲーテ）",
+        question: "歌曲『魔王』は、ゲーテが作曲し、シューベルトが作詞した作品である。",
+        correct: false,
+        explanation: "×（誤り）です！『魔王』は「シューベルトが作曲」「ゲーテが作詞」です。作曲者と作詞者が逆になっています。",
+        trap: "ひっかけポイント：『魔王』の2人の人物「シューベルト（作曲）」と「ゲーテ（作詞）」の役割の入れ替え。"
+      },
+      {
+        id: 10,
+        type: "ox",
+        unit: "魔王・シューベルト",
+        pair: "対比ペア：右手（上の段：馬の疾走） vs 左手（下の段：恐ろしさ・嵐）",
+        question: "『魔王』のピアノ伴奏では、左手（下の段）の連続する三連符が「馬が激しく走っている様子」を表現している。",
+        correct: false,
+        explanation: "×（誤り）です！三連符で「馬が激しく走っている様子」を表現しているのは「右手（上の段）」です。左手（下の段）は「恐ろしさ、嵐のような様子」を表現しています。",
+        trap: "ひっかけポイント：右手（上の段）と左手（下の段）の表現内容が逆になっています。"
+      },
+      {
+        id: 11,
+        type: "ox",
+        unit: "魔王・シューベルト",
+        pair: "対比ペア：『魔王』の速度（♩=152・ト短調） vs 『喜びの歌』の速度（♩=116〜126）",
+        question: "『魔王』の楽譜の冒頭には「速く（♩=152）〈原調：ト短調〉」と記されている。",
+        correct: true,
+        explanation: "○（正しい）です！『魔王』は「速く（♩=152）〈原調：ト短調〉」で演奏されます。一方、リコーダー教材の『喜びの歌』は「♩=116〜126」です。",
+        trap: "「ハ長調」や「ト長調」に変えられたり、速度の数字を『喜びの歌』（116〜126）と入れ替えられたりするひっかけに注意！"
+      },
+      {
+        id: 12,
+        type: "ox",
+        unit: "リコーダー",
+        pair: "対比ペア：『喜びの歌』の作曲者（L.v.ベートーヴェン） vs 『魔王』の作曲者（シューベルト）",
+        question: "リコーダー教材に載っている『喜びの歌』は、シューベルトが作曲した曲である。",
+        correct: false,
+        explanation: "×（誤り）です！『喜びの歌』の作曲者は「L.v.ベートーヴェン」です。シューベルトは『魔王』の作曲者です。",
+        trap: "ひっかけポイント：同じテスト範囲に登場する作曲者名の取り違え。"
+      },
+      {
+        id: 13,
+        type: "ox",
+        unit: "リコーダー",
+        pair: "対比ペア：高い「レ」（2のみ） vs 高い「ド」（0と2）",
+        question: "アルトリコーダーの運指で、高い「レ」を吹くときは左手親指（0）と左手中指（2）の両方を押さえる。",
+        correct: false,
+        explanation: "×（誤り）です！左手親指（0）と左手中指（2）を押さえるのは高い「ド」です。高い「レ」は左手中指（2）だけを押さえ、親指（0）は開けます。",
+        trap: "ひっかけポイント：高い「レ」（2のみ）と高い「ド」（0と2）は1つしか違わないため、運指図でも文章でもよく狙われます。"
+      },
+      {
+        id: 14,
+        type: "ox",
+        unit: "リコーダー",
+        pair: "対比ペア：支える3点（唇・左手中指・右手親指） vs 補助の指（右手の小指）",
+        question: "アルトリコーダーで楽器を支える3点は「唇・左手親指・右手人差し指」である。",
+        correct: false,
+        explanation: "×（誤り）です！正しい3点は「唇・左手中指・右手親指」です。また、それでも安定しないときは「右手の小指を6と7のトーンホールの間に添える」ようにします。",
+        trap: "ひっかけポイント：「左手中指」と「右手親指」が「左手親指」や「右手人差し指」にすり替えられやすい！"
+      },
+      {
+        id: 15,
+        type: "ox",
+        unit: "リコーダー",
+        pair: "対比ペア：右手の小指を添える位置（6と7の間） vs トーンホールを塞ぐ",
+        question: "アルトリコーダーが3点で安定しないときは、右手の小指で7番のトーンホールを完全にふさぐと安定する。",
+        correct: false,
+        explanation: "×（誤り）です！穴をふさぐと音程が変わってしまいます。正しくは「右手の小指を6と7のトーンホールの間に添える」です。",
+        trap: "ひっかけポイント：「トーンホールをふさぐ」のか「間に添える」のかの違いに注意。"
+      },
+      {
+        id: 16,
+        type: "ox",
+        unit: "楽典・音符と休符",
+        pair: "対比ペア：付点のルール（1.5倍） vs 「＋0.5拍」",
+        question: "音符に付点がつくと、もとの音符の長さに関わらず一律で「0.5拍」長くなる。",
+        correct: false,
+        explanation: "×（誤り）です！一律で0.5拍増えるのではなく、「長さは1.5倍になる（もとの音符の半分を足す）」が正しいルールです。例えば、付点2分音符は2＋1＝3拍になります。",
+        trap: "ひっかけポイント：付点4分音符（1＋0.5＝1.5拍）の印象から「＋0.5拍」と勘違いしやすい最大の罠です。"
+      },
+      {
+        id: 17,
+        type: "ox",
+        unit: "楽典・音符と休符",
+        pair: "対比ペア：付点4分音符（1と1/2拍） vs 付点8分音符（3/4拍）",
+        question: "付点8分音符の長さは「3/4拍」であり、付点4分音符の長さは「1と1/2拍」である。",
+        correct: true,
+        explanation: "○（正しい）です！8分音符（1/2拍）の1.5倍＝3/4拍、4分音符（1拍）の1.5倍＝1と1/2拍（1.5拍）です。",
+        trap: "分数の計算で混乱しやすい2つの付点音符。「付点8分＝3/4拍」「付点4分＝1と1/2拍」を正確に区別しましょう。"
+      },
+      {
+        id: 18,
+        type: "ox",
+        unit: "楽典・音符と休符",
+        pair: "対比ペア：4分休符（1拍休む） vs 8分休符（1/2拍休む）",
+        question: "テスト対策プリントの練習問題「C（8分休符）」は、1拍休むという意味である。",
+        correct: false,
+        explanation: "×（誤り）です！8分休符は8分音符と同じ長さなので「1/2拍休む」が正解です。1拍休むのは「4分休符（練習問題のE）」です。",
+        trap: "ひっかけポイント：練習問題のC（8分休符＝1/2拍休む）とE（4分休符＝1拍休む）の混同に注意。"
+      },
+      {
+        id: 19,
+        type: "ox",
+        unit: "楽典・音符と休符",
+        pair: "対比ペア：16分音符（1/4拍） vs 8分音符（1/2拍）",
+        question: "16分音符の長さは「1/4拍」で、8分音符の半分の長さである。",
+        correct: true,
+        explanation: "○（正しい）です！4分音符＝1拍、8分音符＝1/2拍、16分音符＝1/4拍と、名前が2倍になるごとに長さは半分になります。",
+        trap: "「16分音符だから1/16拍」と数字だけで勘違いするひっかけに注意！"
+      },
+      {
+        id: 20,
+        type: "ox",
+        unit: "楽典・音符と休符",
+        pair: "対比ペア：連桁（8分・16分音符をつないだ形） vs 三連符（3等分）",
+        question: "8分音符が2つ続くときに音符同士をつなげて書く形は、3つの音を1拍に均等に入れる「三連符」と同じ意味である。",
+        correct: false,
+        explanation: "×（誤り）です！8分音符が2つ・4つ続くときにつなげて書く形（連桁）は、長さを変えずに見やすくつないだだけの表記です。一方、「三連符」は『魔王』で使われている「3」の数字がついた特別なリズムです。",
+        trap: "ひっかけポイント：見た目がどちらも「音符同士が横線でつながっている」ため、連桁と三連符を混同させるひっかけです。"
+      }
+    ];
+
+    let currentMode = "all";
+    let activeQuestions = [...ALL_QUESTIONS];
+    let currentIndex = 0;
+    let score = 0;
+    let results = []; // { id, type, correct }
+    let answeredCurrent = false;
+
+    const modeBtns = document.querySelectorAll(".mode-btn");
+    modeBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        modeBtns.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        currentMode = btn.dataset.mode;
+        initQuiz();
+      });
+    });
+
+    function initQuiz(customList = null) {
+      if (customList) {
+        activeQuestions = customList;
+      } else if (currentMode === "essay") {
+        activeQuestions = ALL_QUESTIONS.filter(q => q.type === "essay");
+      } else if (currentMode === "ox") {
+        activeQuestions = ALL_QUESTIONS.filter(q => q.type === "ox");
+      } else {
+        activeQuestions = [...ALL_QUESTIONS];
+      }
+      currentIndex = 0;
+      score = 0;
+      results = [];
+      document.getElementById("quizCard").style.display = "block";
+      document.getElementById("resultCard").classList.remove("show");
+      renderQuestion();
+    }
+
+    function renderQuestion() {
+      answeredCurrent = false;
+      const q = activeQuestions[currentIndex];
+      const total = activeQuestions.length;
+
+      document.getElementById("progressLabel").textContent = `第 ${currentIndex + 1} 問 / ${total} 問`;
+      document.getElementById("scoreLabel").textContent = `正解：${score} 問`;
+      document.getElementById("progressFill").style.width = `${((currentIndex) / total) * 100}%`;
+
+      // Tags
+      const tagsEl = document.getElementById("qTags");
+      tagsEl.innerHTML = "";
+      const unitTag = document.createElement("span");
+      unitTag.className = "tag tag-unit";
+      unitTag.textContent = q.unit;
+      tagsEl.appendChild(unitTag);
+
+      const typeTag = document.createElement("span");
+      typeTag.className = q.type === "essay" ? "tag tag-essay" : "tag tag-ox";
+      typeTag.textContent = q.type === "essay" ? "短文記述（理由・仕組み）" : "ひっかけ○×問題";
+      tagsEl.appendChild(typeTag);
+
+      if (q.coreTheme) {
+        const coreTag = document.createElement("span");
+        coreTag.className = "tag tag-core";
+        coreTag.textContent = q.coreTheme;
+        tagsEl.appendChild(coreTag);
+      }
+
+      document.getElementById("qText").textContent = q.question;
+
+      const pairHint = document.getElementById("pairHint");
+      if (q.pair) {
+        pairHint.style.display = "block";
+        pairHint.textContent = `⚡ ${q.pair}`;
+      } else {
+        pairHint.style.display = "none";
+      }
+
+      // Reset feedback
+      const fb = document.getElementById("feedbackBox");
+      fb.className = "feedback";
+      document.getElementById("modelAnswerBox").style.display = "none";
+      document.getElementById("kwBox").style.display = "none";
+      document.getElementById("trapBox").style.display = "none";
+      document.getElementById("selfGradeBox").style.display = "none";
+
+      if (q.type === "ox") {
+        document.getElementById("oxArea").style.display = "grid";
+        document.getElementById("essayArea").style.display = "none";
+        const btnO = document.getElementById("btnO");
+        const btnX = document.getElementById("btnX");
+        btnO.disabled = false;
+        btnX.disabled = false;
+        btnO.className = "ox-btn";
+        btnX.className = "ox-btn";
+      } else {
+        document.getElementById("oxArea").style.display = "none";
+        document.getElementById("essayArea").style.display = "block";
+        const ta = document.getElementById("essayInput");
+        ta.value = "";
+        ta.disabled = false;
+        document.getElementById("checkEssayBtn").disabled = false;
+        document.getElementById("skipEssayBtn").disabled = false;
+      }
+
+      document.getElementById("nextBtn").textContent =
+        currentIndex === total - 1 ? "結果を見る →" : "次の問題へ →";
+    }
+
+    function answerOX(userChoice) {
+      if (answeredCurrent) return;
+      answeredCurrent = true;
+
+      const q = activeQuestions[currentIndex];
+      const isCorrect = userChoice === q.correct;
+      if (isCorrect) score++;
+      results.push({ id: q.id, type: q.type, correct: isCorrect });
+
+      const btnO = document.getElementById("btnO");
+      const btnX = document.getElementById("btnX");
+      btnO.disabled = true;
+      btnX.disabled = true;
+
+      if (userChoice === true) {
+        btnO.classList.add(isCorrect ? "selected-correct" : "selected-wrong");
+        if (!isCorrect) btnX.classList.add("reveal-correct");
+      } else {
+        btnX.classList.add(isCorrect ? "selected-correct" : "selected-wrong");
+        if (!isCorrect) btnO.classList.add("reveal-correct");
+      }
+
+      const fb = document.getElementById("feedbackBox");
+      fb.className = `feedback show ${isCorrect ? "is-correct" : "is-wrong"}`;
+
+      const header = document.getElementById("fbHeader");
+      header.className = `fb-header ${isCorrect ? "correct-text" : "wrong-text"}`;
+      header.textContent = isCorrect
+        ? `⭕ 正解！（答え：${q.correct ? "○" : "×"}）`
+        : `❌ 不正解…（正解は：${q.correct ? "○" : "×"}）`;
+
+      document.getElementById("fbExplanation").textContent = q.explanation;
+      if (q.trap) {
+        const trapBox = document.getElementById("trapBox");
+        trapBox.style.display = "block";
+        trapBox.textContent = `⚠️ ${q.trap}`;
+      }
+      document.getElementById("scoreLabel").textContent = `正解：${score} 問`;
+    }
+
+    function checkEssay() {
+      const text = document.getElementById("essayInput").value.trim();
+      if (!text) {
+        alert("まずは自分で答えを入力してみましょう！（わからない場合は「わからない（模範解答を見る）」を押してください）");
+        return;
+      }
+      evaluateEssay(text, false);
+    }
+
+    function revealEssay() {
+      const text = document.getElementById("essayInput").value.trim();
+      evaluateEssay(text, true);
+    }
+
+    function evaluateEssay(userText, skipped) {
+      if (answeredCurrent) return;
+      answeredCurrent = true;
+
+      const q = activeQuestions[currentIndex];
+      document.getElementById("essayInput").disabled = true;
+      document.getElementById("checkEssayBtn").disabled = true;
+      document.getElementById("skipEssayBtn").disabled = true;
+
+      const normalized = userText.replace(/\s+/g, "").toLowerCase();
+      let hitCount = 0;
+
+      const kwListEl = document.getElementById("kwList");
+      kwListEl.innerHTML = "";
+
+      q.keywords.forEach(kw => {
+        const isHit = !skipped && kw.match.some(m => normalized.includes(m.toLowerCase()));
+        if (isHit) hitCount++;
+        const chip = document.createElement("span");
+        chip.className = `kw-chip ${isHit ? "hit" : "miss"}`;
+        chip.textContent = `${isHit ? "✓ " : "・"}${kw.label}`;
+        kwListEl.appendChild(chip);
+      });
+
+      const totalKw = q.keywords.length;
+      const isCorrect = !skipped && hitCount === totalKw;
+      const isPartial = !skipped && hitCount > 0 && hitCount < totalKw;
+
+      if (isCorrect) score++;
+      results.push({ id: q.id, type: q.type, correct: isCorrect });
+
+      const fb = document.getElementById("feedbackBox");
+      fb.className = `feedback show ${isCorrect ? "is-correct" : isPartial ? "is-partial" : "is-wrong"}`;
+
+      const header = document.getElementById("fbHeader");
+      header.className = `fb-header ${isCorrect ? "correct-text" : isPartial ? "partial-text" : "wrong-text"}`;
+      if (skipped) {
+        header.textContent = "📖 模範解答と必須キーワードを確認しよう";
+      } else if (isCorrect) {
+        header.textContent = `⭕ 完璧！必須キーワードをすべて含んでいます（${hitCount}/${totalKw}）`;
+      } else if (isPartial) {
+        header.textContent = `△ 惜しい！キーワードが ${hitCount}/${totalKw} 個含まれています`;
+      } else {
+        header.textContent = `❌ 必須キーワードが抜けています（0/${totalKw}）`;
+      }
+
+      document.getElementById("modelAnswerBox").style.display = "block";
+      document.getElementById("modelAnswerText").textContent = q.modelAnswer;
+      document.getElementById("kwBox").style.display = "block";
+      document.getElementById("fbExplanation").textContent = q.explanation;
+
+      if (q.trap) {
+        const trapBox = document.getElementById("trapBox");
+        trapBox.style.display = "block";
+        trapBox.textContent = `⚠️ ${q.trap}`;
+      }
+
+      // Self grade buttons
+      document.getElementById("selfGradeBox").style.display = "flex";
+      updateSelfGradeUI(isCorrect);
+      document.getElementById("scoreLabel").textContent = `正解：${score} 問`;
+    }
+
+    function setSelfGrade(markCorrect) {
+      const lastResult = results[results.length - 1];
+      if (!lastResult || lastResult.correct === markCorrect) return;
+      lastResult.correct = markCorrect;
+      score += markCorrect ? 1 : -1;
+      document.getElementById("scoreLabel").textContent = `正解：${score} 問`;
+      updateSelfGradeUI(markCorrect);
+    }
+
+    function updateSelfGradeUI(isCorrect) {
+      const okBtn = document.getElementById("sgOk");
+      const ngBtn = document.getElementById("sgNg");
+      okBtn.className = `sg-btn ${isCorrect ? "active-ok" : ""}`;
+      ngBtn.className = `sg-btn ${!isCorrect ? "active-ng" : ""}`;
+    }
+
+    function nextQuestion() {
+      currentIndex++;
+      if (currentIndex < activeQuestions.length) {
+        renderQuestion();
+      } else {
+        showResults();
+      }
+    }
+
+    function showResults() {
+      document.getElementById("quizCard").style.display = "none";
+      const resultCard = document.getElementById("resultCard");
+      resultCard.classList.add("show");
+
+      const total = activeQuestions.length;
+      const pct = total > 0 ? Math.round((score / total) * 100) : 0;
+      document.getElementById("finalPercent").textContent = `${pct}%`;
+      document.getElementById("finalFraction").textContent = `${score} / ${total} 問`;
+
+      let msg = "テスト本番に向けて、間違えた問題と必須キーワードをもう一度確認しよう！";
+      if (pct === 100) msg = "パーフェクト！記述のキーワードもひっかけ○×も完璧です！";
+      else if (pct >= 80) msg = "素晴らしい！あと少しの復習で高得点が狙えます。";
+      document.getElementById("finalMessage").textContent = msg;
+
+      const essayRes = results.filter(r => r.type === "essay");
+      const oxRes = results.filter(r => r.type === "ox");
+      document.getElementById("bdEssay").textContent = essayRes.length
+        ? `${essayRes.filter(r => r.correct).length} / ${essayRes.length} 問`
+        : "出題なし";
+      document.getElementById("bdOx").textContent = oxRes.length
+        ? `${oxRes.filter(r => r.correct).length} / ${oxRes.length} 問`
+        : "出題なし";
+
+      const wrongIds = results.filter(r => !r.correct).map(r => r.id);
+      const retryBtn = document.getElementById("retryWrongBtn");
+      retryBtn.style.display = wrongIds.length > 0 ? "inline-block" : "none";
+    }
+
+    function retryWrong() {
+      const wrongIds = results.filter(r => !r.correct).map(r => r.id);
+      const wrongList = ALL_QUESTIONS.filter(q => wrongIds.includes(q.id));
+      if (wrongList.length > 0) initQuiz(wrongList);
+    }
+
+    function restartMode() {
+      initQuiz();
+    }
+
+    initQuiz();
+  </script>
+</body>
+</html>

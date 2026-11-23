@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>中1 2学期末テスト対策 音楽 フラッシュカード</title>
+  <style>
+    :root {
+      --bg: #f4f6fb;
+      --card: #ffffff;
+      --primary: #3b5bdb;
+      --primary-light: #edf2ff;
+      --primary-dark: #2b44a8;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --ok: #16a34a;
+      --ok-bg: #dcfce7;
+      --retry: #ea580c;
+      --retry-bg: #ffedd5;
+      --point-bg: #fffbeb;
+      --point-border: #fcd34d;
+      --point-text: #92400e;
+      --shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      padding: 18px 14px 44px;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .badge-title {
+      display: inline-block;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.8rem;
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 6px;
+    }
+
+    h1 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .subtitle {
+      font-size: 0.86rem;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    .controls-top {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+
+    .pill-btn {
+      border: 1.5px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .pill-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .pill-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px 14px;
+    }
+
+    .toolbar-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
+
+    .stat-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .stat-ok {
+      background: var(--ok-bg);
+      color: var(--ok);
+    }
+
+    .stat-retry {
+      background: var(--retry-bg);
+      color: var(--retry);
+    }
+
+    .toolbar-right {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tool-btn {
+      border: 1px solid var(--border);
+      background: #f8fafc;
+      color: var(--text);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 5px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .tool-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .tool-btn.active {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .progress-bar-wrap {
+      width: 100%;
+      height: 7px;
+      background: var(--border);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 14px;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), #6366f1);
+      width: 0%;
+      transition: width 0.25s ease;
+    }
+
+    /* 3D Flashcard */
+    .scene {
+      perspective: 1200px;
+      margin-bottom: 14px;
+    }
+
+    .flashcard {
+      position: relative;
+      width: 100%;
+      min-height: 330px;
+      transform-style: preserve-3d;
+      transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+      cursor: pointer;
+    }
+
+    .flashcard.is-flipped {
+      transform: rotateY(180deg);
+    }
+
+    .card-face {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      min-height: 330px;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      background: var(--card);
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      padding: 20px 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card-face-back {
+      transform: rotateY(180deg);
+      background: #fcfdff;
+    }
+
+    .face-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .unit-tag {
+      display: inline-block;
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: var(--primary-light);
+      color: var(--primary);
+    }
+
+    .side-label {
+      font-size: 0.76rem;
+      font-weight: 800;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+
+    .face-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 16px 4px;
+      gap: 12px;
+    }
+
+    .question-text {
+      font-size: 1.22rem;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.55;
+    }
+
+    .diagram-box {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px 14px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      max-width: 100%;
+    }
+
+    .answer-main {
+      font-size: 1.45rem;
+      font-weight: 900;
+      color: var(--primary-dark);
+      background: var(--primary-light);
+      padding: 10px 20px;
+      border-radius: 12px;
+      line-height: 1.4;
+      max-width: 100%;
+    }
+
+    .point-box {
+      width: 100%;
+      background: var(--point-bg);
+      border: 1px solid var(--point-border);
+      border-radius: 12px;
+      padding: 11px 14px;
+      text-align: left;
+      font-size: 0.9rem;
+      color: var(--point-text);
+      line-height: 1.55;
+    }
+
+    .point-title {
+      font-weight: 800;
+      font-size: 0.8rem;
+      margin-bottom: 3px;
+      display: block;
+    }
+
+    .face-footer {
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .action-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .judge-btn {
+      border: 2px solid transparent;
+      border-radius: 12px;
+      padding: 12px 10px;
+      font-size: 0.95rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .judge-retry {
+      background: var(--retry-bg);
+      color: var(--retry);
+      border-color: #fdba74;
+    }
+
+    .judge-retry:hover {
+      background: #fed7aa;
+    }
+
+    .judge-ok {
+      background: var(--ok-bg);
+      color: var(--ok);
+      border-color: #86efac;
+    }
+
+    .judge-ok:hover {
+      background: #bbf7d0;
+    }
+
+    .nav-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-btn {
+      border: 1.5px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      font-size: 0.9rem;
+      font-weight: 700;
+      padding: 10px 18px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .nav-btn:hover:not(:disabled) {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .flip-btn {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+      flex: 1;
+      max-width: 220px;
+    }
+
+    .flip-btn:hover {
+      background: var(--primary-dark);
+      color: #fff;
+    }
+
+    .empty-state {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px 20px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .empty-state h2 {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+      color: var(--ok);
+    }
+
+    .empty-state p {
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin-bottom: 16px;
+    }
+
+    .shortcut-hint {
+      text-align: center;
+      font-size: 0.76rem;
+      color: var(--muted);
+      margin-top: 14px;
+    }
+
+    @media (max-width: 520px) {
+      .card-face {
+        padding: 16px;
+        min-height: 310px;
+      }
+      .flashcard {
+        min-height: 310px;
+      }
+      .question-text {
+        font-size: 1.08rem;
+      }
+      .answer-main {
+        font-size: 1.25rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <span class="badge-title">中学1年 2学期末テスト対策・音楽</span>
+      <h1>重要語句フラッシュカード</h1>
+      <p class="subtitle">カードをタップして裏返し、スキマ時間でテンポよく確認しよう（全30枚）</p>
+    </header>
+
+    <div class="controls-top" id="unitFilterBar">
+      <button class="pill-btn active" data-unit="all">すべて (30)</button>
+      <button class="pill-btn" data-unit="maou">魔王・シューベルト (10)</button>
+      <button class="pill-btn" data-unit="recorder">リコーダー (9)</button>
+      <button class="pill-btn" data-unit="theory">楽典・音符・休符 (11)</button>
+    </div>
+
+    <div class="toolbar">
+      <div class="toolbar-left">
+        <span id="counterText">1 / 30</span>
+        <span class="stat-chip stat-ok" id="okCount">覚えた 0</span>
+        <span class="stat-chip stat-retry" id="retryCount">要復習 0</span>
+      </div>
+      <div class="toolbar-right">
+        <button class="tool-btn" id="unlearnedBtn">未習得のみ</button>
+        <button class="tool-btn" id="shuffleBtn">シャッフル</button>
+        <button class="tool-btn" id="resetBtn">記録リセット</button>
+      </div>
+    </div>
+
+    <div class="progress-bar-wrap">
+      <div class="progress-bar-fill" id="progressFill"></div>
+    </div>
+
+    <div id="cardArea">
+      <div class="scene">
+        <div class="flashcard" id="flashcard">
+          <div class="card-face card-face-front">
+            <div class="face-header">
+              <span class="unit-tag" id="frontUnit">単元</span>
+              <span class="side-label">表：問題</span>
+            </div>
+            <div class="face-body">
+              <div class="question-text" id="questionText"></div>
+              <div class="diagram-box" id="diagramBox" style="display:none;"></div>
+            </div>
+            <div class="face-footer">タップ（または Spaceキー）で答えを見る</div>
+          </div>
+
+          <div class="card-face card-face-back">
+            <div class="face-header">
+              <span class="unit-tag" id="backUnit">単元</span>
+              <span class="side-label">裏：答え＆ポイント</span>
+            </div>
+            <div class="face-body">
+              <div class="answer-main" id="answerText"></div>
+              <div class="point-box">
+                <span class="point-title">🎯 テストで狙われやすい一言ポイント</span>
+                <span id="pointText"></span>
+              </div>
+            </div>
+            <div class="face-footer">覚えたら下のボタンで記録して次へ進もう</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-row">
+        <button class="judge-btn judge-retry" id="markRetryBtn">△ もう一度</button>
+        <button class="judge-btn judge-ok" id="markOkBtn">〇 覚えた！</button>
+      </div>
+
+      <div class="nav-row">
+        <button class="nav-btn" id="prevBtn">← 前へ</button>
+        <button class="nav-btn flip-btn" id="flipBtn">裏返す</button>
+        <button class="nav-btn" id="nextBtn">次へ →</button>
+      </div>
+    </div>
+
+    <div class="empty-state" id="emptyState" style="display:none;">
+      <h2>🎉 この範囲のカードはすべて「覚えた！」になりました</h2>
+      <p>すばらしいです！「未習得のみ」を解除するか、「記録リセット」からもう一度通しで確認できます。</p>
+      <button class="nav-btn flip-btn" id="showAllBtn">すべてのカードを表示する</button>
+    </div>
+
+    <p class="shortcut-hint">PC操作：Space で裏返す ／ ← → で前後移動 ／ 1 で「もう一度」・2 で「覚えた！」</p>
+  </div>
+
+  <script>
+    // SVG helpers for music notation & recorder fingering
+    function svgRecorder(holes) {
+      // holes: array of 4 booleans [0(thumb), 1, 2, 3] (true = closed/black, false = open/white)
+      const labels = ['0', '1', '2', '3'];
+      const ys = [22, 46, 70, 94];
+      let circles = '';
+      for (let i = 0; i < 4; i++) {
+        const fill = holes[i] ? '#1e293b' : '#ffffff';
+        circles += `<circle cx="38" cy="${ys[i]}" r="8" fill="${fill}" stroke="#1e293b" stroke-width="2"/>`;
+        circles += `<text x="16" y="${ys[i] + 4}" font-size="11" font-weight="700" fill="#475569">${labels[i]}</text>`;
+      }
+      return `<svg width="64" height="114" viewBox="0 0 64 114" aria-label="リコーダー運指図">
+        <rect x="26" y="6" width="24" height="102" rx="6" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
+        ${circles}
+      </svg>`;
+    }
+
+    function svgStaffNote(yPos, label) {
+      // 5 staff lines at y = 20, 30, 40, 50, 60 (E4, G4, B4, D5, F5)
+      // ledger C4 at y = 70
+      let lines = '';
+      for (let y = 20; y <= 60; y += 10) {
+        lines += `<line x1="20" y1="${y}" x2="150" y2="${y}" stroke="#334155" stroke-width="1.4"/>`;
+      }
+      const ledger = yPos >= 70 ? `<line x1="76" y1="70" x2="104" y2="70" stroke="#334155" stroke-width="1.6"/>` : '';
+      return `<svg width="170" height="88" viewBox="0 0 170 88" aria-label="五線譜">
+        ${lines}
+        ${ledger}
+        <text x="26" y="54" font-size="38" fill="#1e293b">𝄞</text>
+        <ellipse cx="90" cy="${yPos}" rx="7.5" ry="5.5" fill="none" stroke="#3b5bdb" stroke-width="2.4"/>
+        ${label ? `<text x="112" y="${yPos + 4}" font-size="12" font-weight="700" fill="#3b5bdb">${label}</text>` : ''}
+      </svg>`;
+    }
+
+    function svgRest(type) {
+      if (type === 'quarter') {
+        return `<svg width="70" height="64" viewBox="0 0 70 64" aria-label="4分休符">
+          <path d="M32 10 L42 22 L31 32 L42 42 C34 45 30 50 37 56" fill="none" stroke="#1e293b" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>`;
+      }
+      if (type === 'eighth') {
+        return `<svg width="70" height="64" viewBox="0 0 70 64" aria-label="8分休符">
+          <circle cx="31" cy="22" r="4.5" fill="#1e293b"/>
+          <path d="M33 24 C39 24 43 20 45 16 L33 50" fill="none" stroke="#1e293b" stroke-width="3.2" stroke-linecap="round"/>
+        </svg>`;
+      }
+      return '';
+    }
+
+    function svgBeamedNotes() {
+      return `<svg width="160" height="64" viewBox="0 0 160 64" aria-label="連桁の8分音符と16分音符">
+        <!-- 2 eighth notes beamed -->
+        <ellipse cx="26" cy="46" rx="6" ry="4.5" fill="#1e293b"/>
+        <ellipse cx="52" cy="46" rx="6" ry="4.5" fill="#1e293b"/>
+        <line x1="31.5" y1="45" x2="31.5" y2="16" stroke="#1e293b" stroke-width="2"/>
+        <line x1="57.5" y1="45" x2="57.5" y2="16" stroke="#1e293b" stroke-width="2"/>
+        <line x1="30.5" y1="16" x2="58.5" y2="16" stroke="#1e293b" stroke-width="4.5"/>
+        <!-- 4 sixteenth notes beamed -->
+        <ellipse cx="90" cy="46" rx="5.5" ry="4" fill="#1e293b"/>
+        <ellipse cx="108" cy="46" rx="5.5" ry="4" fill="#1e293b"/>
+        <ellipse cx="126" cy="46" rx="5.5" ry="4" fill="#1e293b"/>
+        <ellipse cx="144" cy="46" rx="5.5" ry="4" fill="#1e293b"/>
+        <line x1="95" y1="45" x2="95" y2="16" stroke="#1e293b" stroke-width="1.8"/>
+        <line x1="113" y1="45" x2="113" y2="16" stroke="#1e293b" stroke-width="1.8"/>
+        <line x1="131" y1="45" x2="131" y2="16" stroke="#1e293b" stroke-width="1.8"/>
+        <line x1="149" y1="45" x2="149" y2="16" stroke="#1e293b" stroke-width="1.8"/>
+        <line x1="94" y1="16" x2="150" y2="16" stroke="#1e293b" stroke-width="3.6"/>
+        <line x1="94" y1="23" x2="150" y2="23" stroke="#1e293b" stroke-width="3.6"/>
+      </svg>`;
+    }
+
+    function svgTriplet() {
+      return `<svg width="130" height="70" viewBox="0 0 130 70" aria-label="三連符">
+        <text x="61" y="15" font-size="13" font-weight="800" fill="#3b5bdb">3</text>
+        <ellipse cx="30" cy="52" rx="6" ry="4.5" fill="#1e293b"/>
+        <ellipse cx="64" cy="52" rx="6" ry="4.5" fill="#1e293b"/>
+        <ellipse cx="98" cy="52" rx="6" ry="4.5" fill="#1e293b"/>
+        <line x1="35.5" y1="51" x2="35.5" y2="22" stroke="#1e293b" stroke-width="2"/>
+        <line x1="69.5" y1="51" x2="69.5" y2="22" stroke="#1e293b" stroke-width="2"/>
+        <line x1="103.5" y1="51" x2="103.5" y2="22" stroke="#1e293b" stroke-width="2"/>
+        <line x1="34.5" y1="22" x2="104.5" y2="22" stroke="#1e293b" stroke-width="4.5"/>
+      </svg>`;
+    }
+
+    const CARDS = [
+      // 単元1: 魔王・シューベルト (10)
+      {
+        id: 1,
+        unit: 'maou',
+        unitName: '魔王・シューベルト',
+        q: '歌曲『魔王』の作曲者はだれ？',
+        a: 'シューベルト',
+        p: '『喜びの歌』の作曲者はベートーヴェン。テストで2人が混ざりやすいので要注意！'
+      },
+      {
+        id: 2,
+        unit: 'maou',
+        unitName: '魔王・シューベルト',
+        q: 'シューベルトが生まれた国はどこ？（ウィーン郊外）',
+        a: 'オーストリア',
+        p: 'リートは「ドイツ語による歌曲」だが、シューベルトの出身国は「オーストリア」。国名ひっかけの定番！'
+      },
+      {
+        id: 3,
+        unit: 'maou',
+        unitName: '魔王・シューベルト',
+        q: 'シューベルトが亡くなったのは何歳という若さ？',
+        a: '31歳',
+        p: '「31歳という若さで亡くなりましたが…」の穴埋めで数字をそのまま書かせる問題が頻出。'
+      },
+      {
+        id: 4,
+        unit: 'maou',
+        unitName: '魔王・シューベルト',
+        q: 'シューベルトがおよそ600曲もの作品を残したジャンルは？',
+        a: 'リート',
+        p: '管弦楽曲・室内楽曲・ピアノ曲・宗教音楽も残したが、特に「リート」が約600曲と最多。'
+      },
+      {
+        id: 5,
+        unit: 'maou',
+        unitName: '魔王・シューベルト',
+        q: '「リート」とは何語による歌曲のこと？',
+        a: 'ドイツ語による歌曲',
+        p: '「歌とピアノ伴奏が一体となって、詩の内容やイメージが巧みに表現されている」こともセットで覚えよう。'
+      },
+      {
+        id: 6,
+        unit: 'maou',
+        unitName: '魔王・シューベルト',
+        q: '『魔王』の詩を作った（作詞した）ドイツの詩人はだれ？',
+        a: 'ゲーテ',
+        p: '「ゲーテ作詞／シューベルト作曲」の組み合わせを正確に！'
+      },
+      {
+        id: 7,
+        unit: 'maou',
+        unitName: '魔王・シューベルト',
+        q: '『魔王』の楽譜に書かれている速度と原調は？',
+        a: '速く（♩＝152）／原調：ト短調',
+        p: '『喜びの歌』（♩＝116〜126）よりかなり速い「♩＝152」。短調の暗い響きが緊迫感を生む。'
+      },
+      {
+        id: 8,
+        unit: 'maou',
+        unitName: '魔王・シューベルト',
+        q: '『魔王』のピアノ伴奏の最初に出てくる、数字の「3」がついた音符の名前は？',
+        diagram: svgTriplet(),
+        a: '三連符（さんれんぷ）',
+        p: '「3連符」ではなく漢字で「三連符」と書けるようにしよう。1拍を3つに分けるリズム。'
+      },
+      {
+        id: 9,
+        unit: 'maou',
+        unitName: '魔王・シューベルト',
+        q: '『魔王』のピアノ伴奏の右手（上の段）は、何を表現している？',
+        a: '馬が激しく走っている様子',
+        p: '連続する三連符の刻みが「馬のひづめの音・疾走感」を表している。左手と取り違えないこと！'
+      },
+      {
+        id: 10,
+        unit: 'maou',
+        unitName: '魔王・シューベルト',
+        q: '『魔王』のピアノ伴奏の左手（下の段）は、何を表現している？',
+        a: '恐ろしさ、嵐のような様子',
+        p: '低い音での不気味な動きが「恐ろしさ」や「嵐」の雰囲気を作り出している。'
+      },
+
+      // 単元2: リコーダー (9)
+      {
+        id: 11,
+        unit: 'recorder',
+        unitName: 'リコーダー',
+        q: 'リコーダーで音を区切る吹き方に合わせて、指はどう動かすのが基本？',
+        a: 'タンギングに合わせて、指を素早く動かす',
+        p: '「タンギング」という用語と、「指を素早く動かす」の組み合わせが穴埋めで狙われる。'
+      },
+      {
+        id: 12,
+        unit: 'recorder',
+        unitName: 'リコーダー',
+        q: '高い「レ」などの運指のとき、楽器をバランスよく支える「3点」とはどこ？',
+        a: '唇・左手中指・右手親指',
+        p: '「左手親指」ではなく「左手中指」！ 3つすべてを正確に言えるようにしよう。'
+      },
+      {
+        id: 13,
+        unit: 'recorder',
+        unitName: 'リコーダー',
+        q: '3点で支えても楽器が安定しない場合、どの指をどこに添えるとよい？',
+        a: '右手の小指を、6と7のトーンホールの間に添える',
+        p: '「右手の小指」「6と7のトーンホールの間」がキーワード。穴を押さえるのではなく間に添える！'
+      },
+      {
+        id: 14,
+        unit: 'recorder',
+        unitName: 'リコーダー',
+        q: 'アルトリコーダーで、この運指（2のみ押さえる）は何の音？',
+        diagram: svgRecorder([false, false, true, false]),
+        a: '高いレ（第4線）',
+        p: '裏の穴（0）を開けるのがポイント！「高いド（0と2）」と混同しないよう注意。'
+      },
+      {
+        id: 15,
+        unit: 'recorder',
+        unitName: 'リコーダー',
+        q: 'アルトリコーダーで、この運指（0と2を押さえる）は何の音？',
+        diagram: svgRecorder([true, false, true, false]),
+        a: '高いド（第3間）',
+        p: '人差し指（1）だけを開けて、親指（0）と中指（2）を押さえる形。'
+      },
+      {
+        id: 16,
+        unit: 'recorder',
+        unitName: 'リコーダー',
+        q: 'アルトリコーダーで、親指（0）と人差し指（1）だけを押さえる運指は何の音？',
+        diagram: svgRecorder([true, true, false, false]),
+        a: 'シ（第3線）',
+        p: 'ソプラノリコーダーの「シ」は0と1だが、アルトリコーダーでは「シ」は0と1で同じ指使い（音域が違う）。'
+      },
+      {
+        id: 17,
+        unit: 'recorder',
+        unitName: 'リコーダー',
+        q: 'アルトリコーダーで、0・1・2の3つを押さえる運指は何の音？',
+        diagram: svgRecorder([true, true, true, false]),
+        a: 'ラ（第2間）',
+        p: '上から順番に0・1・2で「ラ」。あと1本（薬指3）増えると「ソ」になる。'
+      },
+      {
+        id: 18,
+        unit: 'recorder',
+        unitName: 'リコーダー',
+        q: 'アルトリコーダーで、0・1・2・3（左手全部）を押さえる運指は何の音？',
+        diagram: svgRecorder([true, true, true, true]),
+        a: 'ソ（第2線）',
+        p: '左手の親指・人差し指・中指・薬指をすべて押さえるとアルトリコーダーの「ソ」。'
+      },
+      {
+        id: 19,
+        unit: 'recorder',
+        unitName: 'リコーダー',
+        q: '教科書の練習曲『喜びの歌』の作曲者と、楽譜にある速さの指定は？',
+        a: 'L.v. ベートーヴェン／♩＝116〜126',
+        p: '『魔王』（シューベルト／♩＝152）と作曲者・テンポを対比して覚えよう。'
+      },
+
+      // 単元3: 楽典・音符・休符・五線譜 (11)
+      {
+        id: 20,
+        unit: 'theory',
+        unitName: '楽典・音符・休符',
+        q: '「全音符」の音の長さは何拍？',
+        a: '4拍',
+        p: '白玉でぼう（棒）がない丸い音符。基準になる長さなので確実に！'
+      },
+      {
+        id: 21,
+        unit: 'theory',
+        unitName: '楽典・音符・休符',
+        q: '「付点2分音符」の音の長さは何拍？',
+        a: '3拍',
+        p: '2分音符（2拍）× 1.5 ＝ 3拍。ワルツなどの3拍子でよく使われる。'
+      },
+      {
+        id: 22,
+        unit: 'theory',
+        unitName: '楽典・音符・休符',
+        q: '「2分音符」の音の長さは何拍？',
+        a: '2拍',
+        p: '白玉にぼうがついた音符。4分音符2つ分の長さ。'
+      },
+      {
+        id: 23,
+        unit: 'theory',
+        unitName: '楽典・音符・休符',
+        q: '「付点4分音符」の音の長さは何拍？',
+        a: '1と1/2拍（1.5拍）',
+        p: '練習問題の⑥でも出題された定番！ 「1＋0.5＝1と1/2拍」と覚えよう。'
+      },
+      {
+        id: 24,
+        unit: 'theory',
+        unitName: '楽典・音符・休符',
+        q: '「4分音符」と、この「4分休符」の長さは何拍？',
+        diagram: svgRest('quarter'),
+        a: '1拍',
+        p: '練習問題⑩でも出題。8分休符と形を見分けられるようにしよう。'
+      },
+      {
+        id: 25,
+        unit: 'theory',
+        unitName: '楽典・音符・休符',
+        q: '「付点8分音符」の音の長さは何拍？',
+        a: '3/4拍',
+        p: '8分音符（1/2拍）× 1.5 ＝ 3/4拍。16分音符3つ分の長さと同じ！'
+      },
+      {
+        id: 26,
+        unit: 'theory',
+        unitName: '楽典・音符・休符',
+        q: '「8分音符」と、この「8分休符」の長さは何拍？',
+        diagram: svgRest('eighth'),
+        a: '1/2拍',
+        p: '練習問題③・⑦・⑧で出題！ 「何拍休む？」と聞かれたら「1/2拍休む」と答える。'
+      },
+      {
+        id: 27,
+        unit: 'theory',
+        unitName: '楽典・音符・休符',
+        q: '旗が2本ついた「16分音符」の音の長さは何拍？',
+        a: '1/4拍',
+        p: '8分音符（1/2拍）のさらに半分なので 1/4拍。4つ集まると1拍（4分音符1つ分）になる。'
+      },
+      {
+        id: 28,
+        unit: 'theory',
+        unitName: '楽典・音符・休符',
+        q: '音符の右横に「付点（・）」がつくと、音の長さはもとの何倍になる？',
+        a: '1.5倍',
+        p: '「一律で0.5拍増える」はひっかけ×！ もとの長さの「1.5倍（もとの長さ＋その半分）」になる。'
+      },
+      {
+        id: 29,
+        unit: 'theory',
+        unitName: '楽典・音符・休符',
+        q: '8分音符や16分音符が2つ・4つ続くとき、楽譜ではどのように書かれる？',
+        diagram: svgBeamedNotes(),
+        a: '音符同士をつなげた形（連桁）で書かれる',
+        p: '練習問題Aのように「つなげた形」で出ても「8分音符」「16分音符」とすぐ見分けられるように！'
+      },
+      {
+        id: 30,
+        unit: 'theory',
+        unitName: '楽典・音符・休符',
+        q: '五線譜の「下の加線」にある音から上へ順に読むと、音名はどう並ぶ？',
+        diagram: svgStaffNote(70, 'ド'),
+        a: 'ド・レ・ミ・ファ・ソ・ラ・シ・ド・レ・ミ',
+        p: '「1つ覚えて数える」のがコツ！ 線と間を1つずつ交互に上がっていくと音名が決まる。'
+      }
+    ];
+
+    // State
+    let currentUnit = 'all';
+    let unlearnedOnly = false;
+    let deck = [...CARDS];
+    let currentIndex = 0;
+    let isFlipped = false;
+    const statusMap = {}; // id -> 'ok' | 'retry'
+
+    // Elements
+    const flashcardEl = document.getElementById('flashcard');
+    const frontUnitEl = document.getElementById('frontUnit');
+    const backUnitEl = document.getElementById('backUnit');
+    const questionTextEl = document.getElementById('questionText');
+    const diagramBoxEl = document.getElementById('diagramBox');
+    const answerTextEl = document.getElementById('answerText');
+    const pointTextEl = document.getElementById('pointText');
+    const counterTextEl = document.getElementById('counterText');
+    const okCountEl = document.getElementById('okCount');
+    const retryCountEl = document.getElementById('retryCount');
+    const progressFillEl = document.getElementById('progressFill');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const flipBtn = document.getElementById('flipBtn');
+    const markOkBtn = document.getElementById('markOkBtn');
+    const markRetryBtn = document.getElementById('markRetryBtn');
+    const unlearnedBtn = document.getElementById('unlearnedBtn');
+    const shuffleBtn = document.getElementById('shuffleBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const cardAreaEl = document.getElementById('cardArea');
+    const emptyStateEl = document.getElementById('emptyState');
+    const showAllBtn = document.getElementById('showAllBtn');
+
+    function rebuildDeck(keepShuffle = false) {
+      let filtered = CARDS.filter(c => currentUnit === 'all' || c.unit === currentUnit);
+      if (unlearnedOnly) {
+        filtered = filtered.filter(c => statusMap[c.id] !== 'ok');
+      }
+      if (!keepShuffle) {
+        deck = filtered;
+      } else {
+        deck = [...filtered].sort(() => Math.random() - 0.5);
+      }
+      currentIndex = 0;
+      isFlipped = false;
+      flashcardEl.classList.remove('is-flipped');
+      render();
+    }
+
+    function updateStats() {
+      const okTotal = Object.values(statusMap).filter(v => v === 'ok').length;
+      const retryTotal = Object.values(statusMap).filter(v => v === 'retry').length;
+      okCountEl.textContent = `覚えた ${okTotal}`;
+      retryCountEl.textContent = `要復習 ${retryTotal}`;
+    }
+
+    function render() {
+      updateStats();
+
+      if (deck.length === 0) {
+        cardAreaEl.style.display = 'none';
+        emptyStateEl.style.display = 'block';
+        counterTextEl.textContent = '0 / 0';
+        progressFillEl.style.width = '100%';
+        return;
+      }
+
+      cardAreaEl.style.display = 'block';
+      emptyStateEl.style.display = 'none';
+
+      if (currentIndex >= deck.length) currentIndex = deck.length - 1;
+      if (currentIndex < 0) currentIndex = 0;
+
+      const card = deck[currentIndex];
+      const badge = statusMap[card.id] === 'ok'
+        ? ' [〇 覚えた]'
+        : statusMap[card.id] === 'retry'
+          ? ' [△ 要復習]'
+          : '';
+
+      frontUnitEl.textContent = card.unitName + badge;
+      backUnitEl.textContent = card.unitName + badge;
+      questionTextEl.textContent = card.q;
+
+      if (card.diagram) {
+        diagramBoxEl.innerHTML = card.diagram;
+        diagramBoxEl.style.display = 'inline-flex';
+      } else {
+        diagramBoxEl.innerHTML = '';
+        diagramBoxEl.style.display = 'none';
+      }
+
+      answerTextEl.textContent = card.a;
+      pointTextEl.textContent = card.p;
+
+      counterTextEl.textContent = `${currentIndex + 1} / ${deck.length}`;
+      const pct = Math.round(((currentIndex + 1) / deck.length) * 100);
+      progressFillEl.style.width = `${pct}%`;
+
+      prevBtn.disabled = currentIndex === 0;
+      nextBtn.disabled = currentIndex === deck.length - 1;
+      flipBtn.textContent = isFlipped ? '表に戻す' : '裏返す';
+    }
+
+    function toggleFlip() {
+      if (deck.length === 0) return;
+      isFlipped = !isFlipped;
+      flashcardEl.classList.toggle('is-flipped', isFlipped);
+      flipBtn.textContent = isFlipped ? '表に戻す' : '裏返す';
+    }
+
+    function goNext() {
+      if (currentIndex < deck.length - 1) {
+        currentIndex++;
+        isFlipped = false;
+        flashcardEl.classList.remove('is-flipped');
+        render();
+      }
+    }
+
+    function goPrev() {
+      if (currentIndex > 0) {
+        currentIndex--;
+        isFlipped = false;
+        flashcardEl.classList.remove('is-flipped');
+        render();
+      }
+    }
+
+    function markCard(status) {
+      if (deck.length === 0) return;
+      const card = deck[currentIndex];
+      statusMap[card.id] = status;
+
+      if (unlearnedOnly && status === 'ok') {
+        deck.splice(currentIndex, 1);
+        isFlipped = false;
+        flashcardEl.classList.remove('is-flipped');
+        if (currentIndex >= deck.length) currentIndex = Math.max(0, deck.length - 1);
+        render();
+        return;
+      }
+
+      if (currentIndex < deck.length - 1) {
+        currentIndex++;
+        isFlipped = false;
+        flashcardEl.classList.remove('is-flipped');
+      }
+      render();
+    }
+
+    // Event listeners
+    flashcardEl.addEventListener('click', toggleFlip);
+    flipBtn.addEventListener('click', toggleFlip);
+    nextBtn.addEventListener('click', goNext);
+    prevBtn.addEventListener('click', goPrev);
+    markOkBtn.addEventListener('click', () => markCard('ok'));
+    markRetryBtn.addEventListener('click', () => markCard('retry'));
+
+    document.querySelectorAll('#unitFilterBar .pill-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#unitFilterBar .pill-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentUnit = btn.dataset.unit;
+        rebuildDeck(false);
+      });
+    });
+
+    unlearnedBtn.addEventListener('click', () => {
+      unlearnedOnly = !unlearnedOnly;
+      unlearnedBtn.classList.toggle('active', unlearnedOnly);
+      rebuildDeck(false);
+    });
+
+    shuffleBtn.addEventListener('click', () => {
+      deck = [...deck].sort(() => Math.random() - 0.5);
+      currentIndex = 0;
+      isFlipped = false;
+      flashcardEl.classList.remove('is-flipped');
+      render();
+    });
+
+    resetBtn.addEventListener('click', () => {
+      for (const k of Object.keys(statusMap)) delete statusMap[k];
+      unlearnedOnly = false;
+      unlearnedBtn.classList.remove('active');
+      rebuildDeck(false);
+    });
+
+    showAllBtn.addEventListener('click', () => {
+      unlearnedOnly = false;
+      unlearnedBtn.classList.remove('active');
+      rebuildDeck(false);
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.code === 'Space') {
+        e.preventDefault();
+        toggleFlip();
+      } else if (e.code === 'ArrowRight') {
+        goNext();
+      } else if (e.code === 'ArrowLeft') {
+        goPrev();
+      } else if (e.key === '1') {
+        markCard('retry');
+      } else if (e.key === '2') {
+        markCard('ok');
+      }
+    });
+
+    render();
+  </script>
+</body>
+</html>
