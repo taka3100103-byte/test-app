@@ -6,10 +6,8 @@
   <title>テスト対策ポータル</title>
   <style>
     :root {
-      --sidebar-width: 275px;
+      --sidebar-width: 265px;
       --primary: #1e3a8a;
-      --accent: #0f766e;
-      --video-color: #b45309;
       --bg-sidebar: #0f172a;
       --text-sidebar: #f8fafc;
       --border: #e2e8f0;
@@ -47,7 +45,7 @@
     }
 
     .sidebar-header {
-      padding: 1.1rem 1rem;
+      padding: 1.05rem 1rem;
       background: linear-gradient(135deg, #1e3a8a 0%, #0f766e 100%);
       font-weight: 700;
       font-size: 1.05rem;
@@ -72,7 +70,7 @@
       border-bottom: 1px solid #334155;
       display: flex;
       flex-direction: column;
-      gap: 0.65rem;
+      gap: 0.6rem;
     }
 
     .select-group {
@@ -89,12 +87,12 @@
 
     .nav-select {
       width: 100%;
-      padding: 0.5rem 0.65rem;
+      padding: 0.48rem 0.65rem;
       border-radius: 8px;
       border: 1px solid #475569;
       background-color: #0f172a;
       color: #ffffff;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       font-weight: 700;
       cursor: pointer;
       outline: none;
@@ -108,7 +106,7 @@
     .menu-list {
       flex: 1;
       overflow-y: auto;
-      padding: 0.75rem 0.6rem;
+      padding: 0.7rem 0.6rem;
     }
 
     .menu-item {
@@ -120,10 +118,10 @@
       background: none;
       border: none;
       color: #e2e8f0;
-      padding: 0.65rem 0.85rem;
-      margin-bottom: 0.25rem;
+      padding: 0.62rem 0.85rem;
+      margin-bottom: 0.22rem;
       border-radius: 8px;
-      font-size: 0.94rem;
+      font-size: 0.93rem;
       cursor: pointer;
       transition: background 0.15s;
     }
@@ -150,12 +148,10 @@
     /* 上部コントロールバー */
     .top-bar {
       display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.65rem;
+      flex-direction: column;
+      gap: 0.5rem;
       background-color: #ffffff;
-      padding: 0.65rem 1.25rem;
+      padding: 0.65rem 1.15rem;
       border-bottom: 1px solid var(--border);
       box-shadow: 0 1px 3px rgba(0,0,0,0.05);
     }
@@ -163,7 +159,7 @@
     .title-group {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.65rem;
       min-width: 0;
     }
 
@@ -173,8 +169,8 @@
       color: #ffffff;
       border: none;
       border-radius: 6px;
-      padding: 0.4rem 0.75rem;
-      font-size: 0.85rem;
+      padding: 0.38rem 0.7rem;
+      font-size: 0.82rem;
       font-weight: 600;
       cursor: pointer;
       flex-shrink: 0;
@@ -182,29 +178,30 @@
 
     .current-title {
       font-weight: 700;
-      font-size: 0.98rem;
+      font-size: 0.96rem;
       color: #1e293b;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
 
-    /* 選択式(S) / 記述式(W) / 動画(V) 切り替えタブ */
+    /* 7モード切り替えタブ（横スクロール・折り返し両対応） */
     .mode-switch {
       display: flex;
+      flex-wrap: wrap;
       background-color: #f1f5f9;
       padding: 0.25rem;
       border-radius: 10px;
       border: 1px solid #cbd5e1;
-      gap: 0.2rem;
+      gap: 0.25rem;
     }
 
     .mode-btn {
       border: none;
       background: none;
-      padding: 0.45rem 0.85rem;
+      padding: 0.4rem 0.68rem;
       border-radius: 7px;
-      font-size: 0.84rem;
+      font-size: 0.8rem;
       font-weight: 700;
       color: #475569;
       cursor: pointer;
@@ -214,21 +211,22 @@
 
     .mode-btn:hover {
       color: #1e293b;
+      background-color: rgba(255,255,255,0.6);
     }
 
     .mode-btn.active {
       background-color: #ffffff;
-      color: #1e3a8a;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.14);
     }
 
-    .mode-btn.active.written {
-      color: #0f766e;
-    }
-
-    .mode-btn.active.video {
-      color: #b45309;
-    }
+    /* モードごとのアクティブカラー */
+    .mode-btn[data-mode="V"].active { color: #b45309; }
+    .mode-btn[data-mode="S"].active { color: #1e3a8a; }
+    .mode-btn[data-mode="W"].active { color: #0f766e; }
+    .mode-btn[data-mode="R"].active { color: #be123c; }
+    .mode-btn[data-mode="M"].active { color: #b91c1c; }
+    .mode-btn[data-mode="P"].active { color: #6d28d9; }
+    .mode-btn[data-mode="F"].active { color: #0369a1; }
 
     .frame-wrap {
       position: relative;
@@ -264,7 +262,7 @@
     video {
       width: 100%;
       max-width: 960px;
-      max-height: 78vh;
+      max-height: 76vh;
       border-radius: 12px;
       background-color: #000000;
       box-shadow: 0 10px 25px rgba(0,0,0,0.45);
@@ -275,6 +273,60 @@
       color: #cbd5e1;
       font-size: 0.9rem;
       text-align: center;
+    }
+
+    /* インフォグラフィック（図解）ギャラリー表示エリア */
+    .picture-wrap {
+      display: none;
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      background-color: #e2e8f0;
+      padding: 1.25rem 1rem 3rem 1rem;
+    }
+
+    .picture-wrap.show {
+      display: block;
+    }
+
+    .picture-list {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .picture-card {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 0.75rem;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+    }
+
+    .picture-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.25rem 0.5rem 0.55rem 0.5rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #475569;
+      border-bottom: 1px solid #f1f5f9;
+      margin-bottom: 0.6rem;
+    }
+
+    .picture-card a {
+      font-size: 0.8rem;
+      color: #2563eb;
+      text-decoration: none;
+    }
+
+    .picture-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 8px;
     }
 
     /* ファイル未作成時の案内画面 */
@@ -298,7 +350,7 @@
     .not-found-box h2 {
       margin: 0 0 0.5rem 0;
       color: #1e293b;
-      font-size: 1.25rem;
+      font-size: 1.2rem;
     }
 
     .file-hint {
@@ -308,9 +360,10 @@
       padding: 0.75rem 1.25rem;
       border-radius: 8px;
       font-family: monospace;
-      font-size: 1rem;
+      font-size: 0.98rem;
       font-weight: 700;
       color: #0f172a;
+      word-break: break-all;
     }
 
     /* スマホ・タブレット対応 */
@@ -336,20 +389,36 @@
       }
 
       .top-bar {
-        padding: 0.55rem 0.75rem;
+        padding: 0.5rem 0.65rem;
+        gap: 0.4rem;
       }
 
       .current-title {
-        font-size: 0.88rem;
+        font-size: 0.86rem;
+      }
+
+      .mode-switch {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+
+      .mode-switch::-webkit-scrollbar {
+        display: none;
       }
 
       .mode-btn {
-        padding: 0.38rem 0.55rem;
-        font-size: 0.78rem;
+        padding: 0.36rem 0.58rem;
+        font-size: 0.76rem;
       }
 
       .video-wrap {
         padding: 0.75rem;
+      }
+
+      .picture-wrap {
+        padding: 0.75rem 0.5rem 2rem 0.5rem;
       }
 
       .overlay {
@@ -403,22 +472,31 @@
           <span class="current-title" id="currentTitle">読み込み中...</span>
         </div>
 
-        <!-- 選択式(S) / 記述式(W) / 動画解説(V) の切り替えボタン -->
-        <div class="mode-switch">
-          <button class="mode-btn active" id="btnS" onclick="setMode('S')">🔘 選択式 (S)</button>
-          <button class="mode-btn written" id="btnW" onclick="setMode('W')">✍️ 記述式 (W)</button>
-          <button class="mode-btn video" id="btnV" onclick="setMode('V')">🎬 動画解説 (V)</button>
+        <!-- 全7モード切り替えタブ -->
+        <div class="mode-switch" id="modeSwitch">
+          <button class="mode-btn" data-mode="V" onclick="setMode('V')">🎬 動画 (V)</button>
+          <button class="mode-btn" data-mode="S" onclick="setMode('S')">🔘 選択式 (S)</button>
+          <button class="mode-btn" data-mode="W" onclick="setMode('W')">✍️ 記述式 (W)</button>
+          <button class="mode-btn" data-mode="R" onclick="setMode('R')">💡 理由・○× (R)</button>
+          <button class="mode-btn" data-mode="M" onclick="setMode('M')">⏱️ 通し模試 (M)</button>
+          <button class="mode-btn" data-mode="P" onclick="setMode('P')">🖼️ 図解 (P)</button>
+          <button class="mode-btn" data-mode="F" onclick="setMode('F')">🗂️ 暗記カード (F)</button>
         </div>
       </div>
 
       <div class="frame-wrap">
-        <!-- HTMLテスト問題用 iframe -->
-        <iframe id="contentFrame" src="" title="テスト問題画面"></iframe>
+        <!-- HTMLテスト問題・教材用 iframe -->
+        <iframe id="contentFrame" src="" title="学習コンテンツ画面"></iframe>
 
         <!-- MP4動画解説用 プレイヤー -->
         <div class="video-wrap" id="videoWrap">
           <video id="videoPlayer" controls playsinline preload="metadata"></video>
           <div class="video-caption" id="videoCaption"></div>
+        </div>
+
+        <!-- インフォグラフィック（図解）表示エリア -->
+        <div class="picture-wrap" id="pictureWrap">
+          <div class="picture-list" id="pictureList"></div>
         </div>
 
         <!-- ファイル未作成時の案内画面 -->
@@ -433,9 +511,7 @@
 
   <script>
     // =========================================================
-    // マスタ定義
-    // テスト問題：[学年]-[期間]-[教科]-[S/W].html
-    // 動画解説 ：[学年]-[期間]-[教科]-V.mp4
+    // マスタ定義（ファイル命名規則：[学年]-[期間]-[教科]-[モード].[拡張子]）
     // =========================================================
     const grades = [
       { code: "G1", name: "中学1年 (G1)" },
@@ -463,10 +539,21 @@
       { folder: "09_music",    nameEn: "Music",    label: "🎵 音楽" }
     ];
 
+    const modeLabels = {
+      V: "動画解説",
+      S: "選択式テスト",
+      W: "記述式テスト",
+      R: "理由・仕組み＆○×",
+      M: "通し模擬テスト",
+      P: "インフォグラフィック図解",
+      F: "フラッシュカード"
+    };
+
+    // 初期表示：中学1年(G1) / 2学期期末(2E) / 理科(04_science) / 選択式(S)
     let currentGradeIdx = 0;
     let currentTermIdx = 0;
-    let currentSubjIdx = 3; // 04_science
-    let currentMode = "S";  // "S" | "W" | "V"
+    let currentSubjIdx = 3;
+    let currentMode = "S";
 
     const gradeSelectEl = document.getElementById("gradeSelect");
     const termSelectEl = document.getElementById("termSelect");
@@ -475,6 +562,8 @@
     const videoWrap = document.getElementById("videoWrap");
     const videoPlayer = document.getElementById("videoPlayer");
     const videoCaption = document.getElementById("videoCaption");
+    const pictureWrap = document.getElementById("pictureWrap");
+    const pictureList = document.getElementById("pictureList");
     const currentTitleEl = document.getElementById("currentTitle");
     const notFoundBox = document.getElementById("notFoundBox");
     const expectedFilePathEl = document.getElementById("expectedFilePath");
@@ -508,7 +597,7 @@
         menuListEl.appendChild(btn);
       });
 
-      updateView();
+      setMode(currentMode);
     }
 
     function onFilterChange() {
@@ -519,9 +608,9 @@
 
     function setMode(mode) {
       currentMode = mode;
-      document.getElementById("btnS").classList.toggle("active", mode === "S");
-      document.getElementById("btnW").classList.toggle("active", mode === "W");
-      document.getElementById("btnV").classList.toggle("active", mode === "V");
+      document.querySelectorAll(".mode-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.mode === mode);
+      });
       updateView();
     }
 
@@ -533,39 +622,88 @@
       const grade = grades[currentGradeIdx];
       const term = terms[currentTermIdx];
       const subj = subjects[currentSubjIdx];
+      const fullTitle = `${grade.code} ${term.name} ／ ${subj.label}（${modeLabels[currentMode]}）`;
 
-      // 画面切り替え時は再生中の動画を一旦停止
+      // 全表示エリアを一旦リセット
       videoPlayer.pause();
       notFoundBox.classList.remove("show");
+      contentFrame.style.display = "none";
+      videoWrap.classList.remove("show");
+      pictureWrap.classList.remove("show");
+
+      currentTitleEl.textContent = fullTitle;
 
       if (currentMode === "V") {
         // 動画解説モード（.mp4）
         const videoPath = `${subj.folder}/${grade.code}-${term.code}-${subj.nameEn}-V.mp4`;
-        const fullTitle = `${grade.code} ${term.name} ／ ${subj.label}（動画解説）`;
-
-        currentTitleEl.textContent = fullTitle;
         expectedFilePathEl.textContent = videoPath;
-        videoCaption.textContent = `🎬 ${fullTitle}（NotebookLM 解説動画）`;
+        videoCaption.textContent = `🎬 ${fullTitle}`;
 
-        contentFrame.style.display = "none";
         videoWrap.classList.add("show");
         videoPlayer.src = videoPath;
-      } else {
-        // テスト問題モード（.html）
-        const filePath = `${subj.folder}/${grade.code}-${term.code}-${subj.nameEn}-${currentMode}.html`;
-        const modeText = currentMode === "S" ? "選択式" : "記述式";
 
-        currentTitleEl.textContent = `${grade.code} ${term.name} ／ ${subj.label}（${modeText}）`;
+      } else if (currentMode === "P") {
+        // インフォグラフィック図解モード（P1.png, P2.png... 自動連番検出）
+        const basePrefix = `${subj.folder}/${grade.code}-${term.code}-${subj.nameEn}-P`;
+        expectedFilePathEl.textContent = `${basePrefix}1.png（複数枚ある場合は P2.png, P3.png...）`;
+        loadPictures(basePrefix);
+
+      } else {
+        // HTML学習モード（S / W / R / M / F）
+        const filePath = `${subj.folder}/${grade.code}-${term.code}-${subj.nameEn}-${currentMode}.html`;
         expectedFilePathEl.textContent = filePath;
 
-        videoWrap.classList.remove("show");
         videoPlayer.removeAttribute("src");
         contentFrame.style.display = "block";
         contentFrame.src = filePath;
       }
     }
 
-    // HTMLファイルが見つからなかった場合
+    // P1.png から順番に存在する画像を自動検出して並べる（最大15枚）
+    function loadPictures(basePrefix) {
+      pictureList.innerHTML = "";
+      pictureWrap.classList.add("show");
+
+      let foundCount = 0;
+      const maxCheck = 15;
+
+      function tryLoadIndex(idx) {
+        if (idx > maxCheck) {
+          if (foundCount === 0) showNotFound();
+          return;
+        }
+
+        const imgPath = `${basePrefix}${idx}.png`;
+        const img = new Image();
+
+        img.onload = function() {
+          foundCount++;
+          const card = document.createElement("div");
+          card.className = "picture-card";
+          card.innerHTML = `
+            <div class="picture-card-header">
+              <span>図解 #${idx}（P${idx}.png）</span>
+              <a href="${imgPath}" target="_blank" rel="noopener">🔍 別タブで原寸拡大</a>
+            </div>
+          `;
+          card.appendChild(img);
+          pictureList.appendChild(card);
+
+          tryLoadIndex(idx + 1);
+        };
+
+        img.onerror = function() {
+          if (foundCount === 0) {
+            showNotFound();
+          }
+        };
+
+        img.src = imgPath;
+      }
+
+      tryLoadIndex(1);
+    }
+
     contentFrame.onload = function() {
       try {
         const doc = contentFrame.contentDocument || contentFrame.contentWindow.document;
@@ -579,7 +717,6 @@
       showNotFound();
     };
 
-    // MP4動画ファイルが見つからなかった場合
     videoPlayer.onerror = function() {
       if (currentMode === "V") {
         showNotFound();
@@ -589,6 +726,7 @@
     function showNotFound() {
       contentFrame.style.display = "none";
       videoWrap.classList.remove("show");
+      pictureWrap.classList.remove("show");
       notFoundBox.classList.add("show");
     }
 
