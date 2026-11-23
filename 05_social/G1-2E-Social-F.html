@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中1 社会（地理）2学期末テスト対策 フラッシュカード</title>
+<style>
+  :root {
+    --bg: #f1f5f9;
+    --card-bg: #ffffff;
+    --text: #0f172a;
+    --muted: #64748b;
+    --primary: #0ea5e9;
+    --primary-dark: #0284c7;
+    --primary-light: #e0f2fe;
+    --accent: #6366f1;
+    --success: #10b981;
+    --success-light: #d1fae5;
+    --warning: #f59e0b;
+    --warning-light: #fef3c7;
+    --border: #e2e8f0;
+    --shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+    --radius: 18px;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  header {
+    background: linear-gradient(135deg, #0369a1 0%, #0ea5e9 55%, #6366f1 100%);
+    color: #fff;
+    padding: 20px 18px 18px;
+    box-shadow: 0 3px 12px rgba(3, 105, 161, 0.25);
+  }
+  .header-inner { max-width: 820px; margin: 0 auto; }
+  header h1 { margin: 0 0 4px; font-size: 1.38rem; }
+  header p { margin: 0; font-size: 0.88rem; opacity: 0.92; }
+
+  .container {
+    max-width: 820px;
+    margin: 18px auto 60px;
+    padding: 0 14px;
+  }
+
+  .panel {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 14px 16px;
+    box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+    margin-bottom: 16px;
+  }
+
+  .unit-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+  .tab-btn {
+    border: 1px solid var(--border);
+    background: #fff;
+    color: var(--text);
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 0.83rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .tab-btn:hover { background: var(--primary-light); border-color: var(--primary); }
+  .tab-btn.active { background: var(--primary-dark); color: #fff; border-color: var(--primary-dark); }
+
+  .toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .btn-group { display: flex; flex-wrap: wrap; gap: 6px; }
+  .btn {
+    border: 1px solid var(--border);
+    background: #fff;
+    color: var(--text);
+    border-radius: 10px;
+    padding: 7px 12px;
+    font-size: 0.84rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .btn:hover { background: #f8fafc; }
+  .btn.active-mode { background: var(--warning-light); border-color: var(--warning); color: #92400e; }
+  .btn-primary { background: var(--primary-dark); color: #fff; border-color: var(--primary-dark); }
+  .btn-primary:hover { background: #0369a1; }
+
+  .stats-bar {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.84rem;
+    color: var(--muted);
+  }
+  .progress-track {
+    width: 100%;
+    height: 8px;
+    background: #e2e8f0;
+    border-radius: 999px;
+    overflow: hidden;
+    margin-top: 6px;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--success));
+    width: 0%;
+    transition: width 0.25s ease;
+  }
+
+  /* Flashcard 3D Flip */
+  .stage {
+    perspective: 1200px;
+    margin: 14px 0 16px;
+  }
+  .card-wrap {
+    position: relative;
+    width: 100%;
+    min-height: 310px;
+    transform-style: preserve-3d;
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    cursor: pointer;
+  }
+  .card-wrap.flipped {
+    transform: rotateY(180deg);
+  }
+  .card-face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 22px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .card-back {
+    transform: rotateY(180deg);
+    background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+    border-top: 5px solid var(--primary);
+  }
+  .card-front {
+    border-top: 5px solid var(--accent);
+  }
+
+  .face-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+  }
+  .badge {
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: var(--primary-light);
+    color: var(--primary-dark);
+  }
+  .status-pill {
+    font-size: 0.76rem;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 999px;
+  }
+  .status-mastered { background: var(--success-light); color: #065f46; }
+  .status-review { background: var(--warning-light); color: #92400e; }
+  .status-new { background: #f1f5f9; color: var(--muted); }
+
+  .front-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 18px 8px;
+  }
+  .q-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+  .front-text {
+    font-size: 1.24rem;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.55;
+  }
+
+  .back-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 12px 4px;
+  }
+  .ans-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin-bottom: 4px;
+  }
+  .ans-text {
+    font-size: 1.48rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed #cbd5e1;
+  }
+  .point-box {
+    background: #eff6ff;
+    border-left: 4px solid var(--primary);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 0.92rem;
+    color: #1e293b;
+  }
+  .point-title {
+    font-weight: 700;
+    color: var(--primary-dark);
+    font-size: 0.82rem;
+    margin-bottom: 2px;
+  }
+
+  .face-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  /* Action Controls */
+  .card-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .act-btn {
+    padding: 12px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: transform 0.08s, background 0.15s;
+  }
+  .act-btn:active { transform: scale(0.98); }
+  .act-review {
+    background: var(--warning-light);
+    color: #92400e;
+    border-color: #fcd34d;
+  }
+  .act-review:hover { background: #fde68a; }
+  .act-ok {
+    background: var(--success-light);
+    color: #065f46;
+    border-color: #6ee7b7;
+  }
+  .act-ok:hover { background: #a7f3d0; }
+
+  .nav-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+  .nav-btn {
+    flex: 1;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: #fff;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 0.9rem;
+  }
+  .nav-btn:hover:not(:disabled) { background: #f8fafc; border-color: #94a3b8; }
+  .nav-btn:disabled { opacity: 0.45; cursor: default; }
+
+  .kbd-hint {
+    text-align: center;
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-top: 10px;
+  }
+  kbd {
+    background: #e2e8f0;
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.75rem;
+  }
+
+  /* List View */
+  .list-view { display: none; }
+  .list-view.show { display: block; }
+  .card-view.hide { display: none; }
+  .list-item {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 6px rgba(15,23,42,0.03);
+  }
+  .list-item-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+  .list-q { font-weight: 700; font-size: 0.96rem; margin-bottom: 6px; }
+  .list-a { font-weight: 800; color: var(--primary-dark); font-size: 1.02rem; margin-bottom: 4px; }
+  .list-p { font-size: 0.86rem; color: #334155; background: #f8fafc; padding: 6px 10px; border-radius: 8px; }
+
+  @media (max-width: 600px) {
+    .card-wrap { min-height: 340px; }
+    .front-text { font-size: 1.08rem; }
+    .ans-text { font-size: 1.25rem; }
+    .kbd-hint { display: none; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <h1>中1 社会（地理）2学期末テスト対策 フラッシュカード</h1>
+    <p>全73枚｜表面で用語を思い出し、裏面で「答え＋テストで狙われやすい一言ポイント」を確認！</p>
+  </div>
+</header>
+
+<div class="container">
+  <div class="panel">
+    <div class="unit-tabs" id="unitTabs">
+      <button class="tab-btn active" data-unit="all">全範囲（73枚）</button>
+      <button class="tab-btn" data-unit="asia">第1章 アジア州（26）</button>
+      <button class="tab-btn" data-unit="europe">第2章 ヨーロッパ州（18）</button>
+      <button class="tab-btn" data-unit="africa">第3章 アフリカ州（15）</button>
+      <button class="tab-btn" data-unit="namerica">第4章 北アメリカ州（14）</button>
+    </div>
+
+    <div class="toolbar">
+      <div class="btn-group">
+        <button class="btn" id="filterReviewBtn">要復習のみ (<span id="reviewCount">0</span>)</button>
+        <button class="btn" id="shuffleBtn">🔀 シャッフル</button>
+        <button class="btn" id="toggleViewBtn">📋 一覧表示に切替</button>
+      </div>
+      <div class="btn-group">
+        <button class="btn" id="resetProgressBtn">進捗リセット</button>
+      </div>
+    </div>
+
+    <div class="stats-bar">
+      <span id="deckCounter">1 / 73 枚目</span>
+      <span id="masteredStats">覚えた: 0 / 73 枚</span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+
+  <!-- Card Mode -->
+  <div class="card-view" id="cardView">
+    <div class="stage">
+      <div class="card-wrap" id="flashcard">
+        <div class="card-face card-front">
+          <div class="face-top">
+            <span class="badge" id="frontUnit"></span>
+            <span class="status-pill status-new" id="frontStatus">未チェック</span>
+          </div>
+          <div class="front-body">
+            <div class="q-label">QUESTION</div>
+            <div class="front-text" id="frontText"></div>
+          </div>
+          <div class="face-bottom">
+            <span id="frontId"></span>
+            <span>👆 タップ / Space で答えを見る</span>
+          </div>
+        </div>
+
+        <div class="card-face card-back">
+          <div class="face-top">
+            <span class="badge" id="backUnit"></span>
+            <span class="status-pill status-new" id="backStatus">未チェック</span>
+          </div>
+          <div class="back-body">
+            <div class="ans-label">ANSWER</div>
+            <div class="ans-text" id="backAnswer"></div>
+            <div class="point-box">
+              <div class="point-title">💡 テストで狙われやすい一言ポイント</div>
+              <div id="backPoint"></div>
+            </div>
+          </div>
+          <div class="face-bottom">
+            <span id="backId"></span>
+            <span>👆 タップで問題に戻る</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-actions">
+      <button class="act-btn act-review" id="markReviewBtn">🔁 まだ不安（要復習）</button>
+      <button class="act-btn act-ok" id="markOkBtn">⭕ 覚えた！（次へ）</button>
+    </div>
+
+    <div class="nav-row">
+      <button class="nav-btn" id="prevBtn">← 前のカード</button>
+      <button class="nav-btn" id="flipBtn">🔄 めくる</button>
+      <button class="nav-btn" id="nextBtn">次のカード →</button>
+    </div>
+
+    <div class="kbd-hint">
+      キーボード操作：<kbd>Space</kbd> めくる ／ <kbd>←</kbd><kbd>→</kbd> 前後移動 ／ <kbd>1</kbd> 要復習 ／ <kbd>2</kbd> 覚えた
+    </div>
+  </div>
+
+  <!-- List Mode -->
+  <div class="list-view" id="listView"></div>
+</div>
+
+<script>
+const ALL_CARDS = [{"id": 1, "unit": "asia", "unitName": "第1章 アジア州", "front": "アジア州の中央部にあり、8000mをこえる山々が連なることから「世界の屋根」とよばれる山脈は？", "answer": "ヒマラヤ山脈", "point": "南アジアと東アジアの境界付近にあり、エベレストなどを含む大山脈。ヨーロッパの「アルプス山脈」や北アメリカの「ロッキー山脈」と混同しないようにしよう。"}, {"id": 2, "unit": "asia", "unitName": "第1章 アジア州", "front": "アジアの東部や南部で、夏は海から陸へ、冬は陸から海へと向きを変えて吹く風を何という？", "answer": "季節風（モンスーン）", "point": "夏に海から湿った空気を運ぶため「雨季」になり、稲作が盛んになる理由とセットで狙われる！ヨーロッパの「偏西風（一年中同じ向き）」との違いが超重要。"}, {"id": 3, "unit": "asia", "unitName": "第1章 アジア州", "front": "流域で古代文明が栄え、主にパキスタンを流れてアラビア海に注ぐ川は？", "answer": "インダス川", "point": "インドの「ガンジス川」と名前が似ているので地図上の位置（西側がインダス、東側がガンジス）で区別しよう。"}, {"id": 4, "unit": "asia", "unitName": "第1章 アジア州", "front": "インド北部を流れ、ヒンドゥー教徒が沐浴（もくよく）を行う聖なる川は？", "answer": "ガンジス川", "point": "「インドの宗教（ヒンドゥー教）」と関連づけて出題されやすい。河口付近はバングラデシュにあり、稲作が盛ん。"}, {"id": 5, "unit": "asia", "unitName": "第1章 アジア州", "front": "東南アジアのインドシナ半島を流れ、下流域で稲作が盛んな大河は？", "answer": "メコン川", "point": "中国の長江・黄河、南アジアのインダス・ガンジス川とあわせて「アジアの主な川」の地図問題でよく出る。"}, {"id": 6, "unit": "asia", "unitName": "第1章 アジア州", "front": "アジア州の人口は、世界の総人口の約何割をしめている？", "answer": "約6割", "point": "インドや中国など人口大国があるため世界の約6割が集中している。数字を問う穴埋め問題で狙われやすい。"}, {"id": 7, "unit": "asia", "unitName": "第1章 アジア州", "front": "東南アジアなど世界各地に移住し、現地で商業などの分野で活躍している中国系の人々を何という？", "answer": "華人（かじん）", "point": "中国の人口の約9割をしめる「漢族」や、アメリカの中南米系移民「ヒスパニック」と混同しやすいので注意！"}, {"id": 8, "unit": "asia", "unitName": "第1章 アジア州", "front": "中国の総人口（約14億人）のうち、約90％をしめている民族は何族？", "answer": "漢族", "point": "中国には漢族以外に55の少数民族がいる（チベット族・ウイグル族など）。「華人」は海外に移住した中国系の人々のこと。"}, {"id": 9, "unit": "asia", "unitName": "第1章 アジア州", "front": "中国政府が外国の資本や技術を取り入れるため、シェンチェンなど沿岸部に設けた地域は？", "answer": "経済特区", "point": "税制などで外国企業を優遇し、工業化が一気に進んだ。「なぜ沿岸部に設けたか（貿易に便利）」も確認しよう。"}, {"id": 10, "unit": "asia", "unitName": "第1章 アジア州", "front": "経済特区などでの工業化により、世界中の工業製品を生産するようになった中国の異名は？", "answer": "世界の工場", "point": "安価な労働力を背景に「世界の工場」とよばれるようになったが、近年は賃金上昇により東南アジアへ工場が移る動きもある。"}, {"id": 11, "unit": "asia", "unitName": "第1章 アジア州", "front": "中国で人口増加を抑えるために行われてきた政策と、その結果近年進んでいる問題は？", "answer": "一人っ子政策 ／ 少子高齢化", "point": "「一人っ子政策」→「少子高齢化」の流れは記述・穴埋めともに定番！韓国でも少子高齢化が進んでいる点も押さえよう。"}, {"id": 12, "unit": "asia", "unitName": "第1章 アジア州", "front": "中国で農村から都市へ人が移動し、都市人口の割合が増えている最大の理由は？", "answer": "沿岸部の都市の方が収入が高く、より高い収入を求めて人が移動しているため", "point": "沿岸部と内陸部の「経済格差（一人あたり総生産額の差）」が原因。政府はこの格差をなくすため内陸部の開発も進めている。"}, {"id": 13, "unit": "asia", "unitName": "第1章 アジア州", "front": "韓国・シンガポール・台湾・ホンコンのように、1970年代以降急速に工業化が進んだ国・地域を何という？", "answer": "アジアNIES（新興工業経済地域）", "point": "4つの国と地域（韓国・シンガポール・台湾・ホンコン）をすべて答えられるようにしておこう。ASEANと混同注意！"}, {"id": 14, "unit": "asia", "unitName": "第1章 アジア州", "front": "韓国の輸出品は1960年の米・タングステン鉱から、2020年には何中心に変化した？", "answer": "機械類・自動車（半導体など）", "point": "輸出先の変化（1960年：日本・アメリカ中心 → 2020年：中国が最大）とセットでグラフ読み取り問題に出る。"}, {"id": 15, "unit": "asia", "unitName": "第1章 アジア州", "front": "韓国で総人口の約半数（50.4%）が集中している地域と、その対策として郊外に建設されたものは？", "answer": "ソウル首都圏 ／ ニュータウン", "point": "ソウルへの「一極集中」により住宅不足や交通渋滞が起き、郊外にニュータウンが開発された。"}, {"id": 16, "unit": "asia", "unitName": "第1章 アジア州", "front": "東南アジアで行われる、同じ田で1年に2回「米」をつくる農業を何という？", "answer": "二期作", "point": "同じ田で「米＋麦」など別の作物を年2回つくるのは「二毛作」！1文字違いのひっかけ問題に要注意。"}, {"id": 17, "unit": "asia", "unitName": "第1章 アジア州", "front": "東南アジアやアフリカで、植民地時代にヨーロッパ人によって開かれた大規模な農園を何という？", "answer": "プランテーション", "point": "天然ゴム・油やし・さとうきび・カカオなど、輸出向けの商品作物を単一で栽培することが多い。"}, {"id": 18, "unit": "asia", "unitName": "第1章 アジア州", "front": "東南アジアの海岸に広がり、えびの養殖場をつくるためなどに伐採・減少が進んでいる森林は？", "answer": "マングローブ林", "point": "熱帯・亜熱帯の海岸に生育する森林。エビの養殖池開発などによる環境破壊の代表例として狙われる。"}, {"id": 19, "unit": "asia", "unitName": "第1章 アジア州", "front": "東南アジアの10か国が地域の安定と発展を目指して結成した協力組織の略称は？", "answer": "ASEAN（東南アジア諸国連合）", "point": "EU（ヨーロッパ連合）、AU（アフリカ連合）、USMCA（北米）など、各州の地域統合組織の略称を比較して覚えよう。"}, {"id": 20, "unit": "asia", "unitName": "第1章 アジア州", "front": "東南アジアへ進出する日本企業のうち、近年「ベトナム」への進出数が急増している理由は？", "answer": "他の東南アジア諸国と比べて製造業の賃金が安いため", "point": "進出数の合計が最多なのは「タイ」だが、急増している理由を問われたら「賃金の安さ」と答えられるようにしよう。"}, {"id": 21, "unit": "asia", "unitName": "第1章 アジア州", "front": "インドで国民の約8割が信仰している宗教は？", "answer": "ヒンドゥー教", "point": "牛を神聖な動物として食べないなどの特徴がある。お隣のパキスタン・バングラデシュは「イスラム教」、スリランカは「仏教」が多い。"}, {"id": 22, "unit": "asia", "unitName": "第1章 アジア州", "front": "西アジアや北アフリカ、パキスタン・バングラデシュなどで最も多く信仰されている宗教は？", "answer": "イスラム教", "point": "豚肉を食べない、1日5回の礼拝などの戒律がある。ヨーロッパでもアジア・アフリカからの移民により信者が増えている。"}, {"id": 23, "unit": "asia", "unitName": "第1章 アジア州", "front": "インド南部の都市バンガロールを中心に急速に発達している産業は？", "answer": "ICT産業（情報通信技術産業）", "point": "英語を話せる人材や理数系に強い大学・技術者が多いことが背景。近年は自動車の生産台数も大きく伸びている。"}, {"id": 24, "unit": "asia", "unitName": "第1章 アジア州", "front": "インドにアメリカ企業のコールセンターなどが置かれる際、時差をどのように活かしている？", "answer": "アメリカが夜で業務を終える時間にインドが昼（始業）になるため、24時間対応できる", "point": "約半日の時差を利用し、昼と夜をリレーして24時間体制をとれる点が記述問題で頻出！"}, {"id": 25, "unit": "asia", "unitName": "第1章 アジア州", "front": "ペルシャ湾沿岸の国々が中心となり、石油の生産量や価格を統制するため1960年に結成した組織は？", "answer": "OPEC（石油輸出国機構）", "point": "西アジアの石油産出国（サウジアラビアなど）が中心。ヨーロッパのEUや東南アジアのASEANと区別しよう。"}, {"id": 26, "unit": "asia", "unitName": "第1章 アジア州", "front": "1991年にソ連から独立した中央アジアの国々（カザフスタンなど）で豊富に産出される希少金属を何という？", "answer": "レアメタル", "point": "クロムやマンガンなどハイテク製品に欠かせない金属。中央アジアは「乾燥帯」に属している点も押さえよう。"}, {"id": 27, "unit": "europe", "unitName": "第2章 ヨーロッパ州", "front": "スカンディナビア半島（ノルウェーなど）の海岸に見られる、氷河によって形成された奥行きのある湾は？", "answer": "フィヨルド", "point": "「氷河の浸食」によってできた地形であることがキーワード。アフリカの「サヘル」や「ギニア湾」と区別しよう。"}, {"id": 28, "unit": "europe", "unitName": "第2章 ヨーロッパ州", "front": "ヨーロッパが高緯度に位置しているにもかかわらず、冬でも比較的温暖な気候になる2つの理由は？", "answer": "暖流の「北大西洋海流」と、その上を吹く「偏西風」の影響", "point": "記述問題の超ド定番！「暖流（北大西洋海流）」と「偏西風」の2語を必ずセットで書けるようにしよう。"}, {"id": 29, "unit": "europe", "unitName": "第2章 ヨーロッパ州", "front": "地中海沿岸で行われている、夏の乾燥に強いオリーブやぶどうなどの果実と小麦をつくる農業は？", "answer": "地中海式農業", "point": "「夏に乾燥し、冬にやや雨が多い」という地中海性気候の特徴とセットで問われる。"}, {"id": 30, "unit": "europe", "unitName": "第2章 ヨーロッパ州", "front": "ドイツやフランスなど西・中央ヨーロッパで行われる、小麦・ライ麦の栽培と家畜の飼育を組み合わせた農業は？", "answer": "混合農業", "point": "「混合農業（作物＋家畜）」と、北部やアルプスで行われる「酪農（乳牛・乳製品）」の地域差を地図で確認しよう。"}, {"id": 31, "unit": "europe", "unitName": "第2章 ヨーロッパ州", "front": "ヨーロッパの北部やアルプス山脈周辺など、冷涼で牧草がよく育つ地域で盛んな農業は？", "answer": "酪農", "point": "チーズやバターなどの乳製品を生産する。都市の近くで行う「近郊農業」とあわせて整理しよう。"}, {"id": 32, "unit": "europe", "unitName": "第2章 ヨーロッパ州", "front": "1967年発足のEC（ヨーロッパ共同体）を前身とし、1993年に成立した統合組織の正式名称と略称は？", "answer": "ヨーロッパ連合（EU）", "point": "加盟国内の多くの国境ではパスポート検査なしで移動でき、バカンスで国境をこえて旅行する人も多い。"}, {"id": 33, "unit": "europe", "unitName": "第2章 ヨーロッパ州", "front": "2002年にEUの多くの加盟国で導入された共通通貨を何という？", "answer": "ユーロ", "point": "「EU加盟国すべてが使っているわけではない（使っていない国もある）」というひっかけ○×問題に注意！"}, {"id": 34, "unit": "europe", "unitName": "第2章 ヨーロッパ州", "front": "ヨーロッパのエアバス社のように、複数の国で飛行機の部品などを分担してつくる生産方法を何という？", "answer": "分業生産", "point": "ドイツ・フランス・イギリス・スペインなどで得意分野を分担して生産し、一か所で組み立てる。"}, {"id": 35, "unit": "europe", "unitName": "第2章 ヨーロッパ州", "front": "2004年にEUへ加盟したハンガリーの輸入先が、EU加盟国中心に変化した最大の理由は？", "answer": "EUに加盟している国どうしでは「関税」がかからないため", "point": "「関税がかからない（撤廃された）」というキーワードが記述で必須！"}, {"id": 36, "unit": "europe", "unitName": "第2章 ヨーロッパ州", "front": "EU加盟国内の経済格差において、賃金が「高い」地域と「低い」地域の傾向は？", "answer": "西ヨーロッパが高く、東ヨーロッパが低い（西高東低）", "point": "この賃金差があるため、東ヨーロッパから西ヨーロッパへ働きに出る人が増え、国内の賃金格差や社会問題にもつながる。"}, {"id": 37, "unit": "europe", "unitName": "第2章 ヨーロッパ州", "front": "EU加盟国間の経済格差を解消するための補助金負担などをめぐって対立し、2020年1月にEUを離脱した国は？", "answer": "イギリス", "point": "離脱の理由（補助金負担の重さや移民流入への不満など）と国名「イギリス」をセットで覚えよう。"}, {"id": 38, "unit": "europe", "unitName": "第2章 ヨーロッパ州", "front": "働くことを目的に外国からやってきた人々を何といい、自国の労働者と比べて賃金はどうなりやすい？", "answer": "外国人労働者 ／ 自国の労働者より低い賃金", "point": "オーストリアやイタリアなどの資料でも、外国人労働者の賃金は自国労働者（100）に対して70〜79程度と低い。"}, {"id": 39, "unit": "europe", "unitName": "第2章 ヨーロッパ州", "front": "「生まれた国を出て他国へ移り住んだ人々」と、「紛争や災害などから自国を逃れた人々」をそれぞれ何という？", "answer": "移民 ／ 難民", "point": "「外国人労働者」「移民」「難民」の3つの定義の入れ替えひっかけに要注意！"}, {"id": 40, "unit": "europe", "unitName": "第2章 ヨーロッパ州", "front": "工場の排気などの汚染物質が雨にとけて降り、国境をこえて森林の立ち枯れなどを引き起こす現象は？", "answer": "酸性雨", "point": "「風に乗って国境をこえて広がる」ため、一国だけでなくヨーロッパ全体での協力が必要になる。"}, {"id": 41, "unit": "europe", "unitName": "第2章 ヨーロッパ州", "front": "ライン川のように複数の国が利用する河川を何といい、水質改善のために何に取り組んだ？", "answer": "国際河川 ／ 工場からの排水規制や汚水処理施設の設置", "point": "かつて汚染が進んだライン川は、利用国どうしが協力して排水規制などを行った結果、水質が改善した。"}, {"id": 42, "unit": "europe", "unitName": "第2章 ヨーロッパ州", "front": "都市中心部への車の乗り入れを制限し、郊外の駅などに車を止めて公共交通機関に乗り換える仕組みは？", "answer": "パークアンドライド", "point": "大気汚染や交通渋滞を防ぐための都市計画の取り組みとして出題される。"}, {"id": 43, "unit": "europe", "unitName": "第2章 ヨーロッパ州", "front": "地球温暖化の原因となる温室効果ガスの排出をなくすことを目指す社会を何という？", "answer": "脱炭素社会", "point": "環境に配慮し将来にわたる発展を可能にする「持続可能な社会」とあわせて漢字で書けるようにしよう。"}, {"id": 44, "unit": "europe", "unitName": "第2章 ヨーロッパ州", "front": "太陽光・風力・地熱など、くり返し利用できるエネルギーをまとめて何という？", "answer": "再生可能エネルギー", "point": "石炭・石油などの「化石燃料」と対比される。ヨーロッパでは風力発電などの導入が進んでいる。"}, {"id": 45, "unit": "africa", "unitName": "第3章 アフリカ州", "front": "アフリカ大陸の北部に広がる世界最大の砂漠は？", "answer": "サハラ砂漠", "point": "サハラ砂漠の南縁に広がる草原地帯「サヘル」と1文字違い！地図の位置と名前を正確に区別しよう。"}, {"id": 46, "unit": "africa", "unitName": "第3章 アフリカ州", "front": "アフリカ大陸の東部を北へ流れ、地中海に注ぐ世界最長の川は？", "answer": "ナイル川", "point": "「南から北へ流れる」こともチェック。エジプト文明が栄えた川でもある。"}, {"id": 47, "unit": "africa", "unitName": "第3章 アフリカ州", "front": "サハラ砂漠の南部に広がり、過放牧や過耕作などによって砂漠化が進んでいる草原地帯は？", "answer": "サヘル", "point": "「サヘル＝砂漠化が進む草原地帯」「サバナ＝熱帯の草原」「スラム＝都市の低所得者密集地区」の3つを混同しないこと！"}, {"id": 48, "unit": "africa", "unitName": "第3章 アフリカ州", "front": "1950年代以降に独立したアフリカの国々で、英語やフランス語を「公用語」としている国が多い理由は？", "answer": "かつてヨーロッパ諸国の植民地として支配されていたため", "point": "1914年時点でエチオピアとリベリア以外はすべてヨーロッパの植民地だった。国境線が直線的なのも植民地支配の名残。"}, {"id": 49, "unit": "africa", "unitName": "第3章 アフリカ州", "front": "16世紀以降、アフリカから多くの人々が労働力としてアメリカ大陸へ連れ去られた歴史的できごとは？", "answer": "奴隷貿易", "point": "ヨーロッパ・アフリカ・アメリカを結ぶ三角貿易の中で行われ、アメリカ大陸にアフリカ系の人々が暮らす背景にもなった。"}, {"id": 50, "unit": "africa", "unitName": "第3章 アフリカ州", "front": "森林の木々を伐採して燃やしたあとの灰を肥料にして作物を育てる、アフリカの伝統的農業は？", "answer": "焼畑農業", "point": "土地の栄養がなくなると別の場所へ移動する。東南アジアなどでも見られる伝統的な農業。"}, {"id": 51, "unit": "africa", "unitName": "第3章 アフリカ州", "front": "乾燥帯で水や草を求めて移動しながら、やぎや羊などの家畜を飼う伝統的な方法は？", "answer": "遊牧", "point": "「焼畑農業（森林・熱帯）」と「遊牧（乾燥帯）」の組み合わせでよく出題される。"}, {"id": 52, "unit": "africa", "unitName": "第3章 アフリカ州", "front": "アフリカの主要産出国：カカオ（ガーナ等）、石油（ナイジェリア）、では「ダイヤモンド」の輸出割合が高い国は？", "answer": "ボツワナ", "point": "ボツワナは輸出額の約87%をダイヤモンドがしめる。「カカオ＝ガーナ・コートジボワール」「石油＝ナイジェリア」もセットで！"}, {"id": 53, "unit": "africa", "unitName": "第3章 アフリカ州", "front": "アフリカ諸国に多く見られる、少数の農作物や鉱産資源の輸出に頼って成り立つ経済を何という？", "answer": "モノカルチャー経済", "point": "植民地時代に特定作物のプランテーションや鉱山開発が進められたことが背景にある。"}, {"id": 54, "unit": "africa", "unitName": "第3章 アフリカ州", "front": "モノカルチャー経済が抱える最大の課題（問題点）は何？", "answer": "国際価格の変動や天候の影響を受けやすく、国の経済が不安定になりやすいこと", "point": "記述問題の超頻出！「国際価格の変動」「天候」「経済が不安定」のキーワードを必ず入れよう。"}, {"id": 55, "unit": "africa", "unitName": "第3章 アフリカ州", "front": "アフリカ南端に位置し、プラチナやクロムなどのレアメタルや金が豊富で、工業も発展した国は？", "answer": "南アフリカ共和国", "point": "アフリカの中で特に経済が発展しており、自動車工業なども盛ん。"}, {"id": 56, "unit": "africa", "unitName": "第3章 アフリカ州", "front": "アフリカや東南アジアの大都市で、急激な都市化にともない生活環境の悪い場所に低所得者が密集する地区は？", "answer": "スラム", "point": "「サヘル（砂漠化）」と間違えやすいので注意。電気・水道などのインフラが整っていないことが多い。"}, {"id": 57, "unit": "africa", "unitName": "第3章 アフリカ州", "front": "1歳未満で亡くなる子どもの割合を示す「乳児死亡率」は、アフリカのどの地域で特に高く、どの地域が比較的低い？", "answer": "中部・西部で特に高く、北部は比較的低い", "point": "医療や衛生環境の整備状況と関係している。地図の色分け問題でよく出る。"}, {"id": 58, "unit": "africa", "unitName": "第3章 アフリカ州", "front": "発展途上国の開発や難民・環境問題の解決に、政府とは独立して取り組む「非政府組織」の略称は？", "answer": "NGO", "point": "政府どうしの援助である「ODA（政府開発援助）」と区別しよう。"}, {"id": 59, "unit": "africa", "unitName": "第3章 アフリカ州", "front": "EUをモデルに、アフリカの国々が地域統合や協力を目指して2002年に結成した組織は？", "answer": "アフリカ連合（AU）", "point": "「EU＝ヨーロッパ連合」「AU＝アフリカ連合」「ASEAN＝東南アジア諸国連合」を正確に書き分けよう。"}, {"id": 60, "unit": "namerica", "unitName": "第4章 北アメリカ州", "front": "北アメリカ大陸の「西部」に連なる高く険しい山脈と、「東部」にある比較的低い山脈は？", "answer": "西部：ロッキー山脈 ／ 東部：アパラチア山脈", "point": "東西の位置関係が逆転するひっかけ問題が多い！アパラチア山脈周辺では石炭が産出される。"}, {"id": 61, "unit": "namerica", "unitName": "第4章 北アメリカ州", "front": "アメリカ合衆国の中央平原を南へ流れ、メキシコ湾に注ぐ大河は？", "answer": "ミシシッピ川", "point": "農産物の水上輸送などにも利用される北アメリカ最大級の河川。"}, {"id": 62, "unit": "namerica", "unitName": "第4章 北アメリカ州", "front": "北アメリカ大陸の南東部や西インド諸島（カリブ海周辺）を夏におそい、被害をもたらす熱帯低気圧は？", "answer": "ハリケーン", "point": "日本などの東アジアでは「台風」、北アメリカでは「ハリケーン」とよばれる。アジアの「モンスーン」と混同注意。"}, {"id": 63, "unit": "namerica", "unitName": "第4章 北アメリカ州", "front": "北アメリカの主な言語：アメリカ・カナダは英語（カナダの一部は仏語）、では「メキシコ」で主に使われる言語は？", "answer": "スペイン語", "point": "ヨーロッパからの移民が開拓した歴史から、メキシコはスペイン語、米国・カナダは英語が多く、宗教はキリスト教が多い。"}, {"id": 64, "unit": "namerica", "unitName": "第4章 北アメリカ州", "front": "アメリカ・メキシコ・カナダの3か国で結ばれていた「NAFTA」が発展し、2020年に発効した新しい協定は？", "answer": "USMCA（米国・メキシコ・カナダ協定）", "point": "NAFTA（北米自由貿易協定）からUSMCAへの変更は、最新のテストで狙われやすいポイント！"}, {"id": 65, "unit": "namerica", "unitName": "第4章 北アメリカ州", "front": "アメリカ合衆国で行われている、各地の自然環境（気候や土壌）に適した農作物を栽培する方式を漢字4字で何という？", "answer": "適地適作", "point": "「降水量や気温に合わせて、小麦・とうもろこし・綿花などの栽培地域が分かれている」という地図とセットで出る。"}, {"id": 66, "unit": "namerica", "unitName": "第4章 北アメリカ州", "front": "地下水をくみ上げ、大型のスプリンクラーを回転させて円形の農地をつくるかんがい方法を何という？", "answer": "センターピボット", "point": "乾燥した地域（グレートプレーンズなど）での農業を可能にしている。空から見ると緑の円が並んでいるのが特徴。"}, {"id": 67, "unit": "namerica", "unitName": "第4章 北アメリカ州", "front": "広い耕地面積をもち、少ない農業従事者で大型トラクターを使って効率的に利益を追求するアメリカの農業は？", "answer": "企業的な農業", "point": "日本の農業（狭い耕地・多い人手）との比較グラフが頻出！またアメリカは小麦の「輸出量（輸出割合）」が非常に高い。"}, {"id": 68, "unit": "namerica", "unitName": "第4章 北アメリカ州", "front": "アメリカの農業を支える「農業関連の大企業」と、「穀物の流通を扱う巨大商社」をそれぞれ何という？", "answer": "アグリビジネス ／ 穀物メジャー", "point": "品種改良などに使われる「バイオテクノロジー」とあわせて、アメリカの食料生産を牛耳る3大キーワードとして覚えよう。"}, {"id": 69, "unit": "namerica", "unitName": "第4章 北アメリカ州", "front": "五大湖周辺の鉄鋼業（ピッツバーグ）や自動車工業（デトロイト）が、20世紀後半以降に衰退してよばれるようになった名称は？", "answer": "ラストベルト（さびついた工業地帯）", "point": "日本やドイツの安価で良質な製品の輸入によって衰退した。都市名「ピッツバーグ＝鉄鋼」「デトロイト＝自動車」も重要！"}, {"id": 70, "unit": "namerica", "unitName": "第4章 北アメリカ州", "front": "北緯37度付近以南に広がり、航空機・電子工業などが発展して工業の中心地となった新しい工業地域は？", "answer": "サンベルト", "point": "1960年は中西部・北東部が中心だったが、2021年には南部（サンベルト）の工業生産額割合が最大になった。"}, {"id": 71, "unit": "namerica", "unitName": "第4章 北アメリカ州", "front": "サンフランシスコ南部に位置し、ICT（情報通信技術）関連企業が集まる地域は？", "answer": "シリコンバレー", "point": "かつての製鉄所・自動車工場はヨーロッパ系移民が支えたが、現在のシリコンバレーなどのICT産業では「アジア系の移民」が多く活躍！"}, {"id": 72, "unit": "namerica", "unitName": "第4章 北アメリカ州", "front": "メキシコや中央アメリカなどからアメリカ合衆国に来た、スペイン語を話す移民やその子孫を何という？", "answer": "ヒスパニック", "point": "アメリカの総人口の約19.5%（増加中）。国境に近く賃金の高いアメリカ南部・南西部に多く、飲食店や農業の労働力を支えている。"}, {"id": 73, "unit": "namerica", "unitName": "第4章 北アメリカ州", "front": "アメリカ合衆国の人口構成（2023年）で、最も多い割合をしめているのはどの系統の人々？", "answer": "ヨーロッパ系（約75.3%）", "point": "2番目はアフリカ系（約13.7%）、3番目はアジア系（約6.4%）。ヒスパニックは主にヨーロッパ系などに含まれて集計される。"}];
+
+const STORAGE_KEY = "g1_2e_social_flashcards_v1";
+let savedStatus = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}"); // id -> 'ok' | 'review'
+
+let state = {
+  unit: "all",
+  onlyReview: false,
+  isListView: false,
+  deck: [...ALL_CARDS],
+  index: 0,
+  flipped: false
+};
+
+function saveStatus() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(savedStatus));
+  updateStats();
+}
+
+function buildDeck(shuffle = false) {
+  let list = ALL_CARDS.filter(c => {
+    if (state.unit !== "all" && c.unit !== state.unit) return false;
+    if (state.onlyReview && savedStatus[c.id] !== "review") return false;
+    return true;
+  });
+
+  if (shuffle) {
+    for (let i = list.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [list[i], list[j]] = [list[j], list[i]];
+    }
+  }
+  state.deck = list;
+  state.index = 0;
+  state.flipped = false;
+  render();
+}
+
+function updateStats() {
+  const totalAll = ALL_CARDS.length;
+  const okAll = ALL_CARDS.filter(c => savedStatus[c.id] === "ok").length;
+  const revAll = ALL_CARDS.filter(c => savedStatus[c.id] === "review").length;
+
+  document.getElementById("reviewCount").textContent = revAll;
+  document.getElementById("masteredStats").textContent = `覚えた: ${okAll} / ${totalAll} 枚`;
+  document.getElementById("progressFill").style.width = `${(okAll / totalAll) * 100}%`;
+
+  const deckLen = state.deck.length;
+  document.getElementById("deckCounter").textContent = deckLen > 0 ? `${state.index + 1} / ${deckLen} 枚目` : "0 / 0 枚目";
+}
+
+function renderStatusPill(el, status) {
+  el.className = "status-pill";
+  if (status === "ok") {
+    el.classList.add("status-mastered");
+    el.textContent = "⭕ 覚えた";
+  } else if (status === "review") {
+    el.classList.add("status-review");
+    el.textContent = "🔁 要復習";
+  } else {
+    el.classList.add("status-new");
+    el.textContent = "未チェック";
+  }
+}
+
+function render() {
+  updateStats();
+  const cardEl = document.getElementById("flashcard");
+  cardEl.classList.toggle("flipped", state.flipped);
+
+  if (state.isListView) {
+    renderListView();
+    return;
+  }
+
+  if (state.deck.length === 0) {
+    document.getElementById("frontUnit").textContent = "通知";
+    document.getElementById("backUnit").textContent = "通知";
+    document.getElementById("frontText").textContent = state.onlyReview
+      ? "「要復習」にチェックされたカードはありません！素晴らしい！"
+      : "表示できるカードがありません。";
+    document.getElementById("backAnswer").textContent = "—";
+    document.getElementById("backPoint").textContent = "上の「要復習のみ」を解除すると全カードに戻れます。";
+    document.getElementById("frontId").textContent = "";
+    document.getElementById("backId").textContent = "";
+    document.getElementById("prevBtn").disabled = true;
+    document.getElementById("nextBtn").disabled = true;
+    return;
+  }
+
+  const c = state.deck[state.index];
+  const st = savedStatus[c.id] || "new";
+
+  document.getElementById("frontUnit").textContent = c.unitName;
+  document.getElementById("backUnit").textContent = c.unitName;
+  document.getElementById("frontText").textContent = c.front;
+  document.getElementById("backAnswer").textContent = c.answer;
+  document.getElementById("backPoint").textContent = c.point;
+  document.getElementById("frontId").textContent = `No.${c.id}`;
+  document.getElementById("backId").textContent = `No.${c.id}`;
+
+  renderStatusPill(document.getElementById("frontStatus"), st);
+  renderStatusPill(document.getElementById("backStatus"), st);
+
+  document.getElementById("prevBtn").disabled = state.index === 0;
+  document.getElementById("nextBtn").disabled = state.index >= state.deck.length - 1;
+}
+
+function renderListView() {
+  const lv = document.getElementById("listView");
+  lv.innerHTML = "";
+  if (state.deck.length === 0) {
+    lv.innerHTML = '<div class="panel">表示するカードがありません。</div>';
+    return;
+  }
+  state.deck.forEach(c => {
+    const st = savedStatus[c.id] || "new";
+    const badgeText = st === "ok" ? "⭕ 覚えた" : (st === "review" ? "🔁 要復習" : "未チェック");
+    const badgeCls = st === "ok" ? "status-mastered" : (st === "review" ? "status-review" : "status-new");
+    const item = document.createElement("div");
+    item.className = "list-item";
+    item.innerHTML = `
+      <div class="list-item-top">
+        <span class="badge">${c.unitName}（No.${c.id}）</span>
+        <span class="status-pill ${badgeCls}">${badgeText}</span>
+      </div>
+      <div class="list-q">${c.front}</div>
+      <div class="list-a">▶ ${c.answer}</div>
+      <div class="list-p">💡 ${c.point}</div>
+    `;
+    lv.appendChild(item);
+  });
+}
+
+function flipCard() {
+  if (state.deck.length === 0) return;
+  state.flipped = !state.flipped;
+  document.getElementById("flashcard").classList.toggle("flipped", state.flipped);
+}
+
+function moveCard(delta) {
+  const nextIdx = state.index + delta;
+  if (nextIdx >= 0 && nextIdx < state.deck.length) {
+    state.index = nextIdx;
+    state.flipped = false;
+    render();
+  }
+}
+
+function markCard(status) {
+  if (state.deck.length === 0) return;
+  const c = state.deck[state.index];
+  savedStatus[c.id] = status;
+  saveStatus();
+
+  if (state.onlyReview && status === "ok") {
+    buildDeck(false);
+    return;
+  }
+
+  if (state.index < state.deck.length - 1) {
+    state.index++;
+    state.flipped = false;
+  }
+  render();
+}
+
+// Event Listeners
+document.getElementById("flashcard").addEventListener("click", flipCard);
+document.getElementById("flipBtn").addEventListener("click", flipCard);
+document.getElementById("prevBtn").addEventListener("click", () => moveCard(-1));
+document.getElementById("nextBtn").addEventListener("click", () => moveCard(1));
+document.getElementById("markReviewBtn").addEventListener("click", () => markCard("review"));
+document.getElementById("markOkBtn").addEventListener("click", () => markCard("ok"));
+
+document.querySelectorAll(".tab-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    state.unit = btn.dataset.unit;
+    buildDeck(false);
+  });
+});
+
+document.getElementById("filterReviewBtn").addEventListener("click", (e) => {
+  state.onlyReview = !state.onlyReview;
+  e.currentTarget.classList.toggle("active-mode", state.onlyReview);
+  buildDeck(false);
+});
+
+document.getElementById("shuffleBtn").addEventListener("click", () => buildDeck(true));
+
+document.getElementById("toggleViewBtn").addEventListener("click", (e) => {
+  state.isListView = !state.isListView;
+  document.getElementById("cardView").classList.toggle("hide", state.isListView);
+  document.getElementById("listView").classList.toggle("show", state.isListView);
+  e.currentTarget.textContent = state.isListView ? "🃏 カード表示に切替" : "📋 一覧表示に切替";
+  render();
+});
+
+document.getElementById("resetProgressBtn").addEventListener("click", () => {
+  if (confirm("「覚えた」「要復習」の記録をすべてリセットしますか？")) {
+    savedStatus = {};
+    saveStatus();
+    buildDeck(false);
+  }
+});
+
+document.addEventListener("keydown", (e) => {
+  if (state.isListView) return;
+  if (e.code === "Space" || e.code === "Enter") {
+    e.preventDefault();
+    flipCard();
+  } else if (e.code === "ArrowLeft") {
+    moveCard(-1);
+  } else if (e.code === "ArrowRight") {
+    moveCard(1);
+  } else if (e.key === "1") {
+    markCard("review");
+  } else if (e.key === "2") {
+    markCard("ok");
+  }
+});
+
+buildDeck(false);
+</script>
+</body>
+</html>

@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中1理科 2学期末テスト対策（短文記述＆ひっかけ○× 1問1答）</title>
+<style>
+  :root {
+    --bg: #f4f6fb;
+    --card: #ffffff;
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --primary-light: #eff6ff;
+    --accent: #0f766e;
+    --accent-light: #f0fdfa;
+    --purple: #7c3aed;
+    --purple-light: #f5f3ff;
+    --text: #1e293b;
+    --muted: #64748b;
+    --border: #cbd5e1;
+    --ok: #16a34a;
+    --ok-bg: #f0fdf4;
+    --ng: #dc2626;
+    --ng-bg: #fef2f2;
+    --warn: #d97706;
+    --warn-bg: #fffbeb;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  header {
+    background: linear-gradient(135deg, #1e3a8a, #0f766e);
+    color: #fff;
+    padding: 18px 20px 16px;
+    box-shadow: 0 2px 10px rgba(30, 58, 138, 0.2);
+  }
+
+  .header-inner {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  .badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.18);
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    margin-bottom: 6px;
+  }
+
+  h1 {
+    margin: 0 0 4px;
+    font-size: 20px;
+    line-height: 1.35;
+  }
+
+  .subtitle {
+    margin: 0;
+    font-size: 13px;
+    opacity: 0.92;
+  }
+
+  .container {
+    max-width: 820px;
+    width: 100%;
+    margin: 18px auto 40px;
+    padding: 0 16px;
+    flex: 1;
+  }
+
+  .course-bar {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 12px 14px;
+    margin-bottom: 14px;
+    box-shadow: 0 1px 4px rgba(15, 23, 42, 0.06);
+    border: 1px solid #e2e8f0;
+  }
+
+  .filter-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .filter-btn {
+    border: 1px solid var(--border);
+    background: #fff;
+    color: var(--text);
+    padding: 5px 11px;
+    border-radius: 999px;
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    font-family: inherit;
+  }
+
+  .filter-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+  }
+
+  .filter-btn.active {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+  }
+
+  .progress-wrap {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 4px rgba(15, 23, 42, 0.04);
+  }
+
+  .progress-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13.5px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .progress-count {
+    color: var(--primary-dark);
+    font-size: 15px;
+  }
+
+  .progress-score {
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  .progress-track {
+    width: 100%;
+    height: 8px;
+    background: #e2e8f0;
+    border-radius: 999px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #2563eb, #10b981);
+    border-radius: 999px;
+    transition: width 0.25s ease;
+  }
+
+  .q-card {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 24px 24px 22px;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
+    border: 2px solid #e2e8f0;
+    transition: border-color 0.2s, background-color 0.2s;
+  }
+
+  .q-card.is-correct { border-color: #86efac; }
+  .q-card.is-wrong { border-color: #fca5a5; }
+
+  .q-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  .q-num {
+    font-weight: 800;
+    font-size: 14px;
+    color: var(--primary-dark);
+    background: var(--primary-light);
+    padding: 3px 11px;
+    border-radius: 6px;
+  }
+
+  .q-tag {
+    font-size: 12px;
+    font-weight: 600;
+    color: #475569;
+    background: #f1f5f9;
+    padding: 2px 9px;
+    border-radius: 6px;
+  }
+
+  .q-type-desc {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--purple);
+    background: var(--purple-light);
+    border: 1px solid #ddd6fe;
+    padding: 1px 8px;
+    border-radius: 6px;
+  }
+
+  .q-type-ox {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-light);
+    border: 1px solid #99f6e4;
+    padding: 1px 8px;
+    border-radius: 6px;
+  }
+
+  .q-important {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #b45309;
+    background: var(--warn-bg);
+    border: 1px solid #fde68a;
+    padding: 1px 8px;
+    border-radius: 6px;
+  }
+
+  .q-status {
+    margin-left: auto;
+    font-size: 15px;
+    font-weight: 800;
+  }
+
+  .q-status.ok { color: var(--ok); }
+  .q-status.ng { color: var(--ng); }
+
+  .q-body {
+    font-size: 16.5px;
+    font-weight: 600;
+    line-height: 1.8;
+    margin-bottom: 16px;
+    white-space: pre-line;
+  }
+
+  .q-figure {
+    margin: 0 0 16px 0;
+    padding: 12px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    text-align: center;
+    overflow-x: auto;
+  }
+
+  .desc-textarea {
+    width: 100%;
+    min-height: 104px;
+    padding: 12px 14px;
+    font-size: 15.5px;
+    font-family: inherit;
+    line-height: 1.65;
+    color: var(--text);
+    background: #f8fafc;
+    border: 2px solid #94a3b8;
+    border-radius: 10px;
+    resize: vertical;
+    transition: border-color 0.15s, background-color 0.15s, box-shadow 0.15s;
+  }
+
+  .desc-textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.16);
+  }
+
+  .desc-textarea:disabled {
+    background: #f1f5f9;
+    color: #334155;
+    cursor: default;
+  }
+
+  .ox-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  .ox-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 16px 12px;
+    border-radius: 12px;
+    border: 2px solid var(--border);
+    background: #fff;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.15s ease;
+  }
+
+  .ox-btn:hover:not(:disabled) {
+    border-color: var(--primary);
+    background: var(--primary-light);
+    transform: translateY(-1px);
+  }
+
+  .ox-btn:disabled {
+    cursor: default;
+  }
+
+  .ox-symbol {
+    font-size: 28px;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .ox-label {
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .ox-btn.correct {
+    background: var(--ok-bg);
+    border-color: var(--ok);
+    color: #14532d;
+  }
+
+  .ox-btn.wrong {
+    background: var(--ng-bg);
+    border-color: var(--ng);
+    color: #7f1d1d;
+  }
+
+  .hint-box {
+    display: none;
+    margin: 12px 0;
+    padding: 10px 14px;
+    background: var(--warn-bg);
+    border-left: 4px solid var(--warn);
+    border-radius: 8px;
+    font-size: 13.5px;
+    color: #78350f;
+  }
+
+  .hint-box.show { display: block; }
+
+  .answer-box {
+    display: none;
+    margin-top: 16px;
+    padding: 16px 18px;
+    background: #f8fafc;
+    border-left: 5px solid var(--primary);
+    border-radius: 10px;
+    animation: fadeIn 0.2s ease;
+  }
+
+  .answer-box.show { display: block; }
+
+  .answer-box.is-ok {
+    background: #f0fdf4;
+    border-left-color: var(--ok);
+  }
+
+  .answer-box.is-ng {
+    background: #fef2f2;
+    border-left-color: var(--ng);
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .model-answer {
+    font-weight: 800;
+    font-size: 15.5px;
+    color: var(--primary-dark);
+    margin-bottom: 10px;
+    padding: 8px 12px;
+    background: #ffffff;
+    border: 1px solid #dbeafe;
+    border-radius: 8px;
+  }
+
+  .kw-section {
+    margin-bottom: 10px;
+    padding: 10px 12px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+  }
+
+  .kw-title {
+    font-size: 12.5px;
+    font-weight: 800;
+    color: #475569;
+    margin-bottom: 6px;
+  }
+
+  .kw-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .kw-pill {
+    font-size: 12.5px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: #f1f5f9;
+    color: #334155;
+    border: 1px solid #cbd5e1;
+  }
+
+  .kw-pill.hit {
+    background: var(--ok-bg);
+    color: var(--ok);
+    border-color: #86efac;
+  }
+
+  .kw-pill.miss {
+    background: var(--warn-bg);
+    color: #b45309;
+    border-color: #fde68a;
+  }
+
+  .pair-box {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #0f766e;
+    background: #ffffff;
+    border: 1px solid #99f6e4;
+    padding: 7px 11px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+
+  .explain {
+    color: #334155;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .self-grade-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px dashed #cbd5e1;
+  }
+
+  .self-grade-label {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: #475569;
+  }
+
+  .card-footer {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .left-actions, .right-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .btn {
+    font-family: inherit;
+    font-weight: 700;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    border: none;
+  }
+
+  .btn-primary {
+    background: var(--primary);
+    color: #fff;
+    padding: 11px 24px;
+    font-size: 15px;
+    box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
+  }
+
+  .btn-primary:hover { background: var(--primary-dark); }
+
+  .btn-next {
+    background: var(--accent);
+    color: #fff;
+    padding: 11px 24px;
+    font-size: 15px;
+    box-shadow: 0 2px 6px rgba(15, 118, 110, 0.25);
+  }
+
+  .btn-next:hover { background: #115e59; }
+
+  .btn-secondary {
+    background: #fff;
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 9px 14px;
+    font-size: 13.5px;
+    font-weight: 600;
+  }
+
+  .btn-secondary:hover { background: #f1f5f9; }
+  .btn-secondary:disabled { opacity: 0.45; cursor: not-allowed; }
+
+  .btn-ok-mini {
+    background: var(--ok-bg);
+    color: var(--ok);
+    border: 1px solid #86efac;
+    padding: 6px 12px;
+    font-size: 12.5px;
+    border-radius: 8px;
+  }
+
+  .btn-ok-mini.active-grade {
+    background: var(--ok);
+    color: #fff;
+    border-color: var(--ok);
+  }
+
+  .btn-ng-mini {
+    background: var(--ng-bg);
+    color: var(--ng);
+    border: 1px solid #fca5a5;
+    padding: 6px 12px;
+    font-size: 12.5px;
+    border-radius: 8px;
+  }
+
+  .btn-ng-mini.active-grade {
+    background: var(--ng);
+    color: #fff;
+    border-color: var(--ng);
+  }
+
+  .jump-wrap {
+    margin-top: 18px;
+    background: var(--card);
+    border-radius: 12px;
+    padding: 14px 16px;
+    border: 1px solid #e2e8f0;
+  }
+
+  .jump-title {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  .jump-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .jump-dot {
+    width: 34px;
+    height: 30px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: inherit;
+  }
+
+  .jump-dot.current {
+    border-color: var(--primary);
+    background: var(--primary);
+    color: #fff;
+  }
+
+  .jump-dot.done-ok {
+    background: var(--ok-bg);
+    border-color: #86efac;
+    color: var(--ok);
+  }
+
+  .jump-dot.done-ng {
+    background: var(--ng-bg);
+    border-color: #fca5a5;
+    color: var(--ng);
+  }
+
+  .jump-dot.current.done-ok,
+  .jump-dot.current.done-ng {
+    box-shadow: 0 0 0 2px var(--primary);
+  }
+
+  .result-card {
+    display: none;
+    background: var(--card);
+    border-radius: 16px;
+    padding: 28px 24px;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
+    border: 2px solid var(--primary);
+    text-align: center;
+  }
+
+  .result-card.show { display: block; }
+
+  .result-score {
+    font-size: 42px;
+    font-weight: 900;
+    color: var(--primary-dark);
+    margin: 8px 0 4px;
+  }
+
+  .result-sub {
+    font-size: 15px;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+
+  .chapter-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
+    gap: 10px;
+    margin-bottom: 22px;
+    text-align: left;
+  }
+
+  .stat-chip {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  .result-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  @media (max-width: 560px) {
+    .q-card { padding: 18px 16px; }
+    .q-body { font-size: 15.5px; }
+    .card-footer { flex-direction: column; align-items: stretch; }
+    .left-actions, .right-actions { justify-content: space-between; }
+    .btn-primary, .btn-next { flex: 1; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="badge">中学1年 理科 2学期末テスト対策</div>
+    <h1>「記述問題 ＆ ひっかけ○×」1問1答ステップテスト</h1>
+    <p class="subtitle">理由・仕組みの短文記述（必須キーワード判定つき）と、紛らわしい用語の○×問題に特化（全26問）</p>
+  </div>
+</header>
+
+<div class="container">
+  <div class="course-bar">
+    <div class="filter-row" id="filterRow">
+      <button class="filter-btn active" data-filter="all">すべて (26問)</button>
+      <button class="filter-btn" data-filter="desc">✍️ 短文記述のみ (10)</button>
+      <button class="filter-btn" data-filter="ox">⭕❌ ひっかけ○×のみ (16)</button>
+      <button class="filter-btn" data-filter="ch1">1章 物質の性質</button>
+      <button class="filter-btn" data-filter="ch2">2章 気体の性質</button>
+      <button class="filter-btn" data-filter="ch3">3章 水溶液</button>
+      <button class="filter-btn" data-filter="ch4">4章 状態変化・蒸留</button>
+    </div>
+  </div>
+
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-top">
+      <span class="progress-count" id="progressCount">第 1 問 / 全 26 問</span>
+      <span class="progress-score" id="progressScore">正解: 0 問（答え合わせ済み: 0）</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill" style="width: 3.8%;"></div>
+    </div>
+  </div>
+
+  <div id="questionArea"></div>
+
+  <div class="result-card" id="resultCard">
+    <div style="font-size: 14px; font-weight: 700; color: #2563eb;">おつかれさまでした！</div>
+    <div class="result-score" id="resultScore">0点</div>
+    <div class="result-sub" id="resultSub">0問正解 / 26問中</div>
+    <div class="chapter-stats" id="chapterStats"></div>
+    <div class="result-actions">
+      <button class="btn btn-primary" id="retryWrongBtn" style="display:none;">間違えた問題だけ解き直す</button>
+      <button class="btn btn-secondary" id="restartBtn">最初からやり直す</button>
+    </div>
+  </div>
+
+  <div class="jump-wrap" id="jumpWrap">
+    <div class="jump-title">問題番号ジャンプ（クリックで移動）</div>
+    <div class="jump-grid" id="jumpGrid"></div>
+  </div>
+</div>
+
+<script>
+const allQuestions = [
+  // ================= 短文記述問題 (10問) =================
+  {
+    id: 1,
+    kind: "desc",
+    chapter: "ch1",
+    chapterLabel: "1章 物質の性質",
+    important: true,
+    text: "【記述】ガスバーナーに火をつけたとき、炎の色が赤色であった。青い炎にするにはどうすればよいか。「ガス調節ねじ（下のねじ）」「空気調節ねじ（上のねじ）」という語を用いて簡単に書きなさい。",
+    modelAnswer: "ガス調節ねじをおさえたまま、空気調節ねじを少しずつゆるめる（開ける）。",
+    keywords: [
+      { label: "ガス調節ねじをおさえる", patterns: ["ガス調節ねじ", "下のねじ", "おさえ", "押さえ", "動かさない"] },
+      { label: "空気調節ねじをゆるめる（開ける）", patterns: ["空気調節ねじ", "上のねじ", "ゆるめ", "開け", "あけ"] }
+    ],
+    hint: "赤い炎は空気（酸素）不足が原因です。ガス調節ねじが一緒に回らないように気をつけながら操作します。",
+    explain: "赤い炎が出ているときは空気が足りていません。下の「ガス調節ねじ」が一緒に回ってしまわないようにおさえたまま、上の「空気調節ねじ」を少しずつゆるめて（開けて）空気を多く取り入れます。"
+  },
+  {
+    id: 2,
+    kind: "desc",
+    chapter: "ch1",
+    chapterLabel: "1章 物質の性質",
+    important: false,
+    text: "【記述】砂糖やかたくり粉を燃やした後、火が消えた燃焼さじを集気びんからとり出して、中の石灰水をよく振ると白くにごった。石灰水が変化したのはなぜか。簡単に書きなさい。",
+    modelAnswer: "物質が燃えて二酸化炭素が発生したから。",
+    keywords: [
+      { label: "燃えて（加熱されて）", patterns: ["燃え", "もえ", "加熱", "燃焼"] },
+      { label: "二酸化炭素が発生した", patterns: ["二酸化炭素", "CO2"] }
+    ],
+    hint: "石灰水を白くにごらせる気体は何だったでしょうか？",
+    explain: "砂糖やかたくり粉のように炭素をふくむ物質（有機物）は、燃えると二酸化炭素を発生します。この「二酸化炭素」が石灰水と反応して白くにごります。"
+  },
+  {
+    id: 3,
+    kind: "desc",
+    chapter: "ch1",
+    chapterLabel: "1章 物質の性質",
+    important: false,
+    text: "【記述】アルミニウム缶とスチール缶にそれぞれU字型磁石を近づけると、スチール缶は磁石につくが、アルミニウム缶は磁石につかなかった。このことからどのようなことがわかるか。「金属共通の性質」という語を使って書きなさい。",
+    modelAnswer: "磁石につく性質は、金属共通の性質ではない。",
+    keywords: [
+      { label: "磁石につく性質", patterns: ["磁石", "じしゃく"] },
+      { label: "金属共通の性質ではない", patterns: ["金属共通の性質ではない", "共通の性質ではない", "共通ではない", "金属共通ではない"] }
+    ],
+    hint: "アルミニウムも金属なのに磁石につきませんでしたね。つまり「磁石につくこと」は…？",
+    explain: "鉄（スチール缶）などは磁石につきますが、アルミニウム・銅・金・銀などの金属は磁石につきません。したがって「磁石につく性質は金属共通の性質ではない」ことがわかります。"
+  },
+  {
+    id: 4,
+    kind: "desc",
+    chapter: "ch2",
+    chapterLabel: "2章 気体の性質",
+    important: true,
+    text: "【記述・重要テーマ】水上置換法で酸素や水素などの気体を集めるとき、はじめに出てくる試験管1〜2本分の気体は捨ててから集める。その理由を簡単に書きなさい。",
+    modelAnswer: "はじめに出てきた気体には、もともとフラスコやガラス管の中にあった空気が多くふくまれているから。",
+    keywords: [
+      { label: "もともと装置（フラスコ・ガラス管）内にあった", patterns: ["フラスコ", "ガラス管", "装置", "ビン", "びん", "中", "最初", "はじめ"] },
+      { label: "空気が多くふくまれているから", patterns: ["空気", "くうき"] }
+    ],
+    hint: "反応で発生した気体が、最初から容器の中にたまっていたものを押し出してきます。",
+    explain: "試験で最もよく狙われる記述問題の1つです！発生した気体が、もともとフラスコやガラス管の中に残っていた「空気」を押し出して出てくるため、最初の1〜2本分は空気が多く混ざっており、純粋な気体を集めるために捨てます。"
+  },
+  {
+    id: 5,
+    kind: "desc",
+    chapter: "ch3",
+    chapterLabel: "3章 水溶液",
+    important: true,
+    text: "【記述】60℃の水100gに塩化ナトリウムをとけるだけとかした水溶液を、20℃まで冷やしても結晶（固体）はほとんど出てこなかった。その理由を「温度」「とける量（溶解度）」にふれて書きなさい。",
+    modelAnswer: "塩化ナトリウムは、水の温度を下げても（変えても）水にとける量（溶解度）があまり変わらないから。",
+    keywords: [
+      { label: "温度を下げても（変えても）", patterns: ["温度", "冷やし", "下げ", "変え"] },
+      { label: "溶解度（とける量）があまり変わらない", patterns: ["溶解度", "とける量", "溶ける量", "変わらない", "変化が小さ", "ほとんど同じ"] }
+    ],
+    hint: "ミョウバンや硝酸カリウムは温度が下がるととける量がぐっと減りますが、塩化ナトリウムの溶解度曲線はどうなっていましたか？",
+    explain: "塩化ナトリウムは温度を変えても溶解度があまり変化しない（グラフがほぼ水平に近い）ため、温度を下げても結晶がほとんど出てきません。塩化ナトリウムを多く取り出すには「水を蒸発させる」方法を使います。"
+  },
+  {
+    id: 6,
+    kind: "desc",
+    chapter: "ch3",
+    chapterLabel: "3章 水溶液",
+    important: false,
+    text: "【記述】ろ過を行うとき、ろ過する液体を「ガラス棒につたわせて静かに注ぐ」ことと、「ろうとの足の切り口の長いほうをビーカーの内壁につける」のは、それぞれどのようなことを防ぐためか。共通する目的を書きなさい。",
+    modelAnswer: "液体が飛び散るのを防ぐため。",
+    keywords: [
+      { label: "液体が飛び散る（はねる）のを防ぐ", patterns: ["飛び散", "とびち", "はね", "こぼれ"] }
+    ],
+    hint: "高いところからそのまま液を落とすとどうなりますか？",
+    explain: "ガラス棒につたわせて注ぐのも、ろうとの足の長いほうをビーカーの内壁につけるのも、どちらも液体が勢いよく落ちて「飛び散る（はねる）のを防ぐため」です。"
+  },
+  {
+    id: 7,
+    kind: "desc",
+    chapter: "ch4",
+    chapterLabel: "4章 状態変化・蒸留",
+    important: true,
+    text: "【記述・重要テーマ】ポリエチレンの袋に液体のエタノールを少量入れて口を閉じ、熱湯をかけると袋が大きくふくらんだ。この理由を「粒子の運動」「粒子どうしの間隔」などの語を用いて説明しなさい。（※粒子の数にも注意）",
+    modelAnswer: "液体から気体に状態変化して、粒子の数は変わらないが、粒子の運動が激しくなり、粒子どうしの間隔（すき間）が大きくなるから。",
+    keywords: [
+      { label: "液体から気体に状態変化（粒子の運動が激しくなる）", patterns: ["運動", "激しく", "動き", "気体"] },
+      { label: "粒子どうしの間隔（すき間）が大きくなる", patterns: ["間隔", "すき間", "すきま", "距離", "広が", "大きく"] }
+    ],
+    hint: "袋を閉じているので粒子の「数」は増えません。粒子1つ1つの動きと、粒子どうしの間はどう変化しますか？",
+    explain: "こちらも頻出の重要テーマです！熱湯で温められて液体から気体になると、①粒子の「数」や「大きさ」は変わらない、②粒子の「運動」が激しくなる、③粒子どうしの「間隔（すき間）」が大きくなる、の3点を押さえましょう。"
+  },
+  {
+    id: 8,
+    kind: "desc",
+    chapter: "ch4",
+    chapterLabel: "4章 状態変化・蒸留",
+    important: true,
+    text: "【記述】寒い冬に湖の水面付近が凍っても、氷の下の魚が生きているのはなぜか。「密度」「浮く」という語を用いて説明しなさい。",
+    modelAnswer: "氷は水より密度が小さいため水に浮き、湖の下の水が冷たい空気にふれにくくなって凍りにくくなるから。",
+    keywords: [
+      { label: "氷は水より密度が小さい", patterns: ["密度が小さ", "密度は小さ"] },
+      { label: "水に浮く（ふたになり冷たい空気にふれにくい）", patterns: ["浮く", "うく", "浮い", "冷たい空気", "凍りにく"] }
+    ],
+    hint: "水は例外的に凍ると体積が大きくなります。同じ質量で体積が大きくなると、密度はどうなりますか？",
+    explain: "水は液体から固体（氷）になると体積が増えるため、密度が水（1.00g/cm³）より小さく（約0.92g/cm³）なります。その結果、氷が水面に「浮く」ため、下の水が冷たい空気にふれにくくなり底まで凍りません。"
+  },
+  {
+    id: 9,
+    kind: "desc",
+    chapter: "ch4",
+    chapterLabel: "4章 状態変化・蒸留",
+    important: true,
+    text: "【記述】枝つき試験管でエタノールや混合物を加熱して蒸留する実験で、火を消すときは、必ず先にガラス管の先を試験管にたまった液体から抜いておく。これはどのようなことを防ぐためか。",
+    modelAnswer: "冷えて（試験管内の圧力が下がり）試験管にたまった液体が加熱しているほうへ逆流するのを防ぐため。",
+    keywords: [
+      { label: "液体が加熱しているほうへ（管を通って）", patterns: ["液体", "試験管", "加熱", "フラスコ"] },
+      { label: "逆流するのを防ぐため", patterns: ["逆流", "ぎゃくりゅう"] }
+    ],
+    hint: "火を消すと中の気体が冷えて体積が小さくなります。するとガラス管の先が液体につかっていたらどうなりますか？",
+    explain: "火を消すと加熱していた容器の中の気体が冷えて縮み、試験管にたまった液体がガラス管を通って吸い上げられて（逆流して）しまいます。熱いガラス容器に冷たい液が入ると割れる危険があるため、必ず先にガラス管を抜きます。"
+  },
+  {
+    id: 10,
+    kind: "desc",
+    chapter: "ch4",
+    chapterLabel: "4章 状態変化・蒸留",
+    important: false,
+    text: "【記述】水（沸点100℃）とエタノール（沸点78℃）の混合物を加熱して蒸留するとき、はじめに出てくる液体（最初の試験管）にはエタノールが多くふくまれる。その理由を「沸点」という語を用いて説明しなさい。",
+    modelAnswer: "エタノールは水よりも沸点が低く、水より先に沸騰して気体になるから。",
+    keywords: [
+      { label: "エタノールは水より沸点が低い", patterns: ["沸点が低", "沸点は低", "78"] },
+      { label: "先に気体になる（沸騰する）", patterns: ["先に", "気体", "沸騰"] }
+    ],
+    hint: "エタノールは78℃、水は100℃で沸騰します。混合物を温めていくとどちらが先に気体になりやすいですか？",
+    explain: "「蒸留」は物質の「沸点の違い」を利用して混合物を分離する方法です。沸点の低いエタノール（78℃）のほうが水（100℃）よりも先に多く気体になって出てくるため、最初の試験管にはエタノールが多く集まります。"
+  },
+
+  // ================= ひっかけ○×問題 (16問) =================
+  {
+    id: 11,
+    kind: "ox",
+    chapter: "ch1",
+    chapterLabel: "1章 物質の性質",
+    important: true,
+    text: "【○×】ガラスコップとプラスチックコップを「コップ」と呼ぶときのように、使う目的や形で区別したときの名称を「物質」という。",
+    answer: false,
+    pairLabel: "対比：物体（形・目的） ⇔ 物質（材料そのもの）",
+    explain: "【答え：×】使う目的や形で区別したときの名称は「物体」です。「ガラス」や「プラスチック」のように、ものをつくっている材料そのもので区別したときの名称が「物質」です。"
+  },
+  {
+    id: 12,
+    kind: "ox",
+    chapter: "ch1",
+    chapterLabel: "1章 物質の性質",
+    important: true,
+    text: "【○×】ガスバーナーの火を消すときは、まず「空気調節ねじ（上のねじ）」をしめ、次に「ガス調節ねじ（下のねじ）」、そのあとコック、元栓の順にしめる。",
+    answer: true,
+    pairLabel: "対比：火をつける順（元栓→コック→ガスねじ→空気ねじ） ⇔ 消す順（空気ねじ→ガスねじ→コック→元栓）",
+    explain: "【答え：○】火を消すときは「上（空気）→ 下（ガス）→ コック → 元栓」の順に閉めます。火をつけるときとちょうど逆の順番になるのがポイントです。"
+  },
+  {
+    id: 13,
+    kind: "ox",
+    chapter: "ch1",
+    chapterLabel: "1章 物質の性質",
+    important: true,
+    text: "【○×】砂糖やかたくり粉、エタノールのように炭素をふくむ物質は「無機物」であり、食塩や鉄のように炭素をふくまない物質は「有機物」である。",
+    answer: false,
+    pairLabel: "対比：有機物（炭素をふくむ・燃える） ⇔ 無機物（それ以外）",
+    explain: "【答え：×】逆です！炭素をふくみ、燃えると二酸化炭素と水が発生する物質が「有機物」（砂糖、かたくり粉、エタノール、プラスチック、ろうなど）で、それ以外が「無機物」（食塩、鉄、ガラス、水、二酸化炭素など）です。"
+  },
+  {
+    id: 14,
+    kind: "ox",
+    chapter: "ch1",
+    chapterLabel: "1章 物質の性質",
+    important: true,
+    text: "【○×】金属に共通する性質のうち、たたいてうすく広げられる性質を「延性（えんせい）」、細長く引きのばせる性質を「展性（てんせい）」という。",
+    answer: false,
+    pairLabel: "対比：展性（たたいて広がる） ⇔ 延性（引きのばせる）",
+    explain: "【答え：×】漢字の意味に注目すると間違えません！「展」は展示・展開のように“広げる”という意味なので、たたいて広げられる性質が「展性」。「延」は延長のように“のばす”という意味なので、引きのばせる性質が「延性」です。"
+  },
+  {
+    id: 15,
+    kind: "ox",
+    chapter: "ch1",
+    chapterLabel: "1章 物質の性質",
+    important: false,
+    text: "【○×】メスシリンダーで液体の体積をはかるときは、液面のいちばん低い平らな部分を真横から見て、最小目盛りの10分の1まで目分量で読みとる。",
+    answer: true,
+    pairLabel: "注意点：平らな部分の底を真横から見る・最小目盛りの1/10まで読む",
+    explain: "【答え：○】液面は壁面付近が少し上がって凹んでいるため、中央のいちばん低い平らな部分に目の高さを合わせて真横から読みます。最小目盛りが1cm³なら0.1cm³の位まで読みます。"
+  },
+  {
+    id: 16,
+    kind: "ox",
+    chapter: "ch1",
+    chapterLabel: "1章 物質の性質",
+    important: true,
+    text: "【○×】同じ体積の物体を比べたとき、密度が大きい物質ほど質量は小さく、密度が小さい物質ほど質量は大きい。",
+    answer: false,
+    pairLabel: "公式：質量 ＝ 密度 × 体積 ／ 体積 ＝ 質量 ÷ 密度",
+    explain: "【答え：×】密度は「1cm³あたりの質量」のことです。したがって同じ体積なら、密度が大きい物質ほど質量も大きくなります。（※「同じ質量」で比べたときに、密度が小さい物質ほど「体積」が大きくなります！）"
+  },
+  {
+    id: 17,
+    kind: "ox",
+    chapter: "ch2",
+    chapterLabel: "2章 気体の性質",
+    important: true,
+    text: "【○×】水にとけやすく、空気より密度が小さいアンモニアを集めるには「下方置換法」を用いる。",
+    answer: false,
+    pairLabel: "対比：上方置換法（空気より軽い） ⇔ 下方置換法（空気より重い）",
+    explain: "【答え：×】空気より密度が小さい（軽い）気体は上に向かって昇っていくため、試験管の口を下に向けて集める「上方置換法」を用います。空気より重い気体は「下方置換法」です。"
+  },
+  {
+    id: 18,
+    kind: "ox",
+    chapter: "ch2",
+    chapterLabel: "2章 気体の性質",
+    important: true,
+    text: "【○×】酸素は「ものを燃やすはたらき」があるため、酸素そのものに火を近づけると、酸素自体がポンッと音を立てて激しく燃える。",
+    answer: false,
+    pairLabel: "対比：酸素（他の物質を燃やす＝助燃性） ⇔ 水素（気体自身が音を立てて燃える＝可燃性）",
+    explain: "【答え：×】ひっかけの定番です！酸素には物質を燃やすはたらき（助燃性）はありますが、酸素自身は燃えません。火を近づけるとポンッと音を立てて燃え、水ができるのは「水素」です。"
+  },
+  {
+    id: 19,
+    kind: "ox",
+    chapter: "ch2",
+    chapterLabel: "2章 気体の性質",
+    important: false,
+    text: "【○×】二酸化炭素は水に少しとけるが、発生量が多ければ水上置換法で集めることができる。また、水に少しとけた水溶液は酸性を示す。",
+    answer: true,
+    pairLabel: "対比：二酸化炭素の水溶液（酸性） ⇔ アンモニアの水溶液（アルカリ性）",
+    explain: "【答え：○】二酸化炭素は水に「少し」とけるため、下方置換法でも水上置換法でも集められます（実験では純粋に集めやすい水上置換法がよく使われます）。また炭酸水なので弱い酸性を示します。"
+  },
+  {
+    id: 20,
+    kind: "ox",
+    chapter: "ch3",
+    chapterLabel: "3章 水溶液",
+    important: true,
+    text: "【○×】砂糖水において、水にとけている「砂糖」を「溶媒」といい、砂糖をとかしている「水」を「溶質」という。",
+    answer: false,
+    pairLabel: "対比：溶質（とけている物質） ⇔ 溶媒（とかしている液体） ⇔ 溶液（全体）",
+    explain: "【答え：×】逆です！とけている物質（砂糖）が「溶質」、とかしている液体（水）が「溶媒」、溶質が溶媒にとけた液全体（砂糖水）が「溶液」です。"
+  },
+  {
+    id: 21,
+    kind: "ox",
+    chapter: "ch3",
+    chapterLabel: "3章 水溶液",
+    important: true,
+    text: "【○×】水80gに食塩20gをすべてとかした食塩水の質量パーセント濃度は、20 ÷ 80 × 100 ＝ 25% である。",
+    answer: false,
+    pairLabel: "公式：質量パーセント濃度[%] ＝ 溶質[g] ÷ 溶液(溶質＋溶媒)[g] × 100",
+    explain: "【答え：×】計算で一番多いひっかけです！分母は「水（溶媒）の質量」ではなく「食塩水（溶液）全体の質量」です。溶液＝80＋20＝100gなので、20 ÷ 100 × 100 ＝ 20% になります。"
+  },
+  {
+    id: 22,
+    kind: "ox",
+    chapter: "ch3",
+    chapterLabel: "3章 水溶液",
+    important: false,
+    text: "【○×】100gの水に物質をとかして飽和水溶液にしたとき、とけた溶質の質量の値をその物質の「溶解度」という。",
+    answer: true,
+    pairLabel: "対比：飽和（限度までとけた状態） ⇔ 溶解度（100gの水にとける限度の質量）",
+    explain: "【答え：○】その通りです。「100gの水に」という基準がポイントです。溶解度と温度の関係を表したグラフを「溶解度曲線」といいます。"
+  },
+  {
+    id: 23,
+    kind: "ox",
+    chapter: "ch3",
+    chapterLabel: "3章 水溶液",
+    important: false,
+    text: "【○×】食塩水や空気、海水のように複数の物質が混ざり合ったものを「混合物」といい、水やエタノールのように1種類の物質からできているものを「純物質（純粋な物質）」という。",
+    answer: true,
+    pairLabel: "対比：純物質（1種類の物質） ⇔ 混合物（複数の物質が混ざったもの）",
+    explain: "【答え：○】その通りです。「塩酸（塩化水素が水にとけたもの）」「10円硬貨（銅などに他の金属が混ざっている）」「赤ワイン」なども混合物です。"
+  },
+  {
+    id: 24,
+    kind: "ox",
+    chapter: "ch4",
+    chapterLabel: "4章 状態変化・蒸留",
+    important: true,
+    text: "【○×】ふつうの物質は「気体 → 液体 → 固体」と状態変化すると体積が小さくなるが、水は例外で、液体の水から固体の氷になるとき体積が大きくなる。",
+    answer: true,
+    pairLabel: "対比：ふつうの物質（固体＜液体＜気体） ⇔ 水の例外（液体＜固体＜気体）",
+    explain: "【答え：○】水は凍ると体積が約1.1倍に大きくなります（冷凍庫でペットボトルがふくらむのと同じ）。ただし質量は変わりません。"
+  },
+  {
+    id: 25,
+    kind: "ox",
+    chapter: "ch4",
+    chapterLabel: "4章 状態変化・蒸留",
+    important: true,
+    text: "【○×】加熱する水の量を2倍に増やすと、沸騰するまでの時間は長くなり、水が沸騰する温度（沸点）も100℃より高くなる。",
+    answer: false,
+    pairLabel: "重要ルール：沸点・融点は「物質の種類」で決まり、「量」には関係しない",
+    explain: "【答え：×】量を増やすと沸騰し始めるまでの「時間」は長くなりますが、純物質の沸点（水は100℃）や融点（水は0℃）の温度自体は物質の種類によって決まっているため、量を変えても変化しません。"
+  },
+  {
+    id: 26,
+    kind: "ox",
+    chapter: "ch4",
+    chapterLabel: "4章 状態変化・蒸留",
+    important: true,
+    text: "【○×】純粋な水やエタノールを加熱すると沸騰中は温度が一定になるが、水とエタノールの混合物を加熱して沸騰させると、沸騰中も温度は一定にならずに上がり続ける。",
+    answer: true,
+    pairLabel: "対比：純物質の加熱（沸騰中は温度一定） ⇔ 混合物の加熱（温度が上がり続ける）",
+    explain: "【答え：○】グラフの形を見分けるときの重要ポイントです！純物質は沸点（融点）でグラフが水平（一定）になりますが、混合物は沸点が定まらずゆるやかに温度が上がり続けます。"
+  }
+];
+
+const state = {
+  filter: "all",
+  activeList: [...allQuestions],
+  currentIndex: 0,
+  textInputs: {}, // q.id -> string
+  oxChoices: {},  // q.id -> boolean (selected true/false)
+  checked: {},    // q.id -> boolean
+  results: {},    // q.id -> boolean
+  showHint: false,
+  finished: false
+};
+
+function normalizeText(str) {
+  return String(str || "")
+    .replace(/[Ａ-Ｚａ-ｚ０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xFEE0))
+    .replace(/\s+/g, "");
+}
+
+function setCourse(filter) {
+  state.filter = filter;
+  if (filter === "all") {
+    state.activeList = [...allQuestions];
+  } else if (filter === "desc") {
+    state.activeList = allQuestions.filter(q => q.kind === "desc");
+  } else if (filter === "ox") {
+    state.activeList = allQuestions.filter(q => q.kind === "ox");
+  } else {
+    state.activeList = allQuestions.filter(q => q.chapter === filter);
+  }
+  state.currentIndex = 0;
+  state.showHint = false;
+  state.finished = false;
+  render();
+}
+
+function checkDescAnswer() {
+  const q = state.activeList[state.currentIndex];
+  if (!q || q.kind !== "desc") return;
+  const ta = document.getElementById("descInput");
+  if (ta) state.textInputs[q.id] = ta.value;
+
+  const userNorm = normalizeText(state.textInputs[q.id] || "");
+  let hitCount = 0;
+  q.keywords.forEach(kw => {
+    const hit = kw.patterns.some(p => userNorm.includes(normalizeText(p)));
+    if (hit) hitCount++;
+  });
+
+  state.checked[q.id] = true;
+  // Auto-mark correct if all required keyword groups are hit (user can still override)
+  state.results[q.id] = (userNorm.length > 0 && hitCount === q.keywords.length);
+  render();
+}
+
+function selectOX(val) {
+  const q = state.activeList[state.currentIndex];
+  if (!q || q.kind !== "ox" || state.checked[q.id]) return;
+  state.oxChoices[q.id] = val;
+  state.checked[q.id] = true;
+  state.results[q.id] = (val === q.answer);
+  render();
+}
+
+function setDescGrade(qId, isOk) {
+  state.results[qId] = isOk;
+  render();
+}
+
+function toggleHint() {
+  state.showHint = !state.showHint;
+  const el = document.getElementById("hintBox");
+  if (el) el.classList.toggle("show", state.showHint);
+}
+
+function goNext() {
+  if (state.currentIndex < state.activeList.length - 1) {
+    state.currentIndex++;
+    state.showHint = false;
+    render();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  } else {
+    state.finished = true;
+    render();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+}
+
+function goPrev() {
+  if (state.currentIndex > 0) {
+    state.currentIndex--;
+    state.showHint = false;
+    render();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+}
+
+function jumpTo(idx) {
+  state.finished = false;
+  state.currentIndex = idx;
+  state.showHint = false;
+  render();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function restartCourse(onlyWrong = false) {
+  if (onlyWrong) {
+    const wrongList = state.activeList.filter(q => state.results[q.id] !== true);
+    if (wrongList.length === 0) return;
+    wrongList.forEach(q => {
+      delete state.checked[q.id];
+      delete state.results[q.id];
+      delete state.oxChoices[q.id];
+      delete state.textInputs[q.id];
+    });
+    state.activeList = wrongList;
+  } else {
+    state.activeList.forEach(q => {
+      delete state.checked[q.id];
+      delete state.results[q.id];
+      delete state.oxChoices[q.id];
+      delete state.textInputs[q.id];
+    });
+  }
+  state.currentIndex = 0;
+  state.showHint = false;
+  state.finished = false;
+  render();
+}
+
+function render() {
+  const total = state.activeList.length;
+  const checkedCount = state.activeList.filter(q => state.checked[q.id]).length;
+  const okCount = state.activeList.filter(q => state.checked[q.id] && state.results[q.id] === true).length;
+
+  const progressWrap = document.getElementById("progressWrap");
+  const questionArea = document.getElementById("questionArea");
+  const resultCard = document.getElementById("resultCard");
+
+  if (state.finished) {
+    progressWrap.style.display = "none";
+    questionArea.innerHTML = "";
+    renderResult(okCount, total);
+    resultCard.classList.add("show");
+  } else {
+    progressWrap.style.display = "block";
+    resultCard.classList.remove("show");
+
+    const pct = total > 0 ? Math.round(((state.currentIndex + 1) / total) * 100) : 0;
+    document.getElementById("progressCount").textContent = `第 ${state.currentIndex + 1} 問 / 全 ${total} 問`;
+    document.getElementById("progressScore").textContent = `正解: ${okCount} 問（答え合わせ済み: ${checkedCount}）`;
+    document.getElementById("progressFill").style.width = `${pct}%`;
+
+    renderCurrentQuestion();
+  }
+
+  renderJumpGrid();
+}
+
+function renderCurrentQuestion() {
+  const area = document.getElementById("questionArea");
+  const q = state.activeList[state.currentIndex];
+  if (!q) {
+    area.innerHTML = "";
+    return;
+  }
+
+  const isChecked = !!state.checked[q.id];
+  const isOk = isChecked && state.results[q.id] === true;
+  const isLast = state.currentIndex === state.activeList.length - 1;
+
+  const typeBadge = q.kind === "desc"
+    ? `<span class="q-type-desc">✍️ 短文記述</span>`
+    : `<span class="q-type-ox">⭕❌ ひっかけ○×</span>`;
+
+  const impBadge = q.important
+    ? `<span class="q-important">よく出る重要</span>`
+    : "";
+
+  const statusHtml = isChecked
+    ? (isOk ? `<span class="q-status ok">⭕ 正解</span>` : `<span class="q-status ng">❌ 要復習</span>`)
+    : "";
+
+  let interactionHtml = "";
+  let answerDetailHtml = "";
+
+  if (q.kind === "desc") {
+    const val = state.textInputs[q.id] || "";
+    interactionHtml = `
+      <textarea id="descInput" class="desc-textarea" placeholder="ここに理由や仕組みを自分の言葉で入力してから「答え合わせ」を押してください（頭の中で考えてからそのまま答え合わせすることもできます）" ${isChecked ? "disabled" : ""}>${escapeHtml(val)}</textarea>
+    `;
+
+    if (isChecked) {
+      const userNorm = normalizeText(val);
+      const kwPills = q.keywords.map(kw => {
+        const hit = userNorm.length > 0 && kw.patterns.some(p => userNorm.includes(normalizeText(p)));
+        return `<span class="kw-pill ${hit ? "hit" : "miss"}">${hit ? "✓" : "・"} ${kw.label}</span>`;
+      }).join("");
+
+      answerDetailHtml = `
+        <div class="model-answer">模範解答：${q.modelAnswer}</div>
+        <div class="kw-section">
+          <div class="kw-title">📌 記述に含めるべき必須キーワード（減点されないためのチェック）</div>
+          <div class="kw-list">${kwPills}</div>
+        </div>
+        <div class="explain">${q.explain}</div>
+        <div class="self-grade-row">
+          <span class="self-grade-label">自己採点：</span>
+          <button class="btn-ok-mini ${isOk ? "active-grade" : ""}" onclick="setDescGrade(${q.id}, true)">⭕ 必須キーワードを押さえた（正解）</button>
+          <button class="btn-ng-mini ${!isOk ? "active-grade" : ""}" onclick="setDescGrade(${q.id}, false)">❌ 抜け・誤りあり（要復習）</button>
+        </div>
+      `;
+    }
+  } else {
+    const chosen = state.oxChoices[q.id];
+    let tCls = "ox-btn";
+    let fCls = "ox-btn";
+    if (isChecked) {
+      if (q.answer === true) tCls += " correct";
+      else if (chosen === true) tCls += " wrong";
+
+      if (q.answer === false) fCls += " correct";
+      else if (chosen === false) fCls += " wrong";
+    }
+
+    interactionHtml = `
+      <div class="ox-grid">
+        <button class="${tCls}" ${isChecked ? "disabled" : ""} onclick="selectOX(true)">
+          <span class="ox-symbol">⭕</span>
+          <span class="ox-label">正しい (1)</span>
+        </button>
+        <button class="${fCls}" ${isChecked ? "disabled" : ""} onclick="selectOX(false)">
+          <span class="ox-symbol">❌</span>
+          <span class="ox-label">誤り (2)</span>
+        </button>
+      </div>
+    `;
+
+    if (isChecked) {
+      answerDetailHtml = `
+        <div class="pair-box">🔍 ひっかけ・対比ポイント：${q.pairLabel}</div>
+        <div class="explain">${q.explain}</div>
+      `;
+    }
+  }
+
+  let rightActionHtml = "";
+  if (q.kind === "desc" && !isChecked) {
+    rightActionHtml = `<button class="btn btn-primary" id="checkBtn">答え合わせ・解説を見る</button>`;
+  } else if (isChecked) {
+    rightActionHtml = `<button class="btn btn-next" id="nextBtn">${isLast ? "結果を見る 🎉" : "次の問題へ →"}</button>`;
+  }
+
+  area.innerHTML = `
+    <div class="q-card ${isChecked ? (isOk ? "is-correct" : "is-wrong") : ""}">
+      <div class="q-header">
+        <span class="q-num">問 ${q.id}</span>
+        <span class="q-tag">${q.chapterLabel}</span>
+        ${typeBadge}
+        ${impBadge}
+        ${statusHtml}
+      </div>
+      <div class="q-body">${q.text}</div>
+      ${interactionHtml}
+      <div class="hint-box ${state.showHint ? "show" : ""}" id="hintBox"><strong>💡 ヒント：</strong>${q.hint || ""}</div>
+      <div class="answer-box ${isChecked ? ("show " + (isOk ? "is-ok" : "is-ng")) : ""}" id="answerBox">
+        ${answerDetailHtml}
+      </div>
+      <div class="card-footer">
+        <div class="left-actions">
+          <button class="btn btn-secondary" onclick="goPrev()" ${state.currentIndex === 0 ? "disabled" : ""}>← 前の問題</button>
+          ${(!isChecked && q.hint) ? `<button class="btn btn-secondary" onclick="toggleHint()">💡 ヒント</button>` : ""}
+        </div>
+        <div class="right-actions">
+          ${rightActionHtml}
+        </div>
+      </div>
+    </div>
+  `;
+
+  if (q.kind === "desc" && !isChecked) {
+    const ta = document.getElementById("descInput");
+    if (ta) {
+      ta.addEventListener("input", e => {
+        state.textInputs[q.id] = e.target.value;
+      });
+    }
+    const checkBtn = document.getElementById("checkBtn");
+    if (checkBtn) checkBtn.addEventListener("click", checkDescAnswer);
+  } else if (isChecked) {
+    const nextBtn = document.getElementById("nextBtn");
+    if (nextBtn) {
+      nextBtn.addEventListener("click", goNext);
+      nextBtn.focus();
+    }
+  }
+}
+
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/"/g, "&quot;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+function renderResult(okCount, total) {
+  const score = total > 0 ? Math.round((okCount / total) * 100) : 0;
+  document.getElementById("resultScore").textContent = `${score}点`;
+  document.getElementById("resultSub").textContent = `${okCount} 問正解 / ${total} 問中（正答率 ${score}%）`;
+
+  const descList = state.activeList.filter(q => q.kind === "desc");
+  const oxList = state.activeList.filter(q => q.kind === "ox");
+  const descOk = descList.filter(q => state.results[q.id] === true).length;
+  const oxOk = oxList.filter(q => state.results[q.id] === true).length;
+
+  const chMap = {
+    ch1: { label: "1章 物質の性質", ok: 0, total: 0 },
+    ch2: { label: "2章 気体の性質", ok: 0, total: 0 },
+    ch3: { label: "3章 水溶液", ok: 0, total: 0 },
+    ch4: { label: "4章 状態変化・蒸留", ok: 0, total: 0 }
+  };
+  state.activeList.forEach(q => {
+    chMap[q.chapter].total++;
+    if (state.results[q.id] === true) chMap[q.chapter].ok++;
+  });
+
+  const blocks = [];
+  if (descList.length > 0) {
+    const pct = Math.round((descOk / descList.length) * 100);
+    blocks.push(`<div class="stat-chip"><strong>✍️ 短文記述</strong><br>${descOk} / ${descList.length} 問 (${pct}%)</div>`);
+  }
+  if (oxList.length > 0) {
+    const pct = Math.round((oxOk / oxList.length) * 100);
+    blocks.push(`<div class="stat-chip"><strong>⭕❌ ひっかけ○×</strong><br>${oxOk} / ${oxList.length} 問 (${pct}%)</div>`);
+  }
+  Object.values(chMap).filter(s => s.total > 0).forEach(s => {
+    const pct = Math.round((s.ok / s.total) * 100);
+    blocks.push(`<div class="stat-chip"><strong>${s.label}</strong><br>${s.ok} / ${s.total} 問 (${pct}%)</div>`);
+  });
+
+  document.getElementById("chapterStats").innerHTML = blocks.join("");
+
+  const wrongCount = total - okCount;
+  const retryBtn = document.getElementById("retryWrongBtn");
+  if (wrongCount > 0) {
+    retryBtn.style.display = "inline-block";
+    retryBtn.textContent = `間違えた問題だけ解き直す (${wrongCount}問)`;
+  } else {
+    retryBtn.style.display = "none";
+  }
+}
+
+function renderJumpGrid() {
+  const grid = document.getElementById("jumpGrid");
+  grid.innerHTML = state.activeList.map((q, idx) => {
+    let cls = "jump-dot";
+    if (!state.finished && idx === state.currentIndex) cls += " current";
+    if (state.checked[q.id]) {
+      cls += state.results[q.id] === true ? " done-ok" : " done-ng";
+    }
+    return `<button class="${cls}" onclick="jumpTo(${idx})" title="問${q.id}">${idx + 1}</button>`;
+  }).join("");
+}
+
+document.getElementById("filterRow").addEventListener("click", e => {
+  const btn = e.target.closest(".filter-btn");
+  if (!btn) return;
+  document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+  setCourse(btn.dataset.filter);
+});
+
+document.addEventListener("keydown", e => {
+  if (state.finished) return;
+  const q = state.activeList[state.currentIndex];
+  if (!q) return;
+
+  if (q.kind === "ox" && !state.checked[q.id]) {
+    if (e.key === "1" || e.key.toLowerCase() === "o") {
+      selectOX(true);
+    } else if (e.key === "2" || e.key.toLowerCase() === "x") {
+      selectOX(false);
+    }
+  } else if (state.checked[q.id] && e.key === "Enter" && document.activeElement.tagName !== "TEXTAREA") {
+    e.preventDefault();
+    goNext();
+  }
+});
+
+document.getElementById("retryWrongBtn").addEventListener("click", () => restartCourse(true));
+document.getElementById("restartBtn").addEventListener("click", () => restartCourse(false));
+
+render();
+</script>
+</body>
+</html>

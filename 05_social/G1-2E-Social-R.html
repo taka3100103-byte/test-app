@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中1 社会（地理）2学期末テスト対策 記述・ひっかけ○× 攻略テスト</title>
+<style>
+  :root {
+    --bg: #f4f6fb;
+    --card: #ffffff;
+    --text: #1e293b;
+    --muted: #64748b;
+    --primary: #4f46e5;
+    --primary-dark: #4338ca;
+    --primary-light: #eef2ff;
+    --theme1: #0284c7;
+    --theme1-bg: #e0f2fe;
+    --theme2: #059669;
+    --theme2-bg: #d1fae5;
+    --ox: #d97706;
+    --ox-bg: #fef3c7;
+    --success: #16a34a;
+    --success-bg: #dcfce7;
+    --danger: #dc2626;
+    --danger-bg: #fee2e2;
+    --border: #e2e8f0;
+    --shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+    --radius: 14px;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+  }
+
+  header {
+    background: linear-gradient(135deg, #312e81 0%, #4f46e5 100%);
+    color: #fff;
+    padding: 24px 20px 20px;
+    box-shadow: 0 2px 10px rgba(49, 46, 129, 0.25);
+  }
+  .header-inner { max-width: 960px; margin: 0 auto; }
+  header h1 { margin: 0 0 6px; font-size: 1.45rem; letter-spacing: 0.02em; }
+  header p { margin: 0; font-size: 0.9rem; opacity: 0.92; }
+
+  .container { max-width: 960px; margin: 22px auto 60px; padding: 0 16px; }
+
+  .panel {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    box-shadow: var(--shadow);
+    margin-bottom: 18px;
+  }
+
+  .filter-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .tab-btn {
+    border: 1px solid var(--border);
+    background: #fff;
+    color: var(--text);
+    padding: 7px 13px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .tab-btn:hover { background: var(--primary-light); border-color: var(--primary); }
+  .tab-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+  .controls-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 8px;
+    border-top: 1px solid var(--border);
+  }
+
+  .btn {
+    border: none;
+    border-radius: 9px;
+    padding: 8px 14px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.05s ease;
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn-primary { background: var(--primary); color: #fff; }
+  .btn-primary:hover { background: var(--primary-dark); }
+  .btn-outline { background: #fff; color: var(--text); border: 1px solid var(--border); }
+  .btn-outline:hover { background: #f8fafc; }
+  .btn-success { background: var(--success); color: #fff; }
+  .btn-danger { background: var(--danger); color: #fff; }
+  .btn-warning { background: var(--ox-bg); color: #92400e; border: 1px solid #fcd34d; }
+
+  .progress-wrap { margin-top: 12px; }
+  .progress-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .progress-bar { width: 100%; height: 10px; background: #e2e8f0; border-radius: 999px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, #4f46e5, #10b981); width: 0%; transition: width 0.25s ease; }
+
+  .q-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow);
+    margin-bottom: 16px;
+  }
+  .q-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .badge-group { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .q-badge {
+    font-size: 0.76rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: var(--primary-light);
+    color: var(--primary-dark);
+  }
+  .badge-theme1 { background: var(--theme1-bg); color: #0369a1; }
+  .badge-theme2 { background: var(--theme2-bg); color: #047857; }
+  .badge-ox { background: var(--ox-bg); color: #b45309; }
+  .q-num { font-size: 0.84rem; font-weight: 700; color: var(--muted); }
+  .q-text { font-size: 1.03rem; font-weight: 700; margin: 0 0 14px; }
+
+  .desc-textarea {
+    width: 100%;
+    min-height: 76px;
+    padding: 12px;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 0.96rem;
+    resize: vertical;
+    transition: border-color 0.15s ease;
+  }
+  .desc-textarea:focus { outline: none; border-color: var(--primary); }
+
+  .desc-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+    align-items: center;
+  }
+
+  .ox-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .ox-btn {
+    padding: 14px;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    background: #fff;
+    font-size: 1.05rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .ox-btn:hover:not(:disabled) { border-color: var(--primary); background: var(--primary-light); }
+  .ox-btn.correct { border-color: var(--success); background: var(--success-bg); color: #14532d; }
+  .ox-btn.wrong { border-color: var(--danger); background: var(--danger-bg); color: #7f1d1d; }
+  .ox-btn:disabled { cursor: default; }
+
+  .answer-box {
+    margin-top: 14px;
+    padding: 14px 16px;
+    border-radius: 10px;
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--primary);
+    display: none;
+  }
+  .answer-box.show { display: block; }
+  .answer-box.ok { background: #f0fdf4; border-left-color: var(--success); }
+  .answer-box.ng { background: #fef2f2; border-left-color: var(--danger); }
+
+  .kw-section { margin: 8px 0 10px; }
+  .kw-title { font-size: 0.82rem; font-weight: 700; color: var(--muted); margin-bottom: 5px; }
+  .kw-list { display: flex; flex-wrap: wrap; gap: 6px; }
+  .kw-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.83rem;
+    font-weight: 700;
+    background: #e2e8f0;
+    color: #334155;
+  }
+  .kw-chip.hit { background: var(--success-bg); color: #15803d; border: 1px solid #86efac; }
+  .kw-chip.miss { background: #fff7ed; color: #c2410c; border: 1px solid #fdba74; }
+
+  .model-ans {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin: 8px 0;
+    font-size: 0.94rem;
+  }
+  .model-ans strong { color: var(--primary-dark); }
+  .exp-text { font-size: 0.9rem; color: #334155; margin-top: 6px; }
+
+  .self-grade {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px dashed #cbd5e1;
+  }
+  .self-grade span { font-size: 0.84rem; font-weight: 700; color: var(--muted); }
+
+  @media print {
+    header { background: #fff !important; color: #000 !important; border-bottom: 2px solid #000; }
+    .panel { display: none !important; }
+    .q-card { break-inside: avoid; box-shadow: none; border: 1px solid #94a3b8; }
+    .desc-actions, .self-grade { display: none !important; }
+    .desc-textarea { border: 1px solid #94a3b8; min-height: 60px; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <h1>中1 社会（地理）2学期末テスト対策：記述＆ひっかけ○×攻略</h1>
+    <p>出題範囲：アジア州・ヨーロッパ州・アフリカ州・北アメリカ州（短文記述14問 ＋ ひっかけ○×22問）</p>
+  </div>
+</header>
+
+<div class="container">
+  <div class="panel">
+    <div class="filter-label">① 対策タイプを選ぶ</div>
+    <div class="tabs" id="typeTabs">
+      <button class="tab-btn active" data-type="all">すべて（36問）</button>
+      <button class="tab-btn" data-type="theme1">🔥 重要テーマ① 産業・経済の仕組み（7問）</button>
+      <button class="tab-btn" data-type="theme2">🔥 重要テーマ② 環境・地域構造の課題（7問）</button>
+      <button class="tab-btn" data-type="desc">✍️ 短文記述すべて（14問）</button>
+      <button class="tab-btn" data-type="ox">⚡ ひっかけ○×問題（22問）</button>
+    </div>
+
+    <div class="filter-label">② 単元で絞り込む</div>
+    <div class="tabs" id="unitTabs">
+      <button class="tab-btn active" data-unit="all">全単元</button>
+      <button class="tab-btn" data-unit="asia">第1章 アジア州</button>
+      <button class="tab-btn" data-unit="europe">第2章 ヨーロッパ州</button>
+      <button class="tab-btn" data-unit="africa">第3章 アフリカ州</button>
+      <button class="tab-btn" data-unit="namerica">第4章 北アメリカ州</button>
+    </div>
+
+    <div class="controls-bar">
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <button class="btn btn-outline" id="shuffleBtn">問題順をシャッフル</button>
+        <button class="btn btn-warning" id="retryWrongBtn" style="display:none;">要復習だけ解く (<span id="wrongCount">0</span>)</button>
+        <button class="btn btn-outline" id="resetBtn">リセット</button>
+      </div>
+      <button class="btn btn-outline" onclick="window.print()">印刷する</button>
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-meta">
+        <span id="progressText">確認済み: 0 / 36 問</span>
+        <span id="scoreText">クリア: 0 問</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    </div>
+  </div>
+
+  <div id="quizList"></div>
+</div>
+
+<script>
+const QUESTIONS = [{"id": 1, "type": "desc", "theme": "theme1", "themeLabel": "重要テーマ① 産業・経済の仕組み", "unit": "asia", "unitName": "第1章 アジア州", "q": "中国では都市人口の割合が増加し、沿岸部と内陸部の経済格差が課題となっています。都市人口の割合が増加している理由を、「収入」「移動」の語句を使って説明しなさい。", "keywords": [{"label": "収入", "patterns": ["収入", "賃金", "給料"]}, {"label": "移動", "patterns": ["移動", "移住", "集ま"]}, {"label": "沿岸部・都市（一人あたり総生産額が高い）", "patterns": ["沿岸", "都市", "総生産", "高い", "多い"]}], "modelAns": "沿岸部の都市は一人あたり総生産額が高く、収入が多いところに人が移動しているため。", "exp": "中国では沿岸部に経済特区が設けられて工業化が進み、内陸部より一人あたり総生産額（収入）が高くなっています。そのため、より高い収入を求めて農村や内陸部から都市へ人が移動しています。"}, {"id": 2, "type": "desc", "theme": "theme1", "themeLabel": "重要テーマ① 産業・経済の仕組み", "unit": "asia", "unitName": "第1章 アジア州", "q": "東南アジアへ進出する日本企業のうち、近年ベトナムへの進出数が急増している理由を、製造業の賃金の観点から説明しなさい。", "keywords": [{"label": "賃金", "patterns": ["賃金", "人件費", "給料"]}, {"label": "安い（低い）", "patterns": ["安", "低"]}], "modelAns": "ベトナムは、他の東南アジア諸国と比べて製造業の賃金が安いため。", "exp": "東南アジアで日本企業数が最も多いのはタイですが、近年は人件費をおさえて生産できるメリットから、他の国よりも製造業の賃金が安いベトナムへの進出が急増しています。"}, {"id": 3, "type": "desc", "theme": "theme1", "themeLabel": "重要テーマ① 産業・経済の仕組み", "unit": "asia", "unitName": "第1章 アジア州", "q": "インドのバンガロールなどには、アメリカの企業のコールセンターが数多く置かれています。その理由を、「昼と夜」「24時間」の語句を使って説明しなさい。", "keywords": [{"label": "昼と夜", "patterns": ["昼と夜", "昼", "夜"]}, {"label": "24時間", "patterns": ["24時間", "二十四時間"]}, {"label": "時差", "patterns": ["時差"]}], "modelAns": "アメリカとインドの時差により昼と夜が逆になるため、24時間体制で対応できるから。", "exp": "アメリカのシリコンバレーが業務を終える夕方（18:30）ごろ、インドは朝の始業時間（8:00）になります。この時差で昼と夜が分かれる仕組みを生かし、24時間対応が可能になります。"}, {"id": 4, "type": "desc", "theme": "theme1", "themeLabel": "重要テーマ① 産業・経済の仕組み", "unit": "europe", "unitName": "第2章 ヨーロッパ州", "q": "2004年にEUへ加盟したハンガリーは、輸入額が増え、主な輸入相手国がEU加盟国中心に変化しました。その理由を、「関税」の語句を使って説明しなさい。", "keywords": [{"label": "関税", "patterns": ["関税"]}, {"label": "かからない（ない）", "patterns": ["かからない", "ない", "廃止", "ゼロ"]}, {"label": "EU加盟国どうし", "patterns": ["EU", "加盟国"]}], "modelAns": "EUに加盟している国どうしでは、関税がかからないから。", "exp": "外国から品物を輸入するときにかかる税金が「関税」です。EU加盟国どうしでは関税がかからないため、価格が高くなりにくく、加盟国間の貿易が活発になります。"}, {"id": 5, "type": "desc", "theme": "theme1", "themeLabel": "重要テーマ① 産業・経済の仕組み", "unit": "europe", "unitName": "第2章 ヨーロッパ州", "q": "ヨーロッパでは、ポーランドなど東ヨーロッパからドイツなど西ヨーロッパへ働きに来る外国人労働者が多く見られます。その理由と、外国人労働者がおかれている状況を「賃金」の語句を使って説明しなさい。", "keywords": [{"label": "賃金", "patterns": ["賃金", "給料", "収入"]}, {"label": "高い国へ移動", "patterns": ["高い", "多い", "西ヨーロッパ"]}, {"label": "自国労働者より低い", "patterns": ["低い", "安い", "70", "少ない"]}], "modelAns": "賃金の低い東ヨーロッパから賃金の高い西ヨーロッパへ働きに来ているが、自国の労働者に比べて低い賃金で働いている。", "exp": "東ヨーロッパ（ポーランド・スロバキアなど）と西ヨーロッパ（オランダ・スイスなど）の賃金格差が背景にあります。また受け入れ先でも、自国労働者を100とすると70〜79程度の低い賃金で働いている課題があります。"}, {"id": 6, "type": "desc", "theme": "theme1", "themeLabel": "重要テーマ① 産業・経済の仕組み", "unit": "namerica", "unitName": "第4章 北アメリカ州", "q": "アメリカ合衆国の農業の特徴を、日本と比較した耕地面積や農業従事者数・トラクター台数をふまえて、「企業」の語句を使って説明しなさい。", "keywords": [{"label": "企業（企業的な農業）", "patterns": ["企業"]}, {"label": "広い耕地面積", "patterns": ["広い", "広大", "耕地"]}, {"label": "少ない従事者・大型機械", "patterns": ["少ない", "機械", "トラクター", "大型"]}], "modelAns": "広い耕地面積をもち、少ない農業従事者で多くの大型機械を使って行う、企業的な農業である。", "exp": "アメリカは日本の約35倍以上の耕地面積をもち、少ない人手で大型トラクターや農薬・化学肥料を大量に使って利潤を追求する「企業的な農業」を行っています。"}, {"id": 7, "type": "desc", "theme": "theme1", "themeLabel": "重要テーマ① 産業・経済の仕組み", "unit": "namerica", "unitName": "第4章 北アメリカ州", "q": "アメリカ合衆国でメキシコなどから移住するヒスパニックの人々が南部・南西部に多い理由と、移住する目的を「国境」「収入」の語句を使って説明しなさい。", "keywords": [{"label": "国境", "patterns": ["国境"]}, {"label": "収入", "patterns": ["収入", "賃金", "給料"]}, {"label": "高い（多い）", "patterns": ["高い", "多い"]}], "modelAns": "メキシコとの国境に近く、メキシコよりアメリカのほうが賃金が高く、高い収入を得るため。", "exp": "メキシコとの国境に近い南部・南西部に多く住んでおり、サンフランシスコとメキシコシティの平均賃金の差のように、より高い収入を求めて移住してきます。"}, {"id": 8, "type": "desc", "theme": "theme2", "themeLabel": "重要テーマ② 環境・地域構造の課題と変化", "unit": "africa", "unitName": "第3章 アフリカ州", "q": "コートジボワールのカカオやナイジェリアの石油のように、特定の農作物や鉱産資源の輸出に頼る「モノカルチャー経済」にはどのような問題点がありますか。「国際価格」「安定」の語句を使って説明しなさい。", "keywords": [{"label": "国際価格（の変動）", "patterns": ["国際価格", "価格", "値段"]}, {"label": "安定（しない）", "patterns": ["安定", "不安定"]}, {"label": "天候・世界経済の影響", "patterns": ["変動", "影響", "天候", "変わ"]}], "modelAns": "国際価格の変動や天候の影響を受けやすく、輸出額が大きく変わって国の経済が安定しないこと。", "exp": "特定の1〜2品目に輸出を頼ると、世界経済や天候によって国際価格が下がったときに国の収入（輸出総額）が大きく減り、経済が不安定になりやすいという課題があります。"}, {"id": 9, "type": "desc", "theme": "theme2", "themeLabel": "重要テーマ② 環境・地域構造の課題と変化", "unit": "namerica", "unitName": "第4章 北アメリカ州", "q": "アメリカ合衆国の工業の中心地域が1960年から2021年にかけてどのように移動したか、「五大湖」「サンベルト」の語句を使って説明しなさい。", "keywords": [{"label": "五大湖", "patterns": ["五大湖"]}, {"label": "サンベルト", "patterns": ["サンベルト"]}, {"label": "移動（南部・南西部へ）", "patterns": ["移動", "移", "南部", "衰退"]}], "modelAns": "かつては五大湖周辺が工業の中心だったが、衰退してラストベルトとよばれるようになり、近年は南部のサンベルトへ中心が移動している。", "exp": "1960年は五大湖周辺の中西部・北東部が中心でしたが、20世紀後半に外国製品の輸入などで衰退（ラストベルト）し、2021年には航空宇宙産業やICT産業が集まる南部のサンベルトの割合が最大になりました。"}, {"id": 10, "type": "desc", "theme": "theme2", "themeLabel": "重要テーマ② 環境・地域構造の課題と変化", "unit": "asia", "unitName": "第1章 アジア州", "q": "アジアの東部や南部で、夏に降水量が多く（雨季）、冬に降水量が少なくなる（乾季）仕組みを、「季節風（モンスーン）」の語句を使って説明しなさい。", "keywords": [{"label": "季節風（モンスーン）", "patterns": ["季節風", "モンスーン"]}, {"label": "夏は海から陸", "patterns": ["海から", "海", "湿った"]}, {"label": "冬は陸から海", "patterns": ["陸から", "逆", "乾燥"]}], "modelAns": "夏は海から陸へ湿った季節風（モンスーン）が吹くため雨が多く、冬は逆に陸から海へ季節風が吹くため乾燥するから。", "exp": "季節によって風向きが逆転する季節風（モンスーン）の影響で、夏は海からの湿った空気が多くの雨をもたらし、稲作が盛んになります。"}, {"id": 11, "type": "desc", "theme": "theme2", "themeLabel": "重要テーマ② 環境・地域構造の課題と変化", "unit": "europe", "unitName": "第2章 ヨーロッパ州", "q": "ヨーロッパの西部は、日本より高緯度に位置しているにもかかわらず、冬でも比較的温暖な気候になります。その理由を2つの自然要因をあげて説明しなさい。", "keywords": [{"label": "北大西洋海流（暖流）", "patterns": ["北大西洋海流", "暖流"]}, {"label": "偏西風", "patterns": ["偏西風"]}], "modelAns": "暖流である北大西洋海流と、その上を西から東へ吹く偏西風の影響を受けるため。", "exp": "「北大西洋海流（暖流）」と「偏西風」のセットはテスト最頻出です。どちらか片方だけでなく両方書けるようにしましょう。"}, {"id": 12, "type": "desc", "theme": "theme2", "themeLabel": "重要テーマ② 環境・地域構造の課題と変化", "unit": "europe", "unitName": "第2章 ヨーロッパ州", "q": "ヨーロッパの国々が1993年にEU（ヨーロッパ連合）を成立させ、統合を進めた理由と、2020年にイギリスがEUを離脱した理由をそれぞれ説明しなさい。", "keywords": [{"label": "大国に対抗（規模が小さい）", "patterns": ["対抗", "大国", "規模が小さ", "アメリカ", "中国"]}, {"label": "経済格差・補助金負担の対立", "patterns": ["格差", "補助金", "負担", "対立"]}], "modelAns": "統合の理由は、1か国では規模が小さく、アメリカや中国などの大国に対抗するため。イギリスの離脱理由は、加盟国間の経済格差を解消するための補助金負担などをめぐって対立がおきたため。", "exp": "EUは「大国に対抗するための統合」でしたが、東欧の加盟拡大にともなう「経済格差」と「補助金の負担」が原因でイギリスが2020年1月に離脱しました。"}, {"id": 13, "type": "desc", "theme": "theme2", "themeLabel": "重要テーマ② 環境・地域構造の課題と変化", "unit": "europe", "unitName": "第2章 ヨーロッパ州", "q": "ライン川などの「国際河川」で水質汚染が問題になった際、利用国は協力してどのような取り組みを行いましたか。2つあげて説明しなさい。", "keywords": [{"label": "工場からの排水の規制", "patterns": ["排水", "規制", "工場"]}, {"label": "汚水処理施設の設置", "patterns": ["汚水処理", "処理施設"]}], "modelAns": "工場からの排水の規制と、汚水処理施設の設置に協力して取り組んだ。", "exp": "複数の国が利用する「国際河川」では1国だけの対策では不十分なため、流域の国々が協力して排水規制や汚水処理施設の設置を進めました。"}, {"id": 14, "type": "desc", "theme": "theme2", "themeLabel": "重要テーマ② 環境・地域構造の課題と変化", "unit": "africa", "unitName": "第3章 アフリカ州", "q": "アフリカでは、植民地支配を受けた歴史が現在の言語や産業にどのような影響を与えていますか。「公用語」「プランテーション」の語句を使って説明しなさい。", "keywords": [{"label": "公用語（英語・フランス語）", "patterns": ["公用語", "英語", "フランス語"]}, {"label": "プランテーション", "patterns": ["プランテーション", "大農園"]}, {"label": "輸出用農作物（カカオなど）", "patterns": ["輸出", "カカオ", "商品作物"]}], "modelAns": "独立後も旧宗主国の英語やフランス語を公用語とする国が多く、植民地時代に開かれたプランテーションで特定の輸出用農作物を栽培している。", "exp": "1914年時点で独立を保っていたエチオピア・リベリア以外はヨーロッパの植民地となったため、言語（公用語）や農業（プランテーション・モノカルチャー経済）に強い影響が残っています。"}, {"id": 15, "type": "ox", "theme": "ox", "themeLabel": "ひっかけ○×（用語ペア対比）", "unit": "asia", "unitName": "第1章 アジア州", "pair": "二期作 vs 二毛作", "q": "東南アジアの稲作では、同じ田で1年に2回米をつくることを「二毛作」という。", "ans": false, "correctTerm": "×（誤り）→ 正しくは「二期作」", "exp": "【ひっかけ注意！】同じ田で1年に2回「同じ作物（米）」をつくるのが「二期作」です。「二毛作」は米と麦など異なる作物を1年に2回つくることなので混同しないようにしましょう。"}, {"id": 16, "type": "ox", "theme": "ox", "themeLabel": "ひっかけ○×（用語ペア対比）", "unit": "asia", "unitName": "第1章 アジア州", "pair": "華人 vs 漢族", "q": "東南アジアなど世界各地に移住し、現地で商業などの分野で活躍している中国系の人々を「漢族」という。", "ans": false, "correctTerm": "×（誤り）→ 正しくは「華人」", "exp": "【ひっかけ注意！】海外に移住して活躍する中国系の人々は「華人」です。「漢族」は中国の人口の約90％を占める民族のことです。"}, {"id": 17, "type": "ox", "theme": "ox", "themeLabel": "ひっかけ○×（用語ペア対比）", "unit": "asia", "unitName": "第1章 アジア州", "pair": "経済特区 vs ニュータウン", "q": "中国政府が外国の資本や技術を取り入れるため沿岸部に設けた地域を「経済特区」、韓国のソウル郊外に開発された新しい住宅地を「ニュータウン」という。", "ans": true, "correctTerm": "○（正しい）", "exp": "どちらも都市や工業の発展に関わる重要用語です。中国の「経済特区（シェンチェンなど）」と韓国の「ニュータウン」を区別しておきましょう。"}, {"id": 18, "type": "ox", "theme": "ox", "themeLabel": "ひっかけ○×（用語ペア対比）", "unit": "asia", "unitName": "第1章 アジア州", "pair": "中国の農業（北東部 vs 南東部）", "q": "中国の農業は、降水量の多い華北・東北地方（北東部）で「稲作」、華中・華南地方（南東部）で「畑作」、西部で「牧畜」が盛んである。", "ans": false, "correctTerm": "×（誤り）→ 北東部と南東部が逆", "exp": "【ひっかけ注意！】中国は南東部のほうが降水量が多く温暖なため、華中・華南（南東部）で「稲作」、華北・東北地方（北東部）で「畑作」が盛んです。"}, {"id": 19, "type": "ox", "theme": "ox", "themeLabel": "ひっかけ○×（用語ペア対比）", "unit": "asia", "unitName": "第1章 アジア州", "pair": "インド vs パキスタン・バングラデシュ vs スリランカ（宗教）", "q": "南アジアの宗教について、インドではヒンドゥー教、パキスタンとバングラデシュではイスラム教、スリランカでは仏教の信者が最も多い。", "ans": true, "correctTerm": "○（正しい）", "exp": "南アジアの3パターンの宗教分布は頻出です。インド＝ヒンドゥー教、パキスタン・バングラデシュ＝イスラム教、スリランカ＝仏教と整理しましょう。"}, {"id": 20, "type": "ox", "theme": "ox", "themeLabel": "ひっかけ○×（用語ペア対比）", "unit": "asia", "unitName": "第1章 アジア州", "pair": "ASEAN vs アジアNIES vs OPEC", "q": "韓国・シンガポール・台湾・ホンコンのように1970年代以降急速に経済発展した国や地域を「ASEAN」という。", "ans": false, "correctTerm": "×（誤り）→ 正しくは「アジアNIES（新興工業経済地域）」", "exp": "【ひっかけ注意！】韓国・シンガポール・台湾・ホンコンは「アジアNIES」です。「ASEAN」は東南アジア諸国連合（10か国）、「OPEC」は石油輸出国機構です。"}, {"id": 21, "type": "ox", "theme": "ox", "themeLabel": "ひっかけ○×（用語ペア対比）", "unit": "asia", "unitName": "第1章 アジア州", "pair": "ガンジス川 vs インダス川 / 黄河 vs 長江", "q": "ヒンドゥー教徒が沐浴を行うのは「インダス川」であり、流域で古代文明が栄え主にパキスタンを流れるのは「ガンジス川」である。", "ans": false, "correctTerm": "×（誤り）→ インダス川とガンジス川が逆", "exp": "【ひっかけ注意！】インドを流れヒンドゥー教徒が沐浴するのは「ガンジス川」、パキスタンを流れ古代文明が栄えたのは「インダス川」です。中国の北が「黄河」、中が「長江」であることもあわせて確認しましょう。"}, {"id": 22, "type": "ox", "theme": "ox", "themeLabel": "ひっかけ○×（用語ペア対比）", "unit": "europe", "unitName": "第2章 ヨーロッパ州", "pair": "ヨーロッパの農業区分（地中海式 vs 混合 vs 酪農）", "q": "ヨーロッパでは、ドイツやフランスなどで小麦・ライ麦と家畜の飼育を組み合わせた「混合農業」が、地中海沿岸でオリーブやぶどうなどを栽培する「地中海式農業」が行われている。", "ans": true, "correctTerm": "○（正しい）", "exp": "ヨーロッパ北部・アルプス山脈では「酪農」、ドイツ・フランスでは「混合農業」、地中海沿岸では「地中海式農業」と気候に合った農業が行われています。"}, {"id": 23, "type": "ox", "theme": "ox", "themeLabel": "ひっかけ○×（用語ペア対比）", "unit": "europe", "unitName": "第2章 ヨーロッパ州", "pair": "外国人労働者 vs 移民 vs 難民", "q": "紛争や災害などによって自国から逃れた人々を「移民」といい、生まれた国を出てほかの国へ移り住んだ人々を「難民」という。", "ans": false, "correctTerm": "×（誤り）→ 「移民」と「難民」が逆", "exp": "【ひっかけ注意！】他国へ移り住んだ人々が「移民」（漢字2字）、紛争や災害などから逃れた人々が「難民」（漢字2字）、働く目的で外国から来た人々が「外国人労働者」（漢字6字）です。"}, {"id": 24, "type": "ox", "theme": "ox", "themeLabel": "ひっかけ○×（用語ペア対比）", "unit": "europe", "unitName": "第2章 ヨーロッパ州", "pair": "EU離脱国（イギリス vs スイス・ノルウェー）", "q": "EU加盟国間の補助金負担などをめぐる対立から、2020年1月にEUを離脱した国は「スイス」である。", "ans": false, "correctTerm": "×（誤り）→ 正しくは「イギリス」", "exp": "【ひっかけ注意！】2020年1月にEUを離脱したのは「イギリス」です。スイスやノルウェーはもともとEUに加盟していません。"}, {"id": 25, "type": "ox", "theme": "ox", "themeLabel": "ひっかけ○×（用語ペア対比）", "unit": "europe", "unitName": "第2章 ヨーロッパ州", "pair": "脱炭素社会 vs 持続可能な社会 vs パークアンドライド", "q": "温室効果ガスの排出をなくすことを目指す社会を「脱炭素社会」といい、都市の中心部への車の乗り入れを制限し最寄り駅で公共交通機関に乗り換える仕組みを「パークアンドライド」という。", "ans": true, "correctTerm": "○（正しい）", "exp": "「脱炭素社会」「再生可能エネルギー」「持続可能な社会」「パークアンドライド」「エコツーリズム」の5つの環境用語は意味を混同しないよう注意しましょう。"}, {"id": 26, "type": "ox", "theme": "ox", "themeLabel": "ひっかけ○×（用語ペア対比）", "unit": "africa", "unitName": "第3章 アフリカ州", "pair": "サヘル vs サバナ vs スラム", "q": "アフリカなどの大都市で生活環境の悪い場所に所得の低い人々が密集して住んでいる地区を「サヘル」という。", "ans": false, "correctTerm": "×（誤り）→ 正しくは「スラム」", "exp": "【ひっかけ注意！】生活環境の悪い密集住宅地は「スラム」です。「サヘル」はサハラ砂漠の南部に広がる砂漠化の進んだ草原地帯のことです（サバナは熱帯の草原）。"}, {"id": 27, "type": "ox", "theme": "ox", "themeLabel": "ひっかけ○×（用語ペア対比）", "unit": "africa", "unitName": "第3章 アフリカ州", "pair": "焼畑農業 vs プランテーション", "q": "アフリカで伝統的に行われてきた、森林の木々を伐採して燃やしたあとの灰を肥料として作物を栽培する農業を「焼畑農業」という。", "ans": true, "correctTerm": "○（正しい）", "exp": "伝統的な農業は「焼畑農業」と乾燥帯での「遊牧」、植民地時代に開かれた輸出用大農園は「プランテーション」と区別します。"}, {"id": 28, "type": "ox", "theme": "ox", "themeLabel": "ひっかけ○×（用語ペア対比）", "unit": "africa", "unitName": "第3章 アフリカ州", "pair": "アフリカの産物と国（ガーナ・ナイジェリア・ボツワナ・南アフリカ）", "q": "アフリカでダイヤモンドの輸出割合が非常に高い国は「ナイジェリア」であり、石油の輸出が盛んな国は「ボツワナ」である。", "ans": false, "correctTerm": "×（誤り）→ ナイジェリアとボツワナが逆", "exp": "【ひっかけ注意！】石油＝「ナイジェリア」、ダイヤモンド＝「ボツワナ」（輸出額の86.8%）、カカオ＝「ガーナ・コートジボワール」、プラチナ・クロム・金＝「南アフリカ共和国」です。"}, {"id": 29, "type": "ox", "theme": "ox", "themeLabel": "ひっかけ○×（用語ペア対比）", "unit": "africa", "unitName": "第3章 アフリカ州", "pair": "モノカルチャー経済 vs アグリビジネス", "q": "少数の農作物や鉱産資源の輸出に頼って成り立っているアフリカ諸国などに多い経済を「アグリビジネス」という。", "ans": false, "correctTerm": "×（誤り）→ 正しくは「モノカルチャー経済」", "exp": "【ひっかけ注意！】少数の産物の輸出に頼る経済は「モノカルチャー経済」です。「アグリビジネス」はアメリカ合衆国に多い農業関連の大企業のことです。"}, {"id": 30, "type": "ox", "theme": "ox", "themeLabel": "ひっかけ○×（用語ペア対比）", "unit": "africa", "unitName": "第3章 アフリカ州", "pair": "AU vs NGO", "q": "発展途上国の開発や難民・環境問題の解決に取り組む非政府組織を「NGO」、EUを参考にアフリカの国々が2002年に結成した地域統合組織を「AU（アフリカ連合）」という。", "ans": true, "correctTerm": "○（正しい）", "exp": "「NGO（非政府組織）」と「AU（アフリカ連合）」のアルファベット略称を正確に覚えましょう。"}, {"id": 31, "type": "ox", "theme": "ox", "themeLabel": "ひっかけ○×（用語ペア対比）", "unit": "namerica", "unitName": "第4章 北アメリカ州", "pair": "ロッキー山脈 vs アパラチア山脈", "q": "北アメリカ大陸の西部に連なる高く険しい山脈は「アパラチア山脈」、東部に位置する山脈は「ロッキー山脈」である。", "ans": false, "correctTerm": "×（誤り）→ 東西が逆", "exp": "【ひっかけ注意！】西部の高く険しい山脈が「ロッキー山脈」、東部の石炭が産出する山脈が「アパラチア山脈」です。"}, {"id": 32, "type": "ox", "theme": "ox", "themeLabel": "ひっかけ○×（用語ペア対比）", "unit": "namerica", "unitName": "第4章 北アメリカ州", "pair": "NAFTA vs USMCA", "q": "アメリカ合衆国・メキシコ・カナダの3か国で1994年に発効した「NAFTA」が発展し、2020年に新しく発効した協定を「USMCA」という。", "ans": true, "correctTerm": "○（正しい）", "exp": "旧協定がNAFTA（北米自由貿易協定）、2020年発効の新協定がUSMCA（米国・メキシコ・カナダ協定）です。"}, {"id": 33, "type": "ox", "theme": "ox", "themeLabel": "ひっかけ○×（用語ペア対比）", "unit": "namerica", "unitName": "第4章 北アメリカ州", "pair": "適地適作 vs センターピボット vs 穀物メジャー", "q": "アメリカ合衆国で、地下水をくみ上げてスプリンクラーを回転させながらまく円形の農場（灌漑方法）を「適地適作」という。", "ans": false, "correctTerm": "×（誤り）→ 正しくは「センターピボット」", "exp": "【ひっかけ注意！】円形のかんがいは「センターピボット」です。「適地適作」は各地域の自然環境に適した農作物を栽培する方式（漢字4字）です。また、穀物を扱う巨大商社を「穀物メジャー」といいます。"}, {"id": 34, "type": "ox", "theme": "ox", "themeLabel": "ひっかけ○×（用語ペア対比）", "unit": "namerica", "unitName": "第4章 北アメリカ州", "pair": "ラストベルト vs サンベルト vs シリコンバレー", "q": "20世紀後半以降に衰退したアメリカ北部の五大湖周辺の工業地帯を「サンベルト」、北緯37度以南に広がる新しい工業地域を「ラストベルト」という。", "ans": false, "correctTerm": "×（誤り）→ 「ラストベルト」と「サンベルト」が逆", "exp": "【ひっかけ注意！】衰退した北部の旧工業地帯が「ラストベルト（さびついた地帯）」、南部の新興工業地域が「サンベルト」です。サンフランシスコ南のICT集積地は「シリコンバレー」です。"}, {"id": 35, "type": "ox", "theme": "ox", "themeLabel": "ひっかけ○×（用語ペア対比）", "unit": "namerica", "unitName": "第4章 北アメリカ州", "pair": "アメリカの移民（ヨーロッパ系 vs アジア系 vs ヒスパニック）", "q": "アメリカの工業を支える人々について、かつての製鉄所や自動車工場では「アジア系」の移民が多く働き、近年のICT産業では「ヨーロッパ系」の移民が活躍している。", "ans": false, "correctTerm": "×（誤り）→ 「ヨーロッパ系」と「アジア系」が逆", "exp": "【ひっかけ注意！】19世紀末〜20世紀初めの製鉄・自動車工場は「ヨーロッパからの移民」、近年のICT産業ではアメリカの大学で学んだ「アジア系の移民」が活躍しています。飲食店などのサービス業や農業は主に「ヒスパニック」などが支えています。"}, {"id": 36, "type": "ox", "theme": "ox", "themeLabel": "ひっかけ○×（用語ペア対比）", "unit": "namerica", "unitName": "第4章 北アメリカ州", "pair": "ピッツバーグ vs デトロイト", "q": "アメリカの五大湖周辺の工業都市のうち、鉄鋼業が発展したのが「ピッツバーグ」、流れ作業方式による自動車工業が発展したのが「デトロイト」である。", "ans": true, "correctTerm": "○（正しい）", "exp": "五大湖周辺の鉄鉱石とアパラチア山脈の石炭を背景に、ピッツバーグ＝鉄鋼業、デトロイト＝自動車工業が発展しました。"}];
+
+let state = {
+  typeFilter: "all",
+  unitFilter: "all",
+  onlyWrong: false,
+  list: [],
+  results: {}, // id -> { checked: bool, status: 'ok' | 'ng' | null, text: string, oxChoice: bool | null }
+  wrongIds: new Set(JSON.parse(localStorage.getItem("g1_2e_social_r_wrong") || "[]"))
+};
+
+function shuffle(arr) {
+  const c = [...arr];
+  for (let i = c.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [c[i], c[j]] = [c[j], c[i]];
+  }
+  return c;
+}
+
+function buildList(doShuffle = false) {
+  let filtered = QUESTIONS.filter(q => {
+    if (state.onlyWrong) return state.wrongIds.has(q.id);
+    const typeOk =
+      state.typeFilter === "all" ||
+      (state.typeFilter === "desc" && q.type === "desc") ||
+      (state.typeFilter === "ox" && q.type === "ox") ||
+      q.theme === state.typeFilter;
+    const unitOk = state.unitFilter === "all" || q.unit === state.unitFilter;
+    return typeOk && unitOk;
+  });
+  if (doShuffle) filtered = shuffle(filtered);
+  state.list = filtered;
+  render();
+  updateProgress();
+}
+
+function saveWrong() {
+  localStorage.setItem("g1_2e_social_r_wrong", JSON.stringify([...state.wrongIds]));
+  const btn = document.getElementById("retryWrongBtn");
+  document.getElementById("wrongCount").textContent = state.wrongIds.size;
+  btn.style.display = state.wrongIds.size > 0 ? "inline-block" : "none";
+}
+
+function checkKeywords(q, userText) {
+  const normalized = (userText || "").trim();
+  return q.keywords.map(kw => {
+    const hit = kw.patterns.some(p => normalized.includes(p));
+    return { label: kw.label, hit };
+  });
+}
+
+function render() {
+  const container = document.getElementById("quizList");
+  container.innerHTML = "";
+  if (state.list.length === 0) {
+    container.innerHTML = '<div class="panel">該当する問題がありません。フィルターを変更してください。</div>';
+    return;
+  }
+
+  state.list.forEach((q, idx) => {
+    const res = state.results[q.id] || { checked: false, status: null, text: "", oxChoice: null };
+    const card = document.createElement("div");
+    card.className = "q-card";
+
+    let themeBadgeClass = "q-badge ";
+    if (q.theme === "theme1") themeBadgeClass += "badge-theme1";
+    else if (q.theme === "theme2") themeBadgeClass += "badge-theme2";
+    else themeBadgeClass += "badge-ox";
+
+    let bodyHtml = "";
+    if (q.type === "desc") {
+      let ansBoxHtml = "";
+      if (res.checked) {
+        const kwResults = checkKeywords(q, res.text);
+        const hitCount = kwResults.filter(k => k.hit).length;
+        const kwHtml = kwResults.map(k => {
+          const cls = res.text.trim() ? (k.hit ? "kw-chip hit" : "kw-chip miss") : "kw-chip";
+          const mark = res.text.trim() ? (k.hit ? "✅" : "⚠️") : "🔑";
+          return `<span class="${cls}">${mark} ${k.label}</span>`;
+        }).join("");
+
+        const boxCls = res.status === "ok" ? "answer-box show ok" : (res.status === "ng" ? "answer-box show ng" : "answer-box show");
+        ansBoxHtml = `
+          <div class="${boxCls}">
+            <div class="kw-section">
+              <div class="kw-title">記述に含めるべき必須キーワード（${res.text.trim() ? `${hitCount} / ${kwResults.length} 個ヒット` : "チェックポイント"}）</div>
+              <div class="kw-list">${kwHtml}</div>
+            </div>
+            <div class="model-ans"><strong>模範解答：</strong>${q.modelAns}</div>
+            <div class="exp-text"><strong>解説：</strong>${q.exp}</div>
+            <div class="self-grade">
+              <span>自己判定：</span>
+              <button class="btn btn-success" onclick="markDesc(${q.id}, 'ok')">⭕ 書けた！</button>
+              <button class="btn btn-danger" onclick="markDesc(${q.id}, 'ng')">❌ 復習リストに入れる</button>
+            </div>
+          </div>
+        `;
+      }
+
+      bodyHtml = `
+        <textarea class="desc-textarea" id="input-${q.id}" placeholder="ここに記述の答えを入力して「答え合わせ」を押してください（空欄のまま確認もできます）">${res.text}</textarea>
+        <div class="desc-actions">
+          <button class="btn btn-primary" onclick="checkDesc(${q.id})">答え合わせ・キーワード確認</button>
+        </div>
+        ${ansBoxHtml}
+      `;
+    } else {
+      const showOx = res.checked;
+      const oCls = showOx ? (q.ans === true ? "ox-btn correct" : (res.oxChoice === true ? "ox-btn wrong" : "ox-btn")) : "ox-btn";
+      const xCls = showOx ? (q.ans === false ? "ox-btn correct" : (res.oxChoice === false ? "ox-btn wrong" : "ox-btn")) : "ox-btn";
+      const dis = showOx ? "disabled" : "";
+
+      let oxAnsHtml = "";
+      if (showOx) {
+        const isOk = res.oxChoice === q.ans;
+        oxAnsHtml = `
+          <div class="answer-box show ${isOk ? "ok" : "ng"}">
+            <div style="font-weight:800; margin-bottom:4px;">${isOk ? "⭕ 正解！" : "❌ 不正解"} ／ 答え：${q.correctTerm}</div>
+            <div style="font-size:0.84rem; font-weight:700; color:#b45309; margin-bottom:4px;">対比ペア：${q.pair}</div>
+            <div class="exp-text">${q.exp}</div>
+          </div>
+        `;
+      }
+
+      bodyHtml = `
+        <div class="ox-grid">
+          <button class="${oCls}" ${dis} onclick="checkOx(${q.id}, true)">⭕ 正しい</button>
+          <button class="${xCls}" ${dis} onclick="checkOx(${q.id}, false)">❌ まちがい</button>
+        </div>
+        ${oxAnsHtml}
+      `;
+    }
+
+    card.innerHTML = `
+      <div class="q-header">
+        <div class="badge-group">
+          <span class="q-badge">${q.unitName}</span>
+          <span class="${themeBadgeClass}">${q.themeLabel}</span>
+        </div>
+        <span class="q-num">問 ${idx + 1} / ${state.list.length}（No.${q.id}）</span>
+      </div>
+      <p class="q-text">${q.q}</p>
+      ${bodyHtml}
+    `;
+    container.appendChild(card);
+  });
+}
+
+window.checkDesc = function(id) {
+  const el = document.getElementById(`input-${id}`);
+  const text = el ? el.value : "";
+  const prev = state.results[id] || {};
+  state.results[id] = { ...prev, checked: true, text };
+  render();
+  updateProgress();
+};
+
+window.markDesc = function(id, status) {
+  const el = document.getElementById(`input-${id}`);
+  const text = el ? el.value : (state.results[id]?.text || "");
+  state.results[id] = { checked: true, status, text, oxChoice: null };
+  if (status === "ok") state.wrongIds.delete(id);
+  else state.wrongIds.add(id);
+  saveWrong();
+  render();
+  updateProgress();
+};
+
+window.checkOx = function(id, choice) {
+  const q = QUESTIONS.find(item => item.id === id);
+  const isOk = q.ans === choice;
+  state.results[id] = { checked: true, status: isOk ? "ok" : "ng", text: "", oxChoice: choice };
+  if (isOk) state.wrongIds.delete(id);
+  else state.wrongIds.add(id);
+  saveWrong();
+  render();
+  updateProgress();
+};
+
+function updateProgress() {
+  const total = state.list.length;
+  let checked = 0;
+  let ok = 0;
+  state.list.forEach(q => {
+    const r = state.results[q.id];
+    if (r && r.checked) checked++;
+    if (r && r.status === "ok") ok++;
+  });
+  document.getElementById("progressText").textContent = `確認済み: ${checked} / ${total} 問`;
+  document.getElementById("scoreText").textContent = `クリア: ${ok} 問`;
+  document.getElementById("progressFill").style.width = total ? `${(checked / total) * 100}%` : "0%";
+}
+
+document.querySelectorAll("#typeTabs .tab-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll("#typeTabs .tab-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    state.typeFilter = btn.dataset.type;
+    state.onlyWrong = false;
+    buildList(false);
+  });
+});
+
+document.querySelectorAll("#unitTabs .tab-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll("#unitTabs .tab-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    state.unitFilter = btn.dataset.unit;
+    state.onlyWrong = false;
+    buildList(false);
+  });
+});
+
+document.getElementById("shuffleBtn").addEventListener("click", () => buildList(true));
+document.getElementById("resetBtn").addEventListener("click", () => {
+  state.results = {};
+  state.onlyWrong = false;
+  buildList(false);
+});
+document.getElementById("retryWrongBtn").addEventListener("click", () => {
+  state.onlyWrong = true;
+  buildList(true);
+});
+
+saveWrong();
+buildList(false);
+</script>
+</body>
+</html>

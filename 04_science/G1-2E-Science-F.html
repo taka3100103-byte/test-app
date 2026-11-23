@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中1理科 2学期末テスト対策 重要語句フラッシュカード（全45枚）</title>
+<style>
+  :root {
+    --bg: #f1f5f9;
+    --card: #ffffff;
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --primary-light: #eff6ff;
+    --accent: #0f766e;
+    --accent-light: #f0fdfa;
+    --text: #0f172a;
+    --muted: #64748b;
+    --border: #cbd5e1;
+    --ok: #16a34a;
+    --ok-bg: #f0fdf4;
+    --warn: #d97706;
+    --warn-bg: #fffbeb;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  header {
+    background: linear-gradient(135deg, #1e3a8a, #0f766e);
+    color: #fff;
+    padding: 16px 20px;
+    box-shadow: 0 2px 10px rgba(15, 23, 42, 0.18);
+  }
+
+  .header-inner {
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  .badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.18);
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-size: 11.5px;
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
+
+  h1 {
+    margin: 0 0 3px;
+    font-size: 20px;
+    line-height: 1.35;
+  }
+
+  .subtitle {
+    margin: 0;
+    font-size: 13px;
+    opacity: 0.92;
+  }
+
+  .container {
+    max-width: 780px;
+    width: 100%;
+    margin: 16px auto 36px;
+    padding: 0 16px;
+    flex: 1;
+  }
+
+  /* フィルター＆ツールバー */
+  .toolbar {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 12px 14px;
+    margin-bottom: 14px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 4px rgba(15, 23, 42, 0.05);
+  }
+
+  .filter-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+
+  .filter-btn {
+    border: 1px solid var(--border);
+    background: #fff;
+    color: var(--text);
+    padding: 5px 11px;
+    border-radius: 999px;
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.15s ease;
+  }
+
+  .filter-btn:hover { border-color: var(--primary); color: var(--primary); }
+  .filter-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+  .filter-btn.unlearned.active { background: var(--warn); border-color: var(--warn); }
+
+  .tool-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    padding-top: 8px;
+    border-top: 1px dashed #e2e8f0;
+  }
+
+  .progress-meta {
+    font-size: 13px;
+    font-weight: 700;
+    color: #334155;
+  }
+
+  .progress-meta span {
+    color: var(--ok);
+  }
+
+  .tool-btns {
+    display: flex;
+    gap: 6px;
+  }
+
+  .mini-btn {
+    border: 1px solid var(--border);
+    background: #f8fafc;
+    color: #334155;
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  .mini-btn:hover { background: #e2e8f0; }
+
+  /* プログレスバー */
+  .progress-track {
+    width: 100%;
+    height: 7px;
+    background: #e2e8f0;
+    border-radius: 999px;
+    overflow: hidden;
+    margin-bottom: 14px;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #2563eb, #16a34a);
+    transition: width 0.25s ease;
+  }
+
+  /* 3Dフリップカード */
+  .scene {
+    perspective: 1100px;
+    margin-bottom: 16px;
+  }
+
+  .flashcard {
+    width: 100%;
+    min-height: 290px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    cursor: pointer;
+  }
+
+  .flashcard.is-flipped {
+    transform: rotateY(180deg);
+  }
+
+  .face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    background: var(--card);
+    border-radius: 18px;
+    padding: 22px 24px;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+    border: 2px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .face-back {
+    transform: rotateY(180deg);
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    border-color: #93c5fd;
+  }
+
+  .face-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .unit-tag {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--primary-dark);
+    background: var(--primary-light);
+    padding: 3px 10px;
+    border-radius: 999px;
+  }
+
+  .side-label {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  .side-label.back {
+    color: var(--accent);
+  }
+
+  .learned-pill {
+    font-size: 11.5px;
+    font-weight: 700;
+    padding: 2px 9px;
+    border-radius: 999px;
+    background: var(--ok-bg);
+    color: var(--ok);
+    border: 1px solid #86efac;
+  }
+
+  .face-center {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 16px 8px;
+  }
+
+  .question-text {
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  .answer-text {
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--primary-dark);
+    margin-bottom: 14px;
+    line-height: 1.4;
+  }
+
+  .point-box {
+    width: 100%;
+    text-align: left;
+    background: var(--warn-bg);
+    border-left: 4px solid var(--warn);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 13.5px;
+    color: #78350f;
+    line-height: 1.6;
+  }
+
+  .point-box strong {
+    color: #b45309;
+  }
+
+  .face-bottom {
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  /* コントロールボタン */
+  .nav-row {
+    display: grid;
+    grid-template-columns: auto 1fr 1fr auto;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .btn {
+    font-family: inherit;
+    font-weight: 700;
+    border-radius: 11px;
+    padding: 12px 14px;
+    font-size: 14px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.15s ease;
+  }
+
+  .btn-nav {
+    background: #fff;
+    border-color: var(--border);
+    color: var(--text);
+  }
+
+  .btn-nav:hover:not(:disabled) { background: #f1f5f9; }
+  .btn-nav:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  .btn-again {
+    background: #fff7ed;
+    border-color: #fdba74;
+    color: #c2410c;
+  }
+
+  .btn-again:hover { background: #ffedd5; }
+
+  .btn-ok {
+    background: var(--ok);
+    color: #fff;
+    box-shadow: 0 2px 6px rgba(22, 163, 74, 0.25);
+  }
+
+  .btn-ok:hover { background: #15803d; }
+
+  .key-help {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .empty-state {
+    display: none;
+    background: #fff;
+    border: 2px dashed #86efac;
+    border-radius: 16px;
+    padding: 40px 20px;
+    text-align: center;
+  }
+
+  .empty-state.show { display: block; }
+
+  @media (max-width: 560px) {
+    .flashcard { min-height: 310px; }
+    .question-text { font-size: 17px; }
+    .answer-text { font-size: 21px; }
+    .nav-row { grid-template-columns: 1fr 1fr; }
+    .btn-prev { order: 3; }
+    .btn-next { order: 4; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="badge">中学1年生 理科 2学期末テスト対策</div>
+    <h1>「身のまわりの物質」重要語句フラッシュカード（全45枚）</h1>
+    <p class="subtitle">表面で用語を思い出し、タップで裏返して「答え＋狙われやすい一言ポイント」を確認！</p>
+  </div>
+</header>
+
+<div class="container">
+  <div class="toolbar">
+    <div class="filter-row" id="filterRow">
+      <button class="filter-btn active" data-filter="all">すべて (45)</button>
+      <button class="filter-btn" data-filter="ch1">1章 物質の性質 (12)</button>
+      <button class="filter-btn" data-filter="ch2">2章 気体の性質 (11)</button>
+      <button class="filter-btn" data-filter="ch3">3章 水溶液 (12)</button>
+      <button class="filter-btn" data-filter="ch4">4章 状態変化・蒸留 (10)</button>
+      <button class="filter-btn unlearned" data-filter="unlearned">まだ覚えていない</button>
+    </div>
+    <div class="tool-actions">
+      <div class="progress-meta" id="progressMeta">1 / 45 枚目（覚えた: <span>0</span> / 45）</div>
+      <div class="tool-btns">
+        <button class="mini-btn" id="shuffleBtn">🔀 シャッフル</button>
+        <button class="mini-btn" id="resetBtn">↺ 記録リセット</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="progress-track">
+    <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+  </div>
+
+  <div class="scene" id="scene">
+    <div class="flashcard" id="flashcard">
+      <div class="face face-front">
+        <div class="face-top">
+          <span class="unit-tag" id="frontUnit">1章</span>
+          <span class="learned-pill" id="frontLearned" style="display:none;">✓ 覚えた</span>
+          <span class="side-label">表：問題</span>
+        </div>
+        <div class="face-center">
+          <div class="question-text" id="questionText"></div>
+        </div>
+        <div class="face-bottom">タップ / Spaceキー で裏返す ↻</div>
+      </div>
+
+      <div class="face face-back">
+        <div class="face-top">
+          <span class="unit-tag" id="backUnit">1章</span>
+          <span class="side-label back">裏：答え ＆ ポイント</span>
+        </div>
+        <div class="face-center">
+          <div class="answer-text" id="answerText"></div>
+          <div class="point-box" id="pointBox"></div>
+        </div>
+        <div class="face-bottom">タップで表面に戻る ↺</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="empty-state" id="emptyState">
+    <div style="font-size: 28px; margin-bottom: 8px;">🎉</div>
+    <div style="font-size: 18px; font-weight: 800; color: #16a34a; margin-bottom: 6px;">この範囲のカードはすべて「覚えた！」になりました！</div>
+    <div style="font-size: 13.5px; color: #475569; margin-bottom: 16px;">「すべて」に切り替えて総復習するか、記録をリセットしてもう1周できます。</div>
+    <button class="btn btn-ok" onclick="selectFilter('all')">すべてのカードを見る</button>
+  </div>
+
+  <div class="nav-row" id="navRow">
+    <button class="btn btn-nav btn-prev" id="prevBtn">← 前へ</button>
+    <button class="btn btn-again" id="againBtn">🔁 もう一度</button>
+    <button class="btn btn-ok" id="learnedBtn">✅ 覚えた！</button>
+    <button class="btn btn-nav btn-next" id="nextBtn">次へ →</button>
+  </div>
+
+  <div class="key-help">ショートカット：Spaceで裏返す ／ ← → で移動 ／ [1] もう一度 ／ [2] 覚えた！</div>
+</div>
+
+<script>
+const allCards = [
+  {
+    "id": 1,
+    "chapter": "ch1",
+    "unit": "1章 物質の性質",
+    "q": "ガスバーナーの2つのねじのうち、上側にあるねじの名称は？",
+    "a": "空気調節ねじ",
+    "point": "炎の色が赤いときは「ガス調節ねじ（下）」をおさえたまま、空気調節ねじ（上）をゆるめて空気を多く入れ、青い炎にします。火を消すときは上→下の順に閉めます。"
+  },
+  {
+    "id": 2,
+    "chapter": "ch1",
+    "unit": "1章 物質の性質",
+    "q": "ガスバーナーの2つのねじのうち、下側にあるねじの名称は？",
+    "a": "ガス調節ねじ",
+    "point": "火をつけるときは、まず元栓・コックを開き、マッチに火をつけてからガス調節ねじ（下）をゆるめて点火します。"
+  },
+  {
+    "id": 3,
+    "chapter": "ch1",
+    "unit": "1章 物質の性質",
+    "q": "「コップ」や「スプーン」のように、使う目的や形で区別したときの名称は？",
+    "a": "物体",
+    "point": "「物体」と「物質」の対比が頻出！形・用途で区別するのが「物体」、材料で区別するのが「物質」です。"
+  },
+  {
+    "id": 4,
+    "chapter": "ch1",
+    "unit": "1章 物質の性質",
+    "q": "「ガラス」や「プラスチック」のように、ものをつくっている材料で区別したときの名称は？",
+    "a": "物質",
+    "point": "同じ「コップ（物体）」でも、材料によって「ガラス」「プラスチック」「金属」など異なる「物質」でできています。"
+  },
+  {
+    "id": 5,
+    "chapter": "ch1",
+    "unit": "1章 物質の性質",
+    "q": "砂糖・かたくり粉・エタノールのように、炭素をふくみ、燃えると二酸化炭素と水が発生する物質を何という？",
+    "a": "有機物",
+    "point": "有機物を燃やすと「炭（炭素）」ができ、二酸化炭素（石灰水が白くにごる）と水（集気びんの内側がくもる）が発生します。"
+  },
+  {
+    "id": 6,
+    "chapter": "ch1",
+    "unit": "1章 物質の性質",
+    "q": "食塩・鉄・ガラスのように、有機物以外の物質を何という？",
+    "a": "無機物",
+    "point": "ひっかけ注意！二酸化炭素や炭酸カルシウムなど、炭素をふくんでいても例外的に「無機物」に分類されるものがあります。"
+  },
+  {
+    "id": 7,
+    "chapter": "ch1",
+    "unit": "1章 物質の性質",
+    "q": "金属をみがいたときに出る、特有のかがやき（性質）を何という？",
+    "a": "金属光沢（きんぞくこうたく）",
+    "point": "「金属に共通する性質」の1つ。ちなみに「磁石につく」は鉄など一部の金属だけの性質なので、共通性質ではありません！"
+  },
+  {
+    "id": 8,
+    "chapter": "ch1",
+    "unit": "1章 物質の性質",
+    "q": "金属をたたいて薄く広げることができる性質を何という？",
+    "a": "展性（てんせい）",
+    "point": "「展性（広げる）」と「延性（引きのばす）」の漢字の使い分けに注意！箔（はく）にするのが展性です。"
+  },
+  {
+    "id": 9,
+    "chapter": "ch1",
+    "unit": "1章 物質の性質",
+    "q": "金属を引っ張って細長く引きのばすことができる性質を何という？",
+    "a": "延性（えんせい）",
+    "point": "「延（のばす）」という漢字からイメージしよう。針金（ワイヤー）にできるのが延性です。"
+  },
+  {
+    "id": 10,
+    "chapter": "ch1",
+    "unit": "1章 物質の性質",
+    "q": "メスシリンダーの目盛りは、最小目盛りの何分の1まで目分量で読みとる？",
+    "a": "10分の1",
+    "point": "液面のいちばん低い平らな部分を「真横」から見て、最小目盛りの10分の1まで読みます（例：1cm³刻みなら 0.1cm³ の位まで）。"
+  },
+  {
+    "id": 11,
+    "chapter": "ch1",
+    "unit": "1章 物質の性質",
+    "q": "上皿てんびんや電子てんびんではかる、物質そのものの量を何という？",
+    "a": "質量",
+    "point": "「質量」は月や宇宙など場所が変わっても変化しません（重さとは区別します）。てんびんは必ず「水平な台」に置いて使います。"
+  },
+  {
+    "id": 12,
+    "chapter": "ch1",
+    "unit": "1章 物質の性質",
+    "q": "一定体積（1 cm³）あたりの物質の質量を何という？またその公式は？",
+    "a": "密度（密度 ＝ 質量 ÷ 体積）",
+    "point": "単位は [g/cm³]。物質の種類によって値が決まっているため、密度を計算すれば物質を区別できます。"
+  },
+  {
+    "id": 13,
+    "chapter": "ch2",
+    "unit": "2章 気体の性質",
+    "q": "酸素・水素・窒素のように、水にとけにくい気体を集める方法を何という？",
+    "a": "水上置換法",
+    "point": "純粋な気体を集めやすく、集まった量もひと目でわかります。最初の1〜2本分は装置内の「空気」が多くふくまれるので捨てます。"
+  },
+  {
+    "id": 14,
+    "chapter": "ch2",
+    "unit": "2章 気体の性質",
+    "q": "アンモニアのように、水にとけやすく空気より密度が小さい（軽い）気体を集める方法を何という？",
+    "a": "上方置換法",
+    "point": "気体は上へ昇るので、試験管や集気びんの口を「下」に向けて集めます。"
+  },
+  {
+    "id": 15,
+    "chapter": "ch2",
+    "unit": "2章 気体の性質",
+    "q": "塩化水素や二酸化炭素（水上置換以外）のように、水にとけやすく空気より密度が大きい（重い）気体を集める方法を何という？",
+    "a": "下方置換法",
+    "point": "二酸化炭素は水に少しとけるため、水上置換法でも下方置換法でも集められます。"
+  },
+  {
+    "id": 16,
+    "chapter": "ch2",
+    "unit": "2章 気体の性質",
+    "q": "実験室で酸素を発生させるのに使う2つの薬品（触媒と液体）は？",
+    "a": "二酸化マンガン ＋ うすい過酸化水素水（オキシドール）",
+    "point": "身近な材料では「生のレバー」や「じゃがいも・ダイコンおろし」にオキシドールを加えても酸素が発生します。"
+  },
+  {
+    "id": 17,
+    "chapter": "ch2",
+    "unit": "2章 気体の性質",
+    "q": "火のついた線香を酸素の中に入れるとどうなる？また、酸素にはどんなはたらきがある？",
+    "a": "線香は激しく燃える（他の物質を燃やすはたらき）",
+    "point": "ひっかけ注意！酸素「そのもの」が燃えるわけではありません。他の物質を燃やすはたらき（助燃性）があります。"
+  },
+  {
+    "id": 18,
+    "chapter": "ch2",
+    "unit": "2章 気体の性質",
+    "q": "実験室で二酸化炭素を発生させるのに使う2つの薬品は？",
+    "a": "石灰石 ＋ うすい塩酸",
+    "point": "身近な材料では「卵の殻・貝殻＋食酢」「炭酸水素ナトリウム＋酢酸」「発泡入浴剤＋湯」でも二酸化炭素が発生します。"
+  },
+  {
+    "id": 19,
+    "chapter": "ch2",
+    "unit": "2章 気体の性質",
+    "q": "二酸化炭素を通すと白くにごる液体は何？また、二酸化炭素が水にとけると何性を示す？",
+    "a": "石灰水 ／ 酸性",
+    "point": "「石灰石」と「石灰水」の漢字ミスに注意！二酸化炭素が水にとけた水溶液は弱い酸性を示します。"
+  },
+  {
+    "id": 20,
+    "chapter": "ch2",
+    "unit": "2章 気体の性質",
+    "q": "実験室で水素を発生させるのに使う2つの薬品は？",
+    "a": "亜鉛（または鉄・マグネシウムなどの金属）＋ うすい塩酸",
+    "point": "金属にうすい塩酸を加えると水素が発生します。アルミニウムなどでも発生します。"
+  },
+  {
+    "id": 21,
+    "chapter": "ch2",
+    "unit": "2章 気体の性質",
+    "q": "すべての物質の中で密度がもっとも小さく、空気中で火をつけると音を立てて燃え、何ができる気体が「水素」？",
+    "a": "水",
+    "point": "水素そのものが空気中の酸素と結びついて燃え、「水」ができます（可燃性）。"
+  },
+  {
+    "id": 22,
+    "chapter": "ch2",
+    "unit": "2章 気体の性質",
+    "q": "特有の刺激臭があり、水によく溶けて「アルカリ性」を示す気体は何？",
+    "a": "アンモニア",
+    "point": "塩化アンモニウム＋水酸化カルシウムを加熱して発生させます。フェノールフタレイン溶液を「赤色」に変える（赤い噴水の実験）のが超頻出！"
+  },
+  {
+    "id": 23,
+    "chapter": "ch2",
+    "unit": "2章 気体の性質",
+    "q": "空気中に体積で約78％ふくまれ、ふつうの温度では他の物質と反応しにくい気体は何？",
+    "a": "窒素",
+    "point": "反応しにくいため、スナック菓子の袋などに「酸化防止」のために詰められています。（空気の約21％は酸素）"
+  },
+  {
+    "id": 24,
+    "chapter": "ch3",
+    "unit": "3章 水溶液",
+    "q": "水溶液などの液体に「とけている物質」を何という？",
+    "a": "溶質（ようしつ）",
+    "point": "食塩水なら「食塩」が溶質です。「溶質・溶媒・溶液」の3つをセットで区別できるようにしましょう。"
+  },
+  {
+    "id": 25,
+    "chapter": "ch3",
+    "unit": "3章 水溶液",
+    "q": "溶質を「とかしている液体」を何という？",
+    "a": "溶媒（ようばい）",
+    "point": "食塩水なら「水」が溶媒です。溶媒が水の溶液をとくに「水溶液」といいます。"
+  },
+  {
+    "id": 26,
+    "chapter": "ch3",
+    "unit": "3章 水溶液",
+    "q": "溶質が溶媒にとけた「液体全体」を何という？",
+    "a": "溶液（ようえき）",
+    "point": "溶液 ＝ 溶質 ＋ 溶媒。とけた後の全体の質量は、とかす前（水＋溶質）と変わりません。"
+  },
+  {
+    "id": 27,
+    "chapter": "ch3",
+    "unit": "3章 水溶液",
+    "q": "水溶液の濃さを表す「質量パーセント濃度 [%]」を求める公式は？",
+    "a": "溶質の質量 [g] ÷ 溶液の質量 [g] × 100",
+    "point": "分母は「水の質量」ではなく「溶液全体（水＋溶質）の質量」です！計算問題で最も多い引っかけポイント。"
+  },
+  {
+    "id": 28,
+    "chapter": "ch3",
+    "unit": "3章 水溶液",
+    "q": "ろ紙を使って、液体と液体にとけていない固体を分ける操作を何という？",
+    "a": "ろ過",
+    "point": "水溶液にとけている物質（粒子）はろ紙の穴より小さいため、ろ紙を通りぬけてしまい、ろ過では分けられません。"
+  },
+  {
+    "id": 29,
+    "chapter": "ch3",
+    "unit": "3章 水溶液",
+    "q": "ろ過をするとき、液体をろうとに注ぐのに使う道具と、ろうとの足の切り口の長いほうをどこにつける？",
+    "a": "ガラス棒につたわせて注ぐ ／ ビーカーの内壁につける",
+    "point": "どちらも「液体が飛び散るのを防ぐため」。また、ろうとに注ぐ液はろ紙のふちより少し下（8分目）までにとどめます。"
+  },
+  {
+    "id": 30,
+    "chapter": "ch3",
+    "unit": "3章 水溶液",
+    "q": "一定の量の水に、限界まで溶質がとけている状態を何という？",
+    "a": "飽和（ほうわ）",
+    "point": "その状態の水溶液を「飽和水溶液」といいます。"
+  },
+  {
+    "id": 31,
+    "chapter": "ch3",
+    "unit": "3章 水溶液",
+    "q": "水 100 g に物質をとかして飽和水溶液にしたとき、とけた溶質の質量の値を何という？",
+    "a": "溶解度（ようかいど）",
+    "point": "水 100 g あたりが基準です！問題文が「水 50 g」や「水 200 g」のときは、溶解度も 0.5倍 や 2倍 にして考えます。"
+  },
+  {
+    "id": 32,
+    "chapter": "ch3",
+    "unit": "3章 水溶液",
+    "q": "物質の溶解度と水の温度との関係を表したグラフを何という？",
+    "a": "溶解度曲線",
+    "point": "硝酸カリウムやミョウバンは温度が上がると急に溶解度が大きくなり、塩化ナトリウムは温度が変わってもほとんど変化しません。"
+  },
+  {
+    "id": 33,
+    "chapter": "ch3",
+    "unit": "3章 水溶液",
+    "q": "物質をいったん溶媒にとかし、温度を下げたり水を蒸発させたりして、再び固体（結晶）としてとり出す操作を何という？",
+    "a": "再結晶",
+    "point": "ミョウバンや硝酸カリウムは「冷却」、温度による溶解度変化が小さい塩化ナトリウムは「水を蒸発させる」方法が適しています。"
+  },
+  {
+    "id": 34,
+    "chapter": "ch3",
+    "unit": "3章 水溶液",
+    "q": "塩化ナトリウムや水のように、1種類の物質からできているものを何という？",
+    "a": "純物質（純粋な物質）",
+    "point": "水・エタノール・酸素・鉄などが純物質です。純物質は融点や沸点が決まっています。"
+  },
+  {
+    "id": 35,
+    "chapter": "ch3",
+    "unit": "3章 水溶液",
+    "q": "食塩水や空気、海水のように、複数の物質が混ざり合ったものを何という？",
+    "a": "混合物",
+    "point": "「塩酸（塩化水素＋水）」や「10円硬貨（銅＋亜鉛・スズ）」も混合物です。"
+  },
+  {
+    "id": 36,
+    "chapter": "ch4",
+    "unit": "4章 状態変化・蒸留",
+    "q": "物質が温度によって固体・液体・気体の間で状態を変えることを何という？",
+    "a": "状態変化",
+    "point": "見た目の「すがた」が変わるだけで、物質そのものの種類は変わりません。"
+  },
+  {
+    "id": 37,
+    "chapter": "ch4",
+    "unit": "4章 状態変化・蒸留",
+    "q": "ふつうの物質が「固体 → 液体 → 気体」と変化するとき、体積と質量はそれぞれどうなる？",
+    "a": "体積は大きくなる ／ 質量は変わらない",
+    "point": "物質をつくる「粒子の数」は変わらないので質量は一定！体積が増えるため、密度（質量÷体積）は小さくなります。"
+  },
+  {
+    "id": 38,
+    "chapter": "ch4",
+    "unit": "4章 状態変化・蒸留",
+    "q": "水（液体）が氷（固体）になるとき、体積と密度は例外的にどうなる？",
+    "a": "体積は大きくなり、密度は小さくなる",
+    "point": "そのため氷は水に浮きます。冬の湖で表面が凍っても下の魚が生きられる理由もこれが関係しています。"
+  },
+  {
+    "id": 39,
+    "chapter": "ch4",
+    "unit": "4章 状態変化・蒸留",
+    "q": "熱湯をかけて液体から気体に変化したとき、袋がふくらむ理由を「粒子」を使って説明すると、何がどうなるから？",
+    "a": "粒子の運動が激しくなり、粒子どうしの間隔（すき間）が大きくなるから",
+    "point": "「粒子の数が増える」「粒子自体が大きくなる」は典型的な誤答（ひっかけ）なので要注意！"
+  },
+  {
+    "id": 40,
+    "chapter": "ch4",
+    "unit": "4章 状態変化・蒸留",
+    "q": "液体が沸騰して気体に変化するときの温度を何という？",
+    "a": "沸点",
+    "point": "純物質では加熱する液体の量を2倍にしても、沸点の温度は変わりません（沸騰するまでの時間は長くなります）。"
+  },
+  {
+    "id": 41,
+    "chapter": "ch4",
+    "unit": "4章 状態変化・蒸留",
+    "q": "固体がとけて液体に変化するときの温度を何という？",
+    "a": "融点",
+    "point": "「融点 ＜ 20℃ ＜ 沸点」なら20℃で液体、「20℃ ＜ 融点」なら固体、「沸点 ＜ 20℃」なら気体と判断できます。"
+  },
+  {
+    "id": 42,
+    "chapter": "ch4",
+    "unit": "4章 状態変化・蒸留",
+    "q": "液体を加熱する実験で、急に激しく沸騰する「突沸」を防ぐために試験管やフラスコに入れるものは？",
+    "a": "沸騰石",
+    "point": "記述問題で「何のために沸騰石を入れるか」と聞かれたら、「突沸（急激な沸騰）を防ぐため」と答えます。"
+  },
+  {
+    "id": 43,
+    "chapter": "ch4",
+    "unit": "4章 状態変化・蒸留",
+    "q": "エタノールを加熱するとき、直接ガスバーナーで加熱せずにお湯につけて（湯せんで）温める理由は？",
+    "a": "エタノールが引火しやすいから",
+    "point": "エタノールの沸点はおよそ「78℃」なのでお湯で十分沸騰します。火を消す前は逆流を防ぐため先にガラス管を抜きます。"
+  },
+  {
+    "id": 44,
+    "chapter": "ch4",
+    "unit": "4章 状態変化・蒸留",
+    "q": "液体を沸騰させて出てきた気体を、冷やして再び液体にして集める方法を何という？",
+    "a": "蒸留",
+    "point": "混合物の「沸点の違い」を利用して、それぞれの物質に分離することができます（石油の分留など）。"
+  },
+  {
+    "id": 45,
+    "chapter": "ch4",
+    "unit": "4章 状態変化・蒸留",
+    "q": "水（沸点100℃）とエタノール（沸点78℃）の混合物を蒸留すると、はじめの試験管にはどちらが多くふくまれる？",
+    "a": "エタノール",
+    "point": "沸点が低いほう（エタノール）が先に多く気体になって出てくるため、最初の試験管の液体は火をつけるとよく燃えます。"
+  }
+];
+
+const state = {
+  filter: "all",
+  deck: [...allCards],
+  index: 0,
+  flipped: false,
+  learned: {} // card.id -> true
+};
+
+function buildDeck() {
+  if (state.filter === "all") {
+    state.deck = [...allCards];
+  } else if (state.filter === "unlearned") {
+    state.deck = allCards.filter(c => !state.learned[c.id]);
+  } else {
+    state.deck = allCards.filter(c => c.chapter === state.filter);
+  }
+  state.index = 0;
+  state.flipped = false;
+}
+
+function selectFilter(filter) {
+  state.filter = filter;
+  document.querySelectorAll(".filter-btn").forEach(b => {
+    b.classList.toggle("active", b.dataset.filter === filter);
+  });
+  buildDeck();
+  render();
+}
+
+function shuffleDeck() {
+  for (let i = state.deck.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [state.deck[i], state.deck[j]] = [state.deck[j], state.deck[i]];
+  }
+  state.index = 0;
+  state.flipped = false;
+  render();
+}
+
+function flipCard() {
+  if (state.deck.length === 0) return;
+  state.flipped = !state.flipped;
+  document.getElementById("flashcard").classList.toggle("is-flipped", state.flipped);
+}
+
+function move(delta) {
+  if (state.deck.length === 0) return;
+  const next = state.index + delta;
+  if (next >= 0 && next < state.deck.length) {
+    state.index = next;
+    state.flipped = false;
+    render();
+  }
+}
+
+function markCard(isLearned) {
+  if (state.deck.length === 0) return;
+  const card = state.deck[state.index];
+  if (isLearned) {
+    state.learned[card.id] = true;
+  } else {
+    delete state.learned[card.id];
+  }
+
+  if (state.filter === "unlearned" && isLearned) {
+    state.deck = allCards.filter(c => !state.learned[c.id]);
+    if (state.index >= state.deck.length) {
+      state.index = Math.max(0, state.deck.length - 1);
+    }
+    state.flipped = false;
+    render();
+    return;
+  }
+
+  if (state.index < state.deck.length - 1) {
+    state.index++;
+  } else {
+    state.index = 0;
+  }
+  state.flipped = false;
+  render();
+}
+
+function resetProgress() {
+  state.learned = {};
+  buildDeck();
+  render();
+}
+
+function render() {
+  const totalAll = allCards.length;
+  const learnedAll = Object.keys(state.learned).length;
+  const totalDeck = state.deck.length;
+
+  const meta = document.getElementById("progressMeta");
+  const fill = document.getElementById("progressFill");
+  const scene = document.getElementById("scene");
+  const navRow = document.getElementById("navRow");
+  const emptyState = document.getElementById("emptyState");
+
+  fill.style.width = `${Math.round((learnedAll / totalAll) * 100)}%`;
+
+  if (totalDeck === 0) {
+    meta.innerHTML = `0 / 0 枚目（覚えた: <span>${learnedAll}</span> / ${totalAll}）`;
+    scene.style.display = "none";
+    navRow.style.display = "none";
+    emptyState.classList.add("show");
+    return;
+  }
+
+  scene.style.display = "block";
+  navRow.style.display = "grid";
+  emptyState.classList.remove("show");
+
+  meta.innerHTML = `${state.index + 1} / ${totalDeck} 枚目（覚えた: <span>${learnedAll}</span> / ${totalAll}）`;
+
+  const card = state.deck[state.index];
+  const flashcard = document.getElementById("flashcard");
+  flashcard.classList.toggle("is-flipped", state.flipped);
+
+  document.getElementById("frontUnit").textContent = card.unit;
+  document.getElementById("backUnit").textContent = card.unit;
+  document.getElementById("frontLearned").style.display = state.learned[card.id] ? "inline-block" : "none";
+  document.getElementById("questionText").textContent = card.q;
+  document.getElementById("answerText").textContent = card.a;
+  document.getElementById("pointBox").innerHTML = `<strong>💡 テストで狙われやすいポイント：</strong><br>${card.point}`;
+
+  document.getElementById("prevBtn").disabled = state.index === 0;
+  document.getElementById("nextBtn").disabled = state.index === totalDeck - 1;
+}
+
+document.getElementById("flashcard").addEventListener("click", flipCard);
+document.getElementById("prevBtn").addEventListener("click", () => move(-1));
+document.getElementById("nextBtn").addEventListener("click", () => move(1));
+document.getElementById("againBtn").addEventListener("click", () => markCard(false));
+document.getElementById("learnedBtn").addEventListener("click", () => markCard(true));
+document.getElementById("shuffleBtn").addEventListener("click", shuffleDeck);
+document.getElementById("resetBtn").addEventListener("click", resetProgress);
+
+document.getElementById("filterRow").addEventListener("click", e => {
+  const btn = e.target.closest(".filter-btn");
+  if (!btn) return;
+  selectFilter(btn.dataset.filter);
+});
+
+document.addEventListener("keydown", e => {
+  if (e.code === "Space" || e.key === "Enter") {
+    e.preventDefault();
+    flipCard();
+  } else if (e.key === "ArrowLeft") {
+    move(-1);
+  } else if (e.key === "ArrowRight") {
+    move(1);
+  } else if (e.key === "1") {
+    markCard(false);
+  } else if (e.key === "2") {
+    markCard(true);
+  }
+});
+
+render();
+</script>
+</body>
+</html>

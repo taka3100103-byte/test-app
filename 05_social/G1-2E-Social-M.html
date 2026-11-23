@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中1 社会（地理）2学期末テスト 通し模擬テスト</title>
+<style>
+  :root {
+    --bg: #f1f5f9;
+    --card: #ffffff;
+    --text: #0f172a;
+    --muted: #64748b;
+    --primary: #1d4ed8;
+    --primary-dark: #1e40af;
+    --primary-light: #eff6ff;
+    --success: #15803d;
+    --success-light: #dcfce7;
+    --danger: #b91c1c;
+    --danger-light: #fee2e2;
+    --warning: #b45309;
+    --warning-light: #fef3c7;
+    --border: #cbd5e1;
+    --shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+    --radius: 12px;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+  }
+
+  /* 上部固定タイマーバー */
+  .top-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #0f172a;
+    color: #fff;
+    padding: 10px 16px;
+    box-shadow: 0 3px 12px rgba(15, 23, 42, 0.25);
+  }
+  .top-bar-inner {
+    max-width: 980px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .title-block h1 {
+    margin: 0;
+    font-size: 1.08rem;
+    font-weight: 700;
+  }
+  .title-block span {
+    font-size: 0.78rem;
+    color: #cbd5e1;
+  }
+
+  .timer-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #1e293b;
+    padding: 6px 12px;
+    border-radius: 10px;
+    border: 1px solid #334155;
+  }
+  .timer-display {
+    font-variant-numeric: tabular-nums;
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    color: #38bdf8;
+    min-width: 72px;
+    text-align: center;
+  }
+  .timer-display.warn { color: #fbbf24; }
+  .timer-display.danger { color: #f87171; animation: pulse 1s infinite; }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.55; }
+  }
+
+  .t-btn {
+    border: 1px solid #475569;
+    background: #334155;
+    color: #fff;
+    border-radius: 7px;
+    padding: 5px 10px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .t-btn:hover { background: #475569; }
+  .t-btn.start { background: #2563eb; border-color: #2563eb; }
+  .t-btn.start:hover { background: #1d4ed8; }
+
+  .container {
+    max-width: 980px;
+    margin: 20px auto 70px;
+    padding: 0 16px;
+  }
+
+  .info-banner {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 5px solid var(--primary);
+    border-radius: var(--radius);
+    padding: 14px 18px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow);
+    font-size: 0.9rem;
+  }
+  .info-banner strong { color: var(--primary-dark); }
+
+  /* 問題番号ナビゲーション */
+  .nav-panel {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 18px;
+    margin-bottom: 18px;
+    box-shadow: var(--shadow);
+  }
+  .nav-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 0.86rem;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  .nav-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .nav-dot {
+    width: 32px;
+    height: 30px;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    background: #fff;
+    color: var(--text);
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.12s;
+  }
+  .nav-dot:hover { border-color: var(--primary); }
+  .nav-dot.answered {
+    background: var(--primary-light);
+    border-color: var(--primary);
+    color: var(--primary-dark);
+  }
+  .nav-dot.res-ok {
+    background: var(--success-light);
+    border-color: var(--success);
+    color: var(--success);
+  }
+  .nav-dot.res-ng {
+    background: var(--danger-light);
+    border-color: var(--danger);
+    color: var(--danger);
+  }
+
+  /* 採点結果パネル */
+  .result-panel {
+    display: none;
+    background: #fff;
+    border: 2px solid var(--primary);
+    border-radius: var(--radius);
+    padding: 22px;
+    margin-bottom: 22px;
+    box-shadow: var(--shadow);
+  }
+  .result-panel.show { display: block; }
+  .score-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 16px;
+    margin: 6px 0 12px;
+  }
+  .score-main {
+    font-size: 2.1rem;
+    font-weight: 800;
+    color: var(--primary);
+  }
+  .score-sub {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--muted);
+  }
+  .unit-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    margin: 14px 0 16px;
+  }
+  .unit-box {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 0.86rem;
+  }
+  .unit-bar {
+    height: 7px;
+    background: #e2e8f0;
+    border-radius: 999px;
+    margin-top: 6px;
+    overflow: hidden;
+  }
+  .unit-bar-fill {
+    height: 100%;
+    background: var(--primary);
+  }
+  .filter-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+    padding-top: 12px;
+    border-top: 1px solid #e2e8f0;
+  }
+
+  /* 問題カード */
+  .q-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow);
+    scroll-margin-top: 76px;
+  }
+  .q-card.graded-ok { border-left: 5px solid var(--success); }
+  .q-card.graded-ng { border-left: 5px solid var(--danger); }
+
+  .q-meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .badges {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .badge {
+    font-size: 0.76rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 999px;
+  }
+  .badge-unit { background: var(--primary-light); color: var(--primary-dark); }
+  .badge-type { background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; }
+  .q-num { font-size: 0.86rem; font-weight: 700; color: var(--muted); }
+  .q-text { font-size: 1.03rem; font-weight: 700; margin: 0 0 14px; }
+
+  /* 4択・○× */
+  .choices { display: grid; gap: 8px; }
+  .tf-choices { grid-template-columns: 1fr 1fr; }
+  @media (max-width: 520px) { .tf-choices { grid-template-columns: 1fr; } }
+
+  .choice-btn {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    width: 100%;
+    text-align: left;
+    padding: 11px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    background: #fff;
+    color: var(--text);
+    font-size: 0.94rem;
+    cursor: pointer;
+    transition: all 0.12s;
+  }
+  .choice-btn:hover:not(:disabled) {
+    border-color: var(--primary);
+    background: var(--primary-light);
+  }
+  .choice-btn.selected {
+    border-color: var(--primary);
+    background: var(--primary-light);
+    font-weight: 700;
+  }
+  .choice-btn.correct {
+    border-color: var(--success);
+    background: var(--success-light);
+    color: #14532d;
+    font-weight: 700;
+  }
+  .choice-btn.wrong {
+    border-color: var(--danger);
+    background: var(--danger-light);
+    color: #7f1d1d;
+  }
+  .choice-btn:disabled { cursor: default; }
+
+  .choice-mark {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 1.5px solid #94a3b8;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    background: #fff;
+    margin-top: 1px;
+  }
+  .choice-btn.selected .choice-mark { border-color: var(--primary); background: var(--primary); color: #fff; }
+  .choice-btn.correct .choice-mark { border-color: var(--success); background: var(--success); color: #fff; }
+  .choice-btn.wrong .choice-mark { border-color: var(--danger); background: var(--danger); color: #fff; }
+
+  /* 穴埋め入力 */
+  .fill-input {
+    width: 100%;
+    max-width: 420px;
+    padding: 10px 14px;
+    font-size: 1rem;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    font-family: inherit;
+    transition: border-color 0.15s;
+  }
+  .fill-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+  }
+  .fill-input:disabled { background: #f8fafc; color: var(--text); }
+
+  /* 採点後の解説ボックス */
+  .exp-box {
+    margin-top: 14px;
+    padding: 13px 15px;
+    border-radius: 10px;
+    font-size: 0.91rem;
+  }
+  .exp-box.ok { background: #f0fdf4; border-left: 4px solid var(--success); }
+  .exp-box.ng { background: #fef2f2; border-left: 4px solid var(--danger); }
+  .exp-head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
+  .model-ans {
+    display: inline-block;
+    background: #fff;
+    border: 1px solid #cbd5e1;
+    padding: 2px 10px;
+    border-radius: 6px;
+    font-weight: 700;
+    color: var(--text);
+    margin: 4px 0 6px;
+  }
+  .override-btn {
+    border: 1px solid #cbd5e1;
+    background: #fff;
+    color: var(--text);
+    border-radius: 6px;
+    padding: 3px 9px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .override-btn:hover { background: #f1f5f9; }
+
+  /* 下部アクションバー */
+  .footer-bar {
+    position: sticky;
+    bottom: 12px;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 12px 16px;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.14);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-top: 24px;
+  }
+  .btn {
+    border: none;
+    border-radius: 10px;
+    padding: 10px 18px;
+    font-size: 0.92rem;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .btn-primary { background: var(--primary); color: #fff; }
+  .btn-primary:hover { background: var(--primary-dark); }
+  .btn-outline { background: #fff; color: var(--text); border: 1px solid var(--border); }
+  .btn-outline:hover { background: #f8fafc; }
+  .btn-sm { padding: 6px 12px; font-size: 0.82rem; }
+  .btn-sm.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+  @media print {
+    .top-bar, .nav-panel, .footer-bar, .filter-row, .override-btn { display: none !important; }
+    .q-card { break-inside: avoid; box-shadow: none; border: 1px solid #94a3b8; }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="top-bar-inner">
+    <div class="title-block">
+      <h1>中1 社会（地理）2学期末 通し模擬テスト</h1>
+      <span>全35問（4択・穴埋め・○×）｜テスト本番形式</span>
+    </div>
+    <div class="timer-box">
+      <span style="font-size:0.78rem; color:#cbd5e1;">残り時間</span>
+      <span class="timer-display" id="timerDisplay">25:00</span>
+      <button class="t-btn start" id="timerToggleBtn">開始</button>
+      <button class="t-btn" id="timerResetBtn">25:00に戻す</button>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="info-banner" id="infoBanner">
+    <strong>【模擬テストのルール】</strong>
+    制限時間は<strong>25分</strong>です。解答中はヒントや解説は表示されません。第1問〜第35問まで一気に解いてから、下の<strong>「採点する」</strong>ボタンを押してください（問題に触れると自動でタイマーがスタートします）。
+  </div>
+
+  <div class="result-panel" id="resultPanel">
+    <div style="font-weight:700; color:var(--muted); font-size:0.9rem;">模擬テスト 採点結果</div>
+    <div class="score-row">
+      <div class="score-main" id="scoreMain">0 / 35 問正解</div>
+      <div class="score-sub" id="scoreSub">（100点換算：0点｜所要時間：00:00）</div>
+    </div>
+    <div id="scoreMsg" style="font-size:0.95rem; margin-bottom:10px;"></div>
+    <div class="unit-grid" id="unitGrid"></div>
+    <div class="filter-row">
+      <button class="btn btn-outline btn-sm active" id="showAllBtn">全問を表示 (35)</button>
+      <button class="btn btn-outline btn-sm" id="showWrongBtn">不正解・未回答のみ表示</button>
+      <button class="btn btn-outline btn-sm" id="retryBtn">最初からやり直す</button>
+    </div>
+  </div>
+
+  <div class="nav-panel">
+    <div class="nav-header">
+      <span>問題一覧（クリックで移動）</span>
+      <span id="answeredCount">回答済み: 0 / 35 問</span>
+    </div>
+    <div class="nav-grid" id="navGrid"></div>
+  </div>
+
+  <div id="quizList"></div>
+
+  <div class="footer-bar">
+    <span id="footerStatus" style="font-size:0.9rem; color:var(--muted); font-weight:600;">回答済み: 0 / 35 問</span>
+    <div style="display:flex; gap:8px; flex-wrap:wrap;">
+      <button class="btn btn-outline" onclick="window.print()">印刷する</button>
+      <button class="btn btn-primary" id="gradeBtn">採点する</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const QUESTIONS = [{"id": 1, "unit": "asia", "unitName": "第1章 アジア州", "type": "choice", "q": "アジアの東部や南部で、夏は海から陸へ、冬は陸から海へと吹く向きが逆になり、夏に多くの雨をもたらす風を何といいますか。", "choices": ["偏西風", "季節風（モンスーン）", "貿易風", "やませ"], "ans": 1, "exp": "アジアの東部・南部では季節風（モンスーン）が吹き、夏は海からの湿った風によって降水量が多い雨季に、冬は陸からの乾いた風によって降水量が少ない乾季になります。"}, {"id": 2, "unit": "asia", "unitName": "第1章 アジア州", "type": "fill", "q": "中国政府が外国の資本や技術を取り入れるために、シェンチェンなど沿岸部に設けた地域を［　　　］といいます。（漢字4字）", "accept": ["経済特区"], "model": "経済特区", "exp": "中国は沿岸部に「経済特区」を設けて外国企業を優遇し、工業化を急速に進めて「世界の工場」とよばれるようになりました。"}, {"id": 3, "unit": "asia", "unitName": "第1章 アジア州", "type": "tf", "q": "東南アジアなど世界各地に移住して商業などの分野で活躍している中国系の人々を「漢族」といい、中国の総人口の約90％をしめる民族を「華人」という。", "ans": false, "exp": "【×】逆です。中国の総人口の約90％をしめるのが「漢族」で、東南アジアなど世界各地に移住して活躍している中国系の人々を「華人」といいます。"}, {"id": 4, "unit": "asia", "unitName": "第1章 アジア州", "type": "choice", "q": "中国の農業地域について、華北・東北地方（北東部）、華中・華南地方（南東部）、西部でそれぞれ盛んな農業の組み合わせとして正しいものはどれですか。", "choices": ["北東部：畑作 ／ 南東部：稲作 ／ 西部：牧畜", "北東部：稲作 ／ 南東部：畑作 ／ 西部：牧畜", "北東部：牧畜 ／ 南東部：稲作 ／ 西部：畑作", "北東部：畑作 ／ 南東部：牧畜 ／ 西部：稲作"], "ans": 0, "exp": "中国では降水量が多い南東部（華中・華南）で稲作、北東部（華北・東北）で畑作、乾燥した西部で牧畜が盛んに行われています。"}, {"id": 5, "unit": "asia", "unitName": "第1章 アジア州", "type": "fill", "q": "韓国・シンガポール・台湾・ホンコンのように、1970年代以降急速に工業化が進み経済発展した国や地域を、アルファベット4文字を含めて［　　　　］といいます。", "accept": ["アジアNIES", "アジアニーズ", "NIES"], "model": "アジアNIES", "exp": "1970年代以降に急速な工業化と経済発展をとげた韓国・シンガポール・台湾・ホンコンは「アジアNIES（新興工業経済地域）」とよばれます。"}, {"id": 6, "unit": "asia", "unitName": "第1章 アジア州", "type": "choice", "q": "東南アジアへ進出する日本企業のうち、近年ベトナムへの進出数が急増している主な理由として最も適切なものはどれですか。", "choices": ["他の東南アジア諸国と比べて製造業の賃金が安いため", "石油や天然ガスの産出量が世界で最も多いため", "日本との時差が12時間あり、24時間体制がとれるため", "EUに加盟しており、関税がかからないため"], "ans": 0, "exp": "東南アジアで日本企業数が最も多いのはタイですが、ベトナムは他の国と比べて賃金が安いため、近年日本企業の進出が急増しています。"}, {"id": 7, "unit": "asia", "unitName": "第1章 アジア州", "type": "tf", "q": "東南アジアで、同じ田で1年に2回米をつくることを「二期作」といい、えびの養殖場をつくるために海岸の「マングローブ林」の伐採が進んでいることが問題になっている。", "ans": true, "exp": "【○】正しい記述です。なお、同じ田畑で1年に2種類の異なる作物を栽培することは「二毛作」といい、区別して覚えましょう。"}, {"id": 8, "unit": "asia", "unitName": "第1章 アジア州", "type": "choice", "q": "インドにアメリカ企業のコールセンターが数多く置かれている理由として、正しいものはどれですか。", "choices": ["アメリカが夜で業務が終わる時間帯にインドが昼となるため、24時間対応ができるから", "インドとアメリカの標準時がまったく同じだから", "インドのバンガロールで石油が大量に産出されるから", "インドはアメリカより労働者の賃金が高いから"], "ans": 0, "exp": "インドは英語を話せる人材が多く、アメリカとの時差を利用して昼と夜を分けることで24時間対応ができるため、バンガロールを中心にICT産業やコールセンターが発達しました。"}, {"id": 9, "unit": "asia", "unitName": "第1章 アジア州", "type": "fill", "q": "1991年にソ連が解体して独立した中央アジアの国々では、クロムやマンガンなどの希少金属である［　　　　］が豊富に産出されます。（カタカナ6字）", "accept": ["レアメタル"], "model": "レアメタル", "exp": "カザフスタンなど中央アジアの国々では、クロムやマンガンなどの「レアメタル（希少金属）」が豊富に産出されます。なお、西アジアのペルシャ湾沿岸では石油が多く産出されます。"}, {"id": 10, "unit": "europe", "unitName": "第2章 ヨーロッパ州", "type": "fill", "q": "ヨーロッパのスカンディナビア半島などに見られる、氷河によってけずられて形成された奥行きのある湾を［　　　　］といいます。（カタカナ5字）", "accept": ["フィヨルド"], "model": "フィヨルド", "exp": "ノルウェーなどヨーロッパ北西部の海岸に多く見られる、氷河の浸食によってできた深く入り組んだ湾を「フィヨルド」といいます。"}, {"id": 11, "unit": "europe", "unitName": "第2章 ヨーロッパ州", "type": "choice", "q": "ヨーロッパが高緯度に位置しているにもかかわらず、冬でも比較的温暖な気候である理由として正しいものはどれですか。", "choices": ["暖流の北大西洋海流と、その上を吹く偏西風の影響を受けるため", "寒流と季節風（モンスーン）が夏と冬で逆向きに吹くため", "アルプス山脈が北からの冷たい風をすべてさえぎるため", "赤道に近く、一年中太陽の高度が高いため"], "ans": 0, "exp": "ヨーロッパ西部は、暖流である「北大西洋海流」と、西から東へ吹く「偏西風」の影響を受けるため、高緯度でも冬に比較的温暖な気候になります。"}, {"id": 12, "unit": "europe", "unitName": "第2章 ヨーロッパ州", "type": "tf", "q": "ヨーロッパの地中海沿岸では、夏の乾燥に強いオリーブやぶどうなどの果実と小麦を組み合わせた「混合農業」が盛んである。", "ans": false, "exp": "【×】地中海沿岸で行われているのは「地中海式農業」です。「混合農業」はドイツやフランスなどで見られる、小麦・ライ麦などの栽培と家畜の飼育を組み合わせた農業です。"}, {"id": 13, "unit": "europe", "unitName": "第2章 ヨーロッパ州", "type": "choice", "q": "2004年にEUへ加盟したハンガリーの輸入相手国が、ソ連中心からドイツなどEU加盟国中心へと変化した主な理由は何ですか。", "choices": ["EUに加盟している国どうしの貿易では関税がかからないため", "ハンガリーとソ連の間の鉄道がすべて廃止されたため", "ドイツの賃金がハンガリーより安くなったため", "ハンガリーで石油が大量に発見されたため"], "ans": 0, "exp": "EU加盟国どうしの貿易では「関税」がかからず有利に取引できるため、ハンガリーの輸入相手国はEU加盟国が中心となりました。"}, {"id": 14, "unit": "europe", "unitName": "第2章 ヨーロッパ州", "type": "choice", "q": "EU加盟国間の経済格差を解消するための補助金負担などをめぐって対立がおこり、2020年1月にEUを離脱した国はどこですか。", "choices": ["イギリス", "スイス", "ノルウェー", "フランス"], "ans": 0, "exp": "西ヨーロッパと東ヨーロッパの経済格差を解消するための補助金負担などをめぐり対立がおこり、2020年1月に「イギリス」がEUを離脱しました。"}, {"id": 15, "unit": "europe", "unitName": "第2章 ヨーロッパ州", "type": "fill", "q": "紛争や災害などによって自国から逃れた人々を［　　］といいます。（漢字2字）", "accept": ["難民"], "model": "難民", "exp": "紛争や災害などで自国から逃れた人々を「難民」、働くことを目的に外国から来た人々を「外国人労働者」、生まれた国を出て他国へ移り住んだ人々を「移民」といいます。"}, {"id": 16, "unit": "europe", "unitName": "第2章 ヨーロッパ州", "type": "tf", "q": "ヨーロッパでは、工場の排気などに含まれる汚染物質が風に乗って広がり、雨にとけて降ることで国境をこえて森林が立ち枯れる「酸性雨」が問題になった。", "ans": true, "exp": "【○】正しい記述です。ヨーロッパは陸続きで国境を接しているため、大気汚染や河川の汚染が国境をこえて広がる課題があります。"}, {"id": 17, "unit": "europe", "unitName": "第2章 ヨーロッパ州", "type": "choice", "q": "ライン川のように複数の国が利用する河川を何といい、水質を改善するためにどのような取り組みが行われましたか。", "choices": ["国際河川といい、工場からの排水の規制や汚水処理施設の設置に協力して取り組んだ", "内陸河川といい、飲料水としての利用をすべて禁止した", "国境河川といい、水力発電所の建設のみを進めた", "運河といい、川の通行を全面的に封鎖した"], "ans": 0, "exp": "複数の国が利用する河川を「国際河川」といいます。ライン川では利用国が協力し、工場排水の規制や汚水処理施設の設置に取り組んで水質を改善しました。"}, {"id": 18, "unit": "europe", "unitName": "第2章 ヨーロッパ州", "type": "fill", "q": "都市の中心部への自動車の乗り入れを制限し、郊外の駅などに車を止めて電車やバスに乗り換える仕組みを［　　　　　　］といいます。（カタカナ）", "accept": ["パークアンドライド", "パーク・アンド・ライド"], "model": "パークアンドライド", "exp": "大気汚染や交通渋滞を防ぐため、郊外の駅に車を止めて公共交通機関に乗り換える仕組みを「パークアンドライド」といいます。"}, {"id": 19, "unit": "africa", "unitName": "第3章 アフリカ州", "type": "choice", "q": "アフリカ大陸を赤道付近から地中海沿岸（北）へ向かって進むとき、気候帯はどのように変化しますか。", "choices": ["熱帯 → 乾燥帯 → 温帯", "乾燥帯 → 熱帯 → 冷帯", "温帯 → 寒帯 → 熱帯", "熱帯 → 温帯 → 乾燥帯"], "ans": 0, "exp": "赤道付近の「熱帯（熱帯雨林・サバナ）」から、北へ向かうにつれて「乾燥帯（ステップ・サハラ砂漠）」、地中海沿岸の「温帯」へと変化します。"}, {"id": 20, "unit": "africa", "unitName": "第3章 アフリカ州", "type": "fill", "q": "サハラ砂漠の南部に広がり、過放牧や過耕作などによって砂漠化の進んでいる草原地帯を［　　　］といいます。（カタカナ3字）", "accept": ["サヘル"], "model": "サヘル", "exp": "サハラ砂漠の南縁に広がる、砂漠化が深刻に進んでいる草原地帯を「サヘル」といいます。"}, {"id": 21, "unit": "africa", "unitName": "第3章 アフリカ州", "type": "tf", "q": "アフリカ諸国の多くは、1950年代以降に独立したあと、旧宗主国が支配していた時代に使われていた英語やフランス語を公用語としている国が多い。", "ans": true, "exp": "【○】正しい記述です。エチオピアとリベリア以外はヨーロッパ諸国の植民地となり、独立後も旧宗主国の英語やフランス語を公用語とする国が多くなっています。"}, {"id": 22, "unit": "africa", "unitName": "第3章 アフリカ州", "type": "choice", "q": "アフリカの農産物・鉱産資源と主な産出国の組み合わせとして、正しいものはどれですか。", "choices": ["カカオ：ガーナ・コートジボワール ／ 石油：ナイジェリア ／ ダイヤモンド：ボツワナ", "カカオ：ナイジェリア ／ 石油：ボツワナ ／ ダイヤモンド：ガーナ", "コーヒー：南アフリカ共和国 ／ 銅：エジプト ／ 石油：ケニア", "米：コンゴ民主共和国 ／ 金：コートジボワール ／ 茶：モロッコ"], "ans": 0, "exp": "カカオはガーナ・コートジボワール、石油はナイジェリア、ダイヤモンドはボツワナ、プラチナやクロムなどのレアメタル・金は南アフリカ共和国が代表的です。"}, {"id": 23, "unit": "africa", "unitName": "第3章 アフリカ州", "type": "fill", "q": "少数の農作物や鉱産資源の輸出に頼って成り立っている経済を［　　　　　］経済といいます。（カタカナ7字）", "accept": ["モノカルチャー"], "model": "モノカルチャー", "exp": "特定の少数の農作物や鉱産資源の輸出に頼る経済を「モノカルチャー経済」といいます。国際価格の変動や天候の影響を受けやすく、国の経済が不安定になりやすい課題があります。"}, {"id": 24, "unit": "africa", "unitName": "第3章 アフリカ州", "type": "choice", "q": "コートジボワールのカカオやナイジェリアの石油のように、モノカルチャー経済が抱える最大の問題点は何ですか。", "choices": ["国際価格の変動や天候の影響を受けやすく、国の経済が不安定になりやすいこと", "国民全員が農業しかできなくなり、都市がなくなること", "輸出品が多すぎて国内で消費できなくなること", "価格が毎年必ず上がり続け、他国と貿易できなくなること"], "ans": 0, "exp": "特定の農作物や鉱産資源に依存すると、国際価格が下がったり不作になったりした際に輸出総額が大きく減り、国の経済が不安定になりやすくなります。"}, {"id": 25, "unit": "africa", "unitName": "第3章 アフリカ州", "type": "tf", "q": "アフリカでは森林の木々を伐採して燃やしたあとの灰を肥料とする「プランテーション農業」が、伝統的な農業として古くから行われてきた。", "ans": false, "exp": "【×】木々を燃やした灰を肥料とする伝統的な農業は「焼畑農業」です。「プランテーション」は植民地時代にヨーロッパ人が開いた輸出用の大農園です。"}, {"id": 26, "unit": "africa", "unitName": "第3章 アフリカ州", "type": "fill", "q": "EUを参考に、アフリカの国々が地域統合を目指して2002年に結成した組織「アフリカ連合」のアルファベット略称は［　　］です。", "accept": ["AU"], "model": "AU", "exp": "2002年にEUをモデルとしてアフリカの国々が結成した組織は「アフリカ連合（AU）」です。"}, {"id": 27, "unit": "namerica", "unitName": "第4章 北アメリカ州", "type": "choice", "q": "北アメリカ大陸の西部に連なる高く険しい山脈と、アメリカ中央部を南へ流れメキシコ湾に注ぐ大河の組み合わせはどれですか。", "choices": ["ロッキー山脈 ／ ミシシッピ川", "アパラチア山脈 ／ ライン川", "アンデス山脈 ／ アマゾン川", "ヒマラヤ山脈 ／ インダス川"], "ans": 0, "exp": "北アメリカ大陸の西部には「ロッキー山脈」、東部には「アパラチア山脈」、中央部には「中央平原」と「ミシシッピ川」があります。"}, {"id": 28, "unit": "namerica", "unitName": "第4章 北アメリカ州", "type": "fill", "q": "アメリカ合衆国・メキシコ・カナダの3か国が結んでいた「NAFTA」が発展し、2020年に発効した新しい協定の略称は［　　　］です。（アルファベット5文字）", "accept": ["USMCA"], "model": "USMCA", "exp": "北米自由貿易協定（NAFTA）が発展し、2020年に「USMCA（米国・メキシコ・カナダ協定）」が発効しました。"}, {"id": 29, "unit": "namerica", "unitName": "第4章 北アメリカ州", "type": "tf", "q": "アメリカ合衆国の農業では、各地の自然環境に適した農作物を栽培する「適地適作」が行われており、乾燥した地域では地下水をくみ上げてスプリンクラーでまく「センターピボット」が見られる。", "ans": true, "exp": "【○】正しい記述です。アメリカでは広大な耕地と大型機械を使った効率的な「企業的な農業」が行われています。"}, {"id": 30, "unit": "namerica", "unitName": "第4章 北アメリカ州", "type": "choice", "q": "アメリカ合衆国の農業の特徴について、日本と比較した資料から読み取れることとして正しいものはどれですか。", "choices": ["広い耕地面積をもち、少ない農業従事者で多くの大型農業用トラクターを使って効率的な企業的農業を行っている", "耕地面積は日本より狭く、人手に頼った小規模な農業が中心である", "農業従事者数は日本の10倍以上だが、機械化はほとんど進んでいない", "小麦の生産量は世界一だが、すべて国内で消費し輸出はしていない"], "ans": 0, "exp": "アメリカは広大な耕地面積をもち、少ない農業従事者で大型トラクターを使う「企業的な農業」を行っています。また、小麦は輸出割合が非常に高いのが特徴です。"}, {"id": 31, "unit": "namerica", "unitName": "第4章 北アメリカ州", "type": "fill", "q": "20世紀後半以降に日本やドイツの安価で良質な工業製品が輸入され、衰退したアメリカ五大湖周辺の工業地帯は［　　　　　］とよばれています。（カタカナ6字）", "accept": ["ラストベルト"], "model": "ラストベルト", "exp": "かつてピッツバーグの鉄鋼業やデトロイトの自動車工業で栄えたものの、20世紀後半に衰退した五大湖周辺の工業地帯は「ラストベルト（さびついた工業地帯）」とよばれます。"}, {"id": 32, "unit": "namerica", "unitName": "第4章 北アメリカ州", "type": "choice", "q": "北緯37度付近から南に広がる新しい工業地域と、サンフランシスコの南に位置しICT（情報通信技術）関連企業が集まる地域の組み合わせはどれですか。", "choices": ["サンベルト ／ シリコンバレー", "ラストベルト ／ ピッツバーグ", "センターピボット ／ デトロイト", "アパラチア ／ ニューヨーク"], "ans": 0, "exp": "北緯37度付近以南に広がる新興工業地域を「サンベルト」、サンフランシスコ南部に位置するICT関連企業の集積地を「シリコンバレー」といいます。"}, {"id": 33, "unit": "namerica", "unitName": "第4章 北アメリカ州", "type": "tf", "q": "アメリカ合衆国の工業地域別生産額割合を見ると、1960年から2021年にかけて南部（サンベルト）の割合は減少し、五大湖周辺の中西部や北東部の割合が大きく増加した。", "ans": false, "exp": "【×】逆です。1960年は中西部・北東部が中心でしたが、2021年には南部（サンベルト）の割合が最大となっています。"}, {"id": 34, "unit": "namerica", "unitName": "第4章 北アメリカ州", "type": "fill", "q": "メキシコや中央アメリカなどの国々からアメリカ合衆国に来た、スペイン語を話す移民やその子孫を［　　　　　］といいます。（カタカナ6字）", "accept": ["ヒスパニック"], "model": "ヒスパニック", "exp": "メキシコや中南米などから移住しスペイン語を話す人々を「ヒスパニック」といいます。"}, {"id": 35, "unit": "namerica", "unitName": "第4章 北アメリカ州", "type": "choice", "q": "アメリカ合衆国でヒスパニックの人々の割合が高い地域と、メキシコなどから移住してくる主な理由の組み合わせとして正しいものはどれですか。", "choices": ["南部・南西部 ／ 国境に近く、賃金が高く高い収入を得られるため", "北部・北東部 ／ 気候が寒冷で農業がしやすいため", "アラスカ・ハワイ ／ 石油産業のみで働けるため", "五大湖周辺 ／ スペイン語が公用語に定められているため"], "ans": 0, "exp": "ヒスパニックはメキシコとの国境に近い南部・南西部に多く、より高い収入を得るために移住し、農業やサービス業などを支えています。"}];
+const CHOICE_LABELS = ["ア", "イ", "ウ", "エ"];
+const TOTAL_SECONDS = 25 * 60;
+
+let state = {
+  answers: {},      // qid -> number (choice index) | boolean (tf) | string (fill)
+  graded: false,
+  results: {},      // qid -> boolean
+  filterWrong: false,
+  remainingSec: TOTAL_SECONDS,
+  timerRunning: false,
+  timerId: null
+};
+
+function normalizeText(str) {
+  return (str || "")
+    .trim()
+    .replace(/[Ａ-Ｚａ-ｚ０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xFEE0))
+    .replace(/[\s　・]/g, "")
+    .toUpperCase();
+}
+
+function formatTime(sec) {
+  const m = Math.floor(sec / 60);
+  const s = sec % 60;
+  return `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+}
+
+function updateTimerUI() {
+  const el = document.getElementById("timerDisplay");
+  el.textContent = formatTime(state.remainingSec);
+  el.classList.remove("warn", "danger");
+  if (state.remainingSec <= 60) el.classList.add("danger");
+  else if (state.remainingSec <= 300) el.classList.add("warn");
+
+  const btn = document.getElementById("timerToggleBtn");
+  btn.textContent = state.timerRunning ? "一時停止" : (state.remainingSec < TOTAL_SECONDS ? "再開" : "開始");
+}
+
+function startTimer() {
+  if (state.timerRunning || state.graded) return;
+  state.timerRunning = true;
+  updateTimerUI();
+  state.timerId = setInterval(() => {
+    if (state.remainingSec > 0) {
+      state.remainingSec--;
+      updateTimerUI();
+      if (state.remainingSec === 0) {
+        stopTimer();
+        alert("25分が経過しました！下の「採点する」ボタンを押して結果を確認してください。");
+      }
+    }
+  }, 1000);
+}
+
+function stopTimer() {
+  state.timerRunning = false;
+  if (state.timerId) {
+    clearInterval(state.timerId);
+    state.timerId = null;
+  }
+  updateTimerUI();
+}
+
+function isAnswered(q) {
+  const val = state.answers[q.id];
+  if (q.type === "fill") return typeof val === "string" && val.trim().length > 0;
+  return val !== undefined;
+}
+
+function typeLabel(type) {
+  if (type === "choice") return "4択";
+  if (type === "fill") return "穴埋め";
+  return "○×";
+}
+
+function renderNav() {
+  const nav = document.getElementById("navGrid");
+  nav.innerHTML = "";
+  let ansCount = 0;
+
+  QUESTIONS.forEach((q, idx) => {
+    const answered = isAnswered(q);
+    if (answered) ansCount++;
+    const btn = document.createElement("button");
+    btn.className = "nav-dot";
+    btn.textContent = idx + 1;
+    if (state.graded) {
+      btn.classList.add(state.results[q.id] ? "res-ok" : "res-ng");
+    } else if (answered) {
+      btn.classList.add("answered");
+    }
+    btn.addEventListener("click", () => {
+      const target = document.getElementById(`q-card-${q.id}`);
+      if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+    nav.appendChild(btn);
+  });
+
+  document.getElementById("answeredCount").textContent = `回答済み: ${ansCount} / ${QUESTIONS.length} 問`;
+  document.getElementById("footerStatus").textContent = state.graded
+    ? "採点完了"
+    : `回答済み: ${ansCount} / ${QUESTIONS.length} 問`;
+}
+
+function renderQuiz() {
+  const container = document.getElementById("quizList");
+  container.innerHTML = "";
+
+  const list = state.graded && state.filterWrong
+    ? QUESTIONS.filter(q => !state.results[q.id])
+    : QUESTIONS;
+
+  if (list.length === 0) {
+    container.innerHTML = '<div class="info-banner">不正解・未回答の問題はありません。全問正解です！</div>';
+    return;
+  }
+
+  list.forEach((q) => {
+    const idx = QUESTIONS.findIndex(item => item.id === q.id);
+    const card = document.createElement("div");
+    card.className = "q-card";
+    card.id = `q-card-${q.id}`;
+    if (state.graded) {
+      card.classList.add(state.results[q.id] ? "graded-ok" : "graded-ng");
+    }
+
+    let bodyHtml = "";
+    const userVal = state.answers[q.id];
+
+    if (q.type === "choice") {
+      bodyHtml = '<div class="choices">';
+      q.choices.forEach((c, cIdx) => {
+        let cls = "choice-btn";
+        if (state.graded) {
+          if (cIdx === q.ans) cls += " correct";
+          else if (userVal === cIdx) cls += " wrong";
+        } else if (userVal === cIdx) {
+          cls += " selected";
+        }
+        bodyHtml += `
+          <button class="${cls}" data-qid="${q.id}" data-val="${cIdx}" ${state.graded ? "disabled" : ""}>
+            <span class="choice-mark">${CHOICE_LABELS[cIdx]}</span>
+            <span>${c}</span>
+          </button>
+        `;
+      });
+      bodyHtml += "</div>";
+    } else if (q.type === "tf") {
+      const opts = [
+        { label: "○（正しい）", val: true, mark: "○" },
+        { label: "×（誤り）", val: false, mark: "×" }
+      ];
+      bodyHtml = '<div class="choices tf-choices">';
+      opts.forEach(opt => {
+        let cls = "choice-btn";
+        if (state.graded) {
+          if (opt.val === q.ans) cls += " correct";
+          else if (userVal === opt.val) cls += " wrong";
+        } else if (userVal === opt.val) {
+          cls += " selected";
+        }
+        bodyHtml += `
+          <button class="${cls}" data-qid="${q.id}" data-tf="${opt.val}" ${state.graded ? "disabled" : ""}>
+            <span class="choice-mark">${opt.mark}</span>
+            <span>${opt.label}</span>
+          </button>
+        `;
+      });
+      bodyHtml += "</div>";
+    } else if (q.type === "fill") {
+      const safeVal = (userVal || "").replace(/"/g, "&quot;");
+      bodyHtml = `
+        <input type="text" class="fill-input" data-qid="${q.id}" value="${safeVal}"
+               placeholder="ここに答えを入力" ${state.graded ? "disabled" : ""}>
+      `;
+    }
+
+    let expHtml = "";
+    if (state.graded) {
+      const ok = state.results[q.id];
+      const status = !isAnswered(q) ? "未回答（不正解）" : (ok ? "⭕ 正解" : "❌ 不正解");
+      let ansLine = "";
+      if (q.type === "fill") {
+        ansLine = `<div>模範解答：<span class="model-ans">${q.model}</span></div>`;
+      } else if (q.type === "tf") {
+        ansLine = `<div>正解：<span class="model-ans">${q.ans ? "○（正しい）" : "×（誤り）"}</span></div>`;
+      } else {
+        ansLine = `<div>正解：<span class="model-ans">${CHOICE_LABELS[q.ans]}：${q.choices[q.ans]}</span></div>`;
+      }
+
+      const overrideBtn = q.type === "fill"
+        ? `<button class="override-btn" data-override="${q.id}">${ok ? "不正解に変更" : "漢字・表記ゆれ等で正解にする"}</button>`
+        : "";
+
+      expHtml = `
+        <div class="exp-box ${ok ? "ok" : "ng"}">
+          <div class="exp-head">
+            <span>${status}</span>
+            ${overrideBtn}
+          </div>
+          ${ansLine}
+          <div style="margin-top:4px;">${q.exp}</div>
+        </div>
+      `;
+    }
+
+    card.innerHTML = `
+      <div class="q-meta">
+        <div class="badges">
+          <span class="badge badge-unit">${q.unitName}</span>
+          <span class="badge badge-type">${typeLabel(q.type)}</span>
+        </div>
+        <span class="q-num">第 ${idx + 1} 問 / ${QUESTIONS.length}</span>
+      </div>
+      <p class="q-text">${q.q}</p>
+      ${bodyHtml}
+      ${expHtml}
+    `;
+    container.appendChild(card);
+  });
+
+  // イベント紐付け
+  if (!state.graded) {
+    container.querySelectorAll(".choice-btn[data-val]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        if (!state.timerRunning) startTimer();
+        const qid = Number(btn.dataset.qid);
+        state.answers[qid] = Number(btn.dataset.val);
+        renderQuiz();
+        renderNav();
+      });
+    });
+
+    container.querySelectorAll(".choice-btn[data-tf]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        if (!state.timerRunning) startTimer();
+        const qid = Number(btn.dataset.qid);
+        state.answers[qid] = (btn.dataset.tf === "true");
+        renderQuiz();
+        renderNav();
+      });
+    });
+
+    container.querySelectorAll(".fill-input").forEach(input => {
+      input.addEventListener("input", () => {
+        if (!state.timerRunning) startTimer();
+        const qid = Number(input.dataset.qid);
+        state.answers[qid] = input.value;
+        renderNav();
+      });
+    });
+  } else {
+    container.querySelectorAll(".override-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const qid = Number(btn.dataset.override);
+        state.results[qid] = !state.results[qid];
+        updateScorePanel();
+        renderQuiz();
+        renderNav();
+      });
+    });
+  }
+}
+
+function updateScorePanel() {
+  let okCount = 0;
+  const units = {};
+
+  QUESTIONS.forEach(q => {
+    if (!units[q.unitName]) units[q.unitName] = { total: 0, ok: 0 };
+    units[q.unitName].total++;
+    if (state.results[q.id]) {
+      okCount++;
+      units[q.unitName].ok++;
+    }
+  });
+
+  const score100 = Math.round((okCount / QUESTIONS.length) * 100);
+  const usedSec = TOTAL_SECONDS - state.remainingSec;
+
+  document.getElementById("scoreMain").textContent = `${okCount} / ${QUESTIONS.length} 問正解`;
+  document.getElementById("scoreSub").textContent = `（100点換算：${score100}点｜所要時間：${formatTime(usedSec)}）`;
+
+  let msg = "間違えた問題を下の解説一覧で確認して、苦手単元を重点的に復習しよう！";
+  if (score100 >= 90) msg = "素晴らしい得点です！テスト本番でも高得点が期待できます。";
+  else if (score100 >= 75) msg = "合格ラインです！あと一歩、間違えた問題の解説を確認しておこう。";
+  document.getElementById("scoreMsg").textContent = msg;
+
+  const grid = document.getElementById("unitGrid");
+  grid.innerHTML = "";
+  Object.entries(units).forEach(([name, st]) => {
+    const pct = Math.round((st.ok / st.total) * 100);
+    const box = document.createElement("div");
+    box.className = "unit-box";
+    box.innerHTML = `
+      <div style="font-weight:700;">${name}</div>
+      <div>${st.ok} / ${st.total} 問（正答率 <strong>${pct}%</strong>）</div>
+      <div class="unit-bar"><div class="unit-bar-fill" style="width:${pct}%"></div></div>
+    `;
+    grid.appendChild(box);
+  });
+
+  const wrongCount = QUESTIONS.length - okCount;
+  document.getElementById("showWrongBtn").textContent = `不正解・未回答のみ表示 (${wrongCount})`;
+}
+
+function gradeTest() {
+  const answeredCount = QUESTIONS.filter(isAnswered).length;
+  if (answeredCount < QUESTIONS.length) {
+    const ok = confirm(`まだ ${QUESTIONS.length - answeredCount} 問が未回答です。このまま採点しますか？`);
+    if (!ok) return;
+  }
+
+  stopTimer();
+  state.graded = true;
+  state.results = {};
+
+  QUESTIONS.forEach(q => {
+    const val = state.answers[q.id];
+    if (q.type === "fill") {
+      const norm = normalizeText(val);
+      state.results[q.id] = q.accept.some(a => normalizeText(a) === norm);
+    } else {
+      state.results[q.id] = (val === q.ans);
+    }
+  });
+
+  updateScorePanel();
+  document.getElementById("resultPanel").classList.add("show");
+  document.getElementById("gradeBtn").style.display = "none";
+  renderQuiz();
+  renderNav();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function resetTest() {
+  stopTimer();
+  state = {
+    answers: {},
+    graded: false,
+    results: {},
+    filterWrong: false,
+    remainingSec: TOTAL_SECONDS,
+    timerRunning: false,
+    timerId: null
+  };
+  document.getElementById("resultPanel").classList.remove("show");
+  document.getElementById("gradeBtn").style.display = "inline-block";
+  document.getElementById("showAllBtn").classList.add("active");
+  document.getElementById("showWrongBtn").classList.remove("active");
+  updateTimerUI();
+  renderQuiz();
+  renderNav();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+document.getElementById("timerToggleBtn").addEventListener("click", () => {
+  if (state.timerRunning) stopTimer();
+  else startTimer();
+});
+document.getElementById("timerResetBtn").addEventListener("click", () => {
+  stopTimer();
+  state.remainingSec = TOTAL_SECONDS;
+  updateTimerUI();
+});
+document.getElementById("gradeBtn").addEventListener("click", gradeTest);
+document.getElementById("retryBtn").addEventListener("click", resetTest);
+
+document.getElementById("showAllBtn").addEventListener("click", () => {
+  state.filterWrong = false;
+  document.getElementById("showAllBtn").classList.add("active");
+  document.getElementById("showWrongBtn").classList.remove("active");
+  renderQuiz();
+});
+document.getElementById("showWrongBtn").addEventListener("click", () => {
+  state.filterWrong = true;
+  document.getElementById("showWrongBtn").classList.add("active");
+  document.getElementById("showAllBtn").classList.remove("active");
+  renderQuiz();
+});
+
+updateTimerUI();
+renderQuiz();
+renderNav();
+</script>
+</body>
+</html>

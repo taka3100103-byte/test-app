@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中1理科 2学期末テスト 通し模擬テスト（全35問・25分）</title>
+<style>
+  :root {
+    --bg: #f1f5f9;
+    --card: #ffffff;
+    --primary: #1e40af;
+    --primary-light: #eff6ff;
+    --accent: #0f766e;
+    --text: #0f172a;
+    --muted: #64748b;
+    --border: #cbd5e1;
+    --ok: #16a34a;
+    --ok-bg: #f0fdf4;
+    --ng: #dc2626;
+    --ng-bg: #fef2f2;
+    --warn: #d97706;
+    --warn-bg: #fffbeb;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding-bottom: 92px;
+  }
+
+  header {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 65%, #0f766e 100%);
+    color: #fff;
+    padding: 20px 18px 18px;
+    box-shadow: 0 2px 10px rgba(15, 23, 42, 0.22);
+  }
+
+  .header-inner {
+    max-width: 920px;
+    margin: 0 auto;
+  }
+
+  .badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.16);
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    margin-bottom: 6px;
+  }
+
+  h1 {
+    margin: 0 0 4px;
+    font-size: 21px;
+    line-height: 1.35;
+  }
+
+  .subtitle {
+    margin: 0;
+    font-size: 13px;
+    opacity: 0.9;
+  }
+
+  /* 上部固定タイマー＆進捗バー */
+  .top-sticky {
+    position: sticky;
+    top: 0;
+    z-index: 60;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 16px;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+  }
+
+  .top-sticky-inner {
+    max-width: 920px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .timer-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #f8fafc;
+    border: 1.5px solid #cbd5e1;
+    padding: 5px 12px;
+    border-radius: 10px;
+    font-weight: 800;
+    font-size: 16px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .timer-box.warn {
+    background: var(--warn-bg);
+    border-color: #f59e0b;
+    color: #b45309;
+  }
+
+  .timer-box.danger {
+    background: var(--ng-bg);
+    border-color: #ef4444;
+    color: #b91c1c;
+    animation: pulse 1s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+
+  .timer-btn {
+    border: 1px solid var(--border);
+    background: #fff;
+    color: var(--text);
+    padding: 3px 9px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .timer-btn:hover { background: #f1f5f9; }
+
+  .progress-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13.5px;
+    font-weight: 700;
+  }
+
+  .progress-pill {
+    background: var(--primary-light);
+    color: var(--primary);
+    padding: 4px 11px;
+    border-radius: 999px;
+    border: 1px solid #bfdbfe;
+  }
+
+  .container {
+    max-width: 920px;
+    margin: 18px auto;
+    padding: 0 16px;
+  }
+
+  /* 採点結果ダッシュボード */
+  .result-panel {
+    display: none;
+    background: var(--card);
+    border: 2px solid var(--primary);
+    border-radius: 16px;
+    padding: 22px 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 6px 20px rgba(30, 64, 175, 0.1);
+  }
+  .result-panel.show { display: block; }
+
+  .result-top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .score-big {
+    font-size: 38px;
+    font-weight: 900;
+    color: var(--primary);
+    line-height: 1.1;
+  }
+
+  .score-sub {
+    font-size: 14px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  .result-comment {
+    font-size: 14.5px;
+    font-weight: 700;
+    color: #1e293b;
+    background: #f8fafc;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border-left: 4px solid var(--primary);
+    flex: 1;
+    min-width: 240px;
+  }
+
+  .breakdown-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  .breakdown-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  .bar-track {
+    width: 100%;
+    height: 7px;
+    background: #e2e8f0;
+    border-radius: 999px;
+    overflow: hidden;
+    margin-top: 6px;
+  }
+
+  .bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #2563eb, #10b981);
+    border-radius: 999px;
+  }
+
+  .result-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px dashed #cbd5e1;
+  }
+
+  .filter-btn {
+    border: 1px solid var(--border);
+    background: #fff;
+    color: var(--text);
+    padding: 6px 13px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .filter-btn.active {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+  }
+  .filter-btn.wrong-btn.active {
+    background: var(--ng);
+    border-color: var(--ng);
+  }
+
+  /* 問題カード */
+  .q-card {
+    background: var(--card);
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+    border: 1.5px solid #e2e8f0;
+    box-shadow: 0 1px 4px rgba(15, 23, 42, 0.04);
+  }
+
+  .q-card.graded-ok {
+    border-color: #86efac;
+    border-left: 6px solid var(--ok);
+  }
+
+  .q-card.graded-ng {
+    border-color: #fca5a5;
+    border-left: 6px solid var(--ng);
+  }
+
+  .q-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .q-num {
+    font-weight: 800;
+    font-size: 14px;
+    color: var(--primary);
+    background: var(--primary-light);
+    padding: 2px 10px;
+    border-radius: 6px;
+  }
+
+  .q-unit {
+    font-size: 12px;
+    font-weight: 600;
+    color: #475569;
+    background: #f1f5f9;
+    padding: 2px 8px;
+    border-radius: 6px;
+  }
+
+  .q-type {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--accent);
+    background: #f0fdfa;
+    border: 1px solid #99f6e4;
+    padding: 1px 8px;
+    border-radius: 6px;
+  }
+
+  .q-pts {
+    font-size: 12px;
+    font-weight: 700;
+    color: #475569;
+  }
+
+  .q-status {
+    margin-left: auto;
+    font-size: 14px;
+    font-weight: 800;
+  }
+  .q-status.ok { color: var(--ok); }
+  .q-status.ng { color: var(--ng); }
+
+  .q-text {
+    font-size: 15.5px;
+    line-height: 1.85;
+    margin: 0 0 12px;
+    white-space: pre-line;
+  }
+
+  .q-figure {
+    margin: 10px 0 14px;
+    padding: 10px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    text-align: center;
+    overflow-x: auto;
+  }
+
+  .q-figure table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    font-size: 13.5px;
+    background: #fff;
+  }
+
+  .q-figure th, .q-figure td {
+    border: 1px solid #cbd5e1;
+    padding: 6px 10px;
+    text-align: center;
+  }
+
+  .q-figure th {
+    background: #eff6ff;
+    color: #1e3a8a;
+  }
+
+  /* 選択式 & ○× */
+  .choices {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .choices.ox-grid {
+    grid-template-columns: 1fr 1fr;
+    max-width: 420px;
+  }
+
+  .choice-btn {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    text-align: left;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1.5px solid var(--border);
+    background: #fff;
+    font-family: inherit;
+    font-size: 14.5px;
+    font-weight: 500;
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.12s ease;
+  }
+
+  .choice-btn:hover:not(:disabled) {
+    border-color: #60a5fa;
+    background: #f8fafc;
+  }
+
+  .choice-btn.selected {
+    border-color: var(--primary);
+    background: var(--primary-light);
+    font-weight: 700;
+    box-shadow: 0 0 0 2px rgba(30, 64, 175, 0.15);
+  }
+
+  .choice-label {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #f1f5f9;
+    color: #334155;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12.5px;
+    font-weight: 800;
+  }
+
+  .choice-btn.selected .choice-label {
+    background: var(--primary);
+    color: #fff;
+  }
+
+  .choice-btn.graded-correct {
+    border-color: var(--ok);
+    background: var(--ok-bg);
+    color: #14532d;
+    font-weight: 700;
+  }
+  .choice-btn.graded-correct .choice-label {
+    background: var(--ok);
+    color: #fff;
+  }
+
+  .choice-btn.graded-wrong {
+    border-color: var(--ng);
+    background: var(--ng-bg);
+    color: #7f1d1d;
+  }
+  .choice-btn.graded-wrong .choice-label {
+    background: var(--ng);
+    color: #fff;
+  }
+
+  /* 穴埋め入力 */
+  .blank-input {
+    display: inline-block;
+    width: 140px;
+    max-width: 100%;
+    padding: 4px 10px;
+    margin: 2px 4px;
+    font-size: 15px;
+    font-family: inherit;
+    font-weight: 700;
+    color: var(--text);
+    background: #f8fafc;
+    border: 2px solid #94a3b8;
+    border-radius: 7px;
+    text-align: center;
+    vertical-align: middle;
+  }
+  .blank-input.wide { width: 210px; }
+  .blank-input.short { width: 96px; }
+  .blank-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.15);
+  }
+  .blank-input.input-ok {
+    border-color: var(--ok);
+    background: var(--ok-bg);
+    color: #14532d;
+  }
+  .blank-input.input-ng {
+    border-color: var(--ng);
+    background: var(--ng-bg);
+    color: #7f1d1d;
+  }
+
+  /* 採点後の解説ボックス */
+  .explain-box {
+    display: none;
+    margin-top: 12px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: #f8fafc;
+    border-left: 4px solid var(--primary);
+    font-size: 13.5px;
+  }
+  .explain-box.show { display: block; }
+
+  .ans-line {
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 4px;
+  }
+
+  .override-btn {
+    margin-top: 8px;
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 6px;
+    border: 1px solid #86efac;
+    background: var(--ok-bg);
+    color: var(--ok);
+    cursor: pointer;
+  }
+
+  /* 下部固定バー */
+  .bottom-sticky {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(8px);
+    border-top: 1px solid var(--border);
+    padding: 10px 16px;
+    box-shadow: 0 -2px 10px rgba(15, 23, 42, 0.08);
+    z-index: 60;
+  }
+
+  .bottom-inner {
+    max-width: 920px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .btn-primary {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 800;
+    cursor: pointer;
+    font-family: inherit;
+    box-shadow: 0 2px 6px rgba(30, 64, 175, 0.25);
+  }
+  .btn-primary:hover { background: #1d4ed8; }
+
+  .btn-secondary {
+    background: #fff;
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 9px 14px;
+    border-radius: 10px;
+    font-size: 13.5px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .btn-secondary:hover { background: #f1f5f9; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="badge">中学1年生 理科 2学期末テスト 本番対策</div>
+    <h1>「身のまわりの物質」通し模擬テスト（全35問・100点満点）</h1>
+    <p class="subtitle">選択式・穴埋め・○×のミックス出題。ヒント・即時解説なしで最後まで一気に解き、「採点する」でまとめて結果を確認できます。</p>
+  </div>
+</header>
+
+<div class="top-sticky">
+  <div class="top-sticky-inner">
+    <div class="timer-box" id="timerBox">
+      <span>⏱ 残り時間</span>
+      <span id="timerText">25:00</span>
+      <button class="timer-btn" id="pauseBtn" onclick="togglePause()">一時停止</button>
+    </div>
+    <div class="progress-info">
+      <span class="progress-pill" id="answeredPill">解答済み: 0 / 35 問</span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="result-panel" id="resultPanel">
+    <div class="result-top">
+      <div>
+        <div style="font-size:13px; font-weight:700; color:#475569;">模擬テスト採点結果</div>
+        <div class="score-big" id="totalScoreText">0 点 <span style="font-size:18px; color:#64748b; font-weight:700;">/ 100点</span></div>
+        <div class="score-sub" id="scoreSubText">正解: 0 / 35 問 ／ 所要時間: 0分00秒</div>
+      </div>
+      <div class="result-comment" id="resultComment"></div>
+    </div>
+    <div class="breakdown-grid" id="breakdownGrid"></div>
+    <div class="result-filters" id="resultFilters">
+      <button class="filter-btn active" onclick="setViewFilter('all', this)">全35問を表示</button>
+      <button class="filter-btn wrong-btn" onclick="setViewFilter('wrong', this)">間違えた問題だけ表示</button>
+    </div>
+  </div>
+
+  <div id="quizContainer"></div>
+</div>
+
+<div class="bottom-sticky">
+  <div class="bottom-inner">
+    <div style="font-size:13px; color:#475569; font-weight:600;" id="bottomNote">
+      全35問を解き終わったら「採点する」を押してください。
+    </div>
+    <div style="display:flex; gap:8px;">
+      <button class="btn-secondary" onclick="resetTest()">最初からやり直す</button>
+      <button class="btn-primary" id="gradeBtn" onclick="gradeTest(false)">採点する</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const questions = [
+  // ==================== 1章：いろいろな物質とその性質 (9問: 24点) ====================
+  {
+    id: 1, chapter: "ch1", chapterName: "1章 物質の性質", kind: "blank", pts: 2,
+    promptParts: [
+      "ガスバーナーに火をつけたところ炎の色が赤色だった。青い炎にするには、下側のガス調節ねじをおさえたまま、上側の",
+      "を少しずつゆるめて開く。"
+    ],
+    blanks: [{ size: "wide", answers: ["空気調節ねじ", "空気のねじ"], display: "空気調節ねじ" }],
+    explain: "赤い炎は空気不足が原因です。ガス調節ねじが一緒に回らないようにおさえたまま、上側の「空気調節ねじ」を開いて空気を入れます。"
+  },
+  {
+    id: 2, chapter: "ch1", chapterName: "1章 物質の性質", kind: "ox", pts: 2,
+    text: "「ガラスコップ」と「プラスチックコップ」のように、材料そのもので区別した名称を「物体」といい、使う目的や形で区別した名称を「物質」という。",
+    answer: 1, // 0: ○, 1: ×
+    explain: "×（逆です）。使う目的や形で区別したものが「物体」（例：コップ）、材料そのもので区別したものが「物質」（例：ガラス、プラスチック）です。"
+  },
+  {
+    id: 3, chapter: "ch1", chapterName: "1章 物質の性質", kind: "choice", pts: 3,
+    text: "砂糖・かたくり粉・食塩をそれぞれ加熱して燃やし、その変化を調べた。正しい説明はどれか。",
+    choices: [
+      "食塩は燃えて黒くなり、二酸化炭素が発生した。",
+      "砂糖とかたくり粉は炭素をふくむ有機物で、燃えると二酸化炭素と水ができる。",
+      "砂糖は燃えて炭になるが、かたくり粉は燃えない無機物である。",
+      "有機物が燃えたときに石灰水が白くにごるのは、水が発生したからである。"
+    ],
+    answer: 1,
+    explain: "砂糖やかたくり粉は炭素をふくむ「有機物」で、燃えると二酸化炭素（石灰水を白くにごらせる）と水が発生します。食塩は燃えない「無機物」です。"
+  },
+  {
+    id: 4, chapter: "ch1", chapterName: "1章 物質の性質", kind: "ox", pts: 2,
+    text: "金属には、みがくと光沢が出る・電気を通す・熱を伝える・たたいて広げられる（展性）・引きのばせる（延性）などの共通性質があり、すべての金属は磁石につく。",
+    answer: 1,
+    explain: "×。鉄などは磁石につきますが、アルミニウム・銅・金・銀などは磁石につきません。「磁石につく」は金属共通の性質ではありません。"
+  },
+  {
+    id: 5, chapter: "ch1", chapterName: "1章 物質の性質", kind: "choice", pts: 3,
+    text: "メスシリンダーと電子てんびんの使い方として正しいものはどれか。",
+    choices: [
+      "メスシリンダーは斜め上から液面のふちを見て、最小目盛りまで読む。",
+      "メスシリンダーは水平な台に置き、液面のいちばん低いところを真横から見て、最小目盛りの10分の1まで読む。",
+      "電子てんびんは傾いた机の上でも、0点調整ボタンを押せば正確にはかれる。",
+      "上皿てんびんは薬品を直接皿にのせ、指針が完全に止まるまで待つ。"
+    ],
+    answer: 1,
+    explain: "メスシリンダーもてんびんも必ず水平な台に置きます。メスシリンダーは液面の平らな部分（いちばん低いところ）を真横から見て、最小目盛りの10分の1まで目分量で読みとります。"
+  },
+  {
+    id: 6, chapter: "ch1", chapterName: "1章 物質の性質", kind: "blank", pts: 2,
+    promptParts: [
+      "1 cm³あたりの物質の質量を密度という。公式は「密度 [g/cm³] ＝ ",
+      " [g] ÷ ",
+      " [cm³]」である。"
+    ],
+    blanks: [
+      { size: "short", answers: ["質量"], display: "質量" },
+      { size: "short", answers: ["体積"], display: "体積" }
+    ],
+    explain: "密度＝質量÷体積です。単位「g/cm³」を見れば「g（質量）÷ cm³（体積）」と思い出せます。"
+  },
+  {
+    id: 7, chapter: "ch1", chapterName: "1章 物質の性質", kind: "choice", pts: 3,
+    text: "水50.0 cm³を入れたメスシリンダーに、質量31.36 gの金属Xを完全に沈めると水面が53.5 cm³になった。金属Xの密度はいくらか。",
+    choices: [
+      "7.13 g/cm³",
+      "7.87 g/cm³",
+      "8.96 g/cm³",
+      "10.50 g/cm³"
+    ],
+    answer: 2,
+    explain: "金属Xの体積＝ 53.5 − 50.0 ＝ 3.5 cm³。密度＝ 31.36 ÷ 3.5 ＝ 8.96 g/cm³（銅の密度）です。"
+  },
+  {
+    id: 8, chapter: "ch1", chapterName: "1章 物質の性質", kind: "choice", pts: 3,
+    text: "水（密度1.0 g/cm³）と油（密度0.91 g/cm³）を入れたビーカーに、氷（密度0.92 g/cm³）を静かに入れると、氷はどうなるか。",
+    choices: [
+      "油の上面に浮く。",
+      "油に沈み、水の上面に浮く（油と水の間で止まる）。",
+      "水の底まで沈む。",
+      "油に溶けて見えなくなる。"
+    ],
+    answer: 1,
+    explain: "密度は「油(0.91) ＜ 氷(0.92) ＜ 水(1.0)」なので、氷は油より重く沈み、水より軽いので水に浮きます。"
+  },
+  {
+    id: 9, chapter: "ch1", chapterName: "1章 物質の性質", kind: "blank", pts: 4,
+    promptParts: [
+      "体積が 50 cm³、質量が 135 g の金属の密度は ",
+      " g/cm³ である。また、同じ質量で比べたとき、密度が小さい物質ほど体積は ",
+      " なる。"
+    ],
+    blanks: [
+      { size: "short", answers: ["2.7", "2.70"], display: "2.7" },
+      { size: "short", answers: ["大きく", "大きくなる"], display: "大きく" }
+    ],
+    explain: "135 ÷ 50 ＝ 2.7 g/cm³（アルミニウム）。同じ質量なら、密度が小さい（スカスカ）ほど体積は大きくなります。"
+  },
+
+  // ==================== 2章：いろいろな気体とその性質 (7問: 19点) ====================
+  {
+    id: 10, chapter: "ch2", chapterName: "2章 気体の性質", kind: "blank", pts: 3,
+    promptParts: [
+      "水にとけにくい気体は ",
+      " で集める。水にとけやすい気体のうち、空気より密度が小さい気体は ",
+      " 、空気より密度が大きい気体は ",
+      " で集める。"
+    ],
+    blanks: [
+      { size: "short", answers: ["水上置換法", "水上置換"], display: "水上置換法" },
+      { size: "short", answers: ["上方置換法", "上方置換"], display: "上方置換法" },
+      { size: "short", answers: ["下方置換法", "下方置換"], display: "下方置換法" }
+    ],
+    explain: "水にとけにくい→水上置換法、水にとけやすく空気より軽い→上方置換法、水にとけやすく空気より重い→下方置換法です。"
+  },
+  {
+    id: 11, chapter: "ch2", chapterName: "2章 気体の性質", kind: "choice", pts: 3,
+    text: "水上置換法で気体を集めるとき、はじめに出てきた試験管1〜2本分の気体を捨てる理由として正しいものはどれか。",
+    choices: [
+      "はじめに出てくる気体は水にとけやすい性質があるから。",
+      "はじめに出てきた気体には、もともとフラスコやガラス管の中にあった空気が多くふくまれているから。",
+      "試験管を水でぬらしておかないと気体が逃げてしまうから。",
+      "はじめに出てくる気体は温度が高すぎて危険だから。"
+    ],
+    answer: 1,
+    explain: "発生した気体が装置内の空気を押し出して出てくるため、最初の1〜2本分には空気が多く混ざっています。純粋な気体を集めるために捨てます。"
+  },
+  {
+    id: 12, chapter: "ch2", chapterName: "2章 気体の性質", kind: "blank", pts: 3,
+    promptParts: [
+      "酸素を発生させるには、二酸化マンガンにうすい ",
+      " （オキシドール）を加える。酸素を集めた試験管に火のついた線香を入れると ",
+      " 。"
+    ],
+    blanks: [
+      { size: "wide", answers: ["過酸化水素水", "過酸化水素"], display: "過酸化水素水" },
+      { size: "wide", answers: ["激しく燃える", "はげしく燃える", "炎を出して燃える"], display: "激しく燃える" }
+    ],
+    explain: "二酸化マンガン＋うすい過酸化水素水→酸素。酸素にはものを燃やすはたらき（助燃性）があり、線香が激しく燃えます。"
+  },
+  {
+    id: 13, chapter: "ch2", chapterName: "2章 気体の性質", kind: "ox", pts: 2,
+    text: "石灰石にうすい塩酸を加えて発生する二酸化炭素は、石灰水を白くにごらせ、水に少しとけてアルカリ性を示す。",
+    answer: 1,
+    explain: "×。二酸化炭素は水に少しとけて「酸性」を示します（BTB溶液を黄色、青色リトマス紙を赤色に変えます）。アルカリ性を示すのはアンモニアです。"
+  },
+  {
+    id: 14, chapter: "ch2", chapterName: "2章 気体の性質", kind: "choice", pts: 3,
+    text: "アンモニアの性質として正しいものの組み合わせはどれか。",
+    choices: [
+      "特有の刺激臭があり、空気より軽く、水によく溶けてアルカリ性を示す。",
+      "無臭で、空気より重く、水によく溶けて酸性を示す。",
+      "特有の刺激臭があり、水にとけにくいため水上置換法で集める。",
+      "空気より軽く、火をつけると音を立てて燃える。"
+    ],
+    answer: 0,
+    explain: "アンモニアは刺激臭があり、空気より軽く（上方置換法）、水に非常によく溶けてアルカリ性を示します（フェノールフタレイン溶液を赤色に変えます）。"
+  },
+  {
+    id: 15, chapter: "ch2", chapterName: "2章 気体の性質", kind: "blank", pts: 3,
+    promptParts: [
+      "亜鉛にうすい塩酸を加えると ",
+      " が発生する。この気体はすべての物質の中で密度がもっとも小さく、空気中で火をつけると音を立てて燃え、 ",
+      " ができる。"
+    ],
+    blanks: [
+      { size: "short", answers: ["水素"], display: "水素" },
+      { size: "short", answers: ["水", "水滴"], display: "水" }
+    ],
+    explain: "金属（亜鉛や鉄）＋うすい塩酸→水素。水素は気体の中で最も密度が小さく、燃えると酸素と結びついて「水」ができます。"
+  },
+  {
+    id: 16, chapter: "ch2", chapterName: "2章 気体の性質", kind: "ox", pts: 2,
+    text: "空気中に体積で約78％ふくまれている気体は窒素であり、ふつうの温度では他の物質と反応しにくいため、食品の酸化防止などに利用されている。",
+    answer: 0,
+    explain: "○。空気の約78％が窒素、約21％が酸素です。窒素は室温では反応しにくい性質があります。"
+  },
+
+  // ==================== 3章：水溶液の性質 (10問: 30点) ====================
+  {
+    id: 17, chapter: "ch3", chapterName: "3章 水溶液", kind: "blank", pts: 3,
+    promptParts: [
+      "液体にとけている物質を ",
+      " 、とかしている液体を ",
+      " 、とけた液全体を ",
+      " という。"
+    ],
+    blanks: [
+      { size: "short", answers: ["溶質"], display: "溶質" },
+      { size: "short", answers: ["溶媒"], display: "溶媒" },
+      { size: "short", answers: ["溶液"], display: "溶液" }
+    ],
+    explain: "とけている物質＝溶質、とかしている液体＝溶媒、全体の液＝溶液です。"
+  },
+  {
+    id: 18, chapter: "ch3", chapterName: "3章 水溶液", kind: "ox", pts: 2,
+    text: "水に砂糖をすべてとかすと、砂糖の粒子は見えなくなるが水全体に均一（まばら）に広がっており、とかす前と比べて全体の質量は変わらない。",
+    answer: 0,
+    explain: "○。粒子が消えたわけではないため質量は変わらず、水全体に均一に広がっているためどの部分の濃さも同じで、時間がたっても沈みません。"
+  },
+  {
+    id: 19, chapter: "ch3", chapterName: "3章 水溶液", kind: "blank", pts: 3,
+    promptParts: [
+      "水 120 g に砂糖 40 g をすべてとかした砂糖水の質量パーセント濃度は ",
+      " ％である。"
+    ],
+    blanks: [{ size: "short", answers: ["25"], display: "25" }],
+    explain: "溶液全体の質量＝ 120 ＋ 40 ＝ 160 g。濃度＝ 40 ÷ 160 × 100 ＝ 25％です。（120で割らないよう注意！）"
+  },
+  {
+    id: 20, chapter: "ch3", chapterName: "3章 水溶液", kind: "choice", pts: 3,
+    text: "質量パーセント濃度 15％ の塩化ナトリウム水溶液を 100 g つくるには、塩化ナトリウムと水をそれぞれ何gずつ用意すればよいか。",
+    choices: [
+      "塩化ナトリウム 15 g、水 100 g",
+      "塩化ナトリウム 15 g、水 85 g",
+      "塩化ナトリウム 85 g、水 15 g",
+      "塩化ナトリウム 13 g、水 87 g"
+    ],
+    answer: 1,
+    explain: "溶液100 gの15％が塩化ナトリウムなので 100 × 0.15 ＝ 15 g。残りが水なので 100 − 15 ＝ 85 g です。"
+  },
+  {
+    id: 21, chapter: "ch3", chapterName: "3章 水溶液", kind: "blank", pts: 4,
+    promptParts: [
+      "質量パーセント濃度が 20％ の砂糖水 150 g に、水を ",
+      " g 加えると、濃度が 15％ の砂糖水になる。"
+    ],
+    blanks: [{ size: "short", answers: ["50"], display: "50" }],
+    explain: "砂糖の質量＝ 150 × 0.20 ＝ 30 g。水を加えても砂糖の量は変わらないので、15％になるときの全体の質量＝ 30 ÷ 0.15 ＝ 200 g。加える水＝ 200 − 150 ＝ 50 g。"
+  },
+  {
+    id: 22, chapter: "ch3", chapterName: "3章 水溶液", kind: "choice", pts: 4,
+    text: "水 1000 g に食塩を加えて、濃度 3.5％ の食塩水をつくりたい。加える食塩の質量として最も適切なものはどれか。",
+    choices: [
+      "3.5 g",
+      "35.0 g",
+      "36.3 g",
+      "350 g"
+    ],
+    answer: 2,
+    explain: "加える食塩を x gとすると、x ÷ (1000 + x) × 100 ＝ 3.5。100x ＝ 3500 + 3.5x → 96.5x ＝ 3500 → x ≒ 36.27 ≒ 36.3 g。"
+  },
+  {
+    id: 23, chapter: "ch3", chapterName: "3章 水溶液", kind: "choice", pts: 3,
+    text: "ろ過の操作について誤っているものはどれか。",
+    choices: [
+      "液体はガラス棒につたわせて静かにろうとに注ぐ。",
+      "ろうとの足の切り口の長いほうを、ビーカーの内壁につける。",
+      "ろうとの中には、ろ紙のふちすれすれまで液体を注ぐ。",
+      "とけずに残った固体はろ紙の上に残り、とけた物質はろ紙を通りぬける。"
+    ],
+    answer: 2,
+    explain: "ろうとに注ぐ液は「ろ紙のふちより少し下（8分目程度）」までにとどめます。ふちを超えるとろ過されていない液が漏れてしまいます。"
+  },
+  {
+    id: 24, chapter: "ch3", chapterName: "3章 水溶液", kind: "blank", pts: 2,
+    promptParts: [
+      "一定量の水に限界まで溶質がとけている状態を ",
+      " といい、100 g の水にとける溶質の最大の質量を ",
+      " という。"
+    ],
+    blanks: [
+      { size: "short", answers: ["飽和"], display: "飽和" },
+      { size: "short", answers: ["溶解度"], display: "溶解度" }
+    ],
+    explain: "限界までとけた状態が「飽和」、水100 gにとける限度の質量が「溶解度」です。"
+  },
+  {
+    id: 25, chapter: "ch3", chapterName: "3章 水溶液", kind: "blank", pts: 4,
+    text: "下の表を参考にして、60℃の水 100 g に硝酸カリウムを 46 g とかした水溶液を 20℃ まで冷やすと、何 g の結晶が出てくるか。",
+    figure: `<table><tr><th>温度 [℃]</th><th>0</th><th>10</th><th>20</th><th>30</th><th>40</th><th>50</th><th>60</th></tr><tr><td>硝酸カリウム溶解度 [g]</td><td>13</td><td>22</td><td>32</td><td>46</td><td>64</td><td>85</td><td>109</td></tr></table>`,
+    promptParts: ["出てくる結晶の質量は ", " g である。"],
+    blanks: [{ size: "short", answers: ["14"], display: "14" }],
+    explain: "20℃では水100 gに32 gまでしかとけないため、46 − 32 ＝ 14 g の結晶が出てきます（再結晶）。"
+  },
+  {
+    id: 26, chapter: "ch3", chapterName: "3章 水溶液", kind: "ox", pts: 2,
+    text: "塩化ナトリウムは温度による溶解度の変化が小さいため、水溶液を冷やすよりも水を蒸発させるほうが多くの結晶を取り出しやすい。なお、食塩水は1種類の物質からなる純物質である。",
+    answer: 1,
+    explain: "×。前半は正しいですが、後半が誤りです。食塩水は「水」と「塩化ナトリウム」が混ざった「混合物」です。"
+  },
+
+  // ==================== 4章：物質のすがたとその変化 (9問: 27点) ====================
+  {
+    id: 27, chapter: "ch4", chapterName: "4章 状態変化・蒸留", kind: "blank", pts: 3,
+    promptParts: [
+      "ふつうの物質が固体→液体→気体へと状態変化するとき、体積は ",
+      " なり、質量は ",
+      " 。"
+    ],
+    blanks: [
+      { size: "short", answers: ["大きく", "大きくなる"], display: "大きく" },
+      { size: "short", answers: ["変わらない", "変化しない"], display: "変わらない" }
+    ],
+    explain: "粒子の数は変わらないので質量は「変わらない」、粒子の運動が激しくなりすき間が広がるので体積は「大きく」なります。"
+  },
+  {
+    id: 28, chapter: "ch4", chapterName: "4章 状態変化・蒸留", kind: "choice", pts: 3,
+    text: "液体のろうを冷やして固体に変化させたとき、液体のときと比べて固体のろうの「質量」「体積」「密度」はどうなるか。",
+    choices: [
+      "質量：変わらない ／ 体積：大きくなる ／ 密度：小さくなる",
+      "質量：変わらない ／ 体積：小さくなる ／ 密度：大きくなる",
+      "質量：小さくなる ／ 体積：小さくなる ／ 密度：変わらない",
+      "質量：変わらない ／ 体積：変わらない ／ 密度：変わらない"
+    ],
+    answer: 1,
+    explain: "冷えて固体になると体積が小さくなり（中央がへこむ）、質量は変わらないため密度（質量÷体積）は大きくなります。"
+  },
+  {
+    id: 29, chapter: "ch4", chapterName: "4章 状態変化・蒸留", kind: "ox", pts: 2,
+    text: "水は例外的な物質であり、液体の水から固体の氷になるときに体積が大きくなり、密度が水より小さくなるため氷は水に浮く。",
+    answer: 0,
+    explain: "○。氷の密度は約0.92 g/cm³で水（1.00 g/cm³）より小さいため水に浮きます。"
+  },
+  {
+    id: 30, chapter: "ch4", chapterName: "4章 状態変化・蒸留", kind: "blank", pts: 3,
+    promptParts: [
+      "液体のエタノールを入れたポリエチレンの袋に熱湯をかけると大きくふくらむ。これは、気体に変化したことで粒子の数は変わらないが、粒子の ",
+      " が激しくなり、粒子どうしの ",
+      " が大きくなったからである。"
+    ],
+    blanks: [
+      { size: "short", answers: ["運動", "動き"], display: "運動" },
+      { size: "short", answers: ["間隔", "すき間", "距離"], display: "間隔（すき間）" }
+    ],
+    explain: "温度が上がって気体になると、粒子の「運動」が激しくなり、粒子どうしの「間隔（すき間）」が広がります。"
+  },
+  {
+    id: 31, chapter: "ch4", chapterName: "4章 状態変化・蒸留", kind: "choice", pts: 3,
+    text: "エタノールを加熱して沸騰させる実験で、①直接火にかけずお湯につけて温める理由、②沸騰石を入れる理由、の組み合わせとして正しいものはどれか。",
+    choices: [
+      "①引火しやすいから ／ ②突沸を防ぐため",
+      "①沸点が高いから ／ ②突沸を防ぐため",
+      "①引火しやすいから ／ ②沸点を下げるため",
+      "①蒸発を防ぐため ／ ②気体を多く出すため"
+    ],
+    answer: 0,
+    explain: "エタノールは引火しやすいため湯せんで温めます。沸騰石は急激に激しく沸騰する「突沸」を防ぐために入れます。"
+  },
+  {
+    id: 32, chapter: "ch4", chapterName: "4章 状態変化・蒸留", kind: "blank", pts: 3,
+    promptParts: [
+      "枝つき試験管で液体を加熱する実験で、火を消すときは、必ず先に ",
+      " の先を試験管にたまった液体から抜いておく。これは、冷えて液体が加熱しているほうへ ",
+      " するのを防ぐためである。"
+    ],
+    blanks: [
+      { size: "short", answers: ["ガラス管"], display: "ガラス管" },
+      { size: "short", answers: ["逆流", "ぎゃくりゅう"], display: "逆流" }
+    ],
+    explain: "火を消すと中の気体が冷えて体積が減り、液体が吸い上げられてしまうため、先に「ガラス管」を抜いて「逆流」を防ぎます。"
+  },
+  {
+    id: 33, chapter: "ch4", chapterName: "4章 状態変化・蒸留", kind: "choice", pts: 3,
+    text: "純粋な氷を加熱して水、さらに水蒸気にしたときの温度変化について正しいものはどれか。",
+    choices: [
+      "固体がとけて液体になる温度を沸点、液体が沸騰して気体になる温度を融点という。",
+      "氷の量を2倍に増やすと、沸騰する温度は200℃になる。",
+      "0℃でとけている間と100℃で沸騰している間は、温度が一定に保たれる。",
+      "混合物を加熱しても、沸騰している間は必ず温度が一定になる。"
+    ],
+    answer: 2,
+    explain: "純物質は融点（0℃）や沸点（100℃）で状態変化している間、温度が一定になります。量を増やしても沸点・融点の温度自体は変わりません。"
+  },
+  {
+    id: 34, chapter: "ch4", chapterName: "4章 状態変化・蒸留", kind: "blank", pts: 4,
+    text: "下の表の物質のうち、20℃のときに「固体」の状態にある2つの物質を「、」でつないで答えなさい。",
+    figure: `<table><tr><th>物質</th><th>水</th><th>鉄</th><th>パルミチン酸</th><th>窒素</th><th>エタノール</th></tr><tr><td>融点 [℃]</td><td>0</td><td>1535</td><td>63</td><td>-210</td><td>-115</td></tr><tr><td>沸点 [℃]</td><td>100</td><td>2750</td><td>360</td><td>-196</td><td>78</td></tr></table>`,
+    promptParts: ["20℃で固体の物質は ", " である。"],
+    blanks: [{ size: "wide", answers: ["鉄、パルミチン酸", "パルミチン酸、鉄", "鉄とパルミチン酸", "鉄・パルミチン酸", "鉄,パルミチン酸"], display: "鉄、パルミチン酸" }],
+    explain: "20℃が「融点より低い」物質が固体です。20℃ ＜ 63℃（パルミチン酸）と 20℃ ＜ 1535℃（鉄）の2つが固体です。"
+  },
+  {
+    id: 35, chapter: "ch4", chapterName: "4章 状態変化・蒸留", kind: "choice", pts: 3,
+    text: "水（沸点100℃）とエタノール（沸点78℃）の混合物を加熱して「蒸留」し、出てくる液体を順に試験管a・b・cに集めた。正しい説明はどれか。",
+    choices: [
+      "沸騰している間、温度は78℃でずっと一定になる。",
+      "蒸留は、物質の「融点」の違いを利用して混合物を分離する方法である。",
+      "最初に集めた試験管aには沸点の低いエタノールが多くふくまれ、火をつけると燃える。",
+      "最後に集めた試験管cにエタノールがいちばん多くふくまれる。"
+    ],
+    answer: 2,
+    explain: "蒸留は「沸点」の違いを利用して分離する方法です。沸点の低いエタノールが先に多く気体になって出てくるため、最初の試験管aにエタノールが多く含まれ、よく燃えます。"
+  }
+];
+
+const state = {
+  graded: false,
+  answers: {},     // qId -> choice/ox index
+  inputs: {},      // inpId -> string
+  overrides: {},   // qId -> true
+  results: {},     // qId -> boolean
+  viewFilter: "all",
+  secondsLeft: 25 * 60,
+  paused: false,
+  timerId: null
+};
+
+function normalize(str) {
+  return String(str || "")
+    .trim()
+    .replace(/[Ａ-Ｚａ-ｚ０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xFEE0))
+    .replace(/．/g, ".")
+    .replace(/－/g, "-")
+    .replace(/％/g, "%")
+    .replace(/\s+/g, "")
+    .replace(/。$/g, "");
+}
+
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/"/g, "&quot;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+function isBlankCorrect(userVal, acceptedList) {
+  const norm = normalize(userVal);
+  if (!norm) return false;
+  return acceptedList.some(ans => normalize(ans) === norm);
+}
+
+function startTimer() {
+  if (state.timerId) clearInterval(state.timerId);
+  state.timerId = setInterval(() => {
+    if (state.paused || state.graded) return;
+    if (state.secondsLeft > 0) {
+      state.secondsLeft--;
+      updateTimerDisplay();
+    } else {
+      clearInterval(state.timerId);
+      updateTimerDisplay();
+      alert("25分が経過しました！テストを終了して採点します。");
+      gradeTest(true);
+    }
+  }, 1000);
+}
+
+function updateTimerDisplay() {
+  const m = Math.floor(state.secondsLeft / 60);
+  const s = state.secondsLeft % 60;
+  document.getElementById("timerText").textContent =
+    `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+  const box = document.getElementById("timerBox");
+  box.classList.remove("warn", "danger");
+  if (!state.graded) {
+    if (state.secondsLeft <= 60) box.classList.add("danger");
+    else if (state.secondsLeft <= 300) box.classList.add("warn");
+  }
+}
+
+function togglePause() {
+  if (state.graded) return;
+  state.paused = !state.paused;
+  document.getElementById("pauseBtn").textContent = state.paused ? "再開" : "一時停止";
+}
+
+function saveInputsFromDom() {
+  document.querySelectorAll(".blank-input").forEach(inp => {
+    state.inputs[inp.id] = inp.value;
+  });
+}
+
+function isQuestionAnswered(q) {
+  if (q.kind === "blank") {
+    return q.blanks.every((_, idx) => (state.inputs[`q${q.id}_b${idx}`] || "").trim() !== "");
+  }
+  return state.answers[q.id] !== undefined;
+}
+
+function updateAnsweredPill() {
+  const count = questions.filter(isQuestionAnswered).length;
+  document.getElementById("answeredPill").textContent = `解答済み: ${count} / ${questions.length} 問`;
+}
+
+function selectOption(qId, idx) {
+  if (state.graded) return;
+  state.answers[qId] = idx;
+  renderQuestions();
+  updateAnsweredPill();
+}
+
+function markAsCorrect(qId) {
+  state.overrides[qId] = true;
+  renderQuestions();
+  renderResultSummary();
+}
+
+function setViewFilter(f, btn) {
+  state.viewFilter = f;
+  document.querySelectorAll("#resultFilters .filter-btn").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+  renderQuestions();
+}
+
+function renderQuestions() {
+  saveInputsFromDom();
+  const container = document.getElementById("quizContainer");
+  const labels = ["ア", "イ", "ウ", "エ"];
+  const oxLabels = ["○", "×"];
+
+  const list = questions.filter(q => {
+    if (!state.graded || state.viewFilter === "all") return true;
+    const ok = state.overrides[q.id] ? true : state.results[q.id];
+    return !ok;
+  });
+
+  if (list.length === 0) {
+    container.innerHTML = `<div class="q-card" style="text-align:center; color:#64748b;">間違えた問題はありません！素晴らしいです。</div>`;
+    return;
+  }
+
+  container.innerHTML = list.map(q => {
+    const isOk = state.graded ? (state.overrides[q.id] ? true : state.results[q.id]) : null;
+    let cardCls = "q-card";
+    if (state.graded) cardCls += isOk ? " graded-ok" : " graded-ng";
+
+    const kindLabel = q.kind === "choice" ? "選択式" : (q.kind === "ox" ? "○×問題" : "穴埋め");
+    const statusHtml = state.graded
+      ? (isOk ? `<span class="q-status ok">⭕ 正解 (+${q.pts}点)</span>` : `<span class="q-status ng">❌ 不正解 (0点)</span>`)
+      : "";
+
+    let bodyHtml = "";
+    if (q.text) {
+      bodyHtml += `<p class="q-text">${q.text}</p>`;
+    }
+    if (q.figure) {
+      bodyHtml += `<div class="q-figure">${q.figure}</div>`;
+    }
+
+    if (q.kind === "choice" || q.kind === "ox") {
+      const opts = q.kind === "ox" ? ["正しい（○）", "誤っている（×）"] : q.choices;
+      const lbls = q.kind === "ox" ? oxLabels : labels;
+      const userAns = state.answers[q.id];
+      bodyHtml += `<div class="choices ${q.kind === "ox" ? "ox-grid" : ""}">` +
+        opts.map((opt, idx) => {
+          let cls = "choice-btn";
+          if (!state.graded) {
+            if (userAns === idx) cls += " selected";
+          } else {
+            if (idx === q.answer) cls += " graded-correct";
+            else if (idx === userAns) cls += " graded-wrong";
+          }
+          return `<button class="${cls}" ${state.graded ? "disabled" : ""} onclick="selectOption(${q.id}, ${idx})">
+            <span class="choice-label">${lbls[idx]}</span>
+            <span>${opt}</span>
+          </button>`;
+        }).join("") + `</div>`;
+    } else if (q.kind === "blank") {
+      let line = "";
+      q.promptParts.forEach((part, idx) => {
+        line += part;
+        if (idx < q.blanks.length) {
+          const b = q.blanks[idx];
+          const inpId = `q${q.id}_b${idx}`;
+          const val = state.inputs[inpId] !== undefined ? state.inputs[inpId] : "";
+          let cls = `blank-input ${b.size || ""}`;
+          if (state.graded) {
+            const bOk = isBlankCorrect(val, b.answers) || state.overrides[q.id];
+            cls += bOk ? " input-ok" : " input-ng";
+          }
+          line += `<input type="text" id="${inpId}" class="${cls}" value="${escapeHtml(val)}" placeholder="入力" autocomplete="off" ${state.graded ? "disabled" : ""}>`;
+        }
+      });
+      bodyHtml += `<div class="q-text" style="line-height:2.05;">${line}</div>`;
+    }
+
+    let ansDisplay = "";
+    if (q.kind === "choice") ansDisplay = labels[q.answer];
+    else if (q.kind === "ox") ansDisplay = oxLabels[q.answer];
+    else ansDisplay = q.blanks.map((b, i) => q.blanks.length > 1 ? `(${i + 1}) ${b.display}` : b.display).join(" ／ ");
+
+    const overrideBtn = (state.graded && q.kind === "blank" && !isOk)
+      ? `<div><button class="override-btn" onclick="markAsCorrect(${q.id})">✓ 表記ゆれのため自己採点で正解にする</button></div>`
+      : "";
+
+    return `
+      <div class="${cardCls}">
+        <div class="q-header">
+          <span class="q-num">問 ${q.id}</span>
+          <span class="q-unit">${q.chapterName}</span>
+          <span class="q-type">${kindLabel}</span>
+          <span class="q-pts">(${q.pts}点)</span>
+          ${statusHtml}
+        </div>
+        ${bodyHtml}
+        <div class="explain-box ${state.graded ? "show" : ""}">
+          <div class="ans-line">正答：${ansDisplay}</div>
+          <div>${q.explain}</div>
+          ${overrideBtn}
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  document.querySelectorAll(".blank-input").forEach(inp => {
+    inp.addEventListener("input", e => {
+      state.inputs[e.target.id] = e.target.value;
+      updateAnsweredPill();
+    });
+  });
+}
+
+function gradeTest(isTimeout) {
+  if (state.graded) return;
+  saveInputsFromDom();
+
+  const unanswered = questions.filter(q => !isQuestionAnswered(q)).length;
+  if (!isTimeout && unanswered > 0) {
+    if (!confirm(`未解答の問題が ${unanswered} 問あります。このまま採点しますか？`)) return;
+  }
+
+  state.graded = true;
+  if (state.timerId) clearInterval(state.timerId);
+  document.getElementById("pauseBtn").disabled = true;
+  document.getElementById("gradeBtn").style.display = "none";
+  document.getElementById("bottomNote").textContent = "採点完了！上の結果と各問題の解説を確認しましょう。";
+
+  questions.forEach(q => {
+    if (q.kind === "blank") {
+      let ok = true;
+      for (let i = 0; i < q.blanks.length; i++) {
+        if (!isBlankCorrect(state.inputs[`q${q.id}_b${i}`] || "", q.blanks[i].answers)) {
+          ok = false;
+          break;
+        }
+      }
+      state.results[q.id] = ok;
+    } else {
+      state.results[q.id] = (state.answers[q.id] === q.answer);
+    }
+  });
+
+  updateTimerDisplay();
+  renderResultSummary();
+  renderQuestions();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function renderResultSummary() {
+  let score = 0;
+  let okCount = 0;
+  const chStats = {
+    ch1: { name: "1章 物質の性質", ok: 0, total: 0, pts: 0, maxPts: 0 },
+    ch2: { name: "2章 気体の性質", ok: 0, total: 0, pts: 0, maxPts: 0 },
+    ch3: { name: "3章 水溶液", ok: 0, total: 0, pts: 0, maxPts: 0 },
+    ch4: { name: "4章 状態変化・蒸留", ok: 0, total: 0, pts: 0, maxPts: 0 }
+  };
+
+  questions.forEach(q => {
+    const ok = state.overrides[q.id] ? true : state.results[q.id];
+    chStats[q.chapter].total++;
+    chStats[q.chapter].maxPts += q.pts;
+    if (ok) {
+      score += q.pts;
+      okCount++;
+      chStats[q.chapter].ok++;
+      chStats[q.chapter].pts += q.pts;
+    }
+  });
+
+  const elapsed = (25 * 60) - state.secondsLeft;
+  const em = Math.floor(elapsed / 60);
+  const es = elapsed % 60;
+
+  document.getElementById("totalScoreText").innerHTML =
+    `${score} 点 <span style="font-size:18px; color:#64748b; font-weight:700;">/ 100点</span>`;
+  document.getElementById("scoreSubText").textContent =
+    `正解: ${okCount} / ${questions.length} 問 ／ 所要時間: ${em}分${String(es).padStart(2, "0")}秒`;
+
+  let comment = "";
+  if (score >= 90) comment = "素晴らしい成績です！計算・記述・用語のバランスも完璧で、本番でも高得点が期待できます。";
+  else if (score >= 75) comment = "よくできました！下の「間違えた問題だけ表示」で弱点の解説を確認すれば、90点以上が狙えます。";
+  else if (score >= 60) comment = "合格ラインです。まずは落とした計算問題や用語のひっかけを復習して確実に得点につなげましょう。";
+  else comment = "基礎の用語や公式をもう一度おさらいしましょう！間違えた問題の解説を読んでから再挑戦するのがおすすめです。";
+  document.getElementById("resultComment").textContent = comment;
+
+  document.getElementById("breakdownGrid").innerHTML = Object.values(chStats).map(s => {
+    const pct = Math.round((s.ok / s.total) * 100);
+    return `
+      <div class="breakdown-card">
+        <div style="font-weight:800; color:#1e293b;">${s.name}</div>
+        <div style="margin-top:2px;">${s.ok} / ${s.total} 問正解 (<strong>${pct}%</strong>) ・ ${s.pts}/${s.maxPts}点</div>
+        <div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div>
+      </div>
+    `;
+  }).join("");
+
+  document.getElementById("resultPanel").classList.add("show");
+}
+
+function resetTest() {
+  if (!confirm("解答とタイマーをリセットして最初からやり直しますか？")) return;
+  state.graded = false;
+  state.answers = {};
+  state.inputs = {};
+  state.overrides = {};
+  state.results = {};
+  state.viewFilter = "all";
+  state.secondsLeft = 25 * 60;
+  state.paused = false;
+  document.getElementById("pauseBtn").disabled = false;
+  document.getElementById("pauseBtn").textContent = "一時停止";
+  document.getElementById("gradeBtn").style.display = "inline-block";
+  document.getElementById("bottomNote").textContent = "全35問を解き終わったら「採点する」を押してください。";
+  document.getElementById("resultPanel").classList.remove("show");
+  document.querySelectorAll("#resultFilters .filter-btn").forEach((b, i) => b.classList.toggle("active", i === 0));
+  updateTimerDisplay();
+  renderQuestions();
+  updateAnsweredPill();
+  startTimer();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+renderQuestions();
+updateAnsweredPill();
+updateTimerDisplay();
+startTimer();
+</script>
+</body>
+</html>
